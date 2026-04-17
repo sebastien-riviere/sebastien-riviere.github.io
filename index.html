@@ -4,43 +4,91 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sébastien Rivière</title>
-<meta name="description" content="Guides et ressources pratiques sur l'IA et les outils numériques.">
+<meta name="description" content="Guides, ressources et contenus pratiques sur l'IA et le numérique par Sébastien Rivière.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:#f4f8fb;color:#1a2a35;font-family:'Lora',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
-.card{background:#fff;border:1px solid #d4e4f0;border-radius:12px;padding:48px 40px;max-width:520px;width:100%;box-shadow:0 2px 16px rgba(30,58,82,0.07);}
-h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:28px;color:#1e3a52;margin-bottom:6px;}
-.subtitle{font-size:15px;color:#7a96aa;font-family:'Nunito',sans-serif;margin-bottom:36px;}
-.guides{list-style:none;}
-.guides li{border-top:1px solid #e8f0f7;padding:18px 0;}
-.guides li:first-child{border-top:none;padding-top:0;}
-.guides a{text-decoration:none;display:flex;justify-content:space-between;align-items:center;gap:12px;}
-.guide-title{font-family:'Nunito',sans-serif;font-weight:700;font-size:16px;color:#3a5a78;}
-.guide-title:hover{color:#1e3a52;}
-.guide-meta{font-size:13px;color:#7a96aa;white-space:nowrap;}
-.arrow{color:#d4e4f0;font-size:18px;}
-.guides a:hover .arrow{color:#3a5a78;}
-footer{margin-top:24px;font-family:'Nunito',sans-serif;font-size:12px;color:#aabcca;}
+body{background:#f4f8fb;color:#1a2a35;font-family:'Lora',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;}
+
+/* ── Header ── */
+header{padding:64px 40px 48px;max-width:860px;width:100%;margin:0 auto;}
+.name{font-family:'Nunito',sans-serif;font-weight:900;font-size:36px;color:#1e3a52;letter-spacing:-0.5px;}
+.tagline{font-family:'Lora',serif;font-style:italic;font-size:17px;color:#5a7a92;margin-top:8px;margin-bottom:28px;}
+.contacts{display:flex;gap:12px;align-items:center;}
+.contact-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;background:#e8f0f7;border:1px solid #d0e2ef;color:#3a5a78;text-decoration:none;transition:background .15s,color .15s;}
+.contact-btn:hover{background:#3a5a78;color:#fff;border-color:#3a5a78;}
+.contact-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.contact-label{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1e3a52;color:#fff;font-family:'Nunito',sans-serif;font-size:12px;padding:4px 10px;border-radius:6px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;}
+.contact-label::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1e3a52;}
+.contact-btn:hover .contact-label{opacity:1;}
+.contacts-hint{font-family:'Nunito',sans-serif;font-size:13px;color:#8faabb;margin-left:4px;}
+
+/* ── Main ── */
+main{flex:1;padding:0 40px 64px;max-width:860px;width:100%;margin:0 auto;}
+
+/* ── Sections ── */
+.section{margin-bottom:48px;}
+.section-title{font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:#8faabb;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #dde9f2;}
+
+/* ── Cards grille ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.card{background:#fff;border:1px solid #dde9f2;border-radius:10px;padding:24px;transition:box-shadow .15s,border-color .15s;}
+.card:hover{box-shadow:0 4px 20px rgba(30,58,82,0.10);border-color:#b8d0e4;}
+.card a{text-decoration:none;display:block;}
+.card-label{font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8faabb;margin-bottom:8px;}
+.card-title{font-family:'Nunito',sans-serif;font-weight:700;font-size:16px;color:#1e3a52;line-height:1.35;margin-bottom:6px;}
+.card-desc{font-family:'Lora',serif;font-size:14px;color:#5a7a92;line-height:1.6;}
+.card-arrow{display:inline-block;margin-top:14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:#3a8ac4;}
+
+/* ── Footer ── */
+footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'Nunito',sans-serif;font-size:12px;color:#aabcca;border-top:1px solid #e4edf5;}
+
+@media(max-width:600px){
+  header,main,footer{padding-left:20px;padding-right:20px;}
+  header{padding-top:40px;}
+  .name{font-size:28px;}
+  .grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
-<div class="card">
-  <h1>Sébastien Rivière</h1>
-  <p class="subtitle">Guides pratiques · IA &amp; outils numériques</p>
-  <ul class="guides">
-    <li>
-      <a href="/guide-tokens-claude">
-        <div>
-          <div class="guide-title">Vos tokens Claude, c'est précieux</div>
-          <div class="guide-meta" style="margin-top:4px;font-size:12px;">Comprendre, configurer et optimiser votre usage de Claude</div>
-        </div>
-        <span class="arrow">→</span>
-      </a>
-    </li>
-  </ul>
-</div>
-<footer>Avril 2026</footer>
+
+<header>
+  <div class="name">Sébastien Rivière</div>
+  <div class="tagline">Retrouvez ici tous mes contenus.</div>
+  <div class="contacts">
+    <a class="contact-btn" href="mailto:rsebastien@protonmail.com" title="Me contacter">
+      <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      <span class="contact-label">rsebastien@protonmail.com</span>
+    </a>
+    <a class="contact-btn" href="mailto:sebastienriviere.contact@gmail.com" title="Me contacter">
+      <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      <span class="contact-label">sebastienriviere.contact@gmail.com</span>
+    </a>
+    <span class="contacts-hint">Survolez pour voir l'adresse · Cliquez pour écrire</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="section">
+    <div class="section-title">Guides &amp; ressources</div>
+    <div class="grid">
+      <div class="card">
+        <a href="/guide-tokens-claude">
+          <div class="card-label">IA · Claude</div>
+          <div class="card-title">Vos tokens Claude, c'est précieux</div>
+          <div class="card-desc">Comprendre, configurer et optimiser votre usage de Claude au quotidien.</div>
+          <div class="card-arrow">Lire le guide →</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>© Sébastien Rivière · Avril 2026</footer>
+
 </body>
 </html>
