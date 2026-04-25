@@ -798,11 +798,6 @@ input[type="file"] { display: none; }
       <span class="logo-text">MD<span>Convert</span></span>
     </div>
     <div class="header-actions">
-      <select class="lang-select" id="langSelect" title="Langue OCR">
-        <option value="fra">FR</option>
-        <option value="eng">EN</option>
-        <option value="fra+eng">FR+EN</option>
-      </select>
       <button class="btn-icon" id="themeToggle" title="Changer de thème">
         <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
@@ -887,6 +882,11 @@ input[type="file"] { display: none; }
           <option value="3" selected>Mixte</option>
           <option value="11">Affiche</option>
           <option value="4">Colonne</option>
+        </select>
+        <select class="ocr-select" id="langSelect" title="Langue source des images (OCR uniquement)">
+          <option value="fra">FR</option>
+          <option value="eng">EN</option>
+          <option value="fra+eng">FR+EN</option>
         </select>
       </div>
     </div>
@@ -1015,6 +1015,72 @@ input[type="file"] { display: none; }
 </script>
 
 <script>
+// === MODULE I18N ===
+
+const LANG = navigator.language.startsWith('fr') ? 'fr' : 'en';
+
+const T = {
+  fr: {
+    dropTitle: 'Déposez vos fichiers ici',
+    dropSub: 'PDF · DOCX · JPG · PNG · WEBP · TXT',
+    btnFiles: 'Fichiers', btnCamera: 'Caméra', btnGallery: 'Galerie', btnText: 'Texte',
+    pastePlaceholder: 'Collez votre texte ici — transcript YouTube, email, notes…',
+    btnCancel: 'Annuler', btnConvert: 'Convertir',
+    formatLabel: 'Format',
+    btnClear: 'Vider', btnExportAll: 'Tout exporter',
+    btnDownload: 'Télécharger', btnCopy: 'Copier',
+    ocrDoc: 'Document', ocrMixed: 'Mixte', ocrPoster: 'Affiche', ocrCol: 'Colonne',
+    waiting: 'En attente', processing: 'Conversion…', convError: 'Erreur de conversion',
+    unsupported: 'Format non supporté : ',
+    noFile: 'Aucun fichier converti', nothingToPaste: 'Rien à convertir',
+    copied: 'Copié dans le presse-papier', copyFail: 'Échec de la copie',
+    downloaded: ' téléchargé', exportedZip: ' fichiers exportés en ZIP',
+    pageOf: (i, n) => `Page ${i} / ${n}…`,
+    files: (n) => n + ' fichier' + (n > 1 ? 's' : ''),
+    ocrLangTitle: 'Langue source des images (OCR)',
+  },
+  en: {
+    dropTitle: 'Drop your files here',
+    dropSub: 'PDF · DOCX · JPG · PNG · WEBP · TXT',
+    btnFiles: 'Files', btnCamera: 'Camera', btnGallery: 'Gallery', btnText: 'Text',
+    pastePlaceholder: 'Paste your text here — YouTube transcript, email, notes…',
+    btnCancel: 'Cancel', btnConvert: 'Convert',
+    formatLabel: 'Format',
+    btnClear: 'Clear', btnExportAll: 'Export all',
+    btnDownload: 'Download', btnCopy: 'Copy',
+    ocrDoc: 'Document', ocrMixed: 'Mixed', ocrPoster: 'Poster', ocrCol: 'Column',
+    waiting: 'Waiting', processing: 'Converting…', convError: 'Conversion error',
+    unsupported: 'Unsupported format: ',
+    noFile: 'No converted file', nothingToPaste: 'Nothing to convert',
+    copied: 'Copied to clipboard', copyFail: 'Copy failed',
+    downloaded: ' downloaded', exportedZip: ' files exported as ZIP',
+    pageOf: (i, n) => `Page ${i} / ${n}…`,
+    files: (n) => n + ' file' + (n > 1 ? 's' : ''),
+    ocrLangTitle: 'Source language of images (OCR)',
+  }
+}[LANG];
+
+function applyI18n() {
+  const q = (s) => document.querySelector(s);
+  const setText = (el, text) => { if (!el) return; Array.from(el.childNodes).filter(n => n.nodeType === 3).forEach(n => n.remove()); el.appendChild(document.createTextNode(text)); };
+  q('.drop-zone-title').textContent = T.dropTitle;
+  q('.drop-zone-sub').textContent = T.dropSub;
+  q('.format-label').textContent = T.formatLabel;
+  q('#pasteTextarea').placeholder = T.pastePlaceholder;
+  q('#btnPasteCancel').textContent = T.btnCancel;
+  q('#btnPasteConvert').textContent = T.btnConvert;
+  setText(q('#btnFiles'), T.btnFiles);
+  setText(q('#btnCamera'), T.btnCamera);
+  setText(q('#btnPhotos'), T.btnGallery);
+  setText(q('#btnPaste'), T.btnText);
+  setText(q('#btnClear'), ' ' + T.btnClear);
+  setText(q('#btnDownloadAll'), ' ' + T.btnExportAll);
+  setText(q('#modalDownload'), ' ' + T.btnDownload);
+  setText(q('#modalCopy'), ' ' + T.btnCopy);
+  const om = q('#ocrMode'); if (om) { om.options[0].text = T.ocrDoc; om.options[1].text = T.ocrMixed; om.options[2].text = T.ocrPoster; om.options[3].text = T.ocrCol; }
+  const ls = q('#langSelect'); if (ls) ls.title = T.ocrLangTitle;
+}
+
 // === MODULE APP — ÉTAT GLOBAL ===
 
 const STATE = {
@@ -1110,7 +1176,7 @@ function updateQueueUI() {
     return;
   }
   section.classList.add('visible');
-  title.textContent = STATE.files.length + ' fichier' + (STATE.files.length > 1 ? 's' : '');
+  title.textContent = T.files(STATE.files.length);
 }
 
 function renderFileCard(entry) {
@@ -1126,7 +1192,7 @@ function renderFileCard(entry) {
       <div class="file-name" id="name-${entry.id}" title="${entry.file.name}">${entry.file.name}</div>
       <div class="file-meta">
         <span>${formatSize(entry.file.size)}</span>
-        <span id="meta-${entry.id}">En attente</span>
+        <span id="meta-${entry.id}">${T.waiting}</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="prog-${entry.id}"></div></div>
     </div>
@@ -1238,7 +1304,7 @@ async function processFiles(files) {
   const newEntries = [];
   for (const file of files) {
     const type = getFileType(file);
-    if (type === 'other') { showToast('Format non supporté : ' + file.name, 'error'); continue; }
+    if (type === 'other') { showToast(T.unsupported + file.name, 'error'); continue; }
     
     const entry = { id: makeId(), file, type, result: null, confidence: null, customName: null };
     STATE.files.push(entry);
@@ -1255,7 +1321,7 @@ async function processFiles(files) {
 }
 
 async function convertFile(entry) {
-  updateCardState(entry.id, 'processing', 'Conversion...');
+  updateCardState(entry.id, 'processing', T.processing);
   
   try {
     let result = '';
@@ -1288,7 +1354,7 @@ async function convertFile(entry) {
     }
     
   } catch(err) {
-    updateCardState(entry.id, 'error', 'Erreur de conversion');
+    updateCardState(entry.id, 'error', T.convError);
     setErrorActions(entry.id, entry);
   }
 }
@@ -1344,7 +1410,7 @@ async function convertPdf(file, entryId) {
   const total = pdf.numPages;
 
   for (let i = 1; i <= total; i++) {
-    if (entryId) updateCardState(entryId, 'processing', `Page ${i} / ${total}…`);
+    if (entryId) updateCardState(entryId, 'processing', T.pageOf(i, total));
     const page = await pdf.getPage(i);
     const content = await page.getTextContent();
     const pageText = content.items.map(item => item.str).join(' ');
@@ -1530,12 +1596,12 @@ function downloadFile(id) {
   a.href = url; a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
-  showToast(filename + ' téléchargé');
+  showToast(filename + T.downloaded);
 }
 
 async function downloadAll() {
   const done = STATE.files.filter(e => e.result);
-  if (done.length === 0) { showToast('Aucun fichier converti', 'error'); return; }
+  if (done.length === 0) { showToast(T.noFile, 'error'); return; }
   
   if (done.length === 1) { downloadFile(done[0].id); return; }
   
@@ -1552,7 +1618,7 @@ async function downloadAll() {
   a.href = url; a.download = 'md-convert-export.zip';
   a.click();
   URL.revokeObjectURL(url);
-  showToast(done.length + ' fichiers exportés en ZIP');
+  showToast(done.length + T.exportedZip);
 }
 
 // === MODULE COPY / TOKENS / FILENAME EDIT ===
@@ -1568,8 +1634,8 @@ async function copyResult(id) {
   if (!entry || !entry.result) return;
   try {
     await navigator.clipboard.writeText(entry.result);
-    showToast('Copié dans le presse-papier');
-  } catch { showToast('Échec de la copie', 'error'); }
+    showToast(T.copied);
+  } catch { showToast(T.copyFail, 'error'); }
 }
 
 function makeNameEditable(id) {
@@ -1617,7 +1683,7 @@ function hidePastePanel() {
 
 function processPastedText() {
   const text = document.getElementById('pasteTextarea').value.trim();
-  if (!text) { showToast('Rien à convertir', 'error'); return; }
+  if (!text) { showToast(T.nothingToPaste, 'error'); return; }
   hidePastePanel();
   const blob = new Blob([text], { type: 'text/plain' });
   const file = new File([blob], 'texte-collé.txt', { type: 'text/plain' });
@@ -1672,6 +1738,7 @@ function initDropZone() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
+  applyI18n();
   initDropZone();
 
   // File inputs
@@ -1725,7 +1792,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const entry = STATE.files.find(e => e.id === STATE.currentPreviewId);
     if (!entry?.result) return;
     await navigator.clipboard.writeText(entry.result);
-    showToast('Copié dans le presse-papier');
+    showToast(T.copied);
   };
 
   // Keyboard

@@ -1,101 +1,96 @@
 # MD Convert
 
-Convertissez vos fichiers en Markdown, en local, sans rien installer.
+Convert your files to Markdown, locally, with nothing to install.
 
-PDF · DOCX · JPG · PNG · Captures smartphone → `.md` ou `.txt` prêts pour Claude et Obsidian.
-
----
-
-## Utilisation
-
-**[Ouvrir MD Convert →](https://sebastien-riviere.github.io/md-convert)**
-
-Aucune installation. Aucun compte. Vos fichiers ne quittent jamais votre appareil.
+PDF · DOCX · JPG · PNG · Smartphone captures → `.md` or `.txt` ready for Claude and Obsidian.
 
 ---
 
-## Formats supportés
+## Use it now
 
-| Format | Type | Qualité |
+**[Open MD Convert →](https://sebastien-riviere.github.io/outils/MD-Convert/)**
+
+No install. No account. Your files never leave your device.
+
+---
+
+## Supported formats
+
+| Format | Type | Quality |
 |---|---|---|
-| PDF | Textuel (natif) | Excellente |
-| DOCX / DOC | Word | Très bonne |
-| JPG / PNG / WEBP | Image + OCR | Bonne (dépend de la photo) |
-| Capture smartphone | OCR caméra | Bonne (texte imprimé net) |
-| TXT / MD | Texte brut | Parfaite |
+| PDF | Text-based (native) | Excellent |
+| DOCX / DOC | Word | Very good |
+| JPG / PNG / WEBP | Image + OCR | Good (depends on photo quality) |
+| Smartphone capture | Camera OCR | Good (printed text) |
+| TXT / MD | Plain text | Perfect |
 
 ---
 
-## Fonctionnalités
+## Features
 
-- Conversion locale et offline — zéro upload serveur
-- OCR intégré pour les images et photos (Tesseract.js)
-- Prétraitement automatique de l'image avant OCR
-- Indicateur de confiance OCR par fichier
-- Traitement par lot — plusieurs fichiers ou dossier entier
-- Export unitaire ou ZIP global
-- Aperçu avant téléchargement
-- Mode sombre / clair
-- Langue OCR : FR, EN, FR+EN
+- **100% local** — zero server upload, works offline
+- **Built-in OCR** for images and photos (Tesseract.js)
+- **Auto image preprocessing** before OCR
+- **OCR confidence indicator** per file
+- **Batch processing** — multiple files or entire folder
+- **Single or ZIP export**
+- **Preview before download**
+- **Token counter** — shows estimated Claude tokens per file
+- **Direct copy** — one click to clipboard, no preview needed
+- **Editable filename** before export
+- **Drag result** to any text editor
+- **Global paste** — Ctrl+V anywhere converts text or image instantly
+- **Dark / light mode**
+- **Auto UI language** — French or English based on browser settings
+- **OCR language** — FR, EN, FR+EN
 
-## Installer sur l'écran d'accueil (PWA)
+## Install on home screen (PWA)
 
 **iPhone / iPad**
-1. Ouvrir le lien dans Safari
-2. Bouton Partager → "Sur l'écran d'accueil"
-3. L'app apparaît comme une app native
+1. Open the link in Safari
+2. Share button → "Add to Home Screen"
+3. The app appears as a native app
 
 **Android**
-1. Ouvrir le lien dans Chrome
-2. Bannière "Ajouter à l'écran d'accueil" ou menu → Installer
-3. Fonctionne ensuite hors connexion
+1. Open the link in Chrome
+2. "Add to Home Screen" banner or menu → Install
+3. Works fully offline afterwards
 
 ---
 
-## Fonctionnement offline
+## How offline works
 
-Au premier chargement, les librairies de conversion sont mises en cache par le navigateur. À partir du deuxième lancement, l'outil fonctionne entièrement hors connexion — y compris en mode avion.
+On first load, all conversion libraries are cached by the browser. From the second launch onwards, the tool works entirely offline — including in airplane mode.
 
-Exception : les modèles de langue OCR (Tesseract) se téléchargent une seule fois au premier usage sur image, puis sont également mis en cache.
+Exception: OCR language models (Tesseract) download once on first image use, then are also cached.
 
 ---
 
-## Stack technique
+## Tech stack
 
 Vanilla JS · PDF.js · Mammoth.js · Tesseract.js · JSZip · PWA (Service Worker)
 
-Zéro framework. Zéro dépendance runtime. Zéro donnée envoyée.
+Zero framework. Zero runtime dependency. Zero data sent.
 
 ---
 
-## outils/MD-Convert/
-├── index.html          Application complète (libs bundlées inline)
-├── manifest.json       Configuration PWA
-├── sw.js               Service worker offline
-├── icon-192.png        Icône app
-├── icon-512.png        Icône app haute résolution
-└── README.md           Ce fichier
-```
+## Known limits
+
+- Scanned PDF (image inside PDF): OCR quality depends on scan sharpness
+- PPTX: not supported in v1 — export to PDF from PowerPoint first
+- Full folder selection: not available on Safari iOS (multiple files OK)
+- Handwritten text: approximate results with Tesseract
 
 ---
 
-## Limites connues
+## Author
 
-- PDF scanné (image dans PDF) : qualité OCR variable selon la netteté du scan
-- PPTX : non supporté en v1 — exporter en PDF depuis PowerPoint avant import
-- Sélection de dossier entier : non disponible sur Safari iOS (fichiers multiples OK)
-- Texte manuscrit : résultats approximatifs avec Tesseract
-
----
-
-## Auteur
-
-Sébastien Rivière — IA · Blockchain · Créateur d'outils numériques
+Sébastien Rivière — AI · Blockchain · Digital tools
 
 [LinkedIn](https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil/) · [GitHub](https://sebastien-riviere.github.io)
 
 ---
 
-## Licence
+## License
 
-MIT — libre d'utilisation, de modification et de redistribution avec attribution.
+MIT — free to use, modify and redistribute with attribution.
