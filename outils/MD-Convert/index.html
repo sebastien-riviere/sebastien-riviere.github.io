@@ -1802,24 +1802,65 @@ async function fetchYouTube(videoId) {
   const entry = createUrlEntry(`youtube-${videoId}.md`, 'txt');
   updateCardState(entry.id, 'processing', T.processing);
   try {
-    const pageResp = await fetch(PROXY + encodeURIComponent(`https://www.youtube.com/watch?v=${videoId}`));
-    const html = await pageResp.text();
-    const m = html.match(/"captionTracks":(\[.*?\])/);
-    if (!m) throw new Error('no captions');
-    const tracks = JSON.parse(m[1]);
-    const track = tracks.find(t => t.languageCode?.startsWith('fr')) ||
-                  tracks.find(t => t.languageCode?.startsWith('en')) ||
-                  tracks[0];
-    if (!track) throw new Error('no track');
-    const capResp = await fetch(PROXY + encodeURIComponent(track.baseUrl + '&fmt=json3'));
-    const data = await capResp.json();
-    const title = html.match(/<title>([^<]*)<\/title>/)?.[1]?.replace(' - YouTube','') || videoId;
+    // 1. Fetch the YouTube page to extract captionTracks + title
+    let html = '', title = videoId;
+    for (const proxyUrl of [PROXY + encodeURIComponent(`https://www.youtube.com/watch?v=${videoId}`), `https://api.codetabs.com/v1/proxy?quest=https://www.youtube.com/watch?v=${videoId}`]) {
+      try {
+        const r = await fetch(proxyUrl);
+        if (r.ok) { html = await r.text(); if (html.includes('captionTracks')) break; }
+      } catch {}
+    }
+    title = html.match(/<title>([^<]*)<\/title>/)?.[1]?.replace(/ - YouTube$/, '') || videoId;
+
+    // 2. Extract captionTracks via bracket-counting (handles nested arrays)
+    let captionUrl = null;
+    const keyIdx = html.indexOf('"captionTracks":');
+    if (keyIdx !== -1) {
+      const arrStart = html.indexOf('[', keyIdx);
+      if (arrStart !== -1) {
+        let depth = 0, ci = arrStart;
+        for (; ci < html.length; ci++) {
+          if (html[ci] === '[' || html[ci] === '{') depth++;
+          else if (html[ci] === ']' || html[ci] === '}') { if (--depth === 0) break; }
+        }
+        try {
+          const tracksRaw = html.slice(arrStart, ci + 1)
+            .replace(/\\u003c/gi, '<').replace(/\\u003e/gi, '>').replace(/\\u0026/gi, '&');
+          const tracks = JSON.parse(tracksRaw);
+          const track = tracks.find(t => t.languageCode?.startsWith('fr')) ||
+                        tracks.find(t => t.languageCode?.startsWith('en')) ||
+                        tracks[0];
+          if (track?.baseUrl) captionUrl = track.baseUrl.includes('fmt=') ? track.baseUrl : track.baseUrl + '&fmt=json3';
+        } catch {}
+      }
+    }
+
+    // 3. Fetch caption data — try signed URL (direct then proxied), then fallback to simple timedtext
+    let data = null;
+    const candidates = captionUrl
+      ? [captionUrl, PROXY + encodeURIComponent(captionUrl)]
+      : [];
+    for (const [l, k] of [['fr','asr'],['en','asr'],['fr',''],['en','']]) {
+      candidates.push(`https://www.youtube.com/api/timedtext?v=${videoId}&lang=${l}&fmt=json3${k?'&kind='+k:''}`);
+    }
+    for (const url of candidates) {
+      try {
+        const r = await fetch(url);
+        if (!r.ok) continue;
+        const j = await r.json();
+        if (j?.events?.length) { data = j; break; }
+      } catch {}
+    }
+
+    if (!data?.events?.length) throw new Error('no captions');
+
     const lines = [`# ${title}\n\n> Source: https://youtube.com/watch?v=${videoId}\n`];
-    for (const ev of data.events || []) {
+    for (const ev of data.events) {
       if (!ev.segs) continue;
       const text = ev.segs.map(s => s.utf8).join('').replace(/\n/g,' ').trim();
       if (text) lines.push(`**[${formatTimestamp(ev.tStartMs)}]** ${text}`);
     }
+    if (lines.length < 2) throw new Error('no captions');
     entry.result = lines.join('\n');
     updateCardState(entry.id, 'done', estimateTokens(entry.result));
     setCardActions(entry.id, entry);
