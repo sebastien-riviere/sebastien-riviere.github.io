@@ -96,11 +96,11 @@
 
 /* Force dark/light via data-theme */
 [data-theme="dark"] {
-  --bg: #0F172A; --surface: #1E293B; --surface-2: #273548;
-  --border: rgba(255,255,255,0.08); --border-strong: rgba(255,255,255,0.15);
-  --text: #F8FAFC; --text-muted: #94A3B8; --text-subtle: #64748B;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3); --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-  --shadow-lg: 0 12px 32px rgba(0,0,0,0.5);
+  --bg: #1C2B3A; --surface: #253444; --surface-2: #2E3F52;
+  --border: rgba(255,255,255,0.10); --border-strong: rgba(255,255,255,0.18);
+  --text: #EEF2F7; --text-muted: #9BAFBF; --text-subtle: #6E8898;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.25); --shadow-md: 0 4px 12px rgba(0,0,0,0.32);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.42);
 }
 [data-theme="light"] {
   --bg: #F8FAFC; --surface: #FFFFFF; --surface-2: #F1F5F9;
@@ -262,8 +262,10 @@ main {
 /* === ACTION BUTTONS === */
 .action-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-3);
+  max-width: 440px;
+  margin: 0 auto;
 }
 .btn-action {
   display: flex;
@@ -813,7 +815,7 @@ input[type="file"] { display: none; }
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
             <circle cx="12" cy="13" r="4"/>
           </svg>
-          Photo
+          Caméra
         </button>
         <button class="btn-action" id="btnPhotos" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -821,7 +823,7 @@ input[type="file"] { display: none; }
             <circle cx="8.5" cy="8.5" r="1.5"/>
             <polyline points="21 15 16 10 5 21"/>
           </svg>
-          Photos
+          Galerie
         </button>
         <button class="btn-action" id="btnPaste" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -890,9 +892,9 @@ input[type="file"] { display: none; }
     <div class="footer-dot"></div>
     <span>Local &amp; offline</span>
     <div class="footer-dot"></div>
-    <a href="https://github.com/sebastien-riviere.github.io" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://sebastien-riviere.github.io" target="_blank" rel="noopener">GitHub</a>
     <div class="footer-dot"></div>
-    <span>par Sébastien Rivière</span>
+    <a href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil/" target="_blank" rel="noopener">par Sébastien Rivière</a>
   </footer>
 </div>
 
