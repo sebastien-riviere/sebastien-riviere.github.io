@@ -625,6 +625,36 @@ main {
   word-break: break-word;
 }
 
+/* === TOKEN BADGE === */
+.token-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.modal-tokens {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: var(--space-3);
+  flex-shrink: 0;
+}
+/* Filename editable */
+.file-name.editable { cursor: text; }
+.file-name.editable:hover { text-decoration: underline dotted var(--text-muted); }
+.file-name-input {
+  width: 100%; background: transparent; border: none;
+  border-bottom: 1px solid var(--accent); outline: none;
+  font-size: inherit; font-family: inherit; color: var(--text); padding: 0;
+}
+/* Card drag */
+.file-card.done[draggable="true"] { cursor: grab; }
+.file-card.done[draggable="true"]:active { cursor: grabbing; }
+
 /* === PASTE PANEL === */
 .paste-panel {
   display: none;
@@ -903,6 +933,7 @@ input[type="file"] { display: none; }
   <div class="modal">
     <div class="modal-header">
       <span class="modal-title" id="modalTitle">Aperçu</span>
+      <span class="modal-tokens" id="modalTokens"></span>
       <div class="modal-actions">
         <button class="btn-sm accent" id="modalDownload" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -1092,7 +1123,7 @@ function renderFileCard(entry) {
   card.innerHTML = `
     <div class="file-type-badge ${typeCls}">${typeLabel}</div>
     <div class="file-info">
-      <div class="file-name" title="${entry.file.name}">${entry.file.name}</div>
+      <div class="file-name" id="name-${entry.id}" title="${entry.file.name}">${entry.file.name}</div>
       <div class="file-meta">
         <span>${formatSize(entry.file.size)}</span>
         <span id="meta-${entry.id}">En attente</span>
@@ -1131,6 +1162,12 @@ function setCardActions(id, entry) {
   const actions = document.getElementById('actions-' + id);
   if (!actions) return;
   actions.innerHTML = `
+    <button class="card-btn" onclick="copyResult(${id})" title="Copier" aria-label="Copier">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
     <button class="card-btn download" onclick="openPreview(${id})" title="Aperçu" aria-label="Aperçu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
@@ -1150,6 +1187,18 @@ function setCardActions(id, entry) {
       </svg>
     </button>
   `;
+  // Filename editable on click
+  const nameEl = document.getElementById('name-' + id);
+  if (nameEl) { nameEl.classList.add('editable'); nameEl.onclick = () => makeNameEditable(id); }
+  // Drag result as text
+  const card = document.getElementById('card-' + id);
+  if (card) {
+    card.setAttribute('draggable', 'true');
+    card.ondragstart = e => {
+      e.dataTransfer.setData('text/plain', entry.result);
+      e.dataTransfer.effectAllowed = 'copy';
+    };
+  }
 }
 
 function addConfidenceBadge(id, confidence) {
@@ -1191,7 +1240,7 @@ async function processFiles(files) {
     const type = getFileType(file);
     if (type === 'other') { showToast('Format non supporté : ' + file.name, 'error'); continue; }
     
-    const entry = { id: makeId(), file, type, result: null, confidence: null };
+    const entry = { id: makeId(), file, type, result: null, confidence: null, customName: null };
     STATE.files.push(entry);
     newEntries.push(entry);
     renderFileCard(entry);
@@ -1227,7 +1276,7 @@ async function convertFile(entry) {
     entry.result = result;
     entry.confidence = confidence;
     
-    updateCardState(entry.id, 'done', formatSize(new Blob([result]).size) + ' converti');
+    updateCardState(entry.id, 'done', formatSize(new Blob([result]).size) + ' · ' + estimateTokens(result));
     setCardActions(entry.id, entry);
     
     if (confidence !== null) {
@@ -1474,7 +1523,7 @@ function downloadFile(id) {
   const entry = STATE.files.find(e => e.id === id);
   if (!entry || !entry.result) return;
   
-  const filename = baseName(entry.file.name) + getOutputExt();
+  const filename = (entry.customName || baseName(entry.file.name)) + getOutputExt();
   const blob = new Blob([entry.result], { type: 'text/plain;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -1493,7 +1542,7 @@ async function downloadAll() {
   // ZIP pour plusieurs fichiers
   const zip = new JSZip();
   for (const entry of done) {
-    const filename = baseName(entry.file.name) + getOutputExt();
+    const filename = (entry.customName || baseName(entry.file.name)) + getOutputExt();
     zip.file(filename, entry.result);
   }
   
@@ -1504,6 +1553,49 @@ async function downloadAll() {
   a.click();
   URL.revokeObjectURL(url);
   showToast(done.length + ' fichiers exportés en ZIP');
+}
+
+// === MODULE COPY / TOKENS / FILENAME EDIT ===
+
+function estimateTokens(text) {
+  const t = Math.round(text.length / 4);
+  if (t < 1000) return '~' + t + ' tokens';
+  return '~' + (t / 1000).toFixed(1) + 'k tokens';
+}
+
+async function copyResult(id) {
+  const entry = STATE.files.find(e => e.id === id);
+  if (!entry || !entry.result) return;
+  try {
+    await navigator.clipboard.writeText(entry.result);
+    showToast('Copié dans le presse-papier');
+  } catch { showToast('Échec de la copie', 'error'); }
+}
+
+function makeNameEditable(id) {
+  const entry = STATE.files.find(e => e.id === id);
+  if (!entry || !entry.result) return;
+  const nameEl = document.getElementById('name-' + id);
+  if (!nameEl || nameEl.querySelector('input')) return;
+  const current = entry.customName || baseName(entry.file.name);
+  const input = document.createElement('input');
+  input.value = current;
+  input.className = 'file-name-input';
+  const restore = () => {
+    const val = input.value.trim();
+    if (val) entry.customName = val;
+    nameEl.textContent = entry.customName || baseName(entry.file.name);
+    nameEl.onclick = () => makeNameEditable(id);
+  };
+  input.onblur = restore;
+  input.onkeydown = e => {
+    if (e.key === 'Enter') { e.preventDefault(); input.blur(); }
+    if (e.key === 'Escape') { nameEl.textContent = current; nameEl.onclick = () => makeNameEditable(id); }
+  };
+  nameEl.textContent = '';
+  nameEl.appendChild(input);
+  nameEl.onclick = null;
+  input.select();
 }
 
 // === MODULE PASTE TEXT ===
@@ -1537,9 +1629,9 @@ function processPastedText() {
 function openPreview(id) {
   const entry = STATE.files.find(e => e.id === id);
   if (!entry || !entry.result) return;
-  
   STATE.currentPreviewId = id;
-  document.getElementById('modalTitle').textContent = baseName(entry.file.name) + getOutputExt();
+  document.getElementById('modalTitle').textContent = (entry.customName || baseName(entry.file.name)) + getOutputExt();
+  document.getElementById('modalTokens').textContent = estimateTokens(entry.result);
   document.getElementById('previewText').textContent = entry.result;
   document.getElementById('ocrLoading').classList.remove('visible');
   document.getElementById('modalOverlay').classList.add('open');
@@ -1639,6 +1731,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // Keyboard
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeModal();
+  });
+
+  // Global Ctrl+V — colle texte ou image directement
+  document.addEventListener('paste', e => {
+    const tag = document.activeElement.tagName;
+    if (['INPUT', 'TEXTAREA'].includes(tag)) return;
+    const items = Array.from(e.clipboardData.items);
+    const imgItem = items.find(i => i.type.startsWith('image/'));
+    if (imgItem) {
+      const file = imgItem.getAsFile();
+      if (file) { processFiles([file]); return; }
+    }
+    const textItem = items.find(i => i.type === 'text/plain');
+    if (textItem) {
+      textItem.getAsString(text => {
+        if (!text.trim()) return;
+        const blob = new Blob([text], { type: 'text/plain' });
+        processFiles([new File([blob], 'collé.txt', { type: 'text/plain' })]);
+      });
+    }
   });
 
   // Swipe to close modal (mobile)
