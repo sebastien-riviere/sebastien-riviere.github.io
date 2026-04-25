@@ -949,7 +949,7 @@ function makeId() { return ++fileCounter; }
 // === MODULE THEME ===
 
 function initTheme() {
-  const saved = localStorage.getItem('mdc-theme') || 'dark';
+  const saved = localStorage.getItem('mdc-theme') || 'light';
   STATE.theme = saved;
   applyTheme(saved);
 }
