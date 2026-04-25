@@ -267,6 +267,7 @@ main {
   max-width: 440px;
   margin: 0 auto;
 }
+.btn-action.full { grid-column: span 2; flex-direction: row; gap: var(--space-3); padding: var(--space-3) var(--space-4); }
 .btn-action {
   display: flex;
   flex-direction: column;
@@ -655,6 +656,36 @@ main {
 .file-card.done[draggable="true"] { cursor: grab; }
 .file-card.done[draggable="true"]:active { cursor: grabbing; }
 
+/* === URL PANEL === */
+.url-panel {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  animation: fadeIn 0.18s ease;
+}
+.url-panel.open { display: flex; }
+.url-input-row { display: flex; gap: var(--space-2); }
+.url-input {
+  flex: 1; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: var(--space-3) var(--space-4);
+  font-family: var(--font); font-size: 0.85rem; color: var(--text); outline: none;
+  transition: border-color 0.15s;
+}
+.url-input:focus { border-color: var(--accent); }
+.url-input::placeholder { color: var(--text-muted); }
+.url-hint { font-size: 0.72rem; color: var(--text-subtle); padding: 0 var(--space-1); }
+/* Merge mode */
+.file-card.merge-select { cursor: pointer; }
+.file-card.merge-select .card-check { display: flex !important; }
+.card-check {
+  display: none; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 4px; border: 2px solid var(--border);
+  flex-shrink: 0; transition: all 0.15s;
+}
+.file-card.checked .card-check { background: var(--accent); border-color: var(--accent); }
+.file-card.checked .card-check::after { content: ''; width: 10px; height: 6px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translateY(-1px); display: block; }
+
 /* === PASTE PANEL === */
 .paste-panel {
   display: none;
@@ -857,7 +888,24 @@ input[type="file"] { display: none; }
           </svg>
           Texte
         </button>
+        <button class="btn-action full" id="btnLink" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          Lien
+        </button>
       </div>
+    </div>
+
+    <!-- URL PANEL -->
+    <div class="url-panel" id="urlPanel">
+      <div class="url-input-row">
+        <input type="url" class="url-input" id="urlInput" placeholder="YouTube, article, Google Doc, GitHub…" spellcheck="false"/>
+        <button class="btn-sm accent" id="btnUrlConvert" type="button">OK</button>
+        <button class="btn-sm" id="btnUrlCancel" type="button">✕</button>
+      </div>
+      <div class="url-hint">YouTube · Articles web · Google Doc public · GitHub</div>
     </div>
 
     <!-- PASTE PANEL -->
@@ -901,6 +949,13 @@ input[type="file"] { display: none; }
               <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
             </svg>
             Vider
+          </button>
+          <button class="btn-sm" id="btnMerge" type="button" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+            Fusionner
           </button>
           <button class="btn-sm accent" id="btnDownloadAll" type="button">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -1023,18 +1078,23 @@ const T = {
   fr: {
     dropTitle: 'Déposez vos fichiers ici',
     dropSub: 'PDF · DOCX · JPG · PNG · WEBP · TXT',
-    btnFiles: 'Fichiers', btnCamera: 'Caméra', btnGallery: 'Galerie', btnText: 'Texte',
+    btnFiles: 'Fichiers', btnCamera: 'Caméra', btnGallery: 'Galerie', btnText: 'Texte', btnLink: 'Lien',
     pastePlaceholder: 'Collez votre texte ici — transcript YouTube, email, notes…',
+    urlPlaceholder: 'YouTube, article, Google Doc, GitHub…',
+    urlHint: 'YouTube · Articles web · Google Doc public · GitHub',
     btnCancel: 'Annuler', btnConvert: 'Convertir',
     formatLabel: 'Format',
-    btnClear: 'Vider', btnExportAll: 'Tout exporter',
+    btnClear: 'Vider', btnExportAll: 'Tout exporter', btnMerge: 'Fusionner',
     btnDownload: 'Télécharger', btnCopy: 'Copier',
     ocrDoc: 'Document', ocrMixed: 'Mixte', ocrPoster: 'Affiche', ocrCol: 'Colonne',
     waiting: 'En attente', processing: 'Conversion…', convError: 'Erreur de conversion',
     unsupported: 'Format non supporté : ',
     noFile: 'Aucun fichier converti', nothingToPaste: 'Rien à convertir',
+    noCaption: 'Aucun sous-titre disponible sur cette vidéo',
+    mergeEmpty: 'Sélectionnez au moins 2 fichiers convertis',
     copied: 'Copié dans le presse-papier', copyFail: 'Échec de la copie',
     downloaded: ' téléchargé', exportedZip: ' fichiers exportés en ZIP',
+    merged: 'Fichiers fusionnés',
     pageOf: (i, n) => `Page ${i} / ${n}…`,
     files: (n) => n + ' fichier' + (n > 1 ? 's' : ''),
     ocrLangTitle: 'Langue source des images (OCR)',
@@ -1042,18 +1102,23 @@ const T = {
   en: {
     dropTitle: 'Drop your files here',
     dropSub: 'PDF · DOCX · JPG · PNG · WEBP · TXT',
-    btnFiles: 'Files', btnCamera: 'Camera', btnGallery: 'Gallery', btnText: 'Text',
+    btnFiles: 'Files', btnCamera: 'Camera', btnGallery: 'Gallery', btnText: 'Text', btnLink: 'Link',
     pastePlaceholder: 'Paste your text here — YouTube transcript, email, notes…',
+    urlPlaceholder: 'YouTube, article, Google Doc, GitHub…',
+    urlHint: 'YouTube · Web articles · Public Google Doc · GitHub',
     btnCancel: 'Cancel', btnConvert: 'Convert',
     formatLabel: 'Format',
-    btnClear: 'Clear', btnExportAll: 'Export all',
+    btnClear: 'Clear', btnExportAll: 'Export all', btnMerge: 'Merge',
     btnDownload: 'Download', btnCopy: 'Copy',
     ocrDoc: 'Document', ocrMixed: 'Mixed', ocrPoster: 'Poster', ocrCol: 'Column',
     waiting: 'Waiting', processing: 'Converting…', convError: 'Conversion error',
     unsupported: 'Unsupported format: ',
     noFile: 'No converted file', nothingToPaste: 'Nothing to convert',
+    noCaption: 'No subtitles available on this video',
+    mergeEmpty: 'Select at least 2 converted files',
     copied: 'Copied to clipboard', copyFail: 'Copy failed',
     downloaded: ' downloaded', exportedZip: ' files exported as ZIP',
+    merged: 'Files merged',
     pageOf: (i, n) => `Page ${i} / ${n}…`,
     files: (n) => n + ' file' + (n > 1 ? 's' : ''),
     ocrLangTitle: 'Source language of images (OCR)',
@@ -1073,7 +1138,11 @@ function applyI18n() {
   setText(q('#btnCamera'), T.btnCamera);
   setText(q('#btnPhotos'), T.btnGallery);
   setText(q('#btnPaste'), T.btnText);
+  setText(q('#btnLink'), T.btnLink);
   setText(q('#btnClear'), ' ' + T.btnClear);
+  setText(q('#btnMerge'), ' ' + T.btnMerge);
+  q('#urlInput').placeholder = T.urlPlaceholder;
+  q('.url-hint').textContent = T.urlHint;
   setText(q('#btnDownloadAll'), ' ' + T.btnExportAll);
   setText(q('#modalDownload'), ' ' + T.btnDownload);
   setText(q('#modalCopy'), ' ' + T.btnCopy);
@@ -1187,6 +1256,7 @@ function renderFileCard(entry) {
   card.className = 'file-card';
   card.id = 'card-' + entry.id;
   card.innerHTML = `
+    <div class="card-check" id="check-${entry.id}"></div>
     <div class="file-type-badge ${typeCls}">${typeLabel}</div>
     <div class="file-info">
       <div class="file-name" id="name-${entry.id}" title="${entry.file.name}">${entry.file.name}</div>
@@ -1344,6 +1414,7 @@ async function convertFile(entry) {
     
     updateCardState(entry.id, 'done', formatSize(new Blob([result]).size) + ' · ' + estimateTokens(result));
     setCardActions(entry.id, entry);
+    updateMergeButton();
     
     if (confidence !== null) {
       addConfidenceBadge(entry.id, confidence);
@@ -1664,6 +1735,197 @@ function makeNameEditable(id) {
   input.select();
 }
 
+// === MODULE URL ===
+
+const PROXY = 'https://corsproxy.io/?';
+
+function toggleUrlPanel() {
+  const p = document.getElementById('urlPanel');
+  const open = p.classList.toggle('open');
+  if (open) document.getElementById('urlInput').focus();
+  else document.getElementById('urlInput').value = '';
+}
+function hideUrlPanel() {
+  document.getElementById('urlPanel').classList.remove('open');
+  document.getElementById('urlInput').value = '';
+}
+
+function extractYouTubeId(url) {
+  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+function extractGoogleDocId(url) {
+  const m = url.match(/docs\.google\.com\/document\/d\/([a-zA-Z0-9_-]+)/);
+  return m ? m[1] : null;
+}
+function extractGitHubRaw(url) {
+  // Convert github.com/user/repo/blob/branch/path → raw.githubusercontent.com
+  const m = url.match(/github\.com\/([^/]+)\/([^/]+)\/blob\/(.+)/);
+  if (m) return `https://raw.githubusercontent.com/${m[1]}/${m[2]}/${m[3]}`;
+  if (url.includes('raw.githubusercontent.com')) return url;
+  return null;
+}
+
+function createUrlEntry(name, type) {
+  const blob = new Blob([''], { type: 'text/plain' });
+  const file = new File([blob], name, { type: 'text/plain' });
+  const entry = { id: makeId(), file, type, result: null, confidence: null, customName: baseName(name) };
+  STATE.files.push(entry);
+  renderFileCard(entry);
+  updateQueueUI();
+  return entry;
+}
+
+function formatTimestamp(ms) {
+  const s = Math.floor(ms / 1000), m = Math.floor(s / 60);
+  return `${m}:${String(s % 60).padStart(2, '0')}`;
+}
+
+async function processUrl() {
+  const url = document.getElementById('urlInput').value.trim();
+  if (!url) { showToast(T.nothingToPaste, 'error'); return; }
+  hideUrlPanel();
+
+  const ytId = extractYouTubeId(url);
+  if (ytId) { await fetchYouTube(ytId); return; }
+
+  const docId = extractGoogleDocId(url);
+  if (docId) { await fetchGoogleDoc(docId, url); return; }
+
+  const ghRaw = extractGitHubRaw(url);
+  if (ghRaw) { await fetchRaw(ghRaw, url); return; }
+
+  await fetchArticle(url);
+}
+
+async function fetchYouTube(videoId) {
+  const entry = createUrlEntry(`youtube-${videoId}.md`, 'txt');
+  updateCardState(entry.id, 'processing', T.processing);
+  try {
+    const pageResp = await fetch(PROXY + encodeURIComponent(`https://www.youtube.com/watch?v=${videoId}`));
+    const html = await pageResp.text();
+    const m = html.match(/"captionTracks":(\[.*?\])/);
+    if (!m) throw new Error('no captions');
+    const tracks = JSON.parse(m[1]);
+    const track = tracks.find(t => t.languageCode?.startsWith('fr')) ||
+                  tracks.find(t => t.languageCode?.startsWith('en')) ||
+                  tracks[0];
+    if (!track) throw new Error('no track');
+    const capResp = await fetch(PROXY + encodeURIComponent(track.baseUrl + '&fmt=json3'));
+    const data = await capResp.json();
+    const title = html.match(/<title>([^<]*)<\/title>/)?.[1]?.replace(' - YouTube','') || videoId;
+    const lines = [`# ${title}\n\n> Source: https://youtube.com/watch?v=${videoId}\n`];
+    for (const ev of data.events || []) {
+      if (!ev.segs) continue;
+      const text = ev.segs.map(s => s.utf8).join('').replace(/\n/g,' ').trim();
+      if (text) lines.push(`**[${formatTimestamp(ev.tStartMs)}]** ${text}`);
+    }
+    entry.result = lines.join('\n');
+    updateCardState(entry.id, 'done', estimateTokens(entry.result));
+    setCardActions(entry.id, entry);
+  } catch(e) {
+    updateCardState(entry.id, 'error', e.message === 'no captions' ? T.noCaption : T.convError);
+    setErrorActions(entry.id, entry);
+  }
+}
+
+async function fetchGoogleDoc(docId, originalUrl) {
+  const entry = createUrlEntry(`google-doc-${docId}.md`, 'txt');
+  updateCardState(entry.id, 'processing', T.processing);
+  try {
+    const exportUrl = `https://docs.google.com/document/d/${docId}/export?format=txt`;
+    const resp = await fetch(PROXY + encodeURIComponent(exportUrl));
+    if (!resp.ok) throw new Error();
+    entry.result = `> Source: ${originalUrl}\n\n` + cleanText(await resp.text());
+    updateCardState(entry.id, 'done', estimateTokens(entry.result));
+    setCardActions(entry.id, entry);
+  } catch {
+    updateCardState(entry.id, 'error', T.convError);
+    setErrorActions(entry.id, entry);
+  }
+}
+
+async function fetchRaw(rawUrl, originalUrl) {
+  const name = rawUrl.split('/').pop() || 'github-file.md';
+  const entry = createUrlEntry(name, 'txt');
+  updateCardState(entry.id, 'processing', T.processing);
+  try {
+    const resp = await fetch(rawUrl);
+    if (!resp.ok) throw new Error();
+    entry.result = `> Source: ${originalUrl}\n\n` + cleanText(await resp.text());
+    updateCardState(entry.id, 'done', estimateTokens(entry.result));
+    setCardActions(entry.id, entry);
+  } catch {
+    updateCardState(entry.id, 'error', T.convError);
+    setErrorActions(entry.id, entry);
+  }
+}
+
+async function fetchArticle(url) {
+  let hostname = url;
+  try { hostname = new URL(url).hostname; } catch {}
+  const entry = createUrlEntry(hostname + '.md', 'txt');
+  updateCardState(entry.id, 'processing', T.processing);
+  try {
+    const resp = await fetch('https://r.jina.ai/' + url, { headers: { 'Accept': 'text/markdown' } });
+    if (!resp.ok) throw new Error();
+    entry.result = await resp.text();
+    updateCardState(entry.id, 'done', estimateTokens(entry.result));
+    setCardActions(entry.id, entry);
+  } catch {
+    updateCardState(entry.id, 'error', T.convError);
+    setErrorActions(entry.id, entry);
+  }
+}
+
+// === MODULE MERGE ===
+
+let mergeMode = false;
+
+function toggleMergeMode() {
+  mergeMode = !mergeMode;
+  document.querySelectorAll('.file-card.done').forEach(card => {
+    card.classList.toggle('merge-select', mergeMode);
+    if (!mergeMode) card.classList.remove('checked');
+  });
+  document.getElementById('btnMerge').classList.toggle('accent', mergeMode);
+  if (!mergeMode) return;
+  document.querySelectorAll('.file-card.done').forEach(card => {
+    card.onclick = mergeMode ? () => toggleCardCheck(card) : null;
+  });
+}
+
+function toggleCardCheck(card) {
+  card.classList.toggle('checked');
+}
+
+function mergeSelected() {
+  if (!mergeMode) { toggleMergeMode(); return; }
+  const checked = Array.from(document.querySelectorAll('.file-card.checked'));
+  if (checked.length < 2) { showToast(T.mergeEmpty, 'error'); return; }
+  const ids = checked.map(c => parseInt(c.id.replace('card-', '')));
+  const entries = ids.map(id => STATE.files.find(e => e.id === id)).filter(e => e?.result);
+  if (entries.length < 2) { showToast(T.mergeEmpty, 'error'); return; }
+
+  const merged = entries.map(e =>
+    `## ${e.customName || baseName(e.file.name)}\n\n${e.result}`
+  ).join('\n\n---\n\n');
+
+  const name = 'fusion-' + entries.length + '-docs.md';
+  const entry = createUrlEntry(name, 'txt');
+  entry.result = merged;
+  updateCardState(entry.id, 'done', estimateTokens(merged));
+  setCardActions(entry.id, entry);
+  showToast(T.merged);
+  toggleMergeMode();
+}
+
+function updateMergeButton() {
+  const done = STATE.files.filter(e => e.result).length;
+  const btn = document.getElementById('btnMerge');
+  if (btn) btn.style.display = done >= 2 ? '' : 'none';
+}
+
 // === MODULE PASTE TEXT ===
 
 function togglePastePanel() {
@@ -1748,6 +2010,14 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btnPaste').onclick = togglePastePanel;
   document.getElementById('btnPasteCancel').onclick = hidePastePanel;
   document.getElementById('btnPasteConvert').onclick = processPastedText;
+  document.getElementById('btnLink').onclick = toggleUrlPanel;
+  document.getElementById('btnUrlCancel').onclick = hideUrlPanel;
+  document.getElementById('btnUrlConvert').onclick = processUrl;
+  document.getElementById('urlInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') processUrl();
+    if (e.key === 'Escape') hideUrlPanel();
+  });
+  document.getElementById('btnMerge').onclick = mergeSelected;
   document.getElementById('pasteTextarea').addEventListener('keydown', e => {
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) processPastedText();
   });
