@@ -1285,7 +1285,7 @@ function updateCardState(id, state, meta = '') {
   card.className = 'file-card ' + (state === 'done' ? 'done' : state === 'error' ? 'error' : state === 'processing' ? 'processing' : '');
   
   const metaEl = document.getElementById('meta-' + id);
-  if (metaEl && meta) metaEl.textContent = meta;
+  if (metaEl && meta) metaEl.innerHTML = meta;
   
   const prog = document.getElementById('prog-' + id);
   if (prog) {
@@ -1412,7 +1412,7 @@ async function convertFile(entry) {
     entry.result = result;
     entry.confidence = confidence;
     
-    updateCardState(entry.id, 'done', formatSize(new Blob([result]).size) + ' · ' + estimateTokens(result));
+    updateCardState(entry.id, 'done', formatSize(new Blob([result]).size) + ' · ' + estimateTokensHtml(result, entry.type));
     setCardActions(entry.id, entry);
     updateMergeButton();
     
@@ -1709,6 +1709,24 @@ function estimateTokens(text) {
   return '~' + (t / 1000).toFixed(1) + 'k tokens';
 }
 
+const RAW_TOKEN_FACTORS = { pdf: 1.45, docx: 1.25, img: 1.20, txt: 1.08 };
+
+function fmtTok(n) {
+  if (n < 1000) return '~' + n;
+  return '~' + (n / 1000).toFixed(1) + 'k';
+}
+
+function estimateTokensHtml(text, type) {
+  const mdT = Math.round(text.length / 4);
+  const mdLabel = fmtTok(mdT) + ' tokens';
+  const factor = RAW_TOKEN_FACTORS[type] || 0;
+  if (factor > 1.0) {
+    const rawT = Math.round(mdT * factor);
+    return `<span style="color:var(--success)">${mdLabel}</span> · <span style="color:#F59E0B">${fmtTok(rawT)} tokens brut</span>`;
+  }
+  return `<span style="color:var(--success)">${mdLabel}</span>`;
+}
+
 async function copyResult(id) {
   const entry = STATE.files.find(e => e.id === id);
   if (!entry || !entry.result) return;
@@ -1944,7 +1962,7 @@ async function fetchYouTube(videoId) {
     if (!lines || lines.length < 2) throw new Error('no captions');
 
     entry.result = lines.join('\n');
-    updateCardState(entry.id, 'done', estimateTokens(entry.result));
+    updateCardState(entry.id, 'done', estimateTokensHtml(entry.result, null));
     setCardActions(entry.id, entry);
   } catch(e) {
     updateCardState(entry.id, 'error', e.message === 'no captions' ? T.noCaption : T.convError);
@@ -1960,7 +1978,7 @@ async function fetchGoogleDoc(docId, originalUrl) {
     const resp = await fetch(PROXY + encodeURIComponent(exportUrl));
     if (!resp.ok) throw new Error();
     entry.result = `> Source: ${originalUrl}\n\n` + cleanText(await resp.text());
-    updateCardState(entry.id, 'done', estimateTokens(entry.result));
+    updateCardState(entry.id, 'done', estimateTokensHtml(entry.result, null));
     setCardActions(entry.id, entry);
   } catch {
     updateCardState(entry.id, 'error', T.convError);
@@ -1976,7 +1994,7 @@ async function fetchRaw(rawUrl, originalUrl) {
     const resp = await fetch(rawUrl);
     if (!resp.ok) throw new Error();
     entry.result = `> Source: ${originalUrl}\n\n` + cleanText(await resp.text());
-    updateCardState(entry.id, 'done', estimateTokens(entry.result));
+    updateCardState(entry.id, 'done', estimateTokensHtml(entry.result, null));
     setCardActions(entry.id, entry);
   } catch {
     updateCardState(entry.id, 'error', T.convError);
@@ -1993,7 +2011,7 @@ async function fetchArticle(url) {
     const resp = await fetch('https://r.jina.ai/' + url, { headers: { 'Accept': 'text/markdown' } });
     if (!resp.ok) throw new Error();
     entry.result = await resp.text();
-    updateCardState(entry.id, 'done', estimateTokens(entry.result));
+    updateCardState(entry.id, 'done', estimateTokensHtml(entry.result, null));
     setCardActions(entry.id, entry);
   } catch {
     updateCardState(entry.id, 'error', T.convError);

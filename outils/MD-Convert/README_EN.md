@@ -124,8 +124,7 @@ Zero framework. Zero runtime dependency. Zero data sent.
 ├── icon-192.png            App icon
 ├── icon-512.png            High-resolution app icon
 ├── cloudflare-worker/      Optional worker for YouTube transcripts
-│   ├── worker.js
-│   └── deno-worker.ts
+│   └── deno-worker.ts      Deno Deploy worker (InnerTube ANDROID + fallbacks)
 └── README_EN.md            This file
 ```
 
