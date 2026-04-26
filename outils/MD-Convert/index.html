@@ -1765,19 +1765,12 @@ const PIPED_INSTANCES = [
 function parseVTTtoLines(vtt, title, videoId) {
   const lines = [`# ${title}\n\n> Source: https://youtube.com/watch?v=${videoId}\n`];
   const blocks = vtt.split(/\n{2,}/);
-  const segs = [];
   for (const block of blocks) {
-    const m = block.match(/(\d{2}):(\d{2}):(\d{2})[.,](\d{3})\s*-->/);
-    if (!m) continue;
-    const ms = (+m[1] * 3600 + +m[2] * 60 + +m[3]) * 1000 + +m[4];
+    const timeMatch = block.match(/(\d{2}):(\d{2}):(\d{2})[.,](\d{3})\s*-->/);
+    if (!timeMatch) continue;
+    const ms = (+timeMatch[1] * 3600 + +timeMatch[2] * 60 + +timeMatch[3]) * 1000 + +timeMatch[4];
     const text = block.split('\n').slice(1).join(' ').replace(/<[^>]+>/g, '').trim();
-    if (text) segs.push({ ms, text });
-  }
-  // Deduplicate rolling auto-captions: skip segment if next segment contains its text
-  for (let i = 0; i < segs.length; i++) {
-    const next = segs[i + 1];
-    if (next && next.text.includes(segs[i].text)) continue;
-    lines.push(`**[${formatTimestamp(segs[i].ms)}]** ${segs[i].text}`);
+    if (text) lines.push(`**[${formatTimestamp(ms)}]** ${text}`);
   }
   return lines;
 }
