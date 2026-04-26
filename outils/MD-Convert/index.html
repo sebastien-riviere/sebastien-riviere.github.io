@@ -1090,7 +1090,7 @@ const T = {
     waiting: 'En attente', processing: 'Conversion…', convError: 'Erreur de conversion',
     unsupported: 'Format non supporté : ',
     noFile: 'Aucun fichier converti', nothingToPaste: 'Rien à convertir',
-    noCaption: 'Aucun sous-titre disponible sur cette vidéo',
+    noCaption: 'YouTube bloque l\'accès automatique — ouvrez la vidéo et copiez la transcription manuellement',
     mergeEmpty: 'Sélectionnez au moins 2 fichiers convertis',
     copied: 'Copié dans le presse-papier', copyFail: 'Échec de la copie',
     downloaded: ' téléchargé', exportedZip: ' fichiers exportés en ZIP',
@@ -1114,7 +1114,7 @@ const T = {
     waiting: 'Waiting', processing: 'Converting…', convError: 'Conversion error',
     unsupported: 'Unsupported format: ',
     noFile: 'No converted file', nothingToPaste: 'Nothing to convert',
-    noCaption: 'No subtitles available on this video',
+    noCaption: 'YouTube blocks automatic access — open the video and copy the transcript manually',
     mergeEmpty: 'Select at least 2 converted files',
     copied: 'Copied to clipboard', copyFail: 'Copy failed',
     downloaded: ' downloaded', exportedZip: ' files exported as ZIP',
@@ -1433,13 +1433,22 @@ async function convertFile(entry) {
 function setErrorActions(id, entry) {
   const actions = document.getElementById('actions-' + id);
   if (!actions) return;
-  actions.innerHTML = `
+  const ytMatch = entry && entry.file && entry.file.name && entry.file.name.match(/^youtube-(.+)\.md$/);
+  const ytBtn = ytMatch ? `
+    <a class="card-btn" href="https://youtube.com/watch?v=${ytMatch[1]}" target="_blank" rel="noopener" title="Ouvrir sur YouTube" aria-label="Ouvrir sur YouTube">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>
+    </a>` : `
     <button class="card-btn retry" onclick="retryFile(${id})" title="Réessayer" aria-label="Réessayer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="1 4 1 10 7 10"/>
         <path d="M3.51 15a9 9 0 1 0 .49-3.24"/>
       </svg>
-    </button>
+    </button>`;
+  actions.innerHTML = ytBtn + `
     <button class="card-btn" onclick="removeFile(${id})" title="Supprimer" aria-label="Supprimer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
