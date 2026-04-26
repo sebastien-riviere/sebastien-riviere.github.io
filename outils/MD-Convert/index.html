@@ -45,14 +45,14 @@
 <style>
 /* === DESIGN SYSTEM — MD CONVERT === */
 :root {
-  --bg: #F8FAFC;
-  --surface: #FFFFFF;
-  --surface-2: #F1F5F9;
-  --border: rgba(0,0,0,0.08);
-  --border-strong: rgba(0,0,0,0.15);
-  --text: #0F172A;
-  --text-muted: #475569;
-  --text-subtle: #94A3B8;
+  --bg: #0F172A;
+  --surface: #1E293B;
+  --surface-2: #273548;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.15);
+  --text: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-subtle: #64748B;
   --accent: #6366F1;
   --accent-hover: #818CF8;
   --accent-rgb: 99, 102, 241;
@@ -62,9 +62,9 @@
   --radius: 12px;
   --radius-sm: 8px;
   --radius-lg: 16px;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.5);
   --ease: cubic-bezier(0, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --font: 'Inter', system-ui, sans-serif;
@@ -75,6 +75,23 @@
   --space-6: 1.5rem;
   --space-8: 2rem;
   --space-12: 3rem;
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --surface-2: #F1F5F9;
+    --border: rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.15);
+    --text: #0F172A;
+    --text-muted: #475569;
+    --text-subtle: #94A3B8;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+  }
 }
 
 /* Force dark/light via data-theme */
@@ -627,8 +644,6 @@ main {
   margin-left: var(--space-3);
   flex-shrink: 0;
 }
-.tok-md { color: #4ade80; font-weight: 600; }
-.tok-raw { color: #fb923c; font-weight: 600; }
 /* Filename editable */
 .file-name.editable { cursor: text; }
 .file-name.editable:hover { text-decoration: underline dotted var(--text-muted); }
@@ -1270,7 +1285,7 @@ function updateCardState(id, state, meta = '') {
   card.className = 'file-card ' + (state === 'done' ? 'done' : state === 'error' ? 'error' : state === 'processing' ? 'processing' : '');
   
   const metaEl = document.getElementById('meta-' + id);
-  if (metaEl && meta) metaEl.innerHTML = meta;
+  if (metaEl && meta) metaEl.textContent = meta;
   
   const prog = document.getElementById('prog-' + id);
   if (prog) {
@@ -1397,7 +1412,7 @@ async function convertFile(entry) {
     entry.result = result;
     entry.confidence = confidence;
     
-    updateCardState(entry.id, 'done', formatSize(new Blob([result]).size) + ' · ' + estimateTokensBadge(result, entry.type));
+    updateCardState(entry.id, 'done', formatSize(new Blob([result]).size) + ' · ' + estimateTokens(result));
     setCardActions(entry.id, entry);
     updateMergeButton();
     
@@ -1694,21 +1709,6 @@ function estimateTokens(text) {
   return '~' + (t / 1000).toFixed(1) + 'k tokens';
 }
 
-const RAW_TOKEN_FACTORS = { pdf: 1.45, docx: 1.25, img: 1.20 };
-
-function estimateTokensBadge(text, type) {
-  const n = Math.round(text.length / 4);
-  const fmt = v => v < 1000 ? '~' + v : '~' + (v / 1000).toFixed(1) + 'k';
-  const mdStr = fmt(n) + ' tokens';
-  const factor = RAW_TOKEN_FACTORS[type];
-  if (!factor) return `<span class="tok-md">${mdStr}</span>`;
-  const rawN = Math.round(n * factor);
-  if (rawN <= n) return `<span class="tok-md">${mdStr}</span>`;
-  const rawStr = fmt(rawN) + ' tokens';
-  const tip = 'Estimation indicative : Markdown généré vs document brut';
-  return `<span class="tok-md" title="${tip}">${mdStr} MD</span> <span class="tok-raw" title="${tip}">/ ${rawStr} brut</span>`;
-}
-
 async function copyResult(id) {
   const entry = STATE.files.find(e => e.id === id);
   if (!entry || !entry.result) return;
@@ -1773,20 +1773,11 @@ function parseVTTtoLines(vtt, title, videoId) {
     const text = block.split('\n').slice(1).join(' ').replace(/<[^>]+>/g, '').trim();
     if (text) segs.push({ ms, text });
   }
-  // Pass 1: drop partial fragments (next segment contains this one entirely)
-  const full = segs.filter((s, i) => !(segs[i + 1] && segs[i + 1].text.includes(s.text)));
-  // Pass 2: trim word-level overlap between consecutive segments
-  let prevText = '';
-  for (const seg of full) {
-    let text = seg.text;
-    if (prevText) {
-      const pw = prevText.split(' '), cw = text.split(' ');
-      for (let n = Math.min(pw.length, cw.length) - 1; n >= 3; n--) {
-        if (pw.slice(-n).join(' ') === cw.slice(0, n).join(' ')) { text = cw.slice(n).join(' '); break; }
-      }
-    }
-    if (text) lines.push(`**[${formatTimestamp(seg.ms)}]** ${text}`);
-    prevText = seg.text;
+  // Deduplicate rolling auto-captions: skip segment if next segment contains its text
+  for (let i = 0; i < segs.length; i++) {
+    const next = segs[i + 1];
+    if (next && next.text.includes(segs[i].text)) continue;
+    lines.push(`**[${formatTimestamp(segs[i].ms)}]** ${segs[i].text}`);
   }
   return lines;
 }
@@ -2021,19 +2012,6 @@ function toggleCardCheck(card) {
   card.classList.toggle('checked');
 }
 
-function getSourceMeta(e) {
-  const name = e.file.name;
-  const urlMatch = (e.result || '').match(/^> Source: (.+)/m);
-  const url = urlMatch ? urlMatch[1].trim() : null;
-  if (name.startsWith('youtube-')) return { label: 'Transcript YouTube', source: url || name };
-  if (name.startsWith('google-doc-')) return { label: 'Google Doc', source: url || name };
-  if (e.type === 'txt' && url) return { label: 'Article web', source: url };
-  if (e.type === 'pdf') return { label: 'PDF', source: name };
-  if (e.type === 'docx') return { label: 'Document Word', source: name };
-  if (e.type === 'img') return { label: 'Image (OCR)', source: name };
-  return { label: 'Texte', source: name };
-}
-
 function mergeSelected() {
   if (!mergeMode) { toggleMergeMode(); return; }
   const checked = Array.from(document.querySelectorAll('.file-card.checked'));
@@ -2042,27 +2020,11 @@ function mergeSelected() {
   const entries = ids.map(id => STATE.files.find(e => e.id === id)).filter(e => e?.result);
   if (entries.length < 2) { showToast(T.mergeEmpty, 'error'); return; }
 
-  const today = new Date().toISOString().slice(0, 10);
+  const merged = entries.map(e =>
+    `## ${e.customName || baseName(e.file.name)}\n\n${e.result}`
+  ).join('\n\n---\n\n');
 
-  const indexLines = entries.map((e, i) => {
-    const title = e.customName || baseName(e.file.name);
-    const meta = getSourceMeta(e);
-    const src = meta.source.startsWith('http') ? meta.source : 'fichier local';
-    return `${i + 1}. ${title} — ${src} — ${today}`;
-  });
-
-  const sections = entries.map((e, i) => {
-    const title = e.customName || baseName(e.file.name);
-    const meta = getSourceMeta(e);
-    const srcLine = meta.source.startsWith('http')
-      ? `- URL : ${meta.source}`
-      : `- Fichier : ${meta.source}`;
-    return `# Source ${i + 1} — ${title}\n\nMétadonnées :\n- Type : ${meta.label}\n${srcLine}\n- Date d'import : ${today}\n\n${e.result}`;
-  });
-
-  const merged = `# Dossier consolidé — ${today}\n\n## Index des sources\n\n${indexLines.join('\n')}\n\n---\n\n` + sections.join('\n\n---\n\n');
-
-  const name = 'dossier-' + entries.length + '-sources-' + today + '.md';
+  const name = 'fusion-' + entries.length + '-docs.md';
   const entry = createUrlEntry(name, 'txt');
   entry.result = merged;
   updateCardState(entry.id, 'done', estimateTokens(merged));
@@ -2110,7 +2072,7 @@ function openPreview(id) {
   if (!entry || !entry.result) return;
   STATE.currentPreviewId = id;
   document.getElementById('modalTitle').textContent = (entry.customName || baseName(entry.file.name)) + getOutputExt();
-  document.getElementById('modalTokens').innerHTML = estimateTokensBadge(entry.result, entry.type);
+  document.getElementById('modalTokens').textContent = estimateTokens(entry.result);
   document.getElementById('previewText').textContent = entry.result;
   document.getElementById('ocrLoading').classList.remove('visible');
   document.getElementById('modalOverlay').classList.add('open');
