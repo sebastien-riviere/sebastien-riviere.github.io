@@ -1812,84 +1812,15 @@ async function fetchYouTube(videoId) {
   const entry = createUrlEntry(`youtube-${videoId}.md`, 'txt');
   updateCardState(entry.id, 'processing', T.processing);
   try {
-    // 1. Fetch the YouTube page to extract captionTracks + title
-    let title = videoId;
-    let captionUrl = null;
+    // Worker does everything server-side: player API + caption fetch → returns {title, events}
+    const r = await fetch(`${YT_WORKER}/transcript?v=${videoId}`);
+    const j = await r.json();
+    if (!r.ok || !j?.events?.length) throw new Error('no captions');
 
-    // 1. Try YouTube internal player API via Deno worker (most reliable, bypasses consent page)
-    try {
-      const r = await fetch(`${YT_WORKER}/player?v=${videoId}`);
-      if (r.ok) {
-        const j = await r.json();
-        title = j?.videoDetails?.title || videoId;
-        const tracks = j?.captions?.playerCaptionsTracklistRenderer?.captionTracks;
-        if (tracks?.length) {
-          const track = tracks.find(t => t.languageCode?.startsWith('fr')) ||
-                        tracks.find(t => t.languageCode?.startsWith('en')) ||
-                        tracks[0];
-          if (track?.baseUrl) captionUrl = track.baseUrl.includes('fmt=') ? track.baseUrl : track.baseUrl + '&fmt=json3';
-        }
-      }
-    } catch {}
-
-    // 2. Fallback: fetch YouTube page via proxy and extract captionTracks from HTML
-    if (!captionUrl) {
-      let html = '';
-      const ytPageUrl = `https://www.youtube.com/watch?v=${videoId}`;
-      for (const proxyUrl of [
-        `${YT_WORKER}/?url=${encodeURIComponent(ytPageUrl)}`,
-        PROXY + encodeURIComponent(ytPageUrl),
-        `https://api.codetabs.com/v1/proxy?quest=${ytPageUrl}`,
-      ]) {
-        try {
-          const r = await fetch(proxyUrl);
-          if (r.ok) { html = await r.text(); if (html.includes('captionTracks')) break; }
-        } catch {}
-      }
-      title = html.match(/<title>([^<]*)<\/title>/)?.[1]?.replace(/ - YouTube$/, '') || title;
-      const keyIdx = html.indexOf('"captionTracks":');
-      if (keyIdx !== -1) {
-        const arrStart = html.indexOf('[', keyIdx);
-        if (arrStart !== -1) {
-          let depth = 0, ci = arrStart;
-          for (; ci < html.length; ci++) {
-            if (html[ci] === '[' || html[ci] === '{') depth++;
-            else if (html[ci] === ']' || html[ci] === '}') { if (--depth === 0) break; }
-          }
-          try {
-            const tracksRaw = html.slice(arrStart, ci + 1)
-              .replace(/\\u003c/gi, '<').replace(/\\u003e/gi, '>').replace(/\\u0026/gi, '&');
-            const tracks = JSON.parse(tracksRaw);
-            const track = tracks.find(t => t.languageCode?.startsWith('fr')) ||
-                          tracks.find(t => t.languageCode?.startsWith('en')) ||
-                          tracks[0];
-            if (track?.baseUrl) captionUrl = track.baseUrl.includes('fmt=') ? track.baseUrl : track.baseUrl + '&fmt=json3';
-          } catch {}
-        }
-      }
-    }
-
-    // 3. Fetch caption data — try signed URL direct then proxied, then timedtext fallback
-    let data = null;
-    const candidates = captionUrl
-      ? [captionUrl, `${YT_WORKER}/?url=${encodeURIComponent(captionUrl)}`, PROXY + encodeURIComponent(captionUrl)]
-      : [];
-    for (const [l, k] of [['fr','asr'],['en','asr'],['fr',''],['en','']]) {
-      candidates.push(`https://www.youtube.com/api/timedtext?v=${videoId}&lang=${l}&fmt=json3${k?'&kind='+k:''}`);
-    }
-    for (const url of candidates) {
-      try {
-        const r = await fetch(url);
-        if (!r.ok) continue;
-        const j = await r.json();
-        if (j?.events?.length) { data = j; break; }
-      } catch {}
-    }
-
-    if (!data?.events?.length) throw new Error('no captions');
+    const title = j.title || videoId;
 
     const lines = [`# ${title}\n\n> Source: https://youtube.com/watch?v=${videoId}\n`];
-    for (const ev of data.events) {
+    for (const ev of j.events) {
       if (!ev.segs) continue;
       const text = ev.segs.map(s => s.utf8).join('').replace(/\n/g,' ').trim();
       if (text) lines.push(`**[${formatTimestamp(ev.tStartMs)}]** ${text}`);
