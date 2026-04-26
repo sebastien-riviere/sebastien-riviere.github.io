@@ -1,7 +1,7 @@
 // === MD CONVERT — SERVICE WORKER ===
 // Cache offline total après premier chargement
 
-const CACHE_NAME = 'mdconvert-v1';
+const CACHE_NAME = 'mdconvert-v2';
 const ASSETS = [
   '/',
   '/index.html',
