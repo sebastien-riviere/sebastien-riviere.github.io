@@ -287,17 +287,30 @@ function parseTimedtextXML(xml: string): Array<Record<string, unknown>> {
       .trim();
     if (text) raw.push({ tStartMs, text });
   }
-  // Rolling-window dedup: skip if identical to prev or if prev ends with this text
+  // Rolling-window dedup + extract only new content per segment
   const events: Array<Record<string, unknown>> = [];
-  for (let i = 0; i < raw.length; i++) {
-    const { tStartMs, text } = raw[i];
-    if (i > 0) {
-      const prev = raw[i - 1].text;
-      if (text === prev || prev.endsWith(text)) continue;
-    }
-    events.push({ tStartMs, segs: [{ utf8: text }] });
+  let prevText = '';
+  for (const { tStartMs, text } of raw) {
+    if (text === prevText || prevText.endsWith(text)) continue;
+    const newText = stripOverlap(prevText, text);
+    prevText = text;
+    if (newText) events.push({ tStartMs, segs: [{ utf8: newText }] });
   }
   return events;
+}
+
+function stripOverlap(prev: string, curr: string): string {
+  if (!prev) return curr;
+  const pw = prev.split(' ');
+  const cw = curr.split(' ');
+  for (let i = Math.min(pw.length, cw.length); i >= 1; i--) {
+    if (pw.slice(-i).join(' ') === cw.slice(0, i).join(' ')) {
+      const rest = cw.slice(i).join(' ');
+      if (rest) return rest;
+      break;
+    }
+  }
+  return curr;
 }
 
 // ── VTT parser → events [{tStartMs, segs: [{utf8}]}] ─────────────────────────
