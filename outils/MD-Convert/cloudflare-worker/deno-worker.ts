@@ -271,7 +271,7 @@ async function tryInvidious(
 // Parses <p t="MS" d="DUR"><s>word</s>...</p> elements
 
 function parseTimedtextXML(xml: string): Array<Record<string, unknown>> {
-  const events: Array<Record<string, unknown>> = [];
+  const raw: Array<{ tStartMs: number; text: string }> = [];
   const pRegex = /<p\b[^>]*\bt="(\d+)"[^>]*>([\s\S]*?)<\/p>/g;
   let m;
   while ((m = pRegex.exec(xml)) !== null) {
@@ -285,7 +285,17 @@ function parseTimedtextXML(xml: string): Array<Record<string, unknown>> {
       .replace(/&quot;/g, '"')
       .replace(/\s+/g, ' ')
       .trim();
-    if (text) events.push({ tStartMs, segs: [{ utf8: text }] });
+    if (text) raw.push({ tStartMs, text });
+  }
+  // Rolling-window dedup: skip if identical to prev or if prev ends with this text
+  const events: Array<Record<string, unknown>> = [];
+  for (let i = 0; i < raw.length; i++) {
+    const { tStartMs, text } = raw[i];
+    if (i > 0) {
+      const prev = raw[i - 1].text;
+      if (text === prev || prev.endsWith(text)) continue;
+    }
+    events.push({ tStartMs, segs: [{ utf8: text }] });
   }
   return events;
 }
