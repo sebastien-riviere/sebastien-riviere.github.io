@@ -1898,7 +1898,7 @@ async function fetchYouTube(videoId) {
 
     // ── 1. Deno worker (3 internal strategies server-side) ──
     try {
-      const r = await fetchWithTimeout(`${YT_WORKER}/transcript?v=${videoId}`, 10000);
+      const r = await fetchWithTimeout(`${YT_WORKER}/transcript?v=${videoId}`, 25000);
       const j = await r.json();
       if (r.ok && j?.events?.length) {
         const title = j.title || videoId;
