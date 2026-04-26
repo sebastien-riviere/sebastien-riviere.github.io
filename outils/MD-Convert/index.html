@@ -1890,6 +1890,19 @@ async function processUrl() {
   await fetchArticle(url);
 }
 
+function ytStripOverlap(prev, curr) {
+  if (!prev) return curr;
+  const pw = prev.split(' '), cw = curr.split(' ');
+  for (let i = Math.min(pw.length, cw.length); i >= 1; i--) {
+    if (pw.slice(-i).join(' ') === cw.slice(0, i).join(' ')) {
+      const rest = cw.slice(i).join(' ');
+      if (rest) return rest;
+      break;
+    }
+  }
+  return curr;
+}
+
 async function fetchYouTube(videoId) {
   const entry = createUrlEntry(`youtube-${videoId}.md`, 'txt');
   updateCardState(entry.id, 'processing', T.processing);
@@ -1903,9 +1916,13 @@ async function fetchYouTube(videoId) {
       if (r.ok && j?.events?.length) {
         const title = j.title || videoId;
         lines = [`# ${title}\n\n> Source: https://youtube.com/watch?v=${videoId}\n`];
+        let prevRaw = '';
         for (const ev of j.events) {
           if (!ev.segs) continue;
-          const text = ev.segs.map(s => s.utf8).join('').replace(/\n/g, ' ').trim();
+          const raw = ev.segs.map(s => s.utf8).join('').replace(/\n/g, ' ').trim();
+          if (!raw || raw === prevRaw || prevRaw.endsWith(raw)) continue;
+          const text = ytStripOverlap(prevRaw, raw);
+          prevRaw = raw;
           if (text) lines.push(`**[${formatTimestamp(ev.tStartMs)}]** ${text}`);
         }
         if (lines.length < 2) lines = null;
