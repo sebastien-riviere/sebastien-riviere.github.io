@@ -1747,6 +1747,7 @@ function makeNameEditable(id) {
 // === MODULE URL ===
 
 const PROXY = 'https://corsproxy.io/?';
+const YT_WORKER = 'https://soft-cod-83.sebastien-riviere.deno.net/?url=';
 
 function toggleUrlPanel() {
   const p = document.getElementById('urlPanel');
@@ -1813,7 +1814,12 @@ async function fetchYouTube(videoId) {
   try {
     // 1. Fetch the YouTube page to extract captionTracks + title
     let html = '', title = videoId;
-    for (const proxyUrl of [PROXY + encodeURIComponent(`https://www.youtube.com/watch?v=${videoId}`), `https://api.codetabs.com/v1/proxy?quest=https://www.youtube.com/watch?v=${videoId}`]) {
+    const ytPageUrl = `https://www.youtube.com/watch?v=${videoId}`;
+    for (const proxyUrl of [
+      YT_WORKER + encodeURIComponent(ytPageUrl),
+      PROXY + encodeURIComponent(ytPageUrl),
+      `https://api.codetabs.com/v1/proxy?quest=${ytPageUrl}`,
+    ]) {
       try {
         const r = await fetch(proxyUrl);
         if (r.ok) { html = await r.text(); if (html.includes('captionTracks')) break; }
@@ -1847,7 +1853,7 @@ async function fetchYouTube(videoId) {
     // 3. Fetch caption data — try signed URL (direct then proxied), then fallback to simple timedtext
     let data = null;
     const candidates = captionUrl
-      ? [captionUrl, PROXY + encodeURIComponent(captionUrl)]
+      ? [captionUrl, YT_WORKER + encodeURIComponent(captionUrl), PROXY + encodeURIComponent(captionUrl)]
       : [];
     for (const [l, k] of [['fr','asr'],['en','asr'],['fr',''],['en','']]) {
       candidates.push(`https://www.youtube.com/api/timedtext?v=${videoId}&lang=${l}&fmt=json3${k?'&kind='+k:''}`);
