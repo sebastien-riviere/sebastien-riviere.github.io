@@ -105,9 +105,11 @@ Deno.serve(async (request) => {
   maybeRefresh();
 
   const result0 = await tryInnerTubeAndroid(videoId, lang);
+  if (result0 === 'unavailable') return json({ error: 'video_unavailable' }, 404);
   if (result0) return json(result0);
 
   const result0b = await tryInnerTubeTVHTML5(videoId, lang);
+  if (result0b === 'unavailable') return json({ error: 'video_unavailable' }, 404);
   if (result0b) return json(result0b);
 
   const result1 = await tryWatchPage(videoId, lang);
@@ -142,10 +144,12 @@ async function tryInnerTubeTVHTML5(videoId: string, preferredLang: string) {
   });
 }
 
+const UNAVAILABLE_STATUSES = new Set(['ERROR', 'UNPLAYABLE', 'LOGIN_REQUIRED', 'CONTENT_CHECK_REQUIRED']);
+
 async function tryInnerTubeClient(
   videoId: string, preferredLang: string,
   client: { name: string; version: string; clientNameHeader: string; userAgent: string; source: string },
-): Promise<Record<string, unknown> | null> {
+): Promise<Record<string, unknown> | 'unavailable' | null> {
   try {
     const playerResp = await fetch('https://www.youtube.com/youtubei/v1/player', {
       method: 'POST',
@@ -164,9 +168,14 @@ async function tryInnerTubeClient(
 
     // deno-lint-ignore no-explicit-any
     const playerData = await playerResp.json() as any;
+    const playStatus: string = playerData?.playabilityStatus?.status ?? '';
     const tracks: Array<Record<string, string>> =
       playerData?.captions?.playerCaptionsTracklistRenderer?.captionTracks ?? [];
-    if (!tracks.length) return null;
+    if (!tracks.length) {
+      // Distinguish "video gone/private" from "server blocked"
+      if (UNAVAILABLE_STATUSES.has(playStatus)) return 'unavailable';
+      return null;
+    }
 
     const title: string = playerData?.videoDetails?.title || videoId;
     const track =

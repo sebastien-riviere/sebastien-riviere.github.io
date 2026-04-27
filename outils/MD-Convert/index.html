@@ -1091,6 +1091,7 @@ const T = {
     unsupported: 'Format non supporté : ',
     noFile: 'Aucun fichier converti', nothingToPaste: 'Rien à convertir',
     noCaption: 'Transcription momentanément indisponible. Le service se rétablit automatiquement — réessayez dans quelques minutes. Si le problème persiste, copiez la transcription manuellement depuis YouTube (bouton ··· sous la vidéo → Ouvrir la transcription).',
+    videoUnavailable: 'Cette vidéo est privée, supprimée ou sans transcription disponible. MD Convert ne peut pas y accéder.',
     mergeEmpty: 'Sélectionnez au moins 2 fichiers convertis',
     copied: 'Copié dans le presse-papier', copyFail: 'Échec de la copie',
     downloaded: ' téléchargé', exportedZip: ' fichiers exportés en ZIP',
@@ -1115,6 +1116,7 @@ const T = {
     unsupported: 'Unsupported format: ',
     noFile: 'No converted file', nothingToPaste: 'Nothing to convert',
     noCaption: 'Transcript temporarily unavailable. The service auto-recovers — retry in a few minutes. If it persists, copy the transcript manually from YouTube (··· button below the video → Open transcript).',
+    videoUnavailable: 'This video is private, deleted, or has no transcript. MD Convert cannot access it.',
     mergeEmpty: 'Select at least 2 converted files',
     copied: 'Copied to clipboard', copyFail: 'Copy failed',
     downloaded: ' downloaded', exportedZip: ' files exported as ZIP',
@@ -1938,6 +1940,7 @@ async function fetchYouTube(videoId) {
       try {
         const r = await fetchWithTimeout(`${YT_WORKER}/transcript?v=${videoId}`, 25000);
         const j = await r.json();
+        if (j?.error === 'video_unavailable') throw new Error('video unavailable');
         if (r.ok && j?.events?.length) {
           const title = j.title || videoId;
           lines = [`# ${title}\n\n> Source: https://youtube.com/watch?v=${videoId}\n`];
@@ -1973,7 +1976,7 @@ async function fetchYouTube(videoId) {
     updateCardState(entry.id, 'done', estimateTokensHtml(entry.result, null));
     setCardActions(entry.id, entry);
   } catch(e) {
-    updateCardState(entry.id, 'error', e.message === 'no captions' ? T.noCaption : T.convError);
+    updateCardState(entry.id, 'error', e.message === 'video unavailable' ? T.videoUnavailable : e.message === 'no captions' ? T.noCaption : T.convError);
     setErrorActions(entry.id, entry);
   }
 }
