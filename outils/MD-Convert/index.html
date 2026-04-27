@@ -1444,7 +1444,7 @@ function setErrorActions(id, entry) {
       </svg>
     </button>`;
   const ytBtn = ytMatch ? retryBtn + `
-    <a class="card-btn" href="https://youtube.com/watch?v=${ytMatch[1]}" target="_blank" rel="noopener" title="Ouvrir sur YouTube" aria-label="Ouvrir sur YouTube" onclick="openYouTubeManualHint()">
+    <a class="card-btn" href="https://youtube.com/watch?v=${ytMatch[1]}" target="_blank" rel="noopener" title="Ouvrir sur YouTube" aria-label="Ouvrir sur YouTube" onclick="openYouTubeManualHint('${ytMatch[1]}')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
         <polyline points="15 3 21 3 21 9"/>
@@ -2093,13 +2093,15 @@ function updateMergeButton() {
 
 // === MODULE PASTE TEXT ===
 
-function openYouTubeManualHint() {
+let _ytHintVideoId = null;
+function openYouTubeManualHint(videoId) {
+  _ytHintVideoId = videoId || null;
   const panel = document.getElementById('pastePanel');
   panel.classList.add('open');
   const ta = document.getElementById('pasteTextarea');
   ta.placeholder = LANG === 'fr'
-    ? 'Sur YouTube : bouton ··· sous la vidéo → Ouvrir la transcription → tout sélectionner → copier → coller ici'
-    : 'On YouTube: ··· button below video → Open transcript → select all → copy → paste here';
+    ? 'Collez la transcription YouTube ici — elle sera convertie automatiquement'
+    : 'Paste the YouTube transcript here — it will be converted automatically';
   ta.focus();
   panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
@@ -2119,10 +2121,48 @@ function hidePastePanel() {
   document.getElementById('pasteTextarea').value = '';
 }
 
+function detectYouTubeTranscript(text) {
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  const tsLines = lines.filter(l => /^\d{1,2}:\d{2}(:\d{2})?$/.test(l));
+  return tsLines.length >= 3 && tsLines.length >= lines.length * 0.2;
+}
+
+function convertYouTubeTranscript(text, videoId) {
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  const result = [];
+  const title = videoId ? `# Transcript YouTube\n\n> Source: https://youtube.com/watch?v=${videoId}\n` : `# Transcript YouTube\n`;
+  result.push(title);
+  let i = 0;
+  while (i < lines.length) {
+    if (/^\d{1,2}:\d{2}(:\d{2})?$/.test(lines[i])) {
+      const ts = lines[i];
+      const textParts = [];
+      i++;
+      while (i < lines.length && !/^\d{1,2}:\d{2}(:\d{2})?$/.test(lines[i])) {
+        textParts.push(lines[i]);
+        i++;
+      }
+      if (textParts.length) result.push(`**[${ts}]** ${textParts.join(' ')}`);
+    } else { i++; }
+  }
+  return result.join('\n');
+}
+
 function processPastedText() {
   const text = document.getElementById('pasteTextarea').value.trim();
   if (!text) { showToast(T.nothingToPaste, 'error'); return; }
   hidePastePanel();
+  if (detectYouTubeTranscript(text)) {
+    const vid = _ytHintVideoId;
+    _ytHintVideoId = null;
+    const md = convertYouTubeTranscript(text, vid);
+    const entry = createUrlEntry(vid ? `youtube-${vid}.md` : 'youtube-transcript.md', 'txt');
+    entry.result = md;
+    updateCardState(entry.id, 'done', estimateTokensHtml(md, null));
+    setCardActions(entry.id, entry);
+    return;
+  }
+  _ytHintVideoId = null;
   const blob = new Blob([text], { type: 'text/plain' });
   const file = new File([blob], 'texte-collé.txt', { type: 'text/plain' });
   processFiles([file]);

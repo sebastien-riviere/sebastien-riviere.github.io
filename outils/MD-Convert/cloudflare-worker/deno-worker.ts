@@ -156,7 +156,10 @@ async function tryInnerTubeClient(
         'X-YouTube-Client-Version': client.version,
       },
       body: JSON.stringify({
-        context: { client: { clientName: client.name, clientVersion: client.version } },
+        context: { client: {
+          clientName: client.name, clientVersion: client.version, hl: 'en', gl: 'US',
+          ...(client.name === 'ANDROID' ? { androidSdkVersion: 30, userAgent: ANDROID_UA } : {}),
+        } },
         videoId,
       }),
     });
