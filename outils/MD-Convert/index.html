@@ -1444,7 +1444,7 @@ function setErrorActions(id, entry) {
       </svg>
     </button>`;
   const ytBtn = ytMatch ? retryBtn + `
-    <a class="card-btn" href="https://youtube.com/watch?v=${ytMatch[1]}" target="_blank" rel="noopener" title="Ouvrir sur YouTube" aria-label="Ouvrir sur YouTube">
+    <a class="card-btn" href="https://youtube.com/watch?v=${ytMatch[1]}" target="_blank" rel="noopener" title="Ouvrir sur YouTube" aria-label="Ouvrir sur YouTube" onclick="openYouTubeManualHint()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
         <polyline points="15 3 21 3 21 9"/>
@@ -2092,6 +2092,17 @@ function updateMergeButton() {
 }
 
 // === MODULE PASTE TEXT ===
+
+function openYouTubeManualHint() {
+  const panel = document.getElementById('pastePanel');
+  panel.classList.add('open');
+  const ta = document.getElementById('pasteTextarea');
+  ta.placeholder = LANG === 'fr'
+    ? 'Sur YouTube : bouton ··· sous la vidéo → Ouvrir la transcription → tout sélectionner → copier → coller ici'
+    : 'On YouTube: ··· button below video → Open transcript → select all → copy → paste here';
+  ta.focus();
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
 
 function togglePastePanel() {
   const panel = document.getElementById('pastePanel');
