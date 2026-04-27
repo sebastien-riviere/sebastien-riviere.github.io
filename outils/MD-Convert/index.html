@@ -1768,7 +1768,7 @@ function makeNameEditable(id) {
 // === MODULE URL ===
 
 const PROXY = 'https://corsproxy.io/?';
-const YT_WORKER = 'https://soft-cod-83.sebastien-riviere.deno.net';
+const YT_WORKERS = ['https://cf-worker.sebastienriviere-contact.workers.dev','https://soft-cod-83.sebastien-riviere.deno.net'];
 
 // ── YouTube fetch cascade ──────────────────────────────────────────────────────
 // Strategy 0 : Deno worker     (InnerTube ANDROID, IP: Deno Deploy)
@@ -1986,10 +1986,12 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
     // ── 1. Deno worker — InnerTube ANDROID, 25s pour couvrir le cold start ──
     if (!lines) {
       try {
-        const r = await fetchWithTimeout(`${YT_WORKER}/transcript?v=${videoId}`, 25000);
-        const j = await r.json();
+        let r, j;
+        for (const worker of YT_WORKERS) {
+          try { r = await fetchWithTimeout(`${worker}/transcript?v=${videoId}`, 20000); j = await r.json(); if (r.ok && j?.events?.length) break; } catch {}
+        }
         if (j?.error === 'video_unavailable') throw new Error('video unavailable');
-        if (r.ok && j?.events?.length) {
+        if (r?.ok && j?.events?.length) {
           const title = j.title || videoId;
           lines = [`# ${title}\n\n> Source: https://youtube.com/watch?v=${videoId}\n`];
           let prevRaw = '';
