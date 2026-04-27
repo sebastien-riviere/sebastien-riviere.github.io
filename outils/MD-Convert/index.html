@@ -1436,20 +1436,21 @@ function setErrorActions(id, entry) {
   const actions = document.getElementById('actions-' + id);
   if (!actions) return;
   const ytMatch = entry && entry.file && entry.file.name && entry.file.name.match(/^youtube-(.+)\.md$/);
-  const ytBtn = ytMatch ? `
+  const retryBtn = `
+    <button class="card-btn retry" onclick="${ytMatch ? `retryYouTube(${id})` : `retryFile(${id})`}" title="Réessayer" aria-label="Réessayer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="1 4 1 10 7 10"/>
+        <path d="M3.51 15a9 9 0 1 0 .49-3.24"/>
+      </svg>
+    </button>`;
+  const ytBtn = ytMatch ? retryBtn + `
     <a class="card-btn" href="https://youtube.com/watch?v=${ytMatch[1]}" target="_blank" rel="noopener" title="Ouvrir sur YouTube" aria-label="Ouvrir sur YouTube">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
         <polyline points="15 3 21 3 21 9"/>
         <line x1="10" y1="14" x2="21" y2="3"/>
       </svg>
-    </a>` : `
-    <button class="card-btn retry" onclick="retryFile(${id})" title="Réessayer" aria-label="Réessayer">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="1 4 1 10 7 10"/>
-        <path d="M3.51 15a9 9 0 1 0 .49-3.24"/>
-      </svg>
-    </button>`;
+    </a>` : retryBtn;
   actions.innerHTML = ytBtn + `
     <button class="card-btn" onclick="removeFile(${id})" title="Supprimer" aria-label="Supprimer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -1931,6 +1932,18 @@ function ytStripOverlap(prev, curr) {
 
 async function fetchYouTube(videoId) {
   const entry = createUrlEntry(`youtube-${videoId}.md`, 'txt');
+  await fetchYouTubeIntoEntry(entry, videoId);
+}
+
+async function retryYouTube(id) {
+  const entry = STATE.files.find(e => e.id === id);
+  if (!entry) return;
+  const m = entry.file?.name?.match(/^youtube-(.+)\.md$/);
+  if (!m) return;
+  await fetchYouTubeIntoEntry(entry, m[1]);
+}
+
+async function fetchYouTubeIntoEntry(entry, videoId) {
   updateCardState(entry.id, 'processing', T.processing);
   try {
     let lines = null;
@@ -1955,7 +1968,7 @@ async function fetchYouTube(videoId) {
           }
           if (lines.length < 2) lines = null;
         }
-      } catch { /* fall through */ }
+      } catch(e) { if (e.message === 'video unavailable') throw e; }
     }
 
     // ── 2. Invidious instances ──
