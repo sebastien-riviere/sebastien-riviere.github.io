@@ -1948,7 +1948,42 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
   try {
     let lines = null;
 
-    // ── 0. Deno worker — InnerTube ANDROID, 25s pour couvrir le cold start ──
+    // ── 0. InnerTube direct depuis le navigateur (IP résidentielle, pas de datacenter) ──
+    if (!lines) {
+      try {
+        const pr = await fetch('https://www.youtube.com/youtubei/v1/player', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-YouTube-Client-Name': '3', 'X-YouTube-Client-Version': '20.10.38' },
+          body: JSON.stringify({ context: { client: { clientName: 'ANDROID', clientVersion: '20.10.38', androidSdkVersion: 30, hl: 'fr', gl: 'FR' } }, videoId }),
+        });
+        if (pr.ok) {
+          const pd = await pr.json();
+          const tracks = pd?.captions?.playerCaptionsTracklistRenderer?.captionTracks ?? [];
+          const track = tracks.find(t => t.languageCode?.startsWith('fr')) || tracks.find(t => t.languageCode?.startsWith('en')) || tracks[0];
+          if (track?.baseUrl) {
+            const cr = await fetch(track.baseUrl + '&fmt=json3');
+            if (cr.ok) {
+              const j3 = await cr.json();
+              const evs = (j3?.events ?? []).filter(e => e.segs?.some(s => s.utf8?.trim()));
+              if (evs.length > 2) {
+                const title = pd?.videoDetails?.title || videoId;
+                lines = [`# ${title}\n\n> Source: https://youtube.com/watch?v=${videoId}\n`];
+                let prevRaw = '';
+                for (const ev of evs) {
+                  const raw = ev.segs.map(s => s.utf8 ?? '').join('').replace(/\n/g, ' ').trim();
+                  if (!raw || raw === prevRaw) continue;
+                  const text = ytStripOverlap(prevRaw, raw); prevRaw = raw;
+                  if (text) lines.push(`**[${formatTimestamp(ev.tStartMs)}]** ${text}`);
+                }
+                if (lines.length < 2) lines = null;
+              }
+            }
+          }
+        }
+      } catch { /* CORS ou autre — fallback */ }
+    }
+
+    // ── 1. Deno worker — InnerTube ANDROID, 25s pour couvrir le cold start ──
     if (!lines) {
       try {
         const r = await fetchWithTimeout(`${YT_WORKER}/transcript?v=${videoId}`, 25000);
