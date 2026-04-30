@@ -1518,32 +1518,61 @@ async function convertPdf(file, entryId) {
     const content = await page.getTextContent();
     const items = content.items;
 
-    // P3 — détection PDF à caractères espacés
-    const strItems = items.filter(it => it.str && it.str.trim());
-    const singleRatio = strItems.length > 0
-      ? strItems.filter(it => it.str.trim().length === 1).length / strItems.length : 0;
-    const raw = singleRatio > 0.3 ? rejoinSpacedChars(items) : items.map(it => it.str).join(' ');
+    const raw = joinPdfItems(items);
 
     if (raw.trim()) {
       const clean = cleanText(raw);
       const formatted = STATE.format === 'md' ? textToMd(clean) : clean;
       if (STATE.format === 'md') lines.push(`## Page ${i}\n\n${formatted}`);
       else lines.push(`--- Page ${i} ---\n\n${formatted}`);
+    } else if (items.filter(it => it.str && it.str.trim()).length > 0) {
+      lines.push(`## Page ${i}\n\n> ⚠️ Extraction incomplète (${items.length} éléments vides)`);
     }
   }
 
   return lines.join('\n\n');
 }
 
+// Regroupe les items PDF.js d'une page par ligne (Y-grouping) et applique
+// rejoinSpacedChars sur les lignes à forte densité de caractères isolés.
+function joinPdfItems(items) {
+  if (!items.length) return '';
+  const groupMap = new Map();
+  for (const item of items) {
+    if (!item.str) continue;
+    const y = Math.round(item.transform[5] / 2) * 2;
+    if (!groupMap.has(y)) groupMap.set(y, []);
+    groupMap.get(y).push(item);
+  }
+  return [...groupMap.entries()]
+    .sort((a, b) => b[0] - a[0])
+    .map(([, lineItems]) => {
+      lineItems.sort((a, b) => a.transform[4] - b.transform[4]);
+      const strItems = lineItems.filter(it => it.str.trim());
+      if (!strItems.length) return '';
+      const singleRatio = strItems.filter(it => it.str.trim().length === 1).length / strItems.length;
+      return singleRatio > 0.4 ? rejoinSpacedChars(lineItems) : lineItems.map(it => it.str).join('');
+    })
+    .filter(l => l.trim())
+    .join('\n');
+}
+
 function rejoinSpacedChars(items) {
+  const withWidth = items.filter(it => it.str && it.str.trim() && it.width > 0);
+  const avgUnit = withWidth.length
+    ? withWidth.reduce((s, it) => s + it.width / Math.max(it.str.trim().length, 1), 0) / withWidth.length
+    : 5;
+  const spaceGap = Math.max(avgUnit * 0.4, 1.5);
+
   const parts = [];
   let prevX2 = null, prevY = null;
   for (const item of items) {
     if (!item.str) continue;
-    const x = item.transform[4], y = item.transform[5], w = item.width || 0;
+    const x = item.transform[4], y = item.transform[5];
+    const w = item.width > 0 ? item.width : item.str.length * avgUnit;
     if (prevY !== null && Math.abs(y - prevY) > 3) {
       parts.push('\n');
-    } else if (prevX2 !== null && x - prevX2 > 3) {
+    } else if (prevX2 !== null && x - prevX2 > spaceGap) {
       parts.push(' ');
     }
     parts.push(item.str);
@@ -1751,6 +1780,13 @@ function textToMd(text) {
     // Listes : 1. / a) / • · ▪ – -
     const listMatch = trimmed.match(/^(\d+\.|[a-z]\)|[•·▪–-])\s+(.+)/);
     if (listMatch) { result.push('- ' + listMatch[2]); continue; }
+
+    // Défense en profondeur : collapse chars espacés résiduels ("H A K I M  B E Y" → "HAKIM BEY")
+    const spacedToks = trimmed.split(' ');
+    if (spacedToks.length >= 4 && spacedToks.filter(t => t.length === 1).length / spacedToks.length > 0.5) {
+      const segs = trimmed.split(/ {2,}/);
+      trimmed = segs.length > 1 ? segs.map(s => s.replace(/ /g, '')).join(' ') : spacedToks.join('');
+    }
 
     // Heuristique titre : ligne courte + majuscule dominante
     const upperRatio = (trimmed.match(/[A-ZÀÂÉÈÊËÎÏÔÙÛÜ]/g) || []).length / trimmed.length;
