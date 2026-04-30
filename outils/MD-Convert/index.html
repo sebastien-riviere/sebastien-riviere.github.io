@@ -714,6 +714,34 @@ main {
 .paste-panel textarea::placeholder { color: var(--text-muted); }
 .paste-panel-actions { display: flex; gap: var(--space-2); justify-content: flex-end; }
 
+.yt-manual-guide {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+.yt-manual-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  white-space: nowrap;
+  background: #ff0000;
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.yt-manual-link:hover { background: #cc0000; }
+.yt-manual-link svg { width: 16px; height: 16px; }
+.yt-manual-steps { margin: 0; padding-left: 1.2em; font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; }
+.yt-manual-steps strong { color: var(--text); }
+
 /* === OCR LOADING STATE === */
 .ocr-loading {
   display: none;
@@ -910,6 +938,18 @@ input[type="file"] { display: none; }
 
     <!-- PASTE PANEL -->
     <div class="paste-panel" id="pastePanel">
+      <div class="yt-manual-guide" id="ytManualGuide" style="display:none">
+        <a id="ytManualLink" class="yt-manual-link" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          YouTube
+        </a>
+        <ol class="yt-manual-steps" id="ytManualSteps">
+          <li>Cliquez sur <strong>···</strong> sous la vidéo</li>
+          <li>Sélectionnez <strong>Ouvrir la transcription</strong></li>
+          <li>Copiez tout (Ctrl+A, Ctrl+C)</li>
+          <li>Revenez ici et collez ↓</li>
+        </ol>
+      </div>
       <textarea id="pasteTextarea" placeholder="Collez votre texte ici — transcript YouTube, email, notes…" spellcheck="false"></textarea>
       <div class="paste-panel-actions">
         <button class="btn-sm" id="btnPasteCancel" type="button">Annuler</button>
@@ -1090,7 +1130,7 @@ const T = {
     waiting: 'En attente', processing: 'Conversion…', convError: 'Erreur de conversion',
     unsupported: 'Format non supporté : ',
     noFile: 'Aucun fichier converti', nothingToPaste: 'Rien à convertir',
-    noCaption: 'Transcription momentanément indisponible. Le service se rétablit automatiquement — réessayez dans quelques minutes. Si le problème persiste, copiez la transcription manuellement depuis YouTube (bouton ··· sous la vidéo → Ouvrir la transcription).',
+    noCaption: 'Transcription indisponible via les services automatiques. Réessayez ou utilisez le bouton YouTube →',
     videoUnavailable: 'Cette vidéo est privée, supprimée ou sans transcription disponible. MD Convert ne peut pas y accéder.',
     mergeEmpty: 'Sélectionnez au moins 2 fichiers convertis',
     copied: 'Copié dans le presse-papier', copyFail: 'Échec de la copie',
@@ -1115,7 +1155,7 @@ const T = {
     waiting: 'Waiting', processing: 'Converting…', convError: 'Conversion error',
     unsupported: 'Unsupported format: ',
     noFile: 'No converted file', nothingToPaste: 'Nothing to convert',
-    noCaption: 'Transcript temporarily unavailable. The service auto-recovers — retry in a few minutes. If it persists, copy the transcript manually from YouTube (··· button below the video → Open transcript).',
+    noCaption: 'Transcript not available via automatic services. Retry or use the YouTube button →',
     videoUnavailable: 'This video is private, deleted, or has no transcript. MD Convert cannot access it.',
     mergeEmpty: 'Select at least 2 converted files',
     copied: 'Copied to clipboard', copyFail: 'Copy failed',
@@ -2135,6 +2175,19 @@ function openYouTubeManualHint(videoId) {
   _ytHintVideoId = videoId || null;
   const panel = document.getElementById('pastePanel');
   panel.classList.add('open');
+  // Show step-by-step guide with direct YouTube link
+  const guide = document.getElementById('ytManualGuide');
+  const link = document.getElementById('ytManualLink');
+  const steps = document.getElementById('ytManualSteps');
+  if (guide && videoId) {
+    link.href = 'https://www.youtube.com/watch?v=' + videoId;
+    if (LANG === 'fr') {
+      steps.innerHTML = '<li>Cliquez sur <strong>···</strong> sous la vidéo</li><li>Sélectionnez <strong>Ouvrir la transcription</strong></li><li>Copiez tout (Ctrl+A, Ctrl+C)</li><li>Revenez ici et collez ↓</li>';
+    } else {
+      steps.innerHTML = '<li>Click <strong>···</strong> below the video</li><li>Select <strong>Open transcript</strong></li><li>Select all (Ctrl+A) & copy (Ctrl+C)</li><li>Come back here and paste ↓</li>';
+    }
+    guide.style.display = 'flex';
+  }
   const ta = document.getElementById('pasteTextarea');
   ta.placeholder = LANG === 'fr'
     ? 'Collez la transcription YouTube ici — elle sera convertie automatiquement'
@@ -2156,6 +2209,8 @@ function togglePastePanel() {
 function hidePastePanel() {
   document.getElementById('pastePanel').classList.remove('open');
   document.getElementById('pasteTextarea').value = '';
+  const guide = document.getElementById('ytManualGuide');
+  if (guide) guide.style.display = 'none';
 }
 
 function detectYouTubeTranscript(text) {

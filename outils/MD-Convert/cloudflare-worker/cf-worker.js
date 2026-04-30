@@ -1,5 +1,7 @@
 // MDConvert — YouTube transcript extractor (Cloudflare Workers)
 // GET /transcript?v=VIDEO_ID&lang=fr
+// Secrets: SUPADATA_KEY (optional)
+// Bindings: AI (Cloudflare Workers AI, optional)
 
 const BROWSER_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 const ANDROID_UA = 'com.google.android.youtube/20.10.38 (Linux; U; Android 11) gzip';
@@ -48,7 +50,7 @@ function maybeRefresh() {
 }
 
 export default {
-  async fetch(request) {
+  async fetch(request, env) {
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors() });
 
     const url = new URL(request.url);
@@ -58,28 +60,42 @@ export default {
 
     maybeRefresh();
 
+    // Strategy 1: InnerTube (works from residential IPs, blocked from cloud — kept for completeness)
     const r0 = await tryInnerTubeClient(videoId, lang, { name: 'ANDROID', version: '20.10.38', id: '3', ua: ANDROID_UA, src: 'android' });
     if (r0) return json(r0);
 
     const r0b = await tryInnerTubeClient(videoId, lang, { name: 'TVHTML5_SIMPLY_EMBEDDED_PLAYER', version: '2.0', id: '85', ua: BROWSER_UA, src: 'tv' });
     if (r0b) return json(r0b);
 
+    // Strategy 2: Watch page HTML parsing
     const r1 = await tryWatchPage(videoId, lang);
     if (r1) return json(r1);
 
+    // Strategy 3: Supadata API (requires SUPADATA_KEY secret — reliable, handles ASR)
+    const rSup = await trySupadata(videoId, lang, env);
+    if (rSup) return json(rSup);
+
+    // Strategy 4: Piped instances (auto-discovered, works for manual captions)
     for (const base of pipedInstances) {
       const r = await tryPiped(base, videoId, lang);
       if (r) return json(r);
     }
 
+    // Strategy 5: Invidious instances (auto-discovered)
     for (const base of invidiousInstances) {
       const r = await tryInvidious(base, videoId, lang);
       if (r) return json(r);
     }
 
+    // Strategy 6: Whisper via Cloudflare Workers AI (audio transcription, no caption dependency)
+    const rWhisper = await tryWhisper(videoId, lang, env);
+    if (rWhisper) return json(rWhisper);
+
     return json({ error: 'no_captions' }, 404);
   }
 };
+
+// ── InnerTube ──────────────────────────────────────────────────────────────
 
 async function tryInnerTubeClient(videoId, lang, client) {
   try {
@@ -111,6 +127,8 @@ async function tryInnerTubeClient(videoId, lang, client) {
   } catch { return null; }
 }
 
+// ── Watch Page ─────────────────────────────────────────────────────────────
+
 async function tryWatchPage(videoId, lang) {
   try {
     const r = await fetch(`https://www.youtube.com/watch?v=${videoId}`, { headers: { 'User-Agent': BROWSER_UA, 'Accept-Language': 'fr-FR,fr;q=0.9', 'Cookie': 'CONSENT=YES+cb' } });
@@ -134,6 +152,32 @@ async function tryWatchPage(videoId, lang) {
   } catch { return null; }
 }
 
+// ── Supadata API ───────────────────────────────────────────────────────────
+
+async function trySupadata(videoId, lang, env) {
+  if (!env?.SUPADATA_KEY) return null;
+  try {
+    // Try with requested lang first, then without lang filter
+    for (const qs of [`videoId=${videoId}&lang=${lang}`, `videoId=${videoId}`]) {
+      const r = await fetch(`https://api.supadata.ai/v1/youtube/transcript?${qs}`, {
+        headers: { 'x-api-key': env.SUPADATA_KEY, 'User-Agent': BROWSER_UA },
+        signal: AbortSignal.timeout(15000),
+      });
+      if (!r.ok) continue;
+      const j = await r.json();
+      const content = j?.content ?? [];
+      if (!content.length) continue;
+      const events = content
+        .map(c => ({ tStartMs: Math.round((c.offset ?? c.start ?? 0) * 1000), segs: [{ utf8: (c.text ?? c.content ?? '').trim() }] }))
+        .filter(e => e.segs[0].utf8);
+      if (events.length) return { title: j?.title || videoId, events, source: 'supadata' };
+    }
+    return null;
+  } catch { return null; }
+}
+
+// ── Piped ──────────────────────────────────────────────────────────────────
+
 async function tryPiped(base, videoId, lang) {
   try {
     const r = await fetch(`${base}/streams/${videoId}`, { headers: { 'User-Agent': BROWSER_UA }, signal: AbortSignal.timeout(6000) });
@@ -153,6 +197,8 @@ async function tryPiped(base, videoId, lang) {
   } catch { return null; }
 }
 
+// ── Invidious ──────────────────────────────────────────────────────────────
+
 async function tryInvidious(base, videoId, lang) {
   try {
     const r = await fetch(`${base}/api/v1/captions/${videoId}`, { headers: { 'User-Agent': BROWSER_UA }, signal: AbortSignal.timeout(6000) });
@@ -171,6 +217,79 @@ async function tryInvidious(base, videoId, lang) {
     return events.length ? { title: videoId, events, source: `invidious:${base}` } : null;
   } catch { return null; }
 }
+
+// ── Whisper (Cloudflare Workers AI) ───────────────────────────────────────
+
+async function tryWhisper(videoId, lang, env) {
+  if (!env?.AI) return null;
+  try {
+    // Get lowest-bitrate audio stream from Piped
+    let audioUrl = null;
+    for (const base of pipedInstances) {
+      try {
+        const r = await fetch(`${base}/streams/${videoId}`, { headers: { 'User-Agent': BROWSER_UA }, signal: AbortSignal.timeout(6000) });
+        if (!r.ok) continue;
+        const j = await r.json();
+        const streams = (j?.audioStreams ?? []).sort((a, b) => (a.bitrate ?? 0) - (b.bitrate ?? 0));
+        if (streams.length) { audioUrl = streams[0].url; break; }
+      } catch {}
+    }
+    if (!audioUrl) return null;
+
+    // Fetch audio with 10 MB cap (≈ 10 min @ 128 kbps)
+    const audioResp = await fetch(audioUrl, { headers: { 'User-Agent': BROWSER_UA }, signal: AbortSignal.timeout(45000) });
+    if (!audioResp.ok) return null;
+
+    const reader = audioResp.body.getReader();
+    const chunks = [];
+    let totalSize = 0;
+    const MAX_BYTES = 10 * 1024 * 1024;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      totalSize += value.length;
+      if (totalSize >= MAX_BYTES) { reader.cancel(); break; }
+    }
+
+    const audioBuffer = new Uint8Array(totalSize);
+    let offset = 0;
+    for (const chunk of chunks) { audioBuffer.set(chunk, offset); offset += chunk.length; }
+
+    const result = await env.AI.run('@cf/openai/whisper', { audio: [...audioBuffer] });
+    if (!result?.text?.trim()) return null;
+
+    // Build events — use word timestamps if available, else chunk the text
+    let events;
+    if (result.words?.length > 3) {
+      events = [];
+      let segStartMs = Math.round(result.words[0].start * 1000);
+      let segStartSec = result.words[0].start;
+      let segWords = [];
+      for (const w of result.words) {
+        segWords.push(w.word);
+        if (w.end - segStartSec >= 5) {
+          events.push({ tStartMs: segStartMs, segs: [{ utf8: segWords.join('').trim() }] });
+          segStartMs = Math.round(w.end * 1000);
+          segStartSec = w.end;
+          segWords = [];
+        }
+      }
+      if (segWords.length) events.push({ tStartMs: segStartMs, segs: [{ utf8: segWords.join('').trim() }] });
+    } else {
+      const words = result.text.trim().split(/\s+/);
+      const CHUNK = 25;
+      events = [];
+      for (let i = 0; i < words.length; i += CHUNK) {
+        events.push({ tStartMs: i * 200, segs: [{ utf8: words.slice(i, i + CHUNK).join(' ') }] });
+      }
+    }
+
+    return events.length ? { title: videoId, events, source: 'whisper' } : null;
+  } catch { return null; }
+}
+
+// ── Parsers ────────────────────────────────────────────────────────────────
 
 function parseXML(xml) {
   const raw = [];
