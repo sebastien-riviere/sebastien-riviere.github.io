@@ -1176,7 +1176,7 @@ const STATE = {
   theme: 'auto',
   tesseractWorker: null,
   tesseractReady: false,
-  tesseractLoading: false,
+  tesseractInitPromise: null,
   currentPreviewId: null,
 };
 
@@ -1608,21 +1608,8 @@ async function ocrPdfPage(page, entryId, pageNum, total) {
 async function convertDocx(file) {
   const arrayBuffer = await file.arrayBuffer();
   const result = await mammoth.extractRawText({ arrayBuffer });
-  let text = result.value;
-  
-  if (STATE.format === 'md') {
-    text = htmlToMd(text);
-  }
-  return cleanText(text);
-}
-
-// Conversion HTML basique → Markdown
-function htmlToMd(text) {
-  return text
-    .replace(/^#(1, 6)\s/gm, (m) => m)
-    .replace(/\*\*(.*?)\*\*/g, '**$1**')
-    .replace(/\*(.*?)\*/g, '*$1*')
-    .trim();
+  const clean = cleanText(result.value);
+  return STATE.format === 'md' ? textToMd(clean) : clean;
 }
 
 // === MODULE IMAGE / OCR CONVERSION ===
@@ -1633,14 +1620,15 @@ async function convertImage(file, entryId) {
     await initTesseract(entryId);
   }
   
-  // Prétraitement Canvas (Option A — automatique)
-  const processedImageData = await preprocessImage(file, false);
-  
+  const entry = STATE.files.find(e => e.id === entryId);
+  const processedImageData = await preprocessImage(file, entry?._enhance ?? false);
+  if (!processedImageData) throw new Error('Image invalide ou corrompue');
+
   const lang = document.getElementById('langSelect').value;
   const psm = parseInt(document.getElementById('ocrMode').value);
-  
+
   updateCardState(entryId, 'processing', 'OCR en cours...');
-  
+
   const result = await STATE.tesseractWorker.recognize(processedImageData, {
     tessedit_pageseg_mode: psm,
   });
@@ -1657,26 +1645,22 @@ async function convertImage(file, entryId) {
 }
 
 async function initTesseract(entryId) {
-  if (STATE.tesseractLoading) return;
-  STATE.tesseractLoading = true;
-  
-  updateCardState(entryId, 'processing', 'Chargement OCR...');
-  
-  const lang = document.getElementById('langSelect').value;
-  
-  // Créer un worker depuis le blob b64
-  const workerSrc = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/worker.min.js';
-  const coreSrc = 'https://cdn.jsdelivr.net/npm/tesseract.js-core@5/tesseract-core-simd-lstm.wasm.js';
-  
-  STATE.tesseractWorker = await Tesseract.createWorker(lang, 1, {
-    workerPath: workerSrc,
-    corePath: coreSrc,
-    langPath: 'https://tessdata.projectnaptha.com/4.0.0',
-    cacheMethod: 'indexedDB',
-  });
-  
-  STATE.tesseractReady = true;
-  STATE.tesseractLoading = false;
+  if (STATE.tesseractWorker) return;
+  if (STATE.tesseractInitPromise) return STATE.tesseractInitPromise;
+  STATE.tesseractInitPromise = (async () => {
+    updateCardState(entryId, 'processing', 'Chargement OCR...');
+    const lang = document.getElementById('langSelect').value;
+    const workerSrc = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/worker.min.js';
+    const coreSrc = 'https://cdn.jsdelivr.net/npm/tesseract.js-core@5/tesseract-core-simd-lstm.wasm.js';
+    STATE.tesseractWorker = await Tesseract.createWorker(lang, 1, {
+      workerPath: workerSrc,
+      corePath: coreSrc,
+      langPath: 'https://tessdata.projectnaptha.com/4.0.0',
+      cacheMethod: 'indexedDB',
+    });
+    STATE.tesseractReady = true;
+  })();
+  return STATE.tesseractInitPromise;
 }
 
 // === MODULE CANVAS PREPROCESSING ===
@@ -1753,6 +1737,7 @@ async function preprocessImage(file, enhance) {
       URL.revokeObjectURL(url);
       resolve(preprocessCanvas(canvas, enhance));
     };
+    img.onerror = () => { URL.revokeObjectURL(url); resolve(null); };
     img.src = url;
   });
 }
@@ -1879,7 +1864,7 @@ function downloadFile(id) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = filename;
-  a.click();
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
   showToast(filename + T.downloaded);
 }
@@ -1901,7 +1886,7 @@ async function downloadAll() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = 'md-convert-export.zip';
-  a.click();
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
   showToast(done.length + T.exportedZip);
 }
@@ -2170,7 +2155,8 @@ function fillUrlHistory() {
     const dl = document.getElementById('urlHistoryList');
     if (!dl) return;
     const h = JSON.parse(localStorage.getItem('mdcv_url_history') || '[]');
-    dl.innerHTML = h.map(u => `<option value="${u.replace(/"/g, '&quot;')}">`).join('');
+    dl.innerHTML = '';
+    h.forEach(u => { const o = document.createElement('option'); o.value = u; dl.appendChild(o); });
   } catch {}
 }
 
@@ -2612,6 +2598,7 @@ document.addEventListener('DOMContentLoaded', () => {
       STATE.tesseractWorker.terminate();
       STATE.tesseractWorker = null;
       STATE.tesseractReady = false;
+      STATE.tesseractInitPromise = null;
     }
   };
 
