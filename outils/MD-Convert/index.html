@@ -413,6 +413,8 @@ main {
   border-color: var(--accent);
 }
 .btn-sm.accent:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.btn-sm.danger { background: rgba(239,68,68,0.1); color: var(--danger); border-color: rgba(239,68,68,0.3); }
+.btn-sm.danger:hover { background: var(--danger); color: white; border-color: var(--danger); }
 
 .queue-list {
   display: flex;
@@ -470,6 +472,9 @@ main {
   text-overflow: ellipsis;
   margin-bottom: 2px;
 }
+.file-name.editable { cursor: text; }
+.file-name.editable:hover { color: var(--accent); }
+.file-name.editable:hover::after { content: ' ✎'; font-size: 0.75em; opacity: 0.6; vertical-align: middle; }
 .file-meta {
   font-size: 0.72rem;
   color: var(--text-subtle);
@@ -714,34 +719,6 @@ main {
 .paste-panel textarea::placeholder { color: var(--text-muted); }
 .paste-panel-actions { display: flex; gap: var(--space-2); justify-content: flex-end; }
 
-.yt-manual-guide {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--space-3) var(--space-4);
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
-}
-.yt-manual-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  white-space: nowrap;
-  background: #ff0000;
-  color: #fff;
-  border-radius: var(--radius);
-  padding: 6px 12px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-.yt-manual-link:hover { background: #cc0000; }
-.yt-manual-link svg { width: 16px; height: 16px; }
-.yt-manual-steps { margin: 0; padding-left: 1.2em; font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; }
-.yt-manual-steps strong { color: var(--text); }
-
 /* === OCR LOADING STATE === */
 .ocr-loading {
   display: none;
@@ -938,18 +915,6 @@ input[type="file"] { display: none; }
 
     <!-- PASTE PANEL -->
     <div class="paste-panel" id="pastePanel">
-      <div class="yt-manual-guide" id="ytManualGuide" style="display:none">
-        <a id="ytManualLink" class="yt-manual-link" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-          YouTube
-        </a>
-        <ol class="yt-manual-steps" id="ytManualSteps">
-          <li>Cliquez sur <strong>···</strong> sous la vidéo</li>
-          <li>Sélectionnez <strong>Ouvrir la transcription</strong></li>
-          <li>Copiez tout (Ctrl+A, Ctrl+C)</li>
-          <li>Revenez ici et collez ↓</li>
-        </ol>
-      </div>
       <textarea id="pasteTextarea" placeholder="Collez votre texte ici — transcript YouTube, email, notes…" spellcheck="false"></textarea>
       <div class="paste-panel-actions">
         <button class="btn-sm" id="btnPasteCancel" type="button">Annuler</button>
@@ -997,6 +962,8 @@ input[type="file"] { display: none; }
             </svg>
             Fusionner
           </button>
+          <button class="btn-sm" id="btnDownloadSelected" type="button" style="display:none">↓ Sélection</button>
+          <button class="btn-sm danger" id="btnDeleteSelected" type="button" style="display:none">✕ Sélection</button>
           <button class="btn-sm accent" id="btnDownloadAll" type="button">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -1130,7 +1097,7 @@ const T = {
     waiting: 'En attente', processing: 'Conversion…', convError: 'Erreur de conversion',
     unsupported: 'Format non supporté : ',
     noFile: 'Aucun fichier converti', nothingToPaste: 'Rien à convertir',
-    noCaption: 'Transcription indisponible via les services automatiques. Réessayez ou utilisez le bouton YouTube →',
+    noCaption: 'Transcription momentanément indisponible. Le service se rétablit automatiquement — réessayez dans quelques minutes. Si le problème persiste, copiez la transcription manuellement depuis YouTube (bouton ··· sous la vidéo → Ouvrir la transcription).',
     videoUnavailable: 'Cette vidéo est privée, supprimée ou sans transcription disponible. MD Convert ne peut pas y accéder.',
     mergeEmpty: 'Sélectionnez au moins 2 fichiers convertis',
     copied: 'Copié dans le presse-papier', copyFail: 'Échec de la copie',
@@ -1155,7 +1122,7 @@ const T = {
     waiting: 'Waiting', processing: 'Converting…', convError: 'Conversion error',
     unsupported: 'Unsupported format: ',
     noFile: 'No converted file', nothingToPaste: 'Nothing to convert',
-    noCaption: 'Transcript not available via automatic services. Retry or use the YouTube button →',
+    noCaption: 'Transcript temporarily unavailable. The service auto-recovers — retry in a few minutes. If it persists, copy the transcript manually from YouTube (··· button below the video → Open transcript).',
     videoUnavailable: 'This video is private, deleted, or has no transcript. MD Convert cannot access it.',
     mergeEmpty: 'Select at least 2 converted files',
     copied: 'Copied to clipboard', copyFail: 'Copy failed',
@@ -1536,14 +1503,41 @@ async function convertPdf(file, entryId) {
     if (entryId) updateCardState(entryId, 'processing', T.pageOf(i, total));
     const page = await pdf.getPage(i);
     const content = await page.getTextContent();
-    const pageText = content.items.map(item => item.str).join(' ');
-    if (pageText.trim()) {
-      if (STATE.format === 'md') lines.push(`## Page ${i}\n\n${cleanText(pageText)}`);
-      else lines.push(`--- Page ${i} ---\n\n${cleanText(pageText)}`);
+    const items = content.items;
+
+    // P3 — détection PDF à caractères espacés
+    const strItems = items.filter(it => it.str && it.str.trim());
+    const singleRatio = strItems.length > 0
+      ? strItems.filter(it => it.str.trim().length === 1).length / strItems.length : 0;
+    const raw = singleRatio > 0.3 ? rejoinSpacedChars(items) : items.map(it => it.str).join(' ');
+
+    if (raw.trim()) {
+      const clean = cleanText(raw);
+      const formatted = STATE.format === 'md' ? textToMd(clean) : clean;
+      if (STATE.format === 'md') lines.push(`## Page ${i}\n\n${formatted}`);
+      else lines.push(`--- Page ${i} ---\n\n${formatted}`);
     }
   }
 
   return lines.join('\n\n');
+}
+
+function rejoinSpacedChars(items) {
+  const parts = [];
+  let prevX2 = null, prevY = null;
+  for (const item of items) {
+    if (!item.str) continue;
+    const x = item.transform[4], y = item.transform[5], w = item.width || 0;
+    if (prevY !== null && Math.abs(y - prevY) > 3) {
+      parts.push('\n');
+    } else if (prevX2 !== null && x - prevX2 > 3) {
+      parts.push(' ');
+    }
+    parts.push(item.str);
+    prevX2 = x + w;
+    prevY = y;
+  }
+  return parts.join('').replace(/ \n /g, '\n').trim();
 }
 
 // === MODULE DOCX CONVERSION ===
@@ -1678,31 +1672,44 @@ function cleanText(text) {
   return text
     .replace(/\r\n/g, '\n')
     .replace(/\r/g, '\n')
-    .replace(/[ \t]+$/gm, '')           // trailing spaces
-    .replace(/\n{3,}/g, '\n\n')       // max 2 sauts de ligne
-    .replace(/([a-z])-\n([a-z])/g, '$1$2') // césures recollées
+    .replace(/[ \t]+$/gm, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/([a-z])-\n([a-z])/g, '$1$2')
+    .replace(/ﬁ/g, 'fi').replace(/ﬂ/g, 'fl').replace(/ﬀ/g, 'ff').replace(/ﬃ/g, 'ffi').replace(/ﬄ/g, 'ffl')
+    .replace(/[►▶▸◆◇]/g, '')
+    .replace(/^\s*\d{1,3}\s*$/gm, '')
+    .replace(/“|”/g, '"').replace(/‘|’/g, "'")
     .trim();
 }
 
 function textToMd(text) {
   const lines = text.split('\n');
   const result = [];
-  
+
   for (const line of lines) {
     const trimmed = line.trim();
     if (!trimmed) { result.push(''); continue; }
-    
+
+    // ARTICLE / CHAPITRE / SECTION structurels
+    if (/^(ARTICLE|CHAPITRE|SECTION|TITRE)\s+[\dIVXLCDM]+/i.test(trimmed)) {
+      result.push('## ' + trimmed); continue;
+    }
+
+    // Listes : 1. / a) / • · ▪ – -
+    const listMatch = trimmed.match(/^(\d+\.|[a-z]\)|[•·▪–-])\s+(.+)/);
+    if (listMatch) { result.push('- ' + listMatch[2]); continue; }
+
     // Heuristique titre : ligne courte + majuscule dominante
     const upperRatio = (trimmed.match(/[A-ZÀÂÉÈÊËÎÏÔÙÛÜ]/g) || []).length / trimmed.length;
     const isShort = trimmed.length < 60;
     const isAllCaps = upperRatio > 0.6 && isShort;
     const isTitle = isShort && trimmed.length > 3 && upperRatio > 0.3 && !trimmed.endsWith('.');
-    
+
     if (isAllCaps) result.push('## ' + trimmed);
     else if (isTitle) result.push('### ' + trimmed);
     else result.push(trimmed);
   }
-  
+
   return result.join('\n');
 }
 
@@ -1936,7 +1943,8 @@ function createUrlEntry(name, type) {
 }
 
 function formatTimestamp(ms) {
-  const s = Math.floor(ms / 1000), m = Math.floor(s / 60);
+  if (ms == null || isNaN(+ms)) return null;
+  const s = Math.floor(+ms / 1000), m = Math.floor(s / 60);
   return `${m}:${String(s % 60).padStart(2, '0')}`;
 }
 
@@ -2013,7 +2021,7 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
                   const raw = ev.segs.map(s => s.utf8 ?? '').join('').replace(/\n/g, ' ').trim();
                   if (!raw || raw === prevRaw) continue;
                   const text = ytStripOverlap(prevRaw, raw); prevRaw = raw;
-                  if (text) lines.push(`**[${formatTimestamp(ev.tStartMs)}]** ${text}`);
+                  if (text) { const ts = formatTimestamp(ev.tStartMs); lines.push(ts ? `**[${ts}]** ${text}` : text); }
                 }
                 if (lines.length < 2) lines = null;
               }
@@ -2041,7 +2049,7 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
             if (!raw || raw === prevRaw || prevRaw.endsWith(raw)) continue;
             const text = ytStripOverlap(prevRaw, raw);
             prevRaw = raw;
-            if (text) lines.push(`**[${formatTimestamp(ev.tStartMs)}]** ${text}`);
+            if (text) { const ts = formatTimestamp(ev.tStartMs); lines.push(ts ? `**[${ts}]** ${text}` : text); }
           }
           if (lines.length < 2) lines = null;
         }
@@ -2103,6 +2111,14 @@ async function fetchRaw(rawUrl, originalUrl) {
   }
 }
 
+function cleanJinaOutput(text) {
+  return cleanText(text)
+    .replace(/^https?:\/\/\S+\s*$/gm, '')
+    .replace(/^(.+)\n\1\n/gm, '$1\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 async function fetchArticle(url) {
   let hostname = url;
   try { hostname = new URL(url).hostname; } catch {}
@@ -2111,7 +2127,7 @@ async function fetchArticle(url) {
   try {
     const resp = await fetch('https://r.jina.ai/' + url, { headers: { 'Accept': 'text/markdown' } });
     if (!resp.ok) throw new Error();
-    entry.result = await resp.text();
+    entry.result = cleanJinaOutput(await resp.text());
     updateCardState(entry.id, 'done', estimateTokensHtml(entry.result, null));
     setCardActions(entry.id, entry);
   } catch {
@@ -2129,16 +2145,25 @@ function toggleMergeMode() {
   document.querySelectorAll('.file-card.done').forEach(card => {
     card.classList.toggle('merge-select', mergeMode);
     if (!mergeMode) card.classList.remove('checked');
-  });
-  document.getElementById('btnMerge').classList.toggle('accent', mergeMode);
-  if (!mergeMode) return;
-  document.querySelectorAll('.file-card.done').forEach(card => {
     card.onclick = mergeMode ? () => toggleCardCheck(card) : null;
   });
+  const btn = document.getElementById('btnMerge');
+  btn.classList.toggle('accent', mergeMode);
+  if (mergeMode) {
+    Array.from(btn.childNodes).filter(n => n.nodeType === 3).forEach(n => n.remove());
+    btn.appendChild(document.createTextNode(LANG === 'fr' ? ' → .md Fusionner' : ' → .md Merge'));
+  }
+  const btnDL = document.getElementById('btnDownloadSelected');
+  const btnDel = document.getElementById('btnDeleteSelected');
+  if (btnDL) btnDL.style.display = mergeMode ? '' : 'none';
+  if (btnDel) btnDel.style.display = mergeMode ? '' : 'none';
+  if (!mergeMode) { updateMergeButton(); return; }
+  updateSelectionCounts();
 }
 
 function toggleCardCheck(card) {
   card.classList.toggle('checked');
+  updateSelectionCounts();
 }
 
 function mergeSelected() {
@@ -2162,10 +2187,39 @@ function mergeSelected() {
   toggleMergeMode();
 }
 
+function updateSelectionCounts() {
+  const n = document.querySelectorAll('.file-card.checked').length;
+  const sfx = n ? ` (${n})` : '';
+  const btnDL = document.getElementById('btnDownloadSelected');
+  const btnDel = document.getElementById('btnDeleteSelected');
+  if (btnDL) { Array.from(btnDL.childNodes).filter(nd => nd.nodeType === 3).forEach(nd => nd.remove()); btnDL.appendChild(document.createTextNode((LANG === 'fr' ? '↓ Sélection' : '↓ Selected') + sfx)); }
+  if (btnDel) { Array.from(btnDel.childNodes).filter(nd => nd.nodeType === 3).forEach(nd => nd.remove()); btnDel.appendChild(document.createTextNode((LANG === 'fr' ? '✕ Sélection' : '✕ Selected') + sfx)); }
+}
+
+function downloadSelected() {
+  const ids = Array.from(document.querySelectorAll('.file-card.checked')).map(c => parseInt(c.id.replace('card-', '')));
+  if (!ids.length) { showToast(T.mergeEmpty, 'error'); return; }
+  ids.forEach(id => downloadFile(id));
+  toggleMergeMode();
+}
+
+function deleteSelected() {
+  const ids = Array.from(document.querySelectorAll('.file-card.checked')).map(c => parseInt(c.id.replace('card-', '')));
+  if (!ids.length) { showToast(T.mergeEmpty, 'error'); return; }
+  ids.forEach(id => removeFile(id));
+  if (mergeMode) toggleMergeMode();
+}
+
 function updateMergeButton() {
   const done = STATE.files.filter(e => e.result).length;
   const btn = document.getElementById('btnMerge');
-  if (btn) btn.style.display = done >= 2 ? '' : 'none';
+  if (!btn) return;
+  btn.style.display = done >= 2 ? '' : 'none';
+  if (!mergeMode) {
+    const label = LANG === 'fr' ? ` Sélectionner (${done})` : ` Select (${done})`;
+    Array.from(btn.childNodes).filter(n => n.nodeType === 3).forEach(n => n.remove());
+    btn.appendChild(document.createTextNode(label));
+  }
 }
 
 // === MODULE PASTE TEXT ===
@@ -2175,19 +2229,6 @@ function openYouTubeManualHint(videoId) {
   _ytHintVideoId = videoId || null;
   const panel = document.getElementById('pastePanel');
   panel.classList.add('open');
-  // Show step-by-step guide with direct YouTube link
-  const guide = document.getElementById('ytManualGuide');
-  const link = document.getElementById('ytManualLink');
-  const steps = document.getElementById('ytManualSteps');
-  if (guide && videoId) {
-    link.href = 'https://www.youtube.com/watch?v=' + videoId;
-    if (LANG === 'fr') {
-      steps.innerHTML = '<li>Cliquez sur <strong>···</strong> sous la vidéo</li><li>Sélectionnez <strong>Ouvrir la transcription</strong></li><li>Copiez tout (Ctrl+A, Ctrl+C)</li><li>Revenez ici et collez ↓</li>';
-    } else {
-      steps.innerHTML = '<li>Click <strong>···</strong> below the video</li><li>Select <strong>Open transcript</strong></li><li>Select all (Ctrl+A) & copy (Ctrl+C)</li><li>Come back here and paste ↓</li>';
-    }
-    guide.style.display = 'flex';
-  }
   const ta = document.getElementById('pasteTextarea');
   ta.placeholder = LANG === 'fr'
     ? 'Collez la transcription YouTube ici — elle sera convertie automatiquement'
@@ -2209,8 +2250,6 @@ function togglePastePanel() {
 function hidePastePanel() {
   document.getElementById('pastePanel').classList.remove('open');
   document.getElementById('pasteTextarea').value = '';
-  const guide = document.getElementById('ytManualGuide');
-  if (guide) guide.style.display = 'none';
 }
 
 function detectYouTubeTranscript(text) {
@@ -2326,6 +2365,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') hideUrlPanel();
   });
   document.getElementById('btnMerge').onclick = mergeSelected;
+  document.getElementById('btnDownloadSelected').onclick = downloadSelected;
+  document.getElementById('btnDeleteSelected').onclick = deleteSelected;
   document.getElementById('pasteTextarea').addEventListener('keydown', e => {
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) processPastedText();
   });
