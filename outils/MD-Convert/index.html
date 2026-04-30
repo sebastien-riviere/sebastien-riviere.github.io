@@ -1060,10 +1060,11 @@ input[type="file"] { display: none; }
     const code = atob(b64);
     const blob = new Blob([code], {type: 'application/javascript'});
     const url = URL.createObjectURL(blob);
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       const s = document.createElement('script');
       s.src = url;
       s.onload = () => { URL.revokeObjectURL(url); resolve(); };
+      s.onerror = () => { URL.revokeObjectURL(url); reject(new Error(id + ' failed to load')); };
       document.head.appendChild(s);
     });
   }
@@ -1372,7 +1373,7 @@ function removeFile(id) {
     card.style.opacity = '0';
     card.style.transform = 'translateX(20px)';
     card.style.transition = 'all 0.2s ease';
-    setTimeout(() => card.remove(), 200);
+    setTimeout(() => { if (document.contains(card)) card.remove(); }, 200);
   }
   updateQueueUI();
 }
@@ -1777,7 +1778,6 @@ function detectCsvSep(text) {
 }
 
 function parseCsvLine(line, sep) {
-  if (sep === '\t') return line.split('\t');
   const result = [];
   let cur = '', inQ = false;
   for (const c of line) {
@@ -2025,7 +2025,7 @@ function parseVTTtoLines(vtt, title, videoId) {
   return lines;
 }
 
-async function fetchWithTimeout(url, ms = 4000) {
+async function fetchWithTimeout(url, ms = 8000) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), ms);
   try { return await fetch(url, { signal: ctrl.signal }); }
@@ -2241,7 +2241,7 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
           let prevRaw = '';
           for (const ev of j.events) {
             if (!ev.segs) continue;
-            const raw = ev.segs.map(s => s.utf8).join('').replace(/\n/g, ' ').trim();
+            const raw = ev.segs.map(s => s.utf8 ?? '').join('').replace(/\n/g, ' ').trim();
             if (!raw || raw === prevRaw || prevRaw.endsWith(raw)) continue;
             const text = ytStripOverlap(prevRaw, raw);
             prevRaw = raw;
@@ -2679,7 +2679,7 @@ document.addEventListener('DOMContentLoaded', () => {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js')
-      .catch(() => {}); // silencieux si GitHub Pages ou file://
+      .catch(e => console.warn('SW:', e));
   });
 }
 </script>
