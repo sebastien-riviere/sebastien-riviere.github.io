@@ -23,5 +23,14 @@
     }
   ],
   "categories": ["productivity", "utilities"],
-  "lang": "fr"
+  "lang": "fr",
+  "share_target": {
+    "action": "/outils/MD-Convert/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }

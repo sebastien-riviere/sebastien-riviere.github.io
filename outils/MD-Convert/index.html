@@ -345,6 +345,8 @@ main {
   color: white;
 }
 .format-tab:not(.active):hover { background: var(--surface-2); color: var(--text); }
+#btnFM { flex: none; padding: var(--space-1) var(--space-3); font-size: 0.75rem; letter-spacing: 0.05em; }
+#btnFM.active { background: rgba(139,92,246,0.2); color: #A78BFA; }
 
 .ocr-row {
   display: flex;
@@ -861,7 +863,7 @@ input[type="file"] { display: none; }
         </svg>
       </div>
       <div class="drop-zone-title">Déposez vos fichiers ici</div>
-      <div class="drop-zone-sub">PDF · DOCX · JPG · PNG · WEBP · TXT</div>
+      <div class="drop-zone-sub">PDF · DOCX · CSV · JPG · PNG · WEBP · TXT</div>
 
       <!-- ACTION BUTTONS -->
       <div class="action-row">
@@ -906,12 +908,13 @@ input[type="file"] { display: none; }
     <!-- URL PANEL -->
     <div class="url-panel" id="urlPanel">
       <div class="url-input-row">
-        <input type="url" class="url-input" id="urlInput" placeholder="YouTube, article, Google Doc, GitHub…" spellcheck="false"/>
+        <input type="text" class="url-input" id="urlInput" list="urlHistoryList" placeholder="YouTube, article, Google Doc, GitHub…" spellcheck="false" autocomplete="off"/>
         <button class="btn-sm accent" id="btnUrlConvert" type="button">OK</button>
         <button class="btn-sm" id="btnUrlCancel" type="button">✕</button>
       </div>
-      <div class="url-hint">YouTube · Articles web · Google Doc public · GitHub</div>
+      <div class="url-hint">YouTube · Articles web · Google Doc public · GitHub · coller plusieurs liens</div>
     </div>
+    <datalist id="urlHistoryList"></datalist>
 
     <!-- PASTE PANEL -->
     <div class="paste-panel" id="pastePanel">
@@ -929,6 +932,7 @@ input[type="file"] { display: none; }
         <button class="format-tab active" data-format="md">.md</button>
         <button class="format-tab" data-format="txt">.txt</button>
       </div>
+      <button class="format-tab" id="btnFM" title="Ajouter frontmatter YAML (Obsidian / Jekyll)">FM</button>
       <div class="ocr-row">
         <select class="ocr-select" id="ocrMode" title="Mode OCR">
           <option value="6">Document</option>
@@ -1012,6 +1016,8 @@ input[type="file"] { display: none; }
           </svg>
           Copier
         </button>
+        <button class="btn-sm" id="modalChunk" type="button" title="Découper en chunks de ~8k tokens">✂ Découper</button>
+        <button class="btn-sm" id="modalObsidian" type="button" title="Copier avec frontmatter Obsidian">⌗ Obsidian</button>
         <button class="btn-icon" id="modalClose" type="button" aria-label="Fermer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -1039,7 +1045,7 @@ input[type="file"] { display: none; }
 </div>
 
 <!-- HIDDEN FILE INPUTS -->
-<input type="file" id="inputFiles" multiple accept=".pdf,.docx,.doc,.txt,.md,.jpg,.jpeg,.png,.webp,.gif,.bmp">
+<input type="file" id="inputFiles" multiple accept=".pdf,.docx,.doc,.txt,.md,.jpg,.jpeg,.png,.webp,.gif,.bmp,.csv,.tsv">
 <input type="file" id="inputCamera" accept="image/*" capture="environment">
 <input type="file" id="inputPhotos" accept="image/*" multiple>
 <input type="file" id="inputFolder" webkitdirectory multiple>
@@ -1084,7 +1090,7 @@ const LANG = navigator.language.startsWith('fr') ? 'fr' : 'en';
 const T = {
   fr: {
     dropTitle: 'Déposez vos fichiers ici',
-    dropSub: 'PDF · DOCX · JPG · PNG · WEBP · TXT',
+    dropSub: 'PDF · DOCX · CSV · JPG · PNG · WEBP · TXT',
     btnFiles: 'Fichiers', btnCamera: 'Caméra', btnGallery: 'Galerie', btnText: 'Texte', btnLink: 'Lien',
     pastePlaceholder: 'Collez votre texte ici — transcript YouTube, email, notes…',
     urlPlaceholder: 'YouTube, article, Google Doc, GitHub…',
@@ -1109,7 +1115,7 @@ const T = {
   },
   en: {
     dropTitle: 'Drop your files here',
-    dropSub: 'PDF · DOCX · JPG · PNG · WEBP · TXT',
+    dropSub: 'PDF · DOCX · CSV · JPG · PNG · WEBP · TXT',
     btnFiles: 'Files', btnCamera: 'Camera', btnGallery: 'Gallery', btnText: 'Text', btnLink: 'Link',
     pastePlaceholder: 'Paste your text here — YouTube transcript, email, notes…',
     urlPlaceholder: 'YouTube, article, Google Doc, GitHub…',
@@ -1162,11 +1168,12 @@ function applyI18n() {
 // === MODULE APP — ÉTAT GLOBAL ===
 
 const STATE = {
-  files: [],        // tableau de FileEntry
-  format: 'md',     // 'md' ou 'txt'
-  ocrLang: 'fra',   // langue tesseract
-  ocrMode: '3',     // PSM tesseract
-  theme: 'auto',    // 'dark' | 'light' | 'auto'
+  files: [],
+  format: 'md',
+  frontmatter: false,
+  ocrLang: 'fra',
+  ocrMode: '3',
+  theme: 'auto',
   tesseractWorker: null,
   tesseractReady: false,
   tesseractLoading: false,
@@ -1225,6 +1232,7 @@ function getFileType(file) {
   if (['docx', 'doc'].includes(ext)) return 'docx';
   if (['jpg','jpeg','png','webp','gif','bmp'].includes(ext) || mime.startsWith('image/')) return 'img';
   if (['txt','md'].includes(ext)) return 'txt';
+  if (['csv','tsv'].includes(ext)) return 'csv';
   return 'other';
 }
 
@@ -1408,6 +1416,9 @@ async function convertFile(entry) {
 
     if (entry.type === 'pdf') {
       result = await convertPdf(entry.file, entry.id);
+      if (!result.replace(/## Page \d+\n\n|--- Page \d+ ---\n\n/g, '').trim()) {
+        showToast(LANG === 'fr' ? 'PDF scanné détecté — importez-le comme image pour l\'OCR' : 'Scanned PDF — import as image for OCR', 'error');
+      }
     } else if (entry.type === 'docx') {
       result = await convertDocx(entry.file);
     } else if (entry.type === 'img') {
@@ -1416,6 +1427,8 @@ async function convertFile(entry) {
       confidence = res.confidence;
     } else if (entry.type === 'txt') {
       result = await convertTxt(entry.file);
+    } else if (entry.type === 'csv') {
+      result = await convertCsv(entry.file);
     }
 
     entry.result = result;
@@ -1666,6 +1679,46 @@ async function convertTxt(file) {
   return cleanText(text);
 }
 
+// === MODULE CSV CONVERSION ===
+
+async function convertCsv(file) {
+  const text = await file.text();
+  const sep = file.name.endsWith('.tsv') ? '\t' : detectCsvSep(text);
+  const rows = text.trim().split(/\r?\n/).map(l => parseCsvLine(l, sep));
+  if (!rows.length) return '';
+  const header = rows[0].map(h => h.trim());
+  const divider = header.map(() => '---');
+  const body = rows.slice(1).map(r => r.map(c => c.trim().replace(/\|/g, '\\|')));
+  return [
+    '| ' + header.join(' | ') + ' |',
+    '| ' + divider.join(' | ') + ' |',
+    ...body.map(row => '| ' + row.join(' | ') + ' |')
+  ].join('\n');
+}
+
+function detectCsvSep(text) {
+  const first = text.slice(0, 500);
+  const tabs = (first.match(/\t/g) || []).length;
+  const semis = (first.match(/;/g) || []).length;
+  const commas = (first.match(/,/g) || []).length;
+  if (tabs > commas && tabs > semis) return '\t';
+  if (semis > commas) return ';';
+  return ',';
+}
+
+function parseCsvLine(line, sep) {
+  if (sep === '\t') return line.split('\t');
+  const result = [];
+  let cur = '', inQ = false;
+  for (const c of line) {
+    if (c === '"') { inQ = !inQ; }
+    else if (c === sep && !inQ) { result.push(cur); cur = ''; }
+    else cur += c;
+  }
+  result.push(cur);
+  return result;
+}
+
 // === MODULE TEXT CLEANING ===
 
 function cleanText(text) {
@@ -1713,14 +1766,24 @@ function textToMd(text) {
   return result.join('\n');
 }
 
+// === MODULE FRONTMATTER ===
+
+function applyFrontmatter(text, title, sourceUrl) {
+  if (!STATE.frontmatter || STATE.format !== 'md') return text;
+  const date = new Date().toISOString().slice(0, 10);
+  const src = sourceUrl ? `\nsource: "${sourceUrl}"` : '';
+  return `---\ntitle: "${title}"${src}\ndate: ${date}\ntags: []\n---\n\n` + text;
+}
+
 // === MODULE DOWNLOAD ===
 
 function downloadFile(id) {
   const entry = STATE.files.find(e => e.id === id);
   if (!entry || !entry.result) return;
-  
+
   const filename = (entry.customName || baseName(entry.file.name)) + getOutputExt();
-  const blob = new Blob([entry.result], { type: 'text/plain;charset=utf-8' });
+  const content = applyFrontmatter(entry.result, entry.customName || baseName(entry.file.name), entry.sourceUrl);
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = filename;
@@ -1755,8 +1818,9 @@ async function downloadAll() {
 
 function estimateTokens(text) {
   const t = Math.round(text.length / 4);
-  if (t < 1000) return '~' + t + ' tokens';
-  return '~' + (t / 1000).toFixed(1) + 'k tokens';
+  const w = text.split(/\s+/).filter(Boolean).length;
+  const tok = t < 1000 ? '~' + t + ' tokens' : '~' + (t / 1000).toFixed(1) + 'k tokens';
+  return tok + ' · ' + w + ' mots';
 }
 
 const RAW_TOKEN_FACTORS = { pdf: 1.45, docx: 1.25, img: 1.20, txt: 1.08 };
@@ -1781,9 +1845,44 @@ async function copyResult(id) {
   const entry = STATE.files.find(e => e.id === id);
   if (!entry || !entry.result) return;
   try {
-    await navigator.clipboard.writeText(entry.result);
+    const text = applyFrontmatter(entry.result, entry.customName || baseName(entry.file.name), entry.sourceUrl);
+    await navigator.clipboard.writeText(text);
     showToast(T.copied);
   } catch { showToast(T.copyFail, 'error'); }
+}
+
+async function copyObsidian(id) {
+  const entry = STATE.files.find(e => e.id === id);
+  if (!entry?.result) return;
+  try {
+    const title = entry.customName || baseName(entry.file.name);
+    const date = new Date().toISOString().slice(0, 10);
+    const src = entry.sourceUrl ? `\nsource: "${entry.sourceUrl}"` : '';
+    const fm = `---\ntitle: "${title}"${src}\ndate: ${date}\ntags: []\n---\n\n`;
+    await navigator.clipboard.writeText(fm + entry.result);
+    showToast('Copié avec frontmatter Obsidian');
+  } catch { showToast(T.copyFail, 'error'); }
+}
+
+function chunkResult(id) {
+  const entry = STATE.files.find(e => e.id === id);
+  if (!entry?.result) return;
+  const CHUNK_CHARS = 32000; // ~8k tokens
+  const text = entry.result;
+  if (text.length <= CHUNK_CHARS) { showToast('Contenu trop court pour découper', 'error'); return; }
+  const base = entry.customName || baseName(entry.file.name);
+  const chunks = [];
+  for (let i = 0; i < text.length; i += CHUNK_CHARS) chunks.push(text.slice(i, i + CHUNK_CHARS));
+  chunks.forEach((chunk, i) => {
+    const name = `${base}-part${i + 1}`;
+    const e = createUrlEntry(name + '.md', 'txt');
+    e.result = chunk; e.customName = name;
+    updateCardState(e.id, 'done', estimateTokens(chunk));
+    setCardActions(e.id, e);
+  });
+  closeModal();
+  updateMergeButton();
+  showToast(`${chunks.length} chunks créés (~8k tokens)`);
 }
 
 function makeNameEditable(id) {
@@ -1908,7 +2007,7 @@ async function tryPiped(videoId) {
 function toggleUrlPanel() {
   const p = document.getElementById('urlPanel');
   const open = p.classList.toggle('open');
-  if (open) document.getElementById('urlInput').focus();
+  if (open) { fillUrlHistory(); document.getElementById('urlInput').focus(); }
   else document.getElementById('urlInput').value = '';
 }
 function hideUrlPanel() {
@@ -1935,7 +2034,7 @@ function extractGitHubRaw(url) {
 function createUrlEntry(name, type) {
   const blob = new Blob([''], { type: 'text/plain' });
   const file = new File([blob], name, { type: 'text/plain' });
-  const entry = { id: makeId(), file, type, result: null, confidence: null, customName: baseName(name) };
+  const entry = { id: makeId(), file, type, result: null, confidence: null, customName: baseName(name), sourceUrl: null };
   STATE.files.push(entry);
   renderFileCard(entry);
   updateQueueUI();
@@ -1952,17 +2051,35 @@ async function processUrl() {
   const url = document.getElementById('urlInput').value.trim();
   if (!url) { showToast(T.nothingToPaste, 'error'); return; }
   hideUrlPanel();
+  await processUrlDirectly(url);
+}
 
+async function processUrlDirectly(url) {
+  addUrlToHistory(url);
   const ytId = extractYouTubeId(url);
   if (ytId) { await fetchYouTube(ytId); return; }
-
   const docId = extractGoogleDocId(url);
   if (docId) { await fetchGoogleDoc(docId, url); return; }
-
   const ghRaw = extractGitHubRaw(url);
   if (ghRaw) { await fetchRaw(ghRaw, url); return; }
-
   await fetchArticle(url);
+}
+
+function addUrlToHistory(url) {
+  try {
+    let h = JSON.parse(localStorage.getItem('mdcv_url_history') || '[]');
+    h = [url, ...h.filter(u => u !== url)].slice(0, 10);
+    localStorage.setItem('mdcv_url_history', JSON.stringify(h));
+  } catch {}
+}
+
+function fillUrlHistory() {
+  try {
+    const dl = document.getElementById('urlHistoryList');
+    if (!dl) return;
+    const h = JSON.parse(localStorage.getItem('mdcv_url_history') || '[]');
+    dl.innerHTML = h.map(u => `<option value="${u.replace(/"/g, '&quot;')}">`).join('');
+  } catch {}
 }
 
 function ytStripOverlap(prev, curr) {
@@ -1980,6 +2097,7 @@ function ytStripOverlap(prev, curr) {
 
 async function fetchYouTube(videoId) {
   const entry = createUrlEntry(`youtube-${videoId}.md`, 'txt');
+  entry.sourceUrl = `https://youtube.com/watch?v=${videoId}`;
   await fetchYouTubeIntoEntry(entry, videoId);
 }
 
@@ -2081,6 +2199,7 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
 
 async function fetchGoogleDoc(docId, originalUrl) {
   const entry = createUrlEntry(`google-doc-${docId}.md`, 'txt');
+  entry.sourceUrl = originalUrl;
   updateCardState(entry.id, 'processing', T.processing);
   try {
     const exportUrl = `https://docs.google.com/document/d/${docId}/export?format=txt`;
@@ -2098,6 +2217,7 @@ async function fetchGoogleDoc(docId, originalUrl) {
 async function fetchRaw(rawUrl, originalUrl) {
   const name = rawUrl.split('/').pop() || 'github-file.md';
   const entry = createUrlEntry(name, 'txt');
+  entry.sourceUrl = originalUrl;
   updateCardState(entry.id, 'processing', T.processing);
   try {
     const resp = await fetch(rawUrl);
@@ -2113,6 +2233,7 @@ async function fetchRaw(rawUrl, originalUrl) {
 
 function cleanJinaOutput(text) {
   return cleanText(text)
+    .replace(/^(Title|URL Source|Published Time|Author|Description|Markdown Content):.*\n?/gim, '')
     .replace(/^https?:\/\/\S+\s*$/gm, '')
     .replace(/^(.+)\n\1\n/gm, '$1\n')
     .replace(/\n{3,}/g, '\n\n')
@@ -2123,6 +2244,7 @@ async function fetchArticle(url) {
   let hostname = url;
   try { hostname = new URL(url).hostname; } catch {}
   const entry = createUrlEntry(hostname + '.md', 'txt');
+  entry.sourceUrl = url;
   updateCardState(entry.id, 'processing', T.processing);
   try {
     const resp = await fetch('https://r.jina.ai/' + url, { headers: { 'Accept': 'text/markdown' } });
@@ -2174,9 +2296,10 @@ function mergeSelected() {
   const entries = ids.map(id => STATE.files.find(e => e.id === id)).filter(e => e?.result);
   if (entries.length < 2) { showToast(T.mergeEmpty, 'error'); return; }
 
-  const merged = entries.map(e =>
-    `## ${e.customName || baseName(e.file.name)}\n\n${e.result}`
-  ).join('\n\n---\n\n');
+  const titles = entries.map(e => e.customName || baseName(e.file.name));
+  let toc = '';
+  if (entries.length >= 3) toc = '## Sommaire\n\n' + titles.map(t => `- ${t}`).join('\n') + '\n\n---\n\n';
+  const merged = toc + entries.map((e, i) => `## ${titles[i]}\n\n${e.result}`).join('\n\n---\n\n');
 
   const name = 'fusion-' + entries.length + '-docs.md';
   const entry = createUrlEntry(name, 'txt');
@@ -2376,13 +2499,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('inputPhotos').onchange = e => processFiles(Array.from(e.target.files));
 
   // Format tabs
-  document.querySelectorAll('.format-tab').forEach(tab => {
+  document.querySelectorAll('.format-tab[data-format]').forEach(tab => {
     tab.onclick = () => {
-      document.querySelectorAll('.format-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.format-tab[data-format]').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       STATE.format = tab.dataset.format;
     };
   });
+  document.getElementById('btnFM').onclick = () => {
+    STATE.frontmatter = !STATE.frontmatter;
+    document.getElementById('btnFM').classList.toggle('active', STATE.frontmatter);
+  };
 
   // OCR mode
   document.getElementById('ocrMode').onchange = e => STATE.ocrMode = e.target.value;
@@ -2407,17 +2534,35 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('modalClose').onclick = closeModal;
   document.getElementById('modalOverlay').onclick = e => { if (e.target === e.currentTarget) closeModal(); };
   document.getElementById('modalDownload').onclick = () => downloadFile(STATE.currentPreviewId);
-  document.getElementById('modalCopy').onclick = async () => {
-    const entry = STATE.files.find(e => e.id === STATE.currentPreviewId);
-    if (!entry?.result) return;
-    await navigator.clipboard.writeText(entry.result);
-    showToast(T.copied);
-  };
+  document.getElementById('modalCopy').onclick = () => copyResult(STATE.currentPreviewId);
+  document.getElementById('modalChunk').onclick = () => chunkResult(STATE.currentPreviewId);
+  document.getElementById('modalObsidian').onclick = () => copyObsidian(STATE.currentPreviewId);
 
   // Keyboard
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') { closeModal(); hideUrlPanel(); }
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); toggleUrlPanel(); }
   });
+
+  // URL paste batch (plusieurs liens séparés par des sauts de ligne)
+  document.getElementById('urlInput').addEventListener('paste', e => {
+    const text = e.clipboardData.getData('text/plain').trim();
+    const urls = text.split(/[\n\r]+/).map(u => u.trim()).filter(u => /^https?:\/\//.test(u));
+    if (urls.length > 1) {
+      e.preventDefault();
+      hideUrlPanel();
+      urls.forEach(url => processUrlDirectly(url));
+    }
+  });
+
+  // Web Share Target
+  (function() {
+    const sp = new URLSearchParams(location.search);
+    const sharedUrl = sp.get('url') || sp.get('text');
+    if (sharedUrl && /^https?:\/\//.test(sharedUrl)) {
+      processUrlDirectly(sharedUrl);
+    }
+  })();
 
   // Global Ctrl+V — colle texte ou image directement
   document.addEventListener('paste', e => {
