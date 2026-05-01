@@ -1528,13 +1528,15 @@ async function convertPdf(file, entryId) {
       else lines.push(`--- Page ${i} ---\n\n${formatted}`);
     } else {
       // Fallback OCR : page scannée ou encodage non décodable par PDF.js
-      const ocrText = await ocrPdfPage(page, entryId, i, total);
-      if (ocrText.trim()) {
-        const ocrClean = cleanText(ocrText);
-        const ocrFormatted = STATE.format === 'md' ? textToMd(ocrClean) : ocrClean;
-        if (STATE.format === 'md') lines.push(`## Page ${i} _(OCR)_\n\n${ocrFormatted}`);
-        else lines.push(`--- Page ${i} (OCR) ---\n\n${ocrFormatted}`);
-      }
+      try {
+        const ocrText = await ocrPdfPage(page, entryId, i, total);
+        if (ocrText.trim()) {
+          const ocrClean = cleanText(ocrText);
+          const ocrFormatted = STATE.format === 'md' ? textToMd(ocrClean) : ocrClean;
+          if (STATE.format === 'md') lines.push(`## Page ${i} _(OCR)_\n\n${ocrFormatted}`);
+          else lines.push(`--- Page ${i} (OCR) ---\n\n${ocrFormatted}`);
+        }
+      } catch { /* OCR non disponible pour cette page */ }
     }
   }
 
@@ -2012,8 +2014,19 @@ const PIPED_INSTANCES = [
   'https://watchapi.whatever.social',
 ];
 
-function parseVTTtoLines(vtt, title, videoId) {
-  const lines = [`# ${title}\n\n> Source: https://youtube.com/watch?v=${videoId}\n`];
+function buildYtHeader(title, videoId, author, description) {
+  let h = `# ${title}\n\n`;
+  if (author) h += `> **Auteur :** ${author}\n`;
+  h += `> **Source :** https://youtube.com/watch?v=${videoId}\n`;
+  if (description) {
+    const excerpt = description.replace(/\n+/g, ' ').trim().slice(0, 400);
+    if (excerpt) h += `>\n> ${excerpt}\n`;
+  }
+  return h;
+}
+
+function parseVTTtoLines(vtt, title, videoId, author = null, description = null) {
+  const lines = [buildYtHeader(title, videoId, author, description)];
   const blocks = vtt.split(/\n{2,}/);
   for (const block of blocks) {
     const timeMatch = block.match(/(\d{2}):(\d{2}):(\d{2})[.,](\d{3})\s*-->/);
@@ -2047,7 +2060,12 @@ async function tryInvidious(videoId) {
       if (!vr.ok) continue;
       const vtt = await vr.text();
       if (vtt.length < 50) continue;
-      return { vtt, title: videoId, source: 'invidious:' + base };
+      let author = null, description = null, invTitle = videoId;
+      try {
+        const mr = await fetchWithTimeout(`${base}/api/v1/videos/${videoId}`, 5000);
+        if (mr.ok) { const mv = await mr.json(); invTitle = mv.title || videoId; author = mv.author || null; description = mv.description?.split('\n').find(l => l.trim()) || null; }
+      } catch {}
+      return { vtt, title: invTitle, author, description, source: 'invidious:' + base };
     } catch { /* try next instance */ }
   }
   return null;
@@ -2075,7 +2093,7 @@ async function tryPiped(videoId) {
       if (!vr.ok) continue;
       const vtt = await vr.text();
       if (vtt.length < 50 || !vtt.includes('WEBVTT')) continue;
-      return { vtt, title, source: 'piped:' + base };
+      return { vtt, title, author: j.uploader || null, description: j.description?.split('\n').find(l => l.trim()) || null, source: 'piped:' + base };
     } catch { /* try next instance */ }
   }
   return null;
@@ -2237,7 +2255,9 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
         if (j?.error === 'video_unavailable') throw new Error('video unavailable');
         if (r?.ok && j?.events?.length) {
           const title = j.title || videoId;
-          lines = [`# ${title}\n\n> Source: https://youtube.com/watch?v=${videoId}\n`];
+          const author = j.author || j.videoDetails?.author || null;
+          const description = (j.description || j.videoDetails?.shortDescription)?.split('\n').find(l => l.trim()) || null;
+          lines = [buildYtHeader(title, videoId, author, description)];
           let prevRaw = '';
           for (const ev of j.events) {
             if (!ev.segs) continue;
@@ -2255,13 +2275,13 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
     // ── 2. Invidious instances ──
     if (!lines) {
       const inv = await tryInvidious(videoId);
-      if (inv) lines = parseVTTtoLines(inv.vtt, inv.title, videoId);
+      if (inv) lines = parseVTTtoLines(inv.vtt, inv.title, videoId, inv.author, inv.description);
     }
 
     // ── 3. Piped instances ──
     if (!lines) {
       const piped = await tryPiped(videoId);
-      if (piped) lines = parseVTTtoLines(piped.vtt, piped.title, videoId);
+      if (piped) lines = parseVTTtoLines(piped.vtt, piped.title, videoId, piped.author, piped.description);
     }
 
     if (!lines || lines.length < 2) throw new Error('no captions');
