@@ -2020,7 +2020,7 @@ function parseVTTtoLines(vtt, title, videoId) {
     if (!timeMatch) continue;
     const ms = (+timeMatch[1] * 3600 + +timeMatch[2] * 60 + +timeMatch[3]) * 1000 + +timeMatch[4];
     const text = block.split('\n').slice(1).join(' ').replace(/<[^>]+>/g, '').trim();
-    if (text) lines.push(`**[${formatTimestamp(ms)}]** ${text}`);
+    if (text) lines.push(text);
   }
   return lines;
 }
@@ -2217,7 +2217,7 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
                   const raw = ev.segs.map(s => s.utf8 ?? '').join('').replace(/\n/g, ' ').trim();
                   if (!raw || raw === prevRaw) continue;
                   const text = ytStripOverlap(prevRaw, raw); prevRaw = raw;
-                  if (text) { const ts = formatTimestamp(ev.tStartMs); lines.push(ts ? `**[${ts}]** ${text}` : text); }
+                  if (text) lines.push(text);
                 }
                 if (lines.length < 2) lines = null;
               }
@@ -2245,7 +2245,7 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
             if (!raw || raw === prevRaw || prevRaw.endsWith(raw)) continue;
             const text = ytStripOverlap(prevRaw, raw);
             prevRaw = raw;
-            if (text) { const ts = formatTimestamp(ev.tStartMs); lines.push(ts ? `**[${ts}]** ${text}` : text); }
+            if (text) lines.push(text);
           }
           if (lines.length < 2) lines = null;
         }
