@@ -1251,8 +1251,13 @@ function applyExtractedTitle(entry) {
   if (!entry.result) return;
   const m = entry.result.match(/^#\s+(.+)/m);
   if (!m) return;
-  const title = m[1].trim().replace(/[<>:"/\\|?*]/g, '').trim().slice(0, 100);
+  let title = m[1].trim().replace(/[<>:"/\\|?*]/g, '').trim().slice(0, 100);
   if (!title) return;
+  const authorM = entry.result.match(/^>\s*\*\*Auteur\s*:\*\*\s*(.+)/m);
+  if (authorM) {
+    const author = authorM[1].trim().replace(/[<>:"/\\|?*]/g, '').trim();
+    if (author) title = `${title} - ${author}`;
+  }
   if (!entry.customName || entry.customName === baseName(entry.file.name)) {
     entry.customName = title;
     const nameEl = document.getElementById('name-' + entry.id);
