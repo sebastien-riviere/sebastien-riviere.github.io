@@ -1247,6 +1247,19 @@ function baseName(name) {
   return name.replace(/\.[^/.]+$/, '');
 }
 
+function applyExtractedTitle(entry) {
+  if (!entry.result) return;
+  const m = entry.result.match(/^#\s+(.+)/m);
+  if (!m) return;
+  const title = m[1].trim().replace(/[<>:"/\\|?*]/g, '').trim().slice(0, 100);
+  if (!title) return;
+  if (!entry.customName || entry.customName === baseName(entry.file.name)) {
+    entry.customName = title;
+    const nameEl = document.getElementById('name-' + entry.id);
+    if (nameEl) nameEl.textContent = title;
+  }
+}
+
 function getOutputExt() {
   return STATE.format === 'md' ? '.md' : '.txt';
 }
@@ -1437,6 +1450,7 @@ async function convertFile(entry) {
     
     updateCardState(entry.id, 'done', formatSize(new Blob([result]).size) + ' · ' + estimateTokensHtml(result, entry.type));
     setCardActions(entry.id, entry);
+    applyExtractedTitle(entry);
     updateMergeButton();
     
     if (confidence !== null) {
@@ -1516,8 +1530,11 @@ async function convertPdf(file, entryId) {
   for (let i = 1; i <= total; i++) {
     if (entryId) updateCardState(entryId, 'processing', T.pageOf(i, total));
     const page = await pdf.getPage(i);
-    const content = await page.getTextContent();
-    const items = content.items;
+    let items = [];
+    try {
+      const content = await page.getTextContent();
+      items = content.items;
+    } catch { /* Type3 fonts or encoding issue — fall to OCR */ }
 
     const raw = joinPdfItems(items);
 
@@ -1603,7 +1620,7 @@ async function ocrPdfPage(page, entryId, pageNum, total) {
   await page.render({ canvasContext: ctx, viewport }).promise;
   const processed = preprocessCanvas(canvas, true);
   const result = await STATE.tesseractWorker.recognize(processed, { tessedit_pageseg_mode: 3 });
-  return result.data.text;
+  return cleanOcrText(result.data.text);
 }
 
 // === MODULE DOCX CONVERSION ===
@@ -1638,8 +1655,8 @@ async function convertImage(file, entryId) {
   
   const text = result.data.text;
   const confidence = result.data.confidence;
-  
-  let output = cleanText(text);
+
+  let output = cleanText(cleanOcrText(text));
   if (STATE.format === 'md') {
     output = textToMd(output);
   }
@@ -1663,7 +1680,8 @@ async function initTesseract(entryId) {
     });
     STATE.tesseractReady = true;
   })();
-  return STATE.tesseractInitPromise;
+  try { return await STATE.tesseractInitPromise; }
+  catch(e) { STATE.tesseractInitPromise = null; throw e; }
 }
 
 // === MODULE CANVAS PREPROCESSING ===
@@ -1793,6 +1811,15 @@ function parseCsvLine(line, sep) {
 
 // === MODULE TEXT CLEANING ===
 
+function cleanOcrText(text) {
+  return text.split('\n').map(line => {
+    const t = line.trim();
+    if (!t) return '';
+    const alnum = (t.match(/[\p{L}\p{N} ]/gu) || []).length;
+    return alnum / t.length >= 0.4 ? line : '';
+  }).join('\n');
+}
+
 function cleanText(text) {
   return text
     .replace(/\r\n/g, '\n')
@@ -1812,7 +1839,7 @@ function textToMd(text) {
   const result = [];
 
   for (const line of lines) {
-    const trimmed = line.trim();
+    let trimmed = line.trim();
     if (!trimmed) { result.push(''); continue; }
 
     // ARTICLE / CHAPITRE / SECTION structurels
@@ -2099,6 +2126,18 @@ async function tryPiped(videoId) {
   return null;
 }
 
+async function fetchYtTitle(videoId) {
+  for (const base of INVIDIOUS_INSTANCES) {
+    try {
+      const r = await fetchWithTimeout(`${base}/api/v1/videos/${videoId}`, 5000);
+      if (!r.ok) continue;
+      const j = await r.json();
+      if (j.title) return j.title;
+    } catch {}
+  }
+  return null;
+}
+
 function toggleUrlPanel() {
   const p = document.getElementById('urlPanel');
   const open = p.classList.toggle('open');
@@ -2286,9 +2325,16 @@ async function fetchYouTubeIntoEntry(entry, videoId) {
 
     if (!lines || lines.length < 2) throw new Error('no captions');
 
+    // Si le titre est encore le videoId brut, tenter une récupération via Invidious
+    if (lines[0].startsWith(`# ${videoId}`)) {
+      const realTitle = await fetchYtTitle(videoId).catch(() => null);
+      if (realTitle && realTitle !== videoId) lines[0] = lines[0].replace(`# ${videoId}`, `# ${realTitle}`);
+    }
+
     entry.result = lines.join('\n');
     updateCardState(entry.id, 'done', estimateTokensHtml(entry.result, null));
     setCardActions(entry.id, entry);
+    applyExtractedTitle(entry);
   } catch(e) {
     updateCardState(entry.id, 'error', e.message === 'video unavailable' ? T.videoUnavailable : e.message === 'no captions' ? T.noCaption : T.convError);
     setErrorActions(entry.id, entry);
@@ -2306,6 +2352,7 @@ async function fetchGoogleDoc(docId, originalUrl) {
     entry.result = `> Source: ${originalUrl}\n\n` + cleanText(await resp.text());
     updateCardState(entry.id, 'done', estimateTokensHtml(entry.result, null));
     setCardActions(entry.id, entry);
+    applyExtractedTitle(entry);
   } catch {
     updateCardState(entry.id, 'error', T.convError);
     setErrorActions(entry.id, entry);
@@ -2323,6 +2370,7 @@ async function fetchRaw(rawUrl, originalUrl) {
     entry.result = `> Source: ${originalUrl}\n\n` + cleanText(await resp.text());
     updateCardState(entry.id, 'done', estimateTokensHtml(entry.result, null));
     setCardActions(entry.id, entry);
+    applyExtractedTitle(entry);
   } catch {
     updateCardState(entry.id, 'error', T.convError);
     setErrorActions(entry.id, entry);
@@ -2350,6 +2398,7 @@ async function fetchArticle(url) {
     entry.result = cleanJinaOutput(await resp.text());
     updateCardState(entry.id, 'done', estimateTokensHtml(entry.result, null));
     setCardActions(entry.id, entry);
+    applyExtractedTitle(entry);
   } catch {
     updateCardState(entry.id, 'error', T.convError);
     setErrorActions(entry.id, entry);
