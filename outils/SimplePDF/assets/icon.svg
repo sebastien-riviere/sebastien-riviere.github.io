@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Fond document arrière -->
+  <rect x="10" y="6" width="32" height="42" rx="4" fill="#e8f0f9" stroke="#2d5a8e" stroke-width="1.5"/>
+  <!-- Document principal -->
+  <rect x="18" y="14" width="36" height="44" rx="4" fill="#ffffff" stroke="#2d5a8e" stroke-width="2"/>
+  <!-- Lignes texte -->
+  <line x1="26" y1="24" x2="46" y2="24" stroke="#2d5a8e" stroke-width="2" stroke-linecap="round"/>
+  <line x1="26" y1="31" x2="46" y2="31" stroke="#2d5a8e" stroke-width="2" stroke-linecap="round"/>
+  <line x1="26" y1="38" x2="38" y2="38" stroke="#2d5a8e" stroke-width="2" stroke-linecap="round"/>
+  <!-- Coin plié -->
+  <path d="M46 14 L54 22 L46 22 Z" fill="#e8f0f9" stroke="#2d5a8e" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>
