@@ -97,6 +97,33 @@ export function renderGrid() {
     const card = grid.querySelector(`[data-page-id="${page.id}"]`);
     if (card) grid.appendChild(card);
   });
+
+  // Séparateurs de groupes de fichiers
+  grid.querySelectorAll('.file-group-header').forEach(el => el.remove());
+  let lastFileId = null;
+  Array.from(grid.querySelectorAll('.page-card')).forEach(card => {
+    const pageId = card.dataset.pageId;
+    const page = pages.find(p => p.id === pageId);
+    if (!page) return;
+    if (page.fileId !== lastFileId) {
+      lastFileId = page.fileId;
+      const file = state.get().files.find(f => f.id === page.fileId);
+      const pagesForFile = pages.filter(p => p.fileId === page.fileId);
+      const fname = (file ? file.name : page.fileName) || 'Document';
+      const sep = document.createElement('div');
+      sep.className = 'file-group-header';
+      sep.dataset.fileId = page.fileId;
+      sep.innerHTML = `
+        <svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.3" style="width:10px;height:12px;flex-shrink:0">
+          <path d="M1 2a1 1 0 011-1h6l3 3v8a1 1 0 01-1 1H2a1 1 0 01-1-1V2z"/>
+          <path d="M8 1v3h3"/>
+        </svg>
+        <span class="file-group-name">${fname}</span>
+        <span class="file-group-count">${pagesForFile.length} page${pagesForFile.length > 1 ? 's' : ''}</span>
+      `;
+      grid.insertBefore(sep, card);
+    }
+  });
 }
 
 function _createPageCard(page) {
@@ -141,10 +168,10 @@ function _createPageCard(page) {
     </div>
   `;
 
-  // Clic sur la carte → sélection
+  // Clic sur la carte → toggle (multi) ou plage (shift)
   card.addEventListener('click', e => {
     if (e.target.closest('[data-action]')) return;
-    const mode = e.shiftKey ? 'range' : (e.ctrlKey || e.metaKey ? 'multi' : 'single');
+    const mode = e.shiftKey ? 'range' : 'multi';
     state.selectPage(page.id, mode);
   });
 
@@ -263,6 +290,19 @@ export function updateActionButtons() {
   _setDisabled('btn-select-all', !hasPages);
   _setDisabled('btn-clear-selection', !hasSelection);
   _setDisabled('btn-clear-workspace', !hasPages);
+
+  // Éditeur
+  _setDisabled('btn-add-text',  !hasPages || isProcessing);
+  _setDisabled('btn-signature', !hasPages || isProcessing);
+
+  // Outils V1.5
+  _setDisabled('btn-grayscale',    !hasPages || isProcessing);
+  _setDisabled('btn-split',        !hasPages || isProcessing);
+  _setDisabled('btn-page-numbers', !hasPages || isProcessing);
+  _setDisabled('btn-watermark',    !hasPages || isProcessing);
+  _setDisabled('btn-stamp',        !hasPages || isProcessing);
+  _setDisabled('btn-header-footer',!hasPages || isProcessing);
+  _setDisabled('btn-metadata',     !hasPages || isProcessing);
 
   // Presets
   document.querySelectorAll('[data-preset]').forEach(el => {

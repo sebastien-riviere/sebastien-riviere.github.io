@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SimplePDF — Outil PDF local</title>
   <meta name="description" content="Manipuler, alléger, réorganiser et exporter ses PDF directement dans le navigateur, sans compte, sans serveur, sans upload.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2d5a8e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="SimplePDF">
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/main.css">
@@ -36,6 +42,11 @@
 
   <!-- ═══ HEADER ═══ -->
   <header class="app-header">
+    <button id="btn-sidebar-left" class="btn btn-ghost btn-icon mobile-only" title="Actions" aria-label="Ouvrir le menu actions">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="14" y2="12"/>
+      </svg>
+    </button>
     <a href="#" class="app-logo" aria-label="SimplePDF">
       <svg class="app-logo-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="5" y="2" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
@@ -60,6 +71,12 @@
       <span class="workflow-step" id="wf-export">Exporter</span>
     </nav>
 
+    <button id="btn-sidebar-right" class="btn btn-ghost btn-icon mobile-only" title="Stats & Export" aria-label="Ouvrir les stats et exports">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/>
+        <rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/>
+      </svg>
+    </button>
     <div class="app-status">
       <div id="status-bar" class="status-bar status-ready">
         <div class="status-dot"></div>
@@ -111,7 +128,7 @@
             Effacer la sélection
           </button>
         </div>
-        <p class="text-xs text-muted" style="margin-top:6px">Clic · Ctrl+clic · Shift+clic</p>
+        <p class="text-xs text-muted" style="margin-top:6px">Clic = sélectionner · Shift = plage</p>
       </section>
 
       <!-- Actions PDF -->
@@ -149,6 +166,49 @@
             </svg>
             Droite
           </button>
+        </div>
+      </section>
+
+      <!-- Éditer -->
+      <section class="sidebar-section">
+        <div class="sidebar-section-title">Éditer</div>
+        <div class="btn-group-full">
+          <button id="btn-add-text" class="btn btn-secondary btn-full" disabled>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
+              <line x1="3" y1="4" x2="13" y2="4"/><line x1="8" y1="4" x2="8" y2="13"/>
+            </svg>
+            Ajouter du texte
+          </button>
+          <button id="btn-signature" class="btn btn-secondary btn-full" disabled>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
+              <path d="M3 12c2-4 3-7 4-7s1 3 2 3 2-2 3-2"/>
+              <line x1="2" y1="14" x2="14" y2="14"/>
+            </svg>
+            Signer
+          </button>
+        </div>
+      </section>
+
+      <!-- Outils PDF -->
+      <section class="sidebar-section">
+        <div class="sidebar-section-title">Outils</div>
+        <div class="btn-group-full">
+          <button id="btn-grayscale" class="btn btn-secondary btn-full" disabled>Niveaux de gris</button>
+          <button id="btn-split" class="btn btn-secondary btn-full" disabled>Séparer les pages</button>
+          <button id="btn-page-numbers" class="btn btn-secondary btn-full" disabled>Numéroter les pages</button>
+          <button id="btn-watermark" class="btn btn-secondary btn-full" disabled>Filigrane…</button>
+          <div class="btn-group" style="gap:4px">
+            <select id="stamp-select" class="input-field" style="flex:1;font-size:11px;padding:4px 6px">
+              <option value="BROUILLON">BROUILLON</option>
+              <option value="CONFIDENTIEL">CONFIDENTIEL</option>
+              <option value="VALIDÉ">VALIDÉ</option>
+              <option value="À SIGNER">À SIGNER</option>
+              <option value="URGENT">URGENT</option>
+            </select>
+            <button id="btn-stamp" class="btn btn-secondary" style="flex-shrink:0;white-space:nowrap" disabled>Tampon</button>
+          </div>
+          <button id="btn-header-footer" class="btn btn-secondary btn-full" disabled>En-tête / Pied…</button>
+          <button id="btn-metadata" class="btn btn-secondary btn-full" disabled>Métadonnées…</button>
         </div>
       </section>
 
@@ -309,6 +369,9 @@
   </div><!-- /.app-body -->
 
 </div><!-- /#app -->
+
+<!-- Overlay mobile sidebars -->
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
 
 <!-- Toast container -->
 <div id="toast-container" aria-live="polite"></div>

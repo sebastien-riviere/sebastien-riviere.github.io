@@ -220,16 +220,68 @@
   }
 }
 
-@media (max-width: 768px) {
-  .app-header-workflow {
-    display: none;
-  }
+/* Boutons mobile uniquement */
+.mobile-only { display: none; }
 
+@media (max-width: 768px) {
+  .app-header-workflow { display: none; }
+  .mobile-only { display: inline-flex; }
+
+  /* Sidebars en drawer */
   .sidebar-left {
-    width: 160px;
+    position: fixed;
+    left: -100%;
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
+    width: 80%;
+    max-width: 280px;
+    z-index: 200;
+    transition: left 0.25s ease;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.18);
   }
+  .sidebar-left.open { left: 0; }
 
   .sidebar-right {
-    display: none;
+    position: fixed;
+    right: -100%;
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
+    width: 80%;
+    max-width: 280px;
+    z-index: 200;
+    transition: right 0.25s ease;
+    display: flex;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.18);
   }
+  .sidebar-right.open { right: 0; }
+
+  /* Overlay derrière les drawers */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.38);
+    z-index: 199;
+  }
+  .sidebar-overlay.visible { display: block; }
+
+  /* Workspace pleine largeur */
+  .workspace { padding: var(--spacing-sm); }
+
+  /* Bandeau confidentialité plus compact */
+  .privacy-banner-text { display: none; }
+}
+
+/* Touch : actions de carte toujours visibles */
+@media (hover: none) {
+  .page-card-actions { opacity: 1; }
+}
+
+/* Petits écrans : cartes légèrement plus petites */
+@media (max-width: 480px) {
+  :root {
+    --thumbnail-width: 120px;
+    --thumbnail-height: 152px;
+  }
+  .pages-grid { gap: 8px; }
 }

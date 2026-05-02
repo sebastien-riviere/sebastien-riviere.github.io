@@ -1,29 +1,37 @@
-// presets.js — Presets rapides (V1.5)
+// presets.js — Presets rapides
 
 import { state } from './state.js';
 import { exportPdf, exportJpgZip, exportCompressed } from './export-actions.js';
-import { getExportPages, getSelectionPages } from './pdf-actions.js';
 
 export const PRESETS = [
   {
-    id: 'email',
-    label: 'Alléger pour email',
-    description: 'Compression forte, idéal pour envoi par mail.',
-    icon: '📧',
-    action: () => exportCompressed(0.5),
+    id: 'compress_light',
+    label: 'Compresser — Légère',
+    description: 'Légère compression (~85% qualité). Texte préservé.',
+    action: () => exportCompressed(0.85),
+  },
+  {
+    id: 'compress_medium',
+    label: 'Compresser — Moyenne',
+    description: 'Compression équilibrée (~55% qualité).',
+    action: () => exportCompressed(0.55),
+  },
+  {
+    id: 'compress_high',
+    label: 'Compresser — Haute',
+    description: 'Compression forte (~30% qualité). Fichier très léger.',
+    action: () => exportCompressed(0.30),
   },
   {
     id: 'merge',
-    label: 'Fusion propre',
+    label: 'Fusionner',
     description: 'Exporter toutes les pages dans l\'ordre affiché.',
-    icon: '🔗',
     action: () => exportPdf(false),
   },
   {
     id: 'extract',
     label: 'Extraire sélection',
     description: 'Exporter uniquement les pages sélectionnées.',
-    icon: '✂️',
     action: () => {
       if (!state.getSelectedPages().length) {
         state.addError('Sélectionnez des pages avant d\'utiliser ce preset.');
@@ -34,17 +42,9 @@ export const PRESETS = [
   },
   {
     id: 'images',
-    label: 'PDF vers images',
+    label: 'PDF → images',
     description: 'Exporter chaque page en JPG dans un ZIP.',
-    icon: '🖼️',
     action: () => exportJpgZip(),
-  },
-  {
-    id: 'dossier',
-    label: 'Dossier administratif',
-    description: 'Fusion propre, qualité maximale.',
-    icon: '📁',
-    action: () => exportPdf(false),
   },
 ];
 

@@ -9,6 +9,11 @@ import {
   exportPdf, exportPngZip, exportJpgZip, exportText, exportCompressed,
 } from './export-actions.js';
 import {
+  exportGrayscale, exportWithPageNumbers, exportWithWatermark,
+  exportWithStamp, exportWithHeaderFooter, exportWithMetadata, exportSplit,
+} from './overlay-export.js';
+import { openTextModal, openSignatureModal } from './editor-modal.js';
+import {
   renderGrid, renderStats, renderLastExport, renderProgress,
   updateActionButtons, setStatus, showToast,
   initCompressionSlider, initJpgQualitySlider, renderPresets, renderErrors,
@@ -36,6 +41,11 @@ function _wireDOMEvents() {
   // Bouton importer
   _on('btn-import', 'click', () => document.getElementById('file-input')?.click());
 
+  // Toggles sidebars mobile
+  _on('btn-sidebar-left',  'click', () => _toggleSidebar('left'));
+  _on('btn-sidebar-right', 'click', () => _toggleSidebar('right'));
+  document.getElementById('sidebar-overlay')?.addEventListener('click', _closeAllSidebars);
+
   // Sélection
   _on('btn-select-all', 'click', () => state.selectAll());
   _on('btn-clear-selection', 'click', () => state.clearSelection());
@@ -54,6 +64,37 @@ function _wireDOMEvents() {
   _on('btn-export-compressed', 'click', () => {
     const q = state.get().settings.compressionQuality;
     exportCompressed(q);
+  });
+
+  // Éditeur texte + signature
+  _on('btn-add-text',  'click', () => openTextModal());
+  _on('btn-signature', 'click', () => openSignatureModal());
+
+  // Outils V1.5
+  _on('btn-grayscale',    'click', () => exportGrayscale());
+  _on('btn-split',        'click', () => exportSplit());
+  _on('btn-page-numbers', 'click', () => exportWithPageNumbers());
+  _on('btn-watermark',    'click', () => {
+    const text = prompt('Texte du filigrane :', 'CONFIDENTIEL');
+    if (text !== null) exportWithWatermark(text);
+  });
+  _on('btn-stamp', 'click', () => {
+    const sel = document.getElementById('stamp-select');
+    if (sel) exportWithStamp(sel.value);
+  });
+  _on('btn-header-footer', 'click', () => {
+    const header = prompt('Texte en-tête (centre) :', '');
+    if (header === null) return;
+    const footer = prompt('Texte pied de page (centre) :', '');
+    if (footer === null) return;
+    exportWithHeaderFooter({ headerCenter: header, footerCenter: footer });
+  });
+  _on('btn-metadata', 'click', () => {
+    const title  = prompt('Titre du document :', '');
+    if (title === null) return;
+    const author = prompt('Auteur :', '');
+    if (author === null) return;
+    exportWithMetadata({ title, author });
   });
 
   // Vider espace
@@ -125,6 +166,7 @@ function _initSortable() {
     animation: 150,
     ghostClass: 'sortable-ghost',
     chosenClass: 'sortable-chosen',
+    draggable: '.page-card',
     onEnd: () => {
       const newOrder = [];
       grid.querySelectorAll('.page-card').forEach(card => {
@@ -141,6 +183,22 @@ function _initSortable() {
 function _on(id, event, handler) {
   const el = document.getElementById(id);
   if (el) el.addEventListener(event, handler);
+}
+
+function _toggleSidebar(side) {
+  const sidebar = document.querySelector(`.sidebar-${side}`);
+  const overlay = document.getElementById('sidebar-overlay');
+  if (!sidebar) return;
+  const isOpen = sidebar.classList.toggle('open');
+  const otherSide = side === 'left' ? 'right' : 'left';
+  document.querySelector(`.sidebar-${otherSide}`)?.classList.remove('open');
+  if (overlay) overlay.classList.toggle('visible', isOpen);
+}
+
+function _closeAllSidebars() {
+  document.querySelector('.sidebar-left')?.classList.remove('open');
+  document.querySelector('.sidebar-right')?.classList.remove('open');
+  document.getElementById('sidebar-overlay')?.classList.remove('visible');
 }
 
 // Démarrage
