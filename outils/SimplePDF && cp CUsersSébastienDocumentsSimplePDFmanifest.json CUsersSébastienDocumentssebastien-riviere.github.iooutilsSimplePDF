@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SimplePDF — Outil PDF local</title>
   <meta name="description" content="Manipuler, alléger, réorganiser et exporter ses PDF directement dans le navigateur, sans compte, sans serveur, sans upload.">
-  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2d5a8e">
   <meta name="mobile-web-app-capable" content="yes">
@@ -197,6 +196,7 @@
           <button id="btn-grayscale" class="btn btn-secondary btn-full" disabled>Niveaux de gris</button>
           <button id="btn-split" class="btn btn-secondary btn-full" disabled>Séparer les pages</button>
           <button id="btn-page-numbers" class="btn btn-secondary btn-full" disabled>Numéroter les pages</button>
+          <button id="btn-watermark" class="btn btn-secondary btn-full" disabled>Filigrane…</button>
           <div class="btn-group" style="gap:4px">
             <select id="stamp-select" class="input-field" style="flex:1;font-size:11px;padding:4px 6px">
               <option value="BROUILLON">BROUILLON</option>
@@ -212,33 +212,6 @@
         </div>
       </section>
 
-      <!-- Filigrane -->
-      <section class="sidebar-section">
-        <div class="sidebar-section-title">Filigrane</div>
-        <div class="btn-group-full">
-          <input id="wm-text" type="text" class="input-field" placeholder="Texte du filigrane…" value="CONFIDENTIEL" style="height:30px">
-          <div class="wm-controls">
-            <div class="wm-row">
-              <label class="wm-label">Opacité</label>
-              <input type="range" id="wm-opacity" min="5" max="60" value="15" class="wm-range">
-              <span class="wm-val" id="wm-opacity-val">15%</span>
-            </div>
-            <div class="wm-row">
-              <label class="wm-label">Taille</label>
-              <input type="range" id="wm-size" min="18" max="100" value="48" class="wm-range">
-              <span class="wm-val" id="wm-size-val">48pt</span>
-            </div>
-            <div class="wm-row" style="gap:8px">
-              <input type="color" id="wm-color" value="#808080" title="Couleur du filigrane" style="width:28px;height:24px;border:1px solid var(--color-border);border-radius:4px;padding:1px 2px;cursor:pointer;flex-shrink:0">
-              <label class="wm-label" style="display:flex;align-items:center;gap:5px;cursor:pointer">
-                <input type="checkbox" id="wm-diagonal" checked> Diagonal
-              </label>
-            </div>
-          </div>
-          <button id="btn-watermark" class="btn btn-secondary btn-full" disabled>Appliquer le filigrane</button>
-        </div>
-      </section>
-
       <!-- Presets -->
       <section class="sidebar-section">
         <div class="sidebar-section-title">Presets rapides</div>
@@ -250,10 +223,6 @@
         <button id="btn-clear-workspace" class="btn btn-ghost btn-full" disabled>
           Vider l'espace
         </button>
-        <p class="sidebar-credit">
-          Par <a href="https://www.linkedin.com/in/sébastien-riviere-conseil" target="_blank" rel="noopener">Sébastien Rivière</a>
-          · <a href="https://github.com/sebastien-riviere" target="_blank" rel="noopener">GitHub</a>
-        </p>
       </section>
 
     </aside>
@@ -276,28 +245,15 @@
             <div class="dropzone-sub" style="margin-top:6px">ou clique pour sélectionner des fichiers</div>
           </div>
           <div class="dropzone-formats">PDF · JPG · PNG · WebP</div>
-          <button class="btn btn-primary" onclick="event.stopPropagation(); document.getElementById('file-input').click()">
+          <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
             Importer des fichiers
           </button>
           <p class="text-xs text-muted">Tout reste dans ton navigateur. Aucun upload serveur.</p>
         </div>
       </div>
 
-      <!-- Barre de filtres / vue (multi-documents) -->
-      <div id="doc-filter-bar" class="doc-filter-bar" style="display:none">
-        <div id="doc-tabs" class="doc-tabs"></div>
-        <div class="view-toggle-group">
-          <button class="view-toggle-btn active" data-view="grid" title="Grille normale">
-            <svg viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0" width="6" height="6" rx="1"/><rect x="8" y="0" width="6" height="6" rx="1"/><rect x="0" y="8" width="6" height="6" rx="1"/><rect x="8" y="8" width="6" height="6" rx="1"/></svg>
-          </button>
-          <button class="view-toggle-btn" data-view="compact" title="Vue compacte">
-            <svg viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0" width="4" height="4" rx="1"/><rect x="5" y="0" width="4" height="4" rx="1"/><rect x="10" y="0" width="4" height="4" rx="1"/><rect x="0" y="5" width="4" height="4" rx="1"/><rect x="5" y="5" width="4" height="4" rx="1"/><rect x="10" y="5" width="4" height="4" rx="1"/><rect x="0" y="10" width="4" height="4" rx="1"/><rect x="5" y="10" width="4" height="4" rx="1"/><rect x="10" y="10" width="4" height="4" rx="1"/></svg>
-          </button>
-        </div>
-      </div>
-
       <!-- Grille pages -->
-      <div id="pages-grid" class="pages-grid view-grid" style="display:none" aria-label="Pages importées"></div>
+      <div id="pages-grid" class="pages-grid" style="display:none" aria-label="Pages importées"></div>
 
       <!-- Barre de progression -->
       <div id="progress-wrap" style="display:none;margin-top:12px">
@@ -385,7 +341,6 @@
             <span class="slider-value" id="compression-value">70%</span>
           </div>
           <input type="range" id="compression-slider" min="10" max="95" value="70">
-          <div class="compression-hint" id="compression-hint">Équilibre taille / qualité</div>
         </div>
         <button id="btn-export-compressed" class="btn btn-secondary btn-full" disabled>
           Exporter compressé
@@ -420,108 +375,6 @@
 
 <!-- Toast container -->
 <div id="toast-container" aria-live="polite"></div>
-
-<!-- ═══ ÉDITEUR PLEIN ÉCRAN ═══ -->
-<div id="editor-view" class="editor-view" aria-label="Éditeur de PDF" role="dialog">
-
-  <!-- En-tête éditeur -->
-  <div class="editor-header">
-    <button id="editor-close" class="btn btn-ghost btn-sm">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px">
-        <line x1="10" y1="3" x2="3" y2="10"/><polyline points="3,6 3,10 7,10"/>
-      </svg>
-      Retour
-    </button>
-
-    <div class="editor-tool-group">
-      <button class="editor-tool-btn active" data-tool="text">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
-          <line x1="3" y1="4" x2="13" y2="4"/><line x1="8" y1="4" x2="8" y2="13"/>
-        </svg>
-        Texte
-      </button>
-      <button class="editor-tool-btn" data-tool="signature">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
-          <path d="M2 11c1.5-3.5 2.5-6 3-6s1 3 2 3 2-2 3-2 1 2 2 2 1.5-1 2-1"/>
-          <line x1="1" y1="14" x2="15" y2="14"/>
-        </svg>
-        Signature
-      </button>
-    </div>
-
-    <!-- Options texte -->
-    <div id="editor-text-options" class="editor-opts">
-      <input id="editor-text-input" type="text" placeholder="Texte à placer…" class="input-field" style="flex:1;min-width:120px;height:30px">
-      <select id="editor-text-font" class="input-field" title="Police" style="height:30px;font-size:12px;width:90px">
-        <option value="Helvetica">Sans-serif</option>
-        <option value="TimesRoman">Serif</option>
-        <option value="Courier">Monospace</option>
-      </select>
-      <input id="editor-text-size" type="number" value="14" min="6" max="120" class="input-field" title="Taille en points" style="width:52px;height:30px">
-      <input id="editor-text-color" type="color" value="#000000" title="Couleur" style="width:30px;height:30px;padding:1px 2px;border:1px solid var(--color-border);border-radius:var(--radius-sm);cursor:pointer">
-      <label title="Gras" style="display:flex;align-items:center;gap:4px;font-size:11px;white-space:nowrap;cursor:pointer">
-        <input type="checkbox" id="editor-text-bold"> <strong>G</strong>
-      </label>
-      <select id="editor-scope" class="input-field" style="height:30px;font-size:12px">
-        <option value="this">Cette page</option>
-        <option value="all">Toutes les pages</option>
-        <option value="selection">Sélection</option>
-      </select>
-    </div>
-
-    <!-- Options signature -->
-    <div id="editor-sig-options" class="editor-opts" style="display:none">
-      <label class="text-xs text-muted">Largeur :</label>
-      <input id="editor-sig-width" type="number" value="150" min="30" max="400" class="input-field" title="Largeur en pts PDF" style="width:64px;height:30px">
-      <span class="text-xs text-muted">pts</span>
-      <select id="editor-sig-scope" class="input-field" style="height:30px;font-size:12px">
-        <option value="this">Cette page</option>
-        <option value="all">Toutes les pages</option>
-        <option value="selection">Sélection</option>
-      </select>
-    </div>
-
-    <div class="editor-header-right">
-      <button id="editor-undo" class="btn btn-ghost btn-sm" disabled>
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
-          <path d="M3 7H11a3 3 0 0 1 0 6H7"/><polyline points="3,4 3,7 6,7"/>
-        </svg>
-        Annuler
-      </button>
-      <button id="editor-apply" class="btn btn-primary btn-sm">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
-          <path d="M8 2v8M4 10l4 4 4-4"/><path d="M2 14h12"/>
-        </svg>
-        Appliquer & Télécharger
-      </button>
-    </div>
-  </div>
-
-  <!-- Pad signature (affiché quand outil = signature) -->
-  <div id="editor-sig-panel" class="editor-sig-panel">
-    <div class="editor-sig-pad-header">
-      <span class="text-xs text-muted">Dessinez votre signature :</span>
-      <label class="btn btn-ghost btn-sm" style="cursor:pointer" title="Importer une image de signature">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
-          <path d="M8 2v8M4 6l4-4 4 4"/><path d="M2 12v2h12v-2"/>
-        </svg>
-        Importer
-        <input type="file" id="editor-sig-import" accept="image/*" class="visually-hidden">
-      </label>
-      <button id="editor-sig-clear" class="btn btn-ghost btn-sm">Effacer</button>
-    </div>
-    <canvas id="editor-sig-canvas" class="editor-sig-canvas"></canvas>
-  </div>
-
-  <!-- Corps de l'éditeur -->
-  <div class="editor-body">
-    <!-- Bande miniatures -->
-    <div class="editor-thumbs" id="editor-thumbs"></div>
-    <!-- Zone pages -->
-    <div class="editor-pages" id="editor-pages"></div>
-  </div>
-
-</div>
 
 <!-- JS modules -->
 <script type="module" src="js/app.js"></script>

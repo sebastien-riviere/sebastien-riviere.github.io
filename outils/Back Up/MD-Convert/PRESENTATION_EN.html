@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD Convert — Better inputs for AI and your second brain</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f13; color: #e2e8f0; line-height: 1.7; }
+  .container { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+  h1 { font-size: 2rem; font-weight: 700; color: #f8fafc; margin-bottom: 0.5rem; }
+  h2 { font-size: 1.3rem; font-weight: 600; color: #818CF8; margin: 2.5rem 0 1rem; }
+  p { color: #cbd5e1; margin-bottom: 1rem; }
+  strong { color: #f1f5f9; }
+  a { color: #818CF8; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .tagline { color: #94a3b8; font-size: 0.95rem; margin-bottom: 2rem; }
+  hr { border: none; border-top: 1px solid #1e293b; margin: 2rem 0; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  th { text-align: left; padding: 0.6rem 1rem; background: #1e293b; color: #818CF8; font-size: 0.85rem; font-weight: 600; }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid #1e293b; color: #cbd5e1; font-size: 0.9rem; }
+  tr:hover td { background: #1e293b55; }
+  ul { list-style: none; padding: 0; margin: 0.5rem 0 1rem; }
+  ul li { padding: 0.25rem 0 0.25rem 1.2rem; position: relative; color: #cbd5e1; }
+  ul li::before { content: '–'; position: absolute; left: 0; color: #818CF8; }
+  ol { padding-left: 1.5rem; margin: 0.5rem 0 1rem; }
+  ol li { padding: 0.25rem 0; color: #cbd5e1; }
+  .cta { display: inline-block; margin-top: 1rem; background: #6366F1; color: #fff; padding: 0.65rem 1.5rem; border-radius: 8px; font-weight: 600; }
+  .cta:hover { background: #818CF8; text-decoration: none; }
+  .meta { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1e293b; color: #64748b; font-size: 0.85rem; }
+  blockquote { border-left: 3px solid #6366F1; padding: 0.5rem 1rem; margin: 1rem 0; color: #94a3b8; background: #1e293b55; border-radius: 0 6px 6px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>MD Convert</h1>
+  <p>Better inputs for AI and your second brain</p>
+  <p class="tagline">Free · Local · No account · No server · No tracking</p>
+
+  <a class="cta" href="https://sebastien-riviere.github.io/outils/MD-Convert/">Open the tool →</a>
+
+  <hr>
+
+  <h2>Why MD Convert exists</h2>
+  <p>Everyone talks about prompts, AI agents, and automation.</p>
+  <p>But the real bottleneck is often much simpler:</p>
+  <p><strong>What are you actually feeding your AI and your second brain?</strong></p>
+  <p>PDFs, ebooks, smartphone captures, photographed book pages, Word documents, notes, YouTube transcripts, text copied from the web…</p>
+  <p>The information exists. It's everywhere. But it's rarely in a clean, lightweight format that AI can actually use well.</p>
+  <p>That's exactly why I built MD Convert.</p>
+
+  <hr>
+
+  <h2>What it does in practice</h2>
+  <table>
+    <tr><th>Source</th><th>Output</th></tr>
+    <tr><td>PDF or ebook PDF</td><td>Structured Markdown, ready for AI</td></tr>
+    <tr><td>Word document</td><td>Clean file, no residual formatting noise</td></tr>
+    <tr><td>Smartphone capture</td><td>Usable text via OCR</td></tr>
+    <tr><td>Photographed page</td><td>Reusable note</td></tr>
+    <tr><td>YouTube link</td><td>Timestamped transcript</td></tr>
+    <tr><td>Web article (URL)</td><td>Clean imported text</td></tr>
+    <tr><td>Multiple sources</td><td>ZIP archive or merged file</td></tr>
+  </table>
+
+  <hr>
+
+  <h2>Why AI inputs matter</h2>
+  <p>In AI, the quality of the input often drives a large part of the quality of the output.</p>
+  <p>A raw PDF sent to Claude or ChatGPT is full of noise: metadata, formatting artifacts, wasted tokens.</p>
+  <p>A clean Markdown file means:</p>
+  <ul>
+    <li>fewer tokens consumed;</li>
+    <li>a more readable context for the model;</li>
+    <li>more precise answers.</li>
+  </ul>
+  <p>MD Convert shows a side-by-side token estimate: <strong>Markdown generated vs raw document</strong>. The difference is often significant.</p>
+
+  <hr>
+
+  <h2>How I use it daily</h2>
+  <ol>
+    <li>I find a source (PDF, capture, article, transcript).</li>
+    <li>I run it through MD Convert.</li>
+    <li>I send it to Obsidian, Claude, or NotebookLM to turn it into a note, a summary, or a project resource.</li>
+  </ol>
+  <p>That's how I build my knowledge base without spending 20 minutes copy-pasting, renaming, sorting, and reformatting.</p>
+
+  <hr>
+
+  <h2>Complete privacy</h2>
+  <p>MD Convert runs in the browser, locally.</p>
+  <ul>
+    <li><strong>No account</strong> — no sign-up required</li>
+    <li><strong>No server</strong> — no files uploaded</li>
+    <li><strong>No tracking</strong> — no analytics</li>
+    <li><strong>Files stay on your device</strong></li>
+  </ul>
+  <blockquote>Exception: web article import via URL uses the Jina.ai service (internet connection required). For fully private use, copy-pasting text directly works just as well.</blockquote>
+
+  <hr>
+
+  <h2>Installable as an app</h2>
+  <p>MD Convert is a PWA (Progressive Web App).</p>
+  <p><strong>iPhone / iPad</strong>: Safari → Share → "Add to Home Screen"</p>
+  <p><strong>Android</strong>: Chrome → menu → "Install"</p>
+  <p>Once installed, it works fully offline — including in airplane mode.</p>
+
+  <hr>
+
+  <h2>Known limitations</h2>
+  <ul>
+    <li><strong>Very large files</strong>: local processing depends on browser RAM. Files under 50 MB recommended.</li>
+    <li><strong>Scanned PDFs</strong>: OCR quality depends on scan sharpness.</li>
+    <li><strong>PPTX</strong>: not yet supported — export as PDF from PowerPoint before importing.</li>
+    <li><strong>Audio / video</strong>: no audio transcription yet.</li>
+    <li><strong>YouTube</strong>: automatic import works when captions are available. Otherwise, paste the transcript manually.</li>
+    <li><strong>Web pages</strong>: some pages block automatic imports. Use copy-paste in that case.</li>
+  </ul>
+
+  <hr>
+
+  <h2>Open source</h2>
+  <p>The code is available on GitHub.</p>
+  <p>Built for myself, shared for anyone who wants to work better with AI and their second brain — without piling on complexity.</p>
+  <p><a href="https://sebastien-riviere.github.io">GitHub →</a> · <a href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil/">LinkedIn →</a></p>
+
+  <div class="meta">Sébastien Rivière — AI · Blockchain · Digital tools creator</div>
+
+</div>
+</body>
+</html>
