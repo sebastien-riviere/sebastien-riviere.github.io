@@ -1,6 +1,25 @@
 // ui.js — Rendu interface, handlers, messages
 
 import { state } from './state.js';
+
+// ─── Vue et filtre document ───────────────────────────────────────────
+
+let _filterFileId = null;  // null = tout afficher
+let _viewMode = 'grid';    // 'grid' | 'compact'
+
+export function setViewMode(mode) {
+  _viewMode = mode;
+  const grid = document.getElementById('pages-grid');
+  if (grid) {
+    grid.classList.remove('view-grid', 'view-compact');
+    grid.classList.add(`view-${mode}`);
+  }
+}
+
+export function setDocFilter(fileId) {
+  _filterFileId = fileId;
+  renderGrid();
+}
 import { formatSize, formatDelta } from './utils.js';
 import {
   deleteSelectedPages, rotatePageLeft, rotatePageRight,
@@ -56,17 +75,28 @@ export function renderGrid() {
   const dropzone = document.getElementById('dropzone');
   if (!grid) return;
 
-  const pages = state.getPages();
+  const allPages = state.getPages();
   const selectedIds = state.get().selectedPageIds;
 
-  if (!pages.length) {
+  if (!allPages.length) {
     grid.style.display = 'none';
     if (dropzone) dropzone.style.display = 'flex';
+    _renderDocFilterBar(allPages);
     return;
   }
 
+  // Filtre par document
+  if (_filterFileId && !allPages.some(p => p.fileId === _filterFileId)) {
+    _filterFileId = null; // reset si le fichier a disparu
+  }
+  const pages = _filterFileId
+    ? allPages.filter(p => p.fileId === _filterFileId)
+    : allPages;
+
   grid.style.display = 'flex';
   if (dropzone) dropzone.style.display = 'none';
+
+  _renderDocFilterBar(allPages);
 
   // Reconstruction partielle : ne re-créer que ce qui a changé
   const existingCards = new Map();
@@ -368,6 +398,41 @@ export function renderErrors() {
   if (!errors.length) return;
   const latest = errors[errors.length - 1];
   showToast(latest.msg, 'error', 5000);
+}
+
+// ─── Onglets de documents ─────────────────────────────────────────────
+
+function _renderDocFilterBar(allPages) {
+  const bar     = document.getElementById('doc-filter-bar');
+  const tabsEl  = document.getElementById('doc-tabs');
+  if (!bar || !tabsEl) return;
+
+  const files = state.get().files;
+  const show  = allPages.length > 0 && files.length > 1;
+  bar.style.display = show ? 'flex' : 'none';
+  if (!show) return;
+
+  tabsEl.innerHTML = '';
+
+  // Onglet "Tous"
+  const allTab = document.createElement('button');
+  allTab.className = 'doc-tab' + (!_filterFileId ? ' active' : '');
+  allTab.textContent = `Tous (${allPages.length})`;
+  allTab.addEventListener('click', () => { _filterFileId = null; renderGrid(); });
+  tabsEl.appendChild(allTab);
+
+  // Un onglet par fichier
+  files.forEach(file => {
+    const count = allPages.filter(p => p.fileId === file.id).length;
+    if (!count) return;
+    const tab = document.createElement('button');
+    tab.className = 'doc-tab' + (_filterFileId === file.id ? ' active' : '');
+    const shortName = file.name.replace(/\.(pdf|jpg|jpeg|png|webp)$/i, '');
+    tab.textContent = `${shortName} (${count})`;
+    tab.title = file.name;
+    tab.addEventListener('click', () => { _filterFileId = file.id; renderGrid(); });
+    tabsEl.appendChild(tab);
+  });
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────

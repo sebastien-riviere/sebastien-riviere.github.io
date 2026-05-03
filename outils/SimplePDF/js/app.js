@@ -17,6 +17,7 @@ import {
   renderGrid, renderStats, renderLastExport, renderProgress,
   updateActionButtons, setStatus, showToast,
   initCompressionSlider, initJpgQualitySlider, renderPresets, renderErrors,
+  setViewMode,
 } from './ui.js';
 function init() {
   state.loadSettings();
@@ -27,6 +28,9 @@ function init() {
   initCompressionSlider();
   initJpgQualitySlider();
   initEditorView();
+  _initWatermarkSliders();
+  _initCompressionHint();
+  _initViewToggle();
   updateActionButtons();
   setStatus('ready');
 
@@ -76,8 +80,12 @@ function _wireDOMEvents() {
   _on('btn-split',        'click', () => exportSplit());
   _on('btn-page-numbers', 'click', () => exportWithPageNumbers());
   _on('btn-watermark',    'click', () => {
-    const text = prompt('Texte du filigrane :', 'CONFIDENTIEL');
-    if (text !== null) exportWithWatermark(text);
+    const text     = document.getElementById('wm-text')?.value?.trim() || 'CONFIDENTIEL';
+    const opacity  = (parseInt(document.getElementById('wm-opacity')?.value) || 15) / 100;
+    const fontSize = parseInt(document.getElementById('wm-size')?.value) || 48;
+    const color    = document.getElementById('wm-color')?.value || '#808080';
+    const diagonal = document.getElementById('wm-diagonal')?.checked ?? true;
+    exportWithWatermark(text, { opacity, fontSize, color, diagonal });
   });
   _on('btn-stamp', 'click', () => {
     const sel = document.getElementById('stamp-select');
@@ -200,6 +208,54 @@ function _closeAllSidebars() {
   document.querySelector('.sidebar-left')?.classList.remove('open');
   document.querySelector('.sidebar-right')?.classList.remove('open');
   document.getElementById('sidebar-overlay')?.classList.remove('visible');
+}
+
+// ─── Filigrane sliders ────────────────────────────────────────────────
+
+function _initWatermarkSliders() {
+  const bindSlider = (id, valId, suffix) => {
+    const sl = document.getElementById(id);
+    const vl = document.getElementById(valId);
+    if (!sl || !vl) return;
+    sl.addEventListener('input', () => { vl.textContent = sl.value + suffix; });
+  };
+  bindSlider('wm-opacity', 'wm-opacity-val', '%');
+  bindSlider('wm-size',    'wm-size-val',    'pt');
+}
+
+// ─── Indice qualité compression ───────────────────────────────────────
+
+const _compressionHints = [
+  [10, 30, 'Compression maximale — texte flou, scans uniquement'],
+  [31, 55, 'Compression forte — qualité réduite visible'],
+  [56, 75, 'Équilibre taille / qualité — recommandé'],
+  [76, 88, 'Haute qualité — fichier légèrement plus grand'],
+  [89, 95, 'Qualité maximale — gain minimal'],
+];
+
+function _initCompressionHint() {
+  const sl   = document.getElementById('compression-slider');
+  const hint = document.getElementById('compression-hint');
+  if (!sl || !hint) return;
+  const update = () => {
+    const v = parseInt(sl.value);
+    const found = _compressionHints.find(([min, max]) => v >= min && v <= max);
+    hint.textContent = found ? found[2] : '';
+  };
+  sl.addEventListener('input', update);
+  update();
+}
+
+// ─── Bascule vue grille ───────────────────────────────────────────────
+
+function _initViewToggle() {
+  document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      setViewMode(btn.dataset.view);
+    });
+  });
 }
 
 // Démarrage

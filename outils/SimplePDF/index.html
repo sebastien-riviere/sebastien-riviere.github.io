@@ -197,7 +197,6 @@
           <button id="btn-grayscale" class="btn btn-secondary btn-full" disabled>Niveaux de gris</button>
           <button id="btn-split" class="btn btn-secondary btn-full" disabled>Séparer les pages</button>
           <button id="btn-page-numbers" class="btn btn-secondary btn-full" disabled>Numéroter les pages</button>
-          <button id="btn-watermark" class="btn btn-secondary btn-full" disabled>Filigrane…</button>
           <div class="btn-group" style="gap:4px">
             <select id="stamp-select" class="input-field" style="flex:1;font-size:11px;padding:4px 6px">
               <option value="BROUILLON">BROUILLON</option>
@@ -213,6 +212,33 @@
         </div>
       </section>
 
+      <!-- Filigrane -->
+      <section class="sidebar-section">
+        <div class="sidebar-section-title">Filigrane</div>
+        <div class="btn-group-full">
+          <input id="wm-text" type="text" class="input-field" placeholder="Texte du filigrane…" value="CONFIDENTIEL" style="height:30px">
+          <div class="wm-controls">
+            <div class="wm-row">
+              <label class="wm-label">Opacité</label>
+              <input type="range" id="wm-opacity" min="5" max="60" value="15" class="wm-range">
+              <span class="wm-val" id="wm-opacity-val">15%</span>
+            </div>
+            <div class="wm-row">
+              <label class="wm-label">Taille</label>
+              <input type="range" id="wm-size" min="18" max="100" value="48" class="wm-range">
+              <span class="wm-val" id="wm-size-val">48pt</span>
+            </div>
+            <div class="wm-row" style="gap:8px">
+              <input type="color" id="wm-color" value="#808080" title="Couleur du filigrane" style="width:28px;height:24px;border:1px solid var(--color-border);border-radius:4px;padding:1px 2px;cursor:pointer;flex-shrink:0">
+              <label class="wm-label" style="display:flex;align-items:center;gap:5px;cursor:pointer">
+                <input type="checkbox" id="wm-diagonal" checked> Diagonal
+              </label>
+            </div>
+          </div>
+          <button id="btn-watermark" class="btn btn-secondary btn-full" disabled>Appliquer le filigrane</button>
+        </div>
+      </section>
+
       <!-- Presets -->
       <section class="sidebar-section">
         <div class="sidebar-section-title">Presets rapides</div>
@@ -224,6 +250,10 @@
         <button id="btn-clear-workspace" class="btn btn-ghost btn-full" disabled>
           Vider l'espace
         </button>
+        <p class="sidebar-credit">
+          Par <a href="https://sebastien-riviere.github.io" target="_blank" rel="noopener">Sébastien Rivière</a>
+          · <a href="https://github.com/sebastien-riviere" target="_blank" rel="noopener">GitHub</a>
+        </p>
       </section>
 
     </aside>
@@ -253,8 +283,21 @@
         </div>
       </div>
 
+      <!-- Barre de filtres / vue (multi-documents) -->
+      <div id="doc-filter-bar" class="doc-filter-bar" style="display:none">
+        <div id="doc-tabs" class="doc-tabs"></div>
+        <div class="view-toggle-group">
+          <button class="view-toggle-btn active" data-view="grid" title="Grille normale">
+            <svg viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0" width="6" height="6" rx="1"/><rect x="8" y="0" width="6" height="6" rx="1"/><rect x="0" y="8" width="6" height="6" rx="1"/><rect x="8" y="8" width="6" height="6" rx="1"/></svg>
+          </button>
+          <button class="view-toggle-btn" data-view="compact" title="Vue compacte">
+            <svg viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0" width="4" height="4" rx="1"/><rect x="5" y="0" width="4" height="4" rx="1"/><rect x="10" y="0" width="4" height="4" rx="1"/><rect x="0" y="5" width="4" height="4" rx="1"/><rect x="5" y="5" width="4" height="4" rx="1"/><rect x="10" y="5" width="4" height="4" rx="1"/><rect x="0" y="10" width="4" height="4" rx="1"/><rect x="5" y="10" width="4" height="4" rx="1"/><rect x="10" y="10" width="4" height="4" rx="1"/></svg>
+          </button>
+        </div>
+      </div>
+
       <!-- Grille pages -->
-      <div id="pages-grid" class="pages-grid" style="display:none" aria-label="Pages importées"></div>
+      <div id="pages-grid" class="pages-grid view-grid" style="display:none" aria-label="Pages importées"></div>
 
       <!-- Barre de progression -->
       <div id="progress-wrap" style="display:none;margin-top:12px">
@@ -342,6 +385,7 @@
             <span class="slider-value" id="compression-value">70%</span>
           </div>
           <input type="range" id="compression-slider" min="10" max="95" value="70">
+          <div class="compression-hint" id="compression-hint">Équilibre taille / qualité</div>
         </div>
         <button id="btn-export-compressed" class="btn btn-secondary btn-full" disabled>
           Exporter compressé
@@ -407,9 +451,17 @@
 
     <!-- Options texte -->
     <div id="editor-text-options" class="editor-opts">
-      <input id="editor-text-input" type="text" placeholder="Texte à placer…" class="input-field" style="flex:1;min-width:140px;height:30px">
-      <input id="editor-text-size" type="number" value="14" min="6" max="120" class="input-field" title="Taille (pt)" style="width:58px;height:30px">
-      <input id="editor-text-color" type="color" value="#000000" title="Couleur" style="width:32px;height:30px;padding:2px 3px;border:1px solid var(--color-border);border-radius:var(--radius-sm);cursor:pointer">
+      <input id="editor-text-input" type="text" placeholder="Texte à placer…" class="input-field" style="flex:1;min-width:120px;height:30px">
+      <select id="editor-text-font" class="input-field" title="Police" style="height:30px;font-size:12px;width:90px">
+        <option value="Helvetica">Sans-serif</option>
+        <option value="TimesRoman">Serif</option>
+        <option value="Courier">Monospace</option>
+      </select>
+      <input id="editor-text-size" type="number" value="14" min="6" max="120" class="input-field" title="Taille en points" style="width:52px;height:30px">
+      <input id="editor-text-color" type="color" value="#000000" title="Couleur" style="width:30px;height:30px;padding:1px 2px;border:1px solid var(--color-border);border-radius:var(--radius-sm);cursor:pointer">
+      <label title="Gras" style="display:flex;align-items:center;gap:4px;font-size:11px;white-space:nowrap;cursor:pointer">
+        <input type="checkbox" id="editor-text-bold"> <strong>G</strong>
+      </label>
       <select id="editor-scope" class="input-field" style="height:30px;font-size:12px">
         <option value="this">Cette page</option>
         <option value="all">Toutes les pages</option>

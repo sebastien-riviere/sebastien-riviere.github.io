@@ -257,7 +257,12 @@ async function _applyAnnotations() {
     const bytes = await buildPdfFromRawPages(_pages, rawBuffers, () => {});
     const pdfDoc = await PDFDocument.load(bytes);
     const pdfPages = pdfDoc.getPages();
-    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+    // Police selon sélection utilisateur
+    const fontName = document.getElementById('editor-text-font')?.value || 'Helvetica';
+    const isBold   = document.getElementById('editor-text-bold')?.checked || false;
+    const fontKey  = _resolveFontKey(fontName, isBold, StandardFonts);
+    const font = await pdfDoc.embedFont(fontKey);
 
     const scopeEl = document.getElementById('editor-scope');
     const sigScopeEl = document.getElementById('editor-sig-scope');
@@ -437,6 +442,16 @@ function _imageToCanvas(dataUrl, rotation = 0) {
     };
     img.src = dataUrl;
   });
+}
+
+function _resolveFontKey(name, bold, StandardFonts) {
+  const map = {
+    'Helvetica':  { normal: StandardFonts.Helvetica,   bold: StandardFonts.HelveticaBold },
+    'TimesRoman': { normal: StandardFonts.TimesRoman,  bold: StandardFonts.TimesRomanBold },
+    'Courier':    { normal: StandardFonts.Courier,     bold: StandardFonts.CourierBold },
+  };
+  const entry = map[name] || map['Helvetica'];
+  return bold ? entry.bold : entry.normal;
 }
 
 function _hexToRgb(hex) {

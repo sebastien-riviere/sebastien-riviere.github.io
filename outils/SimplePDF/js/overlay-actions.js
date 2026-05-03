@@ -33,14 +33,17 @@ export async function applyPageNumbers(pdfDoc, options = {}) {
 
 // Applique un filigrane texte centré sur toutes les pages
 export async function applyWatermark(pdfDoc, options = {}) {
-  const { rgb, degrees, StandardFonts } = window.PDFLib;
+  const PDFLib = window.PDFLib;
+  const { rgb, degrees, StandardFonts } = PDFLib;
   const {
     text = 'CONFIDENTIEL',
     opacity = 0.15,
     diagonal = true,
     fontSize = 48,
-    color = [0.5, 0.5, 0.5],
+    color = '#808080',
   } = options;
+
+  const colorArr = typeof color === 'string' ? _hexToRgbNorm(color) : color;
 
   const pages = pdfDoc.getPages();
   const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
@@ -48,16 +51,28 @@ export async function applyWatermark(pdfDoc, options = {}) {
   for (const page of pages) {
     const { width, height } = page.getSize();
     const textWidth = font.widthOfTextAtSize(text, fontSize);
+    // Centrage avec correction pour rotation 45°
+    const x = diagonal ? width / 2 - textWidth / 2 : (width - textWidth) / 2;
+    const y = height / 2;
     page.drawText(text, {
-      x: (width - textWidth) / 2,
-      y: (height - fontSize) / 2,
+      x,
+      y,
       size: fontSize,
       font,
-      color: rgb(...color),
+      color: rgb(...colorArr),
       opacity,
       rotate: diagonal ? degrees(45) : degrees(0),
     });
   }
+}
+
+function _hexToRgbNorm(hex) {
+  const h = hex.replace('#', '');
+  return [
+    parseInt(h.slice(0, 2), 16) / 255,
+    parseInt(h.slice(2, 4), 16) / 255,
+    parseInt(h.slice(4, 6), 16) / 255,
+  ];
 }
 
 // Applique un tampon prédéfini
