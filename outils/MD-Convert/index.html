@@ -966,6 +966,7 @@ input[type="file"] { display: none; }
             </svg>
             Fusionner
           </button>
+          <button class="btn-sm" id="btnSelectAll" type="button" style="display:none">☑ Tout</button>
           <button class="btn-sm" id="btnDownloadSelected" type="button" style="display:none">↓ Sélection</button>
           <button class="btn-sm danger" id="btnDeleteSelected" type="button" style="display:none">✕ Sélection</button>
           <button class="btn-sm accent" id="btnDownloadAll" type="button">
@@ -2427,8 +2428,10 @@ function toggleMergeMode() {
     Array.from(btn.childNodes).filter(n => n.nodeType === 3).forEach(n => n.remove());
     btn.appendChild(document.createTextNode(LANG === 'fr' ? ' → .md Fusionner' : ' → .md Merge'));
   }
+  const btnSA = document.getElementById('btnSelectAll');
   const btnDL = document.getElementById('btnDownloadSelected');
   const btnDel = document.getElementById('btnDeleteSelected');
+  if (btnSA) btnSA.style.display = mergeMode ? '' : 'none';
   if (btnDL) btnDL.style.display = mergeMode ? '' : 'none';
   if (btnDel) btnDel.style.display = mergeMode ? '' : 'none';
   if (!mergeMode) { updateMergeButton(); return; }
@@ -2464,11 +2467,21 @@ function mergeSelected() {
 
 function updateSelectionCounts() {
   const n = document.querySelectorAll('.file-card.checked').length;
+  const total = document.querySelectorAll('.file-card.merge-select').length;
   const sfx = n ? ` (${n})` : '';
+  const btnSA = document.getElementById('btnSelectAll');
   const btnDL = document.getElementById('btnDownloadSelected');
   const btnDel = document.getElementById('btnDeleteSelected');
+  if (btnSA) btnSA.textContent = (n === total && total > 0) ? (LANG === 'fr' ? '☐ Tout' : '☐ All') : (LANG === 'fr' ? '☑ Tout' : '☑ All');
   if (btnDL) { Array.from(btnDL.childNodes).filter(nd => nd.nodeType === 3).forEach(nd => nd.remove()); btnDL.appendChild(document.createTextNode((LANG === 'fr' ? '↓ Sélection' : '↓ Selected') + sfx)); }
   if (btnDel) { Array.from(btnDel.childNodes).filter(nd => nd.nodeType === 3).forEach(nd => nd.remove()); btnDel.appendChild(document.createTextNode((LANG === 'fr' ? '✕ Sélection' : '✕ Selected') + sfx)); }
+}
+
+function selectAllToggle() {
+  const cards = Array.from(document.querySelectorAll('.file-card.merge-select'));
+  const allChecked = cards.length > 0 && cards.every(c => c.classList.contains('checked'));
+  cards.forEach(c => allChecked ? c.classList.remove('checked') : c.classList.add('checked'));
+  updateSelectionCounts();
 }
 
 function downloadSelected() {
@@ -2640,6 +2653,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') hideUrlPanel();
   });
   document.getElementById('btnMerge').onclick = mergeSelected;
+  document.getElementById('btnSelectAll').onclick = selectAllToggle;
   document.getElementById('btnDownloadSelected').onclick = downloadSelected;
   document.getElementById('btnDeleteSelected').onclick = deleteSelected;
   document.getElementById('pasteTextarea').addEventListener('keydown', e => {
