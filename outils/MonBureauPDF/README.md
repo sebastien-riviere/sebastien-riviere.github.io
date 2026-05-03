@@ -1,14 +1,14 @@
-# SimplePDF
+﻿# MonBureauPDF
 
 **Manipuler, alléger, réorganiser et exporter ses PDF directement dans le navigateur, sans compte, sans serveur, sans upload.**
 
-→ [Ouvrir SimplePDF](https://sebastien-riviere.github.io/SimplePDF/)
+→ [Ouvrir MonBureauPDF](https://sebastien-riviere.github.io/MonBureauPDF/)
 
 ---
 
 ## Description
 
-SimplePDF est un outil PDF local-first. Il tourne entièrement dans votre navigateur. Aucun fichier n'est envoyé vers un serveur. Aucun compte n'est nécessaire.
+MonBureauPDF est un outil PDF local-first. Il tourne entièrement dans votre navigateur. Aucun fichier n'est envoyé vers un serveur. Aucun compte n'est nécessaire.
 
 Il est conçu pour les 20% de tâches PDF utilisées 80% du temps : fusionner, réorganiser, extraire, compresser, exporter.
 
@@ -49,7 +49,7 @@ Il est conçu pour les 20% de tâches PDF utilisées 80% du temps : fusionner, r
 
 ## Limites
 
-- **PDF scannés** : l'extraction texte est impossible sans OCR. SimplePDF ne comprend pas d'OCR.
+- **PDF scannés** : l'extraction texte est impossible sans OCR. MonBureauPDF ne comprend pas d'OCR.
 - **Compression visuelle** : la compression est basée sur la recompression en JPEG. Elle peut dégrader la netteté du texte. Elle est adaptée aux scans et documents image.
 - **Très gros fichiers** : les PDF de plus de ~200 Mo peuvent atteindre les limites mémoire du navigateur.
 - **PDF protégés** : les PDF chiffrés par mot de passe ne sont pas supportés.
@@ -90,19 +90,19 @@ Il est conçu pour les 20% de tâches PDF utilisées 80% du temps : fusionner, r
 
 ## Déploiement GitHub Pages
 
-### Option A — Repo séparé SimplePDF
+### Option A — Repo séparé MonBureauPDF
 
 ```bash
 git init
 git add .
-git commit -m "Initial SimplePDF"
-git remote add origin https://github.com/sebastien-riviere/SimplePDF.git
+git commit -m "Initial MonBureauPDF"
+git remote add origin https://github.com/sebastien-riviere/MonBureauPDF.git
 git push -u origin main
 ```
 
 Activer GitHub Pages dans les Settings du repo → Source : branche `main`, dossier `/`.
 
-URL : `https://sebastien-riviere.github.io/SimplePDF/`
+URL : `https://sebastien-riviere.github.io/MonBureauPDF/`
 
 ### Option B — Intégration dans le site principal
 
@@ -111,11 +111,11 @@ Placer le dossier dans le repo `sebastien-riviere.github.io` :
 ```
 sebastien-riviere.github.io/
 └── tools/
-    └── SimplePDF/
+    └── MonBureauPDF/
         └── index.html
 ```
 
-URL : `https://sebastien-riviere.github.io/tools/SimplePDF/`
+URL : `https://sebastien-riviere.github.io/tools/MonBureauPDF/`
 
 ---
 

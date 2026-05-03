@@ -1,4 +1,4 @@
-# TECHNICAL_SCOPE.md — SimplePDF
+﻿# TECHNICAL_SCOPE.md — MonBureauPDF
 
 ## Stack
 
@@ -90,12 +90,12 @@ vendor/
 - Téléchargement via URL.createObjectURL.
 
 ### Nommage exports
-- `simplepdf_export.pdf`
-- `simplepdf_selection.pdf`
-- `simplepdf_compressed.pdf`
-- `simplepdf_pages_png.zip`
-- `simplepdf_pages_jpg.zip`
-- `simplepdf_text.txt`
+- `MonBureauPDF_export.pdf`
+- `MonBureauPDF_selection.pdf`
+- `MonBureauPDF_compressed.pdf`
+- `MonBureauPDF_pages_png.zip`
+- `MonBureauPDF_pages_jpg.zip`
+- `MonBureauPDF_text.txt`
 
 ## Risques navigateur
 
@@ -127,11 +127,11 @@ vendor/
 Voir PRODUCT_BRIEF.md — section "Tests manuels".
 
 ## Plan déploiement GitHub Pages
-1. `git init` dans /SimplePDF.
+1. `git init` dans /MonBureauPDF.
 2. Télécharger les bibliothèques dans /vendor.
-3. `git add . && git commit -m "Initial SimplePDF"`.
-4. Créer repo GitHub `SimplePDF` (ou utiliser le repo existant sebastien-riviere.github.io).
+3. `git add . && git commit -m "Initial MonBureauPDF"`.
+4. Créer repo GitHub `MonBureauPDF` (ou utiliser le repo existant sebastien-riviere.github.io).
 5. `git remote add origin <url>`.
 6. `git push -u origin main`.
 7. Activer GitHub Pages sur branche `main`, dossier racine `/`.
-8. URL finale : `https://sebastien-riviere.github.io/SimplePDF/`.
+8. URL finale : `https://sebastien-riviere.github.io/MonBureauPDF/`.

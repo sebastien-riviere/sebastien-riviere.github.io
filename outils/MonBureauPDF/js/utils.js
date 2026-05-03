@@ -1,4 +1,4 @@
-// utils.js — Utilitaires partagés
+﻿// utils.js — Utilitaires partagés
 
 export function formatSize(bytes) {
   if (bytes === 0) return '0 o';
@@ -52,24 +52,24 @@ export function shortDate() {
 
 export function exportName(type) {
   const map = {
-    pdf:          'simplepdf_export.pdf',
-    selection:    'simplepdf_selection.pdf',
-    compressed:   'simplepdf_compressed.pdf',
-    pngzip:       'simplepdf_pages_png.zip',
-    jpgzip:       'simplepdf_pages_jpg.zip',
-    jpgzip_sel:   'simplepdf_selection_jpg.zip',
-    text:         'simplepdf_text.txt',
-    grayscale:    'simplepdf_grayscale.pdf',
-    numbered:     'simplepdf_numbered.pdf',
-    watermark:    'simplepdf_watermark.pdf',
-    stamp:        'simplepdf_stamp.pdf',
-    headerfooter: 'simplepdf_headerfooter.pdf',
-    metadata:     'simplepdf_export.pdf',
-    annotated:    'simplepdf_annote.pdf',
-    signed:       'simplepdf_signe.pdf',
-    split:        'simplepdf_pages_split.zip',
+    pdf:          'MonBureauPDF_export.pdf',
+    selection:    'MonBureauPDF_selection.pdf',
+    compressed:   'MonBureauPDF_compressed.pdf',
+    pngzip:       'MonBureauPDF_pages_png.zip',
+    jpgzip:       'MonBureauPDF_pages_jpg.zip',
+    jpgzip_sel:   'MonBureauPDF_selection_jpg.zip',
+    text:         'MonBureauPDF_text.txt',
+    grayscale:    'MonBureauPDF_grayscale.pdf',
+    numbered:     'MonBureauPDF_numbered.pdf',
+    watermark:    'MonBureauPDF_watermark.pdf',
+    stamp:        'MonBureauPDF_stamp.pdf',
+    headerfooter: 'MonBureauPDF_headerfooter.pdf',
+    metadata:     'MonBureauPDF_export.pdf',
+    annotated:    'MonBureauPDF_annote.pdf',
+    signed:       'MonBureauPDF_signe.pdf',
+    split:        'MonBureauPDF_pages_split.zip',
   };
-  return map[type] || `simplepdf_${type}.pdf`;
+  return map[type] || `MonBureauPDF_${type}.pdf`;
 }
 
 export function dataURLtoBlob(dataURL) {

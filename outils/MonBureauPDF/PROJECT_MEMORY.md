@@ -1,8 +1,8 @@
-# PROJECT_MEMORY.md — SimplePDF
+﻿# PROJECT_MEMORY.md — MonBureauPDF
 
 ## Identité
-- **Nom** : SimplePDF
-- **URL cible** : https://sebastien-riviere.github.io/SimplePDF/
+- **Nom** : MonBureauPDF
+- **URL cible** : https://sebastien-riviere.github.io/MonBureauPDF/
 - **Auteur** : Sébastien Rivière
 - **Type** : outil standalone HTML/CSS/JS, GitHub Pages
 
@@ -27,7 +27,7 @@ Créer un outil PDF local-first, sans serveur, sans compte, sans upload, utilisa
 - Pas de PWA en V1 (prévu V3).
 - Compression : compression visuelle (canvas) uniquement, pas de compression PDF native.
 - Extraction texte : PDF.js, PDF textuels uniquement.
-- Nom de fichiers exports : préfixe "simplepdf_".
+- Nom de fichiers exports : préfixe "MonBureauPDF_".
 - Structure : sidebar gauche (actions) + zone centrale (grille) + sidebar droite (stats/export).
 
 ## Fonctions retenues V1
@@ -53,4 +53,4 @@ OCR, PDF vers Word/Excel/PPT, édition texte PDF, réparation corrompu, protecti
 
 ## Publication
 - Intégration future dans sebastien-riviere.github.io dans la même logique que MDConvert.
-- Sous-dossier /tools/SimplePDF/ ou repo séparé SimplePDF.
+- Sous-dossier /tools/MonBureauPDF/ ou repo séparé MonBureauPDF.

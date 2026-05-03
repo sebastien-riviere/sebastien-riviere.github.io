@@ -1,6 +1,6 @@
-{
-  "name": "SimplePDF",
-  "short_name": "SimplePDF",
+﻿{
+  "name": "MonBureauPDF",
+  "short_name": "MonBureauPDF",
   "description": "Outil PDF local-first — fusionner, compresser, réorganiser sans serveur.",
   "start_url": "./index.html",
   "scope": "./",

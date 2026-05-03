@@ -1,4 +1,4 @@
-// state.js — État central, getters/setters, événements
+﻿// state.js — État central, getters/setters, événements
 
 const _state = {
   files: [],
@@ -24,7 +24,7 @@ const _state = {
 };
 
 function dispatch(eventName, detail = {}) {
-  document.dispatchEvent(new CustomEvent(`simplepdf:${eventName}`, { detail }));
+  document.dispatchEvent(new CustomEvent(`MonBureauPDF:${eventName}`, { detail }));
 }
 
 function update(partial) {
@@ -142,7 +142,7 @@ function setLastExport(info) {
 
 function loadSettings() {
   try {
-    const saved = localStorage.getItem('simplepdf_settings');
+    const saved = localStorage.getItem('MonBureauPDF_settings');
     if (saved) {
       const parsed = JSON.parse(saved);
       Object.assign(_state.settings, parsed);
@@ -152,7 +152,7 @@ function loadSettings() {
 
 function saveSettings() {
   try {
-    localStorage.setItem('simplepdf_settings', JSON.stringify(_state.settings));
+    localStorage.setItem('MonBureauPDF_settings', JSON.stringify(_state.settings));
   } catch (_) {}
 }
 

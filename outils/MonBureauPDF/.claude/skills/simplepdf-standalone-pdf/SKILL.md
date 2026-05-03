@@ -1,12 +1,12 @@
----
-name: simplepdf-standalone-pdf
-description: Build and maintain SimplePDF, a standalone browser-based PDF productivity tool for GitHub Pages with no backend and local-only file processing.
+﻿---
+name: MonBureauPDF-standalone-pdf
+description: Build and maintain MonBureauPDF, a standalone browser-based PDF productivity tool for GitHub Pages with no backend and local-only file processing.
 ---
 
-# SimplePDF Standalone PDF Skill
+# MonBureauPDF Standalone PDF Skill
 
 ## Mission
-Build SimplePDF as a local-first browser PDF tool. Compact, premium UX, no server, no account, no upload.
+Build MonBureauPDF as a local-first browser PDF tool. Compact, premium UX, no server, no account, no upload.
 
 ## Hard rules
 - No backend.
@@ -96,12 +96,12 @@ Build SimplePDF as a local-first browser PDF tool. Compact, premium UX, no serve
 - French microcopy. Short. Direct.
 
 ## Export naming convention
-- `simplepdf_export.pdf`
-- `simplepdf_selection.pdf`
-- `simplepdf_compressed.pdf`
-- `simplepdf_pages_png.zip`
-- `simplepdf_pages_jpg.zip`
-- `simplepdf_text.txt`
+- `MonBureauPDF_export.pdf`
+- `MonBureauPDF_selection.pdf`
+- `MonBureauPDF_compressed.pdf`
+- `MonBureauPDF_pages_png.zip`
+- `MonBureauPDF_pages_jpg.zip`
+- `MonBureauPDF_text.txt`
 
 ## Code patterns
 
@@ -113,7 +113,7 @@ state.dispatch('processing:start');
 
 ### Download
 ```js
-utils.downloadBlob(blob, 'simplepdf_export.pdf');
+utils.downloadBlob(blob, 'MonBureauPDF_export.pdf');
 ```
 
 ### Error

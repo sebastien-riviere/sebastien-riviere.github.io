@@ -1,4 +1,4 @@
-# CHANGELOG.md — SimplePDF
+﻿# CHANGELOG.md — MonBureauPDF
 
 ## [1.0.0] — 2026-05-02
 
@@ -27,7 +27,7 @@
 - Architecture V1.5 préparée (overlay-actions.js, presets.js).
 - Documentation projet complète (PROJECT_MEMORY, PRODUCT_BRIEF, TECHNICAL_SCOPE, ROADMAP).
 - CLAUDE.md et .claude/instructions.md pour la continuité Claude Code.
-- Skill projet .claude/skills/simplepdf-standalone-pdf/SKILL.md.
+- Skill projet .claude/skills/MonBureauPDF-standalone-pdf/SKILL.md.
 - vendor/README.md avec instructions de téléchargement des bibliothèques.
 
 #### Bibliothèques utilisées

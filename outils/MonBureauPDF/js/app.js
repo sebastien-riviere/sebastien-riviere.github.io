@@ -1,4 +1,4 @@
-// app.js — Initialisation générale, wiring modules
+﻿// app.js — Initialisation générale, wiring modules
 
 import { state } from './state.js';
 import { initDropzone, initGlobalDrop, loadFiles } from './file-loader.js';
@@ -39,7 +39,7 @@ function init() {
   initDropzone(dropzone, fileInput);
   initGlobalDrop();
 
-  console.log('SimplePDF initialisé.');
+  console.log('MonBureauPDF initialisé.');
 }
 
 function _wireDOMEvents() {
@@ -116,37 +116,37 @@ function _wireDOMEvents() {
 }
 
 function _wireStateEvents() {
-  document.addEventListener('simplepdf:pages:changed', () => {
+  document.addEventListener('MonBureauPDF:pages:changed', () => {
     renderGrid();
     renderStats();
     updateActionButtons();
   });
 
-  document.addEventListener('simplepdf:selection:changed', () => {
+  document.addEventListener('MonBureauPDF:selection:changed', () => {
     renderGrid();
     renderStats();
     updateActionButtons();
   });
 
-  document.addEventListener('simplepdf:mode:changed', e => {
+  document.addEventListener('MonBureauPDF:mode:changed', e => {
     setStatus(e.detail.mode);
     updateActionButtons();
   });
 
-  document.addEventListener('simplepdf:progress:changed', e => {
+  document.addEventListener('MonBureauPDF:progress:changed', e => {
     renderProgress(e.detail.pct);
   });
 
-  document.addEventListener('simplepdf:export:done', () => {
+  document.addEventListener('MonBureauPDF:export:done', () => {
     renderLastExport();
     renderStats();
   });
 
-  document.addEventListener('simplepdf:error:added', () => {
+  document.addEventListener('MonBureauPDF:error:added', () => {
     renderErrors();
   });
 
-  document.addEventListener('simplepdf:workspace:cleared', () => {
+  document.addEventListener('MonBureauPDF:workspace:cleared', () => {
     renderGrid();
     renderStats();
     renderLastExport();
@@ -154,7 +154,7 @@ function _wireStateEvents() {
     setStatus('ready');
   });
 
-  document.addEventListener('simplepdf:toast', e => {
+  document.addEventListener('MonBureauPDF:toast', e => {
     showToast(e.detail.msg, e.detail.type);
   });
 }

@@ -1,4 +1,4 @@
-# CLAUDE.md — SimplePDF
+﻿# CLAUDE.md — MonBureauPDF
 
 ## Règles permanentes du projet
 

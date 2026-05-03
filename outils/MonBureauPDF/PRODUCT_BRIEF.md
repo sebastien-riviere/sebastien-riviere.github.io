@@ -1,7 +1,7 @@
-# PRODUCT_BRIEF.md — SimplePDF
+﻿# PRODUCT_BRIEF.md — MonBureauPDF
 
 ## Vision
-SimplePDF est un outil PDF local, sobre et productif. Il ne concurrence pas Adobe ou Sejda sur les fonctions avancées. Il offre les 20% de fonctions PDF utilisées 80% du temps, sans friction, sans compte, sans upload.
+MonBureauPDF est un outil PDF local, sobre et productif. Il ne concurrence pas Adobe ou Sejda sur les fonctions avancées. Il offre les 20% de fonctions PDF utilisées 80% du temps, sans friction, sans compte, sans upload.
 
 ## Promesse
 "Manipuler, alléger, réorganiser et exporter ses PDF directement dans le navigateur, sans compte, sans serveur, sans upload."
@@ -14,7 +14,7 @@ SimplePDF est un outil PDF local, sobre et productif. Il ne concurrence pas Adob
 - Tout utilisateur refusant d'uploader des documents sensibles en ligne.
 
 ## Parcours principal
-1. L'utilisateur ouvre SimplePDF.
+1. L'utilisateur ouvre MonBureauPDF.
 2. Il dépose ses PDF ou images (drag & drop ou bouton).
 3. Les miniatures s'affichent en grille.
 4. Il réorganise, sélectionne, supprime ce qu'il veut.

@@ -1,4 +1,4 @@
-// text-actions.js — Extraction texte PDF
+﻿// text-actions.js — Extraction texte PDF
 
 export async function extractTextFromPages(pages, rawBuffers) {
   let pdfjsLib = window.pdfjsLib;
@@ -49,7 +49,7 @@ export async function extractTextFromPages(pages, rawBuffers) {
   }
 
   if (!textParts.length) {
-    throw new Error('Aucun texte extractible. Ce PDF est probablement un scan. L\'OCR n\'est pas inclus dans SimplePDF.');
+    throw new Error('Aucun texte extractible. Ce PDF est probablement un scan. L\'OCR n\'est pas inclus dans MonBureauPDF.');
   }
 
   return textParts.join('\n');

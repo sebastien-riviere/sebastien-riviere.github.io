@@ -1,4 +1,4 @@
-// pdf-renderer.js — PDF.js, rendu miniatures canvas
+﻿// pdf-renderer.js — PDF.js, rendu miniatures canvas
 
 import { state } from './state.js';
 import { uniqueId } from './utils.js';
@@ -23,7 +23,7 @@ export async function renderPdfThumbnails(fileObj) {
     pdfDoc = await loadingTask.promise;
   } catch (err) {
     if (err.name === 'PasswordException') {
-      throw new Error('Ce PDF est protégé par un mot de passe. SimplePDF ne supporte pas les PDF chiffrés.');
+      throw new Error('Ce PDF est protégé par un mot de passe. MonBureauPDF ne supporte pas les PDF chiffrés.');
     }
     throw new Error(`Impossible d'ouvrir le PDF : ${err.message}`);
   }

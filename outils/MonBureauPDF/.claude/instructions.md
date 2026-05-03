@@ -1,4 +1,4 @@
-# .claude/instructions.md — SimplePDF
+﻿# .claude/instructions.md — MonBureauPDF
 
 ## Instructions opérationnelles pour Claude Code
 

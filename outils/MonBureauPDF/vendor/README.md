@@ -1,6 +1,6 @@
-# /vendor — Bibliothèques locales
+﻿# /vendor — Bibliothèques locales
 
-Ce dossier contient les bibliothèques JavaScript utilisées par SimplePDF.
+Ce dossier contient les bibliothèques JavaScript utilisées par MonBureauPDF.
 Pour GitHub Pages et l'usage local hors-ligne, les fichiers doivent être présents ici.
 
 En développement, le projet peut utiliser temporairement les CDN jsDelivr indiqués ci-dessous.
