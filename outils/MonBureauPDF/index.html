@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -107,7 +107,7 @@
       <!-- Import -->
       <section class="sidebar-section">
         <div class="sidebar-section-title">Importer</div>
-        <input type="file" id="file-input" accept=".pdf,.jpg,.jpeg,.png,.webp" multiple class="visually-hidden">
+        <input type="file" id="file-input" accept=".pdf,.jpg,.jpeg,.jfif,.jpe,.png,.webp,.gif,.bmp,.tiff,.tif,.avif,.svg,application/pdf,image/*" multiple class="visually-hidden">
         <button id="btn-import" class="btn btn-primary btn-full">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M8 2v8M4 6l4-4 4 4"/>
@@ -115,7 +115,7 @@
           </svg>
           Importer des fichiers
         </button>
-        <p class="text-xs text-muted" style="margin-top:6px">PDF, JPG, PNG, WebP</p>
+        <p class="text-xs text-muted" style="margin-top:6px">PDF · JPG/JFIF · PNG · WebP · GIF · BMP · TIFF · SVG</p>
       </section>
 
       <!-- Sélection -->
@@ -275,7 +275,7 @@
             <div class="dropzone-title">Dépose tes PDF et images ici</div>
             <div class="dropzone-sub" style="margin-top:6px">ou clique pour sélectionner des fichiers</div>
           </div>
-          <div class="dropzone-formats">PDF · JPG · PNG · WebP</div>
+          <div class="dropzone-formats">PDF · JPG · JPEG · JFIF · PNG · WebP · GIF · BMP · TIFF · AVIF · SVG</div>
           <button class="btn btn-primary" onclick="event.stopPropagation(); document.getElementById('file-input').click()">
             Importer des fichiers
           </button>
