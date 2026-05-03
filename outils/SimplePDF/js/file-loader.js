@@ -100,7 +100,9 @@ export function initDropzone(dropEl, inputEl) {
   });
 
   // Clic sur la dropzone → ouvre le sélecteur
+  // Exclure les clics sur les boutons (évite double ouverture du sélecteur)
   dropEl.addEventListener('click', e => {
+    if (e.target.closest('button')) return;
     if (e.target === dropEl || e.target.closest('.dropzone-inner')) {
       inputEl?.click();
     }

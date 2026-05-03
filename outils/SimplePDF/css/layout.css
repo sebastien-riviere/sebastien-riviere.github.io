@@ -221,11 +221,20 @@
 }
 
 /* Boutons mobile uniquement */
-.mobile-only { display: none; }
+.mobile-only { display: none !important; }
+
+/* Overlay sidebar — caché par défaut sur desktop */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.38);
+  z-index: 199;
+}
 
 @media (max-width: 768px) {
   .app-header-workflow { display: none; }
-  .mobile-only { display: inline-flex; }
+  .mobile-only { display: inline-flex !important; }
 
   /* Sidebars en drawer */
   .sidebar-left {
@@ -256,13 +265,6 @@
   .sidebar-right.open { right: 0; }
 
   /* Overlay derrière les drawers */
-  .sidebar-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.38);
-    z-index: 199;
-  }
   .sidebar-overlay.visible { display: block; }
 
   /* Workspace pleine largeur */

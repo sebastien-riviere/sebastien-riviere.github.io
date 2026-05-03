@@ -12,7 +12,7 @@ import {
   exportGrayscale, exportWithPageNumbers, exportWithWatermark,
   exportWithStamp, exportWithHeaderFooter, exportWithMetadata, exportSplit,
 } from './overlay-export.js';
-import { openTextModal, openSignatureModal } from './editor-modal.js';
+import { openTextModal, openSignatureModal, initEditorView } from './editor-modal.js';
 import {
   renderGrid, renderStats, renderLastExport, renderProgress,
   updateActionButtons, setStatus, showToast,
@@ -26,6 +26,7 @@ function init() {
   renderPresets();
   initCompressionSlider();
   initJpgQualitySlider();
+  initEditorView();
   updateActionButtons();
   setStatus('ready');
 

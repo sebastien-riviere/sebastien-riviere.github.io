@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SimplePDF — Outil PDF local</title>
   <meta name="description" content="Manipuler, alléger, réorganiser et exporter ses PDF directement dans le navigateur, sans compte, sans serveur, sans upload.">
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2d5a8e">
   <meta name="mobile-web-app-capable" content="yes">
@@ -245,7 +246,7 @@
             <div class="dropzone-sub" style="margin-top:6px">ou clique pour sélectionner des fichiers</div>
           </div>
           <div class="dropzone-formats">PDF · JPG · PNG · WebP</div>
-          <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
+          <button class="btn btn-primary" onclick="event.stopPropagation(); document.getElementById('file-input').click()">
             Importer des fichiers
           </button>
           <p class="text-xs text-muted">Tout reste dans ton navigateur. Aucun upload serveur.</p>
@@ -375,6 +376,100 @@
 
 <!-- Toast container -->
 <div id="toast-container" aria-live="polite"></div>
+
+<!-- ═══ ÉDITEUR PLEIN ÉCRAN ═══ -->
+<div id="editor-view" class="editor-view" aria-label="Éditeur de PDF" role="dialog">
+
+  <!-- En-tête éditeur -->
+  <div class="editor-header">
+    <button id="editor-close" class="btn btn-ghost btn-sm">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px">
+        <line x1="10" y1="3" x2="3" y2="10"/><polyline points="3,6 3,10 7,10"/>
+      </svg>
+      Retour
+    </button>
+
+    <div class="editor-tool-group">
+      <button class="editor-tool-btn active" data-tool="text">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
+          <line x1="3" y1="4" x2="13" y2="4"/><line x1="8" y1="4" x2="8" y2="13"/>
+        </svg>
+        Texte
+      </button>
+      <button class="editor-tool-btn" data-tool="signature">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
+          <path d="M2 11c1.5-3.5 2.5-6 3-6s1 3 2 3 2-2 3-2 1 2 2 2 1.5-1 2-1"/>
+          <line x1="1" y1="14" x2="15" y2="14"/>
+        </svg>
+        Signature
+      </button>
+    </div>
+
+    <!-- Options texte -->
+    <div id="editor-text-options" class="editor-opts">
+      <input id="editor-text-input" type="text" placeholder="Texte à placer…" class="input-field" style="flex:1;min-width:140px;height:30px">
+      <input id="editor-text-size" type="number" value="14" min="6" max="120" class="input-field" title="Taille (pt)" style="width:58px;height:30px">
+      <input id="editor-text-color" type="color" value="#000000" title="Couleur" style="width:32px;height:30px;padding:2px 3px;border:1px solid var(--color-border);border-radius:var(--radius-sm);cursor:pointer">
+      <select id="editor-scope" class="input-field" style="height:30px;font-size:12px">
+        <option value="this">Cette page</option>
+        <option value="all">Toutes les pages</option>
+        <option value="selection">Sélection</option>
+      </select>
+    </div>
+
+    <!-- Options signature -->
+    <div id="editor-sig-options" class="editor-opts" style="display:none">
+      <label class="text-xs text-muted">Largeur :</label>
+      <input id="editor-sig-width" type="number" value="150" min="30" max="400" class="input-field" title="Largeur en pts PDF" style="width:64px;height:30px">
+      <span class="text-xs text-muted">pts</span>
+      <select id="editor-sig-scope" class="input-field" style="height:30px;font-size:12px">
+        <option value="this">Cette page</option>
+        <option value="all">Toutes les pages</option>
+        <option value="selection">Sélection</option>
+      </select>
+    </div>
+
+    <div class="editor-header-right">
+      <button id="editor-undo" class="btn btn-ghost btn-sm" disabled>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
+          <path d="M3 7H11a3 3 0 0 1 0 6H7"/><polyline points="3,4 3,7 6,7"/>
+        </svg>
+        Annuler
+      </button>
+      <button id="editor-apply" class="btn btn-primary btn-sm">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
+          <path d="M8 2v8M4 10l4 4 4-4"/><path d="M2 14h12"/>
+        </svg>
+        Appliquer & Télécharger
+      </button>
+    </div>
+  </div>
+
+  <!-- Pad signature (affiché quand outil = signature) -->
+  <div id="editor-sig-panel" class="editor-sig-panel">
+    <div class="editor-sig-pad-header">
+      <span class="text-xs text-muted">Dessinez votre signature :</span>
+      <label class="btn btn-ghost btn-sm" style="cursor:pointer" title="Importer une image de signature">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px">
+          <path d="M8 2v8M4 6l4-4 4 4"/><path d="M2 12v2h12v-2"/>
+        </svg>
+        Importer
+        <input type="file" id="editor-sig-import" accept="image/*" class="visually-hidden">
+      </label>
+      <button id="editor-sig-clear" class="btn btn-ghost btn-sm">Effacer</button>
+    </div>
+    <canvas id="editor-sig-canvas" class="editor-sig-canvas"></canvas>
+  </div>
+
+  <!-- Corps de l'éditeur -->
+  <div class="editor-body">
+    <!-- Bande miniatures -->
+    <div class="editor-thumbs" id="editor-thumbs"></div>
+    <!-- Zone pages -->
+    <div class="editor-pages" id="editor-pages"></div>
+  </div>
+
+</div>
 
 <!-- JS modules -->
 <script type="module" src="js/app.js"></script>

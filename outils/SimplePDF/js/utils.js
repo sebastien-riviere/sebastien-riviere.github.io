@@ -52,14 +52,24 @@ export function shortDate() {
 
 export function exportName(type) {
   const map = {
-    pdf: 'simplepdf_export.pdf',
-    selection: 'simplepdf_selection.pdf',
-    compressed: 'simplepdf_compressed.pdf',
-    pngzip: 'simplepdf_pages_png.zip',
-    jpgzip: 'simplepdf_pages_jpg.zip',
-    text: 'simplepdf_text.txt',
+    pdf:          'simplepdf_export.pdf',
+    selection:    'simplepdf_selection.pdf',
+    compressed:   'simplepdf_compressed.pdf',
+    pngzip:       'simplepdf_pages_png.zip',
+    jpgzip:       'simplepdf_pages_jpg.zip',
+    jpgzip_sel:   'simplepdf_selection_jpg.zip',
+    text:         'simplepdf_text.txt',
+    grayscale:    'simplepdf_grayscale.pdf',
+    numbered:     'simplepdf_numbered.pdf',
+    watermark:    'simplepdf_watermark.pdf',
+    stamp:        'simplepdf_stamp.pdf',
+    headerfooter: 'simplepdf_headerfooter.pdf',
+    metadata:     'simplepdf_export.pdf',
+    annotated:    'simplepdf_annote.pdf',
+    signed:       'simplepdf_signe.pdf',
+    split:        'simplepdf_pages_split.zip',
   };
-  return map[type] || `simplepdf_${type}.bin`;
+  return map[type] || `simplepdf_${type}.pdf`;
 }
 
 export function dataURLtoBlob(dataURL) {
