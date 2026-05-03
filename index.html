@@ -41,6 +41,9 @@ main{flex:1;padding:0 40px 64px;max-width:860px;width:100%;margin:0 auto;}
 .card-desc{font-family:'Lora',serif;font-size:14px;color:#5a7a92;line-height:1.6;}
 .card-arrow{display:inline-block;margin-top:14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:#3a8ac4;}
 
+/* ── View badge ── */
+.view-badge{margin-left:8px;padding:2px 8px;border-radius:20px;background:#e8f0f7;font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:#3a8ac4;vertical-align:middle;white-space:nowrap;}
+
 /* ── Footer ── */
 footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'Nunito',sans-serif;font-size:12px;color:#aabcca;border-top:1px solid #e4edf5;}
 
@@ -101,12 +104,38 @@ footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'N
 
 <footer>
   <span>© Sébastien Rivière · Avril 2026</span>
+  <a href="https://page-counter.sebastienriviere-contact.workers.dev/stats" target="_blank" rel="noopener" style="margin-left:16px;color:#aabcca;text-decoration:none;font-size:12px;">Stats →</a>
   <a class="contact-btn" href="mailto:rsebastien@protonmail.com" title="Me contacter" style="margin-left:20px;vertical-align:middle;">
     <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
   </a>
   <span style="font-size:13px;color:#7a96aa;margin-left:6px;vertical-align:middle;">Me contacter</span>
 </footer>
 
+<script>
+(async () => {
+  const BASE = 'https://page-counter.sebastienriviere-contact.workers.dev';
+  const MAP = {
+    '/guide/guide-token':  'guide-token',
+    '/outils/MD-Convert/': 'md-convert',
+    '/outils/MonBureauPDF/': 'monbureaupdf',
+  };
+  fetch(BASE + '/count?page=home', { method: 'POST' }).catch(() => {});
+  for (const [href, page] of Object.entries(MAP)) {
+    const link = document.querySelector(`a[href="${href}"]`);
+    if (!link) continue;
+    const titleEl = link.querySelector('.card-title');
+    if (!titleEl) continue;
+    try {
+      const { count } = await (await fetch(`${BASE}/count?page=${page}`)).json();
+      if (!count) continue;
+      const badge = document.createElement('span');
+      badge.className = 'view-badge';
+      badge.textContent = count.toLocaleString('fr-FR') + ' vues';
+      titleEl.appendChild(badge);
+    } catch {}
+  }
+})();
+</script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
