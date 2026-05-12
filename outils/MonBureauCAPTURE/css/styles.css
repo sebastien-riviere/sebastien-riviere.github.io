@@ -1057,6 +1057,72 @@ body {
   margin: 0 4px;
 }
 
+/* ═══ Mode card features list ═══ */
+.mode-card-features {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mode-card-features li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+
+.mode-card-features .icon {
+  color: var(--success);
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+  stroke-width: 2.5;
+}
+
+/* ═══ Use cases (import page) ═══ */
+.use-cases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.use-case {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.use-case .icon {
+  color: var(--brand);
+  flex-shrink: 0;
+}
+
+.use-case strong {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.use-case span {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .use-cases { grid-template-columns: 1fr; }
+}
+
 /* ═══ Step tag (① ② ③) ═══ */
 .step-tag {
   display: inline-flex;

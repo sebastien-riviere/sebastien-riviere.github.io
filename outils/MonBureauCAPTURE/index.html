@@ -68,11 +68,11 @@
         <div class="nav-group-title">Nouvelle session</div>
         <button class="nav-item" data-page="capture">
           <svg class="icon"><use href="#i-monitor"></use></svg>
-          <span>Démarrer une capture</span>
+          <span>Capture d'écran live</span>
         </button>
         <button class="nav-item" data-page="import">
           <svg class="icon"><use href="#i-upload"></use></svg>
-          <span>Importer un fichier</span>
+          <span>Importer vidéo / audio</span>
         </button>
       </div>
 
@@ -80,13 +80,13 @@
         <div class="nav-group-title">Session en cours</div>
         <button class="nav-item" data-page="postprocess">
           <svg class="icon"><use href="#i-package"></use></svg>
-          <span>Ma session</span>
+          <span>Fichiers & exports</span>
           <span class="nav-counter" id="navPpCounter" style="display:none">0</span>
         </button>
       </div>
 
       <div class="nav-group">
-        <div class="nav-group-title">Outils</div>
+        <div class="nav-group-title">Historique</div>
         <button class="nav-item" data-page="home">
           <svg class="icon"><use href="#i-grid"></use></svg>
           <span>Accueil</span>
@@ -97,7 +97,7 @@
         </button>
         <button class="nav-item" data-page="help">
           <svg class="icon"><use href="#i-help"></use></svg>
-          <span>Aide</span>
+          <span>Aide & raccourcis</span>
         </button>
       </div>
 
@@ -113,32 +113,32 @@
       <section class="page" id="page-home">
 
         <div class="hero">
-          <h1 class="hero-title">Capturez. Repérez. Exportez.</h1>
-          <p class="hero-sub">Enregistrez votre écran ou importez une vidéo, marquez les moments importants, et exportez le tout en un clic — sans rien envoyer en ligne.</p>
+          <h1 class="hero-title">Enregistrez. Annotez. Exportez.</h1>
+          <p class="hero-sub">Capturez votre écran en segments, balisez les moments clés avec des repères et des captures d'image, puis générez en un clic un rapport PDF, une archive complète ou un pack prêt pour l'analyse IA — sans rien envoyer en ligne.</p>
         </div>
 
         <div class="journey-grid">
           <div class="journey-step">
             <div class="journey-num">1</div>
             <div class="journey-body">
-              <h3>Capturer</h3>
-              <p>Enregistrer votre écran ou importer une vidéo existante.</p>
+              <h3>Enregistrer ou importer</h3>
+              <p>Capture live en segments horodatés, ou import d'un fichier vidéo/audio existant.</p>
             </div>
           </div>
           <div class="journey-arrow"><svg class="icon"><use href="#i-arrow-right"></use></svg></div>
           <div class="journey-step">
             <div class="journey-num">2</div>
             <div class="journey-body">
-              <h3>Repérer</h3>
-              <p>Captures d'image et repères temporels aux moments clés.</p>
+              <h3>Baliser les moments clés</h3>
+              <p>Captures d'écran automatiques ou manuelles, repères temporels nommés, notes libres.</p>
             </div>
           </div>
           <div class="journey-arrow"><svg class="icon"><use href="#i-arrow-right"></use></svg></div>
           <div class="journey-step">
             <div class="journey-num">3</div>
             <div class="journey-body">
-              <h3>Exporter</h3>
-              <p>Vidéos, PDF illustré, archive ZIP, pack pour NotebookLM.</p>
+              <h3>Produire les livrables</h3>
+              <p>Rapport PDF illustré, archive ZIP, timeline interactive, pack pour NotebookLM.</p>
             </div>
           </div>
         </div>
@@ -148,17 +148,27 @@
             <div class="mode-card-icon">
               <svg class="icon"><use href="#i-monitor"></use></svg>
             </div>
-            <h3 class="mode-card-title">Démarrer une capture</h3>
-            <p class="mode-card-desc">Enregistrer votre écran (et le son système ou votre micro) en plusieurs morceaux.</p>
-            <span class="mode-card-cta">Commencer <svg class="icon icon-sm"><use href="#i-arrow-right"></use></svg></span>
+            <h3 class="mode-card-title">Capture live d'écran</h3>
+            <p class="mode-card-desc">Enregistre votre écran en segments vidéo horodatés — avec son système et micro optionnel. Posez des repères et capturez des images pendant l'enregistrement. Idéal pour documenter une démo, une formation, une réunion.</p>
+            <ul class="mode-card-features">
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Segments automatiques (toutes les N minutes)</li>
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Captures d'écran auto ou manuelles (touche S)</li>
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Son système + micro mixés</li>
+            </ul>
+            <span class="mode-card-cta">Démarrer <svg class="icon icon-sm"><use href="#i-arrow-right"></use></svg></span>
           </button>
 
           <button class="mode-card" id="modeImport">
             <div class="mode-card-icon">
               <svg class="icon"><use href="#i-upload"></use></svg>
             </div>
-            <h3 class="mode-card-title">Importer un fichier</h3>
-            <p class="mode-card-desc">Glisser une vidéo ou un audio existant pour le repérer et l'exporter.</p>
+            <h3 class="mode-card-title">Import d'un fichier existant</h3>
+            <p class="mode-card-desc">Ouvrez une vidéo ou un audio déjà enregistré. Lisez-le, balisez les passages importants avec des repères et des captures, rédigez vos notes — puis exportez un rapport PDF, une timeline ou un pack pour NotebookLM.</p>
+            <ul class="mode-card-features">
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Lecture + repères au timecode exact</li>
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Rapport PDF à partir des captures</li>
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Conversion MP4/MP3 via script FFmpeg fourni</li>
+            </ul>
             <span class="mode-card-cta">Choisir un fichier <svg class="icon icon-sm"><use href="#i-arrow-right"></use></svg></span>
           </button>
         </div>
@@ -190,16 +200,16 @@
       <!-- ╔══ ① CAPTURE SETUP ══╗ -->
       <section class="page" id="page-capture">
         <div class="page-header">
-          <div class="step-tag"><span>1</span> Capturer</div>
-          <h2 class="page-title">Réglages avant de lancer</h2>
-          <p class="page-sub">Réglez la qualité, la durée des morceaux, le micro. Cliquez ensuite sur Démarrer — votre navigateur vous demandera quel écran partager.</p>
+          <div class="step-tag"><span>1</span> Enregistrer</div>
+          <h2 class="page-title">Configurer la capture</h2>
+          <p class="page-sub">L'enregistrement est découpé automatiquement en segments pour éviter de perdre des heures de contenu en cas d'interruption. Configurez la qualité, le micro et les captures automatiques.</p>
         </div>
 
         <div class="grid-2">
           <div class="card">
             <div class="card-title">
               <svg class="icon"><use href="#i-settings"></use></svg>
-              Qualité & découpage
+              Qualité & segmentation automatique
             </div>
 
             <div class="field">
@@ -207,47 +217,48 @@
               <select class="select" id="captureBitrate">
                 <option value="low">Légère — environ 0.7 Go par heure</option>
                 <option value="medium" selected>Standard — environ 1.4 Go par heure</option>
-                <option value="high">Haute — environ 2.7 Go par heure</option>
+                <option value="high">Haute définition — environ 2.7 Go par heure</option>
               </select>
-              <div class="field-hint">Choisissez Légère si vous avez peu d'espace disque.</div>
+              <div class="field-hint">Choisissez Légère si vous avez peu d'espace disque, Haute pour capturer des détails fins (code, texte petit).</div>
             </div>
 
             <div class="field">
-              <label class="field-label" for="captureSegment">Découpage en morceaux</label>
+              <label class="field-label" for="captureSegment">Durée d'un segment</label>
               <select class="select" id="captureSegment">
-                <option value="5">Toutes les 5 minutes</option>
-                <option value="10">Toutes les 10 minutes</option>
-                <option value="15" selected>Toutes les 15 minutes</option>
-                <option value="20">Toutes les 20 minutes</option>
-                <option value="30">Toutes les 30 minutes</option>
-                <option value="45">Toutes les 45 minutes</option>
-                <option value="60">Toutes les heures</option>
+                <option value="5">5 minutes</option>
+                <option value="10">10 minutes</option>
+                <option value="15" selected>15 minutes (recommandé)</option>
+                <option value="20">20 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="45">45 minutes</option>
+                <option value="60">1 heure</option>
               </select>
-              <div class="field-hint">L'enregistrement est découpé pour limiter la perte en cas d'interruption.</div>
+              <div class="field-hint">Chaque segment est sauvegardé dès qu'il est terminé. Si le navigateur plante, vous ne perdez que le segment en cours.</div>
             </div>
           </div>
 
           <div class="card">
             <div class="card-title">
-              <svg class="icon"><use href="#i-mic"></use></svg>
-              Son & captures auto
+              <svg class="icon"><use href="#i-camera"></use></svg>
+              Son & captures automatiques
             </div>
 
             <label class="checkbox-row">
               <input type="checkbox" id="captureMic">
               <svg class="icon"><use href="#i-mic"></use></svg>
-              <span>Inclure mon micro</span>
+              <span>Enregistrer mon micro</span>
             </label>
-            <div class="field-hint" style="margin-left:24px;margin-bottom:14px">Mixe votre voix avec le son de l'écran (utile pour les commentaires).</div>
+            <div class="field-hint" style="margin-left:24px;margin-bottom:14px">Votre voix est mixée avec le son de l'écran. Utile pour commenter une démo ou dicter des notes à la volée.</div>
 
             <label class="checkbox-row">
               <input type="checkbox" id="captureAutoShot">
               <svg class="icon"><use href="#i-clock"></use></svg>
-              <span>Capturer une image automatiquement</span>
+              <span>Captures d'écran automatiques</span>
             </label>
+            <div class="field-hint" style="margin-left:24px;margin-bottom:8px">Prend une image de l'écran à intervalle régulier — idéal pour générer un rapport sans rien faire manuellement.</div>
 
             <div class="field" style="margin-left:24px">
-              <label class="field-label" for="captureShotInterval">Intervalle</label>
+              <label class="field-label" for="captureShotInterval">Intervalle entre chaque capture</label>
               <select class="select" id="captureShotInterval">
                 <option value="5">Toutes les 5 secondes</option>
                 <option value="10">Toutes les 10 secondes</option>
@@ -257,6 +268,13 @@
                 <option value="120">Toutes les 2 minutes</option>
               </select>
             </div>
+          </div>
+        </div>
+
+        <div class="notice notice-info">
+          <svg class="icon"><use href="#i-info"></use></svg>
+          <div class="notice-content">
+            <strong>Comment ça se passe ?</strong> Après le clic sur Démarrer, le navigateur vous demande quel écran ou quelle fenêtre partager. Vous pouvez mettre en pause (<span class="kbd">Espace</span>), poser un repère (<span class="kbd">M</span>) ou capturer une image (<span class="kbd">S</span>) à tout moment. Quand vous arrêtez, vous arrivez directement sur vos fichiers et exports.
           </div>
         </div>
 
@@ -318,11 +336,12 @@
           <div class="card-title">
             <svg class="icon"><use href="#i-image"></use></svg>
             Captures de cette session
+            <span class="muted text-xs" style="margin-left:auto;font-weight:400">Touche <span class="kbd">S</span> ou bouton Capture</span>
           </div>
           <div class="shots-grid" id="cockpitShotsGrid">
             <div class="empty">
               <svg class="icon"><use href="#i-camera"></use></svg>
-              Aucune capture pour l'instant — touche <span class="kbd">S</span> ou bouton « Capture »
+              Aucune capture — appuyez sur <span class="kbd">S</span> ou activez les captures automatiques dans les réglages
             </div>
           </div>
         </div>
@@ -331,9 +350,28 @@
       <!-- ╔══ IMPORT ══╗ -->
       <section class="page" id="page-import">
         <div class="page-header">
-          <div class="step-tag"><span>1</span> Capturer</div>
-          <h2 class="page-title">Importer un fichier</h2>
-          <p class="page-sub">Glissez-déposez une vidéo ou un audio. Tout reste sur votre ordinateur.</p>
+          <div class="step-tag"><span>1</span> Importer</div>
+          <h2 class="page-title">Importer une vidéo ou un audio</h2>
+          <p class="page-sub">Vous avez déjà un fichier enregistré — réunion Zoom, screencast, podcast, entretien ? Importez-le pour le baliser, l'annoter et en extraire un rapport structuré sans le réécouter intégralement.</p>
+        </div>
+
+        <!-- Cas d'usage import -->
+        <div class="use-cases">
+          <div class="use-case">
+            <svg class="icon icon-lg"><use href="#i-bookmark"></use></svg>
+            <strong>Repérer les passages clés</strong>
+            <span>Posez des repères temporels nommés directement sur la timeline sans réécouter tout le fichier.</span>
+          </div>
+          <div class="use-case">
+            <svg class="icon icon-lg"><use href="#i-image"></use></svg>
+            <strong>Générer un rapport visuel</strong>
+            <span>Capturez des images à chaque moment important — exportées en PDF illustré prêt à partager.</span>
+          </div>
+          <div class="use-case">
+            <svg class="icon icon-lg"><use href="#i-brain"></use></svg>
+            <strong>Préparer l'analyse IA</strong>
+            <span>Exportez un pack NotebookLM : la timeline + vos notes + des questions suggérées, prêts à importer.</span>
+          </div>
         </div>
 
         <div class="dropzone" id="dropzone">
@@ -357,9 +395,9 @@
       <!-- ╔══ IMPORT PREVIEW ══╗ -->
       <section class="page" id="page-import-preview">
         <div class="page-header">
-          <div class="step-tag"><span>2</span> Repérer</div>
-          <h2 class="page-title">Marquer les moments importants</h2>
-          <p class="page-sub">Capturez des images, posez des repères et prenez vos notes pendant la lecture.</p>
+          <div class="step-tag"><span>2</span> Baliser</div>
+          <h2 class="page-title">Baliser les moments importants</h2>
+          <p class="page-sub">Posez des repères nommés (<span class="kbd">M</span>), capturez une image de l'écran (<span class="kbd">S</span>), prenez vos notes. Tout est horodaté automatiquement.</p>
         </div>
         <div id="importPreviewWrap"></div>
       </section>
@@ -406,8 +444,8 @@
           <div class="section-head">
             <div class="section-num">A</div>
             <div>
-              <h3 class="section-title">Vos fichiers vidéo</h3>
-              <p class="section-desc">Les morceaux enregistrés en .webm. Téléchargez-les avant de fermer.</p>
+              <h3 class="section-title">Fichiers vidéo enregistrés</h3>
+              <p class="section-desc">Les segments .webm sauvegardés pendant l'enregistrement. <strong>Téléchargez-les avant de fermer l'onglet</strong> — ils ne survivent pas à la fermeture du navigateur.</p>
             </div>
           </div>
 
@@ -463,7 +501,7 @@
             <div class="section-num">B</div>
             <div>
               <h3 class="section-title">Captures d'écran</h3>
-              <p class="section-desc">Cliquez pour agrandir, modifiez le titre ou supprimez.</p>
+              <p class="section-desc">Les images capturées manuellement ou automatiquement pendant la session. Elles constituent la matière première du rapport PDF. Renommez-les pour les identifier, supprimez les doublons.</p>
             </div>
           </div>
 
@@ -488,7 +526,7 @@
             <div class="section-num">C</div>
             <div>
               <h3 class="section-title">Repères temporels</h3>
-              <p class="section-desc">Les moments clés. Cliquez sur le timecode pour y aller dans le lecteur.</p>
+              <p class="section-desc">Les moments balisés pendant la session ou l'écoute, avec leur timecode. Ils apparaissent dans la timeline exportée et dans le rapport PDF. Cliquez sur un timecode pour y sauter dans le lecteur.</p>
             </div>
           </div>
 
@@ -510,8 +548,8 @@
           <div class="section-head">
             <div class="section-num">D</div>
             <div>
-              <h3 class="section-title">Vos notes</h3>
-              <p class="section-desc">Sauvegardées automatiquement dans votre navigateur.</p>
+              <h3 class="section-title">Notes de session</h3>
+              <p class="section-desc">Contexte, décisions, points d'action, questions en suspens. Elles sont incluses dans le ZIP, le PDF et le pack NotebookLM. Sauvegardées automatiquement.</p>
             </div>
           </div>
 
@@ -525,8 +563,8 @@
           <div class="section-head">
             <div class="section-num accent">E</div>
             <div>
-              <h3 class="section-title">Exporter votre session</h3>
-              <p class="section-desc">Choisissez ce que vous voulez télécharger. Le ZIP regroupe tout en un seul fichier.</p>
+              <h3 class="section-title">Produire les livrables</h3>
+              <p class="section-desc">Choisissez ce que vous voulez générer. Chaque export est autonome et prêt à être partagé ou archivé.</p>
             </div>
           </div>
 
@@ -535,8 +573,8 @@
               <button class="export-card export-card-primary" id="exportZipMain">
                 <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-archive"></use></svg></div>
                 <div class="export-card-text">
-                  <strong>Tout en une archive ZIP</strong>
-                  <span>Vidéos, captures, repères, notes, scripts — un seul fichier (recommandé)</span>
+                  <strong>Archive ZIP complète</strong>
+                  <span>Vidéos + captures + repères + notes + scripts FFmpeg + pack NotebookLM — tout en un fichier</span>
                 </div>
                 <svg class="icon export-card-arrow"><use href="#i-arrow-right"></use></svg>
               </button>
@@ -545,7 +583,7 @@
                 <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-file-text"></use></svg></div>
                 <div class="export-card-text">
                   <strong>Rapport PDF illustré</strong>
-                  <span>Toutes les captures dans un document A4 prêt à partager</span>
+                  <span>Toutes les captures d'écran dans un document A4 avec repères et notes — prêt à partager ou à imprimer</span>
                 </div>
                 <svg class="icon export-card-arrow"><use href="#i-download"></use></svg>
               </button>
@@ -553,8 +591,8 @@
               <button class="export-card" id="exportNotebookLMMain">
                 <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-brain"></use></svg></div>
                 <div class="export-card-text">
-                  <strong>Pour NotebookLM</strong>
-                  <span>6 fichiers Markdown à importer dans notebooklm.google.com</span>
+                  <strong>Pack NotebookLM</strong>
+                  <span>6 fichiers Markdown structurés (timeline, notes, questions suggérées) — à importer dans notebooklm.google.com pour analyse IA</span>
                 </div>
                 <svg class="icon export-card-arrow"><use href="#i-download"></use></svg>
               </button>
@@ -562,8 +600,8 @@
               <button class="export-card" id="exportHtmlMain">
                 <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-eye"></use></svg></div>
                 <div class="export-card-text">
-                  <strong>Page web autonome</strong>
-                  <span>Une page HTML lisible hors-ligne, partageable par mail</span>
+                  <strong>Timeline HTML interactive</strong>
+                  <span>Page web autonome avec captures cliquables et repères — lisible hors-ligne, partageable par mail ou Drive</span>
                 </div>
                 <svg class="icon export-card-arrow"><use href="#i-download"></use></svg>
               </button>
@@ -672,22 +710,22 @@
             <li>
               <span class="help-step-num">1</span>
               <div>
-                <strong>Capturer</strong>
-                <p>Démarrez une capture d'écran ou importez un fichier vidéo/audio existant. La capture utilise <code>getDisplayMedia</code>, l'API standard du navigateur.</p>
+                <strong>Enregistrer ou importer</strong>
+                <p>En capture live, le navigateur enregistre votre écran en segments vidéo horodatés. Chaque segment est finalisé et sauvegardable dès sa fin — si le navigateur plante, vous ne perdez que le segment en cours. En import, vous ouvrez un fichier déjà existant (réunion Zoom, screencast, entretien…).</p>
               </div>
             </li>
             <li>
               <span class="help-step-num">2</span>
               <div>
-                <strong>Repérer</strong>
-                <p>Pendant la session : prenez des captures d'image (touche <span class="kbd">S</span>) et posez des repères temporels (<span class="kbd">M</span>). Tout est annoté automatiquement avec son timecode.</p>
+                <strong>Baliser les moments importants</strong>
+                <p>Touche <span class="kbd">S</span> pour capturer une image de l'écran au moment précis. Touche <span class="kbd">M</span> pour poser un repère temporel nommé. Les captures automatiques (toutes les N secondes) produisent un stock d'images exploitables sans action manuelle — idéal pour générer un rapport complet d'une longue session.</p>
               </div>
             </li>
             <li>
               <span class="help-step-num">3</span>
               <div>
-                <strong>Exporter</strong>
-                <p>Téléchargez le ZIP complet (recommandé), un PDF illustré, ou les fichiers individuels. Le pack NotebookLM permet l'import manuel dans notebooklm.google.com.</p>
+                <strong>Produire les livrables</strong>
+                <p>Le <strong>PDF illustré</strong> rassemble toutes vos captures dans un document A4 prêt à partager. Le <strong>pack NotebookLM</strong> exporte la timeline + notes + questions suggérées pour analyse IA. La <strong>timeline HTML</strong> est une page web autonome partageable par mail. Le <strong>ZIP complet</strong> archive tout — vidéos, captures, scripts de conversion.</p>
               </div>
             </li>
           </ol>

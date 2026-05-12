@@ -138,9 +138,9 @@ const UI = {
 
     const meta = `
       <div class="card">
-        <div class="card-title">${this.icon('i-file')}Fichier importé</div>
+        <div class="card-title">${this.icon('i-file')}Fichier chargé</div>
         <div class="kv-list">
-          <div class="kv"><span class="kv-key">Nom</span><span class="kv-val">${Utils.escapeHtml(file.name)}</span></div>
+          <div class="kv"><span class="kv-key">Fichier</span><span class="kv-val">${Utils.escapeHtml(file.name)}</span></div>
           <div class="kv"><span class="kv-key">Format</span><span class="kv-val">.${ext}</span></div>
           <div class="kv"><span class="kv-key">Taille</span><span class="kv-val">${Utils.formatBytes(file.size)}</span></div>
           <div class="kv"><span class="kv-key">Durée</span><span class="kv-val" id="importDuration">Détection…</span></div>
@@ -151,17 +151,21 @@ const UI = {
     let player = '';
     if (isPlayable && (isVideo || isAudio)) {
       const tag = isVideo ? 'video' : 'audio';
+      const tip = isVideo
+        ? 'Lisez le fichier, puis capturez (<span class="kbd">S</span>) ou posez un repère (<span class="kbd">M</span>) aux moments importants.'
+        : 'Écoutez le fichier et posez des repères (<span class="kbd">M</span>) sur les passages à retenir.';
       player = `
         <div class="card">
-          <div class="card-title">${this.icon('i-play')}Lecteur</div>
+          <div class="card-title">${this.icon('i-play')}Lecture — balisez pendant que vous lisez</div>
+          <p style="font-size:0.82rem;color:var(--ink-3);margin:0 0 12px">${tip}</p>
           <div class="player-frame">
             <${tag} id="importPlayer" src="${url}" controls preload="metadata"></${tag}>
           </div>
           <div class="player-toolbar">
             <span class="player-time" id="importPlayerTime">00:00:00</span>
-            ${isVideo ? `<button class="btn btn-primary btn-sm" id="btnImportShot">${this.icon('i-camera')}Capturer (<span class="kbd">S</span>)</button>` : ''}
-            <button class="btn btn-secondary btn-sm" id="btnImportMarker">${this.icon('i-flag')}Marqueur (<span class="kbd">M</span>)</button>
-            <button class="btn btn-secondary btn-sm" id="btnImportMarkerLabel">${this.icon('i-edit')}Marqueur nommé</button>
+            ${isVideo ? `<button class="btn btn-primary btn-sm" id="btnImportShot">${this.icon('i-camera')}Capturer <span class="kbd">S</span></button>` : ''}
+            <button class="btn btn-secondary btn-sm" id="btnImportMarker">${this.icon('i-flag')}Repère rapide <span class="kbd">M</span></button>
+            <button class="btn btn-secondary btn-sm" id="btnImportMarkerLabel">${this.icon('i-edit')}Repère nommé</button>
           </div>
         </div>
       `;
@@ -170,8 +174,8 @@ const UI = {
         <div class="notice notice-warning">
           ${this.icon('i-alert')}
           <div class="notice-content">
-            <strong>Format non lisible directement</strong> dans ce navigateur (${ext}).<br>
-            Vous pouvez tout de même générer les scripts FFmpeg pour convertir le fichier en MP4 ou MP3 lisible.
+            <strong>Format non lisible dans le navigateur (.${ext})</strong><br>
+            Pas de problème — vous pouvez tout de même ajouter des repères manuellement et exporter la timeline. Pour lire le fichier, utilisez le script FFmpeg fourni à l'étape suivante pour le convertir en MP4 ou MP3.
           </div>
         </div>
       `;
@@ -180,11 +184,12 @@ const UI = {
     const shotsCard = `
       <div class="card">
         <div class="card-title">
-          ${this.icon('i-image')}Captures de la session
-          <span style="margin-left:auto;font-weight:400;color:var(--ink-3)" id="importShotsCount">0</span>
+          ${this.icon('i-image')}Captures d'écran
+          <span style="margin-left:auto;font-weight:400;color:var(--ink-3);font-size:0.8rem" id="importShotsCount">0 capture</span>
         </div>
+        <p style="font-size:0.82rem;color:var(--ink-3);margin:0 0 12px">Ces images alimenteront votre rapport PDF. Plus elles sont nombreuses et bien nommées, plus le rapport est exploitable.</p>
         <div class="shots-grid" id="importShotsGrid">
-          <div class="empty">${this.icon('i-image')}Aucune capture pour le moment.</div>
+          <div class="empty">${this.icon('i-image')}Aucune capture — appuyez sur <span class="kbd">S</span> pendant la lecture.</div>
         </div>
       </div>
     `;
@@ -192,13 +197,14 @@ const UI = {
     const notesCard = `
       <div class="card">
         <div class="card-title">${this.icon('i-edit')}Notes</div>
-        <textarea class="textarea" id="notesArea" placeholder="Vos notes sur cette session…"></textarea>
+        <p style="font-size:0.82rem;color:var(--ink-3);margin:0 0 10px">Contexte, décisions, à retenir… Incluses dans le PDF, le ZIP et le pack NotebookLM.</p>
+        <textarea class="textarea" id="notesArea" placeholder="Ex: Réunion du 12 mai — Participants : X, Y — Points clés : …"></textarea>
       </div>
     `;
 
     const actions = `
       <div class="toolbar">
-        <button class="btn btn-success btn-lg" id="btnGoExport">${this.icon('i-arrow-right')}Passer aux exports</button>
+        <button class="btn btn-success btn-lg" id="btnGoExport">${this.icon('i-arrow-right')}Générer les livrables</button>
         <button class="btn btn-secondary" data-page="import">${this.icon('i-upload')}Changer de fichier</button>
       </div>
     `;
