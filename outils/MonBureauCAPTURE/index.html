@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D5A8E">
+  <meta name="description" content="Capture vidéo et post-traitement local. Aucun upload, aucune IA.">
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="MBCapture">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <title>MonBureauCAPTURE — Capture et post-traitement local</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div id="iconSprite" style="height:0;width:0;position:absolute;visibility:hidden" aria-hidden="true"></div>
+  <script>
+    fetch('assets/icons.svg').then(r => r.text()).then(t => {
+      document.getElementById('iconSprite').innerHTML = t;
+    }).catch(() => {});
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+
+  <div class="app">
+
+    <header class="app-header">
+      <div style="display:flex;align-items:center;gap:14px">
+        <button class="btn btn-ghost btn-icon-only menu-toggle" id="menuToggle" aria-label="Menu" style="color:white">
+          <svg class="icon"><use href="#i-menu"></use></svg>
+        </button>
+        <a href="#" class="brand" data-page="home">
+          <span class="brand-mark" style="background:transparent;padding:0;width:34px;height:34px">
+            <svg style="width:34px;height:34px"><use href="#i-logo"></use></svg>
+          </span>
+          <span class="brand-text">
+            <span class="brand-name">MonBureau<strong>CAPTURE</strong></span>
+            <span class="brand-tag">v1.6 · 100% local</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="header-tools">
+        <span class="header-status" id="headerStatus">
+          <span class="dot"></span>
+          <span id="headerStatusText">Prêt</span>
+        </span>
+        <a class="header-link" href="https://github.com/sebastien-riviere" target="_blank" rel="noopener">
+          <svg class="icon"><use href="#i-external"></use></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </header>
+
+    <aside class="app-sidebar" id="sidebar">
+
+      <div class="nav-group">
+        <div class="nav-group-title">Nouvelle session</div>
+        <button class="nav-item" data-page="capture">
+          <svg class="icon"><use href="#i-monitor"></use></svg>
+          <span>Démarrer une capture</span>
+        </button>
+        <button class="nav-item" data-page="import">
+          <svg class="icon"><use href="#i-upload"></use></svg>
+          <span>Importer un fichier</span>
+        </button>
+      </div>
+
+      <div class="nav-group" id="navSessionGroup" style="display:none">
+        <div class="nav-group-title">Session en cours</div>
+        <button class="nav-item" data-page="postprocess">
+          <svg class="icon"><use href="#i-package"></use></svg>
+          <span>Ma session</span>
+          <span class="nav-counter" id="navPpCounter" style="display:none">0</span>
+        </button>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Outils</div>
+        <button class="nav-item" data-page="home">
+          <svg class="icon"><use href="#i-grid"></use></svg>
+          <span>Accueil</span>
+        </button>
+        <button class="nav-item" data-page="library">
+          <svg class="icon"><use href="#i-database"></use></svg>
+          <span>Mes sessions</span>
+        </button>
+        <button class="nav-item" data-page="help">
+          <svg class="icon"><use href="#i-help"></use></svg>
+          <span>Aide</span>
+        </button>
+      </div>
+
+      <div style="margin-top:auto;padding:12px 10px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--ink-4);line-height:1.5">
+        <strong style="color:var(--success)">Local-first.</strong><br>
+        Aucun upload. Aucune IA.
+      </div>
+    </aside>
+
+    <main class="app-main">
+
+      <!-- ╔══ ACCUEIL ══╗ -->
+      <section class="page" id="page-home">
+
+        <div class="hero">
+          <h1 class="hero-title">Capturez. Repérez. Exportez.</h1>
+          <p class="hero-sub">Enregistrez votre écran ou importez une vidéo, marquez les moments importants, et exportez le tout en un clic — sans rien envoyer en ligne.</p>
+        </div>
+
+        <div class="journey-grid">
+          <div class="journey-step">
+            <div class="journey-num">1</div>
+            <div class="journey-body">
+              <h3>Capturer</h3>
+              <p>Enregistrer votre écran ou importer une vidéo existante.</p>
+            </div>
+          </div>
+          <div class="journey-arrow"><svg class="icon"><use href="#i-arrow-right"></use></svg></div>
+          <div class="journey-step">
+            <div class="journey-num">2</div>
+            <div class="journey-body">
+              <h3>Repérer</h3>
+              <p>Captures d'image et repères temporels aux moments clés.</p>
+            </div>
+          </div>
+          <div class="journey-arrow"><svg class="icon"><use href="#i-arrow-right"></use></svg></div>
+          <div class="journey-step">
+            <div class="journey-num">3</div>
+            <div class="journey-body">
+              <h3>Exporter</h3>
+              <p>Vidéos, PDF illustré, archive ZIP, pack pour NotebookLM.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mode-grid">
+          <button class="mode-card" id="modeCapture">
+            <div class="mode-card-icon">
+              <svg class="icon"><use href="#i-monitor"></use></svg>
+            </div>
+            <h3 class="mode-card-title">Démarrer une capture</h3>
+            <p class="mode-card-desc">Enregistrer votre écran (et le son système ou votre micro) en plusieurs morceaux.</p>
+            <span class="mode-card-cta">Commencer <svg class="icon icon-sm"><use href="#i-arrow-right"></use></svg></span>
+          </button>
+
+          <button class="mode-card" id="modeImport">
+            <div class="mode-card-icon">
+              <svg class="icon"><use href="#i-upload"></use></svg>
+            </div>
+            <h3 class="mode-card-title">Importer un fichier</h3>
+            <p class="mode-card-desc">Glisser une vidéo ou un audio existant pour le repérer et l'exporter.</p>
+            <span class="mode-card-cta">Choisir un fichier <svg class="icon icon-sm"><use href="#i-arrow-right"></use></svg></span>
+          </button>
+        </div>
+
+        <div class="card" id="homeRecentCard" style="display:none">
+          <div class="card-title">
+            <svg class="icon"><use href="#i-database"></use></svg>
+            Reprendre une session récente
+          </div>
+          <div id="homeRecentSessions"></div>
+        </div>
+
+        <div class="privacy-panel">
+          <div class="privacy-head">
+            <svg class="icon"><use href="#i-shield"></use></svg>
+            Tout reste sur votre ordinateur
+          </div>
+          <ul class="privacy-list">
+            <li><svg class="icon"><use href="#i-check"></use></svg>Aucun fichier envoyé sur un serveur</li>
+            <li><svg class="icon"><use href="#i-check"></use></svg>Aucun compte, aucun tracking</li>
+            <li><svg class="icon"><use href="#i-check"></use></svg>Aucune IA embarquée</li>
+            <li><svg class="icon"><use href="#i-check"></use></svg>Conversion via FFmpeg local (script fourni)</li>
+            <li><svg class="icon"><use href="#i-check"></use></svg>Import NotebookLM 100% manuel</li>
+            <li><svg class="icon"><use href="#i-check"></use></svg>Code source ouvert et auditable</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ╔══ ① CAPTURE SETUP ══╗ -->
+      <section class="page" id="page-capture">
+        <div class="page-header">
+          <div class="step-tag"><span>1</span> Capturer</div>
+          <h2 class="page-title">Réglages avant de lancer</h2>
+          <p class="page-sub">Réglez la qualité, la durée des morceaux, le micro. Cliquez ensuite sur Démarrer — votre navigateur vous demandera quel écran partager.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">
+              <svg class="icon"><use href="#i-settings"></use></svg>
+              Qualité & découpage
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="captureBitrate">Qualité vidéo</label>
+              <select class="select" id="captureBitrate">
+                <option value="low">Légère — environ 0.7 Go par heure</option>
+                <option value="medium" selected>Standard — environ 1.4 Go par heure</option>
+                <option value="high">Haute — environ 2.7 Go par heure</option>
+              </select>
+              <div class="field-hint">Choisissez Légère si vous avez peu d'espace disque.</div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="captureSegment">Découpage en morceaux</label>
+              <select class="select" id="captureSegment">
+                <option value="5">Toutes les 5 minutes</option>
+                <option value="10">Toutes les 10 minutes</option>
+                <option value="15" selected>Toutes les 15 minutes</option>
+                <option value="20">Toutes les 20 minutes</option>
+                <option value="30">Toutes les 30 minutes</option>
+                <option value="45">Toutes les 45 minutes</option>
+                <option value="60">Toutes les heures</option>
+              </select>
+              <div class="field-hint">L'enregistrement est découpé pour limiter la perte en cas d'interruption.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <svg class="icon"><use href="#i-mic"></use></svg>
+              Son & captures auto
+            </div>
+
+            <label class="checkbox-row">
+              <input type="checkbox" id="captureMic">
+              <svg class="icon"><use href="#i-mic"></use></svg>
+              <span>Inclure mon micro</span>
+            </label>
+            <div class="field-hint" style="margin-left:24px;margin-bottom:14px">Mixe votre voix avec le son de l'écran (utile pour les commentaires).</div>
+
+            <label class="checkbox-row">
+              <input type="checkbox" id="captureAutoShot">
+              <svg class="icon"><use href="#i-clock"></use></svg>
+              <span>Capturer une image automatiquement</span>
+            </label>
+
+            <div class="field" style="margin-left:24px">
+              <label class="field-label" for="captureShotInterval">Intervalle</label>
+              <select class="select" id="captureShotInterval">
+                <option value="5">Toutes les 5 secondes</option>
+                <option value="10">Toutes les 10 secondes</option>
+                <option value="15">Toutes les 15 secondes</option>
+                <option value="30" selected>Toutes les 30 secondes</option>
+                <option value="60">Toutes les minutes</option>
+                <option value="120">Toutes les 2 minutes</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <button class="btn btn-record btn-lg" id="btnStartCapture">
+            <svg class="icon"><use href="#i-record"></use></svg>
+            Démarrer la capture
+          </button>
+          <button class="btn btn-ghost" data-page="home">Annuler</button>
+        </div>
+      </section>
+
+      <!-- ╔══ COCKPIT ══╗ -->
+      <section class="page" id="page-cockpit">
+        <div class="cockpit-bar">
+          <div class="rec-indicator" id="cockpitRecIndicator">
+            <span class="pulse-dot"></span>
+            <span>Enregistrement</span>
+            · <span id="cockpitTimer" class="mono">00:00:00</span>
+          </div>
+          <div class="cockpit-actions">
+            <button class="btn btn-secondary btn-sm" id="btnCockpitPause">
+              <svg class="icon icon-sm"><use href="#i-pause"></use></svg>
+              Pause
+            </button>
+            <button class="btn btn-primary btn-sm" id="btnCockpitShot" title="Raccourci : touche S">
+              <svg class="icon icon-sm"><use href="#i-camera"></use></svg>
+              Capture
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btnCockpitMarker" title="Raccourci : touche M">
+              <svg class="icon icon-sm"><use href="#i-flag"></use></svg>
+              Repère
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btnCockpitMarkerLabel">
+              <svg class="icon icon-sm"><use href="#i-edit"></use></svg>
+              Repère nommé
+            </button>
+            <button class="btn btn-danger btn-sm" id="btnCockpitStop">
+              <svg class="icon icon-sm"><use href="#i-stop"></use></svg>
+              Arrêter
+            </button>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat rec"><div class="stat-value numeric" id="cockpitTimerLarge">—</div><div class="stat-label">Durée</div></div>
+          <div class="stat accent"><div class="stat-value numeric" id="cockpitSegments">0</div><div class="stat-label">Morceaux</div></div>
+          <div class="stat"><div class="stat-value numeric" id="cockpitShots">0</div><div class="stat-label">Captures</div></div>
+          <div class="stat"><div class="stat-value numeric" id="cockpitMarkers">0</div><div class="stat-label">Repères</div></div>
+        </div>
+
+        <div class="card" style="padding:0;overflow:hidden">
+          <div class="preview-frame">
+            <video id="cockpitPreview" autoplay playsinline muted></video>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <svg class="icon"><use href="#i-image"></use></svg>
+            Captures de cette session
+          </div>
+          <div class="shots-grid" id="cockpitShotsGrid">
+            <div class="empty">
+              <svg class="icon"><use href="#i-camera"></use></svg>
+              Aucune capture pour l'instant — touche <span class="kbd">S</span> ou bouton « Capture »
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ╔══ IMPORT ══╗ -->
+      <section class="page" id="page-import">
+        <div class="page-header">
+          <div class="step-tag"><span>1</span> Capturer</div>
+          <h2 class="page-title">Importer un fichier</h2>
+          <p class="page-sub">Glissez-déposez une vidéo ou un audio. Tout reste sur votre ordinateur.</p>
+        </div>
+
+        <div class="dropzone" id="dropzone">
+          <div class="dropzone-icon">
+            <svg class="icon"><use href="#i-upload"></use></svg>
+          </div>
+          <p class="dropzone-title">Déposez votre fichier ici</p>
+          <p class="dropzone-sub">ou cliquez pour parcourir</p>
+          <p class="dropzone-formats">webm · mp4 · mov · mkv · avi · mp3 · wav · m4a · aac · ogg · flac · opus</p>
+          <input type="file" id="fileInput" accept=".webm,.mp4,.mov,.mkv,.avi,.mp3,.wav,.m4a,.aac,.ogg,.flac,.opus,video/*,audio/*" style="display:none">
+        </div>
+
+        <div class="notice notice-info" style="margin-top:16px">
+          <svg class="icon"><use href="#i-info"></use></svg>
+          <div class="notice-content">
+            <strong>Format non lisible ?</strong> Si votre fichier ne se lit pas (ex : .mkv, .avi, .flac), vous pourrez le convertir en MP4 depuis l'étape « Exporter ».
+          </div>
+        </div>
+      </section>
+
+      <!-- ╔══ IMPORT PREVIEW ══╗ -->
+      <section class="page" id="page-import-preview">
+        <div class="page-header">
+          <div class="step-tag"><span>2</span> Repérer</div>
+          <h2 class="page-title">Marquer les moments importants</h2>
+          <p class="page-sub">Capturez des images, posez des repères et prenez vos notes pendant la lecture.</p>
+        </div>
+        <div id="importPreviewWrap"></div>
+      </section>
+
+      <!-- ╔══ MA SESSION (refonte linéaire) ══╗ -->
+      <section class="page" id="page-postprocess">
+
+        <div class="save-banner" id="saveBanner" style="display:none">
+          <div class="save-banner-icon">
+            <svg class="icon icon-lg"><use href="#i-alert"></use></svg>
+          </div>
+          <div class="save-banner-content">
+            <strong>Vos fichiers vidéo ne sont pas encore sur votre disque.</strong>
+            Téléchargez-les avant de fermer cet onglet.
+          </div>
+          <button class="btn btn-warning btn-sm" id="bannerDownload">
+            <svg class="icon icon-sm"><use href="#i-download"></use></svg>
+            Télécharger maintenant
+          </button>
+        </div>
+
+        <div class="page-header" style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap">
+          <div style="flex:1;min-width:240px">
+            <div class="step-tag"><span>3</span> Ma session</div>
+            <input type="text" class="session-title-input" id="ppTitle" placeholder="Titre de la session">
+          </div>
+          <div class="toolbar" style="margin-bottom:0">
+            <button class="btn btn-ghost btn-sm" id="btnResetSession" title="Recommencer une nouvelle session">
+              <svg class="icon icon-sm"><use href="#i-refresh"></use></svg>
+              Nouvelle session
+            </button>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat accent"><div class="stat-value numeric" id="ppDuration">00:00:00</div><div class="stat-label">Durée</div></div>
+          <div class="stat"><div class="stat-value numeric" id="ppShots">0</div><div class="stat-label">Captures</div></div>
+          <div class="stat"><div class="stat-value numeric" id="ppMarkers">0</div><div class="stat-label">Repères</div></div>
+          <div class="stat"><div class="stat-value numeric" id="ppSegments">0</div><div class="stat-label">Vidéos</div></div>
+        </div>
+
+        <!-- A. VOS FICHIERS VIDÉO -->
+        <section class="section">
+          <div class="section-head">
+            <div class="section-num">A</div>
+            <div>
+              <h3 class="section-title">Vos fichiers vidéo</h3>
+              <p class="section-desc">Les morceaux enregistrés en .webm. Téléchargez-les avant de fermer.</p>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <div class="toolbar">
+              <button class="btn btn-primary" id="btnDownloadSegments">
+                <svg class="icon icon-sm"><use href="#i-download"></use></svg>
+                Télécharger toutes les vidéos
+              </button>
+            </div>
+            <div id="ppSegmentsList"></div>
+
+            <details class="collapse">
+              <summary class="collapse-summary">
+                <svg class="icon icon-sm collapse-chevron"><use href="#i-arrow-right"></use></svg>
+                <span>Convertir en MP4 universel <span class="muted">(option avancée, FFmpeg requis)</span></span>
+              </summary>
+              <div class="collapse-content">
+                <div class="notice notice-info">
+                  <svg class="icon"><use href="#i-info"></use></svg>
+                  <div class="notice-content">
+                    Le navigateur ne peut pas convertir lui-même. Téléchargez le script ci-dessous puis lancez-le dans le dossier de vos vidéos. <a href="https://ffmpeg.org/download.html" target="_blank" rel="noopener">Installer FFmpeg →</a>
+                  </div>
+                </div>
+                <div class="toolbar">
+                  <button class="btn btn-secondary btn-sm" id="btnExportBat">
+                    <svg class="icon icon-sm"><use href="#i-terminal"></use></svg>
+                    Script Windows (.bat)
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="btnExportSh">
+                    <svg class="icon icon-sm"><use href="#i-terminal"></use></svg>
+                    Script Mac/Linux (.sh)
+                  </button>
+                </div>
+                <div class="notice notice-warning" style="margin-top:10px">
+                  <svg class="icon"><use href="#i-alert"></use></svg>
+                  <div class="notice-content">
+                    <strong>Sur Mac :</strong> macOS bloque par défaut les scripts d'origine inconnue. Si vous voyez l'avertissement Gatekeeper, faites <em>clic droit sur le fichier .sh → Ouvrir</em>, puis confirmez. Vous pouvez aussi lancer le script dans Terminal : <code>bash mon_script.sh</code>.
+                  </div>
+                </div>
+                <details class="collapse" style="margin-top:8px">
+                  <summary class="collapse-summary"><svg class="icon icon-sm collapse-chevron"><use href="#i-arrow-right"></use></svg><span>Voir les commandes FFmpeg disponibles</span></summary>
+                  <div class="collapse-content"><div id="ppScriptsList"></div></div>
+                </details>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- B. CAPTURES -->
+        <section class="section">
+          <div class="section-head">
+            <div class="section-num">B</div>
+            <div>
+              <h3 class="section-title">Captures d'écran</h3>
+              <p class="section-desc">Cliquez pour agrandir, modifiez le titre ou supprimez.</p>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <div class="toolbar">
+              <button class="btn btn-secondary btn-sm" id="btnExportShots">
+                <svg class="icon icon-sm"><use href="#i-download"></use></svg>
+                Télécharger toutes les captures
+              </button>
+              <button class="btn btn-ghost btn-sm" id="btnDedupeShots">
+                <svg class="icon icon-sm"><use href="#i-scissors"></use></svg>
+                Supprimer les doublons
+              </button>
+            </div>
+            <div class="shots-grid" id="ppShotsGrid"></div>
+          </div>
+        </section>
+
+        <!-- C. REPÈRES -->
+        <section class="section">
+          <div class="section-head">
+            <div class="section-num">C</div>
+            <div>
+              <h3 class="section-title">Repères temporels</h3>
+              <p class="section-desc">Les moments clés. Cliquez sur le timecode pour y aller dans le lecteur.</p>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <div class="add-marker-row">
+              <input class="input mono" type="text" id="newMarkerTime" placeholder="00:05:30" style="flex:0 0 120px">
+              <input class="input" type="text" id="newMarkerLabel" placeholder="Que s'est-il passé à ce moment ?">
+              <button class="btn btn-primary" id="btnAddMarker">
+                <svg class="icon icon-sm"><use href="#i-plus"></use></svg>
+                Ajouter
+              </button>
+            </div>
+            <div class="markers-list" id="ppMarkersList"></div>
+          </div>
+        </section>
+
+        <!-- D. NOTES -->
+        <section class="section">
+          <div class="section-head">
+            <div class="section-num">D</div>
+            <div>
+              <h3 class="section-title">Vos notes</h3>
+              <p class="section-desc">Sauvegardées automatiquement dans votre navigateur.</p>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <textarea class="textarea" id="ppNotes" placeholder="Vos notes sur cette session : objectifs, points clés, décisions, à faire…" style="min-height:160px"></textarea>
+          </div>
+        </section>
+
+        <!-- E. EXPORTER -->
+        <section class="section section-highlight">
+          <div class="section-head">
+            <div class="section-num accent">E</div>
+            <div>
+              <h3 class="section-title">Exporter votre session</h3>
+              <p class="section-desc">Choisissez ce que vous voulez télécharger. Le ZIP regroupe tout en un seul fichier.</p>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <div class="export-cards">
+              <button class="export-card export-card-primary" id="exportZipMain">
+                <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-archive"></use></svg></div>
+                <div class="export-card-text">
+                  <strong>Tout en une archive ZIP</strong>
+                  <span>Vidéos, captures, repères, notes, scripts — un seul fichier (recommandé)</span>
+                </div>
+                <svg class="icon export-card-arrow"><use href="#i-arrow-right"></use></svg>
+              </button>
+
+              <button class="export-card" id="exportPdfMain">
+                <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-file-text"></use></svg></div>
+                <div class="export-card-text">
+                  <strong>Rapport PDF illustré</strong>
+                  <span>Toutes les captures dans un document A4 prêt à partager</span>
+                </div>
+                <svg class="icon export-card-arrow"><use href="#i-download"></use></svg>
+              </button>
+
+              <button class="export-card" id="exportNotebookLMMain">
+                <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-brain"></use></svg></div>
+                <div class="export-card-text">
+                  <strong>Pour NotebookLM</strong>
+                  <span>6 fichiers Markdown à importer dans notebooklm.google.com</span>
+                </div>
+                <svg class="icon export-card-arrow"><use href="#i-download"></use></svg>
+              </button>
+
+              <button class="export-card" id="exportHtmlMain">
+                <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-eye"></use></svg></div>
+                <div class="export-card-text">
+                  <strong>Page web autonome</strong>
+                  <span>Une page HTML lisible hors-ligne, partageable par mail</span>
+                </div>
+                <svg class="icon export-card-arrow"><use href="#i-download"></use></svg>
+              </button>
+            </div>
+
+            <details class="collapse">
+              <summary class="collapse-summary">
+                <svg class="icon icon-sm collapse-chevron"><use href="#i-arrow-right"></use></svg>
+                <span>Options pour le ZIP</span>
+              </summary>
+              <div class="collapse-content">
+                <label class="checkbox-row"><input type="checkbox" id="zipScreenshots" checked> Inclure les captures d'écran</label>
+                <label class="checkbox-row"><input type="checkbox" id="zipSegments" checked> Inclure les fichiers vidéo (.webm)</label>
+                <label class="checkbox-row"><input type="checkbox" id="zipNotebookLM" checked> Inclure le pack NotebookLM</label>
+                <label class="checkbox-row"><input type="checkbox" id="zipHtml" checked> Inclure la page HTML autonome</label>
+                <div class="toolbar mt-3">
+                  <button class="btn btn-success" id="btnGenerateZip">
+                    <svg class="icon icon-sm"><use href="#i-archive"></use></svg>
+                    Générer le ZIP avec ces options
+                  </button>
+                </div>
+                <div style="margin-top:12px;height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden">
+                  <div id="zipProgress" style="height:100%;background:var(--brand);width:0%;display:none;transition:width 0.2s"></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="collapse">
+              <summary class="collapse-summary">
+                <svg class="icon icon-sm collapse-chevron"><use href="#i-arrow-right"></use></svg>
+                <span>Fichiers individuels <span class="muted">(timeline.md, notes.md, manifest.json…)</span></span>
+              </summary>
+              <div class="collapse-content">
+                <div class="toolbar">
+                  <button class="btn btn-secondary btn-sm" id="btnExportTimeline">
+                    <svg class="icon icon-sm"><use href="#i-file-text"></use></svg> timeline.md
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="btnExportNotes">
+                    <svg class="icon icon-sm"><use href="#i-file-text"></use></svg> notes.md
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="btnExportReadme">
+                    <svg class="icon icon-sm"><use href="#i-file-text"></use></svg> README.md
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="btnExportHtml">
+                    <svg class="icon icon-sm"><use href="#i-eye"></use></svg> timeline.html
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="btnExportManifest">
+                    <svg class="icon icon-sm"><use href="#i-code"></use></svg> manifest.json
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="btnExportPdf">
+                    <svg class="icon icon-sm"><use href="#i-file"></use></svg> Rapport PDF
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="btnExportNotebookLM">
+                    <svg class="icon icon-sm"><use href="#i-brain"></use></svg> Pack NotebookLM
+                  </button>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Compat -->
+        <div style="display:none">
+          <div id="presetGrid"></div>
+        </div>
+      </section>
+
+      <!-- ╔══ MES SESSIONS ══╗ -->
+      <section class="page" id="page-library">
+        <div class="page-header">
+          <h2 class="page-title">
+            <svg class="icon icon-lg"><use href="#i-database"></use></svg>
+            Mes sessions sauvegardées
+          </h2>
+          <p class="page-sub">Sessions conservées dans votre navigateur. Les fichiers vidéo (.webm) ne sont pas conservés ici — exportez-les en ZIP pour les garder définitivement.</p>
+        </div>
+
+        <div class="card">
+          <div id="libraryList"></div>
+        </div>
+
+        <div class="notice notice-warning">
+          <svg class="icon"><use href="#i-alert"></use></svg>
+          <div class="notice-content">
+            <strong>Attention au cache navigateur.</strong> Si vous videz le cache, ces sessions disparaissent. Pour archiver durablement, exportez en ZIP et rangez le fichier sur votre disque.
+          </div>
+        </div>
+      </section>
+
+      <!-- ╔══ AIDE ══╗ -->
+      <section class="page" id="page-help">
+        <div class="page-header">
+          <h2 class="page-title">
+            <svg class="icon icon-lg"><use href="#i-help"></use></svg>
+            Comment ça marche
+          </h2>
+          <p class="page-sub">Le parcours en 3 étapes, raccourcis et astuces.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <svg class="icon"><use href="#i-list"></use></svg>
+            Parcours en 3 étapes
+          </div>
+          <ol class="help-steps">
+            <li>
+              <span class="help-step-num">1</span>
+              <div>
+                <strong>Capturer</strong>
+                <p>Démarrez une capture d'écran ou importez un fichier vidéo/audio existant. La capture utilise <code>getDisplayMedia</code>, l'API standard du navigateur.</p>
+              </div>
+            </li>
+            <li>
+              <span class="help-step-num">2</span>
+              <div>
+                <strong>Repérer</strong>
+                <p>Pendant la session : prenez des captures d'image (touche <span class="kbd">S</span>) et posez des repères temporels (<span class="kbd">M</span>). Tout est annoté automatiquement avec son timecode.</p>
+              </div>
+            </li>
+            <li>
+              <span class="help-step-num">3</span>
+              <div>
+                <strong>Exporter</strong>
+                <p>Téléchargez le ZIP complet (recommandé), un PDF illustré, ou les fichiers individuels. Le pack NotebookLM permet l'import manuel dans notebooklm.google.com.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">
+              <svg class="icon"><use href="#i-keyboard"></use></svg>
+              Raccourcis clavier
+            </div>
+            <div class="kv-list">
+              <div class="kv"><span class="kv-key">Capture d'image</span><span class="kv-val"><span class="kbd">S</span></span></div>
+              <div class="kv"><span class="kv-key">Repère rapide</span><span class="kv-val"><span class="kbd">M</span></span></div>
+              <div class="kv"><span class="kv-key">Pause / Reprise</span><span class="kv-val"><span class="kbd">Espace</span></span></div>
+              <div class="kv"><span class="kv-key">Fermer fenêtre</span><span class="kv-val"><span class="kbd">Échap</span></span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <svg class="icon"><use href="#i-shield"></use></svg>
+              Confidentialité
+            </div>
+            <ul style="font-size:0.85rem;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+              <li>Aucun fichier envoyé sur un serveur</li>
+              <li>Pas de cookie de tracking</li>
+              <li>Pas d'analytics</li>
+              <li>Pas d'IA embarquée</li>
+              <li>Stockage local uniquement</li>
+              <li>Code source ouvert et auditable</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <svg class="icon"><use href="#i-info"></use></svg>
+            Questions fréquentes
+          </div>
+
+          <details class="collapse">
+            <summary class="collapse-summary"><svg class="icon icon-sm collapse-chevron"><use href="#i-arrow-right"></use></svg>Pourquoi mes vidéos sont en .webm ?</summary>
+            <div class="collapse-content"><p class="text-sm muted">WebM est le format natif du navigateur pour l'enregistrement. Pour obtenir du MP4 universel, utilisez le script FFmpeg fourni dans la section « Convertir en MP4 ».</p></div>
+          </details>
+
+          <details class="collapse">
+            <summary class="collapse-summary"><svg class="icon icon-sm collapse-chevron"><use href="#i-arrow-right"></use></svg>Pourquoi pas de transcription automatique ?</summary>
+            <div class="collapse-content"><p class="text-sm muted">L'app reste 100% locale, sans IA, sans appel réseau. Pour transcrire, utilisez un outil local comme Whisper après avoir converti en WAV 16 kHz (script fourni).</p></div>
+          </details>
+
+          <details class="collapse">
+            <summary class="collapse-summary"><svg class="icon icon-sm collapse-chevron"><use href="#i-arrow-right"></use></svg>Mes vidéos ont disparu après refresh, pourquoi ?</summary>
+            <div class="collapse-content"><p class="text-sm muted">Les fichiers vidéo .webm sont gardés en mémoire vive pendant la session, mais ne sont pas conservés dans votre navigateur après fermeture (trop volumineux). Téléchargez-les ou générez le ZIP avant de fermer.</p></div>
+          </details>
+
+          <details class="collapse">
+            <summary class="collapse-summary"><svg class="icon icon-sm collapse-chevron"><use href="#i-arrow-right"></use></svg>Quels navigateurs sont compatibles ?</summary>
+            <div class="collapse-content"><p class="text-sm muted">Chrome, Edge, Brave (recommandés). Firefox fonctionne pour la lecture. Safari ne supporte pas l'API getDisplayMedia complète.</p></div>
+          </details>
+
+          <details class="collapse">
+            <summary class="collapse-summary"><svg class="icon icon-sm collapse-chevron"><use href="#i-arrow-right"></use></svg>Comment installer l'app sur mon téléphone ?</summary>
+            <div class="collapse-content"><p class="text-sm muted"><strong>Sur Android (Chrome) :</strong> menu ⋮ → « Ajouter à l'écran d'accueil ».<br><strong>Sur iPhone (Safari) :</strong> bouton Partager → « Sur l'écran d'accueil ». L'app fonctionnera ensuite hors-ligne, comme une application native.</p></div>
+          </details>
+
+          <details class="collapse">
+            <summary class="collapse-summary"><svg class="icon icon-sm collapse-chevron"><use href="#i-arrow-right"></use></svg>macOS dit « app non identifiée » quand je télécharge un script .sh</summary>
+            <div class="collapse-content"><p class="text-sm muted">C'est Gatekeeper, la sécurité macOS qui bloque par défaut les scripts d'origine inconnue. <strong>Solution :</strong> clic droit sur le fichier .sh → « Ouvrir », puis confirmer. Alternative plus simple : ouvrir Terminal et taper <code>bash chemin/du/script.sh</code>.<br><br>Pour les fichiers <code>.md</code>, <code>.html</code> ou <code>.json</code>, ce blocage ne devrait pas survenir — si c'est le cas, ouvrez-les directement avec votre éditeur (TextEdit, Obsidian, VS Code) via clic droit → « Ouvrir avec ».</p></div>
+          </details>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <svg class="icon"><use href="#i-link"></use></svg>
+            Outils complémentaires
+          </div>
+          <div class="grid-3">
+            <a href="https://sebastien-riviere.github.io/outils/MonBureauPDF/" target="_blank" rel="noopener" class="preset" style="text-decoration:none">
+              <div class="preset-icon"><svg class="icon icon-lg"><use href="#i-file"></use></svg></div>
+              <h4 class="preset-title">MonBureauPDF</h4>
+              <p class="preset-desc">Manipuler, alléger et exporter des PDF localement.</p>
+            </a>
+            <a href="https://sebastien-riviere.github.io/outils/MD-Convert/" target="_blank" rel="noopener" class="preset" style="text-decoration:none">
+              <div class="preset-icon"><svg class="icon icon-lg"><use href="#i-code"></use></svg></div>
+              <h4 class="preset-title">MD Convert</h4>
+              <p class="preset-desc">Convertir des fichiers en Markdown pour Claude et Obsidian.</p>
+            </a>
+            <a href="https://ffmpeg.org/download.html" target="_blank" rel="noopener" class="preset" style="text-decoration:none">
+              <div class="preset-icon"><svg class="icon icon-lg"><use href="#i-terminal"></use></svg></div>
+              <h4 class="preset-title">FFmpeg</h4>
+              <p class="preset-desc">Convertir, découper, normaliser audio et vidéo en local.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <footer class="app-footer">
+    Par <a href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil/" target="_blank" rel="noopener">Sébastien Rivière</a>
+    · <a href="https://github.com/sebastien-riviere" target="_blank" rel="noopener">GitHub</a>
+    · MonBureauCAPTURE v1.6 — Local & offline · Aucun upload, aucune donnée transmise.
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="lightbox" id="lightbox">
+    <img id="lightboxImg" alt="Capture en plein écran">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/recorder.js"></script>
+  <script src="js/importer.js"></script>
+  <script src="js/markdown.js"></script>
+  <script src="js/manifest.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="js/notebooklm.js"></script>
+  <script src="js/zip.js"></script>
+  <script src="js/shots-markers.js"></script>
+  <script src="js/presets.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
