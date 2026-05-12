@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Export ZIP complet (JSZip) */
+/* MonBureauRECORD — Export ZIP complet (JSZip) */
 const ZipExport = {
   async generate(opts = {}) {
     const s = Session.current();

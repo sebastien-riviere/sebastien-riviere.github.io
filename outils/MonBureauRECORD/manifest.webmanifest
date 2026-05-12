@@ -1,7 +1,7 @@
 {
-  "name": "MonBureauCAPTURE",
-  "short_name": "MBCapture",
-  "description": "Capture vidéo et post-traitement local. Aucun upload, aucune IA.",
+  "name": "MonBureauRECORD",
+  "short_name": "MBRecord",
+  "description": "Enregistrez vos réunions. Obtenez un compte rendu. Sans rien envoyer en ligne.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -32,16 +32,16 @@
   ],
   "shortcuts": [
     {
-      "name": "Démarrer une capture",
-      "short_name": "Capturer",
+      "name": "Enregistrer une réunion",
+      "short_name": "Enregistrer",
       "url": "./index.html#capture",
-      "description": "Lancer une capture d'écran"
+      "description": "Lancer l'enregistrement de votre écran"
     },
     {
-      "name": "Importer un fichier",
+      "name": "Importer un enregistrement",
       "short_name": "Importer",
       "url": "./index.html#import",
-      "description": "Importer une vidéo ou un audio"
+      "description": "Importer une vidéo ou un audio existant"
     }
   ]
 }

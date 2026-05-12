@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Utilitaires */
+/* MonBureauRECORD — Utilitaires */
 const Utils = {
   pad(n, len = 2) { return String(n).padStart(len, '0'); },
 

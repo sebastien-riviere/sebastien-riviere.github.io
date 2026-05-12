@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Session média */
+/* MonBureauRECORD — Session média */
 const Session = {
   create(mode, file = null) {
     const id = Utils.generateSessionId();

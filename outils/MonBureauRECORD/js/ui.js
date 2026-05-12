@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — UI Manager */
+/* MonBureauRECORD — UI Manager */
 const UI = {
   // ════════════════════════════════════════════════════
   //  HELPER : Icon SVG

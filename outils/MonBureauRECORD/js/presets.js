@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Presets d'export */
+/* MonBureauRECORD — Presets d'export */
 const Presets = {
   list: [
     {

@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Export PDF (jsPDF) */
+/* MonBureauRECORD — Export PDF (jsPDF) */
 const PDFExport = {
   async generate(options = {}) {
     const s = Session.current();
@@ -23,7 +23,7 @@ const PDFExport = {
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(22);
-    doc.text('MonBureauCAPTURE', margin, 22);
+    doc.text('MonBureauRECORD', margin, 22);
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);

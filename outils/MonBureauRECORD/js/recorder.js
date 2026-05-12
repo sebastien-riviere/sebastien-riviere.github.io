@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Capture live (getDisplayMedia + MediaRecorder) */
+/* MonBureauRECORD — Capture live (getDisplayMedia + MediaRecorder) */
 const Recorder = {
   _stream: null,
   _displayStream: null,

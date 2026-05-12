@@ -1,8 +1,8 @@
-/* MonBureauCAPTURE — Service Worker
+/* MonBureauRECORD — Service Worker
  * Cache l'app pour usage offline + installabilité PWA.
  * Ne contacte aucun serveur tiers.
  */
-const CACHE_NAME = 'mbc-v1.6.0';
+const CACHE_NAME = 'mbr-v1.7.0';
 const ASSETS = [
   './',
   './index.html',

@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — State store réactif */
+/* MonBureauRECORD — State store réactif */
 const State = (() => {
   const initial = () => ({
     mode: null, // 'capture' | 'import'

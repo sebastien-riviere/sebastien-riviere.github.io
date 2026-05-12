@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#2D5A8E">
-  <meta name="description" content="Capture vidéo et post-traitement local. Aucun upload, aucune IA.">
+  <meta name="description" content="Enregistrez vos réunions Zoom, Teams ou Meet. Balisez les moments clés, extrayez l'audio et exportez un compte rendu — sans rien envoyer en ligne.">
 
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="MBCapture">
+  <meta name="apple-mobile-web-app-title" content="MBRecord">
   <meta name="mobile-web-app-capable" content="yes">
 
-  <title>MonBureauCAPTURE — Capture et post-traitement local</title>
+  <title>MonBureauRECORD — Enregistrez vos réunions, obtenez un compte rendu</title>
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -45,7 +45,7 @@
           </span>
           <span class="brand-text">
             <span class="brand-name">MonBureau<strong>CAPTURE</strong></span>
-            <span class="brand-tag">v1.6 · 100% local</span>
+            <span class="brand-tag">v1.7 · Local & privé</span>
           </span>
         </a>
       </div>
@@ -68,11 +68,11 @@
         <div class="nav-group-title">Nouvelle session</div>
         <button class="nav-item" data-page="capture">
           <svg class="icon"><use href="#i-monitor"></use></svg>
-          <span>Capture d'écran live</span>
+          <span>Enregistrer une réunion</span>
         </button>
         <button class="nav-item" data-page="import">
           <svg class="icon"><use href="#i-upload"></use></svg>
-          <span>Importer vidéo / audio</span>
+          <span>Ouvrir un enregistrement</span>
         </button>
       </div>
 
@@ -113,8 +113,8 @@
       <section class="page" id="page-home">
 
         <div class="hero">
-          <h1 class="hero-title">Enregistrez. Annotez. Exportez.</h1>
-          <p class="hero-sub">Capturez votre écran en segments, balisez les moments clés avec des repères et des captures d'image, puis générez en un clic un rapport PDF, une archive complète ou un pack prêt pour l'analyse IA — sans rien envoyer en ligne.</p>
+          <h1 class="hero-title">Enregistrez vos réunions.<br>Obtenez un compte rendu.</h1>
+          <p class="hero-sub">Enregistrez votre écran pendant une réunion Zoom, Teams ou Meet — ou importez un enregistrement existant. Balisez les passages importants, extrayez l'audio en MP3, et générez un compte rendu PDF ou un pack NotebookLM. Tout reste sur votre ordinateur.</p>
         </div>
 
         <div class="journey-grid">
@@ -122,23 +122,23 @@
             <div class="journey-num">1</div>
             <div class="journey-body">
               <h3>Enregistrer ou importer</h3>
-              <p>Capture live en segments horodatés, ou import d'un fichier vidéo/audio existant.</p>
+              <p>Enregistrement live de votre réunion, ou import d'un fichier Zoom / Teams / Meet existant.</p>
             </div>
           </div>
           <div class="journey-arrow"><svg class="icon"><use href="#i-arrow-right"></use></svg></div>
           <div class="journey-step">
             <div class="journey-num">2</div>
             <div class="journey-body">
-              <h3>Baliser les moments clés</h3>
-              <p>Captures d'écran automatiques ou manuelles, repères temporels nommés, notes libres.</p>
+              <h3>Baliser pendant l'écoute</h3>
+              <p>Repères nommés sur la timeline, captures d'écran, notes de réunion.</p>
             </div>
           </div>
           <div class="journey-arrow"><svg class="icon"><use href="#i-arrow-right"></use></svg></div>
           <div class="journey-step">
             <div class="journey-num">3</div>
             <div class="journey-body">
-              <h3>Produire les livrables</h3>
-              <p>Rapport PDF illustré, archive ZIP, timeline interactive, pack pour NotebookLM.</p>
+              <h3>Générer le compte rendu</h3>
+              <p>Compte rendu PDF, audio MP3 extrait, timeline, pack pour analyse IA.</p>
             </div>
           </div>
         </div>
@@ -148,28 +148,28 @@
             <div class="mode-card-icon">
               <svg class="icon"><use href="#i-monitor"></use></svg>
             </div>
-            <h3 class="mode-card-title">Capture live d'écran</h3>
-            <p class="mode-card-desc">Enregistre votre écran en segments vidéo horodatés — avec son système et micro optionnel. Posez des repères et capturez des images pendant l'enregistrement. Idéal pour documenter une démo, une formation, une réunion.</p>
+            <h3 class="mode-card-title">Enregistrer une réunion</h3>
+            <p class="mode-card-desc">Enregistre votre écran pendant une visio Zoom, Teams, Meet ou toute autre app. Segmenté automatiquement — rien de perdu si le navigateur plante. Son système + micro optionnel.</p>
             <ul class="mode-card-features">
-              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Segments automatiques (toutes les N minutes)</li>
-              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Captures d'écran auto ou manuelles (touche S)</li>
-              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Son système + micro mixés</li>
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Segments automatiques — zéro perte en cas d'interruption</li>
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Captures d'écran auto → compte rendu sans action manuelle</li>
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Son système + votre micro mixés en un seul fichier</li>
             </ul>
-            <span class="mode-card-cta">Démarrer <svg class="icon icon-sm"><use href="#i-arrow-right"></use></svg></span>
+            <span class="mode-card-cta">Lancer l'enregistrement <svg class="icon icon-sm"><use href="#i-arrow-right"></use></svg></span>
           </button>
 
           <button class="mode-card" id="modeImport">
             <div class="mode-card-icon">
               <svg class="icon"><use href="#i-upload"></use></svg>
             </div>
-            <h3 class="mode-card-title">Import d'un fichier existant</h3>
-            <p class="mode-card-desc">Ouvrez une vidéo ou un audio déjà enregistré. Lisez-le, balisez les passages importants avec des repères et des captures, rédigez vos notes — puis exportez un rapport PDF, une timeline ou un pack pour NotebookLM.</p>
+            <h3 class="mode-card-title">Exploiter un enregistrement existant</h3>
+            <p class="mode-card-desc">Vous avez déjà un enregistrement Zoom, Teams ou Meet ? Importez-le, naviguez sur la timeline, balisez les décisions et points d'action, extrayez l'audio MP3 et générez un compte rendu — sans tout réécouter.</p>
             <ul class="mode-card-features">
-              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Lecture + repères au timecode exact</li>
-              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Rapport PDF à partir des captures</li>
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Navigation par timecode — pas besoin de tout réécouter</li>
+              <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Compte rendu PDF à partir des captures d'écran</li>
               <li><svg class="icon icon-sm"><use href="#i-check"></use></svg>Conversion MP4/MP3 via script FFmpeg fourni</li>
             </ul>
-            <span class="mode-card-cta">Choisir un fichier <svg class="icon icon-sm"><use href="#i-arrow-right"></use></svg></span>
+            <span class="mode-card-cta">Ouvrir un enregistrement <svg class="icon icon-sm"><use href="#i-arrow-right"></use></svg></span>
           </button>
         </div>
 
@@ -201,8 +201,8 @@
       <section class="page" id="page-capture">
         <div class="page-header">
           <div class="step-tag"><span>1</span> Enregistrer</div>
-          <h2 class="page-title">Configurer la capture</h2>
-          <p class="page-sub">L'enregistrement est découpé automatiquement en segments pour éviter de perdre des heures de contenu en cas d'interruption. Configurez la qualité, le micro et les captures automatiques.</p>
+          <h2 class="page-title">Configurer l'enregistrement</h2>
+          <p class="page-sub">Lancez l'enregistrement de votre réunion en quelques secondes. Le navigateur vous demandera quel écran partager — choisissez la fenêtre de votre app de visio (Zoom, Teams, Meet…).</p>
         </div>
 
         <div class="grid-2">
@@ -351,7 +351,7 @@
       <section class="page" id="page-import">
         <div class="page-header">
           <div class="step-tag"><span>1</span> Importer</div>
-          <h2 class="page-title">Importer une vidéo ou un audio</h2>
+          <h2 class="page-title">Ouvrir un enregistrement existant</h2>
           <p class="page-sub">Vous avez déjà un fichier enregistré — réunion Zoom, screencast, podcast, entretien ? Importez-le pour le baliser, l'annoter et en extraire un rapport structuré sans le réécouter intégralement.</p>
         </div>
 
@@ -359,18 +359,18 @@
         <div class="use-cases">
           <div class="use-case">
             <svg class="icon icon-lg"><use href="#i-bookmark"></use></svg>
-            <strong>Repérer les passages clés</strong>
-            <span>Posez des repères temporels nommés directement sur la timeline sans réécouter tout le fichier.</span>
+            <strong>Repérer sans tout réécouter</strong>
+            <span>Naviguez sur la timeline, posez des repères nommés aux décisions et points d'action.</span>
           </div>
           <div class="use-case">
             <svg class="icon icon-lg"><use href="#i-image"></use></svg>
-            <strong>Générer un rapport visuel</strong>
-            <span>Capturez des images à chaque moment important — exportées en PDF illustré prêt à partager.</span>
+            <strong>Générer le compte rendu</strong>
+            <span>Captures aux moments clés → compte rendu PDF avec repères et notes, prêt à envoyer aux participants.</span>
           </div>
           <div class="use-case">
             <svg class="icon icon-lg"><use href="#i-brain"></use></svg>
-            <strong>Préparer l'analyse IA</strong>
-            <span>Exportez un pack NotebookLM : la timeline + vos notes + des questions suggérées, prêts à importer.</span>
+            <strong>Analyser avec une IA</strong>
+            <span>Pack NotebookLM prêt à importer : timeline + notes + questions suggérées pour interroger la réunion.</span>
           </div>
         </div>
 
@@ -421,7 +421,7 @@
 
         <div class="page-header" style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap">
           <div style="flex:1;min-width:240px">
-            <div class="step-tag"><span>3</span> Ma session</div>
+            <div class="step-tag"><span>3</span> Mon compte rendu</div>
             <input type="text" class="session-title-input" id="ppTitle" placeholder="Titre de la session">
           </div>
           <div class="toolbar" style="margin-bottom:0">
@@ -573,8 +573,8 @@
               <button class="export-card export-card-primary" id="exportZipMain">
                 <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-archive"></use></svg></div>
                 <div class="export-card-text">
-                  <strong>Archive ZIP complète</strong>
-                  <span>Vidéos + captures + repères + notes + scripts FFmpeg + pack NotebookLM — tout en un fichier</span>
+                  <strong>Tout télécharger — archive ZIP</strong>
+                  <span>Vidéos + audio MP3 + compte rendu PDF + repères + scripts de conversion — une archive complète</span>
                 </div>
                 <svg class="icon export-card-arrow"><use href="#i-arrow-right"></use></svg>
               </button>
@@ -582,8 +582,8 @@
               <button class="export-card" id="exportPdfMain">
                 <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-file-text"></use></svg></div>
                 <div class="export-card-text">
-                  <strong>Rapport PDF illustré</strong>
-                  <span>Toutes les captures d'écran dans un document A4 avec repères et notes — prêt à partager ou à imprimer</span>
+                  <strong>Compte rendu PDF</strong>
+                  <span>Captures + repères + notes dans un A4 structuré — prêt à envoyer aux participants</span>
                 </div>
                 <svg class="icon export-card-arrow"><use href="#i-download"></use></svg>
               </button>
@@ -591,8 +591,8 @@
               <button class="export-card" id="exportNotebookLMMain">
                 <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-brain"></use></svg></div>
                 <div class="export-card-text">
-                  <strong>Pack NotebookLM</strong>
-                  <span>6 fichiers Markdown structurés (timeline, notes, questions suggérées) — à importer dans notebooklm.google.com pour analyse IA</span>
+                  <strong>Analyser avec NotebookLM</strong>
+                  <span>Timeline + notes + questions suggérées — importez dans notebooklm.google.com pour interroger le contenu de la réunion</span>
                 </div>
                 <svg class="icon export-card-arrow"><use href="#i-download"></use></svg>
               </button>
@@ -600,8 +600,8 @@
               <button class="export-card" id="exportHtmlMain">
                 <div class="export-card-icon"><svg class="icon icon-lg"><use href="#i-eye"></use></svg></div>
                 <div class="export-card-text">
-                  <strong>Timeline HTML interactive</strong>
-                  <span>Page web autonome avec captures cliquables et repères — lisible hors-ligne, partageable par mail ou Drive</span>
+                  <strong>Timeline partageable</strong>
+                  <span>Page web autonome avec captures et repères — partageable par mail, Drive ou message</span>
                 </div>
                 <svg class="icon export-card-arrow"><use href="#i-download"></use></svg>
               </button>
@@ -698,7 +698,7 @@
             <svg class="icon icon-lg"><use href="#i-help"></use></svg>
             Comment ça marche
           </h2>
-          <p class="page-sub">Le parcours en 3 étapes, raccourcis et astuces.</p>
+          <p class="page-sub">Comment enregistrer une réunion, baliser les passages importants et générer un compte rendu.</p>
         </div>
 
         <div class="card">
@@ -830,7 +830,7 @@
   <footer class="app-footer">
     Par <a href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil/" target="_blank" rel="noopener">Sébastien Rivière</a>
     · <a href="https://github.com/sebastien-riviere" target="_blank" rel="noopener">GitHub</a>
-    · MonBureauCAPTURE v1.6 — Local & offline · Aucun upload, aucune donnée transmise.
+    · MonBureauRECORD v1.6 — Local & offline · Aucun upload, aucune donnée transmise.
   </footer>
 
   <div class="toast-container" id="toastContainer"></div>

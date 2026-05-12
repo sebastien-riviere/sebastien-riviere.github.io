@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Persistance IndexedDB
+/* MonBureauRECORD — Persistance IndexedDB
  * Permet de retrouver une session après fermeture du navigateur.
  * Stocke uniquement métadonnées + screenshots (les segments WebM
  * peuvent être trop lourds pour IDB sur certains profils).

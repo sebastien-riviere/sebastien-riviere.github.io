@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Scripts FFmpeg multi-OS */
+/* MonBureauRECORD — Scripts FFmpeg multi-OS */
 const Scripts = {
   _input(s) {
     if (s?.file?.name) return s.file.name;

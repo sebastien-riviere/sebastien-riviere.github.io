@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Export Markdown */
+/* MonBureauRECORD — Export Markdown */
 const Markdown = {
   _header(s) {
     return [

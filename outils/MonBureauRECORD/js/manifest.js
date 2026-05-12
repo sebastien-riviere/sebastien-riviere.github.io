@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Manifest JSON */
+/* MonBureauRECORD — Manifest JSON */
 const Manifest = {
   build(s = Session.current()) {
     if (!s) return null;

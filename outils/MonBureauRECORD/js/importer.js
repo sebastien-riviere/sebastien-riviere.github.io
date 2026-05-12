@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Import fichier */
+/* MonBureauRECORD — Import fichier */
 const Importer = {
   _objectUrl: null,
 

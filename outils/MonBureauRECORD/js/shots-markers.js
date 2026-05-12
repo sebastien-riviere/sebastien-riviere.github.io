@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Captures utilities */
+/* MonBureauRECORD — Captures utilities */
 const Shots = {
   remove(id) {
     Session.removeScreenshot(id);

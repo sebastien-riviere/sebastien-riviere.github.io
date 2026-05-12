@@ -1,4 +1,4 @@
-# MonBureauCAPTURE
+# MonBureauRECORD
 
 > Outil local de capture vidéo/audio et de post-traitement — par [Sébastien Rivière](https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil/).
 
@@ -66,7 +66,7 @@ Capturez votre écran (ou importez un fichier vidéo/audio existant), annotez la
 ## Architecture
 
 ```
-monbureaucapture/
+monbureaurecord/
 ├── index.html              Structure et entry point
 ├── assets/
 │   ├── icons.svg           Sprite d'icônes (Lucide-style)
@@ -114,8 +114,8 @@ La capture d'écran nécessite l'API `getDisplayMedia`, pleinement supportée su
 ## Déploiement GitHub Pages
 
 ```bash
-git clone https://github.com/votre-compte/monbureaucapture.git
-cd monbureaucapture
+git clone https://github.com/votre-compte/monbureaurecord.git
+cd monbureaurecord
 git push
 # Activer GitHub Pages dans Settings → Pages → main branch
 ```
@@ -159,4 +159,4 @@ Voir le projet sur GitHub. Code conçu pour être audité, forké et adapté.
 
 ---
 
-*MonBureauCAPTURE v1.6.0 · 2026 · [Sébastien Rivière](https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil/)*
+*MonBureauRECORD v1.6.0 · 2026 · [Sébastien Rivière](https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil/)*

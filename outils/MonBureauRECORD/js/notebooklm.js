@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Pack NotebookLM (sans IA, sans API) */
+/* MonBureauRECORD — Pack NotebookLM (sans IA, sans API) */
 const NotebookLM = {
   files(s = Session.current()) {
     if (!s) return [];

@@ -1,4 +1,4 @@
-/* MonBureauCAPTURE — Main controller */
+/* MonBureauRECORD — Main controller */
 const App = {
   init() {
     this._bindNavigation();

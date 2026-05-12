@@ -1,7 +1,7 @@
-/* MonBureauCAPTURE — Config */
+/* MonBureauRECORD — Config */
 const CONFIG = Object.freeze({
-  APP_NAME: 'MonBureauCAPTURE',
-  VERSION: '1.6.1',
+  APP_NAME: 'MonBureauRECORD',
+  VERSION: '1.7.0',
   BUILD: '2025.05',
 
   ACCEPTED_EXT: ['webm','mp4','mov','mkv','avi','mp3','wav','m4a','aac','ogg','flac','opus'],
@@ -38,7 +38,7 @@ const CONFIG = Object.freeze({
     'L\'import dans NotebookLM est manuel.',
   ],
 
-  IDB_NAME: 'monbureaucapture',
+  IDB_NAME: 'monbureaurecord',
   IDB_VERSION: 1,
   IDB_STORE: 'sessions',
   PREFS_KEY: 'mbc_preferences',
