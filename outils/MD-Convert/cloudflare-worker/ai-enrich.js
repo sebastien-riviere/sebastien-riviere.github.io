@@ -79,6 +79,21 @@ function stripFences(md) {
   return s.trim();
 }
 
+// Vérifie un token Turnstile. Si TURNSTILE_SECRET absent → pas d'enforcement.
+async function verifyTurnstile(env, token, ip) {
+  if (!env.TURNSTILE_SECRET) return true;       // non configuré → on n'exige rien
+  if (!token) return false;
+  try {
+    const form = new URLSearchParams();
+    form.append('secret', env.TURNSTILE_SECRET);
+    form.append('response', token);
+    if (ip) form.append('remoteip', ip);
+    const r = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body: form });
+    const j = await r.json();
+    return !!(j && j.success);
+  } catch { return false; }
+}
+
 async function callMistral(env, model, messages, maxTokens) {
   let res;
   try {
@@ -118,6 +133,13 @@ export default {
     let payload;
     try { payload = await request.json(); }
     catch { return json({ ok: false, error: 'bad_request' }, 400, cors); }
+
+    // Anti-abus : bot/CLI via X-MDC-Token, sinon token Turnstile (navigateur)
+    const ip = request.headers.get('CF-Connecting-IP') || '';
+    const hasMdcToken = env.MDC_TOKEN && request.headers.get('X-MDC-Token') === env.MDC_TOKEN;
+    if (!hasMdcToken && !(await verifyTurnstile(env, payload && payload.ts, ip))) {
+      return json({ ok: false, error: 'turnstile_failed' }, 403, cors);
+    }
 
     const isVision = new URL(request.url).pathname.endsWith('/vision');
 
