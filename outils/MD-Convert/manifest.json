@@ -1,7 +1,7 @@
 {
   "name": "MD Convert",
   "short_name": "MD Convert",
-  "description": "Convertissez vos fichiers en Markdown pour Claude et Obsidian",
+  "description": "Convertissez vos fichiers en Markdown pour l'IA et votre second cerveau (Obsidian, Notion, Logseq…)",
   "start_url": "/outils/MD-Convert/",
   "scope": "/outils/MD-Convert/",
   "display": "standalone",
