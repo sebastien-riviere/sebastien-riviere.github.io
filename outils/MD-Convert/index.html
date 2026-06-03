@@ -894,7 +894,7 @@ input[type="file"] { display: none; }
         </svg>
       </div>
       <div class="drop-zone-title">Déposez vos fichiers ici</div>
-      <div class="drop-zone-sub">PDF · DOCX · CSV · JPG · PNG · WEBP · TXT</div>
+      <div class="drop-zone-sub">PDF · DOCX · CSV · IMG · TXT · SRT/VTT</div>
 
       <!-- ACTION BUTTONS -->
       <div class="action-row">
@@ -1165,10 +1165,42 @@ input[type="file"] { display: none; }
         <p class="settings-desc">Un fichier, une photo ou un lien → extraction propre (PDF, DOCX, image OCR, YouTube, page web…).</p>
         <div class="settings-title">2. Clique « Note IA »</div>
         <p class="settings-desc">Le texte devient une note Markdown structurée (titres, tags, frontmatter), prête à classer.</p>
+        <p class="settings-desc"><strong>Vidéo ou audio ?</strong> Transcris-le d'abord avec Buzz (gratuit), exporte en .txt/.srt, puis glisse le fichier ici.</p>
         <p class="settings-desc" style="margin-top:var(--space-4);padding-top:var(--space-3);border-top:1px solid var(--border)"><strong>Confidentialité</strong> — bascule sur le moteur <strong>Local</strong> : tu gardes toute l'extraction sans rien envoyer, tu perds seulement « Note IA ».</p>
       </div>
       <div class="settings-actions">
         <button class="btn-sm accent" id="onboardingClose" type="button">Compris</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ASTUCE VIDÉO/AUDIO (BUZZ) -->
+<div class="modal-overlay" id="avTipOverlay" role="dialog" aria-modal="true" aria-label="Vidéo ou audio">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Vidéo ou audio — transcris-le d'abord</span>
+      <div class="modal-actions">
+        <button class="btn-icon" id="avTipClose" type="button" aria-label="Fermer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body" style="display:block">
+      <div class="settings-section">
+        <p class="settings-desc">La transcription ne se fait pas dans le navigateur (fichiers trop lourds). Process recommandé, <strong>gratuit et illimité</strong> :</p>
+        <div class="settings-title" style="margin-top:var(--space-4)">1. Transcris en local avec Buzz</div>
+        <p class="settings-desc">Appli gratuite (PC/Mac). Glisse ta vidéo dedans, choisis modèle <strong>small/medium</strong> + langue <strong>Français</strong>, puis <strong>Run</strong>.</p>
+        <div class="settings-title">2. Exporte</div>
+        <p class="settings-desc">En <strong>.txt</strong> ou <strong>.srt</strong>.</p>
+        <div class="settings-title">3. Reviens ici</div>
+        <p class="settings-desc"><strong>Glisse le fichier .txt / .srt</strong> dans MD Convert → puis « Note IA ». MD Convert nettoie tout seul les horodatages.</p>
+      </div>
+      <div class="settings-actions">
+        <a href="https://github.com/chidiwilliams/buzz/releases" target="_blank" rel="noopener" class="btn-sm" style="margin-right:auto">Télécharger Buzz (gratuit)</a>
+        <button class="btn-sm accent" id="avTipOk" type="button">Compris</button>
       </div>
     </div>
   </div>
@@ -1183,7 +1215,7 @@ input[type="file"] { display: none; }
 </div>
 
 <!-- HIDDEN FILE INPUTS -->
-<input type="file" id="inputFiles" multiple accept=".pdf,.docx,.doc,.txt,.md,.jpg,.jpeg,.png,.webp,.gif,.bmp,.csv,.tsv">
+<input type="file" id="inputFiles" multiple accept=".pdf,.docx,.doc,.txt,.md,.srt,.vtt,.jpg,.jpeg,.png,.webp,.gif,.bmp,.csv,.tsv">
 <input type="file" id="inputCamera" accept="image/*" capture="environment">
 <input type="file" id="inputPhotos" accept="image/*" multiple>
 <input type="file" id="inputFolder" webkitdirectory multiple>
@@ -1371,8 +1403,10 @@ function getFileType(file) {
   if (ext === 'pdf') return 'pdf';
   if (['docx', 'doc'].includes(ext)) return 'docx';
   if (['jpg','jpeg','png','webp','gif','bmp'].includes(ext) || mime.startsWith('image/')) return 'img';
-  if (['txt','md'].includes(ext)) return 'txt';
+  if (['txt','md','srt','vtt'].includes(ext)) return 'txt';
   if (['csv','tsv'].includes(ext)) return 'csv';
+  if (['mp4','mov','mkv','avi','webm','m4v','mp3','m4a','wav','aac','ogg','flac','opus'].includes(ext)
+      || mime.startsWith('audio/') || mime.startsWith('video/')) return 'av';
   return 'other';
 }
 
@@ -1561,6 +1595,7 @@ async function processFiles(files) {
   const newEntries = [];
   for (const file of files) {
     const type = getFileType(file);
+    if (type === 'av') { showAvTip(); continue; }
     if (type === 'other') { showToast(T.unsupported + file.name, 'error'); continue; }
     
     const entry = { id: makeId(), file, type, result: null, confidence: null, customName: null };
@@ -1935,8 +1970,28 @@ async function preprocessImage(file, enhance) {
 
 // === MODULE TXT CONVERSION ===
 
+// Nettoie un sous-titre (.srt/.vtt) → transcript propre (sans horodatages ni numéros)
+function stripSubtitles(text) {
+  const out = [];
+  let prev = '';
+  for (const raw of text.split(/\r?\n/)) {
+    const t = raw.trim();
+    if (!t) continue;
+    if (/^WEBVTT/i.test(t)) continue;
+    if (/^NOTE\b/i.test(t)) continue;
+    if (/^\d+$/.test(t)) continue;            // numéro de cue
+    if (/-->/.test(t)) continue;              // ligne d'horodatage
+    const clean = t.replace(/<[^>]+>/g, '').trim();   // balises <i>, <c>…
+    if (!clean || clean === prev) continue;   // dédoublonne les répétitions
+    out.push(clean); prev = clean;
+  }
+  return out.join('\n');
+}
+
 async function convertTxt(file) {
   const text = await file.text();
+  const ext = file.name.split('.').pop().toLowerCase();
+  if (ext === 'srt' || ext === 'vtt') return cleanText(stripSubtitles(text));
   return cleanText(text);
 }
 
@@ -3057,6 +3112,9 @@ function closeOnboarding() {
   localStorage.setItem('mdc_onboarded', '1');
 }
 
+function showAvTip() { document.getElementById('avTipOverlay').classList.add('open'); }
+function closeAvTip() { document.getElementById('avTipOverlay').classList.remove('open'); }
+
 function saveAiSettings() {
   AI.key = document.getElementById('aiKeyInput').value.trim();
   AI.model = document.getElementById('aiModelInput').value.trim() || 'google/gemini-2.0-flash-exp:free';
@@ -3207,6 +3265,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('onboardingClose').onclick = closeOnboarding;
   document.getElementById('onboardingOverlay').onclick = e => { if (e.target === e.currentTarget) closeOnboarding(); };
   document.getElementById('reopenGuide').onclick = e => { e.preventDefault(); showOnboarding(); };
+  document.getElementById('avTipClose').onclick = closeAvTip;
+  document.getElementById('avTipOk').onclick = closeAvTip;
+  document.getElementById('avTipOverlay').onclick = e => { if (e.target === e.currentTarget) closeAvTip(); };
   if (!localStorage.getItem('mdc_onboarded')) showOnboarding();
   document.getElementById('aiSaveBtn').onclick = saveAiSettings;
   document.getElementById('aiClearBtn').onclick = clearAiSettings;
@@ -3216,7 +3277,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Keyboard
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); hideUrlPanel(); closeSettings(); closeOnboarding(); }
+    if (e.key === 'Escape') { closeModal(); hideUrlPanel(); closeSettings(); closeOnboarding(); closeAvTip(); }
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); toggleUrlPanel(); }
   });
 
