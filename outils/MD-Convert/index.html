@@ -2977,7 +2977,12 @@ async function enrichCurrentPreview() {
     closeModal();
     showToast('Note IA créée');
   } catch (err) {
-    showToast('IA : ' + err.message, 'error');
+    const m = {
+      too_large: 'Texte trop long — utilise « Découper » puis relance Note IA sur un morceau.',
+      quota: 'Quota IA gratuit atteint — réessaie dans 1 min.',
+      empty_response: "L'IA n'a rien renvoyé — réessaie.",
+    }[err.message] || ('IA : ' + err.message);
+    showToast(m, 'error');
   } finally {
     btn.disabled = false; btn.textContent = old;
   }

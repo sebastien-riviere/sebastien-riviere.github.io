@@ -17,7 +17,7 @@ const DEFAULT_ALLOWED = [
   'http://127.0.0.1:8765',
 ];
 
-const MAX_CHARS = 60000;            // texte : ~15k tokens
+const MAX_CHARS = 250000;           // texte : ~60k tokens en entrée (cours/vidéos longs)
 const MAX_IMAGE_CHARS = 8000000;    // image base64 : ~6 Mo
 const MISTRAL_URL = 'https://api.mistral.ai/v1/chat/completions';
 const TEXT_MODEL = 'mistral-small-latest';
@@ -79,7 +79,7 @@ function stripFences(md) {
   return s.trim();
 }
 
-async function callMistral(env, model, messages) {
+async function callMistral(env, model, messages, maxTokens) {
   let res;
   try {
     res = await fetch(MISTRAL_URL, {
@@ -88,7 +88,7 @@ async function callMistral(env, model, messages) {
         'Authorization': 'Bearer ' + env.MISTRAL_API_KEY,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ model, temperature: 0.2, messages }),
+      body: JSON.stringify({ model, temperature: 0.2, max_tokens: maxTokens || 8000, messages }),
     });
   } catch {
     return { error: 'provider_unreachable', status: 502 };
@@ -134,7 +134,7 @@ export default {
           { type: 'image_url', image_url: image },
         ] },
       ];
-      const r = await callMistral(env, VISION_MODEL, messages);
+      const r = await callMistral(env, VISION_MODEL, messages, 8000);
       if (r.error) return json({ ok: false, error: r.error }, r.status, cors);
       return json({ ok: true, markdown: r.markdown }, 200, cors);
     }
@@ -148,7 +148,7 @@ export default {
       { role: 'system', content: SYSTEM_PROMPT },
       { role: 'user', content: u.header + `\n--- TEXTE À METTRE EN NOTE ---\n${text}` },
     ];
-    const r = await callMistral(env, TEXT_MODEL, messages);
+    const r = await callMistral(env, TEXT_MODEL, messages, 16000);
     if (r.error) return json({ ok: false, error: r.error }, r.status, cors);
     return json({ ok: true, markdown: r.markdown }, 200, cors);
   },
