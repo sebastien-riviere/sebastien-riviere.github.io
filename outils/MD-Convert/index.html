@@ -1046,6 +1046,10 @@ input[type="file"] { display: none; }
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Obsidian
         </button>
+        <button class="btn-sm" id="modalShare" type="button" title="Partager / envoyer vers une app (Drive, mail…)" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Partager
+        </button>
         <button class="btn-icon" id="modalClose" type="button" aria-label="Fermer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -1104,11 +1108,19 @@ input[type="file"] { display: none; }
         <input type="password" id="aiKeyInput" class="url-input" placeholder="sk-or-…" autocomplete="off" spellcheck="false"/>
         <label class="settings-label" for="aiModelInput">Modèle</label>
         <input type="text" id="aiModelInput" class="url-input" placeholder="google/gemini-2.0-flash-exp:free" autocomplete="off" spellcheck="false"/>
-        <div class="settings-actions">
-          <a href="https://openrouter.ai/keys" target="_blank" rel="noopener" class="btn-sm">Obtenir une clé gratuite</a>
-          <button class="btn-sm" id="aiClearBtn" type="button">Effacer</button>
-          <button class="btn-sm accent" id="aiSaveBtn" type="button">Enregistrer</button>
-        </div>
+      </div>
+      <div class="settings-section" style="margin-top:var(--space-6)">
+        <div class="settings-title">Destination Obsidian <span class="settings-optional">— optionnel</span></div>
+        <p class="settings-desc">Pour que le bouton « Obsidian » dépose la note directement au bon endroit. Laisse vide pour utiliser le coffre actif.</p>
+        <label class="settings-label" for="obsVaultInput">Nom du coffre</label>
+        <input type="text" id="obsVaultInput" class="url-input" placeholder="(coffre actif par défaut)" autocomplete="off" spellcheck="false"/>
+        <label class="settings-label" for="obsFolderInput">Dossier de dépôt</label>
+        <input type="text" id="obsFolderInput" class="url-input" placeholder="ex : Inbox" autocomplete="off" spellcheck="false"/>
+      </div>
+      <div class="settings-actions">
+        <a href="https://openrouter.ai/keys" target="_blank" rel="noopener" class="btn-sm">Obtenir une clé IA gratuite</a>
+        <button class="btn-sm" id="aiClearBtn" type="button">Effacer la clé IA</button>
+        <button class="btn-sm accent" id="aiSaveBtn" type="button">Enregistrer</button>
       </div>
     </div>
   </div>
@@ -1997,12 +2009,30 @@ function applyFrontmatter(text, title, sourceUrl) {
 
 // === MODULE DOWNLOAD ===
 
-function downloadFile(id) {
+async function downloadFile(id) {
   const entry = STATE.files.find(e => e.id === id);
   if (!entry || !entry.result) return;
 
   const filename = (entry.customName || baseName(entry.file.name)) + getOutputExt();
   const content = applyFrontmatter(entry.result, entry.customName || baseName(entry.file.name), entry.sourceUrl);
+
+  // Si supporté (Chrome/Edge desktop) : laisse choisir le dossier. Sinon : téléchargement classique.
+  if ('showSaveFilePicker' in window) {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: filename,
+        types: [{ description: 'Markdown / Texte', accept: { 'text/markdown': ['.md'], 'text/plain': ['.txt'] } }],
+      });
+      const w = await handle.createWritable();
+      await w.write(content); await w.close();
+      showToast(filename + T.downloaded);
+      return;
+    } catch (e) {
+      if (e && e.name === 'AbortError') return; // annulé par l'utilisateur
+      // autre erreur → repli sur le téléchargement classique
+    }
+  }
+
   const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -2778,6 +2808,14 @@ function ensureCloudConsent() {
   return ok;
 }
 
+// Destination Obsidian (par utilisateur, vide = coffre actif)
+const OBS = {
+  get vault()  { return localStorage.getItem('mdc_obs_vault') || ''; },
+  set vault(v) { localStorage.setItem('mdc_obs_vault', v || ''); },
+  get folder() { return localStorage.getItem('mdc_obs_folder') || ''; },
+  set folder(v){ localStorage.setItem('mdc_obs_folder', v || ''); },
+};
+
 const AI_SYSTEM_PROMPT = `Tu transformes un texte brut en NOTE SOURCE Markdown propre, prête pour Obsidian.
 Règles strictes :
 - Commence par un frontmatter YAML : title, aliases: [], source (si fournie), created, tags (3 à 6, inférés du contenu), type: source.
@@ -2928,6 +2966,8 @@ function startDictation(targetInput) {
 function openSettings() {
   document.getElementById('aiKeyInput').value = AI.key;
   document.getElementById('aiModelInput').value = AI.model;
+  document.getElementById('obsVaultInput').value = OBS.vault;
+  document.getElementById('obsFolderInput').value = OBS.folder;
   document.getElementById('settingsOverlay').classList.add('open');
   document.getElementById('aiKeyInput').focus();
 }
@@ -2939,8 +2979,10 @@ function closeSettings() {
 function saveAiSettings() {
   AI.key = document.getElementById('aiKeyInput').value.trim();
   AI.model = document.getElementById('aiModelInput').value.trim() || 'google/gemini-2.0-flash-exp:free';
+  OBS.vault = document.getElementById('obsVaultInput').value.trim();
+  OBS.folder = document.getElementById('obsFolderInput').value.trim();
   closeSettings();
-  showToast(AI.key ? 'Réglages IA enregistrés' : 'Clé IA effacée');
+  showToast('Réglages enregistrés');
 }
 
 function clearAiSettings() {
@@ -2955,9 +2997,31 @@ function saveToObsidian(id) {
   if (!entry?.result) return;
   const title = entry.customName || baseName(entry.file.name);
   const content = applyFrontmatter(entry.result, title, entry.sourceUrl);
-  const uri = 'obsidian://new?name=' + encodeURIComponent(title) + '&content=' + encodeURIComponent(content);
+  const folder = OBS.folder ? OBS.folder.replace(/^\/+|\/+$/g, '') + '/' : '';
+  let uri = 'obsidian://new?file=' + encodeURIComponent(folder + title) +
+            '&content=' + encodeURIComponent(content);
+  if (OBS.vault) uri += '&vault=' + encodeURIComponent(OBS.vault);
   window.location.href = uri;
   showToast('Ouverture dans Obsidian…');
+}
+
+// Partage natif (mobile surtout) → Drive, Obsidian, mail, etc.
+async function shareFile(id) {
+  const entry = STATE.files.find(e => e.id === id);
+  if (!entry?.result) return;
+  const title = entry.customName || baseName(entry.file.name);
+  const filename = title + getOutputExt();
+  const content = applyFrontmatter(entry.result, title, entry.sourceUrl);
+  const file = new File([content], filename, { type: 'text/markdown' });
+  try {
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], title: filename });
+    } else if (navigator.share) {
+      await navigator.share({ title: filename, text: content });
+    } else {
+      showToast('Partage non supporté sur ce navigateur', 'error');
+    }
+  } catch (e) { /* annulé par l'utilisateur */ }
 }
 
 // === INIT — EVENT LISTENERS ===
@@ -3052,6 +3116,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('modalChunk').onclick = () => chunkResult(STATE.currentPreviewId);
   document.getElementById('modalObsidian').onclick = () => copyObsidian(STATE.currentPreviewId);
   document.getElementById('modalOpenObsidian').onclick = () => saveToObsidian(STATE.currentPreviewId);
+  const shareBtn = document.getElementById('modalShare');
+  if (navigator.share) { shareBtn.style.display = ''; shareBtn.onclick = () => shareFile(STATE.currentPreviewId); }
 
   // Réglages (modale) + IA (BYOK)
   document.getElementById('settingsBtn').onclick = openSettings;
