@@ -52,10 +52,10 @@
   --border-strong: rgba(255,255,255,0.15);
   --text: #F8FAFC;
   --text-muted: #94A3B8;
-  --text-subtle: #64748B;
-  --accent: #6366F1;
+  --text-subtle: #8C99AD;
+  --accent: #5457E5;
   --accent-hover: #818CF8;
-  --accent-rgb: 99, 102, 241;
+  --accent-rgb: 84, 87, 229;
   --success: #10B981;
   --warning: #F59E0B;
   --danger: #EF4444;
@@ -87,7 +87,7 @@
     --border-strong: rgba(0,0,0,0.15);
     --text: #0F172A;
     --text-muted: #475569;
-    --text-subtle: #94A3B8;
+    --text-subtle: #5A6675;
     --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
     --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
     --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
@@ -122,6 +122,13 @@ body {
   flex-direction: column;
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
   overflow-x: hidden;
+}
+
+/* === FOCUS VISIBLE (a11y) === */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 /* === LAYOUT === */
@@ -567,11 +574,14 @@ main {
   align-items: flex-end;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s var(--ease);
+  visibility: hidden;
+  transition: opacity 0.2s var(--ease), visibility 0s 0.2s;
 }
 .modal-overlay.open {
   opacity: 1;
   pointer-events: all;
+  visibility: visible;
+  transition: opacity 0.2s var(--ease), visibility 0s 0s;
 }
 .modal {
   background: var(--surface);
@@ -939,7 +949,7 @@ input[type="file"] { display: none; }
     <!-- URL PANEL -->
     <div class="url-panel" id="urlPanel">
       <div class="url-input-row">
-        <input type="text" class="url-input" id="urlInput" list="urlHistoryList" placeholder="YouTube, article, Google Doc, GitHub…" spellcheck="false" autocomplete="off"/>
+        <input type="text" class="url-input" id="urlInput" list="urlHistoryList" placeholder="YouTube, article, Google Doc, GitHub…" aria-label="Lien à convertir (YouTube, article, Google Doc, GitHub)" spellcheck="false" autocomplete="off"/>
         <button class="btn-sm accent" id="btnUrlConvert" type="button">OK</button>
         <button class="btn-sm" id="btnUrlCancel" type="button">✕</button>
       </div>
@@ -949,7 +959,7 @@ input[type="file"] { display: none; }
 
     <!-- PASTE PANEL -->
     <div class="paste-panel" id="pastePanel">
-      <textarea id="pasteTextarea" placeholder="Collez votre texte ici — transcript YouTube, email, notes…" spellcheck="false"></textarea>
+      <textarea id="pasteTextarea" placeholder="Collez votre texte ici — transcript YouTube, email, notes…" aria-label="Texte à convertir" spellcheck="false"></textarea>
       <div class="paste-panel-actions">
         <button class="btn-sm" id="btnPasteCancel" type="button">Annuler</button>
         <button class="btn-sm accent" id="btnPasteConvert" type="button">Convertir</button>
@@ -2844,11 +2854,13 @@ function openPreview(id) {
   const ai = document.getElementById('aiInstruction');
   if (ai) ai.value = '';
   document.getElementById('modalOverlay').classList.add('open');
+  _afterOpen('modalOverlay');
 }
 
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('open');
   STATE.currentPreviewId = null;
+  _afterClose();
 }
 
 // === MODULE DRAG & DROP ===
@@ -3037,6 +3049,43 @@ async function visionViaOpenRouter(dataUrl) {
   return md;
 }
 
+// Découpe un texte long en morceaux (aux paragraphes) sous maxChars
+function segmentText(text, maxChars) {
+  const paras = text.split(/\n{2,}/);
+  const chunks = [];
+  let cur = '';
+  for (const p of paras) {
+    if (cur && (cur.length + p.length + 2) > maxChars) { chunks.push(cur); cur = ''; }
+    cur += (cur ? '\n\n' : '') + p;
+    while (cur.length > maxChars) { chunks.push(cur.slice(0, maxChars)); cur = cur.slice(maxChars); }
+  }
+  if (cur.trim()) chunks.push(cur);
+  return chunks;
+}
+
+// Fusionne plusieurs notes IA en UNE : un seul frontmatter, tags unifiés, corps enchaînés
+function mergeNotes(notes, title, sourceUrl) {
+  const tags = new Set();
+  const bodies = [];
+  for (const n of notes) {
+    const m = n.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+    if (m) {
+      const fm = m[1];
+      const inline = fm.match(/tags:\s*\[([^\]]*)\]/);
+      if (inline) inline[1].split(',').forEach(t => { const v = t.trim().replace(/^["']|["']$/g, ''); if (v) tags.add(v); });
+      const block = fm.match(/tags:\s*\n((?:[ \t]*-[ \t]*.+\n?)+)/);
+      if (block) block[1].split('\n').forEach(l => { const v = l.replace(/^[ \t]*-[ \t]*/, '').trim().replace(/^["']|["']$/g, ''); if (v) tags.add(v); });
+      bodies.push(m[2].trim());
+    } else {
+      bodies.push(n.trim());
+    }
+  }
+  const date = new Date().toISOString().slice(0, 10);
+  const src = sourceUrl ? `\nsource: "${escapeYaml(sourceUrl)}"` : '';
+  const tagList = [...tags].slice(0, 12).map(t => `"${escapeYaml(t)}"`).join(', ');
+  return `---\ntitle: "${escapeYaml(title)}"\naliases: []${src}\ncreated: ${date}\ntags: [${tagList}]\ntype: source\n---\n\n` + bodies.join('\n\n');
+}
+
 async function enrichCurrentPreview() {
   const entry = STATE.files.find(e => e.id === STATE.currentPreviewId);
   if (!entry?.result) return;
@@ -3048,7 +3097,19 @@ async function enrichCurrentPreview() {
   const old = btn.textContent;
   btn.disabled = true; btn.textContent = '…';
   try {
-    const md = await enrichWithAI(entry.result, instr, title, entry.sourceUrl);
+    const SEG = 40000; // au-delà : on découpe, on traite chaque morceau, on fusionne en 1 note
+    let md;
+    if (entry.result.length > SEG) {
+      const chunks = segmentText(entry.result, SEG);
+      const notes = [];
+      for (let i = 0; i < chunks.length; i++) {
+        btn.textContent = `… ${i + 1}/${chunks.length}`;
+        notes.push(await enrichWithAI(chunks[i], instr, `${title} (partie ${i + 1}/${chunks.length})`, entry.sourceUrl));
+      }
+      md = mergeNotes(notes, title, entry.sourceUrl);
+    } else {
+      md = await enrichWithAI(entry.result, instr, title, entry.sourceUrl);
+    }
     const e2 = createUrlEntry(title + '-note.md', 'txt');
     e2.result = md; e2.customName = title + '-note'; e2.sourceUrl = entry.sourceUrl;
     updateCardState(e2.id, 'done', estimateTokensHtml(md, null));
@@ -3091,6 +3152,7 @@ function startDictation(targetInput) {
 }
 
 function openSettings() {
+  _lastFocused = document.activeElement;
   document.getElementById('aiKeyInput').value = AI.key;
   document.getElementById('aiModelInput').value = AI.model;
   document.getElementById('obsVaultInput').value = OBS.vault;
@@ -3101,19 +3163,39 @@ function openSettings() {
 
 function closeSettings() {
   document.getElementById('settingsOverlay').classList.remove('open');
+  _afterClose();
 }
 
 function showOnboarding() {
   closeSettings();
   document.getElementById('onboardingOverlay').classList.add('open');
+  _afterOpen('onboardingOverlay');
 }
 function closeOnboarding() {
   document.getElementById('onboardingOverlay').classList.remove('open');
   localStorage.setItem('mdc_onboarded', '1');
+  _afterClose();
 }
 
-function showAvTip() { document.getElementById('avTipOverlay').classList.add('open'); }
-function closeAvTip() { document.getElementById('avTipOverlay').classList.remove('open'); }
+function showAvTip() { document.getElementById('avTipOverlay').classList.add('open'); _afterOpen('avTipOverlay'); }
+function closeAvTip() { document.getElementById('avTipOverlay').classList.remove('open'); _afterClose(); }
+
+// === GESTION DU FOCUS (a11y modales) ===
+let _lastFocused = null;
+function _focusables(el) {
+  return Array.from(el.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])'))
+    .filter(n => n.offsetParent !== null);
+}
+function _afterOpen(overlayId) {
+  _lastFocused = document.activeElement;
+  const f = _focusables(document.getElementById(overlayId));
+  if (f.length) setTimeout(() => f[0].focus(), 30);
+}
+function _afterClose() {
+  if (_lastFocused && _lastFocused.focus) _lastFocused.focus();
+  _lastFocused = null;
+}
+function _openOverlayEl() { return document.querySelector('.modal-overlay.open'); }
 
 function saveAiSettings() {
   AI.key = document.getElementById('aiKeyInput').value.trim();
@@ -3279,6 +3361,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') { closeModal(); hideUrlPanel(); closeSettings(); closeOnboarding(); closeAvTip(); }
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); toggleUrlPanel(); }
+    if (e.key === 'Tab') {
+      const ov = _openOverlayEl();
+      if (ov) {
+        const f = _focusables(ov);
+        if (f.length) {
+          const first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
+    }
   });
 
   // URL paste batch (plusieurs liens séparés par des sauts de ligne)
