@@ -945,6 +945,11 @@ input[type="file"] { display: none; }
         <button class="format-tab" data-format="txt">.txt</button>
       </div>
       <button class="format-tab" id="btnFM" title="Ajouter frontmatter YAML (Obsidian / Jekyll)">FM</button>
+      <span class="format-label" style="margin-left:auto">Moteur</span>
+      <div class="format-tabs" id="modeTabs" title="Cloud = qualité IA (UE, données envoyées) · Local = 100% privé, hors ligne">
+        <button class="format-tab" data-mode="cloud">Cloud</button>
+        <button class="format-tab active" data-mode="local">Local</button>
+      </div>
       <div class="ocr-row">
         <select class="ocr-select" id="ocrMode" title="Mode OCR">
           <option value="6">Document</option>
@@ -1245,6 +1250,7 @@ const STATE = {
   files: [],
   format: 'md',
   frontmatter: false,
+  mode: 'local',            // 'cloud' (IA UE, qualité) | 'local' (Tesseract, privé/offline)
   ocrLang: 'fra',
   ocrMode: '3',
   theme: 'auto',
@@ -1725,6 +1731,20 @@ async function convertDocx(file) {
 // === MODULE IMAGE / OCR CONVERSION ===
 
 async function convertImage(file, entryId) {
+  // CHEMIN CLOUD VISION : l'image est lue directement par un modèle (qualité max,
+  // contourne Tesseract). En cas d'échec → repli automatique sur l'OCR local.
+  if (STATE.mode === 'cloud' && cloudAvailable()) {
+    if (ensureCloudConsent()) {
+      try {
+        updateCardState(entryId, 'processing', 'Lecture IA (vision)…');
+        const md = await visionToNote(file);
+        if (md && md.trim()) return { text: md, confidence: null };
+      } catch (e) {
+        showToast('Vision cloud indisponible — OCR local', 'error');
+      }
+    }
+  }
+
   // Init Tesseract worker si pas encore fait
   if (!STATE.tesseractWorker) {
     await initTesseract(entryId);
@@ -2685,7 +2705,7 @@ function openPreview(id) {
   document.getElementById('ocrLoading').classList.remove('visible');
   // Contrôles IA visibles uniquement si une clé est configurée
   const aiRow = document.getElementById('aiInstructionRow');
-  if (aiRow) { aiRow.style.display = AI.key ? 'flex' : 'none'; }
+  if (aiRow) { aiRow.style.display = cloudAvailable() ? 'flex' : 'none'; }
   const ai = document.getElementById('aiInstruction');
   if (ai) ai.value = '';
   document.getElementById('modalOverlay').classList.add('open');
@@ -2730,6 +2750,34 @@ const AI = {
   set model(v){ localStorage.setItem('mdc_ai_model', v || ''); },
 };
 
+// URL du worker IA (cloud gratuit, UE). Vide tant qu'il n'est pas déployé.
+// Quand renseignée, l'IA est dispo par défaut SANS que l'utilisateur fournisse de clé.
+const AI_WORKER = '';
+
+// IA disponible si : worker déployé OU clé BYOK fournie.
+function cloudAvailable() { return !!AI_WORKER || !!AI.key; }
+
+function fileToDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result);
+    r.onerror = () => reject(new Error('lecture image'));
+    r.readAsDataURL(file);
+  });
+}
+
+// Consentement cloud (une fois) : le contenu quitte l'appareil.
+function ensureCloudConsent() {
+  if (localStorage.getItem('mdc_cloud_consent') === '1') return true;
+  const ok = confirm(
+    "Mode Cloud : le contenu de ce document sera envoyé à un service d'IA (UE) pour une meilleure qualité.\n" +
+    "Pour rester 100 % local et hors ligne, bascule sur le mode « Local ».\n\n" +
+    "Continuer en cloud ?"
+  );
+  if (ok) localStorage.setItem('mdc_cloud_consent', '1');
+  return ok;
+}
+
 const AI_SYSTEM_PROMPT = `Tu transformes un texte brut en NOTE SOURCE Markdown propre, prête pour Obsidian.
 Règles strictes :
 - Commence par un frontmatter YAML : title, aliases: [], source (si fournie), created, tags (3 à 6, inférés du contenu), type: source.
@@ -2737,8 +2785,25 @@ Règles strictes :
 - N'invente RIEN, n'ajoute aucune information absente du texte. Corrige seulement la mise en forme et la structure.
 - Réponds UNIQUEMENT avec le Markdown final, sans phrase d'introduction ni commentaire.`;
 
+// Enrichissement TEXTE → note. BYOK (clé) prioritaire, sinon worker UE.
 async function enrichWithAI(text, instruction, title, sourceUrl) {
-  if (!AI.key) throw new Error('clé manquante');
+  if (AI.key) return enrichViaOpenRouter(text, instruction, title, sourceUrl);
+  if (AI_WORKER) return enrichViaWorker(text, instruction, title, sourceUrl);
+  throw new Error('IA non configurée');
+}
+
+async function enrichViaWorker(text, instruction, title, sourceUrl) {
+  const res = await fetch(AI_WORKER.replace(/\/$/, '') + '/enrich', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text, instruction, title, sourceUrl }),
+  });
+  const j = await res.json().catch(() => ({}));
+  if (!j.ok) throw new Error(j.error || ('API ' + res.status));
+  return j.markdown;
+}
+
+async function enrichViaOpenRouter(text, instruction, title, sourceUrl) {
   const today = new Date().toISOString().slice(0, 10);
   const userMsg =
     `Titre suggéré : ${title}\n` +
@@ -2770,10 +2835,58 @@ async function enrichWithAI(text, instruction, title, sourceUrl) {
   return md;
 }
 
+// VISION : image lue directement par un modèle (contourne l'OCR local).
+async function visionToNote(file) {
+  const dataUrl = await fileToDataUrl(file);
+  if (AI.key) return visionViaOpenRouter(dataUrl);
+  if (AI_WORKER) return visionViaWorker(dataUrl);
+  throw new Error('IA non configurée');
+}
+
+async function visionViaWorker(dataUrl) {
+  const res = await fetch(AI_WORKER.replace(/\/$/, '') + '/vision', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ image: dataUrl }),
+  });
+  const j = await res.json().catch(() => ({}));
+  if (!j.ok) throw new Error(j.error || ('API ' + res.status));
+  return j.markdown;
+}
+
+async function visionViaOpenRouter(dataUrl) {
+  const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + AI.key,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': location.origin,
+      'X-Title': 'MD Convert',
+    },
+    body: JSON.stringify({
+      model: AI.model,
+      temperature: 0.2,
+      messages: [
+        { role: 'system', content: AI_SYSTEM_PROMPT },
+        { role: 'user', content: [
+          { type: 'text', text: 'Lis ce document/image et mets-le en note Markdown Obsidian.' },
+          { type: 'image_url', image_url: { url: dataUrl } },
+        ] },
+      ],
+    }),
+  });
+  if (!res.ok) throw new Error('API ' + res.status);
+  const j = await res.json();
+  const md = j?.choices?.[0]?.message?.content?.trim();
+  if (!md) throw new Error('réponse vide');
+  return md;
+}
+
 async function enrichCurrentPreview() {
   const entry = STATE.files.find(e => e.id === STATE.currentPreviewId);
   if (!entry?.result) return;
-  if (!AI.key) { showToast('Ajoute ta clé IA dans les Réglages (engrenage en haut)', 'error'); openSettings(); return; }
+  if (!cloudAvailable()) { showToast("Active l'IA dans les Réglages (engrenage en haut)", 'error'); openSettings(); return; }
+  if (!ensureCloudConsent()) return;
   const instr = document.getElementById('aiInstruction').value.trim();
   const title = entry.customName || baseName(entry.file.name);
   const btn = document.getElementById('aiEnrichBtn');
@@ -2886,6 +2999,24 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.format-tab[data-format]').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       STATE.format = tab.dataset.format;
+    };
+  });
+
+  // Bascule Moteur Cloud / Local
+  STATE.mode = localStorage.getItem('mdc_mode') || (cloudAvailable() ? 'cloud' : 'local');
+  const applyModeUI = () => document.querySelectorAll('.format-tab[data-mode]').forEach(t =>
+    t.classList.toggle('active', t.dataset.mode === STATE.mode));
+  applyModeUI();
+  document.querySelectorAll('.format-tab[data-mode]').forEach(tab => {
+    tab.onclick = () => {
+      if (tab.dataset.mode === 'cloud' && !cloudAvailable()) {
+        showToast("Active l'IA dans les Réglages pour le mode Cloud", 'error');
+        openSettings();
+        return;
+      }
+      STATE.mode = tab.dataset.mode;
+      localStorage.setItem('mdc_mode', STATE.mode);
+      applyModeUI();
     };
   });
   document.getElementById('btnFM').onclick = () => {
