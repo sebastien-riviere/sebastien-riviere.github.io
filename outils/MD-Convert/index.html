@@ -633,6 +633,15 @@ main {
   word-break: break-word;
 }
 
+/* === SETTINGS === */
+.settings-section { max-width: 520px; }
+.settings-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: var(--space-3); }
+.settings-optional { font-weight: 400; color: var(--text-muted); }
+.settings-desc { font-size: 0.82rem; line-height: 1.55; color: var(--text-muted); margin-bottom: var(--space-3); }
+.settings-label { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); margin: var(--space-4) 0 var(--space-2); }
+.settings-actions { display: flex; gap: var(--space-2); justify-content: flex-end; align-items: center; flex-wrap: wrap; margin-top: var(--space-5); }
+.settings-actions a.btn-sm { text-decoration: none; margin-right: auto; }
+
 /* === TOKEN BADGE === */
 .token-badge {
   display: inline-block;
@@ -836,7 +845,9 @@ input[type="file"] { display: none; }
       <span class="logo-text">MD<span>Convert</span></span>
     </div>
     <div class="header-actions">
-      <button class="btn-icon" id="aiSettingsBtn" title="Réglages IA — note Obsidian (optionnel)" style="font-size:1rem" aria-label="Réglages IA">✨</button>
+      <button class="btn-icon" id="settingsBtn" title="Réglages — enrichissement IA (optionnel)" aria-label="Réglages">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
       <button class="btn-icon" id="themeToggle" title="Changer de thème">
         <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
@@ -923,22 +934,6 @@ input[type="file"] { display: none; }
       <div class="paste-panel-actions">
         <button class="btn-sm" id="btnPasteCancel" type="button">Annuler</button>
         <button class="btn-sm accent" id="btnPasteConvert" type="button">Convertir</button>
-      </div>
-    </div>
-
-    <!-- AI SETTINGS PANEL (BYOK, optionnel) -->
-    <div class="paste-panel" id="aiPanel">
-      <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:var(--space-2);line-height:1.4">
-        Enrichissement IA → note Obsidian (titres, tags, structure). <strong>Optionnel · BYOK</strong> :
-        ta clé reste dans ce navigateur (localStorage) et n'est envoyée qu'au fournisseur que tu choisis.
-        Les données du document quittent alors l'appareil. Pour rester 100% local, n'active pas l'IA.
-      </div>
-      <input type="password" id="aiKeyInput" class="url-input" placeholder="Clé API OpenRouter (sk-or-…)" autocomplete="off" spellcheck="false"/>
-      <input type="text" id="aiModelInput" class="url-input" placeholder="Modèle (ex: google/gemini-2.0-flash-exp:free)" autocomplete="off" spellcheck="false" style="margin-top:var(--space-2)"/>
-      <div class="paste-panel-actions" style="margin-top:var(--space-2)">
-        <a href="https://openrouter.ai/keys" target="_blank" rel="noopener" class="btn-sm" style="text-decoration:none">Obtenir une clé</a>
-        <button class="btn-sm" id="aiClearBtn" type="button">Effacer</button>
-        <button class="btn-sm accent" id="aiSaveBtn" type="button">Enregistrer</button>
       </div>
     </div>
 
@@ -1034,9 +1029,18 @@ input[type="file"] { display: none; }
           </svg>
           Copier
         </button>
-        <button class="btn-sm" id="modalChunk" type="button" title="Découper en chunks de ~8k tokens">✂ Découper</button>
-        <button class="btn-sm" id="modalObsidian" type="button" title="Copier avec frontmatter Obsidian">⌗ Copier</button>
-        <button class="btn-sm" id="modalOpenObsidian" type="button" title="Ouvrir directement dans Obsidian">↗ Obsidian</button>
+        <button class="btn-sm" id="modalChunk" type="button" title="Découper en chunks de ~8k tokens">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+          Découper
+        </button>
+        <button class="btn-sm" id="modalObsidian" type="button" title="Copier avec frontmatter Obsidian">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+          Copier FM
+        </button>
+        <button class="btn-sm" id="modalOpenObsidian" type="button" title="Ouvrir directement dans Obsidian">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Obsidian
+        </button>
         <button class="btn-icon" id="modalClose" type="button" aria-label="Fermer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -1050,12 +1054,57 @@ input[type="file"] { display: none; }
         <div class="ocr-loading-bar"><div class="ocr-loading-fill"></div></div>
         <div class="ocr-hint" id="ocrHint">Préparation du moteur OCR — premier lancement uniquement</div>
       </div>
-      <div id="aiInstructionRow" style="display:flex;gap:var(--space-2);margin-bottom:var(--space-3);align-items:center">
+      <div id="aiInstructionRow" style="display:none;gap:var(--space-2);margin-bottom:var(--space-3);align-items:center">
         <input type="text" id="aiInstruction" class="url-input" style="flex:1" placeholder="Consigne IA optionnelle : résume, garde les chiffres, traduis, tags…" autocomplete="off"/>
-        <button class="btn-sm" id="aiMicBtn" type="button" title="Dicter la consigne" aria-label="Dicter">🎤</button>
-        <button class="btn-sm accent" id="aiEnrichBtn" type="button" title="Structurer en note Obsidian via IA">✨ Note IA</button>
+        <button class="btn-sm" id="aiMicBtn" type="button" title="Dicter la consigne" aria-label="Dicter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </button>
+        <button class="btn-sm accent" id="aiEnrichBtn" type="button" title="Structurer en note Obsidian via IA">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10z"/></svg>
+          Note IA
+        </button>
       </div>
       <pre class="preview-text" id="previewText"></pre>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsOverlay" role="dialog" aria-modal="true" aria-label="Réglages">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Réglages</span>
+      <div class="modal-actions">
+        <button class="btn-icon" id="settingsClose" type="button" aria-label="Fermer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body" style="display:block">
+      <div class="settings-section">
+        <div class="settings-title">Enrichissement IA <span class="settings-optional">— optionnel</span></div>
+        <p class="settings-desc">
+          Par défaut, MD Convert fonctionne <strong>100&nbsp;% en local</strong> sur ton appareil.
+          Tu peux activer une IA pour transformer un document en <strong>note Obsidian structurée</strong>
+          (titres, tags, frontmatter) au lieu d'un simple texte brut.
+        </p>
+        <p class="settings-desc">
+          C'est du <strong>BYOK</strong> : tu fournis ta propre clé. Elle reste stockée
+          <strong>dans ce navigateur</strong> et n'est transmise qu'au fournisseur que tu choisis.
+          Les données du document quittent alors l'appareil. Sans clé, l'IA reste désactivée.
+        </p>
+        <label class="settings-label" for="aiKeyInput">Clé API OpenRouter</label>
+        <input type="password" id="aiKeyInput" class="url-input" placeholder="sk-or-…" autocomplete="off" spellcheck="false"/>
+        <label class="settings-label" for="aiModelInput">Modèle</label>
+        <input type="text" id="aiModelInput" class="url-input" placeholder="google/gemini-2.0-flash-exp:free" autocomplete="off" spellcheck="false"/>
+        <div class="settings-actions">
+          <a href="https://openrouter.ai/keys" target="_blank" rel="noopener" class="btn-sm">Obtenir une clé gratuite</a>
+          <button class="btn-sm" id="aiClearBtn" type="button">Effacer</button>
+          <button class="btn-sm accent" id="aiSaveBtn" type="button">Enregistrer</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -2634,6 +2683,11 @@ function openPreview(id) {
   document.getElementById('modalTokens').textContent = estimateTokens(entry.result);
   document.getElementById('previewText').textContent = entry.result;
   document.getElementById('ocrLoading').classList.remove('visible');
+  // Contrôles IA visibles uniquement si une clé est configurée
+  const aiRow = document.getElementById('aiInstructionRow');
+  if (aiRow) { aiRow.style.display = AI.key ? 'flex' : 'none'; }
+  const ai = document.getElementById('aiInstruction');
+  if (ai) ai.value = '';
   document.getElementById('modalOverlay').classList.add('open');
 }
 
@@ -2719,7 +2773,7 @@ async function enrichWithAI(text, instruction, title, sourceUrl) {
 async function enrichCurrentPreview() {
   const entry = STATE.files.find(e => e.id === STATE.currentPreviewId);
   if (!entry?.result) return;
-  if (!AI.key) { showToast('Ajoute ta clé IA (✨ en haut à droite)', 'error'); toggleAiPanel(true); return; }
+  if (!AI.key) { showToast('Ajoute ta clé IA dans les Réglages (engrenage en haut)', 'error'); openSettings(); return; }
   const instr = document.getElementById('aiInstruction').value.trim();
   const title = entry.customName || baseName(entry.file.name);
   const btn = document.getElementById('aiEnrichBtn');
@@ -2732,7 +2786,7 @@ async function enrichCurrentPreview() {
     updateCardState(e2.id, 'done', estimateTokensHtml(md, null));
     setCardActions(e2.id, e2);
     closeModal();
-    showToast('Note IA créée ✨');
+    showToast('Note IA créée');
   } catch (err) {
     showToast('IA : ' + err.message, 'error');
   } finally {
@@ -2758,17 +2812,21 @@ function startDictation(targetInput) {
   try { r.start(); } catch { /* déjà en cours */ }
 }
 
-function toggleAiPanel(force) {
-  const p = document.getElementById('aiPanel');
-  const show = force !== undefined ? force : !p.classList.contains('open');
-  p.classList.toggle('open', show);
-  if (show) document.getElementById('aiKeyInput').focus();
+function openSettings() {
+  document.getElementById('aiKeyInput').value = AI.key;
+  document.getElementById('aiModelInput').value = AI.model;
+  document.getElementById('settingsOverlay').classList.add('open');
+  document.getElementById('aiKeyInput').focus();
+}
+
+function closeSettings() {
+  document.getElementById('settingsOverlay').classList.remove('open');
 }
 
 function saveAiSettings() {
   AI.key = document.getElementById('aiKeyInput').value.trim();
   AI.model = document.getElementById('aiModelInput').value.trim() || 'google/gemini-2.0-flash-exp:free';
-  toggleAiPanel(false);
+  closeSettings();
   showToast(AI.key ? 'Réglages IA enregistrés' : 'Clé IA effacée');
 }
 
@@ -2864,19 +2922,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('modalObsidian').onclick = () => copyObsidian(STATE.currentPreviewId);
   document.getElementById('modalOpenObsidian').onclick = () => saveToObsidian(STATE.currentPreviewId);
 
-  // IA (BYOK)
-  document.getElementById('aiSettingsBtn').onclick = () => toggleAiPanel();
+  // Réglages (modale) + IA (BYOK)
+  document.getElementById('settingsBtn').onclick = openSettings;
+  document.getElementById('settingsClose').onclick = closeSettings;
+  document.getElementById('settingsOverlay').onclick = e => { if (e.target === e.currentTarget) closeSettings(); };
   document.getElementById('aiSaveBtn').onclick = saveAiSettings;
   document.getElementById('aiClearBtn').onclick = clearAiSettings;
   document.getElementById('aiEnrichBtn').onclick = enrichCurrentPreview;
   document.getElementById('aiMicBtn').onclick = () => startDictation(document.getElementById('aiInstruction'));
   document.getElementById('aiInstruction').addEventListener('keydown', e => { if (e.key === 'Enter') enrichCurrentPreview(); });
-  document.getElementById('aiKeyInput').value = AI.key;
-  document.getElementById('aiModelInput').value = AI.model;
 
   // Keyboard
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); hideUrlPanel(); toggleAiPanel(false); }
+    if (e.key === 'Escape') { closeModal(); hideUrlPanel(); closeSettings(); }
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); toggleUrlPanel(); }
   });
 
