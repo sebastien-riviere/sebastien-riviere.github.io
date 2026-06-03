@@ -1076,6 +1076,10 @@ input[type="file"] { display: none; }
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Obsidian
         </button>
+        <button class="btn-sm" id="modalVault" type="button" title="Déposer dans mon vault GitHub (Obsidian)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16l-4-4-4 4"/><path d="M12 12v9"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+          Vault
+        </button>
         <button class="btn-sm" id="modalShare" type="button" title="Partager / envoyer vers une app (Drive, mail…)" style="display:none">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           Partager
@@ -1154,6 +1158,18 @@ input[type="file"] { display: none; }
         <input type="text" id="obsVaultInput" class="url-input" placeholder="(coffre actif par défaut)" autocomplete="off" spellcheck="false"/>
         <label class="settings-label" for="obsFolderInput">Dossier de dépôt</label>
         <input type="text" id="obsFolderInput" class="url-input" placeholder="ex : Inbox" autocomplete="off" spellcheck="false"/>
+      </div>
+      <div class="settings-section" style="margin-top:var(--space-6)">
+        <div class="settings-title">Vault GitHub <span class="settings-optional">— optionnel</span></div>
+        <p class="settings-desc">Dépose la note directement dans ton vault Obsidian hébergé sur GitHub (Obsidian Git). Le jeton reste dans ce navigateur. Utilise un <strong>PAT fine-grained limité à ce repo</strong> (droit « Contents: write »).</p>
+        <label class="settings-label" for="vaultRepoInput">Dépôt (owner/repo)</label>
+        <input type="text" id="vaultRepoInput" class="url-input" placeholder="ex : sebastien-riviere/mon-vault" autocomplete="off" spellcheck="false"/>
+        <label class="settings-label" for="vaultFolderInput">Dossier de dépôt</label>
+        <input type="text" id="vaultFolderInput" class="url-input" placeholder="00_INBOX" autocomplete="off" spellcheck="false"/>
+        <label class="settings-label" for="vaultBranchInput">Branche</label>
+        <input type="text" id="vaultBranchInput" class="url-input" placeholder="main" autocomplete="off" spellcheck="false"/>
+        <label class="settings-label" for="vaultTokenInput">Jeton GitHub (PAT fine-grained)</label>
+        <input type="password" id="vaultTokenInput" class="url-input" placeholder="github_pat_…" autocomplete="off" spellcheck="false"/>
       </div>
       <p class="settings-desc" style="margin-top:var(--space-5)"><a href="#" id="reopenGuide" style="color:var(--accent)">Revoir le guide de démarrage</a></p>
       <div class="settings-actions">
@@ -2966,6 +2982,64 @@ const OBS = {
   set folder(v){ localStorage.setItem('mdc_obs_folder', v || ''); },
 };
 
+// Vault GitHub (Obsidian Git) — config par utilisateur, jeton en local
+const VAULT = {
+  get repo()    { return localStorage.getItem('mdc_vault_repo') || ''; },
+  set repo(v)   { localStorage.setItem('mdc_vault_repo', v || ''); },
+  get folder()  { return localStorage.getItem('mdc_vault_folder') || '00_INBOX'; },
+  set folder(v) { localStorage.setItem('mdc_vault_folder', v || ''); },
+  get branch()  { return localStorage.getItem('mdc_vault_branch') || 'main'; },
+  set branch(v) { localStorage.setItem('mdc_vault_branch', v || ''); },
+  get token()   { return localStorage.getItem('mdc_vault_token') || ''; },
+  set token(v)  { localStorage.setItem('mdc_vault_token', v || ''); },
+};
+
+function utf8ToBase64(s) { return btoa(unescape(encodeURIComponent(s))); }
+
+// Commit la note dans le repo GitHub du vault → Obsidian Git la récupère
+async function commitToVault(id) {
+  const entry = STATE.files.find(e => e.id === id);
+  if (!entry?.result) return;
+  if (!VAULT.repo || !VAULT.token) { showToast('Configure ton Vault GitHub (Réglages)', 'error'); openSettings(); return; }
+  const [owner, repo] = VAULT.repo.split('/').map(s => s.trim());
+  if (!owner || !repo) { showToast('Dépôt invalide — format owner/repo', 'error'); return; }
+
+  const title = entry.customName || baseName(entry.file.name);
+  const folder = (VAULT.folder || '00_INBOX').replace(/^\/+|\/+$/g, '');
+  const filename = title.replace(/[\/\\:]/g, '-') + '.md';
+  const relPath = (folder ? folder + '/' : '') + filename;
+  const apiPath = relPath.split('/').map(encodeURIComponent).join('/');
+  const branch = VAULT.branch || 'main';
+  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${apiPath}`;
+  const headers = {
+    'Authorization': 'Bearer ' + VAULT.token,
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+  };
+  const content = applyFrontmatter(entry.result, title, entry.sourceUrl);
+
+  const btn = document.getElementById('modalVault');
+  const old = btn ? btn.innerHTML : '';
+  if (btn) { btn.disabled = true; btn.textContent = '…'; }
+  try {
+    // SHA existant (pour écraser une note du même nom)
+    let sha = null;
+    try {
+      const g = await fetch(url + '?ref=' + encodeURIComponent(branch), { headers });
+      if (g.ok) sha = (await g.json()).sha;
+    } catch {}
+    const body = { message: 'note: ' + filename, content: utf8ToBase64(content), branch };
+    if (sha) body.sha = sha;
+    const res = await fetch(url, { method: 'PUT', headers, body: JSON.stringify(body) });
+    if (res.ok) showToast('Envoyé dans le vault → ' + folder);
+    else { const ej = await res.json().catch(() => ({})); throw new Error(ej.message || ('GitHub ' + res.status)); }
+  } catch (err) {
+    showToast('Vault : ' + err.message, 'error');
+  } finally {
+    if (btn) { btn.disabled = false; btn.innerHTML = old; }
+  }
+}
+
 const AI_SYSTEM_PROMPT = `Tu transformes un texte brut en NOTE SOURCE Markdown propre, prête pour Obsidian.
 Règles strictes :
 - Commence par un frontmatter YAML : title, aliases: [], source (si fournie), created, tags (3 à 6, inférés du contenu), type: source.
@@ -3193,6 +3267,10 @@ function openSettings() {
   document.getElementById('aiModelInput').value = AI.model;
   document.getElementById('obsVaultInput').value = OBS.vault;
   document.getElementById('obsFolderInput').value = OBS.folder;
+  document.getElementById('vaultRepoInput').value = VAULT.repo;
+  document.getElementById('vaultFolderInput').value = VAULT.folder;
+  document.getElementById('vaultBranchInput').value = VAULT.branch;
+  document.getElementById('vaultTokenInput').value = VAULT.token;
   document.getElementById('settingsOverlay').classList.add('open');
   document.getElementById('aiKeyInput').focus();
 }
@@ -3238,6 +3316,10 @@ function saveAiSettings() {
   AI.model = document.getElementById('aiModelInput').value.trim() || 'google/gemini-2.0-flash-exp:free';
   OBS.vault = document.getElementById('obsVaultInput').value.trim();
   OBS.folder = document.getElementById('obsFolderInput').value.trim();
+  VAULT.repo = document.getElementById('vaultRepoInput').value.trim();
+  VAULT.folder = document.getElementById('vaultFolderInput').value.trim() || '00_INBOX';
+  VAULT.branch = document.getElementById('vaultBranchInput').value.trim() || 'main';
+  VAULT.token = document.getElementById('vaultTokenInput').value.trim();
   closeSettings();
   showToast('Réglages enregistrés');
 }
@@ -3373,6 +3455,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('modalChunk').onclick = () => chunkResult(STATE.currentPreviewId);
   document.getElementById('modalObsidian').onclick = () => copyObsidian(STATE.currentPreviewId);
   document.getElementById('modalOpenObsidian').onclick = () => saveToObsidian(STATE.currentPreviewId);
+  document.getElementById('modalVault').onclick = () => commitToVault(STATE.currentPreviewId);
   const shareBtn = document.getElementById('modalShare');
   if (navigator.share) { shareBtn.style.display = ''; shareBtn.onclick = () => shareFile(STATE.currentPreviewId); }
 
