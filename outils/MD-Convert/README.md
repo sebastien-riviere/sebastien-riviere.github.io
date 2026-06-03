@@ -43,6 +43,10 @@ Sans installation. Sans compte. Vos fichiers restent sur votre appareil.
 - Mode sombre / clair
 - PWA installable sur iPhone, Android et bureau
 - Fonctionnement hors ligne après le premier chargement
+- **Enrichissement IA → note Obsidian** (v2.0) : titres sémantiques, tags inférés,
+  frontmatter complet. Optionnel, BYOK (clé OpenRouter stockée localement). Avec
+  consigne libre (texte ou dictée vocale).
+- **Ouverture directe dans Obsidian** via URI (v2.0)
 
 ---
 

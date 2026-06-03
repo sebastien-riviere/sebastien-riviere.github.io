@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -836,6 +836,7 @@ input[type="file"] { display: none; }
       <span class="logo-text">MD<span>Convert</span></span>
     </div>
     <div class="header-actions">
+      <button class="btn-icon" id="aiSettingsBtn" title="Réglages IA — note Obsidian (optionnel)" style="font-size:1rem" aria-label="Réglages IA">✨</button>
       <button class="btn-icon" id="themeToggle" title="Changer de thème">
         <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
@@ -925,6 +926,22 @@ input[type="file"] { display: none; }
       </div>
     </div>
 
+    <!-- AI SETTINGS PANEL (BYOK, optionnel) -->
+    <div class="paste-panel" id="aiPanel">
+      <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:var(--space-2);line-height:1.4">
+        Enrichissement IA → note Obsidian (titres, tags, structure). <strong>Optionnel · BYOK</strong> :
+        ta clé reste dans ce navigateur (localStorage) et n'est envoyée qu'au fournisseur que tu choisis.
+        Les données du document quittent alors l'appareil. Pour rester 100% local, n'active pas l'IA.
+      </div>
+      <input type="password" id="aiKeyInput" class="url-input" placeholder="Clé API OpenRouter (sk-or-…)" autocomplete="off" spellcheck="false"/>
+      <input type="text" id="aiModelInput" class="url-input" placeholder="Modèle (ex: google/gemini-2.0-flash-exp:free)" autocomplete="off" spellcheck="false" style="margin-top:var(--space-2)"/>
+      <div class="paste-panel-actions" style="margin-top:var(--space-2)">
+        <a href="https://openrouter.ai/keys" target="_blank" rel="noopener" class="btn-sm" style="text-decoration:none">Obtenir une clé</a>
+        <button class="btn-sm" id="aiClearBtn" type="button">Effacer</button>
+        <button class="btn-sm accent" id="aiSaveBtn" type="button">Enregistrer</button>
+      </div>
+    </div>
+
     <!-- FORMAT + OCR OPTIONS -->
     <div class="format-row">
       <span class="format-label">Format</span>
@@ -985,7 +1002,7 @@ input[type="file"] { display: none; }
 
   <!-- FOOTER -->
   <footer>
-    <span>MD Convert</span>
+    <span>MD Convert <span style="opacity:.55" id="appVersion">v2.0</span></span>
     <div class="footer-dot"></div>
     <span>Local &amp; offline</span>
     <div class="footer-dot"></div>
@@ -1018,7 +1035,8 @@ input[type="file"] { display: none; }
           Copier
         </button>
         <button class="btn-sm" id="modalChunk" type="button" title="Découper en chunks de ~8k tokens">✂ Découper</button>
-        <button class="btn-sm" id="modalObsidian" type="button" title="Copier avec frontmatter Obsidian">⌗ Obsidian</button>
+        <button class="btn-sm" id="modalObsidian" type="button" title="Copier avec frontmatter Obsidian">⌗ Copier</button>
+        <button class="btn-sm" id="modalOpenObsidian" type="button" title="Ouvrir directement dans Obsidian">↗ Obsidian</button>
         <button class="btn-icon" id="modalClose" type="button" aria-label="Fermer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -1031,6 +1049,11 @@ input[type="file"] { display: none; }
         <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:var(--space-4)">Extraction en cours</div>
         <div class="ocr-loading-bar"><div class="ocr-loading-fill"></div></div>
         <div class="ocr-hint" id="ocrHint">Préparation du moteur OCR — premier lancement uniquement</div>
+      </div>
+      <div id="aiInstructionRow" style="display:flex;gap:var(--space-2);margin-bottom:var(--space-3);align-items:center">
+        <input type="text" id="aiInstruction" class="url-input" style="flex:1" placeholder="Consigne IA optionnelle : résume, garde les chiffres, traduis, tags…" autocomplete="off"/>
+        <button class="btn-sm" id="aiMicBtn" type="button" title="Dicter la consigne" aria-label="Dicter">🎤</button>
+        <button class="btn-sm accent" id="aiEnrichBtn" type="button" title="Structurer en note Obsidian via IA">✨ Note IA</button>
       </div>
       <pre class="preview-text" id="previewText"></pre>
     </div>
@@ -1248,6 +1271,18 @@ function baseName(name) {
   return name.replace(/\.[^/.]+$/, '');
 }
 
+// Échappe le HTML — défense XSS quand une valeur (ex: nom de fichier) part dans innerHTML
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// Échappe une valeur destinée à un champ YAML entre guillemets doubles
+function escapeYaml(s) {
+  return String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
 function applyExtractedTitle(entry) {
   if (!entry.result) return;
   const m = entry.result.match(/^#\s+(.+)/m);
@@ -1296,7 +1331,7 @@ function renderFileCard(entry) {
     <div class="card-check" id="check-${entry.id}"></div>
     <div class="file-type-badge ${typeCls}">${typeLabel}</div>
     <div class="file-info">
-      <div class="file-name" id="name-${entry.id}" title="${entry.file.name}">${entry.file.name}</div>
+      <div class="file-name" id="name-${entry.id}" title="${escapeHtml(entry.file.name)}">${escapeHtml(entry.file.name)}</div>
       <div class="file-meta">
         <span>${formatSize(entry.file.size)}</span>
         <span id="meta-${entry.id}">${T.waiting}</span>
@@ -1618,7 +1653,7 @@ function rejoinSpacedChars(items) {
 async function ocrPdfPage(page, entryId, pageNum, total) {
   if (!STATE.tesseractWorker) await initTesseract(entryId);
   if (entryId) updateCardState(entryId, 'processing', `OCR page ${pageNum}/${total}...`);
-  const viewport = page.getViewport({ scale: 2.5 }); // ~180 DPI depuis 72 DPI natif
+  const viewport = page.getViewport({ scale: 3.5 }); // ~300 DPI depuis 72 DPI natif (sweet spot OCR)
   const canvas = document.createElement('canvas');
   canvas.width = viewport.width;
   canvas.height = viewport.height;
@@ -1880,11 +1915,15 @@ function textToMd(text) {
 
 // === MODULE FRONTMATTER ===
 
+function buildFrontmatter(title, sourceUrl) {
+  const date = new Date().toISOString().slice(0, 10);
+  const src = sourceUrl ? `\nsource: "${escapeYaml(sourceUrl)}"` : '';
+  return `---\ntitle: "${escapeYaml(title)}"\naliases: []${src}\ncreated: ${date}\ntags: []\ntype: source\n---\n\n`;
+}
+
 function applyFrontmatter(text, title, sourceUrl) {
   if (!STATE.frontmatter || STATE.format !== 'md') return text;
-  const date = new Date().toISOString().slice(0, 10);
-  const src = sourceUrl ? `\nsource: "${sourceUrl}"` : '';
-  return `---\ntitle: "${title}"${src}\ndate: ${date}\ntags: []\n---\n\n` + text;
+  return buildFrontmatter(title, sourceUrl) + text;
 }
 
 // === MODULE DOWNLOAD ===
@@ -1968,9 +2007,7 @@ async function copyObsidian(id) {
   if (!entry?.result) return;
   try {
     const title = entry.customName || baseName(entry.file.name);
-    const date = new Date().toISOString().slice(0, 10);
-    const src = entry.sourceUrl ? `\nsource: "${entry.sourceUrl}"` : '';
-    const fm = `---\ntitle: "${title}"${src}\ndate: ${date}\ntags: []\n---\n\n`;
+    const fm = buildFrontmatter(title, entry.sourceUrl);
     await navigator.clipboard.writeText(fm + entry.result);
     showToast('Copié avec frontmatter Obsidian');
   } catch { showToast(T.copyFail, 'error'); }
@@ -2631,6 +2668,127 @@ function initDropZone() {
   });
 }
 
+// === MODULE IA — enrichissement note Obsidian (BYOK, 100% client) ===
+const AI = {
+  get key()   { return localStorage.getItem('mdc_ai_key') || ''; },
+  set key(v)  { localStorage.setItem('mdc_ai_key', v || ''); },
+  get model() { return localStorage.getItem('mdc_ai_model') || 'google/gemini-2.0-flash-exp:free'; },
+  set model(v){ localStorage.setItem('mdc_ai_model', v || ''); },
+};
+
+const AI_SYSTEM_PROMPT = `Tu transformes un texte brut en NOTE SOURCE Markdown propre, prête pour Obsidian.
+Règles strictes :
+- Commence par un frontmatter YAML : title, aliases: [], source (si fournie), created, tags (3 à 6, inférés du contenu), type: source.
+- Structure le corps avec des titres sémantiques (## / ###), des listes et des tableaux si pertinent. N'utilise JAMAIS "Page 1", "Page 2".
+- N'invente RIEN, n'ajoute aucune information absente du texte. Corrige seulement la mise en forme et la structure.
+- Réponds UNIQUEMENT avec le Markdown final, sans phrase d'introduction ni commentaire.`;
+
+async function enrichWithAI(text, instruction, title, sourceUrl) {
+  if (!AI.key) throw new Error('clé manquante');
+  const today = new Date().toISOString().slice(0, 10);
+  const userMsg =
+    `Titre suggéré : ${title}\n` +
+    `Source : ${sourceUrl || '—'}\n` +
+    `Date : ${today}\n` +
+    (instruction ? `Consigne spécifique de l'utilisateur : ${instruction}\n` : '') +
+    `\n--- TEXTE À METTRE EN NOTE ---\n${text}`;
+  const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + AI.key,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': location.origin,
+      'X-Title': 'MD Convert',
+    },
+    body: JSON.stringify({
+      model: AI.model,
+      temperature: 0.2,
+      messages: [
+        { role: 'system', content: AI_SYSTEM_PROMPT },
+        { role: 'user', content: userMsg },
+      ],
+    }),
+  });
+  if (!res.ok) throw new Error('API ' + res.status);
+  const j = await res.json();
+  const md = j?.choices?.[0]?.message?.content?.trim();
+  if (!md) throw new Error('réponse vide');
+  return md;
+}
+
+async function enrichCurrentPreview() {
+  const entry = STATE.files.find(e => e.id === STATE.currentPreviewId);
+  if (!entry?.result) return;
+  if (!AI.key) { showToast('Ajoute ta clé IA (✨ en haut à droite)', 'error'); toggleAiPanel(true); return; }
+  const instr = document.getElementById('aiInstruction').value.trim();
+  const title = entry.customName || baseName(entry.file.name);
+  const btn = document.getElementById('aiEnrichBtn');
+  const old = btn.textContent;
+  btn.disabled = true; btn.textContent = '…';
+  try {
+    const md = await enrichWithAI(entry.result, instr, title, entry.sourceUrl);
+    const e2 = createUrlEntry(title + '-note.md', 'txt');
+    e2.result = md; e2.customName = title + '-note'; e2.sourceUrl = entry.sourceUrl;
+    updateCardState(e2.id, 'done', estimateTokensHtml(md, null));
+    setCardActions(e2.id, e2);
+    closeModal();
+    showToast('Note IA créée ✨');
+  } catch (err) {
+    showToast('IA : ' + err.message, 'error');
+  } finally {
+    btn.disabled = false; btn.textContent = old;
+  }
+}
+
+function startDictation(targetInput) {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { showToast('Dictée non supportée par ce navigateur', 'error'); return; }
+  const r = new SR();
+  r.lang = LANG === 'fr' ? 'fr-FR' : 'en-US';
+  r.interimResults = false;
+  r.maxAlternatives = 1;
+  const mic = document.getElementById('aiMicBtn');
+  r.onstart = () => { if (mic) mic.textContent = '⏺'; };
+  r.onresult = e => {
+    const txt = e.results[0][0].transcript;
+    targetInput.value = (targetInput.value + ' ' + txt).trim();
+  };
+  r.onerror = () => showToast('Dictée : erreur micro', 'error');
+  r.onend = () => { if (mic) mic.textContent = '🎤'; };
+  try { r.start(); } catch { /* déjà en cours */ }
+}
+
+function toggleAiPanel(force) {
+  const p = document.getElementById('aiPanel');
+  const show = force !== undefined ? force : !p.classList.contains('open');
+  p.classList.toggle('open', show);
+  if (show) document.getElementById('aiKeyInput').focus();
+}
+
+function saveAiSettings() {
+  AI.key = document.getElementById('aiKeyInput').value.trim();
+  AI.model = document.getElementById('aiModelInput').value.trim() || 'google/gemini-2.0-flash-exp:free';
+  toggleAiPanel(false);
+  showToast(AI.key ? 'Réglages IA enregistrés' : 'Clé IA effacée');
+}
+
+function clearAiSettings() {
+  document.getElementById('aiKeyInput').value = '';
+  AI.key = '';
+  showToast('Clé IA effacée');
+}
+
+// === MODULE OBSIDIAN URI — dépôt direct dans le vault ===
+function saveToObsidian(id) {
+  const entry = STATE.files.find(e => e.id === id);
+  if (!entry?.result) return;
+  const title = entry.customName || baseName(entry.file.name);
+  const content = applyFrontmatter(entry.result, title, entry.sourceUrl);
+  const uri = 'obsidian://new?name=' + encodeURIComponent(title) + '&content=' + encodeURIComponent(content);
+  window.location.href = uri;
+  showToast('Ouverture dans Obsidian…');
+}
+
 // === INIT — EVENT LISTENERS ===
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -2704,10 +2862,21 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('modalCopy').onclick = () => copyResult(STATE.currentPreviewId);
   document.getElementById('modalChunk').onclick = () => chunkResult(STATE.currentPreviewId);
   document.getElementById('modalObsidian').onclick = () => copyObsidian(STATE.currentPreviewId);
+  document.getElementById('modalOpenObsidian').onclick = () => saveToObsidian(STATE.currentPreviewId);
+
+  // IA (BYOK)
+  document.getElementById('aiSettingsBtn').onclick = () => toggleAiPanel();
+  document.getElementById('aiSaveBtn').onclick = saveAiSettings;
+  document.getElementById('aiClearBtn').onclick = clearAiSettings;
+  document.getElementById('aiEnrichBtn').onclick = enrichCurrentPreview;
+  document.getElementById('aiMicBtn').onclick = () => startDictation(document.getElementById('aiInstruction'));
+  document.getElementById('aiInstruction').addEventListener('keydown', e => { if (e.key === 'Enter') enrichCurrentPreview(); });
+  document.getElementById('aiKeyInput').value = AI.key;
+  document.getElementById('aiModelInput').value = AI.model;
 
   // Keyboard
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); hideUrlPanel(); }
+    if (e.key === 'Escape') { closeModal(); hideUrlPanel(); toggleAiPanel(false); }
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); toggleUrlPanel(); }
   });
 
