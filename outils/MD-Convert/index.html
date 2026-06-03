@@ -2780,9 +2780,9 @@ const AI = {
   set model(v){ localStorage.setItem('mdc_ai_model', v || ''); },
 };
 
-// URL du worker IA (cloud gratuit, UE). Vide tant qu'il n'est pas déployé.
-// Quand renseignée, l'IA est dispo par défaut SANS que l'utilisateur fournisse de clé.
-const AI_WORKER = '';
+// URL du worker IA (cloud gratuit, UE). Quand renseignée, l'IA est dispo par
+// défaut pour TOUS les visiteurs, SANS qu'ils fournissent de clé.
+const AI_WORKER = 'https://mdconvert-ai.sebastienriviere-contact.workers.dev';
 
 // IA disponible si : worker déployé OU clé BYOK fournie.
 function cloudAvailable() { return !!AI_WORKER || !!AI.key; }
@@ -2823,11 +2823,21 @@ Règles strictes :
 - N'invente RIEN, n'ajoute aucune information absente du texte. Corrige seulement la mise en forme et la structure.
 - Réponds UNIQUEMENT avec le Markdown final, sans phrase d'introduction ni commentaire.`;
 
+// Retire un éventuel bloc ```markdown ... ``` ajouté par le modèle.
+function stripAiFences(md) {
+  let s = (md || '').trim();
+  s = s.replace(/^```[a-zA-Z]*\s*\n?/, '');
+  s = s.replace(/\n?```\s*$/, '');
+  return s.trim();
+}
+
 // Enrichissement TEXTE → note. BYOK (clé) prioritaire, sinon worker UE.
 async function enrichWithAI(text, instruction, title, sourceUrl) {
-  if (AI.key) return enrichViaOpenRouter(text, instruction, title, sourceUrl);
-  if (AI_WORKER) return enrichViaWorker(text, instruction, title, sourceUrl);
-  throw new Error('IA non configurée');
+  let md;
+  if (AI.key) md = await enrichViaOpenRouter(text, instruction, title, sourceUrl);
+  else if (AI_WORKER) md = await enrichViaWorker(text, instruction, title, sourceUrl);
+  else throw new Error('IA non configurée');
+  return stripAiFences(md);
 }
 
 async function enrichViaWorker(text, instruction, title, sourceUrl) {
@@ -2876,9 +2886,11 @@ async function enrichViaOpenRouter(text, instruction, title, sourceUrl) {
 // VISION : image lue directement par un modèle (contourne l'OCR local).
 async function visionToNote(file) {
   const dataUrl = await fileToDataUrl(file);
-  if (AI.key) return visionViaOpenRouter(dataUrl);
-  if (AI_WORKER) return visionViaWorker(dataUrl);
-  throw new Error('IA non configurée');
+  let md;
+  if (AI.key) md = await visionViaOpenRouter(dataUrl);
+  else if (AI_WORKER) md = await visionViaWorker(dataUrl);
+  else throw new Error('IA non configurée');
+  return stripAiFences(md);
 }
 
 async function visionViaWorker(dataUrl) {

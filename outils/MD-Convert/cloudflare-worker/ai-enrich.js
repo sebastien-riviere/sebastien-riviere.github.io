@@ -71,6 +71,14 @@ function buildUserText(payload) {
   };
 }
 
+// Retire un éventuel bloc de code ```markdown ... ``` ajouté par le modèle
+function stripFences(md) {
+  let s = (md || '').trim();
+  s = s.replace(/^```[a-zA-Z]*\s*\n?/, '');
+  s = s.replace(/\n?```\s*$/, '');
+  return s.trim();
+}
+
 async function callMistral(env, model, messages) {
   let res;
   try {
@@ -92,7 +100,7 @@ async function callMistral(env, model, messages) {
   const md = data && data.choices && data.choices[0] && data.choices[0].message
     && (data.choices[0].message.content || '').trim();
   if (!md) return { error: 'empty_response', status: 502 };
-  return { markdown: md };
+  return { markdown: stripFences(md) };
 }
 
 export default {
