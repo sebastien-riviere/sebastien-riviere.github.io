@@ -638,6 +638,20 @@ main {
   word-break: break-word;
 }
 
+/* === AI LIMIT NOTE === */
+.ai-limit-note {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text);
+  background: rgba(245,158,11,0.10);
+  border: 1px solid rgba(245,158,11,0.35);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-3);
+}
+.ai-limit-note ol { margin: var(--space-2) 0 0; padding-left: 1.2em; }
+.ai-limit-note li { margin: var(--space-1) 0; }
+
 /* === SETTINGS === */
 .settings-section { max-width: 520px; }
 .settings-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: var(--space-3); }
@@ -1077,6 +1091,14 @@ input[type="file"] { display: none; }
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10z"/></svg>
           Note IA
         </button>
+      </div>
+      <div id="aiLimitNote" class="ai-limit-note" style="display:none">
+        <strong>Document trop volumineux pour le modèle gratuit.</strong>
+        Le service IA gratuit traite jusqu'à ~250 000 caractères. Deux options :
+        <ol>
+          <li><strong>Découper</strong> le document (bouton ci-dessus) puis lancer « Note IA » sur chaque morceau.</li>
+          <li><strong>Utiliser votre propre clé IA</strong> (Réglages, icône engrenage) : pas de plafond imposé et un modèle à plus grande capacité, selon celui que vous choisissez.</li>
+        </ol>
       </div>
       <pre class="preview-text" id="previewText"></pre>
     </div>
@@ -2762,6 +2784,8 @@ function openPreview(id) {
   // Contrôles IA visibles uniquement si une clé est configurée
   const aiRow = document.getElementById('aiInstructionRow');
   if (aiRow) { aiRow.style.display = cloudAvailable() ? 'flex' : 'none'; }
+  const ln = document.getElementById('aiLimitNote');
+  if (ln) ln.style.display = 'none';
   const ai = document.getElementById('aiInstruction');
   if (ai) ai.value = '';
   document.getElementById('modalOverlay').classList.add('open');
@@ -2977,12 +3001,17 @@ async function enrichCurrentPreview() {
     closeModal();
     showToast('Note IA créée');
   } catch (err) {
-    const m = {
-      too_large: 'Texte trop long — utilise « Découper » puis relance Note IA sur un morceau.',
-      quota: 'Quota IA gratuit atteint — réessaie dans 1 min.',
-      empty_response: "L'IA n'a rien renvoyé — réessaie.",
-    }[err.message] || ('IA : ' + err.message);
-    showToast(m, 'error');
+    if (err.message === 'too_large') {
+      const note = document.getElementById('aiLimitNote');
+      if (note) note.style.display = 'block';
+      showToast('Document trop volumineux pour le modèle gratuit — voir les options', 'error');
+    } else {
+      const m = {
+        quota: 'Quota IA gratuit atteint — réessaie dans 1 min.',
+        empty_response: "L'IA n'a rien renvoyé — réessaie.",
+      }[err.message] || ('IA : ' + err.message);
+      showToast(m, 'error');
+    }
   } finally {
     btn.disabled = false; btn.textContent = old;
   }
