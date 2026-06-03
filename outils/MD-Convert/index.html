@@ -1148,8 +1148,11 @@ input[type="file"] { display: none; }
         </p>
         <label class="settings-label" for="aiKeyInput">Clé API OpenRouter</label>
         <input type="password" id="aiKeyInput" class="url-input" placeholder="sk-or-…" autocomplete="off" spellcheck="false"/>
-        <label class="settings-label" for="aiModelInput">Modèle</label>
+        <label class="settings-label" for="aiModelInput">Modèle cloud (OpenRouter, BYOK)</label>
         <input type="text" id="aiModelInput" class="url-input" placeholder="google/gemini-2.0-flash-exp:free" autocomplete="off" spellcheck="false"/>
+        <label class="settings-label" for="localModelInput">Modèle local (mode « Local », WebGPU)</label>
+        <input type="text" id="localModelInput" class="url-input" placeholder="Qwen2.5-3B-Instruct-q4f16_1-MLC" autocomplete="off" spellcheck="false"/>
+        <p class="settings-desc" style="margin-top:var(--space-2);font-size:0.75rem">En mode <strong>Local</strong> sur un navigateur compatible <strong>WebGPU</strong> (desktop), la Note IA tourne <strong>sur ta machine</strong> — ~2 Go téléchargés une fois, puis 100% offline. Si le modèle n'est pas reconnu, essaie <code>Qwen2.5-1.5B-Instruct-q4f16_1-MLC</code> (plus léger).</p>
       </div>
       <div class="settings-section" style="margin-top:var(--space-6)">
         <div class="settings-title">Destination Obsidian <span class="settings-optional">— optionnel</span></div>
@@ -2868,7 +2871,8 @@ function openPreview(id) {
   document.getElementById('ocrLoading').classList.remove('visible');
   // Contrôles IA visibles uniquement si une clé est configurée
   const aiRow = document.getElementById('aiInstructionRow');
-  if (aiRow) { aiRow.style.display = cloudAvailable() ? 'flex' : 'none'; }
+  const aiOK = cloudAvailable() || (STATE.mode === 'local' && localAIAvailable());
+  if (aiRow) { aiRow.style.display = aiOK ? 'flex' : 'none'; }
   const ln = document.getElementById('aiLimitNote');
   if (ln) ln.style.display = 'none';
   const ai = document.getElementById('aiInstruction');
@@ -2951,6 +2955,43 @@ function getTurnstileToken() {
     setTimeout(() => { const i = _tsWaiters.indexOf(res); if (i >= 0) { _tsWaiters.splice(i, 1); res(null); } }, 8000);
     try { turnstile.reset(_tsId); } catch { res(null); }
   });
+}
+
+// === LOCAL IA (WebLLM / WebGPU — desktop, offline) ===
+const LOCAL_AI = {
+  get model() { return localStorage.getItem('mdc_local_model') || 'Qwen2.5-3B-Instruct-q4f16_1-MLC'; },
+  set model(v){ localStorage.setItem('mdc_local_model', v || ''); },
+};
+let _webllmEngine = null, _webllmModelLoaded = null;
+function localAIAvailable() { return !!navigator.gpu; }   // WebGPU requis
+
+async function getLocalEngine(progressCb) {
+  if (_webllmEngine && _webllmModelLoaded === LOCAL_AI.model) return _webllmEngine;
+  const webllm = await import('https://esm.run/@mlc-ai/web-llm');
+  _webllmEngine = await webllm.CreateMLCEngine(LOCAL_AI.model, { initProgressCallback: progressCb });
+  _webllmModelLoaded = LOCAL_AI.model;
+  return _webllmEngine;
+}
+
+async function localEnrich(text, instruction, title, sourceUrl) {
+  const btn = document.getElementById('aiEnrichBtn');
+  const engine = await getLocalEngine((p) => {
+    if (btn && p && typeof p.progress === 'number') btn.textContent = '⬇ ' + Math.round(p.progress * 100) + '%';
+  });
+  if (btn) btn.textContent = '…';
+  const today = new Date().toISOString().slice(0, 10);
+  const userMsg =
+    `Titre suggéré : ${title}\nSource : ${sourceUrl || '—'}\nDate : ${today}\n` +
+    (instruction ? `Consigne spécifique de l'utilisateur : ${instruction}\n` : '') +
+    `\n--- TEXTE À METTRE EN NOTE ---\n${text}`;
+  const reply = await engine.chat.completions.create({
+    messages: [ { role: 'system', content: AI_SYSTEM_PROMPT }, { role: 'user', content: userMsg } ],
+    temperature: 0.2,
+  });
+  const md = reply && reply.choices && reply.choices[0] && reply.choices[0].message
+    && (reply.choices[0].message.content || '').trim();
+  if (!md) throw new Error('réponse vide');
+  return md;
 }
 
 function fileToDataUrl(file) {
@@ -3058,7 +3099,8 @@ function stripAiFences(md) {
 // Enrichissement TEXTE → note. BYOK (clé) prioritaire, sinon worker UE.
 async function enrichWithAI(text, instruction, title, sourceUrl) {
   let md;
-  if (AI.key) md = await enrichViaOpenRouter(text, instruction, title, sourceUrl);
+  if (STATE.mode === 'local' && localAIAvailable()) md = await localEnrich(text, instruction, title, sourceUrl);
+  else if (AI.key) md = await enrichViaOpenRouter(text, instruction, title, sourceUrl);
   else if (AI_WORKER) md = await enrichViaWorker(text, instruction, title, sourceUrl);
   else throw new Error('IA non configurée');
   return stripAiFences(md);
@@ -3198,8 +3240,9 @@ function mergeNotes(notes, title, sourceUrl) {
 async function enrichCurrentPreview() {
   const entry = STATE.files.find(e => e.id === STATE.currentPreviewId);
   if (!entry?.result) return;
-  if (!cloudAvailable()) { showToast("Active l'IA dans les Réglages (engrenage en haut)", 'error'); openSettings(); return; }
-  if (!ensureCloudConsent()) return;
+  const usingLocal = STATE.mode === 'local' && localAIAvailable();
+  if (!usingLocal && !cloudAvailable()) { showToast("Active l'IA dans les Réglages (engrenage en haut)", 'error'); openSettings(); return; }
+  if (!usingLocal && !ensureCloudConsent()) return;
   const instr = document.getElementById('aiInstruction').value.trim();
   const title = entry.customName || baseName(entry.file.name);
   const btn = document.getElementById('aiEnrichBtn');
@@ -3265,6 +3308,7 @@ function openSettings() {
   _lastFocused = document.activeElement;
   document.getElementById('aiKeyInput').value = AI.key;
   document.getElementById('aiModelInput').value = AI.model;
+  document.getElementById('localModelInput').value = LOCAL_AI.model;
   document.getElementById('obsVaultInput').value = OBS.vault;
   document.getElementById('obsFolderInput').value = OBS.folder;
   document.getElementById('vaultRepoInput').value = VAULT.repo;
@@ -3314,6 +3358,7 @@ function _openOverlayEl() { return document.querySelector('.modal-overlay.open')
 function saveAiSettings() {
   AI.key = document.getElementById('aiKeyInput').value.trim();
   AI.model = document.getElementById('aiModelInput').value.trim() || 'google/gemini-2.0-flash-exp:free';
+  LOCAL_AI.model = document.getElementById('localModelInput').value.trim() || 'Qwen2.5-3B-Instruct-q4f16_1-MLC';
   OBS.vault = document.getElementById('obsVaultInput').value.trim();
   OBS.folder = document.getElementById('obsFolderInput').value.trim();
   VAULT.repo = document.getElementById('vaultRepoInput').value.trim();
