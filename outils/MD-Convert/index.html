@@ -1174,6 +1174,15 @@ input[type="file"] { display: none; }
         <label class="settings-label" for="vaultTokenInput">Jeton GitHub (PAT fine-grained)</label>
         <input type="password" id="vaultTokenInput" class="url-input" placeholder="github_pat_…" autocomplete="off" spellcheck="false"/>
       </div>
+      <div class="settings-section" style="margin-top:var(--space-6)">
+        <div class="settings-title">Sauvegarde des réglages</div>
+        <p class="settings-desc">Retrouve ta config sur un autre appareil. Le fichier <strong>chiffré</strong> contient <strong>tout</strong> (y compris tes clés) et peut être stocké n'importe où — même sur GitHub. Le fichier <strong>sans secrets</strong> exclut clés et tokens.</p>
+        <div class="settings-actions" style="justify-content:flex-start">
+          <button class="btn-sm accent" id="cfgExportEnc" type="button">Exporter (chiffré, tout)</button>
+          <button class="btn-sm" id="cfgExportPlain" type="button">Exporter (sans secrets)</button>
+          <button class="btn-sm" id="cfgImport" type="button">Importer</button>
+        </div>
+      </div>
       <p class="settings-desc" style="margin-top:var(--space-5)"><a href="#" id="reopenGuide" style="color:var(--accent)">Revoir le guide de démarrage</a></p>
       <div class="settings-actions">
         <a href="https://openrouter.ai/keys" target="_blank" rel="noopener" class="btn-sm">Obtenir une clé IA gratuite</a>
@@ -1252,6 +1261,7 @@ input[type="file"] { display: none; }
 <input type="file" id="inputCamera" accept="image/*" capture="environment">
 <input type="file" id="inputPhotos" accept="image/*" multiple>
 <input type="file" id="inputFolder" webkitdirectory multiple>
+<input type="file" id="cfgFileInput" accept=".json,application/json" style="display:none">
 
 <!-- SCRIPTS INLINE -->
 <script>
@@ -3037,6 +3047,74 @@ const VAULT = {
 
 function utf8ToBase64(s) { return btoa(unescape(encodeURIComponent(s))); }
 
+// === SAUVEGARDE / RESTAURATION DES RÉGLAGES ===
+const _SECRET_KEYS = ['mdc_ai_key', 'mdc_vault_token'];
+function collectSettings(includeSecrets) {
+  const out = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (!k || !k.startsWith('mdc_')) continue;
+    if (!includeSecrets && _SECRET_KEYS.includes(k)) continue;
+    out[k] = localStorage.getItem(k);
+  }
+  return out;
+}
+function applySettings(obj) {
+  Object.keys(obj || {}).forEach(k => { if (k.startsWith('mdc_')) localStorage.setItem(k, obj[k]); });
+}
+function _b64(buf) { return btoa(String.fromCharCode.apply(null, new Uint8Array(buf))); }
+function _unb64(s) { return Uint8Array.from(atob(s), c => c.charCodeAt(0)); }
+async function _deriveKey(pass, salt) {
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({ name: 'PBKDF2', salt, iterations: 150000, hash: 'SHA-256' }, base,
+    { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+}
+function _downloadText(name, text) {
+  const b = new Blob([text], { type: 'application/json' });
+  const url = URL.createObjectURL(b);
+  const a = document.createElement('a'); a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+async function exportEncrypted() {
+  const pass = prompt('Phrase secrète pour chiffrer la config (à retenir — elle sera demandée à l\'import) :');
+  if (!pass) return;
+  try {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const key = await _deriveKey(pass, salt);
+    const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key,
+      new TextEncoder().encode(JSON.stringify(collectSettings(true))));
+    _downloadText('mdconvert-config.enc.json', JSON.stringify({
+      mdc: 'config', enc: 'AES-GCM-PBKDF2', salt: _b64(salt), iv: _b64(iv), data: _b64(ct),
+    }, null, 2));
+    showToast('Config chiffrée exportée');
+  } catch (e) { showToast('Export échoué', 'error'); }
+}
+function exportPlain() {
+  _downloadText('mdconvert-config.json', JSON.stringify({ mdc: 'config', enc: false, settings: collectSettings(false) }, null, 2));
+  showToast('Config exportée (sans secrets)');
+}
+async function importConfig(file) {
+  try {
+    const obj = JSON.parse(await file.text());
+    let settings;
+    if (obj.enc && obj.data) {
+      const pass = prompt('Phrase secrète du fichier :');
+      if (!pass) return;
+      const key = await _deriveKey(pass, _unb64(obj.salt));
+      const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: _unb64(obj.iv) }, key, _unb64(obj.data));
+      settings = JSON.parse(new TextDecoder().decode(pt));
+    } else {
+      settings = obj.settings || obj;
+    }
+    applySettings(settings);
+    showToast('Réglages importés — rechargement…');
+    setTimeout(() => location.reload(), 800);
+  } catch (e) {
+    showToast('Import échoué (phrase incorrecte ou fichier invalide)', 'error');
+  }
+}
+
 // Commit la note dans le repo GitHub du vault → Obsidian Git la récupère
 async function commitToVault(id) {
   const entry = STATE.files.find(e => e.id === id);
@@ -3520,6 +3598,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('aiEnrichBtn').onclick = enrichCurrentPreview;
   document.getElementById('aiMicBtn').onclick = () => startDictation(document.getElementById('aiInstruction'));
   document.getElementById('aiInstruction').addEventListener('keydown', e => { if (e.key === 'Enter') enrichCurrentPreview(); });
+  document.getElementById('cfgExportEnc').onclick = exportEncrypted;
+  document.getElementById('cfgExportPlain').onclick = exportPlain;
+  document.getElementById('cfgImport').onclick = () => document.getElementById('cfgFileInput').click();
+  document.getElementById('cfgFileInput').onchange = e => { if (e.target.files[0]) importConfig(e.target.files[0]); e.target.value = ''; };
 
   // Keyboard
   document.addEventListener('keydown', e => {
