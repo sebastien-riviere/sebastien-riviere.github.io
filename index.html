@@ -3,72 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sébastien Rivière</title>
-<meta name="description" content="Guides, ressources et contenus pratiques sur l'IA et le numérique par Sébastien Rivière.">
+<title>Sébastien Rivière — Outils & guides gratuits</title>
+<meta name="description" content="Un hub d'outils et de guides gratuits qui tournent dans votre navigateur : sans compte, sans installation, sans envoi de vos données.">
+<meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%233a8ac4'/%3E%3Cstop%20offset='1'%20stop-color='%231e3a52'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='24'%20height='24'%20rx='6'%20fill='url(%23g)'/%3E%3Ctext%20x='12'%20y='16.5'%20font-family='Arial,Helvetica,sans-serif'%20font-size='11'%20font-weight='700'%20fill='%23fff'%20text-anchor='middle'%3ESR%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:#f4f8fb; --bg-band:#eaf2f9;
+  --text:#1a2a35; --muted:#5a7a92; --faint:#8faabb;
+  --card:#ffffff; --border:#dde9f2; --border-hover:#b8d0e4;
+  --title:#1e3a52; --accent:#3a8ac4; --accent-soft:#e8f0f7;
+  --logo-a:#3a8ac4; --logo-b:#1e3a52;
+  --shadow:0 4px 22px rgba(30,58,82,0.10);
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1722; --bg-band:#15212f;
+    --text:#e7eef5; --muted:#9fb6c8; --faint:#6f8aa0;
+    --card:#16212e; --border:#24333f; --border-hover:#3a8ac4;
+    --title:#eaf2f9; --accent:#62a9e0; --accent-soft:#1c2c3b;
+    --logo-a:#4a9ad4; --logo-b:#274b6b;
+    --shadow:0 6px 26px rgba(0,0,0,0.45);
+  }
+}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:#f4f8fb;color:#1a2a35;font-family:'Lora',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Lora',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
 
 /* ── Header ── */
-header{padding:64px 40px 48px;max-width:860px;width:100%;margin:0 auto;}
-.name{font-family:'Nunito',sans-serif;font-weight:900;font-size:36px;color:#1e3a52;letter-spacing:-0.5px;}
-.tagline{font-family:'Lora',serif;font-style:italic;font-size:17px;color:#5a7a92;margin-top:8px;margin-bottom:28px;}
-.contacts{display:flex;gap:12px;align-items:center;}
-.contact-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;background:#e8f0f7;border:1px solid #d0e2ef;color:#3a5a78;text-decoration:none;transition:background .15s,color .15s;}
-.contact-btn:hover{background:#3a5a78;color:#fff;border-color:#3a5a78;}
-.contact-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-.contact-label{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1e3a52;color:#fff;font-family:'Nunito',sans-serif;font-size:12px;padding:4px 10px;border-radius:6px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;}
-.contact-label::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1e3a52;}
-.contact-btn:hover .contact-label{opacity:1;}
-.contacts-hint{font-family:'Nunito',sans-serif;font-size:13px;color:#8faabb;margin-left:4px;}
+.header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
+header{padding:56px 40px 40px;max-width:860px;width:100%;margin:0 auto;}
+.brand{display:flex;align-items:center;gap:16px;}
+.logo{flex:none;width:52px;height:52px;border-radius:13px;background:linear-gradient(135deg,var(--logo-a),var(--logo-b));color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:21px;letter-spacing:-0.5px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(30,58,82,0.22);}
+.name{font-family:'Nunito',sans-serif;font-weight:900;font-size:32px;color:var(--title);letter-spacing:-0.5px;line-height:1.1;}
+.name a{color:inherit;text-decoration:none;}
+.name a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;}
+.sub{font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;color:var(--faint);letter-spacing:0.3px;margin-top:3px;}
+.intro{font-family:'Lora',serif;font-size:17px;line-height:1.7;color:var(--muted);max-width:620px;margin-top:24px;}
+.intro strong{color:var(--text);font-weight:700;}
 
 /* ── Main ── */
-main{flex:1;padding:0 40px 64px;max-width:860px;width:100%;margin:0 auto;}
+main{flex:1;padding:44px 40px 64px;max-width:860px;width:100%;margin:0 auto;}
 
 /* ── Sections ── */
-.section{margin-bottom:48px;}
-.section-title{font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:#8faabb;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #dde9f2;}
+.section{margin-bottom:44px;}
+.section-title{display:flex;align-items:center;gap:9px;font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);margin-bottom:18px;padding-bottom:11px;border-bottom:1px solid var(--border);}
+.section-title svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
 /* ── Cards grille ── */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
-.card{background:#fff;border:1px solid #dde9f2;border-radius:10px;padding:24px;transition:box-shadow .15s,border-color .15s;}
-.card:hover{box-shadow:0 4px 20px rgba(30,58,82,0.10);border-color:#b8d0e4;}
-.card a{text-decoration:none;display:block;}
-.card-label{font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8faabb;margin-bottom:8px;}
-.card-title{font-family:'Nunito',sans-serif;font-weight:700;font-size:16px;color:#1e3a52;line-height:1.35;margin-bottom:6px;}
-.card-desc{font-family:'Lora',serif;font-size:14px;color:#5a7a92;line-height:1.6;}
-.card-arrow{display:inline-block;margin-top:14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:#3a8ac4;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(264px,1fr));gap:16px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--border-hover);}
+.card a{text-decoration:none;display:block;padding:22px 24px;color:inherit;}
+.card-icon{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:15px;}
+.card-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.card-label{font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:7px;}
+.card-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;color:var(--title);line-height:1.35;margin-bottom:7px;}
+.card-desc{font-family:'Lora',serif;font-size:14px;color:var(--muted);line-height:1.6;}
+.card-arrow{display:inline-block;margin-top:15px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--accent);transition:transform .18s ease;}
+.card:hover .card-arrow{transform:translateX(5px);}
 
 /* ── View badge ── */
-.view-badge{margin-left:8px;padding:2px 8px;border-radius:20px;background:#e8f0f7;font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:#3a8ac4;vertical-align:middle;white-space:nowrap;}
+.view-badge{margin-left:8px;padding:2px 8px;border-radius:20px;background:var(--accent-soft);font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:var(--accent);vertical-align:middle;white-space:nowrap;}
 
 /* ── Footer ── */
-footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'Nunito',sans-serif;font-size:12px;color:#aabcca;border-top:1px solid #e4edf5;}
+footer{padding:22px 40px;max-width:860px;width:100%;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);border-top:1px solid var(--border);}
+footer a{color:var(--faint);text-decoration:none;}
+footer a:hover{color:var(--accent);}
+.foot-contact{display:inline-flex;align-items:center;gap:7px;margin-left:auto;}
+.contact-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--accent-soft);border:1px solid var(--border);color:var(--accent);transition:background .15s,color .15s;}
+.contact-btn:hover{background:var(--accent);color:#fff;}
+.contact-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 
 @media(max-width:600px){
-  header,main,footer{padding-left:20px;padding-right:20px;}
-  header{padding-top:40px;}
-  .name{font-size:28px;}
+  .header-band header{padding:40px 20px 32px;}
+  main{padding:32px 20px 48px;}
+  footer{padding:20px;}
+  .name{font-size:26px;}
+  .logo{width:46px;height:46px;font-size:19px;}
+  .intro{font-size:16px;}
   .grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="name"><a href="https://www.linkedin.com/in/sébastien-riviere-conseil" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Sébastien Rivière</a></div>
-  <div class="tagline">Retrouvez ici tous mes contenus.</div>
-</header>
+<div class="header-band">
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">SR</div>
+      <div>
+        <div class="name"><a href="https://www.linkedin.com/in/sébastien-riviere-conseil" target="_blank" rel="noopener">Sébastien Rivière</a></div>
+        <div class="sub">Outils &amp; guides gratuits</div>
+      </div>
+    </div>
+    <p class="intro">Bienvenue. Cette page rassemble en un seul endroit mes <strong>outils et guides gratuits</strong>. Tous fonctionnent directement dans votre navigateur — <strong>sans compte, sans installation, et sans que vos données quittent votre appareil</strong>. Parcourez les catégories ci-dessous et ouvrez ce qui vous est utile.</p>
+  </header>
+</div>
 
 <main>
 
   <div class="section">
-    <div class="section-title">Guides &amp; tutoriels</div>
+    <div class="section-title"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Guides &amp; tutoriels</div>
     <div class="grid">
       <div class="card">
         <a href="/guide/guide-token">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2 4 7v10l8 5 8-5V7z"/><path d="m9.5 12 1.8 1.8 3.7-3.8"/></svg></div>
           <div class="card-label">IA · Claude</div>
           <div class="card-title">Vos tokens Claude, c'est précieux</div>
           <div class="card-desc">Comprendre, configurer et optimiser votre usage de Claude au quotidien.</div>
@@ -79,10 +122,11 @@ footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'N
   </div>
 
   <div class="section">
-    <div class="section-title">Outils de productivité</div>
+    <div class="section-title"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.7 2.7-2-2z"/></svg>Outils de productivité</div>
     <div class="grid">
       <div class="card">
         <a href="/outils/MD-Convert/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h2v4M14 13l1.5 4 1.5-4"/></svg></div>
           <div class="card-label">Outil · Productivité</div>
           <div class="card-title">MD Convert</div>
           <div class="card-desc">Convertissez vos fichiers en Markdown en local — PDF, DOCX, images — sans rien installer ni envoyer.</div>
@@ -91,6 +135,7 @@ footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'N
       </div>
       <div class="card">
         <a href="/outils/MonBureauPDF/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="13" height="16" rx="2"/><path d="M8 8h5M8 12h5"/><path d="M8 21h10a2 2 0 0 0 2-2V8"/></svg></div>
           <div class="card-label">Outil · Productivité</div>
           <div class="card-title">MonBureauPDF</div>
           <div class="card-desc">Fusionnez, réorganisez, compressez et exportez vos PDF directement dans le navigateur — sans compte, sans upload.</div>
@@ -101,10 +146,26 @@ footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'N
   </div>
 
   <div class="section">
-    <div class="section-title">Labo &amp; Expérimentations</div>
+    <div class="section-title"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-6"/></svg>Finance &amp; fiscalité</div>
     <div class="grid">
       <div class="card">
-        <a href="https://peiscope.netlify.app" target="_blank" rel="noopener">
+        <a href="https://cryptopilot.pages.dev/" target="_blank" rel="noopener">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.3c0-1 1.1-1.8 2.5-1.8s2.5.7 2.5 1.7c0 2.4-5 1.4-5 3.6 0 1 1.1 1.7 2.5 1.7s2.5-.7 2.5-1.7"/></svg></div>
+          <div class="card-label">Outil · Fiscalité crypto</div>
+          <div class="card-title">CryptoPilot</div>
+          <div class="card-desc">Organisez vos revenus et plus-values crypto et préparez votre déclaration française. 100 % local, gratuit, sans compte.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/><path d="M7.5 15h9"/></svg>Labo &amp; Expérimentations</div>
+    <div class="grid">
+      <div class="card">
+        <a href="https://peiscope.vercel.app/" target="_blank" rel="noopener">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9 3 3 5v16l6-2 6 2 6-2V3l-6 2-6-2z"/><path d="M9 3v16M15 5v16"/></svg></div>
           <div class="card-label">Intelligence territoriale · La Réunion</div>
           <div class="card-title">PéiScope</div>
           <div class="card-desc">Cartographie sourcée de l'écosystème public réunionnais : collectivités, élus, organismes, mandats, budgets, indemnités, parlementaires. Carte, graphe, observatoire et classements.</div>
@@ -117,12 +178,14 @@ footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'N
 </main>
 
 <footer>
-  <span>© Sébastien Rivière · Avril 2026</span>
-  <a href="https://page-counter.sebastienriviere-contact.workers.dev/stats" target="_blank" rel="noopener" style="margin-left:16px;color:#aabcca;text-decoration:none;font-size:12px;">Stats →</a>
-  <a class="contact-btn" href="mailto:rsebastien@protonmail.com" title="Me contacter" style="margin-left:20px;vertical-align:middle;">
-    <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-  </a>
-  <span style="font-size:13px;color:#7a96aa;margin-left:6px;vertical-align:middle;">Me contacter</span>
+  <span>© Sébastien Rivière · 2026</span>
+  <a href="https://page-counter.sebastienriviere-contact.workers.dev/stats" target="_blank" rel="noopener">Stats →</a>
+  <span class="foot-contact">
+    <a class="contact-btn" href="mailto:rsebastien@protonmail.com" title="Me contacter" aria-label="Me contacter">
+      <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+    </a>
+    <span>Me contacter</span>
+  </span>
 </footer>
 
 <script>
