@@ -118,6 +118,15 @@ footer a:hover{color:var(--accent);}
           <div class="card-arrow">Ouvrir l'outil →</div>
         </a>
       </div>
+      <div class="card">
+        <a href="/guide/prise-en-main-claude/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M18 3v18"/><path d="M8 8h6M8 11h6"/></svg></div>
+          <div class="card-label">Guide · Débuter avec Claude</div>
+          <div class="card-title">Prendre Claude en main</div>
+          <div class="card-desc">Guide pas-à-pas pour débuter : choisir son modèle, paramétrer instructions, mémoire, projets et connecteurs — avec prompts à copier-coller.</div>
+          <div class="card-arrow">Lire le guide →</div>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -211,6 +220,7 @@ footer a:hover{color:var(--accent);}
     '/outils/MD-Convert/': 'md-convert',
     '/outils/MonBureauPDF/': 'monbureaupdf',
     '/outils/quiz-ia/': 'quiz-ia',
+    '/guide/prise-en-main-claude/': 'guide-claude',
   };
   fetch(BASE + '/count?page=home', { method: 'POST' }).catch(() => {});
   for (const [href, page] of Object.entries(MAP)) {
