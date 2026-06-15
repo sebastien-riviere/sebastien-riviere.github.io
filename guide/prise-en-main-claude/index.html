@@ -95,6 +95,7 @@ pre{position:relative;background:var(--code-bg);color:var(--code-text);font-fami
 .tip{background:var(--accent-soft);border:1px solid var(--border);color:var(--text);} .tip .ic{color:var(--accent);}
 .warn{background:var(--warn-bg);border:1px solid var(--warn-border);color:var(--warn-text);} .warn .ic{color:var(--warn-text);}
 .callout a{color:var(--accent);}
+.block a{color:var(--accent);text-decoration:none;} .block a:hover{text-decoration:underline;}
 
 footer{padding:22px 40px;max-width:820px;width:100%;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);border-top:1px solid var(--border);}
 footer a{color:var(--faint);text-decoration:none;} footer a:hover{color:var(--accent);}
@@ -135,6 +136,7 @@ footer a{color:var(--faint);text-decoration:none;} footer a:hover{color:var(--ac
       <li><a href="#c4">Le Projet : votre meilleur allié</a></li>
       <li><a href="#c5">Claude AI, Cowork, Code : quand utiliser quoi</a></li>
       <li><a href="#c6">Commandes &amp; réflexes utiles</a></li>
+      <li><a href="#refs">Pour aller plus loin (ressources officielles)</a></li>
     </ol>
   </nav>
 
@@ -234,8 +236,8 @@ Format préféré : [ex. listes courtes, titres clairs].</pre>
 
     <div class="step">
       <div class="step-h"><div class="num">5</div><h3>Les connecteurs (vos outils)</h3></div>
-      <p>Les <b>connecteurs</b> branchent Claude à vos outils (Google Drive, Agenda, Gmail, Canva, Notion…) : il peut alors lire et écrire dedans, et même agir pour vous. C'est l'un des points forts de Claude aujourd'hui.</p>
-      <div class="where">Où : Réglages → Connecteurs → ajouter / autoriser</div>
+      <p>Les <b>connecteurs</b> branchent Claude à vos outils (Google Drive, Agenda, Gmail, Canva, Notion…) : il peut alors lire et écrire dedans, et même agir pour vous. L'annuaire en compte plus de 50. C'est l'un des points forts de Claude aujourd'hui.</p>
+      <div class="where">Où : bouton « Personnaliser » dans la barre latérale → Connecteurs → + (Parcourir les connecteurs)</div>
       <div class="callout warn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 6.5 7 9 4-2.5 7-5 7-9V6z"/><path d="M12 9v4M12 16h.01"/></svg><span><b>Prudence données sensibles</b> : ne branchez pas un connecteur sur des dossiers contenant des données personnelles ou de santé sans précaution. Anonymisez, et coupez l'entraînement sur vos données dans les réglages de confidentialité.</span></div>
     </div>
 
@@ -294,6 +296,18 @@ mon métier, mes besoins et mon style, puis propose-moi :
       <li><b>Confidentialité</b> : coupez l'entraînement sur vos données, et n'y mettez pas d'informations sensibles non anonymisées.</li>
     </ul>
     <div class="callout warn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 6.5 7 9 4-2.5 7-5 7-9V6z"/><path d="M12 9v4M12 16h.01"/></svg><span>L'interface et les fonctions de Claude évoluent vite. Ce guide reflète l'état de <b>juin 2026</b> — si un menu a bougé, fiez-vous au libellé le plus proche.</span></div>
+  </section>
+
+  <section class="block" id="refs">
+    <div class="sec-head"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3 4 7v10l8 4 8-4V7z"/><path d="m9.5 12 1.8 1.8 3.7-3.8"/></svg><h2>7. Pour aller plus loin — ressources officielles</h2></div>
+    <p class="intro">Tout est gratuit et officiel (Anthropic). De quoi approfondir à votre rythme.</p>
+    <ul>
+      <li><b>Documentation officielle</b> — <a href="https://docs.claude.com" target="_blank" rel="noopener">docs.claude.com</a> (et <a href="https://code.claude.com/docs" target="_blank" rel="noopener">code.claude.com/docs</a> pour Claude Code).</li>
+      <li><b>Centre d'aide</b> — <a href="https://support.claude.com" target="_blank" rel="noopener">support.claude.com</a> : les étapes détaillées et à jour de chaque fonction (mémoire, projets, connecteurs…).</li>
+      <li><b>Anthropic Academy</b> (formations <b>gratuites</b>, un simple e-mail suffit) — <a href="https://anthropic.skilljar.com" target="_blank" rel="noopener">anthropic.skilljar.com</a>. Pour débuter sans coder : <b>Claude 101</b> puis <b>AI Fluency</b> ; pour l'assistant fichiers : <b>Introduction to Claude Cowork</b> ; pour la technique : <b>Claude Code 101</b>.</li>
+      <li><b>Skills officiels (GitHub)</b> — <a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">github.com/anthropics/skills</a> (exemples prêts à l'emploi) ; le standard ouvert : <a href="https://agentskills.io" target="_blank" rel="noopener">agentskills.io</a>.</li>
+      <li><b>Annuaire des connecteurs</b> — <a href="https://claude.com/connectors" target="_blank" rel="noopener">claude.com/connectors</a> (plus de 50 intégrations).</li>
+    </ul>
   </section>
 </main>
 
