@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quelle IA est faite pour vous ? — Sébastien Rivière</title>
+<meta name="description" content="Questionnaire gratuit pour trouver l'assistant IA payant le plus adapté à votre usage (ChatGPT, Claude, Gemini, Mistral) — et découvrir ce qu'une IA sait faire en 2026. 100 % dans votre navigateur, aucune donnée envoyée.">
+<meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%233a8ac4'/%3E%3Cstop%20offset='1'%20stop-color='%231e3a52'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='24'%20height='24'%20rx='6'%20fill='url(%23g)'/%3E%3Ctext%20x='12'%20y='16.5'%20font-family='Arial,Helvetica,sans-serif'%20font-size='11'%20font-weight='700'%20fill='%23fff'%20text-anchor='middle'%3ESR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f8fb; --bg-band:#eaf2f9;
+  --text:#1a2a35; --muted:#5a7a92; --faint:#8faabb;
+  --card:#ffffff; --border:#dde9f2; --border-hover:#b8d0e4;
+  --title:#1e3a52; --accent:#3a8ac4; --accent-soft:#e8f0f7;
+  --logo-a:#3a8ac4; --logo-b:#1e3a52;
+  --shadow:0 4px 22px rgba(30,58,82,0.10);
+  --warn-bg:#fdf3e0; --warn-border:#e8c98a; --warn-text:#7a5a17;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1722; --bg-band:#15212f;
+    --text:#e7eef5; --muted:#9fb6c8; --faint:#6f8aa0;
+    --card:#16212e; --border:#24333f; --border-hover:#3a8ac4;
+    --title:#eaf2f9; --accent:#62a9e0; --accent-soft:#1c2c3b;
+    --logo-a:#4a9ad4; --logo-b:#274b6b;
+    --shadow:0 6px 26px rgba(0,0,0,0.45);
+    --warn-bg:#2a2310; --warn-border:#5c4a1e; --warn-text:#f4e6c4;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Lora',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+.ic{width:1em;height:1em;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ic-lg{width:20px;height:20px;vertical-align:-4px;margin-right:8px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+.header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
+header{padding:44px 40px 32px;max-width:760px;width:100%;margin:0 auto;}
+.brand{display:flex;align-items:center;gap:14px;}
+.logo{flex:none;width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--logo-a),var(--logo-b));color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:19px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(30,58,82,0.22);}
+.name{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;color:var(--title);line-height:1.1;}
+.name a{color:inherit;text-decoration:none;}
+.name a:hover{text-decoration:underline;text-underline-offset:3px;}
+.sub{font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;color:var(--faint);letter-spacing:0.3px;margin-top:2px;}
+h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:27px;color:var(--title);letter-spacing:-0.5px;margin-top:26px;line-height:1.2;}
+.meta{font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;color:var(--faint);margin-top:10px;display:flex;flex-wrap:wrap;gap:6px 14px;}
+.lead{font-family:'Lora',serif;font-size:16px;line-height:1.7;color:var(--muted);max-width:600px;margin-top:16px;}
+
+main{flex:1;padding:30px 40px 60px;max-width:760px;width:100%;margin:0 auto;}
+
+.progress{position:sticky;top:0;background:var(--bg);padding:12px 0;z-index:5;border-bottom:1px solid var(--border);margin-bottom:8px;}
+.pbar{height:8px;background:var(--accent-soft);border-radius:99px;overflow:hidden;}
+.pbar>i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s;}
+.pcount{font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;color:var(--faint);margin-top:6px;}
+
+.section-title{display:flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;letter-spacing:1.1px;text-transform:uppercase;color:var(--faint);margin:30px 0 4px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+
+.q{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px 10px;margin:14px 0;}
+.q-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:15.5px;color:var(--title);margin-bottom:5px;}
+.tip{display:flex;align-items:flex-start;gap:7px;font-family:'Lora',serif;font-size:13.5px;color:var(--muted);margin-bottom:13px;}
+.tip .ic{flex:none;margin-top:3px;color:var(--accent);}
+label{display:block;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px;margin:0 0 9px;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;font-weight:600;font-size:14.5px;color:var(--text);}
+label:hover{border-color:var(--border-hover);}
+input[type=radio]{accent-color:var(--accent);margin-right:10px;}
+label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--accent);color:#fff;border:0;border-radius:12px;padding:15px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;margin-top:16px;transition:filter .15s,transform .1s;}
+.btn:hover{filter:brightness(1.06);}
+.btn:active{transform:scale(.99);}
+.err{font-family:'Nunito',sans-serif;font-weight:700;color:#d9534f;font-size:13.5px;margin-top:10px;display:none;}
+
+.result{display:none;background:var(--card);border:1px solid var(--accent);border-radius:14px;padding:24px;margin-top:24px;box-shadow:var(--shadow);scroll-margin-top:80px;}
+.result h2{display:flex;align-items:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:23px;color:var(--title);margin-bottom:6px;}
+.result h2 .ic-lg{color:var(--accent);width:24px;height:24px;}
+.result h3{display:flex;align-items:center;font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;color:var(--title);margin:22px 0 8px;}
+.result h3 .ic-lg{color:var(--accent);}
+.price{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:20px;padding:3px 12px;font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;margin-bottom:12px;}
+.why{font-family:'Lora',serif;font-size:15px;line-height:1.65;color:var(--text);}
+.why b{font-weight:700;}
+.runner{font-family:'Lora',serif;font-size:14px;color:var(--muted);border-top:1px solid var(--border);margin-top:16px;padding-top:14px;}
+.scores{margin-top:14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;color:var(--muted);}
+.bar{height:8px;background:var(--accent-soft);border-radius:99px;overflow:hidden;margin:4px 0 11px;}
+.bar>i{display:block;height:100%;background:var(--accent);}
+.box{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-top:6px;font-family:'Lora',serif;font-size:14.5px;line-height:1.6;color:var(--text);}
+.box ul{margin:.4em 0;padding-left:1.2em;}
+.box li{margin:.3em 0;}
+.note{background:var(--accent-soft);border:1px solid var(--border);border-radius:12px;padding:13px 16px;margin-top:14px;font-family:'Lora',serif;font-size:14px;color:var(--text);display:flex;gap:9px;align-items:flex-start;}
+.note .ic-lg{color:var(--accent);margin-top:1px;}
+.rgpd{background:var(--warn-bg);border:1px solid var(--warn-border);border-radius:12px;padding:13px 16px;margin-top:14px;font-family:'Lora',serif;font-size:14px;color:var(--warn-text);display:flex;gap:9px;align-items:flex-start;}
+.rgpd .ic-lg{flex:none;margin-top:1px;}
+
+footer{padding:22px 40px;max-width:760px;width:100%;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);border-top:1px solid var(--border);}
+footer a{color:var(--faint);text-decoration:none;}
+footer a:hover{color:var(--accent);}
+.foot-contact{display:inline-flex;align-items:center;gap:7px;margin-left:auto;}
+.contact-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--accent-soft);border:1px solid var(--border);color:var(--accent);}
+.contact-btn:hover{background:var(--accent);color:#fff;}
+.contact-btn .ic{width:16px;height:16px;}
+
+@media(max-width:600px){
+  header{padding:32px 20px 26px;}
+  main{padding:22px 20px 44px;}
+  footer{padding:20px;}
+  h1{font-size:23px;}
+}
+</style>
+</head>
+<body>
+
+<div class="header-band">
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">SR</div>
+      <div>
+        <div class="name"><a href="/">Sébastien Rivière</a></div>
+        <div class="sub">Outils &amp; guides gratuits</div>
+      </div>
+    </div>
+    <h1>Quelle IA est faite pour vous ?</h1>
+    <div class="meta">
+      <span>À jour juin 2026</span><span>21 questions · ~5 min</span><span>Aucune donnée envoyée</span>
+    </div>
+    <p class="lead">Répondez spontanément. En chemin, vous découvrez ce qu'une IA sait faire aujourd'hui — puis l'outil vous indique l'assistant payant qui vous correspond le mieux, et pourquoi.</p>
+  </header>
+</div>
+
+<main>
+  <div class="progress"><div class="pbar"><i id="pbar"></i></div><div class="pcount" id="pcount">0 / 21</div></div>
+
+  <form id="quiz"></form>
+  <button class="btn" id="go">Voir ma reco <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <p class="err" id="err">Il reste des questions sans réponse — je vous amène à la première.</p>
+
+  <div class="result" id="result"></div>
+</main>
+
+<footer>
+  <span>© Sébastien Rivière · 2026</span>
+  <a href="/">← Tous les outils</a>
+  <span class="foot-contact">
+    <a class="contact-btn" href="mailto:rsebastien@protonmail.com" title="Me contacter" aria-label="Me contacter">
+      <svg class="ic" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+    </a>
+    <span>Me contacter</span>
+  </span>
+</footer>
+
+<script>
+const ICON_BULB = `<svg class="ic" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M8.5 14a5 5 0 1 1 7 0c-.6.5-1 1.2-1 2h-5c0-.8-.4-1.5-1-2z"/></svg>`;
+const ICON_CHECK = `<svg class="ic-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.2 2.2 4.8-4.8"/></svg>`;
+const ICON_SPARK = `<svg class="ic-lg" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg>`;
+const ICON_TOOL = `<svg class="ic-lg" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.7 2.7-2-2z"/></svg>`;
+const ICON_INFO = `<svg class="ic-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>`;
+const ICON_SHIELD = `<svg class="ic-lg" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 6.5 7 9 4-2.5 7-5 7-9V6z"/><path d="m9.5 12 1.8 1.8 3.7-3.8"/></svg>`;
+
+const TOOLS = {
+  chatgpt:{name:"ChatGPT Plus", price:"OpenAI · ~20 €/mois",
+    why:"L'IA la plus <b>polyvalente et grand public</b> : elle <b>génère elle-même des images</b>, propose un <b>mode vocal</b>, sait <b>naviguer sur le web</b> pour vous, et offre la plus grande bibliothèque d'assistants prêts à l'emploi. Le bon réflexe « un seul outil qui fait tout »."},
+  claude:{name:"Claude", price:"Anthropic · ~20 €/mois",
+    why:"Le plus fort en <b>écriture et longs documents</b>, et en tête sur les <b>connecteurs</b> (Gmail, Agenda, Drive, Canva, Notion…) : il se branche à vos outils, applique vos <b>méthodes</b> (« Skills ») et <b>agit</b> pour vous. Il ne génère pas d'images lui-même (mais il pilote Canva)."},
+  gemini:{name:"Gemini Advanced", price:"Google · ~22 €/mois",
+    why:"Le choix naturel si votre quotidien est dans <b>Google</b> : intégré nativement à <b>Gmail, Docs et Sheets</b>, idéal pour la collaboration dans l'écosystème Google. Ses assistants = les « Gems »."},
+  mistral:{name:"Le Chat Pro (Mistral)", price:"Français · ~15 €/mois",
+    why:"L'option <b>française et européenne</b> : vos données restent hébergées en Europe (le plus solide côté <b>RGPD</b>), c'est la <b>moins chère</b>, et elle gère très bien le français. Ses assistants = les « Agents »."}
+};
+
+const QUESTIONS = [
+ {s:"Ce que vous produisez"},
+ {q:"Pour vos visuels (publications, supports)…",
+  tip:"Certaines IA génèrent les images elles-mêmes ; d'autres se connectent à Canva.",
+  a:[["Je veux que l'IA crée les images elle-même",{chatgpt:3}],
+     ["Je fais mes visuels dans Canva",{claude:3}],
+     ["Surtout du texte, peu d'images",{}]]},
+ {q:"Écrire des contenus longs et soignés (articles, supports de formation), c'est…",
+  tip:"La qualité de rédaction sur de longs textes varie d'une IA à l'autre.",
+  a:[["Central dans mon travail",{claude:2}],["De temps en temps",{}],["Pas vraiment",{}]]},
+ {q:"Vous travaillez avec des documents longs (PDF, supports de dizaines de pages) ?",
+  tip:"Certaines IA « tiennent » de très longs documents en mémoire mieux que d'autres.",
+  a:[["Oui, souvent",{claude:1}],["Parfois",{}],["Non",{}]]},
+ {q:"Vous produisez des quizz / ateliers / contenus interactifs ?",
+  tip:"Une IA peut générer quizz et supports d'atelier en quelques secondes.",
+  a:[["Oui, régulièrement",{chatgpt:1}],["Parfois",{}],["Non",{}]]},
+
+ {s:"Votre univers & vos connexions"},
+ {q:"Votre quotidien numérique se passe surtout dans…",
+  tip:"Certaines IA sont intégrées DANS Google ; d'autres dans Microsoft ; d'autres sont indépendantes.",
+  a:[["L'univers Google (Gmail, Docs, Sheets)",{gemini:3}],
+     ["L'univers Microsoft (Outlook, Word)",{chatgpt:1}],
+     ["Un peu de tout / autre",{}]]},
+ {q:"Vous collaborez à plusieurs dans des documents partagés (Google Docs/Sheets) ?",
+  tip:"Le travail collaboratif en temps réel est un point fort de l'écosystème Google.",
+  a:[["Oui, souvent",{gemini:2}],["Non",{}]]},
+ {q:"Sur mobile, vous êtes plutôt…",
+  tip:"L'IA de votre écosystème mobile est souvent la plus fluide à utiliser au quotidien.",
+  a:[["Android (écosystème Google)",{gemini:2}],["iPhone",{}],["Autre / peu importe",{}]]},
+ {q:"Vous utilisez Canva pour vos visuels ?",
+  tip:"Une IA peut piloter Canva directement via un connecteur — pratique si vous l'utilisez déjà.",
+  a:[["Oui",{claude:3}],["Non / pas encore",{}]]},
+ {q:"Aimeriez-vous que l'IA accède à votre messagerie / agenda / Drive ?",
+  tip:"Les « connecteurs » laissent l'IA lire et écrire dans vos outils.",
+  a:[["Oui, ce serait pratique",{claude:1,gemini:2}],["Non, je préfère copier-coller",{}]]},
+ {q:"Brancher l'IA à des outils variés (Notion, gestionnaire de tâches…) vous intéresse ?",
+  tip:"Le standard « MCP » permet de brancher une IA à beaucoup d'outils ; toutes ne sont pas au même niveau.",
+  a:[["Oui, plein d'outils différents",{claude:2}],["Un ou deux, peut-être",{}],["Non",{}]]},
+
+ {s:"Ce que vous voulez qu'elle fasse"},
+ {q:"Qu'elle AGISSE (envoyer un mail, créer un rendez-vous, préparer un doc) et pas seulement réponde ?",
+  tip:"Connectée à vos outils, une IA peut accomplir des actions à votre place.",
+  a:[["Oui, j'adorerais déléguer ça",{claude:1,chatgpt:1}],["Plus tard, peut-être",{}]]},
+ {q:"Lui apprendre vos méthodes une fois pour qu'elle les rejoue à l'identique ?",
+  tip:"Les « Skills » = des procédures que vous lui enseignez et qu'elle réapplique seule.",
+  a:[["Oui, très utile",{claude:2}],["Pas pour l'instant",{}]]},
+ {q:"Qu'elle navigue sur le web / remplisse des formulaires à votre place ?",
+  tip:"Certaines IA peuvent piloter un navigateur pour vous.",
+  a:[["Oui, ce serait top",{chatgpt:3}],["Non",{}]]},
+ {q:"Analyser des fichiers (tableaux, données, PDF) ?",
+  tip:"L'IA peut lire un tableau ou un PDF et en sortir une synthèse.",
+  a:[["Oui, souvent",{claude:1,chatgpt:1}],["Parfois",{}],["Non",{}]]},
+
+ {s:"Votre style"},
+ {q:"Vous préférez un résultat…",
+  tip:"Certaines IA privilégient la vitesse, d'autres la nuance.",
+  a:[["Rapide, qui sort tout de suite",{chatgpt:2}],["Fouillé et nuancé, quitte à cadrer un peu",{claude:2}]]},
+ {q:"Dicter à l'oral / mode vocal (préparer une conférence en marchant) ?",
+  tip:"Le mode vocal vous laisse parler à l'IA et l'écouter répondre.",
+  a:[["Oui, utile",{chatgpt:2}],["Non",{}]]},
+ {q:"Vous travaillez en plusieurs langues ?",
+  tip:"Les grandes IA gèrent toutes bien le multilingue (info, sans incidence sur le choix).",
+  a:[["Oui, régulièrement",{}],["Non, français surtout",{}]]},
+
+ {s:"Vos contraintes"},
+ {q:"L'hébergement de vos données en Europe (RGPD) est…",
+  tip:"Une option française héberge vos données en Europe.",
+  a:[["Très important",{mistral:4}],["Plutôt, sans être décisif",{mistral:1}],["Pas un critère",{}]]},
+ {q:"Privilégier une solution française / européenne vous parle ?",
+  tip:"Souveraineté des données = un vrai critère pour certaines professions.",
+  a:[["Oui",{mistral:2}],["Indifférent",{}]]},
+ {q:"Côté budget…",
+  tip:"Les prix vont d'environ 15 à 22 €/mois.",
+  a:[["Le moins cher possible",{mistral:3}],["~20 €/mois si l'outil est top, ça me va",{}]]},
+ {q:"Vous manipulez des données sensibles (santé de clients, situations RPS) ?",
+  tip:"Données sensibles = vigilance RGPD maximale, quel que soit l'outil.",
+  a:[["Oui, régulièrement",{mistral:2}],["Rarement",{}]]}
+];
+
+const form = document.getElementById('quiz');
+let qIndex = 0;
+const qMeta = [];
+QUESTIONS.forEach((item)=>{
+  if(item.s){const h=document.createElement('div');h.className='section-title';h.textContent=item.s;form.appendChild(h);return;}
+  const i = qIndex++;
+  qMeta.push(item);
+  const d=document.createElement('div'); d.className='q'; d.id='q'+i;
+  const p=document.createElement('div'); p.className='q-title'; p.textContent=(i+1)+". "+item.q; d.appendChild(p);
+  const t=document.createElement('div'); t.className='tip'; t.innerHTML=ICON_BULB+'<span>'+item.tip+'</span>'; d.appendChild(t);
+  item.a.forEach((opt,j)=>{
+    const l=document.createElement('label');
+    l.innerHTML='<input type="radio" name="q'+i+'" value="'+j+'">'+opt[0];
+    d.appendChild(l);
+  });
+  form.appendChild(d);
+});
+const TOTAL = qMeta.length;
+document.getElementById('pcount').textContent = "0 / "+TOTAL;
+
+form.addEventListener('change',()=>{
+  const n = form.querySelectorAll('input[type=radio]:checked').length;
+  document.getElementById('pcount').textContent = n+" / "+TOTAL;
+  document.getElementById('pbar').style.width = Math.round(n/TOTAL*100)+"%";
+});
+
+document.getElementById('go').addEventListener('click',()=>{
+  const scores={chatgpt:0,claude:0,gemini:0,mistral:0};
+  let firstMissing=-1, q1Choice=null;
+  qMeta.forEach((item,i)=>{
+    const sel=form.querySelector('input[name="q'+i+'"]:checked');
+    if(!sel){ if(firstMissing<0) firstMissing=i; return; }
+    if(i===0) q1Choice=parseInt(sel.value);
+    const w=item.a[sel.value][1];
+    for(const k in w) scores[k]+=w[k];
+  });
+  if(firstMissing>=0){
+    document.getElementById('err').style.display='block';
+    document.getElementById('q'+firstMissing).scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  document.getElementById('err').style.display='none';
+
+  const ranked=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  let [winKey,winScore]=ranked[0];
+  let [secKey,secScore]=ranked[1];
+  if(winScore-secScore<=1 && [winKey,secKey].includes('chatgpt') && [winKey,secKey].includes('claude')){
+    winKey = (q1Choice===0) ? 'chatgpt' : 'claude';
+    secKey = (winKey==='chatgpt') ? 'claude' : 'chatgpt';
+  }
+  const win=TOOLS[winKey];
+  const max=Math.max(...Object.values(scores))||1;
+
+  let html = `<h2>${ICON_CHECK}${win.name}</h2><span class="price">${win.price}</span><p class="why">${win.why}</p>`;
+  if(winScore-secScore<=1){
+    html += `<div class="runner"><b>C'est serré avec ${TOOLS[secKey].name}</b> — les deux vous conviendraient. Départagez-les en testant le premier quelques jours.</div>`;
+  }else{
+    html += `<div class="runner">Alternative possible : ${TOOLS[secKey].name}.</div>`;
+  }
+  html += `<div class="scores">`;
+  ranked.forEach(([k,v])=>{ html += `${TOOLS[k].name}<div class="bar"><i style="width:${Math.round(v/max*100)}%"></i></div>`; });
+  html += `</div>`;
+
+  html += `<h3>${ICON_SPARK}Ce qu'une IA assistante sait faire en 2026 (pour info)</h3><div class="box"><ul>
+    <li>Générer des images, ou piloter <b>Canva</b></li>
+    <li>Se connecter à vos outils (mail, agenda, Drive, Canva, Notion…) via les <b>connecteurs / MCP</b></li>
+    <li><b>Agir</b>, pas juste répondre (envoyer, créer, préparer)</li>
+    <li>Apprendre vos méthodes (<b>Skills</b>) et les rejouer seule</li>
+    <li>Enchaîner des tâches en autonomie (<b>agents</b>)</li>
+    <li>Lire et analyser vos fichiers</li>
+    <li>Vous parler à l'oral (mode vocal)</li>
+    <li>Travailler en <b>mode projet</b> (un espace fermé qui garde votre contexte)</li>
+  </ul></div>`;
+
+  html += `<h3>${ICON_TOOL}Le vrai levier : configurez un assistant dédié</h3><div class="box">
+    Plutôt que de tout redemander à chaque fois, créez un <b>« projet » / assistant</b> où vous déposez <b>une fois</b> votre contexte (votre métier, votre style, vos documents). Chaque conversation dedans le réutilise → résultats plus justes et constants. <i>Le secret, ce n'est pas le prompt, c'est le contexte.</i>
+    <ul><li><b>ChatGPT</b> : GPTs + Projects + images natives + voix</li>
+    <li><b>Claude</b> : Projects + Skills + connecteurs (Google, Canva, Notion…)</li>
+    <li><b>Gemini</b> : Gems + intégration native Google</li>
+    <li><b>Mistral</b> : Agents + hébergement Europe</li></ul></div>`;
+
+  html += `<div class="note">${ICON_INFO}<span><b>Astuce</b> : la plupart des offres proposent un <b>essai gratuit</b> de quelques jours — profitez-en pour vous faire votre propre avis avant de payer.</span></div>`;
+
+  html += `<div class="rgpd">${ICON_SHIELD}<span><b>Réflexe RGPD</b> — quel que soit l'outil : jamais de données personnelles ou sensibles (situations d'employés, données de santé). Anonymisez, et coupez l'entraînement sur vos données dans les réglages « Confidentialité ».</span></div>`;
+
+  const r=document.getElementById('result');
+  r.innerHTML=html; r.style.display='block';
+  r.scrollIntoView({behavior:'smooth'});
+});
+</script>
+<script>
+(()=>{ const BASE='https://page-counter.sebastienriviere-contact.workers.dev';
+  fetch(BASE+'/count?page=quiz-ia',{method:'POST'}).catch(()=>{}); })();
+</script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
