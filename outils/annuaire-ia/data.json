@@ -1,121 +1,883 @@
 {
   "maj": "2026-06-16",
   "cats": [
-    ["assistants", "Assistants IA généralistes"],
-    ["build", "Créer un site / une app sans (trop) coder"],
-    ["auto", "Automatiser ses tâches"],
-    ["image", "Générer des images"],
-    ["video", "Générer des vidéos"],
-    ["voice", "Voix & audio"],
-    ["meeting", "Réunions & prise de notes"],
-    ["design", "Présentations, visuels & schémas"],
-    ["veille", "Veille & recherche"],
-    ["advanced", "Aller plus loin : agents, RAG & local"]
+    [
+      "assistants",
+      "Assistants IA généralistes"
+    ],
+    [
+      "build",
+      "Créer un site / une app sans (trop) coder"
+    ],
+    [
+      "auto",
+      "Automatiser ses tâches"
+    ],
+    [
+      "image",
+      "Générer des images"
+    ],
+    [
+      "video",
+      "Générer des vidéos"
+    ],
+    [
+      "voice",
+      "Voix & audio"
+    ],
+    [
+      "meeting",
+      "Réunions & prise de notes"
+    ],
+    [
+      "design",
+      "Présentations, visuels & schémas"
+    ],
+    [
+      "veille",
+      "Veille & recherche"
+    ],
+    [
+      "advanced",
+      "Aller plus loin : agents, RAG & local"
+    ]
   ],
   "tools": [
-    {"c":"assistants","n":"ChatGPT","d":"Assistant polyvalent d'OpenAI : texte, images, voix et navigation web. La référence grand public.","p":"freemium","dom":"chatgpt.com","u":"https://chatgpt.com"},
-    {"c":"assistants","n":"Claude","d":"Assistant d'Anthropic : excellent en écriture et longs documents, se connecte à vos outils (Drive, Notion, Gmail…).","p":"freemium","dom":"claude.ai","u":"https://claude.ai"},
-    {"c":"assistants","n":"Gemini","d":"Assistant de Google, intégré nativement à Gmail, Docs et Sheets.","p":"freemium","dom":"gemini.google.com","u":"https://gemini.google.com"},
-    {"c":"assistants","n":"Le Chat (Mistral)","d":"Assistant français, données hébergées en Europe (RGPD) et le plus abordable.","p":"freemium","dom":"chat.mistral.ai","u":"https://chat.mistral.ai"},
-    {"c":"assistants","n":"Microsoft Copilot","d":"IA intégrée à Word, Excel, PowerPoint et Microsoft 365.","p":"freemium","dom":"copilot.microsoft.com","u":"https://copilot.microsoft.com"},
-    {"c":"assistants","n":"Perplexity","d":"Moteur de réponse : cherche sur le web et cite ses sources.","p":"freemium","dom":"perplexity.ai","u":"https://www.perplexity.ai"},
-    {"c":"assistants","n":"DeepSeek","d":"Modèle ouvert, orienté raisonnement. Chat gratuit, API peu chère.","p":"freemium","dom":"deepseek.com","u":"https://chat.deepseek.com","s":103752,"gh":"deepseek-ai/DeepSeek-V3"},
-    {"c":"assistants","n":"Mammouth.ai","d":"Plusieurs modèles d'IA réunis sous un seul abonnement, FR/RGPD.","p":"freemium","dom":"mammouth.ai","u":"https://mammouth.ai"},
-    {"c":"assistants","n":"Grok","d":"Assistant de xAI (Elon Musk), intégré à X, ton plus direct.","p":"freemium","dom":"grok.com","u":"https://grok.com","nv":1},
-    {"c":"assistants","n":"Llama / Meta AI","d":"Modèles ouverts de Meta : poids libres, hébergeables soi-même.","p":"gratuit","dom":"llama.com","u":"https://www.llama.com","s":7629,"gh":"meta-llama/llama-models","nv":1},
-    {"c":"build","n":"Lovable","d":"Décrivez votre appli, l'IA la code et la met en ligne.","p":"freemium","dom":"lovable.dev","u":"https://lovable.dev"},
-    {"c":"build","n":"Vercel v0","d":"Génère des interfaces web à partir d'une simple description.","p":"freemium","dom":"v0.app","u":"https://v0.app"},
-    {"c":"build","n":"Figma Make","d":"Construire une application depuis un prompt, dans Figma.","p":"freemium","dom":"figma.com","u":"https://www.figma.com"},
-    {"c":"build","n":"Google AI Studio","d":"Créer des apps IA via prompts, sans coder, avec de longs documents.","p":"freemium","dom":"aistudio.google.com","u":"https://aistudio.google.com"},
-    {"c":"build","n":"Durable","d":"Créer un site web complet (avec CRM + facturation) en quelques minutes.","p":"freemium","dom":"durable.co","u":"https://durable.co"},
-    {"c":"build","n":"Blink.new","d":"Application no-code générée par l'IA.","p":"freemium","dom":"blink.new","u":"https://blink.new"},
-    {"c":"build","n":"Cursor","d":"Éditeur de code assisté par IA, du débutant à l'expert.","p":"freemium","dom":"cursor.com","u":"https://www.cursor.com"},
-    {"c":"build","n":"Claude Code","d":"Assistant de développement en ligne de commande : lit, écrit et exécute votre code.","p":"freemium","dom":"claude.ai","u":"https://www.anthropic.com/claude-code"},
-    {"c":"build","n":"GitHub Copilot","d":"Assistant de code intégré à VS Code et GitHub.","p":"freemium","dom":"github.com","u":"https://github.com/features/copilot","nv":1},
-    {"c":"build","n":"Replit","d":"Coder et déployer une app dans le navigateur, avec un agent IA.","p":"freemium","dom":"replit.com","u":"https://replit.com","nv":1},
-    {"c":"build","n":"Bolt.new","d":"Génère et déploie une app web full-stack depuis un prompt.","p":"freemium","dom":"bolt.new","u":"https://bolt.new","nv":1},
-    {"c":"auto","n":"Make","d":"Automatisation visuelle no-code, avec briques d'IA.","p":"freemium","dom":"make.com","u":"https://www.make.com"},
-    {"c":"auto","n":"Zapier","d":"Relie vos applications entre elles pour automatiser des tâches.","p":"freemium","dom":"zapier.com","u":"https://zapier.com"},
-    {"c":"auto","n":"n8n","d":"Automatisation de workflows no-code, IA native (alternative à Make/Zapier).","p":"freemium","dom":"n8n.io","u":"https://n8n.io","s":192751,"gh":"n8n-io/n8n"},
-    {"c":"auto","n":"Airtable","d":"Base de données visuelle, socle d'automatisations no-code.","p":"freemium","dom":"airtable.com","u":"https://airtable.com"},
-    {"c":"auto","n":"Lindy","d":"Assistants automatisés pour vos tâches récurrentes.","p":"freemium","dom":"lindy.ai","u":"https://www.lindy.ai"},
-    {"c":"image","n":"Midjourney","d":"Génération d'images haut de gamme (sans offre gratuite).","p":"payant","dom":"midjourney.com","u":"https://www.midjourney.com"},
-    {"c":"image","n":"Flux","d":"Modèles d'images de Black Forest Labs ; version Schnell open-source.","p":"freemium","dom":"bfl.ai","u":"https://bfl.ai","s":25630,"gh":"black-forest-labs/flux"},
-    {"c":"image","n":"Nano Banana","d":"Modèle d'images et d'édition de Google, intégré à Gemini.","p":"freemium","dom":"gemini.google.com","u":"https://gemini.google.com"},
-    {"c":"image","n":"Imagen","d":"Génération d'images par Google (via l'API Gemini/Vertex).","p":"payant","dom":"ai.google.dev","u":"https://ai.google.dev"},
-    {"c":"image","n":"Remove.bg","d":"Détoure automatiquement l'arrière-plan d'une image.","p":"freemium","dom":"remove.bg","u":"https://www.remove.bg"},
-    {"c":"image","n":"GPT Image","d":"Génération d'images d'OpenAI (ex-DALL·E), intégrée à ChatGPT.","p":"payant","dom":"openai.com","u":"https://openai.com","nv":1},
-    {"c":"image","n":"Ideogram","d":"Génération d'images, forte sur le texte dans l'image.","p":"freemium","dom":"ideogram.ai","u":"https://ideogram.ai","nv":1},
-    {"c":"image","n":"Adobe Firefly","d":"Génération d'images d'Adobe, pensée pour un usage commercial.","p":"freemium","dom":"firefly.adobe.com","u":"https://firefly.adobe.com","nv":1},
-    {"c":"image","n":"Leonardo.ai","d":"Génération d'images orientée création de jeux et assets.","p":"freemium","dom":"leonardo.ai","u":"https://leonardo.ai","nv":1},
-    {"c":"video","n":"Veo 3","d":"Génération de vidéo par Google, du texte à l'image animée.","p":"freemium","dom":"cloud.google.com","u":"https://cloud.google.com/vertex-ai"},
-    {"c":"video","n":"Kling","d":"Modèle de génération de vidéo (crédits gratuits quotidiens).","p":"freemium","dom":"kling.ai","u":"https://kling.ai"},
-    {"c":"video","n":"Seedance 2.0","d":"Vidéo réaliste 1080p, crédits gratuits via Dreamina.","p":"freemium","dom":"dreamina.capcut.com","u":"https://dreamina.capcut.com"},
-    {"c":"video","n":"HeyGen","d":"Avatars vidéo réalistes (3 vidéos/mois en gratuit).","p":"freemium","dom":"heygen.com","u":"https://www.heygen.com"},
-    {"c":"video","n":"Synthesia","d":"Avatars vidéo pour la formation et la communication.","p":"freemium","dom":"synthesia.io","u":"https://www.synthesia.io"},
-    {"c":"video","n":"OpusClip","d":"Découpe vos longues vidéos en clips courts.","p":"freemium","dom":"opus.pro","u":"https://www.opus.pro"},
-    {"c":"video","n":"Runway","d":"Studio vidéo IA de référence (génération, montage, effets).","p":"freemium","dom":"runwayml.com","u":"https://runwayml.com","nv":1},
-    {"c":"video","n":"Pika","d":"Génération de vidéos courtes depuis texte ou image.","p":"freemium","dom":"pika.art","u":"https://pika.art","nv":1},
-    {"c":"video","n":"Luma Dream Machine","d":"Génération de vidéo réaliste par Luma Labs.","p":"freemium","dom":"lumalabs.ai","u":"https://lumalabs.ai","nv":1},
-    {"c":"voice","n":"ElevenLabs","d":"Voix synthétiques réalistes et clonage vocal (référence du marché).","p":"freemium","dom":"elevenlabs.io","u":"https://elevenlabs.io"},
-    {"c":"voice","n":"Whisper","d":"Transcription audio open-source d'OpenAI, à héberger soi-même.","p":"gratuit","dom":"github.com","u":"https://github.com/openai/whisper","s":102820,"gh":"openai/whisper"},
-    {"c":"voice","n":"Wispr Flow","d":"Dictée vocale rapide (~150 mots/min) pour écrire à la voix.","p":"freemium","dom":"wisprflow.ai","u":"https://wisprflow.ai"},
-    {"c":"voice","n":"Suno","d":"Génération de chansons complètes (musique + voix) depuis un texte.","p":"freemium","dom":"suno.com","u":"https://suno.com","nv":1},
-    {"c":"voice","n":"Descript","d":"Montage audio/vidéo en éditant le texte de la transcription.","p":"freemium","dom":"descript.com","u":"https://www.descript.com","nv":1},
-    {"c":"meeting","n":"Fireflies","d":"Transcription et résumé automatiques de réunions.","p":"freemium","dom":"fireflies.ai","u":"https://fireflies.ai"},
-    {"c":"meeting","n":"Otter.ai","d":"Transcription automatique de réunions.","p":"freemium","dom":"otter.ai","u":"https://otter.ai"},
-    {"c":"meeting","n":"Granola","d":"Notes de réunion assistées par IA.","p":"freemium","dom":"granola.ai","u":"https://www.granola.ai"},
-    {"c":"meeting","n":"Noota","d":"Notes de réunion RGPD (Zoom/Meet/Teams), connectée à 8000 apps.","p":"freemium","dom":"noota.io","u":"https://www.noota.io"},
-    {"c":"meeting","n":"Fathom","d":"Enregistre et résume vos réunions (gratuit illimité).","p":"freemium","dom":"fathom.video","u":"https://fathom.video","nv":1},
-    {"c":"design","n":"Canva","d":"Visuels et présentations marketing, avec Magic Studio IA.","p":"freemium","dom":"canva.com","u":"https://www.canva.com"},
-    {"c":"design","n":"Gamma","d":"Génère présentations et pitch decks.","p":"freemium","dom":"gamma.app","u":"https://gamma.app"},
-    {"c":"design","n":"Napkin.ai","d":"Transforme un texte en visuels et schémas.","p":"freemium","dom":"napkin.ai","u":"https://www.napkin.ai"},
-    {"c":"design","n":"Draw.io","d":"Diagrammes et organigrammes, gratuit et open-source.","p":"gratuit","dom":"diagrams.net","u":"https://www.diagrams.net","s":6109,"gh":"jgraph/drawio"},
-    {"c":"design","n":"Mermaid","d":"Crée des diagrammes à partir de texte (open-source).","p":"gratuit","dom":"mermaid.js.org","u":"https://mermaid.js.org","s":88673,"gh":"mermaid-js/mermaid"},
-    {"c":"design","n":"Framer","d":"Concevoir et publier un site web design, assisté par IA.","p":"freemium","dom":"framer.com","u":"https://www.framer.com","nv":1},
-    {"c":"veille","n":"Feedly","d":"Agrégateur de flux RSS pour centraliser sa veille (IA intégrée).","p":"freemium","dom":"feedly.com","u":"https://feedly.com"},
-    {"c":"veille","n":"Inoreader","d":"Agrégateur RSS avancé.","p":"freemium","dom":"inoreader.com","u":"https://www.inoreader.com"},
-    {"c":"veille","n":"Google Trends","d":"Tendances de recherche, signaux de demande.","p":"gratuit","dom":"trends.google.com","u":"https://trends.google.com"},
-    {"c":"veille","n":"Tavily","d":"Recherche web pour la veille et les agents IA.","p":"freemium","dom":"tavily.com","u":"https://www.tavily.com"},
-    {"c":"veille","n":"NotebookLM","d":"Interrogez vos propres documents et obtenez des réponses sourcées.","p":"freemium","dom":"notebooklm.google.com","u":"https://notebooklm.google.com"},
-    {"c":"veille","n":"Exa","d":"Moteur de recherche pensé pour les IA (recherche sémantique).","p":"freemium","dom":"exa.ai","u":"https://exa.ai","nv":1},
-    {"c":"advanced","n":"LangChain","d":"Framework pour développer des agents IA.","p":"freemium","dom":"langchain.com","u":"https://www.langchain.com","s":139443,"gh":"langchain-ai/langchain"},
-    {"c":"advanced","n":"LangGraph","d":"Orchestration d'agents IA (états, boucles, contrôle).","p":"freemium","dom":"langchain.com","u":"https://www.langchain.com/langgraph","s":34909,"gh":"langchain-ai/langgraph"},
-    {"c":"advanced","n":"Langflow","d":"Builder visuel d'agents (glisser-déposer), open-source.","p":"freemium","dom":"langflow.org","u":"https://www.langflow.org","s":149733,"gh":"langflow-ai/langflow"},
-    {"c":"advanced","n":"CrewAI","d":"Framework d'agents pour cas d'usage complexes.","p":"freemium","dom":"crewai.com","u":"https://www.crewai.com","s":53683,"gh":"crewAIInc/crewAI"},
-    {"c":"advanced","n":"AutoGen (AG2)","d":"Framework multi-agents de Microsoft (désormais AG2), open-source.","p":"gratuit","dom":"microsoft.github.io","u":"https://microsoft.github.io/autogen","s":58997,"gh":"microsoft/autogen"},
-    {"c":"advanced","n":"Pinecone","d":"Base de données vectorielle pour le RAG.","p":"freemium","dom":"pinecone.io","u":"https://www.pinecone.io"},
-    {"c":"advanced","n":"Ollama","d":"Exécuter des modèles d'IA en local sur sa machine.","p":"gratuit","dom":"ollama.com","u":"https://ollama.com","s":174285,"gh":"ollama/ollama"},
-    {"c":"advanced","n":"Open WebUI","d":"Interface type ChatGPT auto-hébergée, hors ligne.","p":"gratuit","dom":"openwebui.com","u":"https://openwebui.com","s":141757,"gh":"open-webui/open-webui"},
-    {"c":"advanced","n":"Pinokio","d":"Installer et lancer des modèles d'IA en local en 1 clic.","p":"gratuit","dom":"pinokio.computer","u":"https://pinokio.computer","s":7564,"gh":"pinokiocomputer/pinokio"},
-    {"c":"advanced","n":"LlamaIndex","d":"Framework pour connecter ses données à un LLM (RAG).","p":"freemium","dom":"llamaindex.ai","u":"https://www.llamaindex.ai","s":50166,"gh":"run-llama/llama_index","nv":1},
-    {"c":"advanced","n":"LM Studio","d":"Application pour faire tourner des LLM en local, sans coder.","p":"gratuit","dom":"lmstudio.ai","u":"https://lmstudio.ai","nv":1},
-    {"c":"advanced","n":"Dify","d":"Plateforme open-source pour bâtir des applis IA et des agents.","p":"freemium","dom":"dify.ai","u":"https://dify.ai","s":145442,"gh":"langgenius/dify","nv":1}
+    {
+      "c": "assistants",
+      "n": "ChatGPT",
+      "d": "Assistant polyvalent d'OpenAI : texte, images, voix et navigation web. La référence grand public.",
+      "p": "freemium",
+      "dom": "chatgpt.com",
+      "u": "https://chatgpt.com"
+    },
+    {
+      "c": "assistants",
+      "n": "Claude",
+      "d": "Assistant d'Anthropic : excellent en écriture et longs documents, se connecte à vos outils (Drive, Notion, Gmail…).",
+      "p": "freemium",
+      "dom": "claude.ai",
+      "u": "https://claude.ai"
+    },
+    {
+      "c": "assistants",
+      "n": "Gemini",
+      "d": "Assistant de Google, intégré nativement à Gmail, Docs et Sheets.",
+      "p": "freemium",
+      "dom": "gemini.google.com",
+      "u": "https://gemini.google.com"
+    },
+    {
+      "c": "assistants",
+      "n": "Le Chat (Mistral)",
+      "d": "Assistant français, données hébergées en Europe (RGPD) et le plus abordable.",
+      "p": "freemium",
+      "dom": "chat.mistral.ai",
+      "u": "https://chat.mistral.ai"
+    },
+    {
+      "c": "assistants",
+      "n": "Microsoft Copilot",
+      "d": "IA intégrée à Word, Excel, PowerPoint et Microsoft 365.",
+      "p": "freemium",
+      "dom": "copilot.microsoft.com",
+      "u": "https://copilot.microsoft.com"
+    },
+    {
+      "c": "assistants",
+      "n": "Perplexity",
+      "d": "Moteur de réponse : cherche sur le web et cite ses sources.",
+      "p": "freemium",
+      "dom": "perplexity.ai",
+      "u": "https://www.perplexity.ai"
+    },
+    {
+      "c": "assistants",
+      "n": "DeepSeek",
+      "d": "Modèle ouvert, orienté raisonnement. Chat gratuit, API peu chère.",
+      "p": "freemium",
+      "dom": "deepseek.com",
+      "u": "https://chat.deepseek.com",
+      "s": 103753,
+      "gh": "deepseek-ai/DeepSeek-V3"
+    },
+    {
+      "c": "assistants",
+      "n": "Mammouth.ai",
+      "d": "Plusieurs modèles d'IA réunis sous un seul abonnement, FR/RGPD.",
+      "p": "freemium",
+      "dom": "mammouth.ai",
+      "u": "https://mammouth.ai"
+    },
+    {
+      "c": "assistants",
+      "n": "Grok",
+      "d": "Assistant de xAI (Elon Musk), intégré à X, ton plus direct.",
+      "p": "freemium",
+      "dom": "grok.com",
+      "u": "https://grok.com",
+      "nv": 1
+    },
+    {
+      "c": "assistants",
+      "n": "Llama / Meta AI",
+      "d": "Modèles ouverts de Meta : poids libres, hébergeables soi-même.",
+      "p": "gratuit",
+      "dom": "llama.com",
+      "u": "https://www.llama.com",
+      "s": 7630,
+      "gh": "meta-llama/llama-models",
+      "nv": 1
+    },
+    {
+      "c": "build",
+      "n": "Lovable",
+      "d": "Décrivez votre appli, l'IA la code et la met en ligne.",
+      "p": "freemium",
+      "dom": "lovable.dev",
+      "u": "https://lovable.dev"
+    },
+    {
+      "c": "build",
+      "n": "Vercel v0",
+      "d": "Génère des interfaces web à partir d'une simple description.",
+      "p": "freemium",
+      "dom": "v0.app",
+      "u": "https://v0.app"
+    },
+    {
+      "c": "build",
+      "n": "Figma Make",
+      "d": "Construire une application depuis un prompt, dans Figma.",
+      "p": "freemium",
+      "dom": "figma.com",
+      "u": "https://www.figma.com"
+    },
+    {
+      "c": "build",
+      "n": "Google AI Studio",
+      "d": "Créer des apps IA via prompts, sans coder, avec de longs documents.",
+      "p": "freemium",
+      "dom": "aistudio.google.com",
+      "u": "https://aistudio.google.com"
+    },
+    {
+      "c": "build",
+      "n": "Durable",
+      "d": "Créer un site web complet (avec CRM + facturation) en quelques minutes.",
+      "p": "freemium",
+      "dom": "durable.co",
+      "u": "https://durable.co"
+    },
+    {
+      "c": "build",
+      "n": "Blink.new",
+      "d": "Application no-code générée par l'IA.",
+      "p": "freemium",
+      "dom": "blink.new",
+      "u": "https://blink.new"
+    },
+    {
+      "c": "build",
+      "n": "Cursor",
+      "d": "Éditeur de code assisté par IA, du débutant à l'expert.",
+      "p": "freemium",
+      "dom": "cursor.com",
+      "u": "https://www.cursor.com"
+    },
+    {
+      "c": "build",
+      "n": "Claude Code",
+      "d": "Assistant de développement en ligne de commande : lit, écrit et exécute votre code.",
+      "p": "freemium",
+      "dom": "claude.ai",
+      "u": "https://www.anthropic.com/claude-code"
+    },
+    {
+      "c": "build",
+      "n": "GitHub Copilot",
+      "d": "Assistant de code intégré à VS Code et GitHub.",
+      "p": "freemium",
+      "dom": "github.com",
+      "u": "https://github.com/features/copilot",
+      "nv": 1
+    },
+    {
+      "c": "build",
+      "n": "Replit",
+      "d": "Coder et déployer une app dans le navigateur, avec un agent IA.",
+      "p": "freemium",
+      "dom": "replit.com",
+      "u": "https://replit.com",
+      "nv": 1
+    },
+    {
+      "c": "build",
+      "n": "Bolt.new",
+      "d": "Génère et déploie une app web full-stack depuis un prompt.",
+      "p": "freemium",
+      "dom": "bolt.new",
+      "u": "https://bolt.new",
+      "nv": 1
+    },
+    {
+      "c": "auto",
+      "n": "Make",
+      "d": "Automatisation visuelle no-code, avec briques d'IA.",
+      "p": "freemium",
+      "dom": "make.com",
+      "u": "https://www.make.com"
+    },
+    {
+      "c": "auto",
+      "n": "Zapier",
+      "d": "Relie vos applications entre elles pour automatiser des tâches.",
+      "p": "freemium",
+      "dom": "zapier.com",
+      "u": "https://zapier.com"
+    },
+    {
+      "c": "auto",
+      "n": "n8n",
+      "d": "Automatisation de workflows no-code, IA native (alternative à Make/Zapier).",
+      "p": "freemium",
+      "dom": "n8n.io",
+      "u": "https://n8n.io",
+      "s": 192767,
+      "gh": "n8n-io/n8n"
+    },
+    {
+      "c": "auto",
+      "n": "Airtable",
+      "d": "Base de données visuelle, socle d'automatisations no-code.",
+      "p": "freemium",
+      "dom": "airtable.com",
+      "u": "https://airtable.com"
+    },
+    {
+      "c": "auto",
+      "n": "Lindy",
+      "d": "Assistants automatisés pour vos tâches récurrentes.",
+      "p": "freemium",
+      "dom": "lindy.ai",
+      "u": "https://www.lindy.ai"
+    },
+    {
+      "c": "image",
+      "n": "Midjourney",
+      "d": "Génération d'images haut de gamme (sans offre gratuite).",
+      "p": "payant",
+      "dom": "midjourney.com",
+      "u": "https://www.midjourney.com"
+    },
+    {
+      "c": "image",
+      "n": "Flux",
+      "d": "Modèles d'images de Black Forest Labs ; version Schnell open-source.",
+      "p": "freemium",
+      "dom": "bfl.ai",
+      "u": "https://bfl.ai",
+      "s": 25632,
+      "gh": "black-forest-labs/flux"
+    },
+    {
+      "c": "image",
+      "n": "Nano Banana",
+      "d": "Modèle d'images et d'édition de Google, intégré à Gemini.",
+      "p": "freemium",
+      "dom": "gemini.google.com",
+      "u": "https://gemini.google.com"
+    },
+    {
+      "c": "image",
+      "n": "Imagen",
+      "d": "Génération d'images par Google (via l'API Gemini/Vertex).",
+      "p": "payant",
+      "dom": "ai.google.dev",
+      "u": "https://ai.google.dev"
+    },
+    {
+      "c": "image",
+      "n": "Remove.bg",
+      "d": "Détoure automatiquement l'arrière-plan d'une image.",
+      "p": "freemium",
+      "dom": "remove.bg",
+      "u": "https://www.remove.bg"
+    },
+    {
+      "c": "image",
+      "n": "GPT Image",
+      "d": "Génération d'images d'OpenAI (ex-DALL·E), intégrée à ChatGPT.",
+      "p": "payant",
+      "dom": "openai.com",
+      "u": "https://openai.com",
+      "nv": 1
+    },
+    {
+      "c": "image",
+      "n": "Ideogram",
+      "d": "Génération d'images, forte sur le texte dans l'image.",
+      "p": "freemium",
+      "dom": "ideogram.ai",
+      "u": "https://ideogram.ai",
+      "nv": 1
+    },
+    {
+      "c": "image",
+      "n": "Adobe Firefly",
+      "d": "Génération d'images d'Adobe, pensée pour un usage commercial.",
+      "p": "freemium",
+      "dom": "firefly.adobe.com",
+      "u": "https://firefly.adobe.com",
+      "nv": 1
+    },
+    {
+      "c": "image",
+      "n": "Leonardo.ai",
+      "d": "Génération d'images orientée création de jeux et assets.",
+      "p": "freemium",
+      "dom": "leonardo.ai",
+      "u": "https://leonardo.ai",
+      "nv": 1
+    },
+    {
+      "c": "video",
+      "n": "Veo 3",
+      "d": "Génération de vidéo par Google, du texte à l'image animée.",
+      "p": "freemium",
+      "dom": "cloud.google.com",
+      "u": "https://cloud.google.com/vertex-ai"
+    },
+    {
+      "c": "video",
+      "n": "Kling",
+      "d": "Modèle de génération de vidéo (crédits gratuits quotidiens).",
+      "p": "freemium",
+      "dom": "kling.ai",
+      "u": "https://kling.ai"
+    },
+    {
+      "c": "video",
+      "n": "Seedance 2.0",
+      "d": "Vidéo réaliste 1080p, crédits gratuits via Dreamina.",
+      "p": "freemium",
+      "dom": "dreamina.capcut.com",
+      "u": "https://dreamina.capcut.com"
+    },
+    {
+      "c": "video",
+      "n": "HeyGen",
+      "d": "Avatars vidéo réalistes (3 vidéos/mois en gratuit).",
+      "p": "freemium",
+      "dom": "heygen.com",
+      "u": "https://www.heygen.com"
+    },
+    {
+      "c": "video",
+      "n": "Synthesia",
+      "d": "Avatars vidéo pour la formation et la communication.",
+      "p": "freemium",
+      "dom": "synthesia.io",
+      "u": "https://www.synthesia.io"
+    },
+    {
+      "c": "video",
+      "n": "OpusClip",
+      "d": "Découpe vos longues vidéos en clips courts.",
+      "p": "freemium",
+      "dom": "opus.pro",
+      "u": "https://www.opus.pro"
+    },
+    {
+      "c": "video",
+      "n": "Runway",
+      "d": "Studio vidéo IA de référence (génération, montage, effets).",
+      "p": "freemium",
+      "dom": "runwayml.com",
+      "u": "https://runwayml.com",
+      "nv": 1
+    },
+    {
+      "c": "video",
+      "n": "Pika",
+      "d": "Génération de vidéos courtes depuis texte ou image.",
+      "p": "freemium",
+      "dom": "pika.art",
+      "u": "https://pika.art",
+      "nv": 1
+    },
+    {
+      "c": "video",
+      "n": "Luma Dream Machine",
+      "d": "Génération de vidéo réaliste par Luma Labs.",
+      "p": "freemium",
+      "dom": "lumalabs.ai",
+      "u": "https://lumalabs.ai",
+      "nv": 1
+    },
+    {
+      "c": "voice",
+      "n": "ElevenLabs",
+      "d": "Voix synthétiques réalistes et clonage vocal (référence du marché).",
+      "p": "freemium",
+      "dom": "elevenlabs.io",
+      "u": "https://elevenlabs.io"
+    },
+    {
+      "c": "voice",
+      "n": "Whisper",
+      "d": "Transcription audio open-source d'OpenAI, à héberger soi-même.",
+      "p": "gratuit",
+      "dom": "github.com",
+      "u": "https://github.com/openai/whisper",
+      "s": 102827,
+      "gh": "openai/whisper"
+    },
+    {
+      "c": "voice",
+      "n": "Wispr Flow",
+      "d": "Dictée vocale rapide (~150 mots/min) pour écrire à la voix.",
+      "p": "freemium",
+      "dom": "wisprflow.ai",
+      "u": "https://wisprflow.ai"
+    },
+    {
+      "c": "voice",
+      "n": "Suno",
+      "d": "Génération de chansons complètes (musique + voix) depuis un texte.",
+      "p": "freemium",
+      "dom": "suno.com",
+      "u": "https://suno.com",
+      "nv": 1
+    },
+    {
+      "c": "voice",
+      "n": "Descript",
+      "d": "Montage audio/vidéo en éditant le texte de la transcription.",
+      "p": "freemium",
+      "dom": "descript.com",
+      "u": "https://www.descript.com",
+      "nv": 1
+    },
+    {
+      "c": "meeting",
+      "n": "Fireflies",
+      "d": "Transcription et résumé automatiques de réunions.",
+      "p": "freemium",
+      "dom": "fireflies.ai",
+      "u": "https://fireflies.ai"
+    },
+    {
+      "c": "meeting",
+      "n": "Otter.ai",
+      "d": "Transcription automatique de réunions.",
+      "p": "freemium",
+      "dom": "otter.ai",
+      "u": "https://otter.ai"
+    },
+    {
+      "c": "meeting",
+      "n": "Granola",
+      "d": "Notes de réunion assistées par IA.",
+      "p": "freemium",
+      "dom": "granola.ai",
+      "u": "https://www.granola.ai"
+    },
+    {
+      "c": "meeting",
+      "n": "Noota",
+      "d": "Notes de réunion RGPD (Zoom/Meet/Teams), connectée à 8000 apps.",
+      "p": "freemium",
+      "dom": "noota.io",
+      "u": "https://www.noota.io"
+    },
+    {
+      "c": "meeting",
+      "n": "Fathom",
+      "d": "Enregistre et résume vos réunions (gratuit illimité).",
+      "p": "freemium",
+      "dom": "fathom.video",
+      "u": "https://fathom.video",
+      "nv": 1
+    },
+    {
+      "c": "design",
+      "n": "Canva",
+      "d": "Visuels et présentations marketing, avec Magic Studio IA.",
+      "p": "freemium",
+      "dom": "canva.com",
+      "u": "https://www.canva.com"
+    },
+    {
+      "c": "design",
+      "n": "Gamma",
+      "d": "Génère présentations et pitch decks.",
+      "p": "freemium",
+      "dom": "gamma.app",
+      "u": "https://gamma.app"
+    },
+    {
+      "c": "design",
+      "n": "Napkin.ai",
+      "d": "Transforme un texte en visuels et schémas.",
+      "p": "freemium",
+      "dom": "napkin.ai",
+      "u": "https://www.napkin.ai"
+    },
+    {
+      "c": "design",
+      "n": "Draw.io",
+      "d": "Diagrammes et organigrammes, gratuit et open-source.",
+      "p": "gratuit",
+      "dom": "diagrams.net",
+      "u": "https://www.diagrams.net",
+      "s": 6110,
+      "gh": "jgraph/drawio"
+    },
+    {
+      "c": "design",
+      "n": "Mermaid",
+      "d": "Crée des diagrammes à partir de texte (open-source).",
+      "p": "gratuit",
+      "dom": "mermaid.js.org",
+      "u": "https://mermaid.js.org",
+      "s": 88676,
+      "gh": "mermaid-js/mermaid"
+    },
+    {
+      "c": "design",
+      "n": "Framer",
+      "d": "Concevoir et publier un site web design, assisté par IA.",
+      "p": "freemium",
+      "dom": "framer.com",
+      "u": "https://www.framer.com",
+      "nv": 1
+    },
+    {
+      "c": "veille",
+      "n": "Feedly",
+      "d": "Agrégateur de flux RSS pour centraliser sa veille (IA intégrée).",
+      "p": "freemium",
+      "dom": "feedly.com",
+      "u": "https://feedly.com"
+    },
+    {
+      "c": "veille",
+      "n": "Inoreader",
+      "d": "Agrégateur RSS avancé.",
+      "p": "freemium",
+      "dom": "inoreader.com",
+      "u": "https://www.inoreader.com"
+    },
+    {
+      "c": "veille",
+      "n": "Google Trends",
+      "d": "Tendances de recherche, signaux de demande.",
+      "p": "gratuit",
+      "dom": "trends.google.com",
+      "u": "https://trends.google.com"
+    },
+    {
+      "c": "veille",
+      "n": "Tavily",
+      "d": "Recherche web pour la veille et les agents IA.",
+      "p": "freemium",
+      "dom": "tavily.com",
+      "u": "https://www.tavily.com"
+    },
+    {
+      "c": "veille",
+      "n": "NotebookLM",
+      "d": "Interrogez vos propres documents et obtenez des réponses sourcées.",
+      "p": "freemium",
+      "dom": "notebooklm.google.com",
+      "u": "https://notebooklm.google.com"
+    },
+    {
+      "c": "veille",
+      "n": "Exa",
+      "d": "Moteur de recherche pensé pour les IA (recherche sémantique).",
+      "p": "freemium",
+      "dom": "exa.ai",
+      "u": "https://exa.ai",
+      "nv": 1
+    },
+    {
+      "c": "advanced",
+      "n": "LangChain",
+      "d": "Framework pour développer des agents IA.",
+      "p": "freemium",
+      "dom": "langchain.com",
+      "u": "https://www.langchain.com",
+      "s": 139456,
+      "gh": "langchain-ai/langchain"
+    },
+    {
+      "c": "advanced",
+      "n": "LangGraph",
+      "d": "Orchestration d'agents IA (états, boucles, contrôle).",
+      "p": "freemium",
+      "dom": "langchain.com",
+      "u": "https://www.langchain.com/langgraph",
+      "s": 34923,
+      "gh": "langchain-ai/langgraph"
+    },
+    {
+      "c": "advanced",
+      "n": "Langflow",
+      "d": "Builder visuel d'agents (glisser-déposer), open-source.",
+      "p": "freemium",
+      "dom": "langflow.org",
+      "u": "https://www.langflow.org",
+      "s": 149734,
+      "gh": "langflow-ai/langflow"
+    },
+    {
+      "c": "advanced",
+      "n": "CrewAI",
+      "d": "Framework d'agents pour cas d'usage complexes.",
+      "p": "freemium",
+      "dom": "crewai.com",
+      "u": "https://www.crewai.com",
+      "s": 53687,
+      "gh": "crewAIInc/crewAI"
+    },
+    {
+      "c": "advanced",
+      "n": "AutoGen (AG2)",
+      "d": "Framework multi-agents de Microsoft (désormais AG2), open-source.",
+      "p": "gratuit",
+      "dom": "microsoft.github.io",
+      "u": "https://microsoft.github.io/autogen",
+      "s": 59002,
+      "gh": "microsoft/autogen"
+    },
+    {
+      "c": "advanced",
+      "n": "Pinecone",
+      "d": "Base de données vectorielle pour le RAG.",
+      "p": "freemium",
+      "dom": "pinecone.io",
+      "u": "https://www.pinecone.io"
+    },
+    {
+      "c": "advanced",
+      "n": "Ollama",
+      "d": "Exécuter des modèles d'IA en local sur sa machine.",
+      "p": "gratuit",
+      "dom": "ollama.com",
+      "u": "https://ollama.com",
+      "s": 174296,
+      "gh": "ollama/ollama"
+    },
+    {
+      "c": "advanced",
+      "n": "Open WebUI",
+      "d": "Interface type ChatGPT auto-hébergée, hors ligne.",
+      "p": "gratuit",
+      "dom": "openwebui.com",
+      "u": "https://openwebui.com",
+      "s": 141771,
+      "gh": "open-webui/open-webui"
+    },
+    {
+      "c": "advanced",
+      "n": "Pinokio",
+      "d": "Installer et lancer des modèles d'IA en local en 1 clic.",
+      "p": "gratuit",
+      "dom": "pinokio.computer",
+      "u": "https://pinokio.computer",
+      "s": 7564,
+      "gh": "pinokiocomputer/pinokio"
+    },
+    {
+      "c": "advanced",
+      "n": "LlamaIndex",
+      "d": "Framework pour connecter ses données à un LLM (RAG).",
+      "p": "freemium",
+      "dom": "llamaindex.ai",
+      "u": "https://www.llamaindex.ai",
+      "s": 50165,
+      "gh": "run-llama/llama_index",
+      "nv": 1
+    },
+    {
+      "c": "advanced",
+      "n": "LM Studio",
+      "d": "Application pour faire tourner des LLM en local, sans coder.",
+      "p": "gratuit",
+      "dom": "lmstudio.ai",
+      "u": "https://lmstudio.ai",
+      "nv": 1
+    },
+    {
+      "c": "advanced",
+      "n": "Dify",
+      "d": "Plateforme open-source pour bâtir des applis IA et des agents.",
+      "p": "freemium",
+      "dom": "dify.ai",
+      "u": "https://dify.ai",
+      "s": 145458,
+      "gh": "langgenius/dify",
+      "nv": 1
+    }
   ],
   "valos": [
-    {"n":"Anthropic (Claude)","v":965,"d":"mai 2026","cf":"bon","src":"https://fortune.com/2026/06/01/anthropic-confidentially-files-ipo-965-billion-valuation/"},
-    {"n":"OpenAI (ChatGPT)","v":852,"d":"mars 2026","cf":"bon","src":"https://www.bloomberg.com/news/articles/2026-03-31/openai-valued-at-852-billion-after-completing-122-billion-round"},
-    {"n":"xAI (Grok)","v":230,"d":"janv. 2026","cf":"bon","src":"https://sacra.com/c/xai/"},
-    {"n":"Databricks","v":170,"d":"juin 2026","cf":"moyen","src":"https://www.inc.com/moses-jeanfrancois/databricks-eyes-175-billion-valuation-cro-says-they-are-building-trillion-dollar-company/91358449"},
-    {"n":"Safe Superintelligence","v":32,"d":"2025","cf":"moyen","src":"https://www.builtinsf.com/articles/safe-superintelligence-raises-2b-32b-valuation-20250415"},
-    {"n":"Scale AI","v":29,"d":"2025","cf":"moyen","src":"https://tsginvest.com/scale-ai/"},
-    {"n":"Perplexity","v":20,"d":"sept. 2025","cf":"bon","src":"https://techfundingnews.com/perplexity-raises-200m-at-20b-valuation-ai-search/"},
-    {"n":"Mistral AI","v":14,"d":"sept. 2025","cf":"moyen","src":"https://techcrunch.com/tag/mistral-ai/"},
-    {"n":"Hugging Face","v":13.5,"d":"sept. 2025","cf":"bon","src":"https://tech.yahoo.com/ai/articles/ai-startup-hugging-face-valued-140155364.html"},
-    {"n":"ElevenLabs","v":11,"d":"févr. 2026","cf":"bon","src":"https://techcrunch.com/2026/02/04/elevenlabs-raises-500m-from-sequioia-at-a-11-billion-valuation/"},
-    {"n":"Lovable","v":6.6,"d":"déc. 2025","cf":"bon","src":"https://techcrunch.com/2025/12/18/vibe-coding-startup-lovable-raises-330m-at-a-6-6b-valuation/"},
-    {"n":"Runway","v":5.3,"d":"févr. 2026","cf":"bon","src":"https://techcrunch.com/2026/02/10/ai-video-startup-runway-raises-315m-at-5-3b-valuation-eyes-more-capable-world-models/"},
-    {"n":"n8n","v":5.2,"d":"mai 2026","cf":"bon","src":"https://www.bloomberg.com/news/articles/2026-05-12/sap-invests-in-ai-automation-startup-n8n-at-5-2-billion-value"},
-    {"n":"Synthesia","v":4,"d":"janv. 2026","cf":"bon","src":"https://www.cnbc.com/2026/01/26/nvidia-alphabet-vc-arms-back-synthesia.html"}
+    {
+      "n": "Anthropic (Claude)",
+      "v": 965,
+      "d": "mai 2026",
+      "cf": "bon",
+      "src": "https://fortune.com/2026/06/01/anthropic-confidentially-files-ipo-965-billion-valuation/"
+    },
+    {
+      "n": "OpenAI (ChatGPT)",
+      "v": 852,
+      "d": "mars 2026",
+      "cf": "bon",
+      "src": "https://www.bloomberg.com/news/articles/2026-03-31/openai-valued-at-852-billion-after-completing-122-billion-round"
+    },
+    {
+      "n": "xAI (Grok)",
+      "v": 230,
+      "d": "janv. 2026",
+      "cf": "bon",
+      "src": "https://sacra.com/c/xai/"
+    },
+    {
+      "n": "Databricks",
+      "v": 170,
+      "d": "juin 2026",
+      "cf": "moyen",
+      "src": "https://www.inc.com/moses-jeanfrancois/databricks-eyes-175-billion-valuation-cro-says-they-are-building-trillion-dollar-company/91358449"
+    },
+    {
+      "n": "Safe Superintelligence",
+      "v": 32,
+      "d": "2025",
+      "cf": "moyen",
+      "src": "https://www.builtinsf.com/articles/safe-superintelligence-raises-2b-32b-valuation-20250415"
+    },
+    {
+      "n": "Scale AI",
+      "v": 29,
+      "d": "2025",
+      "cf": "moyen",
+      "src": "https://tsginvest.com/scale-ai/"
+    },
+    {
+      "n": "Perplexity",
+      "v": 20,
+      "d": "sept. 2025",
+      "cf": "bon",
+      "src": "https://techfundingnews.com/perplexity-raises-200m-at-20b-valuation-ai-search/"
+    },
+    {
+      "n": "Mistral AI",
+      "v": 14,
+      "d": "sept. 2025",
+      "cf": "moyen",
+      "src": "https://techcrunch.com/tag/mistral-ai/"
+    },
+    {
+      "n": "Hugging Face",
+      "v": 13.5,
+      "d": "sept. 2025",
+      "cf": "bon",
+      "src": "https://tech.yahoo.com/ai/articles/ai-startup-hugging-face-valued-140155364.html"
+    },
+    {
+      "n": "ElevenLabs",
+      "v": 11,
+      "d": "févr. 2026",
+      "cf": "bon",
+      "src": "https://techcrunch.com/2026/02/04/elevenlabs-raises-500m-from-sequioia-at-a-11-billion-valuation/"
+    },
+    {
+      "n": "Lovable",
+      "v": 6.6,
+      "d": "déc. 2025",
+      "cf": "bon",
+      "src": "https://techcrunch.com/2025/12/18/vibe-coding-startup-lovable-raises-330m-at-a-6-6b-valuation/"
+    },
+    {
+      "n": "Runway",
+      "v": 5.3,
+      "d": "févr. 2026",
+      "cf": "bon",
+      "src": "https://techcrunch.com/2026/02/10/ai-video-startup-runway-raises-315m-at-5-3b-valuation-eyes-more-capable-world-models/"
+    },
+    {
+      "n": "n8n",
+      "v": 5.2,
+      "d": "mai 2026",
+      "cf": "bon",
+      "src": "https://www.bloomberg.com/news/articles/2026-05-12/sap-invests-in-ai-automation-startup-n8n-at-5-2-billion-value"
+    },
+    {
+      "n": "Synthesia",
+      "v": 4,
+      "d": "janv. 2026",
+      "cf": "bon",
+      "src": "https://www.cnbc.com/2026/01/26/nvidia-alphabet-vc-arms-back-synthesia.html"
+    }
   ],
   "audience": [
-    {"n":"Meta AI","mau":1200,"d":"janv. 2026","cf":"moyen","src":"https://www.demandsage.com/meta-ai-users/"},
-    {"n":"ChatGPT","mau":1000,"d":"mai 2026","cf":"bon","src":"https://www.cnbc.com/2026/06/12/chatgpt-a-billion-monthly-app-users-despite-souring-public-ai-sentiment.html"},
-    {"n":"Google Gemini","mau":750,"d":"févr. 2026","cf":"bon","src":"https://techcrunch.com/2026/02/04/googles-gemini-app-has-surpassed-750m-monthly-active-users/"},
-    {"n":"Microsoft Copilot","mau":420,"d":"2026","cf":"moyen","src":"https://www.stackmatix.com/blog/microsoft-copilot-adoption-statistics-2026"},
-    {"n":"DeepSeek","mau":127,"d":"mars 2026","cf":"moyen","src":"https://backlinko.com/deepseek-stats"},
-    {"n":"Grok","mau":60,"d":"janv. 2026","cf":"faible","src":"https://www.demandsage.com/grok-ai-statistics/"},
-    {"n":"Perplexity","mau":45,"d":"2026","cf":"moyen","src":"https://aibusinessweekly.net/p/perplexity-ai-valuation-2026"},
-    {"n":"Claude","mau":33,"d":"mai 2026","cf":"faible","src":"https://www.demandsage.com/claude-ai-statistics/"}
+    {
+      "n": "Meta AI",
+      "mau": 1200,
+      "d": "janv. 2026",
+      "cf": "moyen",
+      "src": "https://www.demandsage.com/meta-ai-users/"
+    },
+    {
+      "n": "ChatGPT",
+      "mau": 1000,
+      "d": "mai 2026",
+      "cf": "bon",
+      "src": "https://www.cnbc.com/2026/06/12/chatgpt-a-billion-monthly-app-users-despite-souring-public-ai-sentiment.html"
+    },
+    {
+      "n": "Google Gemini",
+      "mau": 750,
+      "d": "févr. 2026",
+      "cf": "bon",
+      "src": "https://techcrunch.com/2026/02/04/googles-gemini-app-has-surpassed-750m-monthly-active-users/"
+    },
+    {
+      "n": "Microsoft Copilot",
+      "mau": 420,
+      "d": "2026",
+      "cf": "moyen",
+      "src": "https://www.stackmatix.com/blog/microsoft-copilot-adoption-statistics-2026"
+    },
+    {
+      "n": "DeepSeek",
+      "mau": 127,
+      "d": "mars 2026",
+      "cf": "moyen",
+      "src": "https://backlinko.com/deepseek-stats"
+    },
+    {
+      "n": "Grok",
+      "mau": 60,
+      "d": "janv. 2026",
+      "cf": "faible",
+      "src": "https://www.demandsage.com/grok-ai-statistics/"
+    },
+    {
+      "n": "Perplexity",
+      "mau": 45,
+      "d": "2026",
+      "cf": "moyen",
+      "src": "https://aibusinessweekly.net/p/perplexity-ai-valuation-2026"
+    },
+    {
+      "n": "Claude",
+      "mau": 33,
+      "d": "mai 2026",
+      "cf": "faible",
+      "src": "https://www.demandsage.com/claude-ai-statistics/"
+    }
   ]
 }
