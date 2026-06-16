@@ -226,7 +226,7 @@ footer strong{color:rgba(255,255,255,0.7);font-weight:800;}
 
 <div class="hero">
   <div class="hero-inner fade-up">
-    <div class="hero-badge">Guide pratique · Avril 2026</div>
+    <div class="hero-badge">Guide pratique · Juin 2026</div>
     <h1>Vos tokens Claude,<br>c'est <em>précieux</em></h1>
     <p class="hero-sub">Le guide pas à pas pour comprendre, configurer et optimiser votre usage de Claude — sans jargon, avec tout ce qu'il faut pour le faire en lisant.</p>
     <p class="hero-meta">Par Sébastien Rivière · Libre de partage</p>
@@ -306,7 +306,7 @@ footer strong{color:rgba(255,255,255,0.7);font-weight:800;}
       </div>
       <div style="background:var(--slate-mist);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;">
         <div class="ba-label" style="color:var(--slate);">Limite de longueur</div>
-        <p style="color:var(--text-mid);">La taille maximale d'une seule conversation (200 000 tokens sur les plans payants). Quand vous l'atteignez, démarrez une nouvelle conversation.</p>
+        <p style="color:var(--text-mid);">La taille maximale d'une seule conversation dépend du modèle : jusqu'à <strong>1 million de tokens</strong> sur les modèles récents (Sonnet 4.6, Opus 4.8), 200 000 sur Haiku 4.5. Quand vous l'atteignez, démarrez une nouvelle conversation.</p>
       </div>
     </div>
     <div class="callout callout-info">⚠️ <strong>Important :</strong> Claude.ai, Claude Code et Claude Desktop partagent le même compteur. Tout est cumulé sur votre compte.</div>
@@ -321,7 +321,7 @@ footer strong{color:rgba(255,255,255,0.7);font-weight:800;}
       <div class="plan-card featured">
         <div class="plan-name">Pro ⭐</div>
         <div class="plan-price">20 $<span>/mois</span></div>
-        <div class="plan-detail"><strong>Fenêtre 5h · Reset hebdo possible</strong>5× plus que le gratuit. Accès prioritaire. Mémoire et Projets inclus. Le plan de référence.</div>
+        <div class="plan-detail"><strong>Fenêtre 5h · Reset hebdo</strong>~17 $/mois en annuel. Mémoire, Projets, <strong style="display:inline;">Claude Code et Cowork inclus</strong>. Le plan de référence.</div>
       </div>
       <div class="plan-card">
         <div class="plan-name">Max 5×</div>
@@ -335,13 +335,13 @@ footer strong{color:rgba(255,255,255,0.7);font-weight:800;}
       </div>
       <div class="plan-card">
         <div class="plan-name">Team</div>
-        <div class="plan-price">25 $<span>/siège/mois</span></div>
-        <div class="plan-detail"><strong>Min. 5 sièges</strong>Collaboration, admin centralisée. Contexte 200 000 tokens.</div>
+        <div class="plan-price">20 $<span>/siège/mois</span></div>
+        <div class="plan-detail"><strong>5 à 150 sièges</strong>20 $ annuel / 25 $ mensuel. Sièges premium (5× l'usage) disponibles. Collaboration + admin centralisée.</div>
       </div>
       <div class="plan-card">
         <div class="plan-name">Enterprise</div>
         <div class="plan-price">Sur devis</div>
-        <div class="plan-detail"><strong>Contexte 500 000 tokens</strong>Priorité garantie. Sécurité renforcée. Facturation à la consommation.</div>
+        <div class="plan-detail"><strong>Siège + usage à la consommation</strong>Priorité garantie, sécurité renforcée, contrôles admin avancés.</div>
       </div>
     </div>
     <div class="callout callout-info" style="margin-top:20px;"><strong>La fenêtre de 5h expliquée :</strong> le compteur démarre à votre premier message. 5 heures après, il remet à zéro — même si vous n'avez utilisé qu'une partie. Si vous atteignez la limite avant les 5h : vous attendez, passez à un plan supérieur, ou achetez des tokens supplémentaires (disponible sur tous les plans payants).</div>
@@ -421,7 +421,7 @@ Ex : "Droit des marchés publics, RGPD, IA appliquée, développement web"
     <p><strong>C'est quoi :</strong> Claude peut être connecté à des services externes — Google Drive, Slack, bases de données, et d'autres. Ces connexions s'appellent des "connecteurs" ou "outils".</p>
     <div class="callout callout-danger">
       <strong style="font-family:'Nunito',sans-serif;font-weight:800;color:var(--danger);display:block;margin-bottom:6px;">⚠️ Le coût invisible</strong>
-      Chaque outil connecté charge environ <strong>18 000 tokens dans votre contexte à chaque message</strong> — même si vous n'utilisez pas cet outil. Même si vous tapez juste "bonjour".
+      Chaque outil connecté charge <strong>plusieurs milliers de tokens dans votre contexte à chaque message</strong> (parfois beaucoup plus selon l'outil) — même si vous ne l'utilisez pas. Même si vous tapez juste « bonjour ».
     </div>
     <div class="callout callout-todo"><strong>📍 Où gérer les outils</strong>Claude.ai → icône en bas à gauche de la zone de saisie → <strong>"Outils et connecteurs"</strong> → désactiver ce qui n'est pas utile à la session en cours.</div>
     <p><strong>Règle simple :</strong> avant chaque session, gardez actifs uniquement les outils dont vous avez besoin pour cette tâche précise.</p>
@@ -561,22 +561,22 @@ Aucune phrase d'introduction. Direct au résumé.</pre>
     <p>Claude propose plusieurs modèles avec des capacités et des coûts différents. Choisir le bon modèle est l'une des optimisations les plus impactantes.</p>
     <div class="models-grid">
       <div class="model-card m-haiku">
-        <div class="model-name">Haiku</div>
+        <div class="model-name">Haiku 4.5</div>
         <div class="model-tag">Léger · Rapide · Économique</div>
         <div class="model-use">Résumés · Reformulations · Recherches simples · Mise en forme · Tâches répétitives</div>
       </div>
       <div class="model-card m-sonnet">
-        <div class="model-name">Sonnet</div>
+        <div class="model-name">Sonnet 4.6</div>
         <div class="model-tag">Équilibré · Référence</div>
         <div class="model-use">Rédaction · Analyse · Code · Réponses complexes. Le bon choix pour la quasi-totalité des usages quotidiens.</div>
       </div>
       <div class="model-card m-opus">
-        <div class="model-name">Opus</div>
+        <div class="model-name">Opus 4.8</div>
         <div class="model-tag">Puissant · Coûteux</div>
         <div class="model-use">Architecture complexe · Raisonnement profond. À réserver aux tâches qui le justifient vraiment — moins de 20% de votre usage.</div>
       </div>
     </div>
-    <div class="callout callout-info">Si 80% de vos tâches passent par Haiku ou Sonnet au lieu d'Opus, vous réalisez des économies importantes sans sacrifier la qualité sur l'essentiel.</div>
+    <div class="callout callout-info">Si 80% de vos tâches passent par Haiku ou Sonnet au lieu d'Opus, vous réalisez des économies importantes sans sacrifier la qualité sur l'essentiel. <strong>Nouveau (juin 2026) :</strong> <strong style="display:inline;">Fable 5</strong>, le modèle le plus puissant d'Anthropic, se place encore au-dessus d'Opus — à réserver aux cas vraiment exceptionnels (et plus coûteux).</div>
   </div>
 
   <div class="card">
@@ -602,9 +602,10 @@ Tu peux résumer ou supprimer le reste.</pre>
         <thead><tr><th>Commande</th><th>Ce qu'elle fait</th><th>Quand l'utiliser</th></tr></thead>
         <tbody>
           <tr><td><code>/context</code></td><td>Affiche exactement ce qui consomme vos tokens</td><td>Pour savoir où en est votre session</td></tr>
-          <tr><td><code>/cost</code></td><td>Affiche la consommation et le coût estimé</td><td>Avant une tâche lourde ou en fin de session</td></tr>
+          <tr><td><code>/usage</code> <span style="color:var(--text-muted);">(alias <code>/cost</code>)</span></td><td>Consommation, limites du plan, et détail par outil/agent</td><td>Avant une tâche lourde ou en fin de session</td></tr>
           <tr><td><code>/compact</code></td><td>Compresse le contexte en conservant l'essentiel</td><td>À 60% de capacité ou avant une pause</td></tr>
           <tr><td><code>/clear</code></td><td>Remet le contexte à zéro</td><td>Entre deux tâches sans lien ou en fin de session</td></tr>
+          <tr><td><code>/btw</code></td><td>Pose une question annexe <strong>sans l'ajouter à l'historique</strong></td><td>Petite question qui ne doit pas alourdir la session</td></tr>
         </tbody>
       </table>
     </div>
@@ -727,7 +728,7 @@ Tu peux résumer ou supprimer le reste.</pre>
 </div>
 
 <footer>
-  <p><strong>Sébastien Rivière</strong> · Avril 2026<br>Guide libre de partage — partagez-le sans retenue<br><span style="font-size:12px;">Vos retours sont bienvenus. Ils aident à améliorer ce contenu.</span></p>
+  <p><strong>Sébastien Rivière</strong> · Juin 2026<br>Guide libre de partage — partagez-le sans retenue<br><span style="font-size:12px;">Vos retours sont bienvenus. Ils aident à améliorer ce contenu.</span></p>
 </footer>
 
 <script>
