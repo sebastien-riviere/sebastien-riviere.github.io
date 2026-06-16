@@ -168,7 +168,8 @@ td strong{color:var(--text);font-family:'Nunito',sans-serif;font-weight:800;}
 /* SUMMARY */
 .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:20px 0;}
 .summary-item{background:var(--slate-dark);border-radius:var(--radius-sm);padding:16px 18px;display:flex;align-items:flex-start;gap:12px;}
-.summary-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.summary-icon{font-size:22px;flex-shrink:0;margin-top:2px;color:var(--accent);}
+.ic{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0;}
 .summary-content strong{font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;color:var(--white);display:block;margin-bottom:2px;}
 .summary-content span{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5;}
 
@@ -244,20 +245,20 @@ footer strong{color:rgba(255,255,255,0.7);font-weight:800;}
 <div id="resume" style="margin-top:48px;">
   <div class="section-subtitle">Vue d'ensemble</div>
   <div class="section-head" style="margin-top:8px;">
-    <div style="background:var(--accent);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:white;font-size:18px;">⚡</span></div>
+    <div style="background:var(--accent);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:white;font-size:18px;"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span></div>
     <h2>Tout ce que vous allez faire — en un coup d'œil</h2>
   </div>
   <div class="summary-grid">
-    <div class="summary-item"><div class="summary-icon">⚙️</div><div class="summary-content"><strong>1 · Custom Instructions</strong><span>Configurer votre rôle et vos préférences une seule fois</span></div></div>
-    <div class="summary-item"><div class="summary-icon">📁</div><div class="summary-content"><strong>2 · Organiser les Projets</strong><span>Créer un espace par domaine, y déposer vos fichiers récurrents</span></div></div>
-    <div class="summary-item"><div class="summary-icon">🔌</div><div class="summary-content"><strong>3 · Auditer les outils</strong><span>Désactiver les connexions inutiles à chaque session</span></div></div>
-    <div class="summary-item"><div class="summary-icon">🎯</div><div class="summary-content"><strong>4 · Cadrer la première ligne</strong><span>Rôle + objectif + format avant chaque conversation</span></div></div>
-    <div class="summary-item"><div class="summary-icon">📦</div><div class="summary-content"><strong>5 · Grouper les questions</strong><span>Toujours en un seul message, jamais plusieurs</span></div></div>
-    <div class="summary-item"><div class="summary-icon">✏️</div><div class="summary-content"><strong>6 · Éditer, jamais corriger</strong><span>Modifier le prompt original si Claude rate sa réponse</span></div></div>
-    <div class="summary-item"><div class="summary-icon">🗜️</div><div class="summary-content"><strong>7 · Compresser à 60%</strong><span>Résumé + nouveau chat avant d'être à court</span></div></div>
-    <div class="summary-item"><div class="summary-icon">⏸️</div><div class="summary-content"><strong>8 · /compact avant toute pause</strong><span>Le cache expire après exactement 5 minutes</span></div></div>
-    <div class="summary-item"><div class="summary-icon">🤖</div><div class="summary-content"><strong>9 · Bon modèle, bonne tâche</strong><span>Haiku / Sonnet / Opus selon le besoin réel</span></div></div>
-    <div class="summary-item"><div class="summary-icon">🕐</div><div class="summary-content"><strong>10 · Heures creuses</strong><span>5h–10h à La Réunion = l'une des meilleures plages mondiales</span></div></div>
+    <div class="summary-item"><div class="summary-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div><div class="summary-content"><strong>1 · Custom Instructions</strong><span>Configurer votre rôle et vos préférences une seule fois</span></div></div>
+    <div class="summary-item"><div class="summary-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div><div class="summary-content"><strong>2 · Organiser les Projets</strong><span>Créer un espace par domaine, y déposer vos fichiers récurrents</span></div></div>
+    <div class="summary-item"><div class="summary-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0z"/><path d="M12 16v5"/></svg></div><div class="summary-content"><strong>3 · Auditer les outils</strong><span>Désactiver les connexions inutiles à chaque session</span></div></div>
+    <div class="summary-item"><div class="summary-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><div class="summary-content"><strong>4 · Cadrer la première ligne</strong><span>Rôle + objectif + format avant chaque conversation</span></div></div>
+    <div class="summary-item"><div class="summary-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></div><div class="summary-content"><strong>5 · Grouper les questions</strong><span>Toujours en un seul message, jamais plusieurs</span></div></div>
+    <div class="summary-item"><div class="summary-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><div class="summary-content"><strong>6 · Éditer, jamais corriger</strong><span>Modifier le prompt original si Claude rate sa réponse</span></div></div>
+    <div class="summary-item"><div class="summary-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3M16 3v3a2 2 0 0 0 2 2h3M8 21v-3a2 2 0 0 0-2-2H3M16 21v-3a2 2 0 0 1 2-2h3"/></svg></div><div class="summary-content"><strong>7 · Compresser à 60%</strong><span>Résumé + nouveau chat avant d'être à court</span></div></div>
+    <div class="summary-item"><div class="summary-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/></svg></div><div class="summary-content"><strong>8 · /compact avant toute pause</strong><span>Le cache expire après exactement 5 minutes</span></div></div>
+    <div class="summary-item"><div class="summary-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"/><circle cx="12" cy="3.5" r="1.5"/><path d="M12 8V5M9 13h.01M15 13h.01M9.5 16.5h5"/></svg></div><div class="summary-content"><strong>9 · Bon modèle, bonne tâche</strong><span>Haiku / Sonnet / Opus selon le besoin réel</span></div></div>
+    <div class="summary-item"><div class="summary-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="summary-content"><strong>10 · Heures creuses</strong><span>5h–10h à La Réunion = l'une des meilleures plages mondiales</span></div></div>
   </div>
 </div>
 
@@ -270,7 +271,7 @@ footer strong{color:rgba(255,255,255,0.7);font-weight:800;}
   <div class="card">
     <p>Un <strong>token</strong>, c'est environ ¾ d'un mot en français. Une phrase normale représente 15 à 20 tokens. Ce n'est pas la notion de token qui est importante — c'est ce que Claude fait avec.</p>
     <div class="callout callout-danger" style="margin:20px 0;">
-      <strong style="font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;color:var(--danger);display:block;margin-bottom:6px;">⚠️ La mécanique cachée</strong>
+      <strong style="font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;color:var(--danger);display:block;margin-bottom:6px;"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.3 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.3a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> La mécanique cachée</strong>
       À chaque message que vous envoyez, Claude relit <strong>l'intégralité de la conversation depuis le début</strong>. Pas juste votre dernière question — tout, depuis le premier échange. C'est ce qui explique pourquoi les limites arrivent bien plus vite que vous ne l'imaginez.
     </div>
     <p>La consommation ne progresse pas de façon linéaire — elle explose :</p>
@@ -309,7 +310,7 @@ footer strong{color:rgba(255,255,255,0.7);font-weight:800;}
         <p style="color:var(--text-mid);">La taille maximale d'une seule conversation dépend du modèle : jusqu'à <strong>1 million de tokens</strong> sur les modèles récents (Sonnet 4.6, Opus 4.8), 200 000 sur Haiku 4.5. Quand vous l'atteignez, démarrez une nouvelle conversation.</p>
       </div>
     </div>
-    <div class="callout callout-info">⚠️ <strong>Important :</strong> Claude.ai, Claude Code et Claude Desktop partagent le même compteur. Tout est cumulé sur votre compte.</div>
+    <div class="callout callout-info"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.3 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.3a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> <strong>Important :</strong> Claude.ai, Claude Code et Claude Desktop partagent le même compteur. Tout est cumulé sur votre compte.</div>
 
     <h3 style="font-family:'Nunito',sans-serif;font-weight:800;font-size:17px;color:var(--slate-dark);margin:24px 0 16px;">Les plans disponibles</h3>
     <div class="plans-grid">
@@ -319,7 +320,7 @@ footer strong{color:rgba(255,255,255,0.7);font-weight:800;}
         <div class="plan-detail"><strong>~20 messages/jour</strong>Accès limité. Pas de Claude Code. Idéal pour découvrir.</div>
       </div>
       <div class="plan-card featured">
-        <div class="plan-name">Pro ⭐</div>
+        <div class="plan-name">Pro <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.8L21 9.6l-4.7 4 1.5 6.4L12 16.8 6.2 20l1.5-6.4L3 9.6l6.4-.8z"/></svg></div>
         <div class="plan-price">20 $<span>/mois</span></div>
         <div class="plan-detail"><strong>Fenêtre 5h · Reset hebdo</strong>~17 $/mois en annuel. Mémoire, Projets, <strong style="display:inline;">Claude Code et Cowork inclus</strong>. Le plan de référence.</div>
       </div>
@@ -355,14 +356,14 @@ footer strong{color:rgba(255,255,255,0.7);font-weight:800;}
     <h2>La configuration unique — à faire une seule fois</h2>
   </div>
   <div class="callout callout-success" style="margin-bottom:20px;">
-    <strong style="font-family:'Nunito',sans-serif;font-weight:800;display:block;margin-bottom:4px;color:var(--success);">✅ Investissement unique</strong>
+    <strong style="font-family:'Nunito',sans-serif;font-weight:800;display:block;margin-bottom:4px;color:var(--success);"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Investissement unique</strong>
     Tout ce qui suit se fait une seule fois. Ensuite, Claude s'en souvient automatiquement à chaque nouvelle conversation.
   </div>
 
   <div class="card">
     <div class="card-title"><span style="background:var(--slate);color:white;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span>Configurer les Instructions personnalisées</div>
     <p><strong>C'est quoi :</strong> un texte que Claude lit automatiquement au démarrage de chaque conversation. Vous n'avez plus à vous ré-présenter, expliquer comment vous travaillez ou répéter vos préférences.</p>
-    <div class="callout callout-todo"><strong>📍 Où trouver ce paramètre</strong>Claude.ai → votre avatar en haut à droite → <strong>Paramètres</strong> → onglet <strong>Profil</strong> → section "Instructions personnalisées"</div>
+    <div class="callout callout-todo"><strong><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg> Où trouver ce paramètre</strong>Claude.ai → votre avatar en haut à droite → <strong>Paramètres</strong> → onglet <strong>Profil</strong> → section "Instructions personnalisées"</div>
     <p style="margin-top:16px;"><strong>Contenu à copier-coller et adapter :</strong></p>
     <div class="code-block">
       <button class="copy-btn" onclick="copyCode(this)">Copier</button>
@@ -396,21 +397,21 @@ Ex : "Droit des marchés publics, RGPD, IA appliquée, développement web"
     <div class="card-title"><span style="background:var(--slate);color:white;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span>Organiser ses Projets</div>
     <p><strong>C'est quoi :</strong> des espaces de travail séparés dans Claude, chacun avec ses propres fichiers et instructions. Pensez-y comme des dossiers intelligents.</p>
     <p style="margin-top:10px;"><strong>Pourquoi c'est important :</strong> si vous uploadez le même PDF dans cinq conversations différentes, Claude recompte ces tokens cinq fois. Dans un Projet, un fichier uploadé est partagé entre toutes les conversations du projet — il n'est jamais recompté.</p>
-    <div class="callout callout-todo"><strong>📍 Comment créer un Projet</strong>Claude.ai → colonne gauche → bouton <strong>"Nouveau projet"</strong> → lui donner un nom → uploader vos fichiers de référence → définir des instructions spécifiques au projet si besoin.</div>
+    <div class="callout callout-todo"><strong><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg> Comment créer un Projet</strong>Claude.ai → colonne gauche → bouton <strong>"Nouveau projet"</strong> → lui donner un nom → uploader vos fichiers de référence → définir des instructions spécifiques au projet si besoin.</div>
     <p><strong>Structure recommandée :</strong></p>
     <div class="code-block">
       <button class="copy-btn" onclick="copyCode(this)">Copier</button>
-      <pre>📁 Projet : MON-ACTIVITÉ-PRINCIPALE
+      <pre>Projet :MON-ACTIVITÉ-PRINCIPALE
    ├── guide-reference.pdf
    ├── notes-importantes.md
    └── [toutes les conversations sur ce sujet]
 
-📁 Projet : MES-CLIENTS
+Projet :MES-CLIENTS
    ├── brief-type.pdf
    ├── informations-récurrentes.md
    └── [conversations clients]
 
-📁 Projet : VEILLE-ET-APPRENTISSAGE
+Projet :VEILLE-ET-APPRENTISSAGE
    └── [recherches, explorations, nouvelles idées]</pre>
     </div>
     <div class="callout callout-rule">Uploadez vos fichiers récurrents dans les Projets. Arrêtez de payer pour les mêmes fichiers à chaque session.</div>
@@ -420,10 +421,10 @@ Ex : "Droit des marchés publics, RGPD, IA appliquée, développement web"
     <div class="card-title"><span style="background:var(--slate);color:white;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span>Auditer les outils et connexions actifs</div>
     <p><strong>C'est quoi :</strong> Claude peut être connecté à des services externes — Google Drive, Slack, bases de données, et d'autres. Ces connexions s'appellent des "connecteurs" ou "outils".</p>
     <div class="callout callout-danger">
-      <strong style="font-family:'Nunito',sans-serif;font-weight:800;color:var(--danger);display:block;margin-bottom:6px;">⚠️ Le coût invisible</strong>
+      <strong style="font-family:'Nunito',sans-serif;font-weight:800;color:var(--danger);display:block;margin-bottom:6px;"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.3 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.3a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> Le coût invisible</strong>
       Chaque outil connecté charge <strong>plusieurs milliers de tokens dans votre contexte à chaque message</strong> (parfois beaucoup plus selon l'outil) — même si vous ne l'utilisez pas. Même si vous tapez juste « bonjour ».
     </div>
-    <div class="callout callout-todo"><strong>📍 Où gérer les outils</strong>Claude.ai → icône en bas à gauche de la zone de saisie → <strong>"Outils et connecteurs"</strong> → désactiver ce qui n'est pas utile à la session en cours.</div>
+    <div class="callout callout-todo"><strong><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg> Où gérer les outils</strong>Claude.ai → icône en bas à gauche de la zone de saisie → <strong>"Outils et connecteurs"</strong> → désactiver ce qui n'est pas utile à la session en cours.</div>
     <p><strong>Règle simple :</strong> avant chaque session, gardez actifs uniquement les outils dont vous avez besoin pour cette tâche précise.</p>
   </div>
 </div>
@@ -474,8 +475,8 @@ Contraintes : pas de formules génériques, chiffres concrets obligatoires.</pre
   <div class="signal">
     <div class="signal-header"><div class="signal-tag">Réflexe 1</div><div class="signal-title">Vous avez plusieurs questions à poser</div></div>
     <div class="ba-grid">
-      <div class="ba-bad"><div class="ba-label">❌ Ce qu'il ne faut pas faire</div><p>Message 1 : "Résume ce texte"<br>Message 2 : "Extrait les points clés"<br>Message 3 : "Propose un titre"<br><em>= 3 rechargements complets</em></p></div>
-      <div class="ba-good"><div class="ba-label">✅ Ce qu'il faut faire</div><p>"Résume ce texte, extrait les points clés, et propose un titre."<br><br><em>= 1 rechargement, réponse souvent meilleure</em></p></div>
+      <div class="ba-bad"><div class="ba-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Ce qu'il ne faut pas faire</div><p>Message 1 : "Résume ce texte"<br>Message 2 : "Extrait les points clés"<br>Message 3 : "Propose un titre"<br><em>= 3 rechargements complets</em></p></div>
+      <div class="ba-good"><div class="ba-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Ce qu'il faut faire</div><p>"Résume ce texte, extrait les points clés, et propose un titre."<br><br><em>= 1 rechargement, réponse souvent meilleure</em></p></div>
     </div>
     <div class="callout callout-rule" style="margin-top:12px;">3 questions. 1 message. Toujours.</div>
   </div>
@@ -483,8 +484,8 @@ Contraintes : pas de formules génériques, chiffres concrets obligatoires.</pre
   <div class="signal">
     <div class="signal-header"><div class="signal-tag">Réflexe 2</div><div class="signal-title">Claude rate sa réponse</div></div>
     <div class="ba-grid">
-      <div class="ba-bad"><div class="ba-label">❌ Ce qu'il ne faut pas faire</div><p>Envoyer un message correctif.<br><em>Il s'empile dans l'historique pour toujours.</em></p></div>
-      <div class="ba-good"><div class="ba-label">✅ Ce qu'il faut faire</div><p>Cliquer sur l'icône <strong>✏️</strong> en survolant votre message → modifier → régénérer.<br><em>L'échange raté est remplacé, pas accumulé.</em></p></div>
+      <div class="ba-bad"><div class="ba-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Ce qu'il ne faut pas faire</div><p>Envoyer un message correctif.<br><em>Il s'empile dans l'historique pour toujours.</em></p></div>
+      <div class="ba-good"><div class="ba-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Ce qu'il faut faire</div><p>Cliquer sur l'icône <strong><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></strong> en survolant votre message → modifier → régénérer.<br><em>L'échange raté est remplacé, pas accumulé.</em></p></div>
     </div>
     <div class="callout callout-rule" style="margin-top:12px;">Corrigez le prompt. Ne l'enterrez pas sous un autre message.</div>
   </div>
@@ -524,7 +525,7 @@ Aucune phrase d'introduction. Direct au résumé.</pre>
   <div class="signal">
     <div class="signal-header"><div class="signal-tag">Réflexe 6</div><div class="signal-title">Avant de vous éloigner (pause de plus de 5 minutes)</div></div>
     <div class="callout callout-danger" style="margin-bottom:12px;">
-      <strong style="font-family:'Nunito',sans-serif;font-weight:800;color:var(--danger);display:block;margin-bottom:4px;">⚠️ Le piège des pauses courtes</strong>
+      <strong style="font-family:'Nunito',sans-serif;font-weight:800;color:var(--danger);display:block;margin-bottom:4px;"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.3 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.3a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> Le piège des pauses courtes</strong>
       Claude cache votre contexte pour éviter de le retraiter — mais ce cache expire après exactement <strong>5 minutes</strong>. Au retour d'une pause de 6 minutes, tout est retraité depuis zéro au coût plein.
     </div>
     <p><strong>Avant de vous lever :</strong> tapez <code>/compact</code> pour compresser et conserver le fil, ou <code>/clear</code> pour repartir proprement à votre retour.</p>
@@ -557,7 +558,7 @@ Aucune phrase d'introduction. Direct au résumé.</pre>
   </div>
 
   <div class="card">
-    <div class="card-title">🤖 Le bon modèle pour la bonne tâche</div>
+    <div class="card-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"/><circle cx="12" cy="3.5" r="1.5"/><path d="M12 8V5M9 13h.01M15 13h.01M9.5 16.5h5"/></svg> Le bon modèle pour la bonne tâche</div>
     <p>Claude propose plusieurs modèles avec des capacités et des coûts différents. Choisir le bon modèle est l'une des optimisations les plus impactantes.</p>
     <div class="models-grid">
       <div class="model-card m-haiku">
@@ -576,11 +577,11 @@ Aucune phrase d'introduction. Direct au résumé.</pre>
         <div class="model-use">Architecture complexe · Raisonnement profond. À réserver aux tâches qui le justifient vraiment — moins de 20% de votre usage.</div>
       </div>
     </div>
-    <div class="callout callout-info">Si 80% de vos tâches passent par Haiku ou Sonnet au lieu d'Opus, vous réalisez des économies importantes sans sacrifier la qualité sur l'essentiel. <strong>Nouveau (juin 2026) :</strong> <strong style="display:inline;">Fable 5</strong>, le modèle le plus puissant d'Anthropic, se place encore au-dessus d'Opus — à réserver aux cas vraiment exceptionnels (et plus coûteux).</div>
+    <div class="callout callout-info">Si 80% de vos tâches passent par Haiku ou Sonnet au lieu d'Opus, vous réalisez des économies importantes sans sacrifier la qualité sur l'essentiel.</div>
   </div>
 
   <div class="card">
-    <div class="card-title">🗜️ Compresser à 60%, pas à 95%</div>
+    <div class="card-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3M16 3v3a2 2 0 0 0 2 2h3M8 21v-3a2 2 0 0 0-2-2H3M16 21v-3a2 2 0 0 1 2-2h3"/></svg> Compresser à 60%, pas à 95%</div>
     <p>Claude dispose d'une compression automatique qui se déclenche par défaut à 95% de capacité. Problème : à ce stade, la qualité des réponses a déjà commencé à baisser.</p>
     <p style="margin-top:10px;">Bonne pratique : surveiller la consommation avec <code>/context</code> et lancer manuellement <code>/compact</code> à 60% — avec des instructions précises sur ce que Claude doit préserver en priorité.</p>
     <div class="code-block">
@@ -595,7 +596,7 @@ Tu peux résumer ou supprimer le reste.</pre>
   </div>
 
   <div class="card">
-    <div class="card-title">⌨️ Les commandes utiles (Claude Code)</div>
+    <div class="card-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg> Les commandes utiles (Claude Code)</div>
     <p>Ces commandes s'utilisent dans l'interface Claude Code. Elles rendent visible ce qui est normalement caché.</p>
     <div class="table-wrap">
       <table>
@@ -612,38 +613,38 @@ Tu peux résumer ou supprimer le reste.</pre>
   </div>
 
   <div class="card">
-    <div class="card-title">🕐 Heures creuses — quand travailler pour des sessions plus longues</div>
+    <div class="card-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Heures creuses — quand travailler pour des sessions plus longues</div>
     <p>Les serveurs d'Anthropic sont surchargés entre <strong>8h et 14h heure de l'Est américain</strong> en semaine. En heures creuses, votre budget dure plus longtemps et les réponses sont plus rapides.</p>
     <div class="hours-visual">
       <div class="hour-block great">
-        <div class="hb-emoji">🌟</div>
+        <div class="hb-emoji"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.8L21 9.6l-4.7 4 1.5 6.4L12 16.8 6.2 20l1.5-6.4L3 9.6l6.4-.8z"/></svg></div>
         <div class="hb-label">Optimal</div>
         <div class="hb-time"><strong>La Réunion (GMT+4)</strong><br>4h00 – 10h00<br>22h00 – 4h00<br>Week-end toute la journée</div>
       </div>
       <div class="hour-block ok">
-        <div class="hb-emoji">✅</div>
+        <div class="hb-emoji"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
         <div class="hb-label">Correct</div>
         <div class="hb-time"><strong>Paris (GMT+2 été)</strong><br>2h00 – 8h00<br>20h00 – 2h00<br>Week-end</div>
       </div>
       <div class="hour-block avoid">
-        <div class="hb-emoji">⚠️</div>
+        <div class="hb-emoji"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.3 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.3a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
         <div class="hb-label">À éviter</div>
         <div class="hb-time"><strong>La Réunion</strong><br>16h00 – 22h00<br>en semaine<br>(= pic américain)</div>
       </div>
     </div>
     <div class="callout callout-success">
-      <strong style="font-family:'Nunito',sans-serif;font-weight:800;color:var(--success);display:block;margin-bottom:4px;">🌴 Avantage La Réunion</strong>
+      <strong style="font-family:'Nunito',sans-serif;font-weight:800;color:var(--success);display:block;margin-bottom:4px;"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg> Avantage La Réunion</strong>
       Votre matinée réunionnaise (5h–10h) correspond à la nuit américaine — l'une des meilleures plages mondiales sans effort particulier. Planifiez vos travaux lourds le matin tôt ou le week-end.
     </div>
     <div class="callout callout-info" style="margin-top:12px;"><strong>Stratégie fin de période :</strong> proche du reset avec du budget ? Accélérez, lancez vos tâches lourdes. Proche de la limite avec des heures devant vous ? Faites une pause. Revenez avec un budget plein plutôt que de bloquer en pleine tâche.</div>
   </div>
 
   <div class="card">
-    <div class="card-title">🔀 Séparer exploration et production</div>
+    <div class="card-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h2a4 4 0 0 0 3.3-1.8l8.7-12.4A4 4 0 0 1 19.3 2H22M2 6h2a4 4 0 0 1 3.3 1.8l8.7 12.4A4 4 0 0 0 19.3 22H22M18 2l4 4-4 4M18 14l4 4-4 4"/></svg> Séparer exploration et production</div>
     <p>Explorer (brainstormer, chercher une direction) et produire (rédiger, coder, structurer) dans la même conversation alourdit inutilement le contexte.</p>
     <div class="ba-grid">
-      <div class="ba-bad"><div class="ba-label">❌ Tout dans le même chat</div><p>Brainstorm + questions + allers-retours + rédaction finale = historique long qui ralentit chaque réponse</p></div>
-      <div class="ba-good"><div class="ba-label">✅ Deux conversations</div><p>Chat 1 = exploration → résumé des décisions clés<br>Chat 2 = production avec ce contexte propre</p></div>
+      <div class="ba-bad"><div class="ba-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Tout dans le même chat</div><p>Brainstorm + questions + allers-retours + rédaction finale = historique long qui ralentit chaque réponse</p></div>
+      <div class="ba-good"><div class="ba-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Deux conversations</div><p>Chat 1 = exploration → résumé des décisions clés<br>Chat 2 = production avec ce contexte propre</p></div>
     </div>
   </div>
 </div>
@@ -653,7 +654,7 @@ Tu peux résumer ou supprimer le reste.</pre>
 <!-- ANNEXE CHECKLIST -->
 <div id="annexe">
   <div class="section-head">
-    <div style="background:var(--accent);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:white;font-size:18px;">📋</span></div>
+    <div style="background:var(--accent);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:white;font-size:18px;"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="16" rx="2"/><path d="M9 4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1H9zM9 12h6M9 16h4"/></svg></span></div>
     <h2>Checklist — Ce qu'il y a à faire</h2>
   </div>
   <p style="color:var(--text-mid);margin-bottom:24px;">Commencez par cette liste. Cochez au fur et à mesure. Ensuite, plongez dans le guide pour comprendre le détail de chaque action.</p>
@@ -663,35 +664,35 @@ Tu peux résumer ou supprimer le reste.</pre>
     <p class="todo-sub">Cliquez sur un élément pour le cocher. Votre progression est sauvegardée.</p>
 
     <div class="todo-group">
-      <div class="todo-group-title">⚙️ Configuration unique — à faire une seule fois</div>
+      <div class="todo-group-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg> Configuration unique — à faire une seule fois</div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Configurer les Instructions personnalisées</strong>Paramètres → Profil → Instructions personnalisées → copier et adapter le template (Bloc 2.1)</div><div class="todo-badge badge-once">1 fois</div></div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Créer au moins un Projet</strong>Colonne gauche → Nouveau projet → nommer → uploader vos fichiers de référence</div><div class="todo-badge badge-once">1 fois</div></div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Auditer les outils connectés</strong>Identifier lesquels sont actifs, lesquels sont vraiment nécessaires régulièrement</div><div class="todo-badge badge-once">1 fois</div></div>
     </div>
 
     <div class="todo-group">
-      <div class="todo-group-title">🎯 Rituel de démarrage — à chaque session</div>
+      <div class="todo-group-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg> Rituel de démarrage — à chaque session</div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Vérifier le bon Projet</strong>Colonne gauche → sélectionner le bon espace de travail</div><div class="todo-badge badge-session">Chaque session</div></div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Désactiver les outils inutiles à cette session</strong>Icône outils → désactiver ce qui n'est pas nécessaire maintenant</div><div class="todo-badge badge-session">Chaque session</div></div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Cadrer la première ligne</strong>Rôle + objectif + format + contraintes (template au Bloc 3)</div><div class="todo-badge badge-session">Chaque session</div></div>
     </div>
 
     <div class="todo-group">
-      <div class="todo-group-title">⚡ Réflexes — à appliquer en permanence</div>
+      <div class="todo-group-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg> Réflexes — à appliquer en permanence</div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Grouper mes questions en un seul message</strong>Ne jamais envoyer 3 questions séparément quand on peut les réunir</div><div class="todo-badge badge-always">Toujours</div></div>
-      <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Éditer le prompt si Claude rate — jamais corriger par un nouveau message</strong>Icône ✏️ → modifier → régénérer</div><div class="todo-badge badge-always">Toujours</div></div>
+      <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Éditer le prompt si Claude rate — jamais corriger par un nouveau message</strong>Icône <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> → modifier → régénérer</div><div class="todo-badge badge-always">Toujours</div></div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Coller uniquement la portion utile d'un document</strong>Claude a-t-il vraiment besoin de tout ça ?</div><div class="todo-badge badge-always">Toujours</div></div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Lancer /compact avant toute pause de plus de 5 minutes</strong>Le cache expire exactement après 5 minutes</div><div class="todo-badge badge-always">Toujours</div></div>
     </div>
 
     <div class="todo-group">
-      <div class="todo-group-title">🏁 Rituel de fin — avant de fermer</div>
+      <div class="todo-group-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h12l-2.5 4L17 12H5"/></svg> Rituel de fin — avant de fermer</div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Lancer le prompt de compression</strong>Copier le résumé produit dans vos notes</div><div class="todo-badge badge-session">Chaque session</div></div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Lancer /clear avant de fermer</strong>Libérer le contexte pour la prochaine session</div><div class="todo-badge badge-session">Chaque session</div></div>
     </div>
 
     <div class="todo-group">
-      <div class="todo-group-title">🚀 Aller plus loin — fonctionnalités essentielles</div>
+      <div class="todo-group-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2M9 11a8 8 0 0 1 8-8h4v4a8 8 0 0 1-8 8M9 11l4 4M14.5 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg> Aller plus loin — fonctionnalités essentielles</div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Adapter le modèle à la tâche</strong>Haiku pour les tâches simples, Sonnet par défaut, Opus uniquement si nécessaire</div><div class="todo-badge badge-once">À mettre en place</div></div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Surveiller /context et lancer /compact à 60%</strong>Ne pas attendre l'auto-compact à 95%</div><div class="todo-badge badge-always">Régulièrement</div></div>
       <div class="todo-item" onclick="toggleTodo(this)"><div class="todo-check"></div><div class="todo-text"><strong>Planifier les travaux lourds en heures creuses</strong>5h–10h à La Réunion · Avant 8h ou après 20h à Paris · Week-end partout</div><div class="todo-badge badge-always">À planifier</div></div>
@@ -709,7 +710,7 @@ Tu peux résumer ou supprimer le reste.</pre>
       <thead><tr><th>Situation</th><th>Action immédiate</th></tr></thead>
       <tbody>
         <tr><td>J'ai plusieurs questions</td><td>1 seul message groupé</td></tr>
-        <tr><td>Claude rate sa réponse</td><td>✏️ Éditer le prompt original → régénérer</td></tr>
+        <tr><td>Claude rate sa réponse</td><td><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Éditer le prompt original → régénérer</td></tr>
         <tr><td>~15 messages échangés</td><td>Prompt de compression → nouveau chat → coller résumé</td></tr>
         <tr><td>Je colle un document</td><td>Ne coller que la portion utile</td></tr>
         <tr><td>Pause de plus de 5 min</td><td><code>/compact</code> ou <code>/clear</code> avant de partir</td></tr>
