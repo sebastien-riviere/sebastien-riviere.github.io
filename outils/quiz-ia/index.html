@@ -332,6 +332,8 @@ document.getElementById('go').addEventListener('click',()=>{
 
   html += `<div class="rgpd">${ICON_SHIELD}<span><b>Réflexe RGPD</b> — quel que soit l'outil : jamais de données personnelles ou sensibles (situations d'employés, données de santé). Anonymisez, et coupez l'entraînement sur vos données dans les réglages « Confidentialité ».</span></div>`;
 
+  html += `<div class="note">${ICON_INFO}<span><b>Deux points à garder en tête</b> — au-delà du choix de l'outil : <b>①&nbsp;empreinte environnementale</b> : chaque requête consomme de l'énergie ; pour une tâche simple, un petit modèle suffit souvent — inutile de sortir l'artillerie lourde. <b>②&nbsp;biais &amp; transparence</b> : une IA reflète ses données d'entraînement et peut se tromper avec aplomb — gardez l'œil critique et vérifiez ce qui compte.</span></div>`;
+
   const r=document.getElementById('result');
   r.innerHTML=html; r.style.display='block';
   r.scrollIntoView({behavior:'smooth'});

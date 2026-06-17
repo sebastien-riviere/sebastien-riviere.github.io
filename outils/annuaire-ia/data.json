@@ -1,5 +1,5 @@
 {
-  "maj": "2026-06-16",
+  "maj": "2026-06-17",
   "cats": [
     [
       "assistants",
@@ -651,6 +651,14 @@
       "u": "https://microsoft.github.io/autogen",
       "s": 59002,
       "gh": "microsoft/autogen"
+    },
+    {
+      "c": "advanced",
+      "n": "Hugging Face",
+      "d": "Le « GitHub de l'IA » : hub de 1M+ modèles et jeux de données open-source, librairies (Transformers) et hébergement.",
+      "p": "freemium",
+      "dom": "huggingface.co",
+      "u": "https://huggingface.co"
     },
     {
       "c": "advanced",
