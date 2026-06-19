@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sébastien Rivière — Outils & guides gratuits</title>
 <meta name="description" content="Un hub d'outils et de guides gratuits qui tournent dans votre navigateur : sans compte, sans installation, sans envoi de vos données.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sébastien Rivière — Outils & guides gratuits">
+<meta property="og:title" content="Sébastien Rivière — Outils & guides gratuits">
+<meta property="og:description" content="Des outils concrets pour l'IA, le numérique et l'achat public — simples, sans compte, en local.">
+<meta property="og:url" content="https://sebastien-riviere.github.io/">
+<meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%233a8ac4'/%3E%3Cstop%20offset='1'%20stop-color='%231e3a52'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='24'%20height='24'%20rx='6'%20fill='url(%23g)'/%3E%3Ctext%20x='12'%20y='16.5'%20font-family='Arial,Helvetica,sans-serif'%20font-size='11'%20font-weight='700'%20fill='%23fff'%20text-anchor='middle'%3ESR%3C/text%3E%3C/svg%3E">
@@ -44,6 +51,12 @@ header{padding:56px 40px 40px;max-width:860px;width:100%;margin:0 auto;}
 .sub{font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;color:var(--faint);letter-spacing:0.3px;margin-top:3px;}
 .intro{font-family:'Lora',serif;font-size:17px;line-height:1.7;color:var(--muted);max-width:620px;margin-top:24px;}
 .intro strong{color:var(--text);font-weight:700;}
+.tagline{font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;color:var(--title);margin-top:18px;max-width:640px;line-height:1.4;}
+.badge-new{display:inline-block;font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:20px;padding:2px 8px;margin-left:6px;vertical-align:middle;}
+@keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+.grid .card{animation:rise .45s ease both;}
+.grid .card:nth-child(2){animation-delay:.05s;} .grid .card:nth-child(3){animation-delay:.1s;} .grid .card:nth-child(4){animation-delay:.15s;}
+@media(prefers-reduced-motion:reduce){.grid .card{animation:none;}}
 
 /* ── Main ── */
 main{flex:1;padding:44px 40px 64px;max-width:860px;width:100%;margin:0 auto;}
@@ -100,6 +113,7 @@ footer a:hover{color:var(--accent);}
         <div class="sub">Outils &amp; guides gratuits</div>
       </div>
     </div>
+    <p class="tagline">Des outils concrets pour l'IA, le numérique et l'achat public — simples, sans compte, en local.</p>
     <p class="intro">Bienvenue. Cette page rassemble en un seul endroit mes <strong>outils et guides gratuits</strong>. Tous fonctionnent directement dans votre navigateur — <strong>sans compte, sans installation, et sans que vos données quittent votre appareil</strong>. Parcourez les catégories ci-dessous et ouvrez ce qui vous est utile.</p>
   </header>
 </div>
@@ -140,9 +154,24 @@ footer a:hover{color:var(--accent);}
         <a href="/outils/annuaire-ia/">
           <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
           <div class="card-label">Annuaire · Intelligence artificielle</div>
-          <div class="card-title">Annuaire des outils IA</div>
+          <div class="card-title">Annuaire des outils IA <span class="badge-new">Nouveau</span></div>
           <div class="card-desc">Une sélection d'outils IA classés par usage et expliqués simplement, avec repères chiffrés (valorisations, audience, popularité). Sans jargon.</div>
           <div class="card-arrow">Ouvrir l'annuaire →</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><svg viewBox="0 0 24 24"><path d="M12 3v18M8 21h8M6 7h12M6 7l-3 6a3 3 0 0 0 6 0zM18 7l-3 6a3 3 0 0 0 6 0z"/></svg>Commande publique</div>
+    <div class="grid">
+      <div class="card">
+        <a href="/outils/achat-public/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 4-5"/></svg></div>
+          <div class="card-label">Outil · Achat public</div>
+          <div class="card-title">Computation des seuils <span class="badge-new">Nouveau</span></div>
+          <div class="card-desc">Pour les marchés de fournitures &amp; services : cumul par famille homogène, procédure applicable, alerte de fractionnement et reporting annuel. Seuils 2026 sourcés. Version web + Excel, 100 % en local.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
         </a>
       </div>
     </div>

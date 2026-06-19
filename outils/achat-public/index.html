@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'self'; form-action 'none'">
+<title>Calculateur de computation des seuils — Achat public | Sébastien Rivière</title>
+<meta name="description" content="Calculez la computation des seuils de vos marchés publics de fournitures et services : cumul par famille homogène, procédure applicable, alerte de fractionnement, reporting annuel. 100 % dans votre navigateur, sans compte, sans aucun envoi de données.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sébastien Rivière — Outils & guides gratuits">
+<meta property="og:title" content="Computation des seuils — marchés de fournitures & services">
+<meta property="og:description" content="Cumul par famille homogène, procédure applicable, alerte de fractionnement, reporting annuel. Seuils 2026 sourcés. Web + Excel, 100 % en local.">
+<meta property="og:url" content="https://sebastien-riviere.github.io/outils/achat-public/">
+<meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%233a8ac4'/%3E%3Cstop%20offset='1'%20stop-color='%231e3a52'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='24'%20height='24'%20rx='6'%20fill='url(%23g)'/%3E%3Ctext%20x='12'%20y='16.5'%20font-family='Arial'%20font-size='11'%20font-weight='700'%20fill='%23fff'%20text-anchor='middle'%3ESR%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f4f8fb; --bg-band:#eaf2f9;
+  --text:#1a2a35; --muted:#5a7a92; --faint:#8faabb;
+  --card:#ffffff; --border:#dde9f2; --border-hover:#b8d0e4;
+  --title:#1e3a52; --accent:#3a8ac4; --accent-soft:#e8f0f7;
+  --logo-a:#3a8ac4; --logo-b:#1e3a52; --shadow:0 4px 22px rgba(30,58,82,0.10);
+  --ok:#2e9e6b; --ok-soft:#e3f5ec; --warn:#c77d20; --warn-soft:#fdf3e0; --bad:#cf4b43; --bad-soft:#fbe9e8; --track:#e7eef5;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:Georgia,Cambria,'Times New Roman',serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#0f1722; --bg-band:#15212f; --text:#e7eef5; --muted:#9fb6c8; --faint:#6f8aa0;
+  --card:#16212e; --border:#24333f; --border-hover:#3a8ac4; --title:#eaf2f9; --accent:#62a9e0; --accent-soft:#1c2c3b;
+  --logo-a:#4a9ad4; --logo-b:#274b6b; --shadow:0 6px 26px rgba(0,0,0,0.45);
+  --ok:#3fb980; --ok-soft:#16302440; --warn:#e0a04a; --warn-soft:#3a2c1040; --bad:#e0635a; --bad-soft:#3a181640; --track:#24333f;
+}}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+.nun{font-family:var(--sans);}
+.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;}
+.header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
+header{padding:40px 24px 26px;max-width:1040px;width:100%;margin:0 auto;}
+.brand{display:flex;align-items:center;gap:14px;}
+.logo{flex:none;width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--logo-a),var(--logo-b));color:#fff;font-family:var(--sans);font-weight:900;font-size:19px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(30,58,82,0.22);}
+.name{font-family:var(--sans);font-weight:900;font-size:21px;color:var(--title);line-height:1.1;}
+.name a{color:inherit;text-decoration:none;}
+.sub{font-family:var(--sans);font-weight:700;font-size:12px;color:var(--faint);margin-top:2px;}
+h1{font-family:var(--sans);font-weight:900;font-size:26px;color:var(--title);letter-spacing:-0.5px;margin-top:22px;line-height:1.15;}
+.lead{font-family:var(--serif);font-size:15px;line-height:1.65;color:var(--muted);max-width:680px;margin-top:12px;}
+.local-band{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-family:var(--sans);font-weight:700;font-size:12px;color:var(--ok);background:var(--ok-soft);border:1px solid var(--border);border-radius:20px;padding:6px 13px;}
+.local-band .ic{width:14px;height:14px;}
+main{flex:1;padding:18px 24px 56px;max-width:1040px;width:100%;margin:0 auto;}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--border);margin-bottom:22px;}
+.tab{font-family:var(--sans);font-weight:800;font-size:13.5px;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;padding:11px 14px;cursor:pointer;}
+.tab:hover{color:var(--accent);} .tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.panel{display:none;} .panel.active{display:block;animation:fade .25s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:16px;}
+.card h2{font-family:var(--sans);font-weight:900;font-size:16px;color:var(--title);margin-bottom:4px;}
+.card .hint{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.55;}
+.row{display:flex;flex-wrap:wrap;gap:14px;}
+.field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:140px;}
+label{font-family:var(--sans);font-weight:700;font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.4px;}
+input,select,textarea{font-family:var(--sans);font-size:14px;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 11px;width:100%;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);}
+.btn{font-family:var(--sans);font-weight:800;font-size:13.5px;border:1px solid var(--border);border-radius:8px;padding:9px 14px;cursor:pointer;background:var(--accent-soft);color:var(--accent);transition:background .15s,color .15s;display:inline-flex;align-items:center;gap:7px;}
+.btn:hover{background:var(--accent);color:#fff;} .btn .ic{width:15px;height:15px;}
+.btn.primary{background:var(--accent);color:#fff;} .btn.ghost{background:none;}
+.btn.danger{color:var(--bad);background:var(--bad-soft);} .btn.danger:hover{background:var(--bad);color:#fff;}
+.iconbtn{width:38px;height:38px;justify-content:center;padding:0;} .iconbtn .ic{width:17px;height:17px;}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.quickadd{display:grid;grid-template-columns:160px 1fr 150px auto;gap:10px;align-items:end;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-weight:700;font-size:12.5px;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:6px 11px;cursor:pointer;white-space:nowrap;transition:all .12s;}
+.chip .ic{width:15px;height:15px;color:var(--faint);} .chip:hover{border-color:var(--border-hover);}
+.chip.active{background:var(--accent);color:#fff;border-color:var(--accent);} .chip.active .ic{color:#fff;}
+.chip .del{margin-left:3px;color:inherit;opacity:.55;font-weight:900;} .chip .del:hover{opacity:1;color:var(--bad);}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px;}
+.kpi{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:13px 15px;}
+.kpi .v{font-family:var(--sans);font-weight:900;font-size:22px;color:var(--title);line-height:1.1;}
+.kpi .l{font-family:var(--sans);font-weight:700;font-size:11.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.4px;margin-top:4px;}
+.kpi.alert .v{color:var(--bad);}
+.fam-card{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:14px 16px;margin-bottom:11px;}
+.fam-top{display:flex;align-items:center;gap:11px;flex-wrap:wrap;}
+.fam-ic{flex:none;width:36px;height:36px;border-radius:9px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;}
+.fam-ic .ic{width:19px;height:19px;}
+.fam-name{font-family:var(--sans);font-weight:800;font-size:15px;color:var(--title);}
+.fam-cumul{font-family:var(--sans);font-weight:900;font-size:18px;color:var(--title);margin-left:auto;font-variant-numeric:tabular-nums;}
+.tag{display:inline-block;font-family:var(--sans);font-weight:800;font-size:11px;padding:2px 9px;border-radius:20px;white-space:nowrap;}
+.tag.ok{background:var(--ok-soft);color:var(--ok);} .tag.warn{background:var(--warn-soft);color:var(--warn);} .tag.bad{background:var(--bad-soft);color:var(--bad);} .tag.info{background:var(--accent-soft);color:var(--accent);}
+.procsel{margin-top:9px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.procsel select{max-width:300px;}
+.gauge{margin-top:11px;} .gauge svg{width:100%;height:auto;display:block;} .gauge .mk{font-family:var(--sans);font-size:9.5px;font-weight:700;fill:var(--muted);} .gauge .cm{font-family:var(--sans);font-size:10.5px;font-weight:900;}
+.alert{display:flex;gap:9px;border-radius:9px;padding:10px 13px;margin-top:10px;font-family:var(--serif);font-size:13px;line-height:1.5;border:1px solid var(--border);}
+.alert.warn{background:var(--warn-soft);} .alert.bad{background:var(--bad-soft);} .alert.note{background:var(--accent-soft);}
+.alert .ic{width:17px;height:17px;flex:none;margin-top:1px;color:var(--accent);}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:13.5px;}
+th,td{border-bottom:1px solid var(--border);padding:9px 10px;text-align:left;vertical-align:top;}
+th{color:var(--title);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.4px;}
+td{color:var(--text);} .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.muted{color:var(--muted);} .det{font-size:12.5px;color:var(--muted);}
+.x{cursor:pointer;color:var(--faint);font-weight:900;border:none;background:none;font-size:16px;line-height:1;padding:2px 6px;} .x:hover{color:var(--bad);}
+.drag{cursor:grab;color:var(--faint);user-select:none;padding:0 4px;} tr.dragging{opacity:.4;}
+details summary{cursor:pointer;font-family:var(--sans);font-weight:700;font-size:12.5px;color:var(--accent);}
+.gl{border-bottom:1px dotted var(--faint);cursor:help;}
+.charts{display:flex;flex-wrap:wrap;gap:22px;align-items:center;}
+.donut-legend{font-family:var(--sans);font-size:12.5px;display:flex;flex-direction:column;gap:5px;}
+.donut-legend span{display:inline-flex;align-items:center;gap:7px;color:var(--muted);}
+.dot{width:10px;height:10px;border-radius:3px;flex:none;}
+.bar-row{display:grid;grid-template-columns:170px 1fr 90px;gap:10px;align-items:center;font-family:var(--sans);font-size:12.5px;margin:6px 0;}
+.bar-track{background:var(--track);border-radius:6px;height:16px;overflow:hidden;} .bar-fill{height:100%;background:var(--accent);border-radius:6px;}
+.justif-box{margin-top:8px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);}
+.justif-box textarea{min-height:90px;background:var(--card);resize:vertical;}
+.cond{font-size:12.5px;color:var(--muted);line-height:1.55;margin:6px 0;}
+.bp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+.bp-card{border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:11px;padding:15px 16px;background:var(--bg);}
+.bp-card.t1{border-left-color:var(--ok);} .bp-card.t2,.bp-card.t3{border-left-color:var(--warn);} .bp-card.t4{border-left-color:var(--bad);}
+.bp-head{display:flex;align-items:center;gap:9px;margin-bottom:8px;}
+.bp-amt{font-family:var(--sans);font-weight:900;font-size:15px;color:var(--title);}
+.bp-badges{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
+.bp-pra{font-family:var(--serif);font-size:13px;color:var(--muted);line-height:1.5;}
+.bp-ic{flex:none;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent);}
+.bp-card.t1 .bp-ic{background:var(--ok-soft);color:var(--ok);} .bp-card.t2 .bp-ic,.bp-card.t3 .bp-ic{background:var(--warn-soft);color:var(--warn);} .bp-card.t4 .bp-ic{background:var(--bad-soft);color:var(--bad);}
+.bp-ic .ic{width:16px;height:16px;}
+.src{display:flex;gap:10px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--border);} .src:last-child{border-bottom:none;}
+.src .ic{width:17px;height:17px;color:var(--accent);flex:none;margin-top:2px;}
+.src a{font-family:var(--sans);font-weight:800;font-size:13.5px;color:var(--accent);text-decoration:none;} .src a:hover{text-decoration:underline;}
+.src .d{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:2px;}
+.disclaimer{font-size:12px;color:var(--muted);line-height:1.6;border-top:1px solid var(--border);margin-top:18px;padding-top:14px;}
+.disclaimer a{color:var(--accent);}
+.print-only{display:none;}
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+.toolbar .field{flex:none;min-width:auto;}
+footer{padding:20px 24px;max-width:1040px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-family:var(--sans);font-size:12px;color:var(--faint);border-top:1px solid var(--border);}
+footer a{color:var(--faint);text-decoration:none;} footer a:hover{color:var(--accent);}
+.scroll-x{overflow-x:auto;}
+@media(max-width:640px){ header{padding:28px 16px 20px;} main{padding:14px 16px 40px;} .quickadd{grid-template-columns:1fr 1fr;} }
+@media print{ .no-print{display:none!important;} .panel{display:block!important;} body{background:#fff;} .card,.fam-card,.bp-card{break-inside:avoid;} .print-only{display:block;} }
+</style>
+</head>
+<body>
+
+<div class="header-band">
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">SR</div>
+      <div><div class="name"><a href="../../">Sébastien Rivière</a></div><div class="sub">Outils &amp; guides gratuits</div></div>
+    </div>
+    <h1>Computation des seuils — marchés de fournitures &amp; services</h1>
+    <p class="lead">Additionnez vos achats par <b>famille homogène</b>, et l'outil détermine la <b>procédure applicable</b>, repère les <b>approches de seuil</b> et les risques de <b>fractionnement</b>. Pour les fournitures et services — les travaux (unités fonctionnelles) ne sont pas couverts.</p>
+    <span class="local-band"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 6.5 7 9 4-2.5 7-5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg> 100 % dans votre navigateur — aucune donnée n'est envoyée (aucun serveur, aucun cookie, aucun suivi)</span>
+    <div style="margin-top:14px"><a class="btn" href="computation-seuils-achat-public.xlsx" download><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 4 5-4M5 21h14"/></svg>Télécharger la version Excel (hors-ligne, prête pour la BI)</a></div>
+  </header>
+</div>
+
+<main>
+  <div class="tabs no-print nun">
+    <button class="tab active" data-tab="calc">Tableau de bord</button>
+    <button class="tab" data-tab="report">Reporting annuel</button>
+    <button class="tab" data-tab="data">Données &amp; paramètres</button>
+    <button class="tab" data-tab="bp">Bonnes pratiques</button>
+    <button class="tab" data-tab="aide">Aide &amp; sources</button>
+  </div>
+
+  <!-- TABLEAU DE BORD -->
+  <section class="panel active" id="panel-calc">
+    <div class="card no-print" id="demoBanner" style="display:none;border-color:var(--accent)">
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <div class="fam-ic" style="background:var(--accent-soft)"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></div>
+        <div style="flex:1;min-width:200px;font-size:13.5px;line-height:1.5"><b>Données d'exemple</b> — découvrez l'outil avec un cas fictif (dont un <b>risque de fractionnement</b> et un marché <b>formalisé</b>). Quand vous êtes prêt, effacez-le pour saisir vos données.</div>
+        <button class="btn primary" id="clearDemo"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14"/></svg>Effacer l'exemple et saisir mes données</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Synthèse</h2>
+      <div id="kpiZone"></div>
+      <div id="donutZone" class="charts" style="margin-top:10px"></div>
+      <div class="btn-row no-print">
+        <button class="btn iconbtn" id="btnPrint" title="Imprimer / exporter en PDF"><svg class="ic" viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/></svg></button>
+        <button class="btn iconbtn" id="btnJson" title="Télécharger le scénario (.json)"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 4 5-4M5 21h14"/></svg></button>
+        <button class="btn iconbtn" id="btnMail" title="Envoyer la synthèse par e-mail"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Procédure par famille</h2>
+      <div class="alert note no-print"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span><b>Méthode :</b> la computation porte sur la <b>valeur estimée du besoin</b> (durée totale du marché, reconductions et options comprises). Les achats saisis en sont un <b>indice</b> — pensez à intégrer le prévisionnel pour ne pas sous-estimer le seuil.</span></div>
+      <div class="toolbar no-print">
+        <div class="field"><label>Afficher</label><select id="famFilter"><option value="all">Toutes les familles</option><option value="alert">En alerte seulement</option></select></div>
+      </div>
+      <div id="resultZone"></div>
+    </div>
+
+    <div class="card">
+      <h2>Justifications (marchés sans mise en concurrence)</h2>
+      <div class="hint no-print">Renseignez le motif et la justification ; ils figureront dans l'impression / l'export.</div>
+      <div id="justifZone"></div>
+    </div>
+
+    <div class="card no-print">
+      <h2>Paramètres de calcul</h2>
+      <div class="hint">Le seuil de dispense dépend de la <b>date d'engagement de la consultation</b> (40 000 € HT avant le 01/04/2026, 60 000 € à partir) ; les seuils européens dépendent du type d'acheteur.</div>
+      <div class="row">
+        <div class="field"><label>Type d'acheteur</label><select id="typeOrg"></select></div>
+        <div class="field"><label>Date d'engagement de la consultation</label><input type="date" id="dateRef"></div>
+        <div class="field"><label>Période de cumul</label><select id="mode"><option value="annee">Année civile</option><option value="glissant">12 mois glissants</option></select></div>
+        <div class="field" id="anneeField"><label>Exercice</label><input type="number" id="annee" min="2000" max="2100" step="1"></div>
+        <div class="field" id="finField" style="display:none"><label>Fin de fenêtre</label><input type="date" id="dateFin"></div>
+      </div>
+    </div>
+
+    <div class="card no-print">
+      <h2>Ajouter un achat</h2>
+      <div class="hint">Choisissez la famille, saisissez le montant et la date, puis <b>Entrée</b> ou « Ajouter ». La gestion des familles, l'import CSV et le détail sont dans l'onglet <b>« Données &amp; paramètres »</b>.</div>
+      <div class="chips" id="famChips"></div>
+      <div class="quickadd" style="margin-top:12px">
+        <div class="field"><label>Montant HT</label><input type="number" id="qMontant" min="0" step="0.01" placeholder="0"></div>
+        <div class="field"><label>Description (option.)</label><input type="text" id="qDesc" placeholder="Ex : ordinateurs portables"></div>
+        <div class="field"><label>Date</label><input type="date" id="qDate"></div>
+        <div class="field" style="min-width:auto"><label>&nbsp;</label><button class="btn primary" id="qAdd"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Ajouter</button></div>
+      </div>
+    </div>
+
+    <div class="disclaimer"><b>Outil pédagogique gratuit</b> — à titre informatif, <b>ne constitue pas un conseil juridique</b> et ne se substitue pas à l'analyse au cas par cas. Les seuils évoluent ; vérifiez le barème et les sources officielles. Barème par défaut à jour au <span id="majDate"></span>.</div>
+  </section>
+
+  <!-- REPORTING -->
+  <section class="panel" id="panel-report">
+    <div class="card"><h2>Reporting annuel</h2><div class="hint">Bilan par exercice : volume de consultations, répartition des montants par famille et des achats par procédure. Procédures évaluées avec le barème courant.</div><div id="reportZone"></div></div>
+  </section>
+
+  <!-- DONNEES & PARAMETRES -->
+  <section class="panel" id="panel-data">
+    <div class="card no-print">
+      <h2>Détail des achats</h2>
+      <div class="hint">Modifiez chaque ligne (description, famille, montant, date), cochez « sans MEC » pour ouvrir une justification.</div>
+      <div class="scroll-x"><table><thead id="achatsHead"></thead><tbody id="achatsBody"></tbody></table></div>
+      <div class="btn-row"><button class="btn ghost" id="clearAchats"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14"/></svg>Vider les achats</button></div>
+    </div>
+    <div class="card no-print">
+      <h2>Familles, colonnes &amp; import</h2>
+      <label>Familles (✕ pour supprimer)</label><div class="chips" id="famMgr" style="margin-top:6px"></div>
+      <div class="row" style="margin-top:8px"><div class="field"><input type="text" id="newFam" placeholder="Nouvelle famille"></div><div class="field" style="min-width:auto"><button class="btn" id="addFam"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Ajouter la famille</button></div></div>
+      <label style="margin-top:16px;display:block">Colonnes personnalisées</label>
+      <div class="hint" style="margin:4px 0 8px">En plus de Description / Montant / Date / Famille (ex. « Service demandeur », « N° engagement »). Visibles dans le détail, le modèle CSV et l'export.</div>
+      <div class="chips" id="colsMgr"></div>
+      <div class="row" style="margin-top:8px"><div class="field"><input type="text" id="newCol" placeholder="Nom de colonne"></div><div class="field" style="min-width:auto"><button class="btn" id="addCol"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Ajouter la colonne</button></div></div>
+      <div class="btn-row" style="margin-top:16px">
+        <button class="btn" id="dlTemplate"><svg class="ic" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg>Modèle CSV</button>
+        <button class="btn" id="importCsvBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21V9M7 13l5-4 5 4M5 3h14"/></svg>Importer un CSV</button>
+        <input type="file" id="csvFile" accept=".csv,text/csv" hidden>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Barème des tranches</h2>
+      <div class="hint">Nom libre + plafond HT + procédure. Glissez pour réordonner, ✕ pour supprimer. Valeurs par défaut = cadre légal (date + type d'acheteur). Toute modification est tracée.</div>
+      <div class="scroll-x"><table id="baremeTable"><thead><tr><th></th><th>Nom de la tranche</th><th class="num">Plafond HT (&lt;)</th><th>Procédure</th><th>MEC</th><th>Publicité</th><th></th></tr></thead><tbody id="baremeBody"></tbody></table></div>
+      <div class="btn-row"><button class="btn primary" id="addTranche"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Ajouter une tranche</button><button class="btn" id="resetBareme">Recharger les valeurs légales</button></div>
+    </div>
+    <div class="card"><h2>Historique des modifications</h2><div id="histoZone" class="scroll-x"></div></div>
+    <div class="card no-print"><h2>Scénarios</h2>
+      <div class="hint">Vos saisies sont enregistrées localement (dans ce navigateur). Exportez un scénario pour le sauvegarder/partager, réimportez-le ailleurs.</div>
+      <div class="btn-row">
+        <button class="btn" id="exportJson"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 4 5-4M5 21h14"/></svg>Exporter (.json)</button>
+        <button class="btn" id="importJsonBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21V9M7 13l5-4 5 4M5 3h14"/></svg>Importer un scénario</button>
+        <input type="file" id="jsonFile" accept=".json,application/json" hidden>
+        <button class="btn danger" id="resetAll"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14"/></svg>Tout réinitialiser</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BONNES PRATIQUES -->
+  <section class="panel" id="panel-bp">
+    <div class="card"><h2>Bonnes pratiques par seuil</h2><div class="hint">Repères synthétiques (fournitures &amp; services). En cas de doute, l'analyse au cas par cas prime.</div>
+      <div class="bp-grid">
+        <div class="bp-card t1"><div class="bp-head"><div class="bp-ic"><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><div class="bp-amt">&lt; 40 000 € puis &lt; 60 000 €</div></div>
+          <div class="det">dès 01/04/2026 · gré à gré encadré · R.2122-8</div>
+          <div class="bp-badges"><span class="tag ok">MEC : non</span><span class="tag ok">Publicité : non</span></div>
+          <div class="bp-pra">Choix pertinent, <b>≥ 1 devis (3 conseillés)</b>, ne pas fractionner artificiellement.</div></div>
+        <div class="bp-card t2"><div class="bp-head"><div class="bp-ic"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12h7l2-3 3 6 2-3h4"/></svg></div><div class="bp-amt">Dispense → 90 000 €</div></div>
+          <div class="det">procédure adaptée (MAPA)</div>
+          <div class="bp-badges"><span class="tag warn">MEC : oui</span><span class="tag warn">Publicité libre</span></div>
+          <div class="bp-pra">Publicité proportionnée, délai raisonnable, traçabilité du choix.</div></div>
+        <div class="bp-card t3"><div class="bp-head"><div class="bp-ic"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h8"/></svg></div><div class="bp-amt">90 000 € → seuil UE</div></div>
+          <div class="det">MAPA · publicité encadrée</div>
+          <div class="bp-badges"><span class="tag warn">MEC : oui</span><span class="tag bad">BOAMP ou JAL</span></div>
+          <div class="bp-pra">DCE clair, critères pondérés et annoncés, délai suffisant.</div></div>
+        <div class="bp-card t4"><div class="bp-head"><div class="bp-ic"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 4 3 7 8 9 5-2 8-5 8-9V7z"/></svg></div><div class="bp-amt">≥ seuil européen</div></div>
+          <div class="det">procédure formalisée (AO)</div>
+          <div class="bp-badges"><span class="tag bad">Formalisée</span><span class="tag bad">BOAMP + JOUE</span></div>
+          <div class="bp-pra">Délais réglementaires stricts, AAPC + RC + DCE complets.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AIDE -->
+  <section class="panel" id="panel-aide">
+    <div class="card"><h2>Méthode — comment fonctionne la computation ?</h2>
+      <p class="cond">On additionne, <b>par famille homogène</b> de fournitures/services, les montants <b>HT</b> sur une période de référence (année civile ou 12 mois glissants), conformément à l'article <b>R.2121-6</b> du Code de la commande publique. Le total détermine la procédure ; le <b>seuil de dispense</b> est fixé par la <b>date d'engagement de la consultation</b>.</p>
+      <p class="cond"><b>Point de vigilance :</b> la computation porte juridiquement sur la <b>valeur estimée du besoin</b> — c'est-à-dire la valeur sur la <b>durée totale du marché</b>, reconductions et options incluses. L'historique des achats saisis ici en est un <b>indice</b>, pas la valeur exacte : intégrez votre prévisionnel pour ne pas sous-estimer le seuil.</p>
+    </div>
+    <div class="card"><h2>Glossaire</h2>
+      <ul class="cond" style="padding-left:18px">
+        <li><b>MEC</b> — Mise en concurrence : consulter plusieurs opérateurs.</li>
+        <li><b>MAPA</b> — Marché à procédure adaptée : modalités librement fixées par l'acheteur.</li>
+        <li><b>BOAMP</b> — Bulletin officiel des annonces des marchés publics · <b>JAL</b> — journal d'annonces légales · <b>JOUE</b> — Journal officiel de l'UE.</li>
+        <li><b>Fractionnement</b> — découper artificiellement un besoin pour passer sous un seuil : interdit.</li>
+        <li><b>Consultations (≥ dispense)</b> — dans le reporting : nombre de familles dont le cumul atteint le seuil de dispense (donc nécessitant une mise en concurrence).</li>
+      </ul>
+    </div>
+    <div class="card"><h2>Confidentialité &amp; sécurité</h2>
+      <ul class="cond" style="padding-left:18px">
+        <li><b>Aucun envoi de données</b> : tous les calculs se font dans votre navigateur. Vos montants et fournisseurs ne quittent jamais votre appareil.</li>
+        <li><b>Aucun cookie, aucune mesure d'audience, aucune ressource externe</b> (polices et icônes intégrées).</li>
+        <li><b>Stockage local</b> : vos saisies sont conservées dans le <i>localStorage</i> de ce navigateur pour vous éviter de tout ressaisir. Sur un <b>poste partagé</b>, utilisez « Tout réinitialiser » (onglet Données &amp; paramètres) avant de quitter.</li>
+        <li><b>Hors ligne</b> : une fois la page chargée, l'outil fonctionne sans connexion.</li>
+      </ul>
+    </div>
+    <div class="card"><h2>Sources officielles</h2>
+      <div class="src"><svg class="ic" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg><div><a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053202067" target="_blank" rel="noopener">Décret n° 2025-1386 du 29/12/2025 (Légifrance)</a><div class="d">Relève à 60 000 € HT le seuil de dispense de publicité et de mise en concurrence (art. R.2122-8 CCP), à compter du 01/04/2026.</div></div></div>
+      <div class="src"><svg class="ic" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h6l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div><a href="https://www.economie.gouv.fr/daj/commande-publique-nouveaux-seuils-europeens-applicables-au-1er-janvier-2026" target="_blank" rel="noopener">DAJ Bercy — seuils européens au 01/01/2026</a><div class="d">État 140 000 € · collectivités 216 000 € · entités adjudicatrices 432 000 € · travaux 5 404 000 € HT (2026-2027).</div></div></div>
+      <div class="src"><svg class="ic" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div><a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000037701019/LEGISCTA000037723788/" target="_blank" rel="noopener">CCP — Computation des seuils (R.2121-1 à R.2121-9)</a><div class="d">Calcul de la valeur estimée du besoin (familles homogènes, 12 mois / exercice).</div></div></div>
+      <div class="src"><svg class="ic" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div><a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000037701019/LEGISCTA000037723814/" target="_blank" rel="noopener">CCP — Marchés sans publicité ni MEC (R.2122-1 à R.2122-11)</a><div class="d">Cas limitativement énumérés, d'interprétation stricte ; la charge de la preuve pèse sur l'acheteur.</div></div></div>
+    </div>
+    <div class="card"><h2>Mentions légales</h2>
+      <p class="cond"><b>Éditeur :</b> Sébastien Rivière — outils &amp; guides gratuits. <b>Contact :</b> <a href="mailto:rsebastien@protonmail.com">rsebastien@protonmail.com</a>.<br>
+      <b>Nature :</b> outil pédagogique gratuit, fourni « en l'état », sans garantie. <b>Ne constitue pas un conseil juridique</b> et n'engage pas la responsabilité de l'éditeur quant aux décisions prises sur la base des résultats.<br>
+      <b>Mise à jour des seuils :</b> <span id="majDate2"></span>. Vérifiez toujours les textes en vigueur (liens ci-dessus).</p>
+    </div>
+  </section>
+</main>
+
+<footer class="no-print"><span>© Sébastien Rivière · 2026</span><a href="../../">← Tous les outils</a><a href="#" id="footLegal">Mentions légales</a></footer>
+
+<script>
+"use strict";
+var MAJ="19/06/2026";
+var ORGANISMES=[{id:"collectivite",nom:"Collectivité / autre pouvoir adjudicateur",seuilUE:216000},{id:"etat",nom:"État (pouvoir adjudicateur central)",seuilUE:140000},{id:"entite",nom:"Entité adjudicatrice / défense-sécurité",seuilUE:432000}];
+var BASCULE="2026-04-01";
+function dispense(d){ return (d&&d>=BASCULE)?60000:40000; }
+function seuilUE(id){ var o=ORGANISMES.find(function(x){return x.id===id;}); return o?o.seuilUE:216000; }
+var FAMILLES_DEF=["Fournitures de bureau & papeterie","Matériel informatique & téléphonie","Logiciels & licences","Mobilier","Produits & matériel d'entretien","Véhicules & équipements de transport","Carburants","Vêtements & EPI","Denrées & restauration","Prestations intellectuelles & études","Maintenance & entretien (services)","Communication & impression","Formation","Télécommunications & abonnements","Autres fournitures","Autres services"];
+var ICONS={
+  file:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>',
+  monitor:'<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>',
+  code:'<path d="M8 9l-3 3 3 3M16 9l3 3-3 3"/>', chair:'<path d="M6 4v8h12V4M5 12h14M7 12l-1 8M17 12l1 8"/>',
+  drop:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
+  truck:'<rect x="2" y="6" width="12" height="9" rx="1"/><path d="M14 9h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/>',
+  shirt:'<path d="M8 3 4 7l2 2 2-1v11h8V8l2 1 2-2-4-4-3 2z"/>', cup:'<path d="M5 8h12v4a6 6 0 0 1-12 0zM17 9h2a2 2 0 0 1 0 4h-2M4 21h14"/>',
+  bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3 11v2h6v-2a6 6 0 0 0-3-11z"/>',
+  wrench:'<path d="M15 7a4 4 0 0 0-5.4 4.6L3 18l3 3 6.4-6.6A4 4 0 0 0 17 9l-2.3 2.3-2-2z"/>',
+  printer:'<path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/>',
+  cap:'<path d="M3 8l9-4 9 4-9 4z"/><path d="M7 10v5a5 3 0 0 0 10 0v-5"/>',
+  wifi:'<path d="M3 8a15 15 0 0 1 18 0M6 12a10 10 0 0 1 12 0M9 15.5a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1"/>',
+  tag:'<path d="M20 12l-8 8-8-8V4h8z"/><circle cx="8.5" cy="8.5" r="1.4"/>'
+};
+var FAM_ICON={"Fournitures de bureau & papeterie":"file","Matériel informatique & téléphonie":"monitor","Logiciels & licences":"code","Mobilier":"chair","Produits & matériel d'entretien":"drop","Véhicules & équipements de transport":"truck","Carburants":"drop","Vêtements & EPI":"shirt","Denrées & restauration":"cup","Prestations intellectuelles & études":"bulb","Maintenance & entretien (services)":"wrench","Communication & impression":"printer","Formation":"cap","Télécommunications & abonnements":"wifi"};
+function iconKey(f){ return FAM_ICON[f]||"tag"; }
+function iconSvg(f){ return '<svg class="ic" viewBox="0 0 24 24">'+(ICONS[iconKey(f)]||ICONS.tag)+'</svg>'; }
+var MOTIFS=[
+  {id:"urgence",nom:"Urgence impérieuse (R.2122-1)",cond:"Événement imprévisible, extérieur à l'acheteur, incompatible avec les délais des procédures.",aide:"Nature de l'événement · imprévisibilité · impossibilité de respecter les délais · lien de causalité · périmètre strictement nécessaire."},
+  {id:"infructueux",nom:"Procédure infructueuse (R.2122-2)",cond:"Aucune candidature/offre, ou uniquement des offres inappropriées, sans modification substantielle des conditions.",aide:"Référence de la consultation initiale · constat d'infructuosité · absence de modification substantielle."},
+  {id:"operateur_unique",nom:"Opérateur unique (R.2122-3)",cond:"Raison technique, création artistique ou droits d'exclusivité rendant un seul opérateur possible.",aide:"Absence d'alternative · nature de l'exclusivité · absence de solution de substitution raisonnable."},
+  {id:"complementaire",nom:"Prestations complémentaires / similaires",cond:"Livraisons/services complémentaires ou similaires à un marché antérieur, dans les conditions du code.",aide:"Référence du marché initial · nécessité technique/économique · respect des limites de durée/montant."},
+  {id:"avantageux",nom:"Conditions particulièrement avantageuses",cond:"Achat auprès d'un opérateur cessant son activité ou en liquidation.",aide:"Justification de l'opportunité · caractère temporaire · preuve des conditions avantageuses."},
+  {id:"montant",nom:"En raison du montant (R.2122-8)",cond:"Besoin dont la valeur estimée est inférieure au seuil de dispense.",aide:"Montant estimé HT · seuil applicable · absence de fractionnement · choix pertinent."}
+];
+function motifNom(id){ var m=MOTIFS.find(function(x){return x.id===id;}); return m?m.nom:''; }
+
+var KEY="sr-achat-public-v1";
+var state=null, quickFam=null, famFilter='all';
+function defaultState(){ var t=new Date(), iso=t.toISOString().slice(0,10);
+  return {params:{typeOrg:"collectivite",dateRef:iso,mode:"annee",annee:t.getFullYear(),dateFin:iso},familles:FAMILLES_DEF.slice(),cols:[],bareme:legalBareme("collectivite",iso),achats:[],overrides:{},histo:[]}; }
+function legalBareme(org,dr){ var d=dispense(dr),ue=seuilUE(org);
+  return [{nom:"Sans publicité ni mise en concurrence",plafond:d,proc:"Gré à gré encadré (devis)",mec:"Non",pub:"Non",ref:"R.2122-8 CCP"},
+    {nom:"Procédure adaptée — publicité libre",plafond:90000,proc:"MAPA",mec:"Oui",pub:"Obligatoire (support libre)",ref:"R.2123-1 CCP"},
+    {nom:"Procédure adaptée — publicité BOAMP/JAL",plafond:ue,proc:"MAPA",mec:"Oui",pub:"BOAMP ou JAL",ref:"R.2131-12 CCP"},
+    {nom:"Procédure formalisée",plafond:null,proc:"Appel d'offres",mec:"Oui",pub:"BOAMP + JOUE",ref:"R.2124-1 CCP"}]; }
+function demoState(){ var s=defaultState(); s.demo=true; s.params.annee=2026; s.params.dateRef='2026-05-01';
+  s.achats=[
+    {id:'demo1',desc:'Ordinateurs portables',famille:'Matériel informatique & téléphonie',montant:28000,date:'2026-02-15',sansMec:false,motif:'',justifTexte:'',extra:{}},
+    {id:'demo2',desc:'Écrans et périphériques',famille:'Matériel informatique & téléphonie',montant:9000,date:'2026-06-20',sansMec:false,motif:'',justifTexte:'',extra:{}},
+    {id:'demo3',desc:'Mobilier de bureau (lot 1)',famille:'Mobilier',montant:48000,date:'2026-03-01',sansMec:false,motif:'',justifTexte:'',extra:{}},
+    {id:'demo4',desc:'Mobilier de bureau (lot 2)',famille:'Mobilier',montant:47000,date:'2026-09-01',sansMec:false,motif:'',justifTexte:'',extra:{}},
+    {id:'demo5',desc:'Maintenance des ascenseurs',famille:'Maintenance & entretien (services)',montant:230000,date:'2026-01-10',sansMec:false,motif:'',justifTexte:'',extra:{}}
+  ]; return s; }
+function load(){ try{var s=JSON.parse(localStorage.getItem(KEY)); if(s&&s.params){ if(!s.cols)s.cols=[]; if(!s.overrides)s.overrides={}; state=s; return; }}catch(e){} state=demoState(); }
+function exitDemo(){ if(state.demo){ state.achats=[]; state.demo=false; } }
+function renderDemoBanner(){ var b=el('demoBanner'); if(b)b.style.display=state.demo?'':'none'; }
+function save(){ try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){} }
+function logHisto(m){ state.histo.unshift({t:new Date().toLocaleString('fr-FR'),msg:m}); }
+function eur(n){ if(n==null||isNaN(n))return "—"; return n.toLocaleString('fr-FR',{maximumFractionDigits:2})+" €"; }
+function esc(s){ return String(s==null?"":s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function el(id){ return document.getElementById(id); }
+function uid(){ return 'a'+Math.floor(performance.now()*1000)+'_'+Math.floor((performance.now()%1)*1e6); }
+function inPeriod(ds){ if(!ds)return true;
+  if(state.params.mode==="annee"){ return ds.slice(0,4)===String(state.params.annee); }
+  var end=state.params.dateFin||new Date().toISOString().slice(0,10), endD=new Date(end), startD=new Date(end); startD.setFullYear(startD.getFullYear()-1);
+  var d=new Date(ds); return d>startD&&d<=endD; }
+function sortedBareme(){ return state.bareme.slice().sort(function(a,b){return (a.plafond==null?Infinity:a.plafond)-(b.plafond==null?Infinity:b.plafond);}); }
+function trancheFor(c){ var b=sortedBareme(); for(var i=0;i<b.length;i++){var p=b[i].plafond; if(p==null||c<p)return b[i];} return b[b.length-1]; }
+function trancheByNom(n){ return state.bareme.find(function(t){return t.nom===n;}); }
+function effTranche(f,c){ if(state.overrides[f]){ var t=trancheByNom(state.overrides[f]); if(t)return t; } return trancheFor(c); }
+function nextPlafond(c){ var b=sortedBareme(); for(var i=0;i<b.length;i++){if(b[i].plafond!=null&&c<b[i].plafond)return b[i].plafond;} return null; }
+function procTag(t){ var s=(t.proc||'')+' '+(t.nom||''); if(/formalis|appel d'offres|\bAO\b/i.test(s))return 'bad'; if(/MAPA|adapt/i.test(s))return 'warn'; return 'ok'; }
+function fmtK(v){ return v>=1000 ? Math.round(v/1000)+' k€' : v+' €'; }
+
+function renderChips(){ el('famChips').innerHTML=state.familles.map(function(f){ return '<button class="chip'+(f===quickFam?' active':'')+'" data-fam="'+esc(f)+'">'+iconSvg(f)+esc(f)+'</button>'; }).join(''); }
+function renderFamMgr(){ el('famMgr').innerHTML=state.familles.map(function(f){ return '<span class="chip">'+iconSvg(f)+esc(f)+'<span class="del" data-delfam="'+esc(f)+'">✕</span></span>'; }).join(''); }
+function renderColsMgr(){ var z=el('colsMgr'); z.innerHTML=state.cols.length?state.cols.map(function(c){return '<span class="chip">'+esc(c)+'<span class="del" data-delcol="'+esc(c)+'">✕</span></span>';}).join(''):'<span class="det muted">Aucune colonne personnalisée.</span>'; }
+function renderAchatsHead(){ var base=['Description','Famille','Montant HT','Date','Sans MEC']; var cols=base.concat(state.cols).concat(['']);
+  el('achatsHead').innerHTML='<tr>'+cols.map(function(c){return '<th'+(c==='Montant HT'?' class="num"':'')+'>'+esc(c)+'</th>';}).join('')+'</tr>'; }
+function renderAchats(){ renderAchatsHead(); var b=el('achatsBody'); b.innerHTML='';
+  state.achats.forEach(function(a){ var tr=document.createElement('tr'); a.extra=a.extra||{};
+    var extra=state.cols.map(function(c){ return '<td><input data-id="'+a.id+'" data-extra="'+esc(c)+'" value="'+esc(a.extra[c]||'')+'" style="max-width:140px"></td>'; }).join('');
+    tr.innerHTML='<td><input data-id="'+a.id+'" data-k="desc" value="'+esc(a.desc)+'"></td>'+
+      '<td><select data-id="'+a.id+'" data-k="famille">'+state.familles.map(function(f){return '<option'+(f===a.famille?' selected':'')+'>'+esc(f)+'</option>';}).join('')+'</select></td>'+
+      '<td class="num"><input data-id="'+a.id+'" data-k="montant" type="number" min="0" step="0.01" value="'+(a.montant!=null?a.montant:'')+'" style="text-align:right;max-width:120px"></td>'+
+      '<td><input data-id="'+a.id+'" data-k="date" type="date" value="'+esc(a.date)+'" style="max-width:150px"></td>'+
+      '<td style="text-align:center"><input data-id="'+a.id+'" data-k="sansMec" type="checkbox"'+(a.sansMec?' checked':'')+'></td>'+
+      extra+'<td><button class="x" data-del="'+a.id+'">✕</button></td>'; b.appendChild(tr); });
+}
+function renderJustif(){ var z=el('justifZone'); var list=state.achats.filter(function(a){return a.sansMec;});
+  if(!list.length){ z.innerHTML='<p class="muted det">Aucun achat marqué « sans mise en concurrence ». Cochez la case d\'un achat (onglet Données &amp; paramètres → Détail) pour ouvrir une justification.</p>'; return; }
+  z.innerHTML=''; list.forEach(function(a){
+    var opts='<option value="">— Choisir le motif légal —</option>'+MOTIFS.map(function(m){return '<option value="'+m.id+'"'+(a.motif===m.id?' selected':'')+'>'+esc(m.nom)+'</option>';}).join('');
+    var m=MOTIFS.find(function(x){return x.id===a.motif;}); var box=document.createElement('div'); box.className='justif-box';
+    box.innerHTML='<div class="nun" style="font-weight:800;font-size:13px;margin-bottom:6px">'+esc(a.desc||'Achat')+' — '+eur(parseFloat(a.montant)||0)+' · '+esc(a.famille)+'</div>'+
+      '<div class="no-print"><div class="row"><div class="field"><label>Motif (R.2122 CCP)</label><select data-justif="'+a.id+'" data-jk="motif">'+opts+'</select></div></div>'+
+      (m?'<div class="cond"><b>Condition :</b> '+esc(m.cond)+'<br><b>Éléments à compléter :</b> '+esc(m.aide)+'</div>':'')+
+      '<textarea data-justif="'+a.id+'" data-jk="texte" placeholder="Rédigez la justification à verser au dossier...">'+esc(a.justifTexte||'')+'</textarea></div>'+
+      '<div class="print-only cond"><b>Motif :</b> '+esc(motifNom(a.motif)||'(non précisé)')+'<br><b>Justification :</b> '+esc(a.justifTexte||'(à compléter)')+'</div>'+
+      '<div class="cond" style="color:var(--warn)">⚠ Cas d\'interprétation stricte : la charge de la preuve pèse sur l\'acheteur. Ce texte est une aide à la rédaction, pas une qualification juridique.</div>';
+    z.appendChild(box); });
+}
+function computeFamilles(){ var map={}; state.achats.forEach(function(a){ if(!inPeriod(a.date))return; var f=a.famille||"(non classé)"; if(!map[f])map[f]={cumul:0,lignes:[]}; map[f].cumul+=parseFloat(a.montant)||0; map[f].lignes.push(a); }); return map; }
+
+function gauge(cumul,f){ var d=dispense(state.params.dateRef), ue=seuilUE(state.params.typeOrg);
+  var W=320,H=54,bx=4,bw=W-8,y=14,h=14; var max=Math.max(ue*1.15, cumul*1.08, ue*1.15); function X(v){ return bx+Math.min(bw,(v/max)*bw); }
+  var zones=[{a:0,b:d,c:'var(--ok)'},{a:d,b:90000,c:'var(--warn)'},{a:90000,b:ue,c:'var(--warn)'},{a:ue,b:max,c:'var(--bad)'}];
+  var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
+  zones.forEach(function(z){ var x1=X(z.a),x2=X(z.b); if(x2>x1) s+='<rect x="'+x1+'" y="'+y+'" width="'+(x2-x1)+'" height="'+h+'" fill="'+z.c+'" fill-opacity="0.22"/>'; });
+  s+='<rect x="'+bx+'" y="'+y+'" width="'+bw+'" height="'+h+'" rx="4" fill="none" stroke="var(--border)"/>';
+  var lastX=-99; [{v:d},{v:90000},{v:ue}].forEach(function(m){ var mx=X(m.v); var low=(mx-lastX)<46; var ty=low?(y+h+22):(y+h+12); if(!low)lastX=mx;
+    s+='<line x1="'+mx+'" y1="'+(y-2)+'" x2="'+mx+'" y2="'+(y+h+2)+'" stroke="var(--faint)" stroke-width="1"/>';
+    s+='<text class="mk" x="'+Math.max(14,Math.min(W-14,mx))+'" y="'+ty+'" text-anchor="middle">'+fmtK(m.v)+'</text>'; });
+  var px=X(cumul); var t=effTranche(f||'',cumul); var pc=procTag(t); var col=pc==='bad'?'var(--bad)':pc==='warn'?'var(--warn)':'var(--ok)';
+  s+='<line x1="'+px+'" y1="'+(y-2)+'" x2="'+px+'" y2="'+(y+h+2)+'" stroke="'+col+'" stroke-width="2.5"/>';
+  s+='<polygon points="'+(px-4)+','+(y-2)+' '+(px+4)+','+(y-2)+' '+px+','+(y+4)+'" fill="'+col+'"/>';
+  s+='<text class="cm" x="'+Math.max(16,Math.min(W-16,px))+'" y="'+(y-5)+'" text-anchor="middle" fill="'+col+'">'+fmtK(cumul)+'</text>';
+  s+='</svg>'; return s; }
+var PALETTE=['#3a8ac4','#2e9e6b','#c77d20','#cf4b43','#7a5cc0','#3fb0a8','#b0589e','#8a98a8'];
+function donut(data,size){ size=size||150; var R=size/2,r=R-16,cx=R,cy=R,C=2*Math.PI*r;
+  var tot=data.reduce(function(s,d){return s+d.value;},0); if(!tot)return '<div class="muted det">Aucune donnée</div>';
+  var off=0,segs=''; data.forEach(function(d,i){ var len=(d.value/tot)*C, col=d.color||PALETTE[i%PALETTE.length];
+    segs+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="'+col+'" stroke-width="16" stroke-dasharray="'+len+' '+(C-len)+'" stroke-dashoffset="'+(-off)+'" transform="rotate(-90 '+cx+' '+cy+')"/>'; off+=len; });
+  var svg='<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'">'+segs+'<text x="'+cx+'" y="'+(cy+5)+'" text-anchor="middle" class="nun" font-weight="900" font-size="15" fill="var(--title)">'+data.length+'</text></svg>';
+  var leg='<div class="donut-legend">'+data.map(function(d,i){var col=d.color||PALETTE[i%PALETTE.length]; return '<span><span class="dot" style="background:'+col+'"></span>'+esc(d.label)+' — '+eur(d.value)+'</span>';}).join('')+'</div>';
+  return '<div class="charts">'+svg+leg+'</div>'; }
+function bars(data){ var max=Math.max.apply(null,data.map(function(d){return d.value;}).concat([1]));
+  return data.map(function(d){ var w=Math.round((d.value/max)*100); return '<div class="bar-row"><span class="muted">'+esc(d.label)+'</span><div class="bar-track"><div class="bar-fill" style="width:'+w+'%"></div></div><span class="num">'+eur(d.value)+'</span></div>'; }).join(''); }
+
+function renderResult(){
+  var map=computeFamilles(), keys=Object.keys(map).sort(function(a,b){return map[b].cumul-map[a].cumul;});
+  var d=dispense(state.params.dateRef);
+  if(!keys.length){ el('resultZone').innerHTML='<p class="muted">Ajoutez des achats pour voir le résultat.</p>'; el('kpiZone').innerHTML='<p class="muted det">—</p>'; el('donutZone').innerHTML=''; renderJustif(); renderReport(); return; }
+  var total=0,nbAlert=0,procMt={};
+  keys.forEach(function(f){ var c=map[f], t=effTranche(f,c.cumul); total+=c.cumul; procMt[t.proc]=(procMt[t.proc]||0)+c.cumul; if(c.lignes.length>=2&&c.cumul>=d)nbAlert++; });
+  el('kpiZone').innerHTML='<div class="kpis">'+
+    '<div class="kpi"><div class="v">'+eur(total)+'</div><div class="l">Total HT (période)</div></div>'+
+    '<div class="kpi"><div class="v">'+keys.length+'</div><div class="l">Familles</div></div>'+
+    '<div class="kpi"><div class="v">'+state.achats.filter(function(a){return inPeriod(a.date);}).length+'</div><div class="l">Lignes d\'achat</div></div>'+
+    '<div class="kpi'+(nbAlert?' alert':'')+'"><div class="v">'+nbAlert+'</div><div class="l">Alerte fractionnement</div></div></div>';
+  el('donutZone').innerHTML='<div style="flex:1;min-width:240px"><div class="nun" style="font-weight:800;font-size:13px;color:var(--faint);margin-bottom:8px">Montants par procédure</div>'+donut(Object.keys(procMt).map(function(k){return {label:k,value:procMt[k]};}))+'</div>';
+  var procOpts=function(f){ return '<option value="">Auto (suggéré)</option>'+state.bareme.map(function(b){return '<option value="'+esc(b.nom)+'"'+(state.overrides[f]===b.nom?' selected':'')+'>'+esc(b.nom)+' — '+esc(b.proc)+'</option>';}).join(''); };
+  var html='', shown=0;
+  keys.forEach(function(f){ var c=map[f], sug=trancheFor(c.cumul), t=effTranche(f,c.cumul), np=nextPlafond(c.cumul), over=!!state.overrides[f];
+    var proche=(np!=null&&c.cumul>=np*0.9&&c.cumul<np), fract=(c.lignes.length>=2&&c.cumul>=d);
+    if(famFilter==='alert'&&!(proche||fract)) return; shown++;
+    var al='';
+    if(proche) al+='<div class="alert warn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Proche du seuil de '+eur(np)+' — au-delà, la procédure change.</div>';
+    if(fract) al+='<div class="alert bad"><svg class="ic" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><span><b>Fractionnement ?</b> '+c.lignes.length+' achats cumulent '+eur(c.cumul)+' (≥ seuil de dispense). À traiter comme un besoin global.</span></div>';
+    var det=c.lignes.map(function(l){return '<tr><td class="det">'+esc(l.desc||'—')+(l.sansMec?' <span class="tag info">sans MEC</span>':'')+'</td><td class="num det">'+eur(parseFloat(l.montant)||0)+'</td><td class="det">'+esc(l.date||'')+'</td></tr>';}).join('');
+    html+='<div class="fam-card"><div class="fam-top"><div class="fam-ic">'+iconSvg(f)+'</div><div class="fam-name">'+esc(f)+'</div><div class="fam-cumul">'+eur(c.cumul)+'</div></div>'+
+      '<div style="margin-top:8px"><span class="tag '+procTag(t)+'">'+esc(t.proc)+'</span> <span class="det">'+esc(t.nom)+(t.ref?' · '+esc(t.ref):'')+' · MEC : '+esc(t.mec)+' · Pub : '+esc(t.pub)+'</span>'+(over?' <span class="tag info">choisi</span>':'')+'</div>'+
+      '<div class="procsel no-print"><label style="text-transform:none">Procédure :</label><select data-over="'+esc(f)+'">'+procOpts(f)+'</select>'+(over?'<span class="det">suggéré : '+esc(sug.proc)+'</span>':'')+'</div>'+
+      '<div class="gauge">'+gauge(c.cumul,f)+'</div>'+al+
+      '<details class="no-print" style="margin-top:8px"><summary>'+c.lignes.length+' ligne(s)</summary><table style="margin-top:6px">'+det+'</table></details></div>';
+  });
+  if(famFilter==='alert'&&!shown) html='<p class="muted">Aucune famille en alerte. 👍</p>';
+  el('resultZone').innerHTML=html; renderJustif(); renderReport();
+}
+function renderReport(){ var byYear={}, d0=dispense(state.params.dateRef);
+  state.achats.forEach(function(a){ var y=(a.date||'').slice(0,4)||'(sans date)'; if(!byYear[y])byYear[y]={lignes:0,fam:{}}; byYear[y].lignes++; var f=a.famille||"(non classé)"; byYear[y].fam[f]=(byYear[y].fam[f]||0)+(parseFloat(a.montant)||0); });
+  var years=Object.keys(byYear).sort().reverse();
+  if(!years.length){ el('reportZone').innerHTML='<p class="muted">Ajoutez des achats pour générer le reporting.</p>'; return; }
+  var html=''; years.forEach(function(y){ var Y=byYear[y], fams=Object.keys(Y.fam), total=fams.reduce(function(s,f){return s+Y.fam[f];},0);
+    var consult=fams.filter(function(f){return Y.fam[f]>=d0;}).length, procMt={};
+    fams.forEach(function(f){ var t=trancheFor(Y.fam[f]); procMt[t.proc]=(procMt[t.proc]||0)+Y.fam[f]; });
+    var barData=fams.map(function(f){return {label:f,value:Y.fam[f]};}).sort(function(a,b){return b.value-a.value;});
+    html+='<div class="card" style="background:var(--bg)"><h2>Exercice '+esc(y)+'</h2>'+
+      '<div class="kpis"><div class="kpi"><div class="v">'+eur(total)+'</div><div class="l">Total HT</div></div>'+
+      '<div class="kpi"><div class="v">'+Y.lignes+'</div><div class="l">Lignes d\'achat</div></div>'+
+      '<div class="kpi"><div class="v">'+fams.length+'</div><div class="l">Familles</div></div>'+
+      '<div class="kpi"><div class="v">'+consult+'</div><div class="l"><span class="gl" title="Familles dont le cumul atteint le seuil de dispense, donc nécessitant une mise en concurrence.">Consultations (≥ dispense)</span></div></div></div>'+
+      '<div class="nun" style="font-weight:800;font-size:13px;color:var(--faint);margin:14px 0 6px">Montants par famille</div>'+bars(barData)+
+      '<div class="nun" style="font-weight:800;font-size:13px;color:var(--faint);margin:16px 0 6px">Montants par procédure</div>'+donut(Object.keys(procMt).map(function(k){return {label:k,value:procMt[k]};}))+'</div>';
+  });
+  el('reportZone').innerHTML=html;
+}
+function renderBareme(){ var b=el('baremeBody'); b.innerHTML='';
+  state.bareme.forEach(function(t,i){ var tr=document.createElement('tr'); tr.setAttribute('draggable','true'); tr.dataset.idx=i;
+    tr.innerHTML='<td><span class="drag">⋮⋮</span></td><td><input data-bi="'+i+'" data-bk="nom" value="'+esc(t.nom)+'"></td>'+
+      '<td class="num"><input data-bi="'+i+'" data-bk="plafond" type="number" min="0" step="1000" value="'+(t.plafond!=null?t.plafond:'')+'" placeholder="∞" style="text-align:right;max-width:130px"></td>'+
+      '<td><input data-bi="'+i+'" data-bk="proc" value="'+esc(t.proc)+'" style="max-width:160px"></td>'+
+      '<td><input data-bi="'+i+'" data-bk="mec" value="'+esc(t.mec)+'" style="max-width:80px"></td>'+
+      '<td><input data-bi="'+i+'" data-bk="pub" value="'+esc(t.pub)+'" style="max-width:150px"></td><td><button class="x" data-delt="'+i+'">✕</button></td>'; b.appendChild(tr); });
+  bindDrag(); renderHisto();
+}
+function renderHisto(){ var z=el('histoZone'); if(!state.histo.length){z.innerHTML='<p class="muted">Aucune modification.</p>';return;}
+  z.innerHTML='<table><thead><tr><th>Date</th><th>Modification</th></tr></thead><tbody>'+state.histo.slice(0,50).map(function(h){return '<tr><td class="det">'+esc(h.t)+'</td><td>'+esc(h.msg)+'</td></tr>';}).join('')+'</tbody></table>'; }
+var dragIdx=null;
+function bindDrag(){ Array.prototype.forEach.call(el('baremeBody').querySelectorAll('tr'),function(tr){
+  tr.addEventListener('dragstart',function(){dragIdx=+tr.dataset.idx;tr.classList.add('dragging');});
+  tr.addEventListener('dragend',function(){tr.classList.remove('dragging');});
+  tr.addEventListener('dragover',function(e){e.preventDefault();});
+  tr.addEventListener('drop',function(e){e.preventDefault();var to=+tr.dataset.idx;if(dragIdx==null||dragIdx===to)return;var m=state.bareme.splice(dragIdx,1)[0];state.bareme.splice(to,0,m);logHisto('Réordonnancement du barème');save();renderBareme();renderResult();}); }); }
+function renderParams(){ el('typeOrg').innerHTML=ORGANISMES.map(function(o){return '<option value="'+o.id+'"'+(o.id===state.params.typeOrg?' selected':'')+'>'+esc(o.nom)+'</option>';}).join('');
+  el('dateRef').value=state.params.dateRef; el('mode').value=state.params.mode; el('annee').value=state.params.annee; el('dateFin').value=state.params.dateFin;
+  el('anneeField').style.display=state.params.mode==="annee"?'':'none'; el('finField').style.display=state.params.mode==="glissant"?'':'none';
+  if(!el('qDate').value) el('qDate').value=state.params.dateRef; el('majDate').textContent=MAJ; if(el('majDate2'))el('majDate2').textContent=MAJ; el('famFilter').value=famFilter; }
+function renderAll(){ if(!quickFam||state.familles.indexOf(quickFam)<0)quickFam=state.familles[0]; renderDemoBanner(); renderParams(); renderChips(); renderFamMgr(); renderColsMgr(); renderAchats(); renderBareme(); renderResult(); }
+
+function onInput(e){ var t=e.target;
+  if(t.dataset.id&&t.dataset.k){ var a=state.achats.find(function(x){return x.id===t.dataset.id;}); if(!a)return; var k=t.dataset.k;
+    a[k]=(k==='sansMec')?t.checked:(k==='montant'?(t.value===''?null:parseFloat(t.value)):t.value); save(); renderResult();
+  } else if(t.dataset.id&&t.dataset.extra){ var a4=state.achats.find(function(x){return x.id===t.dataset.id;}); if(!a4)return; a4.extra=a4.extra||{}; a4.extra[t.dataset.extra]=t.value; save();
+  } else if(t.dataset.justif){ var a2=state.achats.find(function(x){return x.id===t.dataset.justif;}); if(!a2)return; a2[t.dataset.jk==='motif'?'motif':'justifTexte']=t.value; save(); if(t.dataset.jk==='motif')renderJustif();
+  } else if(t.dataset.bi!=null&&t.dataset.bk){ var i=+t.dataset.bi,k2=t.dataset.bk,old=state.bareme[i][k2]; state.bareme[i][k2]=(k2==='plafond')?(t.value===''?null:parseFloat(t.value)):t.value; if(String(old)!==String(state.bareme[i][k2]))logHisto('Tranche « '+state.bareme[i].nom+' » : '+k2+' = '+(state.bareme[i][k2]==null?'∞':state.bareme[i][k2])); save(); renderResult(); }
+}
+document.addEventListener('input',onInput);
+document.addEventListener('change',function(e){ var t=e.target;
+  if(['typeOrg','dateRef','mode','annee','dateFin'].indexOf(t.id)>=0){ state.params.typeOrg=el('typeOrg').value; state.params.dateRef=el('dateRef').value; state.params.mode=el('mode').value; state.params.annee=parseInt(el('annee').value)||new Date().getFullYear(); state.params.dateFin=el('dateFin').value; save(); renderParams(); renderResult(); }
+  else if(t.id==='famFilter'){ famFilter=t.value; renderResult(); }
+  else if(t.dataset.over!=null){ var f=t.dataset.over; if(t.value)state.overrides[f]=t.value; else delete state.overrides[f]; save(); renderResult(); } });
+document.addEventListener('click',function(e){ var t=e.target.closest?e.target.closest('[data-fam],[data-del],[data-delt],[data-delfam],[data-delcol]'):null; if(!t)return;
+  if(t.dataset.fam){ quickFam=t.dataset.fam; renderChips(); }
+  else if(t.dataset.del){ if(confirm('Supprimer cet achat ?')){ state.achats=state.achats.filter(function(x){return x.id!==t.dataset.del;}); save(); renderAchats(); renderResult(); } }
+  else if(t.dataset.delt!=null){ var i=+t.dataset.delt; if(confirm('Supprimer la tranche « '+state.bareme[i].nom+' » ?')){ logHisto('Suppression tranche « '+state.bareme[i].nom+' »'); state.bareme.splice(i,1); save(); renderBareme(); renderResult(); } }
+  else if(t.dataset.delfam){ delFamille(t.dataset.delfam); }
+  else if(t.dataset.delcol){ if(confirm('Supprimer la colonne « '+t.dataset.delcol+' » ? Les valeurs saisies seront perdues.')){ var c=t.dataset.delcol; state.cols=state.cols.filter(function(x){return x!==c;}); state.achats.forEach(function(a){ if(a.extra)delete a.extra[c]; }); save(); renderColsMgr(); renderAchats(); } }
+});
+function delFamille(f){ var used=state.achats.filter(function(a){return a.famille===f;}).length;
+  if(state.familles.length<=1){ alert('Au moins une famille est nécessaire.'); return; }
+  var fallback=state.familles.filter(function(x){return x!==f;})[0];
+  if(!confirm('Supprimer la famille « '+f+' » ?'+(used?'\n'+used+' achat(s) seront reclassés dans « '+fallback+' ».':'')))return;
+  state.achats.forEach(function(a){ if(a.famille===f)a.famille=fallback; });
+  state.familles=state.familles.filter(function(x){return x!==f;}); if(quickFam===f)quickFam=state.familles[0]; if(state.overrides[f])delete state.overrides[f];
+  save(); renderChips(); renderFamMgr(); renderAchats(); renderResult(); }
+el('addFam').addEventListener('click',function(){ var v=el('newFam').value.trim(); if(!v)return; if(state.familles.indexOf(v)>=0){alert('Cette famille existe déjà.');return;} state.familles.push(v); el('newFam').value=''; save(); renderChips(); renderFamMgr(); renderAchats(); });
+el('newFam').addEventListener('keydown',function(e){ if(e.key==='Enter')el('addFam').click(); });
+el('addCol').addEventListener('click',function(){ var v=el('newCol').value.trim(); if(!v)return; if(state.cols.indexOf(v)>=0){alert('Cette colonne existe déjà.');return;} state.cols.push(v); el('newCol').value=''; save(); renderColsMgr(); renderAchats(); });
+el('newCol').addEventListener('keydown',function(e){ if(e.key==='Enter')el('addCol').click(); });
+function quickAdd(){ var mt=el('qMontant').value; if(mt===''||isNaN(parseFloat(mt))){ el('qMontant').focus(); return; }
+  exitDemo();
+  state.achats.push({id:uid(),desc:el('qDesc').value,famille:quickFam||state.familles[0],montant:parseFloat(mt),date:el('qDate').value||state.params.dateRef,sansMec:false,motif:'',justifTexte:'',extra:{}});
+  el('qMontant').value=''; el('qDesc').value=''; save(); renderDemoBanner(); renderAchats(); renderResult(); el('qMontant').focus(); }
+el('qAdd').addEventListener('click',quickAdd);
+['qMontant','qDesc'].forEach(function(id){ el(id).addEventListener('keydown',function(e){ if(e.key==='Enter')quickAdd(); }); });
+el('clearAchats').addEventListener('click',function(){ if(confirm('Vider tous les achats ?')){ state.achats=[]; save(); renderAchats(); renderResult(); } });
+el('clearDemo').addEventListener('click',function(){ state=defaultState(); quickFam=null; save(); renderAll(); var q=el('qMontant'); if(q)q.focus(); });
+el('addTranche').addEventListener('click',function(){ state.bareme.push({nom:'Nouvelle tranche',plafond:null,proc:'',mec:'',pub:'',ref:''}); logHisto('Ajout d\'une tranche'); save(); renderBareme(); renderResult(); });
+el('resetBareme').addEventListener('click',function(){ if(confirm('Recharger les valeurs légales ? Vos personnalisations seront remplacées.')){ state.bareme=legalBareme(state.params.typeOrg,state.params.dateRef); logHisto('Rechargement des valeurs légales'); save(); renderBareme(); renderResult(); } });
+function dlTemplate(){ var cols=['description','montant_ht','date','famille'].concat(state.cols);
+  var ex={description:'Ordinateurs portables',montant_ht:'28000',date:'2026-02-15',famille:'Matériel informatique & téléphonie'};
+  var csv=cols.join(';')+'\n'+cols.map(function(c){return ex[c]||'';}).join(';')+'\n';
+  dl(new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'}),'modele-achats.csv'); }
+el('dlTemplate').addEventListener('click',dlTemplate);
+el('importCsvBtn').addEventListener('click',function(){ el('csvFile').click(); });
+el('csvFile').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f)return; var r=new FileReader(); r.onload=function(){ importCsv(r.result); el('csvFile').value=''; }; r.readAsText(f,'utf-8'); });
+function importCsv(txt){ txt=txt.replace(/^﻿/,''); var lines=txt.split(/\r?\n/).filter(function(l){return l.trim();}); if(!lines.length)return; exitDemo();
+  var sep=(lines[0].split(';').length>=lines[0].split(',').length)?';':',';
+  var head=lines[0].split(sep).map(function(s){return s.trim().replace(/^"|"$/g,'');}); var hl=head.map(function(h){return h.toLowerCase();});
+  var hasHeader=hl.some(function(h){return /desc|montant|famille|date/.test(h);});
+  var ci={desc:idx(hl,['description','desc','libelle','libellé','objet']),montant:idx(hl,['montant_ht','montant','montant ht','prix']),date:idx(hl,['date']),famille:idx(hl,['famille','categorie','catégorie'])};
+  var start=hasHeader?1:0, added=0;
+  for(var i=start;i<lines.length;i++){ var c=lines[i].split(sep); if(!c.length)continue;
+    var desc=val(c,ci.desc,0), montant=parseFloat(String(val(c,ci.montant,1)).replace(/\s/g,'').replace(',','.'))||0, date=normDate(val(c,ci.date,2)), fam=val(c,ci.famille,3)||state.familles[0];
+    if(fam&&state.familles.indexOf(fam)<0)state.familles.push(fam);
+    var extra={}; if(hasHeader){ state.cols.forEach(function(col){ var k=idx(hl,[col.toLowerCase()]); if(k>=0)extra[col]=val(c,k,-1); }); }
+    state.achats.push({id:uid(),desc:desc,famille:fam,montant:montant,date:date,sansMec:false,motif:'',justifTexte:'',extra:extra}); added++; }
+  save(); renderDemoBanner(); renderChips(); renderFamMgr(); renderAchats(); renderResult(); alert(added+' ligne(s) importée(s).'); }
+function idx(a,n){ for(var i=0;i<a.length;i++){if(n.indexOf(a[i].trim())>=0)return i;} return -1; }
+function val(c,i,fb){ var k=(i>=0?i:fb); return (k>=0&&c[k]!=null)?String(c[k]).trim().replace(/^"|"$/g,''):''; }
+function normDate(s){ if(!s)return ''; s=s.trim(); var m=s.match(/^(\d{2})[\/\-](\d{2})[\/\-](\d{4})$/); if(m)return m[3]+'-'+m[2]+'-'+m[1]; if(/^\d{4}-\d{2}-\d{2}/.test(s))return s.slice(0,10); return s; }
+function dl(blob,name){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href); }
+function exportJson(){ dl(new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),'scenario-achat-public.json'); }
+el('exportJson').addEventListener('click',exportJson); el('btnJson').addEventListener('click',exportJson);
+el('btnPrint').addEventListener('click',function(){ window.print(); });
+el('btnMail').addEventListener('click',function(){ var map=computeFamilles(), keys=Object.keys(map).sort(function(a,b){return map[b].cumul-map[a].cumul;});
+  var lines=keys.map(function(f){ var c=map[f], t=effTranche(f,c.cumul); return '- '+f+' : '+eur(c.cumul)+' -> '+t.proc; });
+  var body='Synthèse computation des seuils ('+(state.params.mode==='annee'?'exercice '+state.params.annee:'12 mois glissants')+') :\n\n'+lines.join('\n')+'\n\nGénéré avec l\'outil gratuit de Sébastien Rivière (calcul 100% local).';
+  window.location.href='mailto:?subject='+encodeURIComponent('Computation des seuils — synthèse')+'&body='+encodeURIComponent(body); });
+el('importJsonBtn').addEventListener('click',function(){ el('jsonFile').click(); });
+el('jsonFile').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f)return; var r=new FileReader(); r.onload=function(){ try{ var s=JSON.parse(r.result); if(s&&s.params){ s.cols=s.cols||[]; s.overrides=s.overrides||{}; state=s; quickFam=null; save(); renderAll(); alert('Scénario importé.'); } else alert('Fichier invalide.'); }catch(err){ alert('Fichier illisible.'); } el('jsonFile').value=''; }; r.readAsText(f,'utf-8'); });
+el('resetAll').addEventListener('click',function(){ if(confirm('Tout réinitialiser ?')){ state=defaultState(); quickFam=null; save(); renderAll(); } });
+el('footLegal').addEventListener('click',function(e){ e.preventDefault(); document.querySelector('[data-tab=aide]').click(); window.scrollTo(0,document.body.scrollHeight); });
+Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(b){ b.addEventListener('click',function(){ document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');}); document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); el('panel-'+b.dataset.tab).classList.add('active'); window.scrollTo(0,0); }); });
+load(); renderAll();
+</script>
+</body>
+</html>
