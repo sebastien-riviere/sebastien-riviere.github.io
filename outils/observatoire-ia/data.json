@@ -9,17 +9,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Mise A Disposition De Previsions Et D'Observations De Donnees Meteorologiques Pour Le Departement De La Sarthe",
-      "a": "Département de la Sarthe",
-      "dep": "72",
-      "fam": "Marchés entre 90 k€ et seuils européens",
+      "o": "Traitement de données Lidar topographiques et bathymétriques en Nouvelle-Calédonie",
+      "a": "EPA Shom",
+      "dep": "29",
+      "fam": "Marchés européens",
       "tm": "Services",
       "proc": "Procédure Ouverte",
       "dp": "2026-06-18",
-      "dl": "2026-07-15T11:30:00+00:00",
+      "dl": "2026-07-23T11:00:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1837571"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-59860%22"
     },
     {
       "s": "boamp",
@@ -39,32 +39,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Traitement de données Lidar topographiques et bathymétriques en Nouvelle-Calédonie",
-      "a": "EPA Shom",
-      "dep": "29",
-      "fam": "Marchés européens",
+      "o": "Mise A Disposition De Previsions Et D'Observations De Donnees Meteorologiques Pour Le Departement De La Sarthe",
+      "a": "Département de la Sarthe",
+      "dep": "72",
+      "fam": "Marchés entre 90 k€ et seuils européens",
       "tm": "Services",
       "proc": "Procédure Ouverte",
       "dp": "2026-06-18",
-      "dl": "2026-07-23T11:00:00+00:00",
+      "dl": "2026-07-15T11:30:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-59860%22"
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Accompagnement à la conception et à la réalisation d’applications de visualisation de données géographiques pour l’observatoire de la santé  (projet SynopseViz)",
-      "a": "Nantes Métropole",
-      "dep": "44",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Fournitures",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-06-17",
-      "dl": "2026-08-05T12:00:00+00:00",
-      "m": "",
-      "th": "data",
-      "u": "https://marchespublics.nantesmetropole.fr/entreprise/consultation/532335?orgAcronyme=t5y"
+      "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1837571"
     },
     {
       "s": "boamp",
@@ -80,6 +65,21 @@
       "m": "",
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-59326%22"
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Accompagnement à la conception et à la réalisation d’applications de visualisation de données géographiques pour l’observatoire de la santé  (projet SynopseViz)",
+      "a": "Nantes Métropole",
+      "dep": "44",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Fournitures",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-17",
+      "dl": "2026-08-05T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://marchespublics.nantesmetropole.fr/entreprise/consultation/532335?orgAcronyme=t5y"
     },
     {
       "s": "boamp",
@@ -144,21 +144,6 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Prestations de formations spécialisées relatives à la conversion S-57 / S-101 et à la production de données S-101",
-      "a": "EPA SHOM",
-      "dep": "29",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-06-08",
-      "dl": "2026-07-16T12:00:00+00:00",
-      "m": "",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-56288%22"
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
       "o": "2026 METEO : MISE À DISPOSITION D'UN OUTIL DE SUIVI EN TEMPS RÉEL DES DONNÉES MÉTÉOROLOGIQUES",
       "a": "S.I.A.R.E",
       "dep": "95",
@@ -170,6 +155,21 @@
       "m": "",
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-56091%22"
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Prestations de formations spécialisées relatives à la conversion S-57 / S-101 et à la production de données S-101",
+      "a": "EPA SHOM",
+      "dep": "29",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-08",
+      "dl": "2026-07-16T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-56288%22"
     },
     {
       "s": "boamp",
@@ -204,17 +204,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "DGAMPA-NUM-2025-06-DATA_Fourniture de prestations de valorisation des données",
-      "a": "DGAMPA",
-      "dep": "92,75",
+      "o": "Fourniture de données et informations météorologiques et mise en oeuvre d'un dispositif de veilles et d'alerte météorologique 24h/24",
+      "a": "LE HAVRE SEINE METROPOLE",
+      "dep": "76",
       "fam": "Marchés européens",
       "tm": "Services",
       "proc": "Procédure Ouverte",
       "dp": "2026-06-04",
-      "dl": "2026-08-25T12:00:00+00:00",
+      "dl": "2026-07-06T10:00:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-54388%22"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-54607%22"
     },
     {
       "s": "boamp",
@@ -234,32 +234,32 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Fourniture de données et informations météorologiques et mise en oeuvre d'un dispositif de veilles et d'alerte météorologique 24h/24",
-      "a": "LE HAVRE SEINE METROPOLE",
-      "dep": "76",
+      "o": "DGAMPA-NUM-2025-06-DATA_Fourniture de prestations de valorisation des données",
+      "a": "DGAMPA",
+      "dep": "92,75",
       "fam": "Marchés européens",
       "tm": "Services",
       "proc": "Procédure Ouverte",
       "dp": "2026-06-04",
-      "dl": "2026-07-06T10:00:00+00:00",
+      "dl": "2026-08-25T12:00:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-54607%22"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-54388%22"
     },
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Le présent marché a pour objet l'organisation et la réalisation de formations sur le Règlement Général sur la Protection des Données (RGPD) et la protection des données personnelles, destinées à l'...",
-      "a": "Association AGS",
+      "o": "FOURNITURE ET MISE EN OEUVRE D'UNE SOLUTION ETL DEPLOYEE EN ENVIRONNEMENT ON-PREMISE ET DE GESTION DES FLUX DE DONNEES",
+      "a": "ACTION LOGEMENT SERVICES",
       "dep": "75",
-      "fam": "Marchés <90 k€ (MAPA)",
-      "tm": "Services",
-      "proc": "Procédure Adaptée",
+      "fam": "Marchés européens",
+      "tm": "Fournitures",
+      "proc": "Procédure Ouverte",
       "dp": "2026-06-02",
-      "dl": "2026-06-19T16:00:00+00:00",
+      "dl": "2026-06-30T10:00:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-54240%22"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-53280%22"
     },
     {
       "s": "boamp",
@@ -279,17 +279,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "FOURNITURE ET MISE EN OEUVRE D'UNE SOLUTION ETL DEPLOYEE EN ENVIRONNEMENT ON-PREMISE ET DE GESTION DES FLUX DE DONNEES",
-      "a": "ACTION LOGEMENT SERVICES",
+      "o": "Le présent marché a pour objet l'organisation et la réalisation de formations sur le Règlement Général sur la Protection des Données (RGPD) et la protection des données personnelles, destinées à l'...",
+      "a": "Association AGS",
       "dep": "75",
-      "fam": "Marchés européens",
-      "tm": "Fournitures",
-      "proc": "Procédure Ouverte",
+      "fam": "Marchés <90 k€ (MAPA)",
+      "tm": "Services",
+      "proc": "Procédure Adaptée",
       "dp": "2026-06-02",
-      "dl": "2026-06-30T10:00:00+00:00",
+      "dl": "2026-06-19T16:00:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-53280%22"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-54240%22"
     },
     {
       "s": "boamp",
@@ -339,17 +339,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Maintenance des stations météorologiques et traitement des données",
-      "a": "Bordeaux Métropole",
-      "dep": "33",
+      "o": "Assistance et administration des bases de données du Système d'Information départemental",
+      "a": "Département du Var",
+      "dep": "83",
       "fam": "Marchés <90 k€ (MAPA)",
       "tm": "Services",
       "proc": "Procédure Adaptée",
       "dp": "2026-05-28",
-      "dl": "2026-06-24T16:00:00+00:00",
+      "dl": "2026-06-10T16:00:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-52325%22"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-52320%22"
     },
     {
       "s": "boamp",
@@ -369,17 +369,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Assistance et administration des bases de données du Système d'Information départemental",
-      "a": "Département du Var",
-      "dep": "83",
+      "o": "Maintenance des stations météorologiques et traitement des données",
+      "a": "Bordeaux Métropole",
+      "dep": "33",
       "fam": "Marchés <90 k€ (MAPA)",
       "tm": "Services",
       "proc": "Procédure Adaptée",
       "dp": "2026-05-28",
-      "dl": "2026-06-10T16:00:00+00:00",
+      "dl": "2026-06-24T16:00:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-52320%22"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-52325%22"
     },
     {
       "s": "boamp",
@@ -414,21 +414,6 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Certification externe des données produites constatant la pousse de l’herbe dans un réseau représentatif (PHASE CANDIDATURE)",
-      "a": "ministere de l'agriculture",
-      "dep": "75,92",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Négociée",
-      "dp": "2026-05-23",
-      "dl": "",
-      "m": "",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-50505%22"
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
       "o": "Organiser l'IA générative derrière les processus métiers à NEOMA",
       "a": "NEOMA REIMS",
       "dep": "51",
@@ -444,17 +429,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Accord-cadre à bons de commande relatif aux services de fourniture et d’analyse de données véhiculaires (xFCD) et d’analyse de congestion sur le réseau de la DIRNO et les réseaux connexes",
-      "a": "DIR Nord Ouest",
-      "dep": "76,14,27,28,37,41,50,61,80",
+      "o": "Certification externe des données produites constatant la pousse de l’herbe dans un réseau représentatif (PHASE CANDIDATURE)",
+      "a": "ministere de l'agriculture",
+      "dep": "75,92",
       "fam": "Marchés européens",
       "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-05-21",
-      "dl": "2026-06-29T12:00:00+00:00",
+      "proc": "Procédure Négociée",
+      "dp": "2026-05-23",
+      "dl": "",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-49737%22"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-50505%22"
     },
     {
       "s": "boamp",
@@ -470,6 +455,21 @@
       "m": "",
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-49409%22"
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Accord-cadre à bons de commande relatif aux services de fourniture et d’analyse de données véhiculaires (xFCD) et d’analyse de congestion sur le réseau de la DIRNO et les réseaux connexes",
+      "a": "DIR Nord Ouest",
+      "dep": "76,14,27,28,37,41,50,61,80",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-05-21",
+      "dl": "2026-06-29T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-49737%22"
     },
     {
       "s": "boamp",
@@ -549,17 +549,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Le présent marché a pour objet des prestations de maintien en condition opérationnelle de l’architecture technique de stockage de données et virtualisation de la HAS et des prestations associées.",
-      "a": "HAUTE AUTORITE DE SANTE",
-      "dep": "93",
-      "fam": "Marchés européens",
+      "o": "Mise en conformité, construction et exploitation d'un Entrepôt de Données de Santé (EDS) et appariement avec le Système National des Données de Santé (SNDS)",
+      "a": "CHU GRENOBLE ALPES",
+      "dep": "38",
+      "fam": "Marchés entre 90 k€ et seuils européens",
       "tm": "Services",
-      "proc": "Procédure Restreinte",
+      "proc": "Procédure Ouverte",
       "dp": "2026-05-12",
-      "dl": "",
+      "dl": "2026-06-08T11:00:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-46966%22"
+      "u": "https://www.marches-publics.gouv.fr/?page=Entreprise.EntrepriseAdvancedSearch&AllCons&id=2977558&orgAcronyme=x7c"
     },
     {
       "s": "boamp",
@@ -579,17 +579,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Mise en conformité, construction et exploitation d'un Entrepôt de Données de Santé (EDS) et appariement avec le Système National des Données de Santé (SNDS)",
-      "a": "CHU GRENOBLE ALPES",
-      "dep": "38",
-      "fam": "Marchés entre 90 k€ et seuils européens",
+      "o": "Le présent marché a pour objet des prestations de maintien en condition opérationnelle de l’architecture technique de stockage de données et virtualisation de la HAS et des prestations associées.",
+      "a": "HAUTE AUTORITE DE SANTE",
+      "dep": "93",
+      "fam": "Marchés européens",
       "tm": "Services",
-      "proc": "Procédure Ouverte",
+      "proc": "Procédure Restreinte",
       "dp": "2026-05-12",
-      "dl": "2026-06-08T11:00:00+00:00",
+      "dl": "",
       "m": "",
       "th": "data",
-      "u": "https://www.marches-publics.gouv.fr/?page=Entreprise.EntrepriseAdvancedSearch&AllCons&id=2977558&orgAcronyme=x7c"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-46966%22"
     },
     {
       "s": "boamp",
@@ -609,21 +609,6 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Mission AMO pour la structuration, l’intégration technique, la conformité FEDER-EUI, la sécurité numérique, la protection des données, le pilotage opérationnel, l’évaluation",
-      "a": "Ville de Mamoudzou (976)",
-      "dep": "976",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-05-06",
-      "dl": "2026-06-05T09:00:00+00:00",
-      "m": "",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-45082%22"
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
       "o": "Géoréférencement en classe A des réseaux d'eau potable, d'assainissement et d'eaux pluviales avec mise à jour de la base de données Sig",
       "a": "Communaute De Communes De Bayeux Intercom",
       "dep": "14",
@@ -635,6 +620,21 @@
       "m": "",
       "th": "data",
       "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1817594"
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Mission AMO pour la structuration, l’intégration technique, la conformité FEDER-EUI, la sécurité numérique, la protection des données, le pilotage opérationnel, l’évaluation",
+      "a": "Ville de Mamoudzou (976)",
+      "dep": "976",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-05-06",
+      "dl": "2026-06-05T09:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-45082%22"
     },
     {
       "s": "boamp",
@@ -669,21 +669,6 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Prestation de délégué à la protection des données personnelles",
-      "a": "Sud Retz Atlantique (44)",
-      "dep": "44",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-05-02",
-      "dl": "2026-06-05T10:00:00+00:00",
-      "m": "",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-43783%22"
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
       "o": "Prestations de conseil, de collecte, de développement, d'exploitation de données pour le Data Office",
       "a": "Etablissement d'enseignement supérieur consulaire ESCP Europe",
       "dep": "75",
@@ -695,6 +680,21 @@
       "m": "",
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-44098%22"
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Prestation de délégué à la protection des données personnelles",
+      "a": "Sud Retz Atlantique (44)",
+      "dep": "44",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-05-02",
+      "dl": "2026-06-05T10:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-43783%22"
     },
     {
       "s": "boamp",
@@ -879,21 +879,6 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "MESURE DES ENJEUX SOCIAUX, ENVIRONNEMENTAUX ET ECONOMIQUES RELATIFS A L’USAGE DE L’INTELLIGENCE ARTIFICIELLE GENERATIVE DANS LA FILIERE MUSICALE FRANÇAISE",
-      "a": "Centre national de la musique",
-      "dep": "75",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-04-08",
-      "dl": "2026-05-05T12:00:00+00:00",
-      "m": "",
-      "th": "ia",
-      "u": "https://www.marches-publics.gouv.fr/entreprise/consultation/2977123?orgAcronyme=f5j"
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
       "o": "Accompagnement fonctionnel EAM. L'accord-cadre pourra couvrir sans que cette liste soit exaustive les prestations suivantes: paramétrage dans le logiciel EAM et/ou en base de données, conseil techniqu",
       "a": "Tisséo Voyageurs",
       "dep": "31",
@@ -905,6 +890,21 @@
       "m": "",
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-35039%22"
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "MESURE DES ENJEUX SOCIAUX, ENVIRONNEMENTAUX ET ECONOMIQUES RELATIFS A L’USAGE DE L’INTELLIGENCE ARTIFICIELLE GENERATIVE DANS LA FILIERE MUSICALE FRANÇAISE",
+      "a": "Centre national de la musique",
+      "dep": "75",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-04-08",
+      "dl": "2026-05-05T12:00:00+00:00",
+      "m": "",
+      "th": "ia",
+      "u": "https://www.marches-publics.gouv.fr/entreprise/consultation/2977123?orgAcronyme=f5j"
     },
     {
       "s": "boamp",
@@ -940,21 +940,6 @@
       "s": "boamp",
       "src": "BOAMP",
       "o": "Réalisation d'Analyses d'Impact relatives à la Protection des Données (Aipd) conformes au Règlement Général sur la Protection des Données (Rgpd)",
-      "a": "Le Havre Seine Metropole",
-      "dep": "76",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-04-01",
-      "dl": "2026-04-29T16:00:00+00:00",
-      "m": "",
-      "th": "data",
-      "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1801386"
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Réalisation d'Analyses d'Impact relatives à la Protection des Données (Aipd) conformes au Règlement Général sur la Protection des Données (Rgpd)",
       "a": "Ville du Havre",
       "dep": "76",
       "fam": "Marchés entre 90 k€ et seuils européens",
@@ -965,6 +950,21 @@
       "m": "",
       "th": "data",
       "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1801350"
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Réalisation d'Analyses d'Impact relatives à la Protection des Données (Aipd) conformes au Règlement Général sur la Protection des Données (Rgpd)",
+      "a": "Le Havre Seine Metropole",
+      "dep": "76",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-04-01",
+      "dl": "2026-04-29T16:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1801386"
     },
     {
       "s": "boamp",
@@ -1029,17 +1029,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Accompagnement pour engager une démarche expérimentale EnR dans les lycées agricoles, pour construire des outils pédagogiques et produire des données",
-      "a": "Région Grand Est",
-      "dep": "67,51,52,8,10,57,54,68",
-      "fam": "Marchés <90 k€ (MAPA)",
-      "tm": "Services",
-      "proc": "Procédure Adaptée",
+      "o": "Fourniture, installation et maintenance d'un logiciel de gestion de base de données et facturation de la redevance incitative",
+      "a": "Mauges Communauté",
+      "dep": "49",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Fournitures",
+      "proc": "Procédure Ouverte",
       "dp": "2026-03-23",
-      "dl": "2026-04-20T12:00:00+00:00",
+      "dl": "2026-06-15T12:00:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-29980%22"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-29624%22"
     },
     {
       "s": "boamp",
@@ -1059,17 +1059,17 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "Fourniture, installation et maintenance d'un logiciel de gestion de base de données et facturation de la redevance incitative",
-      "a": "Mauges Communauté",
-      "dep": "49",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Fournitures",
-      "proc": "Procédure Ouverte",
+      "o": "Accompagnement pour engager une démarche expérimentale EnR dans les lycées agricoles, pour construire des outils pédagogiques et produire des données",
+      "a": "Région Grand Est",
+      "dep": "67,51,52,8,10,57,54,68",
+      "fam": "Marchés <90 k€ (MAPA)",
+      "tm": "Services",
+      "proc": "Procédure Adaptée",
       "dp": "2026-03-23",
-      "dl": "2026-06-15T12:00:00+00:00",
+      "dl": "2026-04-20T12:00:00+00:00",
       "m": "",
       "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-29624%22"
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-29980%22"
     },
     {
       "s": "boamp",
