@@ -177,10 +177,10 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
     </div>
     <div class="filters">
       <div class="chips" id="themes">
-        <span class="chip on" data-th="">Tous</span>
-        <span class="chip" data-th="ia"><span class="dot" style="background:var(--ia)"></span>IA</span>
+        <span class="chip on" data-th="ia"><span class="dot" style="background:var(--ia)"></span>IA</span>
         <span class="chip" data-th="data"><span class="dot" style="background:var(--data)"></span>Données</span>
         <span class="chip" data-th="numerique"><span class="dot" style="background:var(--num)"></span>Numérique</span>
+        <span class="chip" data-th="">Tous</span>
       </div>
       <div class="chips" id="sources">
         <span class="chip on" data-sr="">Toutes sources</span>
@@ -216,7 +216,13 @@ const ICO = {
   chart:'<svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg>'
 };
 let DATA = { items:[], maj:'', total:0 };
-let fTheme = '', fSource = '', fQ = '';
+let fTheme = 'ia', fSource = '', fQ = '';   // IA mis en avant par défaut
+// Un avis est « IA » si la classification sémantique le dit (ia===1), sinon repli mot-clé (theme='ia') tant que non classé.
+function themeMatch(it, f){
+  if(!f) return true;
+  if(f === 'ia') return it.ia === 1 || ((it.ia === null || it.ia === undefined) && it.th === 'ia');
+  return (it.th || 'numerique') === f;
+}
 
 function esc(s){ return String(s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
@@ -233,7 +239,7 @@ function deadlineHtml(dl){
 function render(){
   const grid = document.getElementById('grid');
   let items = DATA.items.filter(it => {
-    if(fTheme && (it.th||'numerique') !== fTheme) return false;
+    if(!themeMatch(it, fTheme)) return false;
     if(fSource && it.s !== fSource) return false;
     if(fQ){ const hay = ((it.o||'')+' '+(it.a||'')+' '+(it.dep||'')+' '+(it.fam||'')+' '+(it.clair||'')+' '+(it.pq||'')).toLowerCase(); if(!hay.includes(fQ)) return false; }
     return true;
