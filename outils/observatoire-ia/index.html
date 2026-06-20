@@ -82,6 +82,24 @@ main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:0 40px 56px;}
 .unlock .okmsg svg{width:15px;height:15px;}
 .unlock #codeErr{color:var(--urgent);font-weight:700;}
 .unlock a.link{color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline;}
+/* ── Rapport mensuel (gated) ── */
+.monthly{margin:4px 0 22px;}
+.monthly .mcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);}
+.monthly .mhead{display:flex;align-items:center;gap:9px;font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:var(--title);margin-bottom:3px;}
+.monthly .mhead svg{width:20px;height:20px;color:var(--accent);}
+.monthly .msub{font-family:'Nunito',sans-serif;font-size:12.5px;color:var(--faint);margin-bottom:18px;}
+.monthly .kpis{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px;}
+.monthly .kpi{flex:1;min-width:150px;background:var(--accent-soft);border-radius:11px;padding:14px 16px;}
+.monthly .kpi .v{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--accent);line-height:1;}
+.monthly .kpi .l{font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:700;color:var(--muted);margin-top:5px;}
+.monthly .mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px 26px;}
+.monthly .mblock h4{font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--faint);margin-bottom:9px;}
+.monthly .brow{margin-bottom:7px;}
+.monthly .blabel{display:flex;justify-content:space-between;font-family:'Nunito',sans-serif;font-size:12.5px;color:var(--text);margin-bottom:3px;}
+.monthly .blabel b{color:var(--title);font-weight:800;}
+.monthly .btrack{height:6px;background:var(--border);border-radius:4px;overflow:hidden;}
+.monthly .bfill{height:100%;background:var(--accent);border-radius:4px;}
+.monthly .mnote{font-family:'Lora',serif;font-style:italic;font-size:12.5px;color:var(--faint);margin-top:16px;}
 .statline{font-family:'Nunito',sans-serif;font-size:13px;color:var(--faint);margin-bottom:18px;}
 .statline b{color:var(--title);}
 
@@ -144,6 +162,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
 </div>
 
 <main>
+  <section class="monthly" id="monthly"></section>
   <div class="toolbar">
     <div class="searchwrap">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -186,7 +205,8 @@ const ICO = {
   doc:'<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>',
   ext:'<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>',
   lock:'<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
-  check:'<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>'
+  check:'<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>',
+  chart:'<svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg>'
 };
 let DATA = { items:[], maj:'', total:0 };
 let fTheme = '', fSource = '', fQ = '';
@@ -258,18 +278,44 @@ document.getElementById('q').addEventListener('input', e => { fQ = e.target.valu
 
 // ── Déverrouillage des analyses par code (servies par le worker Cloudflare) ──
 const WORKER = 'https://veille-bot.sebastienriviere-contact.workers.dev';
-let ANALYSES = null, unlocked = false;
+let ANALYSES = null, MONTHLY = null, unlocked = false;
 function renderUnlock(){
   const el = document.getElementById('unlock');
   if(unlocked){
     const n = ANALYSES ? Object.keys(ANALYSES).length : 0;
     el.innerHTML = '<span class="okmsg">'+ICO.check+'Analyses débloquées'+(n?' ('+n+')':'')+'</span> <a class="link" id="lockBtn">verrouiller</a>';
-    document.getElementById('lockBtn').onclick = () => { localStorage.removeItem('obs_code'); ANALYSES = null; unlocked = false; renderUnlock(); render(); };
+    document.getElementById('lockBtn').onclick = () => { localStorage.removeItem('obs_code'); ANALYSES = null; MONTHLY = null; unlocked = false; renderUnlock(); renderMonthly(); render(); };
   } else {
-    el.innerHTML = '<span class="lockmsg">'+ICO.lock+'Analyses « en clair » réservées —</span> <input id="codeInput" placeholder="CODE" maxlength="12" autocomplete="off"> <button id="codeBtn">Débloquer</button> <span id="codeErr"></span>';
+    el.innerHTML = '<span class="lockmsg">'+ICO.lock+'Analyses & rapport mensuel réservés —</span> <input id="codeInput" placeholder="CODE" maxlength="12" autocomplete="off"> <button id="codeBtn">Débloquer</button> <span id="codeErr"></span>';
     document.getElementById('codeBtn').onclick = () => tryCode(document.getElementById('codeInput').value);
     document.getElementById('codeInput').addEventListener('keydown', e => { if(e.key === 'Enter') tryCode(e.target.value); });
   }
+}
+function bars(arr){
+  if(!arr || !arr.length) return '<div class="msub">—</div>';
+  const max = Math.max.apply(null, arr.map(x => x.n)) || 1;
+  return arr.map(x => '<div class="brow"><div class="blabel"><span>'+esc(x.l)+'</span><b>'+x.n+'</b></div><div class="btrack"><div class="bfill" style="width:'+Math.max(4,Math.round(100*x.n/max))+'%"></div></div></div>').join('');
+}
+function renderMonthly(){
+  const el = document.getElementById('monthly');
+  if(!unlocked || !MONTHLY || !MONTHLY.demande){ el.innerHTML=''; return; }
+  const M = MONTHLY, d = M.demande, a = M.attributions || {};
+  el.innerHTML = '<div class="mcard">'
+    + '<div class="mhead">'+ICO.chart+'Rapport du mois — marchés IA / numérique</div>'
+    + '<div class="msub">12 mois glissants ('+esc(M.from)+' → '+esc(M.to)+') · source BOAMP · mis à jour le '+esc(M.maj)+'</div>'
+    + '<div class="kpis">'
+      + '<div class="kpi"><div class="v">'+(d.total||0)+'</div><div class="l">consultations publiées</div></div>'
+      + '<div class="kpi"><div class="v">'+(a.total||0)+'</div><div class="l">attributions (marchés gagnés)</div></div>'
+    + '</div>'
+    + '<div class="mgrid">'
+      + '<div class="mblock"><h4>Par type de prestation</h4>'+bars(d.parType)+'</div>'
+      + '<div class="mblock"><h4>Par procédure</h4>'+bars(d.parProcedure)+'</div>'
+      + '<div class="mblock"><h4>Top départements</h4>'+bars((d.parDept||[]).slice(0,8))+'</div>'
+      + '<div class="mblock"><h4>Top acheteurs</h4>'+bars(d.topAcheteurs)+'</div>'
+      + '<div class="mblock"><h4>Top titulaires (qui gagne)</h4>'+bars(a.topTitulaires)+'</div>'
+    + '</div>'
+    + '<div class="mnote">Volumes et titulaires issus des avis BOAMP (frais). Les montants exacts par marché relèvent des données d\'attribution (DECP) — couche à venir.</div>'
+  + '</div>';
 }
 async function tryCode(code){
   code = (code || '').trim().toUpperCase(); if(!code) return;
@@ -280,6 +326,7 @@ async function tryCode(code){
     const d = await r.json(); ANALYSES = d.analyses || {}; unlocked = true;
     localStorage.setItem('obs_code', code);
     renderUnlock(); render();
+    try{ const rm = await fetch(WORKER + '/obs/monthly?code=' + encodeURIComponent(code)); if(rm.ok){ MONTHLY = await rm.json(); renderMonthly(); } }catch(e){}
   }catch(e){ if(err) err.textContent = 'Erreur réseau'; }
 }
 
