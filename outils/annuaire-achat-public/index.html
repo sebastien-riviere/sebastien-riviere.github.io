@@ -168,6 +168,9 @@ table.compare td a:hover{text-decoration:underline;}
 .tl-date{font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.3px;}
 .tl-h{font-family:'Nunito',sans-serif;font-weight:800;font-size:14.5px;color:var(--title);margin:3px 0 4px;}
 .tl-d{font-size:13.5px;color:var(--muted);line-height:1.55;}
+.tl-src{display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-family:'Nunito',sans-serif;font-weight:700;font-size:11.5px;color:var(--accent);text-decoration:none;}
+.tl-src:hover{text-decoration:underline;}
+.tl-src svg{stroke:currentColor;fill:none;stroke-width:2;}
 
 /* Signal */
 .signal{margin-top:24px;background:var(--bg-band);border:1px solid var(--border);border-radius:14px;padding:22px;text-align:center;}
@@ -341,11 +344,12 @@ const PARCOURS=[
   {ic:"voix",tit:"Suivre l'actualité",desc:"Presse, newsletters, experts, voix",f:{usage:"se-former"}}
 ];
 const TIMELINE=[
-  {date:"Horizon 2030",h:"PLACE, future plateforme unique de l'État",d:"La loi de simplification (n° 2026-403) fait de PLACE la plateforme de dématérialisation unique des achats de l'État à terme."},
-  {date:"21 août 2026",h:"Critère environnemental obligatoire",d:"Entrée en vigueur de la loi Climat & résilience (art. 35) : au moins un critère d'attribution environnemental devient obligatoire — fin du critère unique du prix."},
-  {date:"2026",h:"Le BOAMP passe aux eForms",d:"Adoption du format européen standardisé des avis (eForms), qui harmonise la publication des annonces de marchés."},
-  {date:"23 mars 2026",h:"Nouveau profil acheteur du Département de La Réunion",d:"Le Département 974 lance sa nouvelle plateforme des marchés publics : tous les nouveaux avis y sont désormais publiés."},
-  {date:"16 février 2026",h:"L'OECP devient le CNCP",d:"L'Observatoire économique de la commande publique laisse place au Conseil National de la Commande Publique, instance plus représentative."}
+  {date:"31 déc. 2030",h:"PLACE, plateforme unique de l'État",d:"La loi de simplification (n° 2026-403, art. 12) fait de PLACE la plateforme de dématérialisation unique des achats de l'État — au plus tard le 31/12/2030, activée par décret et par catégorie d'acheteurs.",src:"https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054131304"},
+  {date:"1ᵉʳ janv. 2027",h:"Gré à gré travaux relevé à 140 000 €",d:"La loi SVE (n° 2026-403) porte le seuil de dispense de procédure des marchés de travaux de 100 000 € à 140 000 € HT.",src:"https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054131304"},
+  {date:"21 août 2026",h:"Critère environnemental obligatoire",d:"Loi Climat & résilience (n° 2021-1104, art. 35) : au moins un critère d'attribution environnemental devient obligatoire — fin du critère unique du prix.",src:"https://www.economie.gouv.fr/daj/les-mesures-commande-publique-de-la-loi-dite-climat-et-resilience"},
+  {date:"1ᵉʳ juil. 2026",h:"Dispense pour les achats innovants (≤ 140 000 €)",d:"La loi SVE (n° 2026-403, art. 16) pérennise et étend la dispense de publicité/mise en concurrence pour les achats innovants (travaux, fournitures, services) sous 140 000 € HT.",src:"https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054131304"},
+  {date:"23 mars 2026",h:"Nouveau profil acheteur du Département de La Réunion",d:"Depuis le 23/03/2026, le Département 974 publie ses nouveaux avis exclusivement sur sa nouvelle plateforme des marchés.",src:"https://www.departement974.fr/marches-publics"},
+  {date:"16 févr. 2026",h:"Le CNCP succède à l'OECP",d:"Lancement du Conseil National de la Commande Publique (installation DAJ) — instance plus représentative ; l'Observatoire économique reste référencé au Code de la commande publique.",src:"https://www.economie.gouv.fr/dae"}
 ];
 const SIGNAL_EMAIL="rsebastien@protonmail.com";
 
@@ -573,7 +577,7 @@ function buildCompare(){
 
 function buildTimeline(){
   document.getElementById("timeline").innerHTML=TIMELINE.map(t=>
-    `<div class="tl-item"><div class="tl-date">${esc(t.date)}</div><div class="tl-h">${esc(t.h)}</div><div class="tl-d">${esc(t.d)}</div></div>`).join("");
+    `<div class="tl-item"><div class="tl-date">${esc(t.date)}</div><div class="tl-h">${esc(t.h)}</div><div class="tl-d">${esc(t.d)}</div>${t.src?`<a class="tl-src" href="${esc(t.src)}" target="_blank" rel="noopener">Source officielle ${ico("ext",12)}</a>`:""}</div>`).join("");
 }
 function setupSignal(){
   const subj=encodeURIComponent("Annuaire achat public — ajout / correction");
