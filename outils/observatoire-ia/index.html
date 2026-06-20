@@ -92,6 +92,13 @@ main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:0 40px 56px;}
 .monthly .kpi{flex:1;min-width:150px;background:var(--accent-soft);border-radius:11px;padding:14px 16px;}
 .monthly .kpi .v{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--accent);line-height:1;}
 .monthly .kpi .l{font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:700;color:var(--muted);margin-top:5px;}
+.monthly .mcats{margin-bottom:20px;}
+.monthly .mcats h4{font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--faint);margin-bottom:9px;}
+.monthly .catrow{display:grid;grid-template-columns:1fr 110px 110px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-family:'Nunito',sans-serif;}
+.monthly .catrow-head{border-bottom:1px solid var(--border);}
+.monthly .catrow-head span{font-size:11px;font-weight:700;color:var(--faint);text-align:right;}
+.monthly .catl{font-size:14px;font-weight:800;color:var(--title);}
+.monthly .catv{font-size:15px;font-weight:800;color:var(--accent);text-align:right;}
 .monthly .mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px 26px;}
 .monthly .mblock h4{font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--faint);margin-bottom:9px;}
 .monthly .brow{margin-bottom:7px;}
@@ -307,6 +314,9 @@ function renderMonthly(){
       + '<div class="kpi"><div class="v">'+(d.total||0)+'</div><div class="l">consultations publiées</div></div>'
       + '<div class="kpi"><div class="v">'+(a.total||0)+'</div><div class="l">attributions (marchés gagnés)</div></div>'
     + '</div>'
+    + ((M.parCategorie&&M.parCategorie.length) ? '<div class="mcats"><h4>Par catégorie</h4><div class="catrow catrow-head"><span></span><span>Consultations</span><span>Attributions</span></div>'
+      + M.parCategorie.map(c=>'<div class="catrow"><span class="catl">'+esc(c.l)+'</span><span class="catv">'+(c.c||0)+'</span><span class="catv">'+(c.a||0)+'</span></div>').join('')
+      + '</div>' : '')
     + '<div class="mgrid">'
       + '<div class="mblock"><h4>Par type de prestation</h4>'+bars(d.parType)+'</div>'
       + '<div class="mblock"><h4>Par procédure</h4>'+bars(d.parProcedure)+'</div>'
@@ -314,7 +324,7 @@ function renderMonthly(){
       + '<div class="mblock"><h4>Top acheteurs</h4>'+bars(d.topAcheteurs)+'</div>'
       + '<div class="mblock"><h4>Top titulaires (qui gagne)</h4>'+bars(a.topTitulaires)+'</div>'
     + '</div>'
-    + '<div class="mnote">Volumes et titulaires issus des avis BOAMP (frais). Les montants exacts par marché relèvent des données d\'attribution (DECP) — couche à venir.</div>'
+    + '<div class="mnote">Périmètre : marchés « IA / données / numérique » uniquement (pas l\'ensemble des marchés publics). Les répartitions ci-dessus sont tous segments confondus ; un marché peut relever de plusieurs catégories. Volumes et titulaires issus des avis BOAMP (frais) ; les montants exacts par marché relèvent des données d\'attribution (DECP) — couche à venir.</div>'
   + '</div>';
 }
 async function tryCode(code){
