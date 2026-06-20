@@ -7,8 +7,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta name="description" content="Outils locaux, sans compte, sans upload. MD Convert, MonBureauPDF et MonBureauRECORD par Sébastien Rivière.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:#f4f8fb;color:#1a2a35;font-family:'Lora',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;}
@@ -24,21 +23,21 @@ header{padding:64px 40px 48px;max-width:860px;width:100%;margin:0 auto;}
 .contact-label{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1e3a52;color:#fff;font-family:'Nunito',sans-serif;font-size:12px;padding:4px 10px;border-radius:6px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;}
 .contact-label::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1e3a52;}
 .contact-btn:hover .contact-label{opacity:1;}
-.contacts-hint{font-family:'Nunito',sans-serif;font-size:13px;color:#8faabb;margin-left:4px;}
+.contacts-hint{font-family:'Nunito',sans-serif;font-size:13px;color:#5f7e94;margin-left:4px;}
 
 /* ── Main ── */
 main{flex:1;padding:0 40px 64px;max-width:860px;width:100%;margin:0 auto;}
 
 /* ── Sections ── */
 .section{margin-bottom:48px;}
-.section-title{font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:#8faabb;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #dde9f2;}
+.section-title{font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:#5f7e94;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #dde9f2;}
 
 /* ── Cards grille ── */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
 .card{background:#fff;border:1px solid #dde9f2;border-radius:10px;padding:24px;transition:box-shadow .15s,border-color .15s;}
 .card:hover{box-shadow:0 4px 20px rgba(30,58,82,0.10);border-color:#b8d0e4;}
 .card a{text-decoration:none;display:block;}
-.card-label{font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8faabb;margin-bottom:8px;}
+.card-label{font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#5f7e94;margin-bottom:8px;}
 .card-title{font-family:'Nunito',sans-serif;font-weight:700;font-size:16px;color:#1e3a52;line-height:1.35;margin-bottom:6px;}
 .card-desc{font-family:'Lora',serif;font-size:14px;color:#5a7a92;line-height:1.6;}
 .card-arrow{display:inline-block;margin-top:14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:#3a8ac4;}
@@ -61,7 +60,7 @@ footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'N
 <body>
 
 <header>
-  <div class="name">Outils de productivité</div>
+  <h1 class="name">Outils de productivité</h1>
   <div class="tagline">Outils locaux, sans compte, sans upload.</div>
 </header>
 
@@ -70,12 +69,12 @@ footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'N
   <a href="/" class="back-link">← Retour</a>
 
   <div class="section">
-    <div class="section-title">Intelligence artificielle</div>
+    <h2 class="section-title">Intelligence artificielle</h2>
     <div class="grid">
       <div class="card">
         <a href="/outils/annuaire-ia/">
           <div class="card-label">Annuaire · IA</div>
-          <div class="card-title">Annuaire des outils IA</div>
+          <h3 class="card-title">Annuaire des outils IA</h3>
           <div class="card-desc">Une sélection d'outils IA classés par usage et expliqués simplement, avec repères chiffrés (valorisations, audience, popularité). Sans jargon.</div>
           <div class="card-arrow">Ouvrir l'annuaire →</div>
         </a>
@@ -84,12 +83,42 @@ footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'N
   </div>
 
   <div class="section">
-    <div class="section-title">Outils de productivité</div>
+    <h2 class="section-title">Commande publique</h2>
+    <div class="grid">
+      <div class="card">
+        <a href="/outils/achat-public/">
+          <div class="card-label">Outil · Achat public</div>
+          <h3 class="card-title">Computation des seuils</h3>
+          <div class="card-desc">Cumul par famille homogène, procédure applicable, alerte de fractionnement et reporting annuel. Seuils 2026 sourcés. Web + Excel, 100 % en local.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/outils/delais-marches/">
+          <div class="card-label">Outil · Achat public</div>
+          <h3 class="card-title">Rétroplanning des délais</h3>
+          <div class="card-desc">Procédure + date cible : l'outil cale les délais légaux et déroule le calendrier (8 procédures), avec mode « vérifier la régularité » et export agenda. 100 % en local.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/outils/annuaire-achat-public/">
+          <div class="card-label">Annuaire · Achat public</div>
+          <h3 class="card-title">Annuaire de l'écosystème</h3>
+          <div class="card-desc">Plateformes, centrales, sources officielles, presse, experts, voix et AMO — par région (carte France + Outre-mer cliquable), par besoin et par usage. ~164 sources vérifiées, sans classement.</div>
+          <div class="card-arrow">Ouvrir l'annuaire →</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Outils de productivité</h2>
     <div class="grid">
       <div class="card">
         <a href="/outils/MD-Convert/">
           <div class="card-label">Outil · Productivité</div>
-          <div class="card-title">MD Convert</div>
+          <h3 class="card-title">MD Convert</h3>
           <div class="card-desc">Convertissez vos fichiers en Markdown en local — PDF, DOCX, images — sans rien installer ni envoyer.</div>
           <div class="card-arrow">Ouvrir l'outil →</div>
         </a>
@@ -97,7 +126,7 @@ footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'N
       <div class="card">
         <a href="/outils/MonBureauPDF/">
           <div class="card-label">Outil · Productivité</div>
-          <div class="card-title">MonBureauPDF</div>
+          <h3 class="card-title">MonBureauPDF</h3>
           <div class="card-desc">Fusionnez, réorganisez, compressez et exportez vos PDF directement dans le navigateur — sans compte, sans upload.</div>
           <div class="card-arrow">Ouvrir l'outil →</div>
         </a>
@@ -105,7 +134,7 @@ footer{padding:24px 40px;max-width:860px;width:100%;margin:0 auto;font-family:'N
       <div class="card">
         <a href="/outils/MonBureauRECORD/">
           <div class="card-label">Outil · Productivité</div>
-          <div class="card-title">MonBureauRECORD</div>
+          <h3 class="card-title">MonBureauRECORD</h3>
           <div class="card-desc">Enregistrez vos réunions Zoom, Teams ou Meet et obtenez un compte rendu — sans compte, sans upload, sans IA.</div>
           <div class="card-arrow">Ouvrir l'outil →</div>
         </a>

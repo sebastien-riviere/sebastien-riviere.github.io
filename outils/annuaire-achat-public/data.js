@@ -1,0 +1,3724 @@
+window.ANNUAIRE_DATA = {
+ "meta": {
+  "titre": "Annuaire de l'écosystème de l'achat public",
+  "verifie_le": "2026-06-20",
+  "note": "Base d'information neutre — aucun classement. Sélection notable, non exhaustive (notamment AMO). Signaler une erreur / proposer un ajout via le lien de la page.",
+  "familles": {
+   "reglementaire": "Réglementation & doctrine",
+   "opendata": "Open data & observation",
+   "plateforme": "Plateformes & éditeurs",
+   "publication": "Publication des avis",
+   "presse": "Presse, revues & newsletters",
+   "centrale": "Centrales d'achat & réseaux",
+   "institution": "Institutions & accompagnement",
+   "acheteur": "Gros acheteurs repères",
+   "expert": "Experts & cabinets",
+   "voix": "Voix à suivre",
+   "amo": "AMO / conseil achat public"
+  },
+  "personas": {
+   "acheteur": "Côté acheteur public",
+   "entreprise": "Côté entreprise / candidat"
+  },
+  "usages": {
+   "droit": "Connaître le droit",
+   "data": "Données & analyse",
+   "publier": "Publier un avis",
+   "trouver-ao": "Trouver des appels d'offres",
+   "acheter-mutualiser": "Acheter via une centrale",
+   "se-former": "Se former / s'informer",
+   "s-accompagner": "Être accompagné"
+  },
+  "secteurs": [
+   "généraliste",
+   "santé",
+   "médico-social-social",
+   "énergie",
+   "transport",
+   "numérique-IT",
+   "alimentaire",
+   "BTP-MOE",
+   "logement",
+   "enseignement",
+   "juridique",
+   "achat-durable",
+   "multi"
+  ],
+  "champs": {
+   "alerte": "Système d'alerte AO par mail (oui/non/inconnu) — pour les organismes qui publient des marchés"
+  }
+ },
+ "sources": [
+  {
+   "nom": "Légifrance — Code de la commande publique",
+   "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000037701019/",
+   "url_confiance": "ok",
+   "famille": "reglementaire",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit"
+   ],
+   "format": "site",
+   "desc": "Texte intégral et à jour du Code de la commande publique : la source de droit primaire."
+  },
+  {
+   "nom": "DAJ Bercy — Réglementation de la commande publique",
+   "url": "https://www.economie.gouv.fr/daj/commande-publique",
+   "url_confiance": "ok",
+   "famille": "reglementaire",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Portail de la Direction des affaires juridiques : doctrine, fiches techniques, guides et textes de référence."
+  },
+  {
+   "nom": "CCAG 2021 (Cahiers des clauses administratives générales)",
+   "url": "https://www.economie.gouv.fr/daj/commande-publique/reglementation-de-la-commande-publique/cahiers-des-clauses-administratives",
+   "url_confiance": "ok",
+   "famille": "reglementaire",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit"
+   ],
+   "format": "site",
+   "desc": "Les six CCAG 2021 (travaux, FCS, PI, MOE, TIC, marchés industriels) et leurs guides : clauses-types d'exécution."
+  },
+  {
+   "nom": "Direction des achats de l'État (DAE)",
+   "url": "https://www.economie.gouv.fr/dae",
+   "url_confiance": "ok",
+   "famille": "reglementaire",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "acheter-mutualiser",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Direction pilotant la politique et les achats mutualisés de l'État : stratégie, achats responsables, professionnalisation."
+  },
+  {
+   "nom": "CNCP — Conseil National de la Commande Publique (ex-OECP)",
+   "url": "https://www.economie.gouv.fr/daj/de-loecp-au-cncp-une-instance-plus-representative-et-plus-agile-pour-la-commande-publique",
+   "url_confiance": "ok",
+   "famille": "reglementaire",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "se-former",
+    "data",
+    "droit"
+   ],
+   "format": "site",
+   "desc": "Instance de concertation de la commande publique : guides, recommandations, recensement économique. L'OECP est devenu le CNCP le 16 février 2026."
+  },
+  {
+   "nom": "Conseil d'État — ArianeWeb (jurisprudence)",
+   "url": "https://www.conseil-etat.fr/decisions-de-justice/jurisprudence/rechercher-une-decision-arianeweb",
+   "url_confiance": "ok",
+   "famille": "reglementaire",
+   "type_acteur": "institution",
+   "secteur": "juridique",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit"
+   ],
+   "format": "site",
+   "desc": "Base de jurisprudence du Conseil d'État et des juridictions administratives : décisions de référence en contentieux des marchés."
+  },
+  {
+   "nom": "EUR-Lex — Directive 2014/24/UE (marchés publics)",
+   "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32014L0024",
+   "url_confiance": "ok",
+   "famille": "reglementaire",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit"
+   ],
+   "format": "site",
+   "desc": "Directive européenne « secteurs classiques » qui fonde le droit français des marchés (compléter par 2014/25 et 2014/23)."
+  },
+  {
+   "nom": "DECP — Données essentielles de la commande publique",
+   "url": "https://www.data.gouv.fr/fr/datasets/donnees-essentielles-de-la-commande-publique-fichiers-consolides/",
+   "url_confiance": "ok",
+   "famille": "opendata",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "data",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Fichiers consolidés de tous les marchés/concessions publiés (montant, titulaire, objet) : la base pour analyser le marché."
+  },
+  {
+   "nom": "API BOAMP — Avis de marchés (DILA)",
+   "url": "https://www.data.gouv.fr/dataservices/api-bulletin-officiel-des-annonces-des-marches-publics-boamp",
+   "url_confiance": "ok",
+   "famille": "opendata",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise",
+    "acheteur"
+   ],
+   "usages": [
+    "trouver-ao",
+    "data"
+   ],
+   "format": "site",
+   "desc": "API ouverte donnant accès en continu aux avis du BOAMP : repérer des AO par programme, alimenter une veille."
+  },
+  {
+   "nom": "data.economie.gouv.fr — Open data de Bercy",
+   "url": "https://data.economie.gouv.fr/explore/?q=commande+publique",
+   "url_confiance": "ok",
+   "famille": "opendata",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "data"
+   ],
+   "format": "site",
+   "desc": "Portail open data du ministère : jeux de données et API sur la commande publique (exploration, visualisation, export)."
+  },
+  {
+   "nom": "Recensement économique de la commande publique (CNCP)",
+   "url": "https://www.economie.gouv.fr/daj/commande-publique/observatoire-economique-de-la-commande-publique-oecp/le-recensement",
+   "url_confiance": "ok",
+   "famille": "opendata",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "data"
+   ],
+   "format": "site",
+   "desc": "Données chiffrées annuelles (volume des contrats, part des PME, clauses) : la statistique de référence sur le poids économique."
+  },
+  {
+   "nom": "PLACE — Plateforme des achats de l'État",
+   "url": "https://www.marches-publics.gouv.fr/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Profil acheteur officiel de l'État et de ses établissements : publication des consultations et dépôt des offres. Alerte par secteur et zone."
+  },
+  {
+   "nom": "AWS-Achat / marches-publics.info",
+   "url": "https://www.marches-publics.info/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Profil acheteur privé très utilisé par les collectivités (>60 000 AO/an) ; alertes mail gratuites pour les fournisseurs."
+  },
+  {
+   "nom": "achatpublic.com",
+   "url": "https://www.achatpublic.com/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Plateforme de dématérialisation couvrant tout le cycle achat ; capital Infopro Digital + Caisse des Dépôts ; alertes paramétrables."
+  },
+  {
+   "nom": "e-marchespublics.com (Dematis)",
+   "url": "https://www.e-marchespublics.com/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Profil acheteur privé + moteur de veille (mots-clés, sources BOAMP/JOUE/profils, zone) avec alertes mail."
+  },
+  {
+   "nom": "Klekoon",
+   "url": "https://www.klekoon.com/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Plateforme de dématérialisation et profil acheteur ; alertes gratuites par secteur, mots-clés, CPV et localité."
+  },
+  {
+   "nom": "Marchés Sécurisés",
+   "url": "https://www.marches-securises.fr/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Profil acheteur / dématérialisation très présent en Outre-mer ; service d'alerte entreprise à confirmer."
+  },
+  {
+   "nom": "France Marchés",
+   "url": "https://www.francemarches.com/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "oui",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao",
+    "data"
+   ],
+   "format": "site",
+   "desc": "Agrégateur d'AO (presse régionale + BOAMP + JOUE + sites acheteurs) édité par la PQR ; alertes gratuites illimitées."
+  },
+  {
+   "nom": "Marchés Online",
+   "url": "https://www.marchesonline.com/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "oui",
+   "personas": [
+    "entreprise",
+    "acheteur"
+   ],
+   "usages": [
+    "trouver-ao",
+    "publier",
+    "data"
+   ],
+   "format": "site",
+   "desc": "Agrégateur d'avis publics et privés (>400 000 avis) avec alertes mail quotidiennes/hebdo ; pack acheteur pour diffuser."
+  },
+  {
+   "nom": "MARCO (Agysoft)",
+   "url": "https://www.agysoft.fr/marcoweb",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "editeur",
+   "secteur": "numérique-IT",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Suite logicielle achats et marchés publics d'Agysoft (gestion + profil acheteur, IA MIA), très utilisée par les collectivités."
+  },
+  {
+   "nom": "Local-Trust (ATEXO)",
+   "url": "https://www.atexo.com/solutions/solutions-achats-et-marches-publics/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "editeur",
+   "secteur": "numérique-IT",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier"
+   ],
+   "format": "site",
+   "desc": "Suite Local-Trust d'ATEXO (profil acheteur + modules) ; leader FR de la dématérialisation, technologie derrière plusieurs profils publics dont PLACE."
+  },
+  {
+   "nom": "Oxalys",
+   "url": "https://www.oxalys.fr/digitalisation-achats-publics/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "editeur",
+   "secteur": "numérique-IT",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "publier"
+   ],
+   "format": "site",
+   "desc": "Éditeur de la fonction Achats (Source-to-Contract / Procure-to-Pay) public et privé, référencé UGAP."
+  },
+  {
+   "nom": "Ordiges",
+   "url": "https://ordiges.fr/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "editeur",
+   "secteur": "numérique-IT",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "publier"
+   ],
+   "format": "site",
+   "desc": "Éditeur de solutions achats publics : Ask&Go Public, LiaWeb (exécution des marchés), OfLex (marchés à faible montant)."
+  },
+  {
+   "nom": "Synapse Entreprises",
+   "url": "https://www.synapse-entreprises.com/dematerialisation/offres",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "editeur",
+   "secteur": "numérique-IT",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Profil acheteur et dématérialisation des marchés, positionné sur les petites et moyennes collectivités."
+  },
+  {
+   "nom": "Berger-Levrault",
+   "url": "https://www.berger-levrault.com/fr/categorie/gestion-administrative/achats-publics/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "editeur",
+   "secteur": "numérique-IT",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "publier"
+   ],
+   "format": "site",
+   "desc": "Éditeur historique des collectivités : gestion du cycle des marchés (Légimarchés, dématérialisation des procédures)."
+  },
+  {
+   "nom": "Oalia",
+   "url": "https://www.oalia.com/oalia-logiciel-eachat-marches-publics/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "editeur",
+   "secteur": "numérique-IT",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "publier"
+   ],
+   "format": "site",
+   "desc": "Logiciel e-achat 100% web couvrant l'intégralité du processus achat marchés publics."
+  },
+  {
+   "nom": "3P Marchés Publics",
+   "url": "https://3pmarchespublics.fr/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "editeur",
+   "secteur": "numérique-IT",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "publier"
+   ],
+   "format": "site",
+   "desc": "Éditeur spécialisé dans la gestion des marchés et achats publics pour acheteurs publics."
+  },
+  {
+   "nom": "BOAMP — Bulletin officiel des annonces des marchés publics",
+   "url": "https://www.boamp.fr/",
+   "url_confiance": "ok",
+   "famille": "publication",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao",
+    "droit",
+    "data"
+   ],
+   "format": "site",
+   "desc": "Journal officiel des annonces de marchés (DILA) : publication légale des avis ; alerte mail gratuite sur recherches enregistrées."
+  },
+  {
+   "nom": "TED — Tenders Electronic Daily (JOUE)",
+   "url": "https://ted.europa.eu/",
+   "url_confiance": "ok",
+   "famille": "publication",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao",
+    "data"
+   ],
+   "format": "site",
+   "desc": "Supplément au JOUE : avis au-dessus des seuils européens + open data ; alertes mail et flux RSS personnalisables."
+  },
+  {
+   "nom": "Annonces légales (actulegales.fr)",
+   "url": "https://actulegales.fr",
+   "url_confiance": "ok",
+   "famille": "publication",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "payant",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "publier",
+    "droit"
+   ],
+   "format": "site",
+   "desc": "Portail national des annonces légales (presse habilitée, agréé Justice/Culture) : certains avis de marchés sous seuils y sont publiés."
+  },
+  {
+   "nom": "achatpublic.info",
+   "url": "https://www.achatpublic.info/",
+   "url_confiance": "ok",
+   "famille": "presse",
+   "type_acteur": "media",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "payant",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "newsletter",
+   "desc": "Quotidien en ligne professionnel de la commande publique (analyses, jurisprudence) ; plusieurs newsletters, sur abonnement."
+  },
+  {
+   "nom": "Le Moniteur — Achat public",
+   "url": "https://www.lemoniteur.fr/achat-public/",
+   "url_confiance": "ok",
+   "famille": "presse",
+   "type_acteur": "media",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former",
+    "trouver-ao"
+   ],
+   "format": "newsletter",
+   "desc": "Rubrique commande publique du Moniteur : actualité des marchés et achats de l'État ; alertes et newsletters."
+  },
+  {
+   "nom": "La Gazette des communes",
+   "url": "https://www.lagazettedescommunes.com/themes/marches-publics/",
+   "url_confiance": "ok",
+   "famille": "presse",
+   "type_acteur": "media",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "newsletter",
+   "desc": "Presse des collectivités : actualité de la réglementation des marchés côté acheteurs locaux ; newsletters et alertes."
+  },
+  {
+   "nom": "Contrats Publics (Le Moniteur Juris)",
+   "url": "https://boutique.lemoniteur.fr/contrats-publics-revue.html",
+   "url_confiance": "ok",
+   "famille": "presse",
+   "type_acteur": "media",
+   "secteur": "juridique",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "revue",
+   "desc": "Revue mensuelle de référence sur l'actualité de la commande publique et des contrats publics."
+  },
+  {
+   "nom": "WEKA — commande publique",
+   "url": "https://www.weka.fr/actualite/thematique/marches-publics/",
+   "url_confiance": "ok",
+   "famille": "presse",
+   "type_acteur": "media",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "newsletter",
+   "desc": "Information juridique pour acteurs publics : actualité, fiches pratiques, masterclass ; newsletters gratuites par thématique."
+  },
+  {
+   "nom": "Localtis (Banque des Territoires)",
+   "url": "https://www.banquedesterritoires.fr/localtis",
+   "url_confiance": "ok",
+   "famille": "presse",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "newsletter",
+   "desc": "Quotidien en ligne des collectivités (Caisse des Dépôts) ; édition hebdo par mail, dont l'achat public."
+  },
+  {
+   "nom": "Maire-info (AMF)",
+   "url": "https://www.maire-info.com/",
+   "url_confiance": "ok",
+   "famille": "presse",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "newsletter",
+   "desc": "Quotidien de l'Association des maires de France destiné aux élus : actualité des communes, dont la commande publique."
+  },
+  {
+   "nom": "Légibase Marchés publics",
+   "url": "https://marches-publics.legibase.fr/actualites/newsletter",
+   "url_confiance": "ok",
+   "famille": "presse",
+   "type_acteur": "media",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "newsletter",
+   "desc": "Base documentaire pour collectivités : actualités juridiques marchés publics + newsletter dédiée aux acheteurs locaux."
+  },
+  {
+   "nom": "AJDA / Dalloz (commande publique)",
+   "url": "https://www.dalloz.fr/",
+   "url_confiance": "ok",
+   "famille": "presse",
+   "type_acteur": "media",
+   "secteur": "juridique",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "droit"
+   ],
+   "format": "revue",
+   "desc": "Revues juridiques de référence (AJDA, RFDA, AJCT) sur le droit administratif et la commande publique, sur abonnement."
+  },
+  {
+   "nom": "UGAP — Union des groupements d'achats publics",
+   "url": "https://www.ugap.fr/",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Centrale d'achat publique généraliste de l'État (EPIC) : adhésion gratuite, achat dispensé de procédure via le catalogue."
+  },
+  {
+   "nom": "RESAH — Réseau des acheteurs hospitaliers",
+   "url": "https://www.resah.fr/",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "santé",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser",
+    "se-former",
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "GIP, centrale d'achat des secteurs sanitaire, médico-social et social (~3 Md€/an) ; aussi conseil et formation."
+  },
+  {
+   "nom": "UniHA",
+   "url": "https://www.uniha.org/",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "santé",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser"
+   ],
+   "format": "site",
+   "desc": "Coopérative d'achat des établissements de santé (GCS) : marchés mutualisés pour le secteur hospitalier."
+  },
+  {
+   "nom": "CAIH — Centrale d'achat de l'informatique hospitalière",
+   "url": "https://www.caih-sante.org/",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "santé",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser"
+   ],
+   "format": "site",
+   "desc": "Centrale dédiée à l'informatique et au numérique hospitalier (gouvernance UniHA) : marchés IT mutualisés."
+  },
+  {
+   "nom": "CATP — Centrale d'Achat du Transport Public",
+   "url": "https://www.catp.fr/",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "transport",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser"
+   ],
+   "format": "site",
+   "desc": "Centrale d'achat (AGIR Transport) spécialisée mobilité/transport public : bus, logiciels et services."
+  },
+  {
+   "nom": "UNADERE",
+   "url": "https://www.unadere.fr/",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "médico-social-social",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "acheter-mutualiser"
+   ],
+   "format": "site",
+   "desc": "Centrale de référencement associative (réseau ADERE) pour l'ESS et le médico-social : conditions négociées auprès de ~170 fournisseurs pour ses adhérents (ESMS, associations)."
+  },
+  {
+   "nom": "SDE — Syndicats Départementaux d'Énergie (groupements d'achat)",
+   "url": "https://www.fnccr.asso.fr/",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "énergie",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "acheter-mutualiser",
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Concept : chaque département a son syndicat d'énergie portant des groupements d'achat électricité/gaz ouverts aux entités publiques (ex. SDE24, SDE35). Tête de réseau : FNCCR."
+  },
+  {
+   "nom": "FNCCR — Fédération des collectivités concédantes et régies",
+   "url": "https://www.fnccr.asso.fr/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "énergie",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Fédération (~900 collectivités) des services publics en réseau (énergie, eau, numérique, déchets) ; tête de réseau des syndicats d'énergie."
+  },
+  {
+   "nom": "APASP — Association Pour l'Achat dans les Services Publics",
+   "url": "https://www.apasp.com/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "multi",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "se-former",
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Club d'acheteurs publics (~2000 membres) : formation, guides et échange de pratiques en commande publique."
+  },
+  {
+   "nom": "AAP — Association des Acheteurs Publics (ex-AACT)",
+   "url": "https://www.aapasso.fr/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "multi",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "mixte",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "se-former",
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Réseau d'acheteurs des 3 fonctions publiques (depuis 1992) : outils, veille, guides et service Q/R."
+  },
+  {
+   "nom": "Médiateur des entreprises (différends commande publique)",
+   "url": "https://www.economie.gouv.fr/mediateur-des-entreprises",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "multi",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Service public gratuit et confidentiel de médiation des différends d'exécution (contrats privés et marchés publics) ; la saisine interrompt les délais de recours."
+  },
+  {
+   "nom": "MIQCP — Mission Interministérielle Qualité Constructions Publiques",
+   "url": "https://www.miqcp.gouv.fr/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "BTP-MOE",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Conseil gratuit, guides et formations aux maîtres d'ouvrage publics : qualité des constructions, marchés de MOE (concours, MOP)."
+  },
+  {
+   "nom": "France urbaine",
+   "url": "https://franceurbaine.org/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "multi",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Association des grandes villes, métropoles et agglomérations : groupes de travail et partage de pratiques sur l'achat public territorial."
+  },
+  {
+   "nom": "Intercommunalités de France (ex-AdCF)",
+   "url": "https://www.adcf.org/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "multi",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Fédération des élus de l'intercommunalité : ressource sur la mutualisation et l'achat public intercommunal."
+  },
+  {
+   "nom": "AMF — Association des Maires de France",
+   "url": "https://www.amf.asso.fr/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "multi",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Première association d'élus locaux : notes, modèles et appui juridique aux communes et intercos sur la commande publique."
+  },
+  {
+   "nom": "AMRF — Association des Maires Ruraux de France",
+   "url": "https://www.amrf.fr/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "multi",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Réseau des maires ruraux : entraide et mutualisation utiles à l'achat public des petites collectivités."
+  },
+  {
+   "nom": "Maximilien",
+   "url": "https://www.maximilien.fr",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Île-de-France",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "GIP francilien : portail mutualisé des marchés d'Île-de-France, gratuit pour les entreprises."
+  },
+  {
+   "nom": "Mégalis Bretagne",
+   "url": "https://marches.megalis.bretagne.bzh",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Bretagne",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Syndicat mixte régional : salle des marchés mutualisée de la grande majorité des collectivités bretonnes."
+  },
+  {
+   "nom": "Alsace Marchés Publics (DEMAT-AMPA)",
+   "url": "https://alsacemarchespublics.eu",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Grand Est",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Plateforme mutualisée des collectivités alsaciennes (+400 acheteurs) ; consultation et réponse gratuites."
+  },
+  {
+   "nom": "ARNia — Salle des marchés BFC (ex e-bourgogne)",
+   "url": "https://arnia-bfc.fr/salle-marche",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Bourgogne-Franche-Comté",
+   "acces": "mixte",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Agence Régionale du Numérique : première plateforme régionale de dématérialisation (2005) pour les collectivités BFC."
+  },
+  {
+   "nom": "Corsica Mercati",
+   "url": "https://corsicamercati.corsica",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Corse",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Portail territorial unique des marchés de Corse (Collectivité de Corse, communes, EPCI, État, bailleurs)."
+  },
+  {
+   "nom": "MPE76 — Marchés Publics Électroniques Seine-Maritime",
+   "url": "https://www.mpe76.fr",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Normandie",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Portail mutualisé des collectivités de Seine-Maritime (Département, Métropole Rouen, Rouen, Le Havre, EPCI)."
+  },
+  {
+   "nom": "Région Normandie — Marchés publics",
+   "url": "https://marchespublics.normandie.fr",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Normandie",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Profil acheteur de la Région Normandie : avis et consultations de la collectivité régionale."
+  },
+  {
+   "nom": "Grand Lyon — Portail des marchés publics",
+   "url": "https://marchespublics.grandlyon.com",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Auvergne-Rhône-Alpes",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Portail commun mutualisé de la Métropole de Lyon et des communes adhérentes."
+  },
+  {
+   "nom": "Bordeaux Métropole — Portail des marchés publics",
+   "url": "https://marchespublics-ant.bordeaux-metropole.fr",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Nouvelle-Aquitaine",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Profil acheteur de Bordeaux Métropole : avis de marchés et transmission des offres en ligne."
+  },
+  {
+   "nom": "Approlys Centr'Achats",
+   "url": "https://www.approlyscentrachats.fr",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Centre-Val de Loire",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "GIP (Région + 6 départements), première centrale territoriale de France : +800 adhérents, marchés mutualisés."
+  },
+  {
+   "nom": "Centrale d'achat régionale Auvergne-Rhône-Alpes",
+   "url": "https://lacentraledachat.auvergnerhonealpes.fr",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Auvergne-Rhône-Alpes",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Première centrale régionale (2017), ouverte à tout acheteur public d'AURA : ~130 marchés mutualisés."
+  },
+  {
+   "nom": "Breizh Achats",
+   "url": "https://www.bretagne.bzh/breizh-achats/",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "alimentaire",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Bretagne",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser"
+   ],
+   "format": "site",
+   "desc": "Centrale régionale (Région + 4 départements) : approvisionnement mutualisé des lycées et collèges."
+  },
+  {
+   "nom": "Cap'Oise Hauts-de-France",
+   "url": "https://www.capoise.fr",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Hauts-de-France",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser"
+   ],
+   "format": "site",
+   "desc": "Centrale d'achat de proximité ouverte à tout organisme public/privé des Hauts-de-France : IT, mobilier, travaux simples."
+  },
+  {
+   "nom": "CAP Territoires",
+   "url": "https://www.cap-territoires.fr",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Hauts-de-France",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser"
+   ],
+   "format": "site",
+   "desc": "Centrale créée par le Département de l'Oise, active sur HdF, Normandie, Grand Est et IDF : marchés mutualisés."
+  },
+  {
+   "nom": "SIGEIF — Syndicat des énergies d'Île-de-France",
+   "url": "https://www.sigeif.fr",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "énergie",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Île-de-France",
+   "acces": "mixte",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "acheter-mutualiser"
+   ],
+   "format": "site",
+   "desc": "Achat groupé d'énergie (gaz, électricité) pour les collectivités franciliennes adhérentes."
+  },
+  {
+   "nom": "SIPPEREC (Sipp'n'co)",
+   "url": "https://www.sipperec.fr",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "numérique-IT",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Île-de-France",
+   "acces": "mixte",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "acheter-mutualiser"
+   ],
+   "format": "site",
+   "desc": "Syndicat intercommunal IDF ; sa centrale Sipp'n'co mutualise pour ~380 collectivités les marchés numériques, télécoms et énergie."
+  },
+  {
+   "nom": "Région Réunion — Portail des marchés publics",
+   "url": "https://marches-publics.regionreunion.com",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Profil acheteur de la Région : AO de la collectivité régionale (transports, lycées, aménagement), avec alerte gratuite."
+  },
+  {
+   "nom": "Département de La Réunion — Marchés publics",
+   "url": "https://marches-publics.departement974.fr/entreprise",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Nouveau profil acheteur du Département depuis le 23 mars 2026 (remplace l'ancien cg974) : tous les nouveaux avis y sont publiés."
+  },
+  {
+   "nom": "CINOR — Profil acheteur (Nord)",
+   "url": "https://marches.cinor.fr",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "AO de l'intercommunalité du Nord (Saint-Denis, Sainte-Marie, Sainte-Suzanne) ; dépôt exclusivement électronique."
+  },
+  {
+   "nom": "CIVIS — Profil acheteur (Sud)",
+   "url": "https://civis.e-marchespublics.com",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "AO de la communauté intercommunale des Villes Solidaires (bassin Saint-Pierre / Sud)."
+  },
+  {
+   "nom": "TCO — Territoire de la Côte Ouest",
+   "url": "https://www.marches-securises.fr",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "AO du Territoire de la Côte Ouest (Le Port, La Possession, Saint-Paul, Trois-Bassins, Saint-Leu), via Marchés Sécurisés."
+  },
+  {
+   "nom": "CASUD — Communauté d'agglomération du Sud",
+   "url": "https://casud.achatpublic.com",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "AO de la CA du Sud (Le Tampon, Saint-Joseph, Entre-Deux, Saint-Philippe), via achatpublic.com."
+  },
+  {
+   "nom": "CIREST — Communauté intercommunale Réunion Est",
+   "url": "https://www.marches-securises.fr",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "AO de la CIREST (Saint-Benoît, Saint-André, Bras-Panon), via Marchés Sécurisés ; journées d'info AO."
+  },
+  {
+   "nom": "CHU de La Réunion — Marchés publics",
+   "url": "https://chu-reunion.marches-publics.info",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "santé",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Achats hospitaliers du CHU (médical, biomédical, services, travaux), gros volume ; alerte gratuite via AWS."
+  },
+  {
+   "nom": "CCI Réunion — Alerte Marchés Publics + accompagnement",
+   "url": "https://www.alerte-marchespublics.reunion.cci.fr",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao",
+    "s-accompagner",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Agrégateur d'AO de plusieurs donneurs d'ordre du 974 + accompagnement à la réponse : le point d'entrée le plus pratique. Propose aussi un Diag Marchés Publics (diagnostic) en plus de l'alerte AO."
+  },
+  {
+   "nom": "CMA Réunion — Mission Marchés Publics",
+   "url": "https://www.artisanat974.re/acceder-a-la-commande-publique/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Accompagne artisans et TPE pour gagner des AO (formation, dématérialisation, signature et facturation électroniques)."
+  },
+  {
+   "nom": "Clicanoo (clicanoo.re)",
+   "url": "https://www.clicanoo.re",
+   "url_confiance": "ok",
+   "famille": "publication",
+   "type_acteur": "media",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Principal site d'actualité de La Réunion (le titre papier JIR a cessé ; le site demeure). Pour les avis d'appel d'offres 974, support de référence = Le Quotidien / officiel.re."
+  },
+  {
+   "nom": "Le Quotidien de La Réunion",
+   "url": "https://www.lequotidien.re",
+   "url_confiance": "ok",
+   "famille": "publication",
+   "type_acteur": "media",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Journal d'annonces légales habilité (974) : avis d'AO, enquêtes publiques, ventes immobilières."
+  },
+  {
+   "nom": "e-Guadeloupe — Portail des marchés publics",
+   "url": "https://www.eguadeloupe.com",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Guadeloupe",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Profil acheteur régional mutualisé (moteur Atexo) : Région Guadeloupe + dizaines d'établissements publics locaux."
+  },
+  {
+   "nom": "Région Guadeloupe — Marchés publics",
+   "url": "https://www.regionguadeloupe.fr/les-aides-les-services/les-e-services/marches-publics/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Guadeloupe",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Page institutionnelle de la Région renvoyant vers le profil acheteur e-Guadeloupe."
+  },
+  {
+   "nom": "Département de la Guadeloupe (CG971) — Marchés publics",
+   "url": "https://www.cg971.fr/marches-publics/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Guadeloupe",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Page marchés du Département ; renvoie vers marches-securises.fr pour répondre (pas via e-Guadeloupe)."
+  },
+  {
+   "nom": "CCI des Îles de Guadeloupe",
+   "url": "https://www.guadeloupe.cci.fr",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "Guadeloupe",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Accompagne les entreprises sur l'accès à la commande publique (conseil, appui)."
+  },
+  {
+   "nom": "e-marches Martinique (Marchés Sécurisés)",
+   "url": "https://www.marches-securises.fr/perso/martinique/",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Martinique",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Plateforme mutualisée de la Martinique : communes, EPCI et administrations ; inscription gratuite."
+  },
+  {
+   "nom": "Collectivité Territoriale de Martinique (CTM)",
+   "url": "https://collectiviteterritorialedemartinique.achatpublic.com",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Martinique",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Profil acheteur de la collectivité unique de Martinique (région+département), hébergé sur achatpublic.com."
+  },
+  {
+   "nom": "CCI Martinique — Haut Conseil à la Commande Publique",
+   "url": "https://www.martinique.cci.fr",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "Martinique",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao",
+    "s-accompagner",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Recense les intentions d'achat des acheteurs publics et aide les entreprises à répondre aux AO."
+  },
+  {
+   "nom": "Collectivité Territoriale de Guyane (CTG)",
+   "url": "https://www.ctguyane.fr/marches-publics/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Guyane",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Collectivité unique de Guyane ; profil acheteur dématérialisé hébergé par Agysoft."
+  },
+  {
+   "nom": "Agysoft — profil acheteur CTG (marches-publics.info)",
+   "url": "https://agysoft.marches-publics.info",
+   "url_confiance": "ok",
+   "famille": "plateforme",
+   "type_acteur": "plateforme",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Guyane",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Plateforme de dématérialisation (AWS/Agysoft) hébergeant le profil acheteur de la CTG."
+  },
+  {
+   "nom": "CACL — CA du Centre Littoral (Cayenne)",
+   "url": "https://www.cacl-guyane.fr/marches-publics/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Guyane",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "EPCI de Cayenne et du centre littoral ; publie ses marchés (déchets, eau, voirie) via Marchés Sécurisés."
+  },
+  {
+   "nom": "CCI de Région Guyane",
+   "url": "https://www.guyane.cci.fr",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "Guyane",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "CCI régionale et territoriale (Cayenne) : accompagnement création, transition numérique, formation."
+  },
+  {
+   "nom": "Département de Mayotte — Marchés publics",
+   "url": "https://www.mayotte.fr/services-en-ligne/au-quotidien/marches-publics",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Mayotte",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Collectivité unique de Mayotte ; direction de la commande publique, avis via Marchés Sécurisés."
+  },
+  {
+   "nom": "CADEMA — CA Dembéni-Mamoudzou",
+   "url": "https://cadema.yt",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Mayotte",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "EPCI principal de Mayotte (Mamoudzou + Dembéni) ; publie ses marchés via Marchés Sécurisés."
+  },
+  {
+   "nom": "CCI de Mayotte",
+   "url": "https://www.mayotte.cci.fr",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "asso-reseau",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "Mayotte",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "CCI régionale et territoriale (Mamoudzou) : accompagnement des entreprises et formation."
+  },
+  {
+   "nom": "CADI — Centrale d'Achats Durables et Innovants",
+   "url": "https://www.cadi.re/",
+   "url_confiance": "ok",
+   "famille": "centrale",
+   "type_acteur": "centrale",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "acheter-mutualiser"
+   ],
+   "format": "site",
+   "desc": "Centrale d'achat publique créée en 2015 par le TCO (La Réunion) : mutualise les achats des collectivités membres et favorise l'accès des TPE/PME locales."
+  },
+  {
+   "nom": "AP-HP (Assistance Publique-Hôpitaux de Paris)",
+   "url": "https://achats-ageps.aphp.fr/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "santé",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Premier CHU d'Europe et plus gros acheteur hospitalier français (centrale AGEPS) ; consultations via achatpublic.com."
+  },
+  {
+   "nom": "SNCF (Direction des Achats Groupe)",
+   "url": "https://www.groupe-sncf.com/fr/groupe/fournisseurs",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "transport",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Centrale d'achat du groupe ferroviaire (plateforme e@si pour SNCF Réseau) ; un des plus gros volumes d'achats de France."
+  },
+  {
+   "nom": "RATP (Portail Achats)",
+   "url": "https://www.ratp.fr/groupe-ratp/travailler-avec-la-ratp/portail-achats-et-avis-de-marches",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "transport",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Opérateur de transport francilien ; tous ses avis et la réponse dématérialisée passent par son Portail Achats."
+  },
+  {
+   "nom": "La Poste Groupe (MAG e-Sourcing)",
+   "url": "https://e-sourcing.extra.laposte.fr/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": ">6 Md€ d'achats annuels et 32 000 fournisseurs ; consultations via le portail MAG e-Sourcing."
+  },
+  {
+   "nom": "EDF (Portail Achats)",
+   "url": "https://portail-achats.edf.com/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "énergie",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Énergéticien (entité adjudicatrice) ; portail achats groupe servant des dizaines de milliers de fournisseurs."
+  },
+  {
+   "nom": "Métropole Aix-Marseille-Provence",
+   "url": "https://marchespublics.ampmetropole.fr/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "Provence-Alpes-Côte d'Azur",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Plus grande métropole de France par la superficie (>900 M€ d'achats/an) ; profil acheteur dédié."
+  },
+  {
+   "nom": "Ministère des Armées (achats.defense.gouv.fr)",
+   "url": "https://achats.defense.gouv.fr/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "~5 Md€ d'achats/an auprès de ~26 000 PME ; portail des besoins de la Défense (réponse via PLACE)."
+  },
+  {
+   "nom": "CDC Habitat (Portail des marchés)",
+   "url": "https://cdc-ha.cdc-habitat.fr/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "logement",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Premier bailleur social de France (groupe Caisse des Dépôts, présent en Outre-mer) ; profil acheteur dédié."
+  },
+  {
+   "nom": "Université de La Réunion (via PLACE)",
+   "url": "https://www.marches-publics.gouv.fr/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "enseignement",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Seule université de l'île (opérateur de l'État) ; publie ses AO sur PLACE."
+  },
+  {
+   "nom": "Rectorat / Académie de La Réunion (via PLACE)",
+   "url": "https://www.marches-publics.gouv.fr/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "enseignement",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Académie pilotant les établissements scolaires de l'île (services de l'État) ; publie ses AO sur PLACE."
+  },
+  {
+   "nom": "SIDR (Société Immobilière du Département de La Réunion)",
+   "url": "https://sidr.achatpublic.com/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "logement",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Plus grand bailleur social historique de l'île (SEM) ; profil acheteur sur achatpublic.com, prévisionnel d'AO publié."
+  },
+  {
+   "nom": "SHLMR (Société d'HLM de La Réunion)",
+   "url": "https://shlmr.fr/appels-d-offres",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "logement",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Grand bailleur social de l'île (groupe Action Logement) ; page appels d'offres dédiée."
+  },
+  {
+   "nom": "SEMADER (SEM d'aménagement de La Réunion)",
+   "url": "https://www.semader.fr/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "logement",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "SEM de logement et d'aménagement ; lance des marchés (souvent groupés avec SIDR/CDC Habitat OM)."
+  },
+  {
+   "nom": "Grand Port Maritime de La Réunion (Port Réunion)",
+   "url": "https://www.marches-publics.gouv.fr/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "transport",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "oui",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Unique grand port maritime de l'île (établissement public) ; publie ses AO (travaux portuaires, sûreté, énergie) sur PLACE."
+  },
+  {
+   "nom": "Aéroport de La Réunion Roland Garros",
+   "url": "https://marchespublics.reunion.aeroport.fr/",
+   "url_confiance": "ok",
+   "famille": "acheteur",
+   "type_acteur": "acheteur",
+   "secteur": "transport",
+   "type": "officiel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "alerte": "inconnu",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Principal aéroport de l'île ; entité adjudicatrice à gros chantiers (terminaux, sûreté) — URL à confirmer."
+  },
+  {
+   "nom": "Landot & Associés (Le blog du droit public)",
+   "url": "https://blog.landot-avocats.net",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "blog",
+   "desc": "Blog de droit public très prolifique (articles + vidéos hebdo), rubrique commande publique : actualité, jurisprudence commentée."
+  },
+  {
+   "nom": "Seban & Associés",
+   "url": "https://www.seban-associes.avocat.fr/publications-du-cabinet/la-lettre-dactualites-juridiques/",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "newsletter",
+   "desc": "Cabinet dédié au secteur public ; sa Lettre d'actualités couvre les contrats publics, concessions et montages complexes."
+  },
+  {
+   "nom": "AdDen avocats (AdDen le blog)",
+   "url": "https://www.adden-leblog.com",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "blog",
+   "desc": "Blog du cabinet AdDen (droit public, environnement, urbanisme) : articles d'actualité et commentaires de jurisprudence."
+  },
+  {
+   "nom": "Charrel & Associés",
+   "url": "https://charrel-avocats.com/domaine/commande-publique-marches-publics-delegations-de-service-public",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Cabinet de droit public des affaires ; son fondateur publie ouvrages et articles sur le CCP et les CCAG."
+  },
+  {
+   "nom": "Symchowicz, Weissberg & Associés (SWA)",
+   "url": "https://www.swavocats.com",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Cabinet spécialisé en commande publique et montages contractuels complexes ; Nil Symchowicz est auteur de référence."
+  },
+  {
+   "nom": "Sensei Avocats",
+   "url": "https://sensei-avocats.fr/competences/droit-de-la-commande-publique/",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Boutique de droit public (Paris, Rennes, Aix) reconnue en commande publique ; publications et actualités juridiques."
+  },
+  {
+   "nom": "Parme Avocats",
+   "url": "https://parme-avocats.com/expertise/commande-publique-et-contrats-publics/",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Cabinet de droit public des affaires ; commande publique et contrats complexes, rubrique publications et actualités."
+  },
+  {
+   "nom": "Cabinet Palmier-Brault (Sébastien Palmier)",
+   "url": "https://sebastien-palmier-avocat.com/marches-publics/",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "blog",
+   "desc": "Cabinet spécialisé marchés publics qui décrypte l'actualité jurisprudentielle ; nombreux articles pratiques."
+  },
+  {
+   "nom": "CMS Francis Lefebvre Avocats (commande publique)",
+   "url": "https://cms.law/fr/fra/global-reach/europe/france/expertise/commande-publique",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Pôle droit public d'un grand cabinet d'affaires, actif en marchés et concessions ; articles et analyses."
+  },
+  {
+   "nom": "Sartorio Avocats",
+   "url": "https://www.sartorio.fr/competences-droit-public/contrats-publics.html",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Cabinet de droit public ; rubrique contrats et marchés publics avec flashs d'info juridique."
+  },
+  {
+   "nom": "CABANES Avocats",
+   "url": "https://www.cabanes-avocats.fr/expertise/avocat-droit-commande-publique/",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Boutique de droit public des affaires axée commande publique (marchés, concessions, contrats complexes)."
+  },
+  {
+   "nom": "Goutal, Alibert & Associés",
+   "url": "https://www.goutal-alibert.net/publications/",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Cabinet conseillant exclusivement les personnes publiques ; section publications classées par thème (dont CCP)."
+  },
+  {
+   "nom": "Cornet Vincent Ségurel (CVS)",
+   "url": "https://cvs-avocats.com/fr/commande-publique-et-contrats-complexes",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "site",
+   "desc": "Cabinet multi-sites avec un pôle droit public dédié à la commande publique et aux contrats complexes (PPP, SEM/SPL)."
+  },
+  {
+   "nom": "LGP Avocats (Blog commande publique)",
+   "url": "https://lgp-avocats.fr/nos-blogs/blog-commande-publique/",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "se-former"
+   ],
+   "format": "blog",
+   "desc": "Cabinet de droit public et d'urbanisme (Brest/Paris) avec un blog dédié à la commande publique."
+  },
+  {
+   "nom": "Marie Bardy",
+   "url": "https://www.linkedin.com/in/mariebardy/",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "personne",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "se-former"
+   ],
+   "format": "linkedin",
+   "desc": "Juriste et directrice produit chez MARCO (Agysoft) ; pédagogie et actualité commande publique pour acheteurs et juristes."
+  },
+  {
+   "nom": "Sébastien Palmier",
+   "url": "https://www.linkedin.com/in/s%C3%A9bastien-palmier-0330a941/",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "personne",
+   "secteur": "juridique",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "se-former"
+   ],
+   "format": "linkedin",
+   "desc": "Avocat spécialiste en droit public (Cabinet Palmier-Brault) ; analyses et actualités juridiques sur les marchés publics."
+  },
+  {
+   "nom": "Jean-Marc Joannès",
+   "url": "https://www.linkedin.com/in/jean-marc-joann%C3%A8s-51600a2a/",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "personne",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "se-former"
+   ],
+   "format": "linkedin",
+   "desc": "Docteur en droit, rédacteur en chef d'achatpublic.info ; veille, interviews et analyses sur la commande publique."
+  },
+  {
+   "nom": "Sophie Lapisardi",
+   "url": "https://www.linkedin.com/in/sophie-lapisardi-avocat-public-march%C3%A9s-legal-design/",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "personne",
+   "secteur": "juridique",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "se-former"
+   ],
+   "format": "linkedin",
+   "desc": "Avocate en droit public (Lapisardi Avocats) ; vulgarisation du droit des marchés par le legal design."
+  },
+  {
+   "nom": "Magali Chamla-Pernin",
+   "url": "https://fr.linkedin.com/in/magali-pernin",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "personne",
+   "secteur": "achat-durable",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "se-former"
+   ],
+   "format": "linkedin",
+   "desc": "Directrice commande publique, formatrice (« Magali Parle Marchés ») ; lisibilité des consultations et transformation de l'achat."
+  },
+  {
+   "nom": "Rémy Juston-Coumat",
+   "url": "https://www.linkedin.com/in/remy-juston-coumat-73458b2/",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "personne",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "se-former"
+   ],
+   "format": "linkedin",
+   "desc": "Spécialiste management et achat public (Territech), auteur ; outils pratiques et analyses pour les acheteurs des collectivités."
+  },
+  {
+   "nom": "Nicolas Charrel",
+   "url": "https://www.linkedin.com/in/nicolas-charrel-7b471964",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "personne",
+   "secteur": "juridique",
+   "type": "prive",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "se-former"
+   ],
+   "format": "linkedin",
+   "desc": "Avocat et médiateur (Charrel & Associés), auteur du « Code pratique des marchés publics » ; URL LinkedIn à confirmer."
+  },
+  {
+   "nom": "Bercy — Ministère de l'Économie (X)",
+   "url": "https://x.com/economie_gouv",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "data"
+   ],
+   "format": "x",
+   "desc": "Compte officiel de Bercy (dont dépend la DAJ qui pilote le droit de la commande publique) : annonces réglementaires."
+  },
+  {
+   "nom": "Direction des Affaires juridiques (DAJ) — LinkedIn",
+   "url": "https://www.linkedin.com/company/direction-des-affaires-juridiques",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit"
+   ],
+   "format": "linkedin",
+   "desc": "Page LinkedIn de la DAJ de Bercy, rédactrice du droit national de la commande publique."
+  },
+  {
+   "nom": "Direction des Achats de l'État (DAE) — LinkedIn",
+   "url": "https://fr.linkedin.com/company/direction-des-achats-de-letat-dae",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "se-former",
+    "data"
+   ],
+   "format": "linkedin",
+   "desc": "Page officielle de la DAE : actualité de l'achat de l'État, performance et achats durables."
+  },
+  {
+   "nom": "DILA (édite le BOAMP) — X",
+   "url": "https://x.com/DILA_officiel",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "officiel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "data"
+   ],
+   "format": "x",
+   "desc": "Compte officiel de la DILA, qui édite le BOAMP : annonces et informations officielles."
+  },
+  {
+   "nom": "Localtis (Banque des Territoires) — X",
+   "url": "https://x.com/localtis",
+   "url_confiance": "ok",
+   "famille": "voix",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "national",
+   "region": "",
+   "acces": "gratuit",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "se-former",
+    "droit"
+   ],
+   "format": "x",
+   "desc": "Compte X du média Localtis : fil d'actualité des collectivités incluant la commande publique."
+  },
+  {
+   "nom": "Pyxis Support",
+   "url": "https://www.pyxis-support.com/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "SI-numérique",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Île-de-France",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "sourcing",
+    "rédaction DCE",
+    "analyse des offres",
+    "stratégie achat",
+    "AMO opérations complexes (SI, transport, infrastructure)"
+   ],
+   "format": "site",
+   "desc": "Cabinet parisien d'AMO et de conseil sur les marchés publics complexes (SI, transport, infrastructure), depuis 2014."
+  },
+  {
+   "nom": "SolvH.A.",
+   "url": "https://solvha.com/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Île-de-France",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "domaines": [
+    "gestion de marchés",
+    "rédaction DCE",
+    "analyse des offres",
+    "clauses RSE",
+    "transformation de la fonction achat"
+   ],
+   "format": "site",
+   "desc": "Cabinet de conseil en achats publics (Boulogne-Billancourt) : AMO opérationnelle, performance achat, transformation de la fonction achat."
+  },
+  {
+   "nom": "Les Courtiers des Achats Publics",
+   "url": "https://courtiers-achats.fr/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Île-de-France",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "sourcing",
+    "organisation des achats",
+    "rédaction DCE",
+    "dématérialisation",
+    "formation"
+   ],
+   "format": "site",
+   "desc": "Société d'AMO marchés publics (Paris) : organisation des achats, dématérialisation et formation."
+  },
+  {
+   "nom": "Agence Déclic",
+   "url": "https://www.agence-declic.fr/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "achat-durable",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Bretagne",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "formation",
+    "achat durable",
+    "stratégie achat",
+    "accompagnement acheteurs"
+   ],
+   "format": "site",
+   "desc": "Cabinet de conseil et de formation en achat public et RSE (Rennes) : professionnalisation des achats, achat responsable."
+  },
+  {
+   "nom": "RESECO",
+   "url": "https://reseco.fr/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "achat-durable",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Bretagne",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "achat durable",
+    "clauses sociales et environnementales",
+    "formation",
+    "conseil de premier niveau"
+   ],
+   "format": "site",
+   "desc": "Réseau d'accompagnement à la commande publique durable du Grand Ouest : formation, outils, clauses sociales et environnementales."
+  },
+  {
+   "nom": "C2L Solutions",
+   "url": "https://www.c2lsolutions.fr/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Pays de la Loire",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "AMO",
+    "rédaction DCE",
+    "analyse des offres",
+    "formation"
+   ],
+   "format": "site",
+   "desc": "Cabinet de conseil en marchés publics (Saint-Herblain, 44) : AMO (restauration collective, nettoyage…) et formation ; antenne AURA."
+  },
+  {
+   "nom": "Achat Public Conseil",
+   "url": "https://achat-public-conseil.com/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Nouvelle-Aquitaine",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "sourcing",
+    "rédaction DCE",
+    "analyse des offres",
+    "achat durable",
+    "dématérialisation",
+    "formation"
+   ],
+   "format": "site",
+   "desc": "Cabinet (Capbreton, Landes) : analyse du besoin, rédaction des dossiers, analyse des offres et exécution, avec formation."
+  },
+  {
+   "nom": "CKS Public",
+   "url": "https://www.cks-public.fr/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Nouvelle-Aquitaine",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "sourcing",
+    "rédaction DCE",
+    "analyse des offres",
+    "stratégie achat",
+    "formation",
+    "dématérialisation"
+   ],
+   "format": "site",
+   "desc": "Cabinet de conseil en achats et marchés publics (antenne Bordeaux) : audit et optimisation de la fonction achat, AMO, formation."
+  },
+  {
+   "nom": "SYNETHIC",
+   "url": "https://www.synethic.fr/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "achat-durable",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Occitanie",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "achat durable",
+    "sourcing",
+    "définition du besoin",
+    "suivi d'exécution",
+    "formation"
+   ],
+   "format": "site",
+   "desc": "Cabinet (Toulouse) spécialisé achat public durable, anime le réseau RES'OCC : stratégie, sourcing, définition du besoin."
+  },
+  {
+   "nom": "Capitole Énergie",
+   "url": "https://capitole-energie.com/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "énergie",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Occitanie",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "domaines": [
+    "rédaction DCE",
+    "analyse des offres",
+    "sourcing",
+    "sécurisation de procédure"
+   ],
+   "format": "site",
+   "desc": "Cabinet d'AMO (Balma, agglo toulousaine) spécialisé marchés publics d'énergie : stratégie d'achat et sécurisation des procédures."
+  },
+  {
+   "nom": "COGITE",
+   "url": "https://www.cogite-sas.com/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "domaines": [
+    "AMO",
+    "assistance à la passation",
+    "audit de marchés et DSP",
+    "stratégie commande publique"
+   ],
+   "format": "site",
+   "desc": "Cabinet de conseil en services publics (eau, énergie, déchets, mobilité) avec antennes Occitanie et La Réunion : AMO, audit de marchés et DSP."
+  },
+  {
+   "nom": "Agence AGUINALIN",
+   "url": "https://www.marchespublicsoptimises.fr/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Occitanie",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "sourcing",
+    "passation",
+    "sécurisation de procédure",
+    "stratégie d'achat",
+    "formation"
+   ],
+   "format": "site",
+   "desc": "Agence de conseil (Auch), fondée par une ancienne acheteuse publique et organisme de formation : accompagnement opérationnel et formations."
+  },
+  {
+   "nom": "HA-MP",
+   "url": "https://ha-mp.fr/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "achat-durable",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Auvergne-Rhône-Alpes",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "management de la fonction achat",
+    "cartographie des achats",
+    "achat durable",
+    "formation",
+    "sourcing"
+   ],
+   "format": "site",
+   "desc": "Cabinet d'achat public (Villeurbanne/Lyon) : management de la fonction achat, AMO, cartographie, achat durable, formations (serious games)."
+  },
+  {
+   "nom": "Public Sourcing",
+   "url": "https://publicsourcing.fr/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Provence-Alpes-Côte d'Azur",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "audit de la fonction achat",
+    "sourcing",
+    "rédaction DCE",
+    "analyse des offres",
+    "achat durable",
+    "formation"
+   ],
+   "format": "site",
+   "desc": "Cabinet d'audit, conseil et formation en achats publics (Aix/Venelles) : diagnostic, sourcing, DCE, analyse des offres."
+  },
+  {
+   "nom": "Cantineo",
+   "url": "https://www.cantineo.com/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "alimentaire",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Provence-Alpes-Côte d'Azur",
+   "acces": "payant",
+   "personas": [
+    "acheteur"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "AMO restauration collective",
+    "passation marchés et DSP",
+    "achat alimentaire durable",
+    "formation"
+   ],
+   "format": "site",
+   "desc": "Cabinet AMO spécialisé restauration collective : passation de marchés et DSP, achat alimentaire durable, formation."
+  },
+  {
+   "nom": "OdiaRun",
+   "url": "https://odiarun.re/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "payant",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "formation",
+    "AMO",
+    "rédaction DCE",
+    "analyse des offres",
+    "dématérialisation",
+    "conseil stratégie achat"
+   ],
+   "format": "site",
+   "desc": "Cabinet réunionnais spécialisé marchés publics (Réunion et Mayotte) : formation acheteurs ET entreprises, AMO, dématérialisation, qualifications certifiantes. Référence locale."
+  },
+  {
+   "nom": "OdiaDom",
+   "url": "https://odiadom.fr/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "Guadeloupe",
+   "acces": "payant",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "formation",
+    "AMO",
+    "analyse des offres",
+    "sécurisation des procédures",
+    "outil IA d'analyse de DCE"
+   ],
+   "format": "site",
+   "desc": "Cabinet marchés publics des Antilles-Guyane (Guadeloupe, Martinique, Guyane) : formation certifiante, AMO, outil IA ODIANA d'analyse de dossiers."
+  },
+  {
+   "nom": "L'Officiel de la Réunion (officiel.re)",
+   "url": "https://www.officiel.re/",
+   "url_confiance": "ok",
+   "famille": "publication",
+   "type_acteur": "media",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "mixte",
+   "alerte": "inconnu",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "publier",
+    "trouver-ao"
+   ],
+   "format": "site",
+   "desc": "Portail d'annonces légales et de consultation des appels d'offres de La Réunion édité par Le Quotidien : recherche d'AO côté entreprise."
+  },
+  {
+   "nom": "Mademoiselle Marchés Publics",
+   "url": "https://mademoisellemarchespublics.com/",
+   "url_confiance": "ok",
+   "famille": "amo",
+   "type_acteur": "conseil",
+   "secteur": "généraliste",
+   "type": "prive",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "payant",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner",
+    "se-former"
+   ],
+   "domaines": [
+    "formation acheteurs et entreprises",
+    "AMO réponse aux AO",
+    "conseil passation",
+    "appui mémoire technique / DCE"
+   ],
+   "format": "site",
+   "desc": "Consultante-formatrice marchés publics réunionnaise (Élodie Lauret, ex-acheteuse publique et DAJ au CDG974), côté acheteurs comme entreprises ; Réunion et Mayotte."
+  },
+  {
+   "nom": "Lomari Avocats",
+   "url": "https://www.lomari-avocats.fr/contrats-marches-publics/",
+   "url_confiance": "ok",
+   "famille": "expert",
+   "type_acteur": "cabinet",
+   "secteur": "juridique",
+   "type": "prive",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "mixte",
+   "personas": [
+    "acheteur",
+    "entreprise"
+   ],
+   "usages": [
+    "droit",
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Cabinet d'avocate réunionnais (Saint-Denis) spécialisé contrats et marchés publics : conseil, contentieux, référés précontractuels ; intervient aussi à Mayotte."
+  },
+  {
+   "nom": "Technopole de La Réunion",
+   "url": "https://www.technopole-reunion.com/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Incubateur historique réunionnais (innovation, transfert de technologie, incubateur de la recherche publique) accompagnant les porteurs de projet locaux."
+  },
+  {
+   "nom": "La French Tech La Réunion",
+   "url": "https://lafrenchtech-lareunion.com/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "numérique-IT",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Association fédérant l'écosystème tech et startups de l'île (Capitale French Tech) : animation, programmes d'accompagnement, mise en relation investisseurs."
+  },
+  {
+   "nom": "Nexa — Agence régionale de développement et d'innovation",
+   "url": "https://nexa.re/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Agence régionale de développement économique, d'investissement et d'innovation de La Réunion (Région) : appui aux entreprises et porteurs de projets."
+  },
+  {
+   "nom": "Initiative Réunion",
+   "url": "https://www.initiative-reunion.fr/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Réseau associatif de financement et d'accompagnement des créateurs/repreneurs d'entreprise (prêt d'honneur, parrainage) à La Réunion."
+  },
+  {
+   "nom": "France Active Réunion",
+   "url": "https://franceactive-reunion.org/",
+   "url_confiance": "ok",
+   "famille": "institution",
+   "type_acteur": "institution",
+   "secteur": "généraliste",
+   "type": "institutionnel",
+   "portee": "regional",
+   "region": "La Réunion",
+   "acces": "gratuit",
+   "personas": [
+    "entreprise"
+   ],
+   "usages": [
+    "s-accompagner"
+   ],
+   "format": "site",
+   "desc": "Financeur solidaire des entrepreneurs et des structures de l'ESS à La Réunion : prêts, garanties, structuration de projet."
+  }
+ ]
+};
