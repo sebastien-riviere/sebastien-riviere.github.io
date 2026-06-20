@@ -71,6 +71,17 @@ main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:0 40px 56px;}
 .chip .dot{width:8px;height:8px;border-radius:50%;}
 .chip.on .dot{background:#fff !important;}
 
+.unlock{margin-top:11px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:'Nunito',sans-serif;font-size:13px;}
+.unlock input{font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:8px;padding:7px 11px;width:120px;text-transform:uppercase;}
+.unlock input:focus{outline:none;border-color:var(--accent);}
+.unlock button{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#fff;background:var(--accent);border:none;border-radius:8px;padding:8px 14px;cursor:pointer;}
+.unlock button:hover{filter:brightness(1.08);}
+.unlock .lockmsg{color:var(--faint);display:inline-flex;align-items:center;gap:6px;}
+.unlock .lockmsg svg{width:14px;height:14px;}
+.unlock .okmsg{color:var(--data);font-weight:800;display:inline-flex;align-items:center;gap:6px;}
+.unlock .okmsg svg{width:15px;height:15px;}
+.unlock #codeErr{color:var(--urgent);font-weight:700;}
+.unlock a.link{color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline;}
 .statline{font-family:'Nunito',sans-serif;font-size:13px;color:var(--faint);margin-bottom:18px;}
 .statline b{color:var(--title);}
 
@@ -151,6 +162,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
         <span class="chip" data-sr="mail">Alertes plateformes</span>
       </div>
     </div>
+    <div class="unlock" id="unlock"></div>
   </div>
   <div class="statline" id="stat">Chargement…</div>
   <div class="grid" id="grid"></div>
@@ -172,7 +184,9 @@ const ICO = {
   gavel:'<svg viewBox="0 0 24 24"><path d="m14 3 7 7-3 3-7-7zM10 7l7 7M3 21l6-6M5 13l6 6"/></svg>',
   target:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>',
   doc:'<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>',
-  ext:'<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>'
+  ext:'<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>',
+  lock:'<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
+  check:'<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>'
 };
 let DATA = { items:[], maj:'', total:0 };
 let fTheme = '', fSource = '', fQ = '';
@@ -205,11 +219,14 @@ function render(){
   }
   grid.innerHTML = items.map(it => {
     const th = TH[it.th] || TH.numerique;
+    const an = (unlocked && ANALYSES && it.k) ? ANALYSES[it.k] : null;
+    const clair = an && an.clair ? an.clair : '';
+    const pq = an && an.pq ? an.pq : '';
     const meta = [];
     if(it.dep) meta.push('<span>'+ICO.pin+esc(it.dep)+'</span>');
     if(it.tm) meta.push('<span>'+ICO.tag+esc(it.tm)+'</span>');
     if(it.proc) meta.push('<span>'+ICO.gavel+esc(it.proc)+'</span>');
-    if(it.pq) meta.push('<span>'+ICO.target+esc(it.pq)+'</span>');
+    if(pq) meta.push('<span>'+ICO.target+esc(pq)+'</span>');
     if(it.fam) meta.push('<span>'+ICO.doc+esc(it.fam)+'</span>');
     if(it.m) meta.push('<span>'+ICO.euro+esc(it.m)+'</span>');
     const src = it.s==='boamp' ? 'BOAMP' : (esc(it.src)||'Alerte');
@@ -220,7 +237,7 @@ function render(){
         + deadlineHtml(it.dl)
       + '</div>'
       + '<div class="card-obj">'+esc(it.o)+'</div>'
-      + (it.clair ? '<div class="card-clair">'+esc(it.clair)+'</div>' : '')
+      + (clair ? '<div class="card-clair">'+esc(clair)+'</div>' : '')
       + (it.a ? '<div class="card-buyer">'+ICO.building+esc(it.a)+'</div>' : '')
       + (meta.length ? '<div class="card-meta">'+meta.join('')+'</div>' : '')
       + (it.u ? '<a class="card-link" href="'+esc(it.u)+'" target="_blank" rel="noopener">Voir l\'avis '+ICO.ext+'</a>' : '')
@@ -239,8 +256,39 @@ wireChips('themes', c => fTheme = c.dataset.th);
 wireChips('sources', c => fSource = c.dataset.sr);
 document.getElementById('q').addEventListener('input', e => { fQ = e.target.value.trim().toLowerCase(); render(); });
 
-fetch('./data.json?v='+Date.now()).then(r => r.json()).then(d => { DATA = d; render(); })
-  .catch(() => { document.getElementById('stat').textContent = 'Données momentanément indisponibles.'; });
+// ── Déverrouillage des analyses par code (servies par le worker Cloudflare) ──
+const WORKER = 'https://veille-bot.sebastienriviere-contact.workers.dev';
+let ANALYSES = null, unlocked = false;
+function renderUnlock(){
+  const el = document.getElementById('unlock');
+  if(unlocked){
+    const n = ANALYSES ? Object.keys(ANALYSES).length : 0;
+    el.innerHTML = '<span class="okmsg">'+ICO.check+'Analyses débloquées'+(n?' ('+n+')':'')+'</span> <a class="link" id="lockBtn">verrouiller</a>';
+    document.getElementById('lockBtn').onclick = () => { localStorage.removeItem('obs_code'); ANALYSES = null; unlocked = false; renderUnlock(); render(); };
+  } else {
+    el.innerHTML = '<span class="lockmsg">'+ICO.lock+'Analyses « en clair » réservées —</span> <input id="codeInput" placeholder="CODE" maxlength="12" autocomplete="off"> <button id="codeBtn">Débloquer</button> <span id="codeErr"></span>';
+    document.getElementById('codeBtn').onclick = () => tryCode(document.getElementById('codeInput').value);
+    document.getElementById('codeInput').addEventListener('keydown', e => { if(e.key === 'Enter') tryCode(e.target.value); });
+  }
+}
+async function tryCode(code){
+  code = (code || '').trim().toUpperCase(); if(!code) return;
+  const err = document.getElementById('codeErr'); if(err) err.textContent = '…';
+  try{
+    const r = await fetch(WORKER + '/obs/analyses?code=' + encodeURIComponent(code));
+    if(!r.ok){ if(err) err.textContent = r.status === 403 ? 'Code invalide' : 'Erreur'; localStorage.removeItem('obs_code'); return; }
+    const d = await r.json(); ANALYSES = d.analyses || {}; unlocked = true;
+    localStorage.setItem('obs_code', code);
+    renderUnlock(); render();
+  }catch(e){ if(err) err.textContent = 'Erreur réseau'; }
+}
+
+fetch('./data.json?v='+Date.now()).then(r => r.json()).then(d => {
+  DATA = d; renderUnlock(); render();
+  const urlCode = new URLSearchParams(location.search).get('code');
+  const saved = urlCode || localStorage.getItem('obs_code');
+  if(saved) tryCode(saved);
+}).catch(() => { document.getElementById('stat').textContent = 'Données momentanément indisponibles.'; });
 </script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
