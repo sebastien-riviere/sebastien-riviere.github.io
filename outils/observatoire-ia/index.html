@@ -87,7 +87,11 @@ main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:0 40px 56px;}
 .monthly .mcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);}
 .monthly .mhead{display:flex;align-items:center;gap:9px;font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:var(--title);margin-bottom:3px;}
 .monthly .mhead svg{width:20px;height:20px;color:var(--accent);}
-.monthly .msub{font-family:'Nunito',sans-serif;font-size:12.5px;color:var(--faint);margin-bottom:18px;}
+.monthly .msub{font-family:'Nunito',sans-serif;font-size:12.5px;color:var(--faint);margin-bottom:14px;}
+.monthly .mtabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;}
+.monthly .mtab{font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:700;color:var(--faint);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 13px;cursor:pointer;transition:all .12s;}
+.monthly .mtab:hover{border-color:var(--accent);color:var(--accent);}
+.monthly .mtab.on{background:var(--accent);color:#fff;border-color:var(--accent);}
 .monthly .kpis{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px;}
 .monthly .kpi{flex:1;min-width:150px;background:var(--accent-soft);border-radius:11px;padding:14px 16px;}
 .monthly .kpi .v{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--accent);line-height:1;}
@@ -309,20 +313,23 @@ function bars(arr){
   const max = Math.max.apply(null, arr.map(x => x.n)) || 1;
   return arr.map(x => '<div class="brow"><div class="blabel"><span>'+esc(x.l)+'</span><b>'+x.n+'</b></div><div class="btrack"><div class="bfill" style="width:'+Math.max(4,Math.round(100*x.n/max))+'%"></div></div></div>').join('');
 }
+let mCat = 'ia';   // segment affiché dans le rapport mensuel — IA par défaut
+const MCAT_LABEL = { ia:'IA', data:'Données', numerique:'Numérique', tous:'Tous' };
+function setMcat(c){ mCat = c; renderMonthly(); }
 function renderMonthly(){
   const el = document.getElementById('monthly');
-  if(!unlocked || !MONTHLY || !MONTHLY.demande){ el.innerHTML=''; return; }
-  const M = MONTHLY, d = M.demande, a = M.attributions || {};
+  const C = MONTHLY && MONTHLY.categories;
+  if(!unlocked || !C){ el.innerHTML=''; return; }
+  const sel = C[mCat] || C.ia || C.tous || {}; const d = sel.demande||{}, a = sel.attributions||{};
+  const tabs = ['ia','data','numerique','tous'].filter(k=>C[k]).map(k=>'<span class="mtab'+(k===mCat?' on':'')+'" onclick="setMcat(\''+k+'\')">'+MCAT_LABEL[k]+(C[k].demande?' · '+(C[k].demande.total||0):'')+'</span>').join('');
   el.innerHTML = '<div class="mcard">'
-    + '<div class="mhead">'+ICO.chart+'Rapport du mois — marchés IA / numérique</div>'
-    + '<div class="msub">12 mois glissants ('+esc(M.from)+' → '+esc(M.to)+') · source BOAMP · mis à jour le '+esc(M.maj)+'</div>'
+    + '<div class="mhead">'+ICO.chart+'Rapport du mois — '+MCAT_LABEL[mCat]+'</div>'
+    + '<div class="msub">12 mois glissants ('+esc(MONTHLY.from)+' → '+esc(MONTHLY.to)+') · source BOAMP · mis à jour le '+esc(MONTHLY.maj)+'</div>'
+    + '<div class="mtabs">'+tabs+'</div>'
     + '<div class="kpis">'
       + '<div class="kpi"><div class="v">'+(d.total||0)+'</div><div class="l">consultations publiées</div></div>'
       + '<div class="kpi"><div class="v">'+(a.total||0)+'</div><div class="l">attributions (marchés gagnés)</div></div>'
     + '</div>'
-    + ((M.parCategorie&&M.parCategorie.length) ? '<div class="mcats"><h4>Par catégorie</h4><div class="catrow catrow-head"><span></span><span>Consultations</span><span>Attributions</span></div>'
-      + M.parCategorie.map(c=>'<div class="catrow"><span class="catl">'+esc(c.l)+'</span><span class="catv">'+(c.c||0)+'</span><span class="catv">'+(c.a||0)+'</span></div>').join('')
-      + '</div>' : '')
     + '<div class="mgrid">'
       + '<div class="mblock"><h4>Par type de prestation</h4>'+bars(d.parType)+'</div>'
       + '<div class="mblock"><h4>Par procédure</h4>'+bars(d.parProcedure)+'</div>'
@@ -330,7 +337,7 @@ function renderMonthly(){
       + '<div class="mblock"><h4>Top acheteurs</h4>'+bars(d.topAcheteurs)+'</div>'
       + '<div class="mblock"><h4>Top titulaires (qui gagne)</h4>'+bars(a.topTitulaires)+'</div>'
     + '</div>'
-    + '<div class="mnote">Périmètre : marchés « IA / données / numérique » uniquement (pas l\'ensemble des marchés publics). Les répartitions ci-dessus sont tous segments confondus ; un marché peut relever de plusieurs catégories. Volumes et titulaires issus des avis BOAMP (frais) ; les montants exacts par marché relèvent des données d\'attribution (DECP) — couche à venir.</div>'
+    + '<div class="mnote">Segment : <b>'+MCAT_LABEL[mCat]+'</b> (sur 12 mois). Volumes et titulaires = avis BOAMP (frais) ; un marché peut relever de plusieurs catégories. Les montants exacts par marché relèvent des données d\'attribution (DECP) — couche à venir.</div>'
   + '</div>';
 }
 async function tryCode(code){
