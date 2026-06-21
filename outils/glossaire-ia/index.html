@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossaire de l'IA — en clair, sans jargon — Sébastien Rivière</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta name="description" content="Un glossaire de l'intelligence artificielle expliqué simplement : pour chaque terme, une analogie, pourquoi ça compte, le piège à éviter. Classé par ordre alphabétique, avec recherche et filtres.">
+<meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --bg:#f4f8fb; --bg-band:#eaf2f9; --text:#1a2a35; --muted:#5a7a92; --faint:#5f7e94;
+  --card:#ffffff; --border:#dde9f2; --border-hover:#b8d0e4; --title:#1e3a52;
+  --accent:#3a8ac4; --accent-soft:#e8f0f7; --shadow:0 4px 22px rgba(30,58,82,0.10);
+  --ok:#1f8a5b; --ok-soft:#e6f4ec; --warn:#b9791f; --warn-soft:#f6ecdc; --bad:#c0392b; --bad-soft:#fbeae8; --gold:#caa53d;
+  --ml:#3a8ac4; --gen:#7b5cd6; --infra:#1f8a5b; --eth:#b9791f; --biz:#c0567a;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#0f1722; --bg-band:#15212f; --text:#e7eef5; --muted:#9fb6c8; --faint:#8ba3b8;
+  --card:#16212e; --border:#24333f; --border-hover:#3a8ac4; --title:#eaf2f9;
+  --accent:#62a9e0; --accent-soft:#1c2c3b; --shadow:0 6px 26px rgba(0,0,0,0.45);
+  --ok:#5cc08c; --ok-soft:#16291f; --warn:#d6a24e; --warn-soft:#2c2415; --bad:#e8786b; --bad-soft:#2c1a18; --gold:#d8b85a;
+  --ml:#62a9e0; --gen:#a78bea; --infra:#5cc08c; --eth:#d6a24e; --biz:#dd86a4;
+}}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Lora',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+.header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
+header{padding:46px 40px 28px;max-width:1040px;width:100%;margin:0 auto;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--muted);text-decoration:none;margin-bottom:22px;opacity:.85;}
+.back-link:hover{opacity:1;color:var(--accent);} .back-link svg{width:15px;height:15px;}
+.titlewrap{display:flex;align-items:center;gap:14px;}
+.titleicon{flex:none;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;}
+.titleicon svg{width:24px;height:24px;}
+h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:28px;color:var(--title);letter-spacing:-0.5px;line-height:1.1;}
+.tagline{font-family:'Lora',serif;font-size:16px;line-height:1.6;color:var(--muted);max-width:720px;margin-top:13px;}
+.pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;}
+.pill{display:inline-flex;align-items:center;gap:7px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:var(--title);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 12px;}
+.pill svg{width:14px;height:14px;stroke:var(--accent);}
+
+main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:18px 40px 56px;}
+
+.controls{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 10px;margin-bottom:6px;border-bottom:1px solid var(--border);}
+.search{position:relative;margin-bottom:12px;}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;stroke:var(--faint);}
+.search input{width:100%;font-family:'Nunito',sans-serif;font-size:15px;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:11px;padding:12px 14px 12px 40px;}
+.search input:focus{outline:none;border-color:var(--accent);}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:7px;}
+.chip{font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;cursor:pointer;border-radius:18px;padding:5px 12px;border:1px solid var(--border);background:var(--card);color:var(--muted);transition:all .12s;user-select:none;}
+.chip:hover{border-color:var(--border-hover);}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+.chip.lvl.on{background:var(--title);border-color:var(--title);}
+.chip.nat.on{background:var(--warn);border-color:var(--warn);color:#fff;}
+.countline{font-family:'Nunito',sans-serif;font-size:12.5px;color:var(--faint);margin:8px 2px 0;}
+
+.list{margin-top:14px;display:flex;flex-direction:column;gap:10px;}
+.term{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:160px;}
+.term-head{display:flex;align-items:center;gap:11px;padding:14px 17px;cursor:pointer;}
+.term-head:hover{background:var(--accent-soft);}
+.tcat{flex:none;width:8px;height:8px;border-radius:50%;}
+.tnames{flex:1;min-width:0;}
+.tname{font-family:'Nunito',sans-serif;font-weight:800;font-size:15.5px;color:var(--title);}
+.ten{font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);margin-top:1px;}
+.tbadges{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.badge{font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;border-radius:5px;padding:2px 7px;white-space:nowrap;}
+.b-lvl{background:var(--accent-soft);color:var(--accent);}
+.b-nat-etabli{background:var(--ok-soft);color:var(--ok);}
+.b-nat-emergent{background:var(--accent-soft);color:var(--accent);}
+.b-nat-survendu{background:var(--warn-soft);color:var(--warn);}
+.chev{flex:none;width:17px;height:17px;stroke:var(--faint);transition:transform .18s;}
+.term.open .chev{transform:rotate(180deg);}
+.term-body{display:none;padding:2px 17px 16px;border-top:1px solid var(--border);}
+.term.open .term-body{display:block;}
+.ex{font-family:'Lora',serif;font-size:14.5px;line-height:1.6;color:var(--text);margin:13px 0;}
+.field{display:flex;gap:9px;margin:9px 0;font-family:'Nunito',sans-serif;font-size:13px;line-height:1.5;}
+.field svg{flex:none;width:15px;height:15px;margin-top:2px;}
+.field .lab{font-weight:800;color:var(--title);}
+.f-an svg{stroke:var(--gen);} .f-pq svg{stroke:var(--ok);} .f-pi svg{stroke:var(--warn);}
+.hook{font-family:'Lora',serif;font-style:italic;font-size:13.5px;color:var(--muted);background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:9px 12px;margin:11px 0 4px;}
+.hook .lab{font-family:'Nunito',sans-serif;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:3px;}
+.links{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.links .lk-lab{font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:var(--faint);margin-right:2px;}
+.lk{font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;cursor:pointer;color:var(--accent);background:var(--accent-soft);border:1px solid transparent;border-radius:16px;padding:3px 10px;}
+.lk:hover{border-color:var(--accent);}
+.empty{text-align:center;color:var(--faint);font-family:'Nunito',sans-serif;font-style:italic;padding:40px 0;}
+
+.note{font-family:'Nunito',sans-serif;font-size:12.5px;line-height:1.6;color:var(--faint);margin-top:26px;border-top:1px solid var(--border);padding-top:16px;}
+.note b{color:var(--muted);}
+footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);border-top:1px solid var(--border);}
+@media(max-width:600px){header,main,footer{padding-left:16px;padding-right:16px;} h1{font-size:22px;} .tbadges{display:none;}}
+</style>
+</head>
+<body>
+
+<div class="header-band">
+  <header>
+    <a href="/" class="back-link"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Tous les outils</a>
+    <div class="titlewrap">
+      <div class="titleicon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+      <h1>Glossaire de l'IA</h1>
+    </div>
+    <p class="tagline">Les mots de l'intelligence artificielle expliqués <b>en clair, sans jargon</b>. Pour chaque terme : une analogie, <b>pourquoi ça compte</b>, et le <b>piège à éviter</b>. Cliquez sur un terme pour le déplier.</p>
+    <div class="pills">
+      <span class="pill"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg> <span id="pillCount">…</span> termes</span>
+      <span class="pill"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> vulgarisé, vérifié</span>
+      <span class="pill"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> recherche &amp; filtres</span>
+    </div>
+  </header>
+</div>
+
+<main>
+  <div class="controls">
+    <div class="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="q" placeholder="Rechercher un terme (ex. hallucination, RAG, biais…)" autocomplete="off">
+    </div>
+    <div class="chips" id="catChips"></div>
+    <div class="chips" id="lvlChips"></div>
+    <div class="chips" id="natChips"></div>
+    <div class="countline" id="count"></div>
+  </div>
+  <div class="list" id="list"></div>
+  <p class="note" id="note"></p>
+</main>
+
+<footer>© Sébastien Rivière · Glossaire indicatif et pédagogique, enrichi en continu. Page en local, aucune donnée n'est envoyée.</footer>
+
+<script>
+const ICO={
+  an:'<svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg>',
+  pq:'<svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>',
+  pi:'<svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>'
+};
+const CATS={
+  'ml':{l:'Machine Learning',v:'--ml'},
+  'genai-llm':{l:'IA générative & LLM',v:'--gen'},
+  'infra-donnees':{l:'Infra & données',v:'--infra'},
+  'ethique-reglementaire':{l:'Éthique & droit',v:'--eth'},
+  'business-usage':{l:'Business & usage',v:'--biz'}
+};
+const NIVS=['débutant','intermédiaire','avancé'];
+const NATS={'établi':'Établi','émergent':'Émergent','survendu':'Survendu (hype)'};
+let DATA=[], KEYMAP={};
+let fCat='', fLvl='', fNat='', fQ='';
+
+function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+function slug(s){return norm(s).replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function buildKeys(t){
+  const keys=new Set();
+  [t.t, t.en].forEach(s=>{ if(!s)return; keys.add(slug(s)); keys.add(slug(s.replace(/\(.*?\)/g,''))); });
+  // acronymes entre parenthèses
+  const m=((t.t||'')+' '+(t.en||'')).match(/\(([^)]+)\)/g)||[];
+  m.forEach(x=>keys.add(slug(x)));
+  return [...keys].filter(Boolean);
+}
+
+function render(){
+  const list=document.getElementById('list');
+  const q=norm(fQ);
+  const res=DATA.filter(t=>{
+    if(fCat&&t.c!==fCat)return false;
+    if(fLvl&&t.n!==fLvl)return false;
+    if(fNat&&t.na!==fNat)return false;
+    if(q){ const hay=norm(t.t+' '+t.en+' '+t.ex+' '+t.an+' '+t.pq); if(!hay.includes(q))return false; }
+    return true;
+  });
+  document.getElementById('count').textContent=res.length+' terme'+(res.length>1?'s':'')+(res.length<DATA.length?' sur '+DATA.length:'');
+  if(!res.length){ list.innerHTML='<div class="empty">Aucun terme ne correspond. Essayez un autre mot ou retirez un filtre.</div>'; return; }
+  list.innerHTML=res.map(t=>card(t)).join('');
+}
+
+function card(t){
+  const cat=CATS[t.c]||{l:t.c,v:'--accent'};
+  const nat=t.na?'<span class="badge b-nat-'+slug(t.na)+'">'+esc(NATS[t.na]||t.na)+'</span>':'';
+  const links=(t.li||[]).map(s=>{ const idx=KEYMAP[s]; return idx==null?null:'<span class="lk" data-go="'+idx+'">'+esc(DATA[idx].t)+'</span>'; }).filter(Boolean).join('');
+  return '<div class="term" id="t-'+t.i+'" data-i="'+t.i+'">'
+    + '<div class="term-head" onclick="toggle('+t.i+')">'
+      + '<span class="tcat" style="background:var('+cat.v+')"></span>'
+      + '<div class="tnames"><div class="tname">'+esc(t.t)+'</div>'+(t.en&&t.en!==t.t?'<div class="ten">'+esc(t.en)+'</div>':'')+'</div>'
+      + '<div class="tbadges"><span class="badge b-lvl">'+esc(t.n)+'</span>'+nat+'</div>'
+      + '<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>'
+    + '</div>'
+    + '<div class="term-body">'
+      + '<div class="ex">'+esc(t.ex)+'</div>'
+      + (t.an?'<div class="field f-an">'+ICO.an+'<div><span class="lab">Comme… </span>'+esc(t.an)+'</div></div>':'')
+      + (t.pq?'<div class="field f-pq">'+ICO.pq+'<div><span class="lab">Pourquoi ça compte : </span>'+esc(t.pq)+'</div></div>':'')
+      + (t.pi?'<div class="field f-pi">'+ICO.pi+'<div><span class="lab">Le piège : </span>'+esc(t.pi)+'</div></div>':'')
+      + (t.ac?'<div class="hook"><span class="lab">Angle</span>'+esc(t.ac)+'</div>':'')
+      + (links?'<div class="links"><span class="lk-lab">Voir aussi :</span>'+links+'</div>':'')
+    + '</div>'
+  + '</div>';
+}
+
+function toggle(i){ const el=document.getElementById('t-'+i); if(el)el.classList.toggle('open'); }
+function goTo(i){
+  fCat=fLvl=fNat=fQ=''; document.getElementById('q').value='';
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+  document.querySelectorAll('.chip[data-all]').forEach(c=>c.classList.add('on'));
+  render();
+  setTimeout(()=>{ const el=document.getElementById('t-'+i); if(el){ el.classList.add('open'); el.scrollIntoView({behavior:'smooth',block:'center'}); } },40);
+}
+document.addEventListener('click',e=>{ const lk=e.target.closest('.lk[data-go]'); if(lk) goTo(parseInt(lk.dataset.go)); });
+
+function chip(label,val,cur,cls){ return '<span class="chip '+cls+(val===cur?' on':'')+'"'+(val===''?' data-all':'')+' data-v="'+val+'">'+label+'</span>'; }
+function buildChips(){
+  document.getElementById('catChips').innerHTML=chip('Toutes catégories','','','')+Object.keys(CATS).map(k=>chip(CATS[k].l,k,fCat,'')).join('');
+  document.getElementById('lvlChips').innerHTML=chip('Tous niveaux','','','lvl')+NIVS.map(n=>chip(n,n,fLvl,'lvl')).join('');
+  document.getElementById('natChips').innerHTML=Object.keys(NATS).map(n=>chip(NATS[n],n,fNat,'nat')).join('');
+  document.getElementById('catChips').onclick=e=>{const c=e.target.closest('.chip');if(!c)return;fCat=c.dataset.v;buildChips();render();};
+  document.getElementById('lvlChips').onclick=e=>{const c=e.target.closest('.chip');if(!c)return;fLvl=c.dataset.v;buildChips();render();};
+  document.getElementById('natChips').onclick=e=>{const c=e.target.closest('.chip');if(!c)return;fNat=(fNat===c.dataset.v?'':c.dataset.v);buildChips();render();};
+}
+
+fetch('./data.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+  DATA=d.termes.map((t,i)=>({...t,i}));
+  DATA.forEach(t=>buildKeys(t).forEach(k=>{ if(KEYMAP[k]==null)KEYMAP[k]=t.i; }));
+  document.getElementById('pillCount').textContent=d.count;
+  document.getElementById('note').innerHTML='<b>Méthode.</b> Glossaire vulgarisé, premier socle extrait de supports de formation et vérifié, enrichi en continu. Le repère <b>« hype »</b> (établi / émergent / survendu) signale la maturité réelle d\'un terme, pour faire la part du concret et de l\'effet d\'annonce. Indicatif, ne constitue pas un avis technique ou juridique. Dernière mise à jour : '+esc(d.maj)+'.';
+  buildChips();
+  document.getElementById('q').addEventListener('input',e=>{fQ=e.target.value;render();});
+  render();
+}).catch(()=>{ document.getElementById('list').innerHTML='<div class="empty">Glossaire momentanément indisponible.</div>'; });
+</script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
