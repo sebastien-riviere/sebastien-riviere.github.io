@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grille de critères & notation des offres — Sébastien Rivière</title>
+<title>Assistant de critères &amp; notation des offres — Sébastien Rivière</title>
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
-<meta name="description" content="Construisez une grille de critères d'attribution pondérés conforme (critère environnemental obligatoire au 21 août 2026) et notez les offres. Sans compte, en local.">
+<meta name="description" content="Composez une grille de critères d'attribution adaptée à l'objet : critères et sous-critères proposés par type de marché, pondérations conseillées, formules de notation. Avec l'alerte du critère environnemental obligatoire au 21 août 2026.">
 <meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="/fonts/fonts.css">
@@ -28,19 +28,19 @@ body{background:var(--bg);color:var(--text);font-family:'Lora',Georgia,serif;min
 svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
 .header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
-header{padding:46px 40px 28px;max-width:1000px;width:100%;margin:0 auto;}
+header{padding:46px 40px 28px;max-width:1040px;width:100%;margin:0 auto;}
 .back-link{display:inline-flex;align-items:center;gap:6px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--muted);text-decoration:none;margin-bottom:22px;opacity:.85;}
 .back-link:hover{opacity:1;color:var(--accent);} .back-link svg{width:15px;height:15px;}
 .titlewrap{display:flex;align-items:center;gap:14px;}
 .titleicon{flex:none;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;}
 .titleicon svg{width:24px;height:24px;}
-h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:29px;color:var(--title);letter-spacing:-0.5px;line-height:1.1;}
-.tagline{font-family:'Lora',serif;font-size:16px;line-height:1.6;color:var(--muted);max-width:700px;margin-top:13px;}
+h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:28px;color:var(--title);letter-spacing:-0.5px;line-height:1.1;}
+.tagline{font-family:'Lora',serif;font-size:16px;line-height:1.6;color:var(--muted);max-width:720px;margin-top:13px;}
 .pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;}
 .pill{display:inline-flex;align-items:center;gap:7px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:var(--title);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 12px;}
 .pill svg{width:14px;height:14px;stroke:var(--accent);}
 
-main{flex:1;width:100%;max-width:1000px;margin:0 auto;padding:8px 40px 56px;}
+main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:8px 40px 56px;}
 .sec{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:22px 24px;margin-bottom:20px;box-shadow:var(--shadow);}
 .sec-h{display:flex;align-items:center;gap:9px;font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;color:var(--title);margin-bottom:4px;}
 .sec-h .num{flex:none;width:24px;height:24px;border-radius:7px;background:var(--accent);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;}
@@ -48,48 +48,57 @@ main{flex:1;width:100%;max-width:1000px;margin:0 auto;padding:8px 40px 56px;}
 
 label{font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:700;color:var(--muted);display:block;margin-bottom:5px;}
 .row{display:flex;flex-wrap:wrap;gap:16px;}
-.fld{flex:1;min-width:180px;}
+.fld{flex:1;min-width:175px;}
 select,input[type=date],input[type=text],input[type=number]{width:100%;font-family:'Nunito',sans-serif;font-size:14px;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:9px 11px;}
 select:focus,input:focus{outline:none;border-color:var(--accent);}
 
-table{width:100%;border-collapse:collapse;font-family:'Nunito',sans-serif;font-size:13.5px;}
-th{text-align:left;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);padding:8px 8px;border-bottom:1px solid var(--border);}
-td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:middle;}
-.tbl-crit input[type=text]{border:1px solid transparent;background:transparent;padding:6px 8px;}
-.tbl-crit input[type=text]:hover{border-color:var(--border);} .tbl-crit input[type=text]:focus{border-color:var(--accent);background:var(--bg);}
-.tbl-crit input[type=number]{width:78px;text-align:right;}
+/* ── Critères (composeur) ── */
+.crit{border:1px solid var(--border);border-radius:11px;padding:14px 16px;margin-bottom:12px;background:var(--bg);}
+.crit.env{border-color:var(--ok);}
+.crit-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.crit-top input.cnom{flex:1;min-width:160px;font-family:'Nunito',sans-serif;font-weight:800;font-size:14.5px;color:var(--title);background:transparent;border:1px solid transparent;padding:5px 7px;border-radius:7px;}
+.crit-top input.cnom:hover{border-color:var(--border);} .crit-top input.cnom:focus{border-color:var(--accent);background:var(--card);}
+.cpond{width:74px;text-align:right;}
+.envtag{font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;color:var(--ok);background:var(--ok-soft);border-radius:5px;padding:2px 7px;}
 .del{cursor:pointer;color:var(--faint);background:none;border:none;display:inline-flex;padding:5px;border-radius:6px;}
 .del:hover{color:var(--bad);background:var(--bad-soft);} .del svg{width:15px;height:15px;}
-.envtag{font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;color:var(--ok);background:var(--ok-soft);border-radius:5px;padding:2px 7px;margin-left:6px;white-space:nowrap;}
-.btn{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;border-radius:9px;padding:9px 15px;border:1px solid var(--border);background:var(--card);color:var(--accent);transition:all .12s;}
-.btn:hover{border-color:var(--accent);} .btn-accent{background:var(--accent);color:#fff;border-color:var(--accent);} .btn-accent:hover{filter:brightness(1.08);}
-.btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px;}
+.conseil{font-family:'Lora',serif;font-style:italic;font-size:12px;color:var(--faint);margin:6px 0 0 2px;}
+.formbox{font-family:'Nunito',sans-serif;font-size:12px;margin-top:10px;background:var(--accent-soft);border-radius:8px;padding:9px 11px;color:var(--muted);}
+.formbox b{color:var(--title);} .formbox .pi{color:var(--warn);font-weight:700;}
+.formbox select{width:auto;display:inline-block;margin-bottom:6px;font-size:12.5px;padding:5px 8px;}
+.sous{margin:10px 0 0 0;}
+.sous-item{display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--text);padding:5px 0;border-top:1px dashed var(--border);}
+.sous-item .b{color:var(--accent);font-weight:800;flex:none;}
+.sous-item .d{color:var(--faint);font-size:11.5px;}
+.sous-add{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;}
+.sous-add select{flex:1;min-width:200px;font-size:12.5px;padding:7px 9px;}
 
+.btn{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;border-radius:9px;padding:9px 14px;border:1px solid var(--border);background:var(--card);color:var(--accent);transition:all .12s;}
+.btn:hover{border-color:var(--accent);} .btn-sm{padding:6px 11px;font-size:12px;}
+.btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:6px;}
 .sumline{display:flex;align-items:center;gap:10px;margin-top:14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;}
-.sumbadge{padding:4px 12px;border-radius:8px;}
-.sum-ok{background:var(--ok-soft);color:var(--ok);} .sum-bad{background:var(--bad-soft);color:var(--bad);}
+.sumbadge{padding:4px 12px;border-radius:8px;} .sum-ok{background:var(--ok-soft);color:var(--ok);} .sum-bad{background:var(--bad-soft);color:var(--bad);}
 .alert{display:flex;gap:10px;align-items:flex-start;border-radius:10px;padding:12px 14px;margin-top:14px;font-family:'Nunito',sans-serif;font-size:13px;line-height:1.5;}
 .alert svg{width:17px;height:17px;flex:none;margin-top:1px;}
-.alert-warn{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn);}
-.alert-ok{background:var(--ok-soft);color:var(--ok);border:1px solid var(--ok);}
+.alert-warn{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn);} .alert-ok{background:var(--ok-soft);color:var(--ok);border:1px solid var(--ok);}
 
+/* ── Notation ── */
 .scorewrap{overflow-x:auto;}
-.tbl-score th, .tbl-score td{text-align:center;}
-.tbl-score th:first-child, .tbl-score td:first-child{text-align:left;min-width:150px;}
-.tbl-score input[type=number]{width:72px;text-align:center;}
+table{width:100%;border-collapse:collapse;font-family:'Nunito',sans-serif;font-size:13.5px;}
+.tbl-score th,.tbl-score td{padding:7px 8px;border-bottom:1px solid var(--border);text-align:center;}
+.tbl-score th:first-child,.tbl-score td:first-child{text-align:left;min-width:150px;}
+.tbl-score input[type=number]{width:74px;text-align:center;}
 .tbl-score .offname input{font-weight:800;color:var(--title);text-align:center;}
 .totrow td{font-weight:800;color:var(--title);border-top:2px solid var(--border);font-size:15px;}
 .rankrow td{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--faint);}
-.win{color:var(--gold)!important;}
-.win-badge{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:var(--gold);border-radius:5px;padding:1px 6px;margin-left:4px;vertical-align:middle;}
+.win{color:var(--gold)!important;} .win-badge{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:var(--gold);border-radius:5px;padding:1px 6px;margin-left:4px;}
 
 .legal{font-family:'Nunito',sans-serif;font-size:13px;line-height:1.7;color:var(--muted);}
 .legal b{color:var(--title);} .legal a{color:var(--accent);} .legal ul{margin:8px 0 0 18px;}
 .disclaimer{font-family:'Lora',serif;font-style:italic;font-size:12.5px;color:var(--faint);margin-top:14px;border-left:2px solid var(--border);padding-left:11px;}
-
-footer{width:100%;max-width:1000px;margin:0 auto;padding:22px 40px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);border-top:1px solid var(--border);}
+footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);border-top:1px solid var(--border);}
 @media print{.no-print{display:none!important;} .sec{box-shadow:none;break-inside:avoid;}}
-@media(max-width:600px){header,main,footer{padding-left:16px;padding-right:16px;} h1{font-size:23px;}}
+@media(max-width:600px){header,main,footer{padding-left:16px;padding-right:16px;} h1{font-size:22px;}}
 </style>
 </head>
 <body>
@@ -99,9 +108,9 @@ footer{width:100%;max-width:1000px;margin:0 auto;padding:22px 40px;font-family:'
     <a href="/" class="back-link"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Tous les outils</a>
     <div class="titlewrap">
       <div class="titleicon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-      <h1>Grille de critères &amp; notation des offres</h1>
+      <h1>Assistant de critères &amp; notation des offres</h1>
     </div>
-    <p class="tagline">Construisez une grille de critères d'attribution pondérés conforme, puis notez et classez les offres. Avec l'alerte du <b>critère environnemental obligatoire au 21 août 2026</b>.</p>
+    <p class="tagline">Au lieu de recopier une vieille grille, composez des critères <b>adaptés à l'objet</b> : l'outil propose les critères, leurs <b>sous-critères</b>, des pondérations conseillées et des <b>formules de notation</b>, selon le type de marché — avec l'alerte du <b>critère environnemental obligatoire au 21 août 2026</b>.</p>
     <div class="pills">
       <span class="pill"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> 100 % en local, sans compte</span>
       <span class="pill"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Conforme au Code de la commande publique</span>
@@ -110,71 +119,48 @@ footer{width:100%;max-width:1000px;margin:0 auto;padding:22px 40px;font-family:'
 </div>
 
 <main>
-  <!-- 1. Paramètres -->
   <div class="sec">
-    <div class="sec-h"><span class="num">1</span>Paramètres du marché</div>
-    <div class="sec-sub">Le type oriente la grille proposée ; la date détermine si le critère environnemental est obligatoire.</div>
+    <div class="sec-h"><span class="num">1</span>Votre marché</div>
+    <div class="sec-sub">Le type charge une grille de critères adaptée ; la date détermine si le critère environnemental est obligatoire.</div>
     <div class="row">
-      <div class="fld">
-        <label for="typeM">Type de marché</label>
-        <select id="typeM">
-          <option value="services">Services</option>
-          <option value="fournitures">Fournitures</option>
-          <option value="travaux">Travaux</option>
-        </select>
-      </div>
-      <div class="fld">
-        <label for="dateC">Date de lancement de la consultation</label>
-        <input type="date" id="dateC">
-      </div>
-      <div class="fld">
-        <label for="ponderType">Mode de jugement</label>
-        <select id="ponderType">
-          <option value="ponderation">Pondération (%)</option>
-          <option value="prixseul">Critère unique : prix / coût</option>
-        </select>
-      </div>
+      <div class="fld"><label for="typeM">Type de marché</label>
+        <select id="typeM"><option value="services">Services</option><option value="travaux">Travaux</option></select></div>
+      <div class="fld"><label for="ccag">CCAG applicable (indicatif)</label><select id="ccag"></select></div>
+      <div class="fld"><label for="dateC">Date de lancement de la consultation</label><input type="date" id="dateC"></div>
     </div>
   </div>
 
-  <!-- 2. Grille de critères -->
   <div class="sec">
-    <div class="sec-h"><span class="num">2</span>Grille de critères pondérés</div>
-    <div class="sec-sub">Ajustez librement les critères et leur pondération (le total doit faire 100 %). Cochez le critère « prix » pour une notation automatique. Critères indicatifs — à adapter à votre marché.</div>
-    <table class="tbl-crit">
-      <thead><tr><th>Critère</th><th style="width:90px">Pondération</th><th style="width:70px;text-align:center">Prix ?</th><th style="width:40px"></th></tr></thead>
-      <tbody id="critBody"></tbody>
-    </table>
+    <div class="sec-h"><span class="num">2</span>Grille de critères proposée</div>
+    <div class="sec-sub">Critères et pondérations conseillés — à ajuster (total = 100 %). Ajoutez les sous-critères pertinents via les menus, et choisissez la formule de notation du prix. Tout sous-critère noté doit figurer dans le règlement de consultation.</div>
+    <div id="critList"></div>
     <div class="btns no-print">
-      <button class="btn" id="addCrit">+ Ajouter un critère</button>
-      <button class="btn" id="addEnv">+ Critère environnemental</button>
+      <button class="btn" id="addCrit">+ Critère libre</button>
       <button class="btn" id="resetCrit">Réinitialiser selon le type</button>
     </div>
     <div class="sumline"><span>Total des pondérations :</span><span class="sumbadge" id="sumBadge">0 %</span></div>
     <div id="envAlert"></div>
   </div>
 
-  <!-- 3. Notation des offres -->
   <div class="sec">
     <div class="sec-h"><span class="num">3</span>Notation &amp; classement des offres</div>
-    <div class="sec-sub">Saisissez une note sur 10 par critère et par offre (pour le critère « prix », saisissez le montant en € → note calculée automatiquement). Le total pondéré et le classement se mettent à jour en direct.</div>
+    <div class="sec-sub">Note sur 10 par critère et par offre (pour le prix, saisissez le montant € → note calculée selon la formule choisie). Total pondéré et classement en direct.</div>
     <div class="scorewrap"><table class="tbl-score"><thead id="scoreHead"></thead><tbody id="scoreBody"></tbody></table></div>
     <div class="btns no-print">
       <button class="btn" id="addOffer">+ Ajouter une offre</button>
-      <button class="btn no-print" onclick="window.print()">Imprimer / PDF</button>
+      <button class="btn" onclick="window.print()">Imprimer / PDF</button>
     </div>
   </div>
 
-  <!-- Cadre légal -->
   <div class="sec">
     <div class="sec-h"><span class="num">§</span>Cadre légal &amp; sources</div>
     <div class="legal">
       <ul>
-        <li><b>Critères d'attribution</b> — l'offre retenue est l'<b>offre économiquement la plus avantageuse</b>, appréciée sur la base d'un ou plusieurs critères liés à l'objet du marché (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730625" target="_blank" rel="noopener">CCP, art. R2152-7</a>). Un critère unique « prix » ou « coût » n'est possible que pour les achats standardisés.</li>
-        <li><b>Pondération ou hiérarchisation</b> — les critères sont en principe <b>pondérés</b> ; à défaut (pondération impossible), ils sont <b>hiérarchisés</b> (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730619" target="_blank" rel="noopener">CCP, art. R2152-11 et R2152-12</a>).</li>
-        <li><b>Critère environnemental obligatoire</b> — à compter du <b>21 août 2026</b>, au moins un critère d'attribution doit prendre en compte les <b>caractéristiques environnementales</b> de l'offre (loi « Climat et résilience » n° 2021-1104 du 22 août 2021, art. 35 ; <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045728799" target="_blank" rel="noopener">décret n° 2022-767</a>).</li>
+        <li><b>Critères liés à l'objet</b> — l'offre retenue est l'<b>offre économiquement la plus avantageuse</b> (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730625" target="_blank" rel="noopener">CCP, art. R2152-7</a>). Critère unique « prix » réservé aux achats standardisés.</li>
+        <li><b>Pondération</b> en principe (à défaut, hiérarchisation) — <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730619" target="_blank" rel="noopener">art. R2152-11 et R2152-12</a>. Les sous-critères pondérés ou notés doivent être <b>annoncés dans le règlement de consultation</b>.</li>
+        <li><b>Critère environnemental obligatoire</b> à compter du <b>21 août 2026</b> (loi « Climat et résilience » n° 2021-1104, art. 35 ; <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045728799" target="_blank" rel="noopener">décret n° 2022-767</a>).</li>
       </ul>
-      <p class="disclaimer">Outil d'aide à la décision mis à disposition gratuitement, à titre pédagogique. Il ne constitue pas un conseil juridique et ne dispense pas de vérifier la rédaction de votre règlement de consultation au regard des textes en vigueur et de votre situation. Les critères et pondérations proposés sont indicatifs.</p>
+      <p class="disclaimer">Outil d'aide à la décision, à titre pédagogique. Critères, sous-critères, pondérations et formules <b>indicatifs</b>, à adapter à l'objet et à votre règlement de consultation. Ne constitue pas un conseil juridique.</p>
     </div>
   </div>
 </main>
@@ -182,149 +168,122 @@ footer{width:100%;max-width:1000px;margin:0 auto;padding:22px 40px;font-family:'
 <footer>© Sébastien Rivière · Outil en local, aucune donnée n'est envoyée.</footer>
 
 <script>
-const ICO_DEL = '<svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>';
-const DEFAULTS = {
-  services:    [['Prix / Coût',40,true],['Valeur technique',40,false],['Performances environnementales',10,false],['Délais d\'exécution',10,false]],
-  fournitures: [['Prix / Coût',50,true],['Valeur technique',30,false],['Performances environnementales',10,false],['Délais & SAV',10,false]],
-  travaux:     [['Prix / Coût',40,true],['Valeur technique',35,false],['Performances environnementales',15,false],['Délais d\'exécution',10,false]],
-};
-const ENV_DATE = new Date('2026-08-21');
-const ENV_RE = /environnement|développement durable|developpement durable|écolog|ecolog|carbone|RSE|durable/i;
-let crit = [];          // {nom, pond, prix}
-let offers = [];        // {nom, vals:[]}  vals aligned to crit index
-let uidc = 0;
+const ICO_DEL='<svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>';
+const ENV_DATE=new Date('2026-08-21');
+const ENV_RE=/environnement|développement durable|developpement durable|écolog|ecolog|carbone|durable/i;
+let REF=null, crit=[], offers=[], PRICE_F=[], APPR=null;
+function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
-function esc(s){ return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-
-function loadDefaults(){
-  const t = document.getElementById('typeM').value;
-  crit = DEFAULTS[t].map(d=>({nom:d[0],pond:d[1],prix:d[2]}));
-  offers.forEach(o=>{ o.vals = crit.map(()=>''); });
+function loadType(){
+  const t=document.getElementById('typeM').value;
+  const tt=REF.types[t];
+  // CCAG options
+  const cc=document.getElementById('ccag');
+  cc.innerHTML='<option value="">— non précisé —</option>'+tt.ccag_suggere.map(c=>'<option>'+esc(c)+'</option>').join('');
+  crit=tt.criteres.filter(c=>c.pond_defaut>0 || c.prix || c.env).map(c=>({
+    id:c.id, nom:c.nom, pond:c.pond_defaut, prix:!!c.prix, env:!!c.env, conseil:c.conseil||'',
+    formule:c.formule, formuleId:(PRICE_F[0]&&PRICE_F[0].id)||'inverse',
+    sous:[], avail:(c.sous_criteres||[]).slice()
+  }));
+  offers.forEach(o=>o.vals=crit.map(()=>''));
   renderAll();
 }
 function renderAll(){ renderCrit(); renderScore(); }
 
+function priceFormBox(i){
+  const c=crit[i];
+  const sel='<select onchange="crit['+i+'].formuleId=this.value;renderCrit()">'+PRICE_F.map(f=>'<option value="'+f.id+'"'+(f.id===c.formuleId?' selected':'')+'>'+esc(f.nom)+'</option>').join('')+'</select>';
+  const f=PRICE_F.find(x=>x.id===c.formuleId)||PRICE_F[0];
+  return '<div class="formbox">Formule de notation du prix : '+sel+'<br><b>'+esc(f.formule)+'</b><br>Quand : '+esc(f.quand)+'<br><span class="pi">Piège :</span> '+esc(f.piege)+'</div>';
+}
+function apprBox(){ return '<div class="formbox"><b>'+esc(APPR.nom)+'</b> — '+esc(APPR.formule)+'<br>Quand : '+esc(APPR.quand)+'<br><span class="pi">Piège :</span> '+esc(APPR.piege)+'</div>'; }
+
 function renderCrit(){
-  const ps = document.getElementById('ponderType').value === 'prixseul';
-  const body = document.getElementById('critBody');
-  if(ps){
-    body.innerHTML = '<tr><td colspan="4" style="color:var(--faint);font-style:italic;padding:14px 8px">Critère unique « prix / coût » — réservé aux achats standardisés. Le classement se fait sur le prix le plus bas (onglet ci-dessous).</td></tr>';
-    document.getElementById('sumBadge').textContent='—';
-    document.getElementById('sumBadge').className='sumbadge sum-ok';
-    document.getElementById('envAlert').innerHTML='';
-    return;
-  }
-  body.innerHTML = crit.map((c,i)=>{
-    const isEnv = ENV_RE.test(c.nom);
-    return '<tr>'
-      + '<td><input type="text" value="'+esc(c.nom)+'" oninput="crit['+i+'].nom=this.value;refreshEnv();renderScore()" placeholder="Nom du critère">'+(isEnv?'<span class="envtag">environnemental</span>':'')+'</td>'
-      + '<td><input type="number" min="0" max="100" value="'+c.pond+'" oninput="crit['+i+'].pond=parseFloat(this.value)||0;refreshSum();renderScore()"> %</td>'
-      + '<td style="text-align:center"><input type="radio" name="prixcrit" '+(c.prix?'checked':'')+' onclick="setPrix('+i+')" title="Notation automatique du prix"></td>'
-      + '<td><button class="del" onclick="delCrit('+i+')" title="Supprimer">'+ICO_DEL+'</button></td>'
-    + '</tr>';
+  document.getElementById('critList').innerHTML=crit.map((c,i)=>{
+    const isEnv=c.env||ENV_RE.test(c.nom);
+    const sousHtml=c.sous.map((s,j)=>'<div class="sous-item"><span class="b">›</span><div><span style="font-weight:700">'+esc(s.nom)+'</span>'+(s.desc?'<div class="d">'+esc(s.desc)+'</div>':'')+'</div><button class="del no-print" style="margin-left:auto" onclick="delSous('+i+','+j+')" title="Retirer">'+ICO_DEL+'</button></div>').join('');
+    const remaining=c.avail.filter(a=>!c.sous.some(s=>s.nom===a.nom));
+    const dd=(remaining.length||true)?'<div class="sous-add no-print"><select id="dd'+i+'"><option value="">+ Ajouter un sous-critère…</option>'+remaining.map((a,k)=>'<option value="'+k+'">'+esc(a.nom)+'</option>').join('')+'<option value="__free">Autre (saisir)…</option></select><button class="btn btn-sm" onclick="addSousFromDd('+i+')">Ajouter</button></div>':'';
+    return '<div class="crit'+(isEnv?' env':'')+'">'
+      + '<div class="crit-top"><input class="cnom" value="'+esc(c.nom)+'" oninput="crit['+i+'].nom=this.value;refreshEnv()">'
+        + (isEnv?'<span class="envtag">environnemental</span>':'')
+        + '<input class="cpond" type="number" min="0" max="100" value="'+c.pond+'" oninput="crit['+i+'].pond=parseFloat(this.value)||0;refreshSum();renderScore()"> %'
+        + '<label style="display:inline-flex;align-items:center;gap:5px;margin:0;font-size:11.5px"><input type="radio" name="prixc" '+(c.prix?'checked':'')+' onclick="setPrix('+i+')"> prix</label>'
+        + '<button class="del no-print" onclick="delCrit('+i+')" title="Supprimer le critère">'+ICO_DEL+'</button></div>'
+      + (c.conseil?'<div class="conseil">'+esc(c.conseil)+'</div>':'')
+      + (c.prix?priceFormBox(i):apprBox())
+      + (c.sous.length?'<div class="sous">'+sousHtml+'</div>':'')
+      + (c.prix?'':dd)
+    + '</div>';
   }).join('');
   refreshSum(); refreshEnv();
 }
+function setPrix(i){ crit.forEach((c,j)=>c.prix=(j===i)); renderAll(); }
+function delCrit(i){ crit.splice(i,1); offers.forEach(o=>o.vals.splice(i,1)); renderAll(); }
+function addCrit(){ crit.push({nom:'',pond:0,prix:false,env:false,conseil:'',formule:'appreciation',sous:[],avail:[]}); offers.forEach(o=>o.vals.push('')); renderAll(); }
+function delSous(i,j){ crit[i].sous.splice(j,1); renderCrit(); }
+function addSousFromDd(i){
+  const dd=document.getElementById('dd'+i); const v=dd.value; if(!v)return;
+  if(v==='__free'){ const nom=prompt('Intitulé du sous-critère :'); if(nom){ crit[i].sous.push({nom:nom.trim(),desc:''}); renderCrit(); } return; }
+  const remaining=crit[i].avail.filter(a=>!crit[i].sous.some(s=>s.nom===a.nom));
+  const a=remaining[parseInt(v)]; if(a){ crit[i].sous.push({nom:a.nom,desc:a.desc}); renderCrit(); }
+}
 function refreshSum(){
-  const s = crit.reduce((a,c)=>a+(parseFloat(c.pond)||0),0);
-  const b = document.getElementById('sumBadge');
-  b.textContent = (Math.round(s*100)/100)+' %';
-  b.className = 'sumbadge ' + (Math.abs(s-100)<0.001 ? 'sum-ok':'sum-bad');
+  const s=crit.reduce((a,c)=>a+(parseFloat(c.pond)||0),0);
+  const b=document.getElementById('sumBadge'); b.textContent=(Math.round(s*100)/100)+' %';
+  b.className='sumbadge '+(Math.abs(s-100)<0.001?'sum-ok':'sum-bad');
 }
 function refreshEnv(){
-  const el = document.getElementById('envAlert');
-  if(document.getElementById('ponderType').value==='prixseul'){ el.innerHTML=''; return; }
-  const d = document.getElementById('dateC').value ? new Date(document.getElementById('dateC').value) : new Date();
-  const mandatory = d >= ENV_DATE;
-  const hasEnv = crit.some(c=>ENV_RE.test(c.nom));
-  if(mandatory && !hasEnv){
-    el.innerHTML = '<div class="alert alert-warn"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><div><b>Critère environnemental manquant.</b> Pour une consultation lancée à partir du 21 août 2026, au moins un critère doit porter sur les caractéristiques environnementales de l\'offre. Ajoutez-le (bouton ci-dessus).</div></div>';
-  } else if(mandatory && hasEnv){
-    el.innerHTML = '<div class="alert alert-ok"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div>Critère environnemental présent — obligation du 21 août 2026 satisfaite.</div></div>';
-  } else if(!mandatory && !hasEnv){
-    el.innerHTML = '<div class="alert alert-warn" style="opacity:.85"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div>Le critère environnemental deviendra <b>obligatoire le 21 août 2026</b>. Anticipez-le dès maintenant.</div></div>';
-  } else { el.innerHTML=''; }
+  const el=document.getElementById('envAlert');
+  const d=document.getElementById('dateC').value?new Date(document.getElementById('dateC').value):new Date();
+  const mand=d>=ENV_DATE, hasEnv=crit.some(c=>c.env||ENV_RE.test(c.nom));
+  if(mand&&!hasEnv) el.innerHTML='<div class="alert alert-warn"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><div><b>Critère environnemental manquant.</b> Obligatoire pour une consultation lancée à partir du 21 août 2026. Réinitialisez la grille ou ajoutez-le.</div></div>';
+  else if(mand&&hasEnv) el.innerHTML='<div class="alert alert-ok"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div>Critère environnemental présent — obligation du 21 août 2026 satisfaite.</div></div>';
+  else if(!mand&&!hasEnv) el.innerHTML='<div class="alert alert-warn" style="opacity:.85"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><div>Le critère environnemental deviendra <b>obligatoire le 21 août 2026</b> — anticipez-le.</div></div>';
+  else el.innerHTML='';
 }
-function setPrix(i){ crit.forEach((c,j)=>c.prix=(j===i)); renderScore(); }
-function delCrit(i){ crit.splice(i,1); offers.forEach(o=>o.vals.splice(i,1)); renderAll(); }
-function addCrit(nom){ crit.push({nom:nom||'',pond:0,prix:false}); offers.forEach(o=>o.vals.push('')); renderAll(); }
 
-function addOffer(){ offers.push({nom:'Offre '+(offers.length+1), vals:crit.map(()=>'')}); renderScore(); }
+function addOffer(){ offers.push({nom:'Offre '+String.fromCharCode(65+offers.length), vals:crit.map(()=>'')}); renderScore(); }
 function delOffer(i){ offers.splice(i,1); renderScore(); }
-
 function noteOf(o,i){
-  const c = crit[i];
+  const c=crit[i];
   if(c.prix){
-    const prices = offers.map(of=>parseFloat(of.vals[i])).filter(v=>v>0);
-    const min = prices.length?Math.min.apply(null,prices):0;
-    const p = parseFloat(o.vals[i]);
-    if(!p||p<=0||!min) return null;
-    return Math.round((min/p)*10*100)/100;   // note /10, inversement proportionnelle au prix
+    const prices=offers.map(of=>parseFloat(of.vals[i])).filter(v=>v>0);
+    const min=prices.length?Math.min.apply(null,prices):0; const p=parseFloat(o.vals[i]);
+    if(!p||p<=0||!min)return null;
+    if(c.formuleId==='lineaire'){ return Math.max(0,Math.round((10*(1-(p-min)/min))*100)/100); }
+    return Math.round((min/p)*10*100)/100;
   }
-  const n = parseFloat(o.vals[i]);
-  return isNaN(n)?null:Math.max(0,Math.min(10,n));
+  const n=parseFloat(o.vals[i]); return isNaN(n)?null:Math.max(0,Math.min(10,n));
 }
-function totalOf(o){
-  if(document.getElementById('ponderType').value==='prixseul') return null;
-  let t=0, wsum=0;
-  crit.forEach((c,i)=>{ const n=noteOf(o,i); const w=parseFloat(c.pond)||0; if(n!==null){ t+=n*w; wsum+=w; } });
-  return wsum?Math.round((t/100)*100)/100:0;   // /10
-}
-
+function totalOf(o){ let t=0; crit.forEach((c,i)=>{const n=noteOf(o,i); if(n!==null)t+=n*(parseFloat(c.pond)||0);}); return Math.round((t/100)*100)/100; }
 function renderScore(){
-  const head=document.getElementById('scoreHead'), body=document.getElementById('scoreBody');
-  const prixSeul = document.getElementById('ponderType').value==='prixseul';
-  if(!offers.length){ head.innerHTML=''; body.innerHTML='<tr><td style="color:var(--faint);font-style:italic;padding:14px 8px">Ajoutez des offres pour les noter.</td></tr>'; return; }
-  // scores for ranking
-  const totals = offers.map(o=> prixSeul ? null : totalOf(o));
-  let bestIdx=-1;
-  if(!prixSeul){ const max=Math.max.apply(null,totals.map(t=>t==null?-1:t)); bestIdx=totals.indexOf(max); if(max<=0)bestIdx=-1; }
-
-  head.innerHTML = '<tr><th>Critère</th>'+offers.map((o,j)=>'<th class="offname"><input type="text" value="'+esc(o.nom)+'" oninput="offers['+j+'].nom=this.value;renderScore()"><button class="del no-print" onclick="delOffer('+j+')" title="Retirer">'+ICO_DEL+'</button></th>').join('')+'</tr>';
-
-  if(prixSeul){
-    // single price criterion
-    body.innerHTML = '<tr><td>Prix / Coût (€)</td>'+offers.map((o,j)=>'<td><input type="number" min="0" value="'+esc(o.vals[0]||'')+'" oninput="offers['+j+'].vals[0]=this.value;renderScore()"></td>').join('')+'</tr>';
-    const prices = offers.map(o=>parseFloat(o.vals[0])).map(v=>isNaN(v)?Infinity:v);
-    const min = Math.min.apply(null,prices); const bi = prices.indexOf(min);
-    body.innerHTML += '<tr class="rankrow"><td>Classement</td>'+offers.map((o,j)=>'<td>'+(isFinite(prices[j])?'#'+(prices.slice().sort((a,b)=>a-b).indexOf(prices[j])+1):'—')+(j===bi&&isFinite(min)?'<span class="win-badge">mieux-disant</span>':'')+'</td>').join('')+'</tr>';
-    return;
-  }
-
-  body.innerHTML = crit.map((c,i)=>{
-    const isPrice=c.prix;
-    return '<tr><td>'+esc(c.nom||'(critère)')+' <span style="color:var(--faint);font-weight:400">· '+(parseFloat(c.pond)||0)+'%'+(isPrice?' · prix':'')+'</span></td>'
-      + offers.map((o,j)=>{
-          const ph = isPrice ? 'Prix €' : '0–10';
-          const auto = isPrice ? (()=>{ const n=noteOf(o,i); return n==null?'':'<div style="font-size:11px;color:var(--faint);margin-top:2px">→ '+n+'/10</div>'; })() : '';
-          return '<td><input type="number" min="0" '+(isPrice?'':'max="10" step="0.5"')+' value="'+esc(o.vals[i]||'')+'" placeholder="'+ph+'" oninput="offers['+j+'].vals['+i+']=this.value;renderScore()">'+auto+'</td>';
-        }).join('')
-    + '</tr>';
-  }).join('');
-  body.innerHTML += '<tr class="totrow"><td>Total pondéré /10</td>'+offers.map((o,j)=>{
-      const t=totals[j];
-      return '<td class="'+(j===bestIdx?'win':'')+'">'+(t==null?'—':t.toFixed(2))+(j===bestIdx?'<span class="win-badge">1ᵉʳ</span>':'')+'</td>';
-    }).join('')+'</tr>';
-  // classement
-  const order = totals.map((t,j)=>({t:t==null?-1:t,j})).sort((a,b)=>b.t-a.t);
-  const rank = {}; order.forEach((o,k)=>rank[o.j]=k+1);
-  body.innerHTML += '<tr class="rankrow"><td>Classement</td>'+offers.map((o,j)=>'<td>'+(totals[j]>0?'#'+rank[j]:'—')+'</td>').join('')+'</tr>';
+  const head=document.getElementById('scoreHead'),body=document.getElementById('scoreBody');
+  if(!offers.length||!crit.length){ head.innerHTML=''; body.innerHTML='<tr><td style="color:var(--faint);font-style:italic;padding:14px 8px">Définissez des critères et ajoutez des offres pour les noter.</td></tr>'; return; }
+  const totals=offers.map(o=>totalOf(o));
+  const max=Math.max.apply(null,totals.map(t=>t==null?-1:t)); let best=max>0?totals.indexOf(max):-1;
+  head.innerHTML='<tr><th>Critère</th>'+offers.map((o,j)=>'<th class="offname"><input type="text" value="'+esc(o.nom)+'" oninput="offers['+j+'].nom=this.value;renderScore()"><button class="del no-print" onclick="delOffer('+j+')">'+ICO_DEL+'</button></th>').join('')+'</tr>';
+  body.innerHTML=crit.map((c,i)=>'<tr><td>'+esc(c.nom||'(critère)')+' <span style="color:var(--faint);font-weight:400">· '+(parseFloat(c.pond)||0)+'%'+(c.prix?' · prix':'')+'</span></td>'
+    + offers.map((o,j)=>{const isP=c.prix; const auto=isP?(()=>{const n=noteOf(o,i);return n==null?'':'<div style="font-size:11px;color:var(--faint);margin-top:2px">→ '+n+'/10</div>';})():''; return '<td><input type="number" min="0" '+(isP?'':'max="10" step="0.5"')+' value="'+esc(o.vals[i]||'')+'" placeholder="'+(isP?'Prix €':'0–10')+'" oninput="offers['+j+'].vals['+i+']=this.value;renderScore()">'+auto+'</td>';}).join('')
+    + '</tr>').join('')
+    + '<tr class="totrow"><td>Total pondéré /10</td>'+offers.map((o,j)=>{const t=totals[j];return '<td class="'+(j===best?'win':'')+'">'+(t==null?'—':t.toFixed(2))+(j===best?'<span class="win-badge">1ᵉʳ</span>':'')+'</td>';}).join('')+'</tr>';
+  const order=totals.map((t,j)=>({t:t==null?-1:t,j})).sort((a,b)=>b.t-a.t); const rk={}; order.forEach((o,k)=>rk[o.j]=k+1);
+  body.innerHTML+='<tr class="rankrow"><td>Classement</td>'+offers.map((o,j)=>'<td>'+(totals[j]>0?'#'+rk[j]:'—')+'</td>').join('')+'</tr>';
 }
 
 // init
-(function(){
-  document.getElementById('dateC').value = new Date().toISOString().slice(0,10);
-  document.getElementById('typeM').addEventListener('change', loadDefaults);
-  document.getElementById('dateC').addEventListener('change', refreshEnv);
-  document.getElementById('ponderType').addEventListener('change', renderAll);
-  document.getElementById('addCrit').addEventListener('click', ()=>addCrit(''));
-  document.getElementById('addEnv').addEventListener('click', ()=>{ if(!crit.some(c=>ENV_RE.test(c.nom))) addCrit('Performances environnementales'); else refreshEnv(); });
-  document.getElementById('resetCrit').addEventListener('click', loadDefaults);
-  document.getElementById('addOffer').addEventListener('click', addOffer);
-  loadDefaults();
-  offers.push({nom:'Offre A',vals:crit.map(()=>'')}, {nom:'Offre B',vals:crit.map(()=>'')});
+fetch('./criteres-referentiel.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+  REF=d; PRICE_F=d.formules_prix||[]; APPR=d.formule_appreciation;
+  document.getElementById('dateC').value=new Date().toISOString().slice(0,10);
+  document.getElementById('typeM').addEventListener('change',loadType);
+  document.getElementById('dateC').addEventListener('change',refreshEnv);
+  document.getElementById('addCrit').addEventListener('click',addCrit);
+  document.getElementById('resetCrit').addEventListener('click',loadType);
+  document.getElementById('addOffer').addEventListener('click',addOffer);
+  loadType();
+  offers.push({nom:'Offre A',vals:crit.map(()=>'')},{nom:'Offre B',vals:crit.map(()=>'')});
   renderScore();
-})();
+}).catch(()=>{ document.getElementById('critList').innerHTML='<div style="color:var(--bad)">Référentiel indisponible.</div>'; });
 </script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

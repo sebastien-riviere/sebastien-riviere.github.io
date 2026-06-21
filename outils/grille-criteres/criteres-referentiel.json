@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "titre": "Référentiel de critères d'attribution",
+    "version": "1.0",
+    "maj": "2026-06-20",
+    "avertissement": "Critères, sous-critères, pondérations et formules indicatifs, à adapter à l'objet précis du marché et à votre règlement de consultation. Ne constitue pas un conseil juridique.",
+    "base_legale": "CCP art. R2152-7 (offre économiquement la plus avantageuse, critères liés à l'objet), R2152-11 et R2152-12 (pondération ou hiérarchisation), loi n°2021-1104 art. 35 (critère environnemental obligatoire au 21/08/2026)."
+  },
+  "formules_prix": [
+    {
+      "id": "inverse",
+      "nom": "Proportionnelle inverse (au moins-disant)",
+      "formule": "Note = (prix le plus bas / prix de l'offre) × note maximale",
+      "quand": "La plus courante et la plus simple à justifier. Adaptée quand les prix sont attendus dans une fourchette resserrée.",
+      "piege": "Peu discriminante : un écart de prix important se traduit par un faible écart de note. Une offre 2× plus chère obtient encore la moitié des points."
+    },
+    {
+      "id": "lineaire",
+      "nom": "Linéaire à seuil (par rapport au moins-disant)",
+      "formule": "Note = note max × [1 − (prix offre − prix mini) / prix mini], plancher à 0",
+      "quand": "Plus discriminante : pénalise nettement les offres chères. Utile quand le prix doit vraiment départager.",
+      "piege": "Au-delà de +100 % du prix mini la note tombe à 0 (à plafonner). Annoncer la formule exacte dans le règlement de consultation."
+    },
+    {
+      "id": "moyenne",
+      "nom": "Écart à la moyenne",
+      "formule": "Note pénalisant l'écart à la moyenne des offres",
+      "quand": "Rarement recommandée.",
+      "piege": "Note dépendante des autres offres (un candidat peut influencer le résultat) et jugée peu objective par le juge administratif. À éviter."
+    }
+  ],
+  "formule_appreciation": {
+    "nom": "Notation par appréciation (barème de points)",
+    "formule": "Chaque sous-critère est noté sur un barème (ex. /5 ou /20) à partir du mémoire technique, puis pondéré.",
+    "quand": "Standard pour la valeur technique et les critères qualitatifs.",
+    "piege": "Tout sous-critère noté ou pondéré DOIT être annoncé dans le règlement de consultation. La note doit être justifiée par un commentaire cohérent (motivation du rejet)."
+  },
+  "types": {
+    "services": {
+      "label": "Services",
+      "ccag_suggere": ["CCAG FCS (fournitures courantes et services)", "CCAG PI (prestations intellectuelles)", "CCAG TIC (techniques de l'information)", "CCAG MOE (maîtrise d'œuvre)"],
+      "criteres": [
+        {
+          "id": "prix", "nom": "Prix des prestations", "pond_defaut": 40, "prix": true,
+          "conseil": "Pondération usuelle 30–50 %. Un critère prix unique n'est admis que pour des prestations standardisées.",
+          "sous_criteres": [],
+          "formule": "prix"
+        },
+        {
+          "id": "valeur_technique", "nom": "Valeur technique", "pond_defaut": 45,
+          "conseil": "Le critère qui doit refléter l'objet. Évaluée sur le mémoire technique. Pondération usuelle 40–60 %.",
+          "sous_criteres": [
+            {"nom": "Compréhension du besoin et méthodologie", "desc": "Analyse du contexte, démarche proposée, adéquation à l'objet."},
+            {"nom": "Moyens humains dédiés et qualifications", "desc": "Composition de l'équipe, CV, expérience sur prestations similaires."},
+            {"nom": "Moyens matériels et techniques", "desc": "Outils, logiciels, matériels mobilisés."},
+            {"nom": "Dispositif de pilotage, suivi et reporting", "desc": "Gouvernance, points d'étape, indicateurs, interlocuteur dédié."},
+            {"nom": "Qualité des livrables / échantillon / note méthodologique", "desc": "Pertinence et qualité des productions attendues."},
+            {"nom": "Planning et tenue des délais", "desc": "Rétroplanning, jalons, réalisme."},
+            {"nom": "Gestion des aléas et continuité de service", "desc": "Plan de reprise, remplacement d'intervenants, astreintes."}
+          ],
+          "formule": "appreciation"
+        },
+        {
+          "id": "environnement", "nom": "Performances environnementales", "pond_defaut": 10, "env": true,
+          "conseil": "OBLIGATOIRE à compter du 21/08/2026 (au moins un critère environnemental). Pondération usuelle 5–15 %. Les sous-critères doivent être liés à l'objet.",
+          "sous_criteres": [
+            {"nom": "Démarche / système de management environnemental", "desc": "Certifications (ISO 14001…), plan d'actions, politique RSE."},
+            {"nom": "Mobilité et transport bas-carbone des intervenants", "desc": "Optimisation des déplacements, véhicules propres."},
+            {"nom": "Réduction et gestion des déchets", "desc": "Tri, réemploi, dématérialisation."},
+            {"nom": "Numérique responsable", "desc": "Éco-conception, hébergement sobre, fin de vie du matériel (prestations IT)."},
+            {"nom": "Économie de ressources / circularité", "desc": "Réemploi, consommables, sobriété."}
+          ],
+          "formule": "appreciation"
+        },
+        {
+          "id": "delai", "nom": "Délai d'exécution", "pond_defaut": 5,
+          "conseil": "À utiliser seulement si le délai est un vrai enjeu. Sinon le fixer en exigence (pas en critère).",
+          "sous_criteres": [],
+          "formule": "prix"
+        },
+        {
+          "id": "social", "nom": "Performances en matière d'insertion sociale", "pond_defaut": 0,
+          "conseil": "Optionnel. Doit rester lié à l'objet (CCP L2112-2). Sinon préférer une clause d'exécution.",
+          "sous_criteres": [
+            {"nom": "Volume d'heures d'insertion proposé", "desc": "Engagement chiffré et modalités."},
+            {"nom": "Qualité du parcours d'insertion / encadrement", "desc": "Accompagnement, formation, pérennité."}
+          ],
+          "formule": "appreciation"
+        }
+      ]
+    },
+    "travaux": {
+      "label": "Travaux",
+      "ccag_suggere": ["CCAG Travaux", "CCAG MOE (pour la maîtrise d'œuvre associée)"],
+      "criteres": [
+        {
+          "id": "prix", "nom": "Prix des travaux", "pond_defaut": 40, "prix": true,
+          "conseil": "Pondération usuelle 40–50 %. Vérifier la cohérence de la décomposition (DPGF / DQE) avant notation.",
+          "sous_criteres": [],
+          "formule": "prix"
+        },
+        {
+          "id": "valeur_technique", "nom": "Valeur technique", "pond_defaut": 40,
+          "conseil": "Évaluée sur le mémoire technique. Pondération usuelle 30–50 %.",
+          "sous_criteres": [
+            {"nom": "Méthodologie et mode opératoire d'exécution", "desc": "Phasage, techniques retenues, adéquation au site."},
+            {"nom": "Moyens humains et encadrement de chantier", "desc": "Conducteur de travaux, chef de chantier, qualifications, effectifs."},
+            {"nom": "Moyens matériels affectés au chantier", "desc": "Engins, matériel, disponibilité."},
+            {"nom": "Planning et phasage des travaux", "desc": "Réalisme, enchaînement des tâches, marges."},
+            {"nom": "Sécurité et protection de la santé (PPSPS)", "desc": "Prévention des risques, coordination SPS."},
+            {"nom": "Gestion des nuisances et des riverains", "desc": "Bruit, poussière, circulation, accès, information."},
+            {"nom": "Provenance et qualité des matériaux / fiches techniques", "desc": "Caractéristiques, conformité, échantillons."},
+            {"nom": "Gestion et traçabilité des déchets de chantier", "desc": "Tri, valorisation, bordereaux."}
+          ],
+          "formule": "appreciation"
+        },
+        {
+          "id": "environnement", "nom": "Performances environnementales", "pond_defaut": 15, "env": true,
+          "conseil": "OBLIGATOIRE à compter du 21/08/2026. Pondération usuelle 10–20 % en travaux. Sous-critères liés à l'objet.",
+          "sous_criteres": [
+            {"nom": "Gestion et valorisation des déchets de chantier", "desc": "Taux de valorisation, réemploi, filières."},
+            {"nom": "Provenance locale / circuits courts des matériaux", "desc": "Réduction du transport, approvisionnement de proximité."},
+            {"nom": "Matériaux biosourcés / géosourcés / réemploi", "desc": "Part de matériaux à faible impact."},
+            {"nom": "Chantier à faibles nuisances (charte chantier vert)", "desc": "Bruit, poussière, propreté, eau."},
+            {"nom": "Engins et matériels à faibles émissions", "desc": "Motorisation, consommation, électrique."},
+            {"nom": "Performance énergétique de l'ouvrage", "desc": "Au-delà de la réglementation, si pertinent."}
+          ],
+          "formule": "appreciation"
+        },
+        {
+          "id": "delai", "nom": "Délai d'exécution", "pond_defaut": 5,
+          "conseil": "Pertinent en travaux si le calendrier est contraint. À pondérer modérément.",
+          "sous_criteres": [],
+          "formule": "prix"
+        },
+        {
+          "id": "social", "nom": "Insertion sociale", "pond_defaut": 0,
+          "conseil": "Fréquent en travaux. Souvent traité en clause d'exécution (heures d'insertion) plutôt qu'en critère.",
+          "sous_criteres": [
+            {"nom": "Volume d'heures d'insertion", "desc": "Engagement chiffré."},
+            {"nom": "Qualité de l'accompagnement", "desc": "Tutorat, formation, pérennisation."}
+          ],
+          "formule": "appreciation"
+        }
+      ]
+    }
+  }
+}
