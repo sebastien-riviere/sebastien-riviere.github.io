@@ -221,7 +221,7 @@ fetch('./data.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   DATA=d.termes.map((t,i)=>({...t,i}));
   DATA.forEach(t=>buildKeys(t).forEach(k=>{ if(KEYMAP[k]==null)KEYMAP[k]=t.i; }));
   document.getElementById('pillCount').textContent=d.count;
-  document.getElementById('note').innerHTML='<b>Méthode.</b> Glossaire vulgarisé, premier socle extrait de supports de formation et vérifié, enrichi en continu. Le repère <b>« hype »</b> (établi / émergent / survendu) signale la maturité réelle d\'un terme, pour faire la part du concret et de l\'effet d\'annonce. Indicatif, ne constitue pas un avis technique ou juridique. Dernière mise à jour : '+esc(d.maj)+'.';
+  document.getElementById('note').innerHTML='<b>Méthode.</b> Glossaire vulgarisé, vérifié et enrichi en continu. Le repère <b>« hype »</b> (établi / émergent / survendu) signale la maturité réelle d\'un terme, pour faire la part du concret et de l\'effet d\'annonce. Indicatif, ne constitue pas un avis technique ou juridique. Dernière mise à jour : '+esc(d.maj)+'.';
   buildChips();
   document.getElementById('q').addEventListener('input',e=>{fQ=e.target.value;render();});
   render();
