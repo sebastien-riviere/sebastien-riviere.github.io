@@ -1,8 +1,8 @@
 {
   "meta": {
     "titre": "Référentiel de critères d'attribution",
-    "version": "1.0",
-    "maj": "2026-06-20",
+    "version": "1.1",
+    "maj": "2026-06-21",
     "avertissement": "Critères, sous-critères, pondérations et formules indicatifs, à adapter à l'objet précis du marché et à votre règlement de consultation. Ne constitue pas un conseil juridique.",
     "base_legale": "CCP art. R2152-7 (offre économiquement la plus avantageuse, critères liés à l'objet), R2152-11 et R2152-12 (pondération ou hiérarchisation), loi n°2021-1104 art. 35 (critère environnemental obligatoire au 21/08/2026)."
   },
@@ -139,6 +139,68 @@
           "sous_criteres": [
             {"nom": "Volume d'heures d'insertion", "desc": "Engagement chiffré."},
             {"nom": "Qualité de l'accompagnement", "desc": "Tutorat, formation, pérennisation."}
+          ],
+          "formule": "appreciation"
+        }
+      ]
+    },
+    "fournitures": {
+      "label": "Fournitures",
+      "ccag_suggere": ["CCAG FCS (fournitures courantes et services)", "CCAG TIC (matériels et systèmes d'information)", "CCAG MI (marchés industriels)"],
+      "criteres": [
+        {
+          "id": "prix", "nom": "Prix des fournitures", "pond_defaut": 50, "prix": true,
+          "conseil": "Souvent prépondérant en fournitures (50–60 %), surtout si standardisées. Vérifier la cohérence du BPU/DQE et le coût du cycle de vie si pertinent (CCP R2152-9).",
+          "sous_criteres": [],
+          "formule": "prix"
+        },
+        {
+          "id": "valeur_technique", "nom": "Valeur technique", "pond_defaut": 35,
+          "conseil": "À apprécier sur le mémoire technique, les fiches produits et, le cas échéant, les échantillons. Pondération usuelle 25–40 %.",
+          "sous_criteres": [
+            {"nom": "Conformité et qualité des caractéristiques techniques", "desc": "Adéquation au CCTP, performances, robustesse, durabilité."},
+            {"nom": "Qualité de l'échantillon / des essais", "desc": "Évaluation sur produit testé (à prévoir au règlement de consultation)."},
+            {"nom": "Ergonomie et facilité d'utilisation", "desc": "Prise en main, confort, accessibilité."},
+            {"nom": "Compatibilité et interopérabilité", "desc": "Intégration au parc existant, normes, standards (matériels IT notamment)."},
+            {"nom": "Conditionnement, livraison et logistique", "desc": "Emballage, lotissement, modalités et délais de livraison."},
+            {"nom": "Documentation, notices et formation", "desc": "Notices d'emploi, fiches de sécurité, prise en main."}
+          ],
+          "formule": "appreciation"
+        },
+        {
+          "id": "sav", "nom": "Garantie et service après-vente", "pond_defaut": 5,
+          "conseil": "Pertinent pour des fournitures techniques ou durables. Sinon le traiter en exigence du CCTP plutôt qu'en critère.",
+          "sous_criteres": [
+            {"nom": "Étendue et durée de la garantie", "desc": "Durée, périmètre, conditions."},
+            {"nom": "Délais d'intervention et de remplacement", "desc": "Réactivité du SAV, hotline, astreinte."},
+            {"nom": "Disponibilité des pièces détachées / consommables", "desc": "Durée de mise à disposition, coût."}
+          ],
+          "formule": "appreciation"
+        },
+        {
+          "id": "environnement", "nom": "Performances environnementales", "pond_defaut": 10, "env": true,
+          "conseil": "OBLIGATOIRE à compter du 21/08/2026. Pondération usuelle 5–15 %. Sous-critères liés à l'objet de la fourniture.",
+          "sous_criteres": [
+            {"nom": "Éco-conception et durée de vie du produit", "desc": "Réparabilité, modularité, longévité."},
+            {"nom": "Recyclabilité et gestion de la fin de vie", "desc": "Reprise, recyclage, matériaux recyclés."},
+            {"nom": "Performance énergétique du produit", "desc": "Consommation, classe énergétique, sobriété."},
+            {"nom": "Conditionnement et transport bas-carbone", "desc": "Réduction des emballages, circuits courts, mutualisation."},
+            {"nom": "Labels et écolabels", "desc": "NF Environnement, Écolabel européen, Energy Star… (preuves équivalentes admises)."}
+          ],
+          "formule": "appreciation"
+        },
+        {
+          "id": "delai", "nom": "Délai de livraison", "pond_defaut": 0,
+          "conseil": "À utiliser seulement si le délai départage réellement. Sinon le fixer en exigence (pas en critère).",
+          "sous_criteres": [],
+          "formule": "appreciation"
+        },
+        {
+          "id": "social", "nom": "Performances en matière d'insertion sociale", "pond_defaut": 0,
+          "conseil": "Optionnel. Doit rester lié à l'objet (CCP L2112-2). Souvent mieux traité en clause d'exécution.",
+          "sous_criteres": [
+            {"nom": "Volume d'heures d'insertion proposé", "desc": "Engagement chiffré et modalités."},
+            {"nom": "Qualité du parcours d'insertion / encadrement", "desc": "Accompagnement, formation, pérennité."}
           ],
           "formule": "appreciation"
         }

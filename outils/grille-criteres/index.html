@@ -124,7 +124,7 @@ footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'
     <div class="sec-sub">Le type charge une grille de critères adaptée ; la date détermine si le critère environnemental est obligatoire.</div>
     <div class="row">
       <div class="fld"><label for="typeM">Type de marché</label>
-        <select id="typeM"><option value="services">Services</option><option value="travaux">Travaux</option></select></div>
+        <select id="typeM"><option value="services">Services</option><option value="travaux">Travaux</option><option value="fournitures">Fournitures</option></select></div>
       <div class="fld"><label for="ccag">CCAG applicable (indicatif)</label><select id="ccag"></select></div>
       <div class="fld"><label for="dateC">Date de lancement de la consultation</label><input type="date" id="dateC"></div>
     </div>
@@ -135,6 +135,7 @@ footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'
     <div class="sec-sub">Critères et pondérations conseillés — à ajuster (total = 100 %). Ajoutez les sous-critères pertinents via les menus, et choisissez la formule de notation du prix. Tout sous-critère noté doit figurer dans le règlement de consultation.</div>
     <div id="critList"></div>
     <div class="btns no-print">
+      <span id="suggWrap"></span>
       <button class="btn" id="addCrit">+ Critère libre</button>
       <button class="btn" id="resetCrit">Réinitialiser selon le type</button>
     </div>
@@ -149,7 +150,9 @@ footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'
     <div class="btns no-print">
       <button class="btn" id="addOffer">+ Ajouter une offre</button>
       <button class="btn" onclick="window.print()">Imprimer / PDF</button>
+      <button class="btn" id="exportRC" title="Génère le texte des critères, sous-critères, pondérations et méthodes de notation, prêt à coller dans votre règlement de consultation.">⤓ Exporter le projet de RC (.txt)</button>
     </div>
+    <div id="rcMsg"></div>
   </div>
 
   <div class="sec">
@@ -171,24 +174,41 @@ footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'
 const ICO_DEL='<svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>';
 const ENV_DATE=new Date('2026-08-21');
 const ENV_RE=/environnement|développement durable|developpement durable|écolog|ecolog|carbone|durable/i;
-let REF=null, crit=[], offers=[], PRICE_F=[], APPR=null;
+let REF=null, crit=[], offers=[], PRICE_F=[], APPR=null, TYPE_CRIT=[];
 function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
+function critFromRef(c){return {
+  id:c.id, nom:c.nom, pond:c.pond_defaut, prix:!!c.prix, env:!!c.env, conseil:c.conseil||'',
+  formule:c.formule, formuleId:(PRICE_F[0]&&PRICE_F[0].id)||'inverse',
+  sous:[], avail:(c.sous_criteres||[]).slice(), sousScore:false
+};}
 function loadType(){
   const t=document.getElementById('typeM').value;
   const tt=REF.types[t];
+  TYPE_CRIT=tt.criteres;
   // CCAG options
   const cc=document.getElementById('ccag');
   cc.innerHTML='<option value="">— non précisé —</option>'+tt.ccag_suggere.map(c=>'<option>'+esc(c)+'</option>').join('');
-  crit=tt.criteres.filter(c=>c.pond_defaut>0 || c.prix || c.env).map(c=>({
-    id:c.id, nom:c.nom, pond:c.pond_defaut, prix:!!c.prix, env:!!c.env, conseil:c.conseil||'',
-    formule:c.formule, formuleId:(PRICE_F[0]&&PRICE_F[0].id)||'inverse',
-    sous:[], avail:(c.sous_criteres||[]).slice()
-  }));
-  offers.forEach(o=>o.vals=crit.map(()=>''));
+  crit=tt.criteres.filter(c=>c.pond_defaut>0 || c.prix || c.env).map(critFromRef);
+  offers.forEach(o=>{o.vals=crit.map(()=>''); o.sv=crit.map(()=>[]);});
   renderAll();
 }
-function renderAll(){ renderCrit(); renderScore(); }
+function renderAll(){ renderCrit(); renderSugg(); renderScore(); }
+
+// Critères suggérés non encore présents (optionnels du référentiel : insertion sociale, délai…)
+function renderSugg(){
+  const w=document.getElementById('suggWrap'); if(!w)return;
+  const missing=TYPE_CRIT.filter(c=>!crit.some(x=>x.id===c.id&&c.id));
+  if(!missing.length){ w.innerHTML=''; return; }
+  w.innerHTML='<select id="suggDd" style="width:auto;display:inline-block;margin-right:9px"><option value="">+ Critère suggéré…</option>'
+    +missing.map((c,k)=>'<option value="'+k+'">'+esc(c.nom)+(c.pond_defaut>0?' ('+c.pond_defaut+'%)':'')+'</option>').join('')+'</select>';
+  document.getElementById('suggDd').addEventListener('change',function(){
+    const v=this.value; if(v==='')return;
+    crit.push(critFromRef(missing[parseInt(v)]));
+    offers.forEach(o=>{o.vals.push(''); o.sv.push([]);});
+    renderAll();
+  });
+}
 
 function priceFormBox(i){
   const c=crit[i];
@@ -201,9 +221,14 @@ function apprBox(){ return '<div class="formbox"><b>'+esc(APPR.nom)+'</b> — '+
 function renderCrit(){
   document.getElementById('critList').innerHTML=crit.map((c,i)=>{
     const isEnv=c.env||ENV_RE.test(c.nom);
-    const sousHtml=c.sous.map((s,j)=>'<div class="sous-item"><span class="b">›</span><div><span style="font-weight:700">'+esc(s.nom)+'</span>'+(s.desc?'<div class="d">'+esc(s.desc)+'</div>':'')+'</div><button class="del no-print" style="margin-left:auto" onclick="delSous('+i+','+j+')" title="Retirer">'+ICO_DEL+'</button></div>').join('');
+    const sw=c.sousScore;
+    const psum=c.sous.reduce((a,s)=>a+(parseFloat(s.poids)||0),0);
+    const sousHtml=c.sous.map((s,j)=>'<div class="sous-item"><span class="b">›</span><div style="flex:1"><span style="font-weight:700">'+esc(s.nom)+'</span>'+(s.desc?'<div class="d">'+esc(s.desc)+'</div>':'')+'</div>'
+      +(sw?'<input class="cpond" type="number" min="0" max="100" style="width:62px" value="'+(s.poids!=null?s.poids:'')+'" oninput="crit['+i+'].sous['+j+'].poids=parseFloat(this.value)||0;renderCrit();renderScore()" title="Poids du sous-critère dans le critère"> %':'')
+      +'<button class="del no-print" style="margin-left:6px" onclick="delSous('+i+','+j+')" title="Retirer">'+ICO_DEL+'</button></div>').join('');
     const remaining=c.avail.filter(a=>!c.sous.some(s=>s.nom===a.nom));
-    const dd=(remaining.length||true)?'<div class="sous-add no-print"><select id="dd'+i+'"><option value="">+ Ajouter un sous-critère…</option>'+remaining.map((a,k)=>'<option value="'+k+'">'+esc(a.nom)+'</option>').join('')+'<option value="__free">Autre (saisir)…</option></select><button class="btn btn-sm" onclick="addSousFromDd('+i+')">Ajouter</button></div>':'';
+    const dd='<div class="sous-add no-print"><select id="dd'+i+'"><option value="">+ Ajouter un sous-critère…</option>'+remaining.map((a,k)=>'<option value="'+k+'">'+esc(a.nom)+'</option>').join('')+'<option value="__free">Autre (saisir)…</option></select><button class="btn btn-sm" onclick="addSousFromDd('+i+')">Ajouter</button></div>';
+    const toggle=(!c.prix&&c.sous.length)?'<label style="display:flex;align-items:center;gap:6px;margin:10px 0 0;font-size:11.5px;font-weight:700;color:var(--muted);cursor:pointer"><input type="checkbox" '+(sw?'checked':'')+' onclick="setSousScore('+i+')"> Noter au niveau des sous-critères'+(sw&&Math.abs(psum-100)>=0.001?' <span style="color:var(--bad)">(somme des poids : '+(Math.round(psum*100)/100)+' %, à 100 %)</span>':(sw?' <span style="color:var(--ok)">(poids OK)</span>':''))+'</label>':'';
     return '<div class="crit'+(isEnv?' env':'')+'">'
       + '<div class="crit-top"><input class="cnom" value="'+esc(c.nom)+'" oninput="crit['+i+'].nom=this.value;refreshEnv()">'
         + (isEnv?'<span class="envtag">environnemental</span>':'')
@@ -212,21 +237,25 @@ function renderCrit(){
         + '<button class="del no-print" onclick="delCrit('+i+')" title="Supprimer le critère">'+ICO_DEL+'</button></div>'
       + (c.conseil?'<div class="conseil">'+esc(c.conseil)+'</div>':'')
       + (c.prix?priceFormBox(i):apprBox())
+      + toggle
       + (c.sous.length?'<div class="sous">'+sousHtml+'</div>':'')
       + (c.prix?'':dd)
     + '</div>';
   }).join('');
   refreshSum(); refreshEnv();
 }
-function setPrix(i){ crit.forEach((c,j)=>c.prix=(j===i)); renderAll(); }
-function delCrit(i){ crit.splice(i,1); offers.forEach(o=>o.vals.splice(i,1)); renderAll(); }
-function addCrit(){ crit.push({nom:'',pond:0,prix:false,env:false,conseil:'',formule:'appreciation',sous:[],avail:[]}); offers.forEach(o=>o.vals.push('')); renderAll(); }
-function delSous(i,j){ crit[i].sous.splice(j,1); renderCrit(); }
+function equalPoids(c){ const n=c.sous.length; if(!n)return; const p=Math.round(100/n); c.sous.forEach((s,k)=>s.poids=(k===n-1?100-p*(n-1):p)); }
+function setPrix(i){ crit.forEach((c,j)=>{c.prix=(j===i); if(c.prix)c.sousScore=false;}); renderAll(); }
+function setSousScore(i){ const c=crit[i]; c.sousScore=!c.sousScore; if(c.sousScore&&!c.sous.every(s=>s.poids!=null)) equalPoids(c); offers.forEach(o=>{o.sv[i]=c.sous.map((s,j)=>(o.sv[i]&&o.sv[i][j])||'');}); renderCrit(); renderScore(); }
+function delCrit(i){ crit.splice(i,1); offers.forEach(o=>{o.vals.splice(i,1); o.sv.splice(i,1);}); renderAll(); }
+function addCrit(){ crit.push({nom:'',pond:0,prix:false,env:false,conseil:'',formule:'appreciation',formuleId:(PRICE_F[0]&&PRICE_F[0].id)||'inverse',sous:[],avail:[],sousScore:false}); offers.forEach(o=>{o.vals.push(''); o.sv.push([]);}); renderAll(); }
+function delSous(i,j){ crit[i].sous.splice(j,1); offers.forEach(o=>{if(o.sv[i])o.sv[i].splice(j,1);}); if(crit[i].sousScore)equalPoids(crit[i]); renderCrit(); renderScore(); }
+function pushSous(i,s){ crit[i].sous.push(s); offers.forEach(o=>{if(!o.sv[i])o.sv[i]=[]; o.sv[i].push('');}); if(crit[i].sousScore){equalPoids(crit[i]);} }
 function addSousFromDd(i){
   const dd=document.getElementById('dd'+i); const v=dd.value; if(!v)return;
-  if(v==='__free'){ const nom=prompt('Intitulé du sous-critère :'); if(nom){ crit[i].sous.push({nom:nom.trim(),desc:''}); renderCrit(); } return; }
+  if(v==='__free'){ const nom=prompt('Intitulé du sous-critère :'); if(nom){ pushSous(i,{nom:nom.trim(),desc:''}); renderCrit(); renderScore(); } return; }
   const remaining=crit[i].avail.filter(a=>!crit[i].sous.some(s=>s.nom===a.nom));
-  const a=remaining[parseInt(v)]; if(a){ crit[i].sous.push({nom:a.nom,desc:a.desc}); renderCrit(); }
+  const a=remaining[parseInt(v)]; if(a){ pushSous(i,{nom:a.nom,desc:a.desc}); renderCrit(); renderScore(); }
 }
 function refreshSum(){
   const s=crit.reduce((a,c)=>a+(parseFloat(c.pond)||0),0);
@@ -254,21 +283,76 @@ function noteOf(o,i){
     if(c.formuleId==='lineaire'){ return Math.max(0,Math.round((10*(1-(p-min)/min))*100)/100); }
     return Math.round((min/p)*10*100)/100;
   }
+  if(c.sousScore&&c.sous.length){
+    let wsum=0,acc=0,any=false;
+    c.sous.forEach((s,j)=>{ const w=parseFloat(s.poids)||0; const v=parseFloat(o.sv[i]&&o.sv[i][j]); if(!isNaN(v)){ acc+=Math.max(0,Math.min(10,v))*w; wsum+=w; any=true; } });
+    if(!any||!wsum)return null;
+    return Math.round((acc/wsum)*100)/100;
+  }
   const n=parseFloat(o.vals[i]); return isNaN(n)?null:Math.max(0,Math.min(10,n));
 }
 function totalOf(o){ let t=0; crit.forEach((c,i)=>{const n=noteOf(o,i); if(n!==null)t+=n*(parseFloat(c.pond)||0);}); return Math.round((t/100)*100)/100; }
+function critRows(c,i){
+  if(c.sousScore&&c.sous.length){
+    const head='<tr><td>'+esc(c.nom||'(critère)')+' <span style="color:var(--faint);font-weight:400">· '+(parseFloat(c.pond)||0)+'% · par sous-critères</span></td>'
+      +offers.map((o)=>{const n=noteOf(o,i);return '<td style="font-weight:800;color:var(--title)">'+(n==null?'—':n+'/10')+'</td>';}).join('')+'</tr>';
+    const subs=c.sous.map((s,j)=>'<tr><td style="padding-left:20px;color:var(--muted)">› '+esc(s.nom)+' <span style="color:var(--faint);font-weight:400">· '+(parseFloat(s.poids)||0)+'%</span></td>'
+      +offers.map((o,k)=>'<td><input type="number" min="0" max="10" step="0.5" value="'+esc((o.sv[i]&&o.sv[i][j])||'')+'" placeholder="0–10" oninput="if(!offers['+k+'].sv['+i+'])offers['+k+'].sv['+i+']=[];offers['+k+'].sv['+i+']['+j+']=this.value;renderScore()"></td>').join('')+'</tr>').join('');
+    return head+subs;
+  }
+  return '<tr><td>'+esc(c.nom||'(critère)')+' <span style="color:var(--faint);font-weight:400">· '+(parseFloat(c.pond)||0)+'%'+(c.prix?' · prix':'')+'</span></td>'
+    + offers.map((o,j)=>{const isP=c.prix; const auto=isP?(()=>{const n=noteOf(o,i);return n==null?'':'<div style="font-size:11px;color:var(--faint);margin-top:2px">→ '+n+'/10</div>';})():''; return '<td><input type="number" min="0" '+(isP?'':'max="10" step="0.5"')+' value="'+esc(o.vals[i]||'')+'" placeholder="'+(isP?'Prix €':'0–10')+'" oninput="offers['+j+'].vals['+i+']=this.value;renderScore()">'+auto+'</td>';}).join('')
+    + '</tr>';
+}
 function renderScore(){
   const head=document.getElementById('scoreHead'),body=document.getElementById('scoreBody');
   if(!offers.length||!crit.length){ head.innerHTML=''; body.innerHTML='<tr><td style="color:var(--faint);font-style:italic;padding:14px 8px">Définissez des critères et ajoutez des offres pour les noter.</td></tr>'; return; }
   const totals=offers.map(o=>totalOf(o));
   const max=Math.max.apply(null,totals.map(t=>t==null?-1:t)); let best=max>0?totals.indexOf(max):-1;
   head.innerHTML='<tr><th>Critère</th>'+offers.map((o,j)=>'<th class="offname"><input type="text" value="'+esc(o.nom)+'" oninput="offers['+j+'].nom=this.value;renderScore()"><button class="del no-print" onclick="delOffer('+j+')">'+ICO_DEL+'</button></th>').join('')+'</tr>';
-  body.innerHTML=crit.map((c,i)=>'<tr><td>'+esc(c.nom||'(critère)')+' <span style="color:var(--faint);font-weight:400">· '+(parseFloat(c.pond)||0)+'%'+(c.prix?' · prix':'')+'</span></td>'
-    + offers.map((o,j)=>{const isP=c.prix; const auto=isP?(()=>{const n=noteOf(o,i);return n==null?'':'<div style="font-size:11px;color:var(--faint);margin-top:2px">→ '+n+'/10</div>';})():''; return '<td><input type="number" min="0" '+(isP?'':'max="10" step="0.5"')+' value="'+esc(o.vals[i]||'')+'" placeholder="'+(isP?'Prix €':'0–10')+'" oninput="offers['+j+'].vals['+i+']=this.value;renderScore()">'+auto+'</td>';}).join('')
-    + '</tr>').join('')
+  body.innerHTML=crit.map((c,i)=>critRows(c,i)).join('')
     + '<tr class="totrow"><td>Total pondéré /10</td>'+offers.map((o,j)=>{const t=totals[j];return '<td class="'+(j===best?'win':'')+'">'+(t==null?'—':t.toFixed(2))+(j===best?'<span class="win-badge">1ᵉʳ</span>':'')+'</td>';}).join('')+'</tr>';
   const order=totals.map((t,j)=>({t:t==null?-1:t,j})).sort((a,b)=>b.t-a.t); const rk={}; order.forEach((o,k)=>rk[o.j]=k+1);
   body.innerHTML+='<tr class="rankrow"><td>Classement</td>'+offers.map((o,j)=>'<td>'+(totals[j]>0?'#'+rk[j]:'—')+'</td>').join('')+'</tr>';
+}
+
+function exportRC(){
+  const t=document.getElementById('typeM').value;
+  const label=(REF.types[t]&&REF.types[t].label)||t;
+  const ccag=document.getElementById('ccag').value;
+  const date=document.getElementById('dateC').value;
+  const sum=crit.reduce((a,c)=>a+(parseFloat(c.pond)||0),0);
+  const L=[];
+  L.push("PROJET — CRITÈRES D'ATTRIBUTION (à intégrer au règlement de consultation)");
+  L.push('');
+  L.push('Type de marché : '+label+(ccag?'   ·   CCAG indicatif : '+ccag:''));
+  if(date)L.push('Consultation lancée le : '+date.split('-').reverse().join('/'));
+  L.push('');
+  L.push("Le marché sera attribué au candidat ayant présenté l'offre économiquement la plus");
+  L.push('avantageuse, appréciée en fonction des critères pondérés suivants (total : '+(Math.round(sum*100)/100)+' %) :');
+  L.push('');
+  crit.forEach((c,i)=>{
+    L.push((i+1)+'. '+(c.nom||'(critère)')+' — '+(parseFloat(c.pond)||0)+' %');
+    if(c.prix){ const f=PRICE_F.find(x=>x.id===c.formuleId)||PRICE_F[0]; if(f)L.push('   Méthode de notation : '+f.nom+' — '+f.formule); }
+    else { L.push('   Méthode de notation : '+APPR.nom); }
+    if(c.sous.length){
+      L.push('   Apprécié au regard des sous-critères suivants'+(c.sousScore?' (notés et pondérés)':'')+' :');
+      c.sous.forEach(s=>{ L.push('     - '+s.nom+(c.sousScore&&s.poids!=null?' ('+s.poids+' %)':'')+(s.desc?' : '+s.desc:'')); });
+    }
+    L.push('');
+  });
+  const hasEnv=crit.some(c=>c.env||ENV_RE.test(c.nom));
+  L.push('Rappels :');
+  L.push('- Tout sous-critère noté ou pondéré doit être annoncé dans le présent règlement (CCP R2152-11/12).');
+  L.push('- '+(hasEnv?'Critère environnemental présent.':'Critère environnemental à intégrer (obligatoire pour toute consultation lancée à compter du 21/08/2026).'));
+  L.push('- La note de chaque critère qualitatif doit être justifiée par un commentaire (motivation du rejet).');
+  L.push('');
+  L.push('Source : Assistant de critères — sebastien-riviere.github.io. Document indicatif, ne constitue pas un conseil juridique.');
+  const txt=L.join('\n');
+  const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='criteres-RC-'+label.toLowerCase()+'.txt'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+  let copied=false; try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt); copied=true; } }catch(e){}
+  const m=document.getElementById('rcMsg'); m.innerHTML='<div class="alert alert-ok" style="margin-top:12px"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div>Projet de RC téléchargé'+(copied?' (et copié dans le presse-papiers)':'')+'.</div></div>'; setTimeout(()=>{m.innerHTML='';},6000);
 }
 
 // init
@@ -280,8 +364,9 @@ fetch('./criteres-referentiel.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   document.getElementById('addCrit').addEventListener('click',addCrit);
   document.getElementById('resetCrit').addEventListener('click',loadType);
   document.getElementById('addOffer').addEventListener('click',addOffer);
+  document.getElementById('exportRC').addEventListener('click',exportRC);
   loadType();
-  offers.push({nom:'Offre A',vals:crit.map(()=>'')},{nom:'Offre B',vals:crit.map(()=>'')});
+  offers.push({nom:'Offre A',vals:crit.map(()=>''),sv:crit.map(()=>[])},{nom:'Offre B',vals:crit.map(()=>''),sv:crit.map(()=>[])});
   renderScore();
 }).catch(()=>{ document.getElementById('critList').innerHTML='<div style="color:var(--bad)">Référentiel indisponible.</div>'; });
 </script>
