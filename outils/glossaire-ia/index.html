@@ -88,6 +88,20 @@ main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:18px 40px 56px;}
 .lk:hover{border-color:var(--accent);}
 .empty{text-align:center;color:var(--faint);font-family:'Nunito',sans-serif;font-style:italic;padding:40px 0;}
 
+/* ── Déverrouillage par code (glossaire réservé, servi par le worker) ── */
+.gate{max-width:520px;margin:34px auto 10px;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:26px 24px;text-align:center;}
+.gate .glock{width:34px;height:34px;stroke:var(--accent);margin-bottom:6px;}
+.gate h2{font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;color:var(--title);margin-bottom:8px;}
+.gate p{font-family:'Lora',serif;font-size:14px;line-height:1.6;color:var(--muted);margin-bottom:16px;}
+.gate .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.gate input{font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-align:center;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px;width:170px;text-transform:uppercase;}
+.gate input:focus{outline:none;border-color:var(--accent);}
+.gate button{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;color:#fff;background:var(--accent);border:none;border-radius:10px;padding:11px 18px;}
+.gate button:hover{filter:brightness(1.06);}
+.gate .err{font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--bad);margin-top:12px;min-height:18px;}
+.unlocked-note{font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);text-align:right;margin:0 2px 4px;}
+.unlocked-note a{color:var(--accent);cursor:pointer;font-weight:700;text-decoration:none;}
+
 .note{font-family:'Nunito',sans-serif;font-size:12.5px;line-height:1.6;color:var(--faint);margin-top:26px;border-top:1px solid var(--border);padding-top:16px;}
 .note b{color:var(--muted);}
 footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);border-top:1px solid var(--border);}
@@ -113,6 +127,18 @@ footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'
 </div>
 
 <main>
+  <div class="gate" id="gate" style="display:none">
+    <svg class="glock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <h2>Glossaire réservé</h2>
+    <p>Cette ressource est accessible avec un code. Entrez le vôtre pour la débloquer — il reste mémorisé sur cet appareil.</p>
+    <div class="row">
+      <input type="text" id="codeInput" placeholder="CODE" maxlength="12" autocomplete="off">
+      <button id="codeBtn">Débloquer</button>
+    </div>
+    <div class="err" id="codeErr"></div>
+  </div>
+  <div id="content" style="display:none">
+  <p class="unlocked-note" id="unlockedNote"></p>
   <div class="controls">
     <div class="search">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -125,9 +151,10 @@ footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'
   </div>
   <div class="list" id="list"></div>
   <p class="note" id="note"></p>
+  </div>
 </main>
 
-<footer>© Sébastien Rivière · Glossaire indicatif et pédagogique, enrichi en continu. Page en local, aucune donnée n'est envoyée.</footer>
+<footer>© Sébastien Rivière · Glossaire indicatif et pédagogique, enrichi en continu. Accès réservé par code.</footer>
 
 <script>
 const ICO={
@@ -217,15 +244,49 @@ function buildChips(){
   document.getElementById('natChips').onclick=e=>{const c=e.target.closest('.chip');if(!c)return;fNat=(fNat===c.dataset.v?'':c.dataset.v);buildChips();render();};
 }
 
-fetch('./data.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+// ── Déverrouillage par code (données servies par le worker Cloudflare, jamais publiques) ──
+const WORKER='https://veille-bot.sebastienriviere-contact.workers.dev';
+let LOADED=false;
+
+function renderData(d){
   DATA=d.termes.map((t,i)=>({...t,i}));
+  KEYMAP={};
   DATA.forEach(t=>buildKeys(t).forEach(k=>{ if(KEYMAP[k]==null)KEYMAP[k]=t.i; }));
   document.getElementById('pillCount').textContent=d.count;
   document.getElementById('note').innerHTML='<b>Méthode.</b> Glossaire vulgarisé, vérifié et enrichi en continu. Le repère <b>« hype »</b> (établi / émergent / survendu) signale la maturité réelle d\'un terme, pour faire la part du concret et de l\'effet d\'annonce. Indicatif, ne constitue pas un avis technique ou juridique. Dernière mise à jour : '+esc(d.maj)+'.';
   buildChips();
-  document.getElementById('q').addEventListener('input',e=>{fQ=e.target.value;render();});
+  if(!LOADED){ document.getElementById('q').addEventListener('input',e=>{fQ=e.target.value;render();}); LOADED=true; }
   render();
-}).catch(()=>{ document.getElementById('list').innerHTML='<div class="empty">Glossaire momentanément indisponible.</div>'; });
+}
+
+function showGate(){ document.getElementById('gate').style.display='block'; document.getElementById('content').style.display='none'; }
+function showContent(){
+  document.getElementById('gate').style.display='none';
+  document.getElementById('content').style.display='block';
+  document.getElementById('unlockedNote').innerHTML='Glossaire débloqué — <a id="lockBtn">verrouiller</a>';
+  document.getElementById('lockBtn').onclick=()=>{ localStorage.removeItem('glos_code'); showGate(); };
+}
+
+async function tryCode(code){
+  code=(code||'').trim().toUpperCase(); if(!code) return;
+  const err=document.getElementById('codeErr'); if(err) err.textContent='…';
+  try{
+    const r=await fetch(WORKER+'/glossaire?code='+encodeURIComponent(code));
+    if(!r.ok){ if(err) err.textContent=r.status===403?'Code invalide':'Erreur, réessayez'; localStorage.removeItem('glos_code'); return; }
+    const d=await r.json();
+    localStorage.setItem('glos_code',code);
+    if(err) err.textContent='';
+    showContent();
+    renderData(d);
+  }catch(e){ if(err) err.textContent='Erreur réseau'; }
+}
+
+document.getElementById('codeBtn').onclick=()=>tryCode(document.getElementById('codeInput').value);
+document.getElementById('codeInput').addEventListener('keydown',e=>{ if(e.key==='Enter') tryCode(e.target.value); });
+
+const urlCode=new URLSearchParams(location.search).get('code');
+const saved=urlCode||localStorage.getItem('glos_code');
+if(saved){ tryCode(saved); } else { showGate(); }
 </script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

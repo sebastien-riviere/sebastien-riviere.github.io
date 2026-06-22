@@ -1,0 +1,20 @@
+{
+ "_comment": "SCHÉMA DE RÉFÉRENCE UNIQUEMENT — les données réelles ne sont plus servies en statique public. Le glossaire est gated : la page appelle le worker /glossaire?code= qui renvoie le JSON depuis KV (clé glossaire_data). Voir tools/build-glossaire-data.py + runbook.",
+ "maj": "",
+ "count": 1,
+ "termes": [
+  {
+   "t": "Exemple de terme",
+   "en": "Sample term",
+   "c": "ml",
+   "n": "débutant",
+   "ex": "Explication en clair du terme.",
+   "an": "Une analogie simple.",
+   "pq": "Pourquoi ça compte pour un client.",
+   "pi": "Le piège à éviter.",
+   "ac": "Un angle de contenu.",
+   "li": ["autre-terme-slug"],
+   "na": "établi"
+  }
+ ]
+}
