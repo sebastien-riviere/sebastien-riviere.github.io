@@ -142,6 +142,23 @@ main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:0 40px 56px;}
 
 .empty{text-align:center;padding:52px 22px;font-family:'Lora',serif;font-style:italic;color:var(--faint);background:var(--card);border:1px dashed var(--border);border-radius:13px;}
 
+.sort-sel{
+  font-family:inherit;font-size:13px;padding:5px 10px;
+  border:1px solid var(--border);border-radius:8px;
+  background:var(--card);color:var(--text);cursor:pointer;
+}
+button.pill-cta{ background:var(--accent); border:none; cursor:pointer; font:inherit; }
+.mcard-wrap{ border:1px solid var(--border); border-radius:12px; margin-bottom:20px; }
+.mcard-wrap .mcard{ border:none; border-radius:0 0 12px 12px; margin-bottom:0; }
+.mcard-summary{
+  display:flex; align-items:center; gap:8px; padding:14px 18px;
+  font-weight:700; font-size:15px; cursor:pointer; list-style:none;
+  border-radius:12px; font-family:'Nunito',sans-serif; color:var(--title);
+}
+.mcard-summary::-webkit-details-marker{ display:none; }
+.mcard-summary svg{ width:18px; height:18px; flex:none; }
+.mcard-wrap[open] .mcard-summary{ border-radius:12px 12px 0 0; border-bottom:1px solid var(--border); }
+
 footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);border-top:1px solid var(--border);line-height:1.65;}
 footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
 
@@ -167,7 +184,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
       <span class="pill"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Sources officielles + alertes</span>
       <span class="pill"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> Filtré IA / données / numérique</span>
       <span class="pill"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 3v6h6"/></svg> Mis à jour chaque jour</span>
-      <a class="pill pill-cta" href="./feed.xml" title="Ajouter le flux à votre lecteur (Feedly, Inoreader…)"><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg> S'abonner au flux</a>
+      <button class="pill pill-cta" id="feedBtn" title="Copier l'URL du flux RSS dans le presse-papier"><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg> S'abonner au flux</button>
     </div>
   </header>
 </div>
@@ -179,6 +196,10 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <input type="search" class="search" id="q" placeholder="Rechercher un objet, un acheteur, un département…">
     </div>
+    <select id="sortSel" class="sort-sel">
+      <option value="recent">Récents d'abord</option>
+      <option value="deadline">Date de remise ↑</option>
+    </select>
     <div class="filters">
       <div class="chips" id="themes">
         <span class="chip on" data-th="ia"><span class="dot" style="background:var(--ia)"></span>IA</span>
@@ -190,6 +211,11 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
         <span class="chip on" data-sr="">Toutes sources</span>
         <span class="chip" data-sr="boamp">BOAMP</span>
         <span class="chip" data-sr="mail">Alertes plateformes</span>
+      </div>
+      <div class="chips" id="statuts">
+        <span class="chip on" data-st="">Tous statuts</span>
+        <span class="chip" data-st="encours">En cours</span>
+        <span class="chip" data-st="clos">Clôturés</span>
       </div>
     </div>
     <div class="unlock" id="unlock"></div>
@@ -220,7 +246,7 @@ const ICO = {
   chart:'<svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg>'
 };
 let DATA = { items:[], maj:'', total:0 };
-let fTheme = 'ia', fSource = '', fQ = '';   // IA mis en avant par défaut
+let fTheme = 'ia', fSource = '', fQ = '', fStatut = '', fSort = 'recent';   // IA mis en avant par défaut
 // Un avis est « IA » si la classification sémantique le dit (ia===1), sinon repli mot-clé (theme='ia') tant que non classé.
 function themeMatch(it, f){
   if(!f) return true;
@@ -246,8 +272,23 @@ function render(){
     if(!themeMatch(it, fTheme)) return false;
     if(fSource && it.s !== fSource) return false;
     if(fQ){ const hay = ((it.o||'')+' '+(it.a||'')+' '+(it.dep||'')+' '+(it.fam||'')+' '+(it.clair||'')+' '+(it.pq||'')).toLowerCase(); if(!hay.includes(fQ)) return false; }
+    if(fStatut === 'encours'){ const d = it.dl ? new Date(it.dl) : null; if(!d || isNaN(d) || d < new Date()) return false; }
+    if(fStatut === 'clos'){ const d = it.dl ? new Date(it.dl) : null; if(!d || isNaN(d) || d >= new Date()) return false; }
     return true;
   });
+  if(fSort === 'deadline'){
+    items = items.slice().sort((a,b) => {
+      const da = a.dl ? new Date(a.dl) : new Date(9e15);
+      const db = b.dl ? new Date(b.dl) : new Date(9e15);
+      return da - db;
+    });
+  } else {
+    items = items.slice().sort((a,b) => {
+      const da = a.dl ? new Date(a.dl) : new Date(0);
+      const db = b.dl ? new Date(b.dl) : new Date(0);
+      return db - da;
+    });
+  }
   document.getElementById('stat').innerHTML = '<b>'+items.length+'</b> avis affichés'
     + (DATA.total>items.length ? ' sur '+DATA.total : '') + (DATA.maj ? ' · mis à jour le '+DATA.maj : '');
   if(!items.length){
@@ -291,7 +332,16 @@ function wireChips(id, set){
 }
 wireChips('themes', c => fTheme = c.dataset.th);
 wireChips('sources', c => fSource = c.dataset.sr);
+wireChips('statuts', c => fStatut = c.dataset.st);
 document.getElementById('q').addEventListener('input', e => { fQ = e.target.value.trim().toLowerCase(); render(); });
+document.getElementById('sortSel').addEventListener('change', e => { fSort = e.target.value; render(); });
+document.getElementById('feedBtn').addEventListener('click', function(){
+  const url = window.location.origin + '/outils/observatoire-ia/feed.xml';
+  navigator.clipboard.writeText(url).then(() => {
+    this.textContent = '✓ URL copiée !';
+    setTimeout(() => { this.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg> S\'abonner au flux'; }, 2000);
+  }).catch(() => { window.open(url, '_blank'); });
+});
 
 // ── Déverrouillage des analyses par code (servies par le worker Cloudflare) ──
 const WORKER = 'https://veille-bot.sebastienriviere-contact.workers.dev';
@@ -322,8 +372,7 @@ function renderMonthly(){
   if(!unlocked || !C){ el.innerHTML=''; return; }
   const sel = C[mCat] || C.ia || C.tous || {}; const d = sel.demande||{}, a = sel.attributions||{};
   const tabs = ['ia','data','numerique','tous'].filter(k=>C[k]).map(k=>'<span class="mtab'+(k===mCat?' on':'')+'" onclick="setMcat(\''+k+'\')">'+MCAT_LABEL[k]+(C[k].demande?' · '+(C[k].demande.total||0):'')+'</span>').join('');
-  el.innerHTML = '<div class="mcard">'
-    + '<div class="mhead">'+ICO.chart+'Rapport du mois — '+MCAT_LABEL[mCat]+'</div>'
+  el.innerHTML = '<details class="mcard-wrap"><summary class="mcard-summary">'+ICO.chart+' Rapport du mois — '+MCAT_LABEL[mCat]+'</summary><div class="mcard">'
     + '<div class="msub">12 mois glissants ('+esc(MONTHLY.from)+' → '+esc(MONTHLY.to)+') · source BOAMP · mis à jour le '+esc(MONTHLY.maj)+'</div>'
     + '<div class="mtabs">'+tabs+'</div>'
     + '<div class="kpis">'
@@ -338,7 +387,7 @@ function renderMonthly(){
       + '<div class="mblock"><h4>Top titulaires (qui gagne)</h4>'+bars(a.topTitulaires)+'</div>'
     + '</div>'
     + '<div class="mnote">Segment : <b>'+MCAT_LABEL[mCat]+'</b> (sur 12 mois). Volumes et titulaires = avis BOAMP (frais) ; un marché peut relever de plusieurs catégories. Les montants exacts par marché relèvent des données d\'attribution (DECP) — couche à venir.</div>'
-  + '</div>';
+  + '</div></details>';
 }
 async function tryCode(code){
   code = (code || '').trim().toUpperCase(); if(!code) return;

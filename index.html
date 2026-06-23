@@ -23,16 +23,16 @@
    (Lora n'existe qu'en poids 400 → les titres restent Nunito)
    ============================================================ */
 :root{
-  --bg:#f3eee2; --bg-band:#ece4d4;
+  --bg:#f5f7fa; --bg-band:#eceff4;
   --text:#2a2723; --muted:#6f685d; --faint:#867d6f;
-  --card:#fffdf8; --border:#e7dfce; --border-soft:#efe8d9;
+  --card:#ffffff; --border:#e5e8ed; --border-soft:#eceff5;
   --title:#272320; --accent:#4b5d7e; --accent-ink:#3a4b67; --accent-soft:#e7eaf1;
-  --shadow:0 1px 2px rgba(60,45,25,.05),0 7px 24px rgba(60,45,25,.09);
+  --shadow:0 1px 2px rgba(40,50,70,.04),0 7px 24px rgba(40,50,70,.08);
   /* teintes catégorie */
   --t-ia:#41586b;    --t-ia-soft:#e9ecf2;
   --t-cp:#3b6878;    --t-cp-soft:#deedf4;
   --t-prod:#566a4c;  --t-prod-soft:#e9efe2;
-  --t-block:#9a7330; --t-block-soft:#f4ecd9;
+  --t-block:#b8570f; --t-block-soft:#fae0cc;
   --t-labo:#6e4d66;  --t-labo-soft:#efe7ed;
 }
 @media(prefers-color-scheme:dark){
@@ -45,18 +45,18 @@
     --t-ia:#95abce;    --t-ia-soft:#1b2636;
     --t-cp:#6ca8c4;    --t-cp-soft:#1e3040;
     --t-prod:#9cb78c;  --t-prod-soft:#1d2a2a;
-    --t-block:#d8ae63; --t-block-soft:#2a2722;
+    --t-block:#f07838; --t-block-soft:#28180a;
     --t-labo:#c69ebc;  --t-labo-soft:#272231;
   }
 }
 /* override explicite quand l'utilisateur choisit un thème (JS) */
 html[data-theme="light"]{
-  --bg:#f3eee2; --bg-band:#ece4d4; --text:#2a2723; --muted:#6f685d; --faint:#867d6f;
-  --card:#fffdf8; --border:#e7dfce; --border-soft:#efe8d9; --title:#272320;
+  --bg:#f5f7fa; --bg-band:#eceff4; --text:#2a2723; --muted:#6f685d; --faint:#867d6f;
+  --card:#ffffff; --border:#e5e8ed; --border-soft:#eceff5; --title:#272320;
   --accent:#4b5d7e; --accent-ink:#3a4b67; --accent-soft:#e7eaf1;
-  --shadow:0 1px 2px rgba(60,45,25,.05),0 7px 24px rgba(60,45,25,.09);
+  --shadow:0 1px 2px rgba(40,50,70,.04),0 7px 24px rgba(40,50,70,.08);
   --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#3b6878; --t-cp-soft:#deedf4;
-  --t-prod:#566a4c; --t-prod-soft:#e9efe2; --t-block:#9a7330; --t-block-soft:#f4ecd9;
+  --t-prod:#566a4c; --t-prod-soft:#e9efe2; --t-block:#b8570f; --t-block-soft:#fae0cc;
   --t-labo:#6e4d66; --t-labo-soft:#efe7ed;
 }
 html[data-theme="dark"]{
@@ -65,7 +65,7 @@ html[data-theme="dark"]{
   --accent:#95abce; --accent-ink:#aabdd9; --accent-soft:#1d2738;
   --shadow:0 6px 26px rgba(0,0,0,.42);
   --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#6ca8c4; --t-cp-soft:#1e3040;
-  --t-prod:#9cb78c; --t-prod-soft:#1d2a2a; --t-block:#d8ae63; --t-block-soft:#2a2722;
+  --t-prod:#9cb78c; --t-prod-soft:#1d2a2a; --t-block:#f07838; --t-block-soft:#28180a;
   --t-labo:#c69ebc; --t-labo-soft:#272231;
 }
 
@@ -104,14 +104,13 @@ html[data-theme="dark"] .theme-btn .ic-dark{display:block;}
 html[data-theme="dark"] .theme-btn .ic-light{display:none;}
 html[data-theme="light"] .theme-btn .ic-dark{display:none;}
 html[data-theme="light"] .theme-btn .ic-light{display:block;}
-.btn-contact{
-  font-family:'Schibsted Grotesk','Nunito',sans-serif;font-weight:800;font-size:13px;
-  color:#fff;background:var(--accent);border-radius:10px;padding:10px 16px;white-space:nowrap;transition:filter .15s;
+.icon-btn{
+  width:38px;height:38px;flex:none;border-radius:10px;
+  border:1px solid var(--border);background:var(--card);color:var(--faint);
+  display:flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s;
 }
-@media(prefers-color-scheme:dark){.btn-contact{color:#1a1208;}}
-html[data-theme="dark"] .btn-contact{color:#1a1208;}
-html[data-theme="light"] .btn-contact{color:#fff;}
-.btn-contact:hover{filter:brightness(1.07);}
+.icon-btn:hover{color:var(--accent-ink);border-color:var(--accent);}
+.icon-btn svg{width:18px;height:18px;}
 .tagline{font-family:'Schibsted Grotesk','Nunito',sans-serif;font-weight:800;font-size:16px;color:var(--title);margin-top:18px;max-width:680px;line-height:1.45;}
 .tagline b{color:var(--accent-ink);}
 .props{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;}
@@ -243,7 +242,12 @@ footer a:hover{color:var(--accent-ink);}
           <svg class="ic-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
           <svg class="ic-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
         </button>
-        <a class="btn-contact" href="mailto:rsebastien@protonmail.com">Me contacter</a>
+        <a class="icon-btn" href="mailto:rsebastien@protonmail.com" title="Email" aria-label="Envoyer un email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        </a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+        </a>
       </div>
     </div>
     <p class="tagline">Des outils concrets pour l'IA, le numérique et l'achat public — <b>sans compte, sans installation, en local.</b></p>
@@ -463,10 +467,12 @@ footer a:hover{color:var(--accent-ink);}
   <span>© Sébastien Rivière · 2026</span>
   <a href="https://page-counter.sebastienriviere-contact.workers.dev/stats" target="_blank" rel="noopener">Stats →</a>
   <span class="foot-contact">
-    <a class="contact-btn" href="mailto:rsebastien@protonmail.com" title="Me contacter" aria-label="Me contacter">
-      <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+    <a class="contact-btn" href="mailto:rsebastien@protonmail.com" title="Email" aria-label="Envoyer un email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
     </a>
-    <span>Me contacter</span>
+    <a class="contact-btn" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+    </a>
   </span>
 </footer>
 
