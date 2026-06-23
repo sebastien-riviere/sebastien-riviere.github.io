@@ -65,13 +65,20 @@ header{padding:56px 40px 38px;max-width:1000px;width:100%;margin:0 auto;}
 main{flex:1;padding:6px 40px 64px;max-width:1000px;width:100%;margin:0 auto;}
 
 .section{margin-bottom:38px;}
-.section-title{display:flex;align-items:center;gap:9px;font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);margin-bottom:16px;padding-bottom:11px;border-bottom:1px solid var(--border);}
+.section-title{display:flex;align-items:center;gap:9px;font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);margin-bottom:0;padding:10px 0 11px;border-bottom:1px solid var(--border);cursor:pointer;list-style:none;user-select:none;}
+.section-title::-webkit-details-marker{display:none;}
+.section-title::marker{display:none;}
 .section-title svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
-.section-title .n{margin-left:auto;font-size:11px;letter-spacing:0;color:var(--faint);background:var(--accent-soft);padding:2px 9px;border-radius:20px;}
+.section-title .n{font-size:11px;letter-spacing:0;color:var(--faint);background:var(--accent-soft);padding:2px 9px;border-radius:20px;}
+.section-title .chev{margin-left:auto;font-size:14px;transition:transform .2s;opacity:.5;}
+details.section[open] .chev{transform:rotate(90deg);}
+details.section .grid{margin-top:16px;}
 
-.insights-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:8px 0 6px;}
-.insights-head h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:21px;color:var(--title);}
+.insights-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:8px 0 6px;cursor:pointer;user-select:none;}
+.insights-head h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:var(--title);}
 .insights-head .upd{font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:var(--faint);}
+.insights-head .ins-chev{margin-left:auto;font-size:14px;opacity:.5;transition:transform .2s;}
+.insights-head.closed .ins-chev{transform:rotate(-90deg);}
 .insights-note{font-family:'Lora',serif;font-size:13px;color:var(--faint);line-height:1.55;margin-bottom:18px;max-width:720px;}
 .ins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:8px;}
 .ins-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;}
@@ -173,12 +180,15 @@ footer a:hover{color:var(--accent);}
 
 <main>
   <section id="insights" style="display:none;">
-    <div class="insights-head">
+    <div class="insights-head" id="insightsToggle">
       <h2>Le marché en chiffres</h2>
       <span class="upd">Repères · MAJ <span id="majLbl">—</span></span>
+      <span class="ins-chev">›</span>
     </div>
+    <div id="insightsBody">
     <p class="insights-note">Ordres de grandeur issus de la presse spécialisée et de communiqués officiels — ce sont des <strong>estimations datées et sourcées</strong> (cliquez les sources). Les valorisations changent vite ; à lire comme des repères, pas des vérités absolues.<br><span class="cf-legend">Fiabilité de la source : <span class="cf cf-bon"></span> bonne&nbsp;&nbsp; <span class="cf cf-moyen"></span> moyenne&nbsp;&nbsp; <span class="cf cf-faible"></span> à confirmer</span></p>
     <div class="ins-grid" id="insGrid"></div>
+    </div>
   </section>
 
   <div class="country-filter" id="countryFilter"></div>
@@ -249,10 +259,10 @@ function renderCatalogue(){
   catalogue.innerHTML=CATS.map(([key,label])=>{
     const items=TOOLS.filter(t=>t.c===key);
     if(!items.length)return '';
-    return `<div class="section" data-cat="${key}">
-      <div class="section-title"><svg viewBox="0 0 24 24">${ICONS[key]||''}</svg>${esc(label)}<span class="n">${items.length}</span></div>
+    return `<details class="section" data-cat="${key}" open>
+      <summary class="section-title"><svg viewBox="0 0 24 24">${ICONS[key]||''}</svg>${esc(label)}<span class="n">${items.length}</span><span class="chev">›</span></summary>
       <div class="grid">${items.map(cardHTML).join('')}</div>
-    </div>`;
+    </details>`;
   }).join('');
 }
 
@@ -331,6 +341,13 @@ function filter(){
     catalogue.innerHTML='<p style="font-family:Nunito,sans-serif;color:var(--faint);text-align:center;padding:40px 0;">Chargement de l\'annuaire impossible pour le moment. Réessayez plus tard.</p>';
   }
 })();
+// Insights toggle
+document.getElementById('insightsToggle').addEventListener('click',function(){
+  const body=document.getElementById('insightsBody');
+  const open=body.style.display!=='none';
+  body.style.display=open?'none':'';
+  this.classList.toggle('closed',open);
+});
 </script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
