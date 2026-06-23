@@ -128,24 +128,24 @@ const Markdown = {
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   body{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#F4F6F9;color:#0F172A;padding:24px}
   .wrap{max-width:1100px;margin:0 auto}
-  header{background:#2D5A8E;color:#fff;padding:24px 28px;border-radius:10px;margin-bottom:24px}
+  header{background:#3f7a4e;color:#fff;padding:24px 28px;border-radius:10px;margin-bottom:24px}
   h1{font-size:1.6rem;font-weight:600;margin-bottom:4px}
   .meta{font-size:.85rem;opacity:.85;font-family:"SF Mono",Consolas,monospace}
   section{background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:20px;margin-bottom:14px}
   h2{font-size:.9rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#64748B;margin-bottom:14px}
   ul.markers{list-style:none}
   ul.markers li{display:flex;gap:14px;padding:9px 12px;background:#F8FAFC;border-radius:6px;margin-bottom:4px;align-items:center}
-  .time{font-family:"SF Mono",Consolas,monospace;font-size:.82rem;color:#2D5A8E;background:#EEF3F9;padding:3px 8px;border-radius:4px;min-width:75px;text-align:center}
+  .time{font-family:"SF Mono",Consolas,monospace;font-size:.82rem;color:#3f7a4e;background:#e3efe1;padding:3px 8px;border-radius:4px;min-width:75px;text-align:center}
   .empty{color:#94A3B8;text-align:center;padding:14px}
   .shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
   .shot{background:#fff;border:1px solid #E2E8F0;border-radius:6px;overflow:hidden;transition:.15s}
-  .shot:hover{border-color:#2D5A8E}
+  .shot:hover{border-color:#3f7a4e}
   .shot img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
   .shot-info{padding:8px 10px;display:flex;align-items:center;gap:8px;font-size:.78rem;border-top:1px solid #E2E8F0}
   .shot-info .label{color:#334155;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .notes-content{font-size:.92rem;line-height:1.65;white-space:pre-wrap;padding:14px;background:#F8FAFC;border-radius:6px;color:#334155}
   footer{text-align:center;padding:24px;color:#94A3B8;font-size:.78rem}
-  footer a{color:#2D5A8E}
+  footer a{color:#3f7a4e}
 </style>
 </head>
 <body>

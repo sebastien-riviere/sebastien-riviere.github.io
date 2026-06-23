@@ -507,7 +507,7 @@ select.input-field {
   letter-spacing: 0.2px;
 }
 
-.badge-pdf { background: #e8f0f9; color: var(--color-primary); }
+.badge-pdf { background: #e3efe1; color: var(--color-primary); }
 .badge-image { background: var(--color-success-light); color: var(--color-success); }
 
 /* === DERNIER EXPORT === */

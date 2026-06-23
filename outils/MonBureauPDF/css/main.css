@@ -6,11 +6,11 @@
   --color-surface: #ffffff;
   --color-surface-hover: #f8f7f5;
   --color-border: #e2e0db;
-  --color-border-focus: #2d5a8e;
+  --color-border-focus: #3f7a4e;
 
-  --color-primary: #2d5a8e;
-  --color-primary-hover: #1e3f66;
-  --color-primary-light: #e8f0f9;
+  --color-primary: #3f7a4e;
+  --color-primary-hover: #2f5d3b;
+  --color-primary-light: #e3efe1;
 
   --color-success: #2d7a4f;
   --color-success-light: #e6f4ec;
@@ -25,9 +25,9 @@
   --color-text-secondary: #6b6860;
   --color-text-muted: #9b9890;
 
-  --color-selected: #2d5a8e;
-  --color-selected-bg: #e8f0f9;
-  --color-selected-border: #2d5a8e;
+  --color-selected: #3f7a4e;
+  --color-selected-bg: #e3efe1;
+  --color-selected-border: #3f7a4e;
 
   /* Typographie */
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;

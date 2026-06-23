@@ -5,11 +5,11 @@
 
 :root {
   /* Palette principale — alignée MonBureauPDF */
-  --brand: #2D5A8E;
-  --brand-dark: #1F4368;
-  --brand-light: #3A6EA8;
-  --brand-50: #EEF3F9;
-  --brand-100: #DCE6F1;
+  --brand: #3f7a4e;
+  --brand-dark: #2f5d3b;
+  --brand-light: #5cab6e;
+  --brand-50: #e3efe1;
+  --brand-100: #d3e6d6;
 
   /* Surfaces */
   --bg: #F4F6F9;
