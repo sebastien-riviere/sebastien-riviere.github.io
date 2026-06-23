@@ -13,24 +13,24 @@
 <meta property="og:url" content="https://sebastien-riviere.github.io/outils/achat-public/">
 <meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#fbf4f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <style>
 :root{
-  --bg:#f4f8fb; --bg-band:#eaf2f9;
+  --bg:#fbf4f4; --bg-band:#eaf2f9;
   --text:#1a2a35; --muted:#5a7a92; --faint:#8faabb;
   --card:#ffffff; --border:#dde9f2; --border-hover:#b8d0e4;
-  --title:#1e3a52; --accent:#3a8ac4; --accent-soft:#e8f0f7;
-  --logo-a:#3a8ac4; --logo-b:#1e3a52; --shadow:0 4px 22px rgba(30,58,82,0.10);
+  --title:#1e3a52; --accent:#b23b3b; --accent-soft:#f6dede;
+  --logo-a:#b23b3b; --logo-b:#1e3a52; --shadow:0 4px 22px rgba(30,58,82,0.10);
   --ok:#2e9e6b; --ok-soft:#e3f5ec; --warn:#c77d20; --warn-soft:#fdf3e0; --bad:#cf4b43; --bad-soft:#fbe9e8; --track:#e7eef5;
   --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --serif:Georgia,Cambria,'Times New Roman',serif;
 }
 @media(prefers-color-scheme:dark){:root{
   --bg:#0f1722; --bg-band:#15212f; --text:#e7eef5; --muted:#9fb6c8; --faint:#6f8aa0;
-  --card:#16212e; --border:#24333f; --border-hover:#3a8ac4; --title:#eaf2f9; --accent:#62a9e0; --accent-soft:#1c2c3b;
+  --card:#16212e; --border:#24333f; --border-hover:#b23b3b; --title:#eaf2f9; --accent:#e08c8c; --accent-soft:#2f1a1a;
   --logo-a:#4a9ad4; --logo-b:#274b6b; --shadow:0 6px 26px rgba(0,0,0,0.45);
   --ok:#3fb980; --ok-soft:#16302440; --warn:#e0a04a; --warn-soft:#3a2c1040; --bad:#e0635a; --bad-soft:#3a181640; --track:#24333f;
 }}
@@ -452,7 +452,7 @@ function gauge(cumul,f){ var d=dispense(state.params.dateRef), ue=seuilUE(state.
   s+='<polygon points="'+(px-4)+','+(y-2)+' '+(px+4)+','+(y-2)+' '+px+','+(y+4)+'" fill="'+col+'"/>';
   s+='<text class="cm" x="'+Math.max(16,Math.min(W-16,px))+'" y="'+(y-5)+'" text-anchor="middle" fill="'+col+'">'+fmtK(cumul)+'</text>';
   s+='</svg>'; return s; }
-var PALETTE=['#3a8ac4','#2e9e6b','#c77d20','#cf4b43','#7a5cc0','#3fb0a8','#b0589e','#8a98a8'];
+var PALETTE=['#b23b3b','#2e9e6b','#c77d20','#cf4b43','#7a5cc0','#3fb0a8','#b0589e','#8a98a8'];
 function donut(data,size){ size=size||150; var R=size/2,r=R-16,cx=R,cy=R,C=2*Math.PI*r;
   var tot=data.reduce(function(s,d){return s+d.value;},0); if(!tot)return '<div class="muted det">Aucune donnée</div>';
   var off=0,segs=''; data.forEach(function(d,i){ var len=(d.value/tot)*C, col=d.color||PALETTE[i%PALETTE.length];

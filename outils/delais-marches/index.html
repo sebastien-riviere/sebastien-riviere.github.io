@@ -13,16 +13,16 @@
 <meta property="og:url" content="https://sebastien-riviere.github.io/outils/delais-marches/">
 <meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#fbf4f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <style>
 :root{
-  --bg:#f4f8fb; --bg-band:#eaf2f9;
+  --bg:#fbf4f4; --bg-band:#eaf2f9;
   --text:#1a2a35; --muted:#5a7a92; --faint:#8faabb;
   --card:#ffffff; --border:#dde9f2; --border-hover:#b8d0e4;
-  --title:#1e3a52; --accent:#3a8ac4; --accent-soft:#e8f0f7;
+  --title:#1e3a52; --accent:#b23b3b; --accent-soft:#f6dede;
   --shadow:0 4px 22px rgba(30,58,82,0.10);
   --ok:#2e9e6b; --ok-soft:#e3f5ec; --warn:#c77d20; --warn-soft:#fdf3e0; --bad:#cf4b43; --bad-soft:#fbe9e8; --track:#e7eef5;
   --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
@@ -30,7 +30,7 @@
 }
 @media(prefers-color-scheme:dark){:root{
   --bg:#0f1722; --bg-band:#15212f; --text:#e7eef5; --muted:#9fb6c8; --faint:#6f8aa0;
-  --card:#16212e; --border:#24333f; --border-hover:#3a8ac4; --title:#eaf2f9; --accent:#62a9e0; --accent-soft:#1c2c3b;
+  --card:#16212e; --border:#24333f; --border-hover:#b23b3b; --title:#eaf2f9; --accent:#e08c8c; --accent-soft:#2f1a1a;
   --shadow:0 6px 26px rgba(0,0,0,0.45);
   --ok:#3fb980; --ok-soft:#16302440; --warn:#e0a04a; --warn-soft:#3a2c1040; --bad:#e0635a; --bad-soft:#3a181640; --track:#24333f;
 }}
@@ -106,7 +106,7 @@ input:focus,select:focus{outline:none;border-color:var(--accent);}
 .ms{display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;padding:4px 4px;min-width:84px;flex:1;}
 .msdot{width:42px;height:42px;border-radius:13px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;flex:none;}
 .msdot .ic{width:21px;height:21px;}
-.ms.key .msdot{background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(58,138,196,.35);}
+.ms.key .msdot{background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(178,59,59,.35);}
 .ms.start .msdot{background:var(--ok-soft);color:var(--ok);} .ms.end .msdot{background:var(--ok);color:#fff;}
 .mslab{font-family:var(--sans);font-weight:800;font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.3px;}
 .msdate{font-family:var(--sans);font-weight:900;font-size:14.5px;color:var(--title);line-height:1.05;}

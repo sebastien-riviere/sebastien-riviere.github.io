@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Annuaire de l'écosystème de l'achat public — Sébastien Rivière</title>
 <meta name="description" content="L'écosystème de la commande publique cartographié : plateformes, centrales, sources officielles, presse, experts, voix à suivre et AMO — par région, par besoin, par usage. Sourcé, daté, sans classement.">
-<meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#fbf4f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 :root{
-  --bg:#f4f8fb; --bg-band:#eaf2f9;
+  --bg:#fbf4f4; --bg-band:#eaf2f9;
   --text:#1a2a35; --muted:#5a7a92; --faint:#5f7e94;
   --card:#ffffff; --border:#dde9f2; --border-hover:#b8d0e4;
-  --title:#1e3a52; --accent:#3a8ac4; --accent-rgb:58,138,196; --accent-soft:#e8f0f7;
+  --title:#1e3a52; --accent:#b23b3b; --accent-rgb:178,59,59; --accent-soft:#f6dede;
   --shadow:0 4px 22px rgba(30,58,82,0.09);
   --green:#2c8c5f; --amber:#b9791f; --violet:#6d5bd0;
   --map-empty:#e1ebf3; --map-stroke:#ffffff;
@@ -24,8 +24,8 @@
   :root{
     --bg:#0f1722; --bg-band:#15212f;
     --text:#e7eef5; --muted:#9fb6c8; --faint:#8ba3b8;
-    --card:#16212e; --border:#24333f; --border-hover:#3a8ac4;
-    --title:#eaf2f9; --accent:#62a9e0; --accent-rgb:98,169,224; --accent-soft:#1c2c3b;
+    --card:#16212e; --border:#24333f; --border-hover:#b23b3b;
+    --title:#eaf2f9; --accent:#e08c8c; --accent-rgb:98,169,224; --accent-soft:#2f1a1a;
     --shadow:0 6px 26px rgba(0,0,0,0.42);
     --green:#5fce96; --amber:#e0a850; --violet:#9d90ec;
     --map-empty:#1e2c3a; --map-stroke:#0f1722;
@@ -321,7 +321,7 @@ function ico(name,size){ size=size||20; return `<svg viewBox="0 0 24 24" width="
 
 const FAM_ORDER=["reglementaire","opendata","plateforme","publication","presse","centrale","institution","acheteur","expert","voix","amo"];
 const FAM_ICON={reglementaire:"reglementaire",opendata:"opendata",plateforme:"plateforme",publication:"publication",presse:"presse",centrale:"centrale",institution:"institution",acheteur:"acheteur",expert:"expert",voix:"voix",amo:"amo"};
-const FAM_COLOR={reglementaire:"#1e3a52",opendata:"#2c8c5f",plateforme:"#3a8ac4",publication:"#6d5bd0",presse:"#b9791f",centrale:"#2b7a78",institution:"#4a6fa5",acheteur:"#7a5195",expert:"#3f6d5a",voix:"#c2557a",amo:"#b5562f"};
+const FAM_COLOR={reglementaire:"#1e3a52",opendata:"#2c8c5f",plateforme:"#b23b3b",publication:"#6d5bd0",presse:"#b9791f",centrale:"#2b7a78",institution:"#4a6fa5",acheteur:"#7a5195",expert:"#3f6d5a",voix:"#c2557a",amo:"#b5562f"};
 const MONO_STOP=new Set(["de","du","des","la","le","les","l","et","en","au","aux","un","une","sur","pour","par","the","of"]);
 function monoInitials(nom){
   let base=String(nom||"").split(/[—\-–/(]/)[0]; // avant tiret/slash/parenthèse
