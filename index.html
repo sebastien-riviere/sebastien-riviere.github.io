@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://sebastien-riviere.github.io/">
 <meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f3eee2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -30,10 +30,10 @@
   --shadow:0 1px 2px rgba(40,50,70,.04),0 7px 24px rgba(40,50,70,.08);
   /* teintes catégorie */
   --t-ia:#41586b;    --t-ia-soft:#e9ecf2;
-  --t-cp:#3b6878;    --t-cp-soft:#deedf4;
-  --t-prod:#566a4c;  --t-prod-soft:#e9efe2;
+  --t-cp:#b23b3b;    --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e;  --t-prod-soft:#e3efe1;
   --t-block:#b8570f; --t-block-soft:#fae0cc;
-  --t-labo:#6e4d66;  --t-labo-soft:#efe7ed;
+  --t-labo:#7345a0;  --t-labo-soft:#ece2f6;
 }
 @media(prefers-color-scheme:dark){
   :root{
@@ -43,10 +43,10 @@
     --title:#eef3f6; --accent:#95abce; --accent-ink:#aabdd9; --accent-soft:#1d2738;
     --shadow:0 6px 26px rgba(0,0,0,.42);
     --t-ia:#95abce;    --t-ia-soft:#1b2636;
-    --t-cp:#6ca8c4;    --t-cp-soft:#1e3040;
-    --t-prod:#9cb78c;  --t-prod-soft:#1d2a2a;
+    --t-cp:#e08c8c;    --t-cp-soft:#2f1a1a;
+    --t-prod:#8fc09a;  --t-prod-soft:#1a2a20;
     --t-block:#f07838; --t-block-soft:#28180a;
-    --t-labo:#c69ebc;  --t-labo-soft:#272231;
+    --t-labo:#c2a3e3;  --t-labo-soft:#251a33;
   }
 }
 /* override explicite quand l'utilisateur choisit un thème (JS) */
@@ -55,18 +55,18 @@ html[data-theme="light"]{
   --card:#ffffff; --border:#e5e8ed; --border-soft:#eceff5; --title:#272320;
   --accent:#4b5d7e; --accent-ink:#3a4b67; --accent-soft:#e7eaf1;
   --shadow:0 1px 2px rgba(40,50,70,.04),0 7px 24px rgba(40,50,70,.08);
-  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#3b6878; --t-cp-soft:#deedf4;
-  --t-prod:#566a4c; --t-prod-soft:#e9efe2; --t-block:#b8570f; --t-block-soft:#fae0cc;
-  --t-labo:#6e4d66; --t-labo-soft:#efe7ed;
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+  --t-labo:#7345a0; --t-labo-soft:#ece2f6;
 }
 html[data-theme="dark"]{
   --bg:#0f1722; --bg-band:#14202e; --text:#e9e3d6; --muted:#9aa6b4; --faint:#8b96a3;
   --card:#172230; --border:#26313f; --border-soft:#202b39; --title:#eef3f6;
   --accent:#95abce; --accent-ink:#aabdd9; --accent-soft:#1d2738;
   --shadow:0 6px 26px rgba(0,0,0,.42);
-  --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#6ca8c4; --t-cp-soft:#1e3040;
-  --t-prod:#9cb78c; --t-prod-soft:#1d2a2a; --t-block:#f07838; --t-block-soft:#28180a;
-  --t-labo:#c69ebc; --t-labo-soft:#272231;
+  --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+  --t-labo:#c2a3e3; --t-labo-soft:#251a33;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -494,7 +494,7 @@ footer a:hover{color:var(--accent-ink);}
     if(root.getAttribute('data-theme')){
       m.forEach(function(x){x.remove();});
       var meta=document.createElement('meta');meta.name='theme-color';
-      meta.content=current()==='dark'?'#0f1722':'#f3eee2';
+      meta.content=current()==='dark'?'#0f1722':'#f5f7fa';
       document.head.appendChild(meta);
     }
   }

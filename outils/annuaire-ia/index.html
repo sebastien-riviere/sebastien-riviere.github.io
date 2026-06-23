@@ -74,11 +74,14 @@ main{flex:1;padding:6px 40px 64px;max-width:1000px;width:100%;margin:0 auto;}
 details.section[open] .chev{transform:rotate(90deg);}
 details.section .grid{margin-top:16px;}
 
-.insights-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:8px 0 6px;cursor:pointer;user-select:none;}
-.insights-head h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:var(--title);}
+.insights-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:8px 0 16px;cursor:pointer;user-select:none;
+  padding:11px 16px;border:1.5px solid var(--border);border-radius:11px;background:var(--card);transition:border-color .15s,background .15s;}
+.insights-head:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 5%,var(--card));}
+.insights-head h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;color:var(--title);}
 .insights-head .upd{font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:var(--faint);}
-.insights-head .ins-chev{margin-left:auto;font-size:14px;opacity:.5;transition:transform .2s;}
-.insights-head.closed .ins-chev{transform:rotate(-90deg);}
+.insights-head .ins-toggle-lbl{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--accent);}
+.insights-head .ins-chev{font-size:15px;transition:transform .2s;}
+.insights-head:not(.closed) .ins-chev{transform:rotate(90deg);}
 .insights-note{font-family:'Lora',serif;font-size:13px;color:var(--faint);line-height:1.55;margin-bottom:18px;max-width:720px;}
 .ins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:8px;}
 .ins-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;}
@@ -125,7 +128,8 @@ details.section .grid{margin-top:16px;}
 .card-link{margin-top:11px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
 .card.link:hover .card-link{text-decoration:underline;}
 .no-result{font-family:'Nunito',sans-serif;color:var(--faint);text-align:center;padding:40px 0;display:none;}
-.flag{font-size:14px;line-height:1;flex:none;}
+.flag{height:13px;width:auto;flex:none;border-radius:2px;display:inline-block;vertical-align:middle;box-shadow:0 0 0 1px rgba(0,0,0,.10);}
+.country-chip .flag{height:12px;margin-right:2px;}
 .country-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;align-items:center;}
 .country-chip{font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;
   padding:4px 10px;border-radius:16px;border:1.5px solid var(--border);
@@ -180,12 +184,12 @@ footer a:hover{color:var(--accent);}
 
 <main>
   <section id="insights" style="display:none;">
-    <div class="insights-head" id="insightsToggle">
+    <div class="insights-head closed" id="insightsToggle" role="button" tabindex="0" aria-expanded="false" aria-controls="insightsBody">
       <h2>Le marché en chiffres</h2>
       <span class="upd">Repères · MAJ <span id="majLbl">—</span></span>
-      <span class="ins-chev">›</span>
+      <span class="ins-toggle-lbl"><span class="ins-lbl-txt">Afficher</span><span class="ins-chev">›</span></span>
     </div>
-    <div id="insightsBody">
+    <div id="insightsBody" style="display:none;">
     <p class="insights-note">Ordres de grandeur issus de la presse spécialisée et de communiqués officiels — ce sont des <strong>estimations datées et sourcées</strong> (cliquez les sources). Les valorisations changent vite ; à lire comme des repères, pas des vérités absolues.<br><span class="cf-legend">Fiabilité de la source : <span class="cf cf-bon"></span> bonne&nbsp;&nbsp; <span class="cf cf-moyen"></span> moyenne&nbsp;&nbsp; <span class="cf cf-faible"></span> à confirmer</span></p>
     <div class="ins-grid" id="insGrid"></div>
     </div>
@@ -236,8 +240,13 @@ function logoFile(dom){return 'logos/'+dom.replace(/\//g,'_')+'.png';}
 function fmtStars(n){return n>=1000?Math.round(n/1000)+'k':n;}
 function tarifLabel(p){return p==='gratuit'?'Gratuit':p==='payant'?'Payant':'Freemium';}
 
-const FLAG = {US:'🇺🇸',FR:'🇫🇷',CN:'🇨🇳',DE:'🇩🇪',SE:'🇸🇪',CA:'🇨🇦',CZ:'🇨🇿',AT:'🇦🇹',AU:'🇦🇺',GB:'🇬🇧',NL:'🇳🇱',BE:'🇧🇪',BG:'🇧🇬'};
 const COUNTRY_NAME = {US:'États-Unis',FR:'France',CN:'Chine',DE:'Allemagne',SE:'Suède',CA:'Canada',CZ:'Tchéquie',AT:'Autriche',AU:'Australie',GB:'Royaume-Uni',NL:'Pays-Bas',BE:'Belgique',BG:'Bulgarie'};
+/* vrais drapeaux (les émojis ne s'affichent pas sur Windows) → images flagcdn */
+function flagImg(code){
+  if(!code) return '';
+  const c=code.toLowerCase(), name=COUNTRY_NAME[code]||code;
+  return `<img class="flag" src="https://flagcdn.com/${c}.svg" alt="${name}" title="${name}" width="20" height="14" loading="lazy">`;
+}
 let fPays = '';
 
 function cardHTML(t){
@@ -246,7 +255,7 @@ function cardHTML(t){
   const title=t.u?`<a href="${t.u}" target="_blank" rel="noopener">${esc(t.n)}</a>`:esc(t.n);
   const stars=t.s?`<span class="stars">${STAR}${fmtStars(t.s)}</span>`:'';
   const nv=t.nv?'<span class="tag nouveau">Nouveau</span>':'';
-  const flag=t.pays&&FLAG[t.pays]?`<span class="flag" title="${COUNTRY_NAME[t.pays]||t.pays}">${FLAG[t.pays]}</span>`:'';
+  const flag=flagImg(t.pays);
   const linkRow=t.u?`<a class="card-link" href="${t.u}" target="_blank" rel="noopener">Visiter le site →</a>`:'';
   return `<div class="card${t.u?' link':''}" data-search="${esc((t.n+' '+t.d+' '+t.c).toLowerCase())}" data-pays="${t.pays||''}">
     <div class="card-head">${logo}<div class="card-title">${title}</div></div>
@@ -295,7 +304,7 @@ function renderCountryFilter(){
   const cf=document.getElementById('countryFilter');
   if(!cf) return;
   cf.innerHTML='<span class="country-chip on" data-pays="">🌍 Tous</span>'
-    +pays.map(p=>`<span class="country-chip" data-pays="${p}">${FLAG[p]||''} ${COUNTRY_NAME[p]||p}</span>`).join('');
+    +pays.map(p=>`<span class="country-chip" data-pays="${p}">${flagImg(p)}${COUNTRY_NAME[p]||p}</span>`).join('');
   cf.querySelectorAll('.country-chip').forEach(c=>{
     c.addEventListener('click',()=>{
       cf.querySelectorAll('.country-chip').forEach(x=>x.classList.remove('on'));
@@ -341,13 +350,20 @@ function filter(){
     catalogue.innerHTML='<p style="font-family:Nunito,sans-serif;color:var(--faint);text-align:center;padding:40px 0;">Chargement de l\'annuaire impossible pour le moment. Réessayez plus tard.</p>';
   }
 })();
-// Insights toggle
-document.getElementById('insightsToggle').addEventListener('click',function(){
+// Insights toggle (replié par défaut, affordance bouton clair)
+(function(){
+  const head=document.getElementById('insightsToggle');
   const body=document.getElementById('insightsBody');
-  const open=body.style.display!=='none';
-  body.style.display=open?'none':'';
-  this.classList.toggle('closed',open);
-});
+  const lbl=head.querySelector('.ins-lbl-txt');
+  function set(open){
+    body.style.display=open?'':'none';
+    head.classList.toggle('closed',!open);
+    head.setAttribute('aria-expanded',open?'true':'false');
+    lbl.textContent=open?'Masquer':'Afficher';
+  }
+  head.addEventListener('click',()=>set(head.classList.contains('closed')));
+  head.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();set(head.classList.contains('closed'));}});
+})();
 </script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
