@@ -118,6 +118,12 @@ main{flex:1;padding:6px 40px 64px;max-width:1000px;width:100%;margin:0 auto;}
 .card-link{margin-top:11px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
 .card.link:hover .card-link{text-decoration:underline;}
 .no-result{font-family:'Nunito',sans-serif;color:var(--faint);text-align:center;padding:40px 0;display:none;}
+.flag{font-size:14px;line-height:1;flex:none;}
+.country-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;align-items:center;}
+.country-chip{font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;
+  padding:4px 10px;border-radius:16px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--muted);cursor:pointer;transition:all .15s;}
+.country-chip.on,.country-chip:hover{border-color:var(--accent);color:var(--accent);}
 
 footer{padding:22px 40px;max-width:1000px;width:100%;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);border-top:1px solid var(--border);}
 footer a{color:var(--faint);text-decoration:none;}
@@ -175,6 +181,7 @@ footer a:hover{color:var(--accent);}
     <div class="ins-grid" id="insGrid"></div>
   </section>
 
+  <div class="country-filter" id="countryFilter"></div>
   <div id="catalogue"></div>
   <div class="no-result" id="noResult">Aucun outil ne correspond à votre recherche.</div>
   <p class="disclaimer">Sélection indicative, non exhaustive et non sponsorisée — les outils, tarifs et chiffres évoluent vite. Mise à jour régulière. Tarifs : <strong>Gratuit</strong> (libre/open-source), <strong>Freemium</strong> (palier gratuit + offres payantes), <strong>Payant</strong> (sans usage gratuit). Un outil manquant ou une erreur ? <a href="mailto:rsebastien@protonmail.com">Signalez-le</a>.</p>
@@ -219,16 +226,21 @@ function logoFile(dom){return 'logos/'+dom.replace(/\//g,'_')+'.png';}
 function fmtStars(n){return n>=1000?Math.round(n/1000)+'k':n;}
 function tarifLabel(p){return p==='gratuit'?'Gratuit':p==='payant'?'Payant':'Freemium';}
 
+const FLAG = {US:'🇺🇸',FR:'🇫🇷',CN:'🇨🇳',DE:'🇩🇪',SE:'🇸🇪',CA:'🇨🇦',CZ:'🇨🇿',AT:'🇦🇹',AU:'🇦🇺',GB:'🇬🇧',NL:'🇳🇱',BE:'🇧🇪',BG:'🇧🇬'};
+const COUNTRY_NAME = {US:'États-Unis',FR:'France',CN:'Chine',DE:'Allemagne',SE:'Suède',CA:'Canada',CZ:'Tchéquie',AT:'Autriche',AU:'Australie',GB:'Royaume-Uni',NL:'Pays-Bas',BE:'Belgique',BG:'Bulgarie'};
+let fPays = '';
+
 function cardHTML(t){
   const init=esc(t.n.replace(/[^A-Za-zÀ-ÿ0-9]/g,'').charAt(0).toUpperCase());
   const logo=`<span class="tlogo"><img src="${logoFile(t.dom)}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tlogo-fb">${init}</span></span>`;
   const title=t.u?`<a href="${t.u}" target="_blank" rel="noopener">${esc(t.n)}</a>`:esc(t.n);
   const stars=t.s?`<span class="stars">${STAR}${fmtStars(t.s)}</span>`:'';
   const nv=t.nv?'<span class="tag nouveau">Nouveau</span>':'';
+  const flag=t.pays&&FLAG[t.pays]?`<span class="flag" title="${COUNTRY_NAME[t.pays]||t.pays}">${FLAG[t.pays]}</span>`:'';
   const linkRow=t.u?`<a class="card-link" href="${t.u}" target="_blank" rel="noopener">Visiter le site →</a>`:'';
-  return `<div class="card${t.u?' link':''}" data-search="${esc((t.n+' '+t.d+' '+t.c).toLowerCase())}">
+  return `<div class="card${t.u?' link':''}" data-search="${esc((t.n+' '+t.d+' '+t.c).toLowerCase())}" data-pays="${t.pays||''}">
     <div class="card-head">${logo}<div class="card-title">${title}</div></div>
-    <div class="badges"><span class="tag ${t.p}">${tarifLabel(t.p)}</span>${stars}${nv}</div>
+    <div class="badges"><span class="tag ${t.p}">${tarifLabel(t.p)}</span>${stars}${nv}${flag}</div>
     <div class="card-desc">${esc(t.d)}</div>${linkRow}
   </div>`;
 }
@@ -268,20 +280,38 @@ function renderInsights(){
   insights.style.display='';
 }
 
+function renderCountryFilter(){
+  const pays=[...new Set(TOOLS.map(t=>t.pays).filter(Boolean))].sort();
+  const cf=document.getElementById('countryFilter');
+  if(!cf) return;
+  cf.innerHTML='<span class="country-chip on" data-pays="">🌍 Tous</span>'
+    +pays.map(p=>`<span class="country-chip" data-pays="${p}">${FLAG[p]||''} ${COUNTRY_NAME[p]||p}</span>`).join('');
+  cf.querySelectorAll('.country-chip').forEach(c=>{
+    c.addEventListener('click',()=>{
+      cf.querySelectorAll('.country-chip').forEach(x=>x.classList.remove('on'));
+      c.classList.add('on');
+      fPays=c.dataset.pays;
+      filter();
+    });
+  });
+}
+
 function filter(){
   const q=search.value.trim().toLowerCase();
-  insights.style.display=q?'none':'';
+  insights.style.display=(q||fPays)?'none':'';
   let visible=0;
   document.querySelectorAll('.section[data-cat]').forEach(sec=>{
     let sv=0;
     sec.querySelectorAll('.card').forEach(card=>{
       const m=!q||card.dataset.search.includes(q);
-      card.style.display=m?'':'none'; if(m){sv++;visible++;}
+      const pays=card.dataset.pays||'';
+      const mp=!fPays||pays===fPays;
+      card.style.display=(m&&mp)?'':'none'; if(m&&mp){sv++;visible++;}
     });
     sec.style.display=sv?'':'none';
   });
   noResult.style.display=visible?'none':'block';
-  countEl.textContent=q?`${visible} résultat${visible>1?'s':''}`:`${TOOLS.length} outils · ${CATS.length} catégories`;
+  countEl.textContent=(q||fPays)?`${visible} résultat${visible>1?'s':''}`:`${TOOLS.length} outils · ${CATS.length} catégories`;
 }
 
 (async function init(){
@@ -293,6 +323,7 @@ function filter(){
     document.getElementById('majLbl').textContent=data.maj||'';
     renderInsights();
     renderCatalogue();
+    renderCountryFilter();
     countEl.textContent=`${TOOLS.length} outils · ${CATS.length} catégories`;
     search.addEventListener('input',filter);
   }catch(e){

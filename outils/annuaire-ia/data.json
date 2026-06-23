@@ -49,7 +49,8 @@
       "d": "Assistant polyvalent d'OpenAI : texte, images, voix et navigation web. La référence grand public.",
       "p": "freemium",
       "dom": "chatgpt.com",
-      "u": "https://chatgpt.com"
+      "u": "https://chatgpt.com",
+      "pays": "US"
     },
     {
       "c": "assistants",
@@ -57,7 +58,8 @@
       "d": "Assistant d'Anthropic : excellent en écriture et longs documents, se connecte à vos outils (Drive, Notion, Gmail…).",
       "p": "freemium",
       "dom": "claude.ai",
-      "u": "https://claude.ai"
+      "u": "https://claude.ai",
+      "pays": "US"
     },
     {
       "c": "assistants",
@@ -65,7 +67,8 @@
       "d": "Assistant de Google, intégré nativement à Gmail, Docs et Sheets.",
       "p": "freemium",
       "dom": "gemini.google.com",
-      "u": "https://gemini.google.com"
+      "u": "https://gemini.google.com",
+      "pays": "US"
     },
     {
       "c": "assistants",
@@ -73,7 +76,8 @@
       "d": "Assistant français, données hébergées en Europe (RGPD) et le plus abordable.",
       "p": "freemium",
       "dom": "chat.mistral.ai",
-      "u": "https://chat.mistral.ai"
+      "u": "https://chat.mistral.ai",
+      "pays": "FR"
     },
     {
       "c": "assistants",
@@ -81,7 +85,8 @@
       "d": "IA intégrée à Word, Excel, PowerPoint et Microsoft 365.",
       "p": "freemium",
       "dom": "copilot.microsoft.com",
-      "u": "https://copilot.microsoft.com"
+      "u": "https://copilot.microsoft.com",
+      "pays": "US"
     },
     {
       "c": "assistants",
@@ -89,7 +94,8 @@
       "d": "Moteur de réponse : cherche sur le web et cite ses sources.",
       "p": "freemium",
       "dom": "perplexity.ai",
-      "u": "https://www.perplexity.ai"
+      "u": "https://www.perplexity.ai",
+      "pays": "US"
     },
     {
       "c": "assistants",
@@ -99,7 +105,8 @@
       "dom": "deepseek.com",
       "u": "https://chat.deepseek.com",
       "s": 103753,
-      "gh": "deepseek-ai/DeepSeek-V3"
+      "gh": "deepseek-ai/DeepSeek-V3",
+      "pays": "CN"
     },
     {
       "c": "assistants",
@@ -107,7 +114,8 @@
       "d": "Plusieurs modèles d'IA réunis sous un seul abonnement, FR/RGPD.",
       "p": "freemium",
       "dom": "mammouth.ai",
-      "u": "https://mammouth.ai"
+      "u": "https://mammouth.ai",
+      "pays": "FR"
     },
     {
       "c": "assistants",
@@ -116,7 +124,8 @@
       "p": "freemium",
       "dom": "grok.com",
       "u": "https://grok.com",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "assistants",
@@ -127,7 +136,8 @@
       "u": "https://www.llama.com",
       "s": 7630,
       "gh": "meta-llama/llama-models",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "build",
@@ -135,7 +145,8 @@
       "d": "Décrivez votre appli, l'IA la code et la met en ligne.",
       "p": "freemium",
       "dom": "lovable.dev",
-      "u": "https://lovable.dev"
+      "u": "https://lovable.dev",
+      "pays": "SE"
     },
     {
       "c": "build",
@@ -143,7 +154,8 @@
       "d": "Génère des interfaces web à partir d'une simple description.",
       "p": "freemium",
       "dom": "v0.app",
-      "u": "https://v0.app"
+      "u": "https://v0.app",
+      "pays": "US"
     },
     {
       "c": "build",
@@ -151,7 +163,8 @@
       "d": "Construire une application depuis un prompt, dans Figma.",
       "p": "freemium",
       "dom": "figma.com",
-      "u": "https://www.figma.com"
+      "u": "https://www.figma.com",
+      "pays": "US"
     },
     {
       "c": "build",
@@ -159,7 +172,8 @@
       "d": "Créer des apps IA via prompts, sans coder, avec de longs documents.",
       "p": "freemium",
       "dom": "aistudio.google.com",
-      "u": "https://aistudio.google.com"
+      "u": "https://aistudio.google.com",
+      "pays": "US"
     },
     {
       "c": "build",
@@ -167,7 +181,8 @@
       "d": "Créer un site web complet (avec CRM + facturation) en quelques minutes.",
       "p": "freemium",
       "dom": "durable.co",
-      "u": "https://durable.co"
+      "u": "https://durable.co",
+      "pays": "CA"
     },
     {
       "c": "build",
@@ -175,7 +190,8 @@
       "d": "Application no-code générée par l'IA.",
       "p": "freemium",
       "dom": "blink.new",
-      "u": "https://blink.new"
+      "u": "https://blink.new",
+      "pays": "US"
     },
     {
       "c": "build",
@@ -183,7 +199,8 @@
       "d": "Éditeur de code assisté par IA, du débutant à l'expert.",
       "p": "freemium",
       "dom": "cursor.com",
-      "u": "https://www.cursor.com"
+      "u": "https://www.cursor.com",
+      "pays": "US"
     },
     {
       "c": "build",
@@ -191,7 +208,8 @@
       "d": "Assistant de développement en ligne de commande : lit, écrit et exécute votre code.",
       "p": "freemium",
       "dom": "claude.ai",
-      "u": "https://www.anthropic.com/claude-code"
+      "u": "https://www.anthropic.com/claude-code",
+      "pays": "US"
     },
     {
       "c": "build",
@@ -200,7 +218,8 @@
       "p": "freemium",
       "dom": "github.com",
       "u": "https://github.com/features/copilot",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "build",
@@ -209,7 +228,8 @@
       "p": "freemium",
       "dom": "replit.com",
       "u": "https://replit.com",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "build",
@@ -218,7 +238,8 @@
       "p": "freemium",
       "dom": "bolt.new",
       "u": "https://bolt.new",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "auto",
@@ -226,7 +247,8 @@
       "d": "Automatisation visuelle no-code, avec briques d'IA.",
       "p": "freemium",
       "dom": "make.com",
-      "u": "https://www.make.com"
+      "u": "https://www.make.com",
+      "pays": "CZ"
     },
     {
       "c": "auto",
@@ -234,7 +256,8 @@
       "d": "Relie vos applications entre elles pour automatiser des tâches.",
       "p": "freemium",
       "dom": "zapier.com",
-      "u": "https://zapier.com"
+      "u": "https://zapier.com",
+      "pays": "US"
     },
     {
       "c": "auto",
@@ -244,7 +267,8 @@
       "dom": "n8n.io",
       "u": "https://n8n.io",
       "s": 192767,
-      "gh": "n8n-io/n8n"
+      "gh": "n8n-io/n8n",
+      "pays": "DE"
     },
     {
       "c": "auto",
@@ -252,7 +276,8 @@
       "d": "Base de données visuelle, socle d'automatisations no-code.",
       "p": "freemium",
       "dom": "airtable.com",
-      "u": "https://airtable.com"
+      "u": "https://airtable.com",
+      "pays": "US"
     },
     {
       "c": "auto",
@@ -260,7 +285,8 @@
       "d": "Assistants automatisés pour vos tâches récurrentes.",
       "p": "freemium",
       "dom": "lindy.ai",
-      "u": "https://www.lindy.ai"
+      "u": "https://www.lindy.ai",
+      "pays": "US"
     },
     {
       "c": "image",
@@ -268,7 +294,8 @@
       "d": "Génération d'images haut de gamme (sans offre gratuite).",
       "p": "payant",
       "dom": "midjourney.com",
-      "u": "https://www.midjourney.com"
+      "u": "https://www.midjourney.com",
+      "pays": "US"
     },
     {
       "c": "image",
@@ -278,7 +305,8 @@
       "dom": "bfl.ai",
       "u": "https://bfl.ai",
       "s": 25632,
-      "gh": "black-forest-labs/flux"
+      "gh": "black-forest-labs/flux",
+      "pays": "DE"
     },
     {
       "c": "image",
@@ -286,7 +314,8 @@
       "d": "Modèle d'images et d'édition de Google, intégré à Gemini.",
       "p": "freemium",
       "dom": "gemini.google.com",
-      "u": "https://gemini.google.com"
+      "u": "https://gemini.google.com",
+      "pays": "US"
     },
     {
       "c": "image",
@@ -294,7 +323,8 @@
       "d": "Génération d'images par Google (via l'API Gemini/Vertex).",
       "p": "payant",
       "dom": "ai.google.dev",
-      "u": "https://ai.google.dev"
+      "u": "https://ai.google.dev",
+      "pays": "US"
     },
     {
       "c": "image",
@@ -302,7 +332,8 @@
       "d": "Détoure automatiquement l'arrière-plan d'une image.",
       "p": "freemium",
       "dom": "remove.bg",
-      "u": "https://www.remove.bg"
+      "u": "https://www.remove.bg",
+      "pays": "AT"
     },
     {
       "c": "image",
@@ -311,7 +342,8 @@
       "p": "payant",
       "dom": "openai.com",
       "u": "https://openai.com",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "image",
@@ -320,7 +352,8 @@
       "p": "freemium",
       "dom": "ideogram.ai",
       "u": "https://ideogram.ai",
-      "nv": 1
+      "nv": 1,
+      "pays": "CA"
     },
     {
       "c": "image",
@@ -329,7 +362,8 @@
       "p": "freemium",
       "dom": "firefly.adobe.com",
       "u": "https://firefly.adobe.com",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "image",
@@ -338,7 +372,8 @@
       "p": "freemium",
       "dom": "leonardo.ai",
       "u": "https://leonardo.ai",
-      "nv": 1
+      "nv": 1,
+      "pays": "AU"
     },
     {
       "c": "video",
@@ -346,7 +381,8 @@
       "d": "Génération de vidéo par Google, du texte à l'image animée.",
       "p": "freemium",
       "dom": "cloud.google.com",
-      "u": "https://cloud.google.com/vertex-ai"
+      "u": "https://cloud.google.com/vertex-ai",
+      "pays": "US"
     },
     {
       "c": "video",
@@ -354,7 +390,8 @@
       "d": "Modèle de génération de vidéo (crédits gratuits quotidiens).",
       "p": "freemium",
       "dom": "kling.ai",
-      "u": "https://kling.ai"
+      "u": "https://kling.ai",
+      "pays": "CN"
     },
     {
       "c": "video",
@@ -362,7 +399,8 @@
       "d": "Vidéo réaliste 1080p, crédits gratuits via Dreamina.",
       "p": "freemium",
       "dom": "dreamina.capcut.com",
-      "u": "https://dreamina.capcut.com"
+      "u": "https://dreamina.capcut.com",
+      "pays": "CN"
     },
     {
       "c": "video",
@@ -370,7 +408,8 @@
       "d": "Avatars vidéo réalistes (3 vidéos/mois en gratuit).",
       "p": "freemium",
       "dom": "heygen.com",
-      "u": "https://www.heygen.com"
+      "u": "https://www.heygen.com",
+      "pays": "US"
     },
     {
       "c": "video",
@@ -378,7 +417,8 @@
       "d": "Avatars vidéo pour la formation et la communication.",
       "p": "freemium",
       "dom": "synthesia.io",
-      "u": "https://www.synthesia.io"
+      "u": "https://www.synthesia.io",
+      "pays": "GB"
     },
     {
       "c": "video",
@@ -386,7 +426,8 @@
       "d": "Découpe vos longues vidéos en clips courts.",
       "p": "freemium",
       "dom": "opus.pro",
-      "u": "https://www.opus.pro"
+      "u": "https://www.opus.pro",
+      "pays": "US"
     },
     {
       "c": "video",
@@ -395,7 +436,8 @@
       "p": "freemium",
       "dom": "runwayml.com",
       "u": "https://runwayml.com",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "video",
@@ -404,7 +446,8 @@
       "p": "freemium",
       "dom": "pika.art",
       "u": "https://pika.art",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "video",
@@ -413,7 +456,8 @@
       "p": "freemium",
       "dom": "lumalabs.ai",
       "u": "https://lumalabs.ai",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "voice",
@@ -421,7 +465,8 @@
       "d": "Voix synthétiques réalistes et clonage vocal (référence du marché).",
       "p": "freemium",
       "dom": "elevenlabs.io",
-      "u": "https://elevenlabs.io"
+      "u": "https://elevenlabs.io",
+      "pays": "US"
     },
     {
       "c": "voice",
@@ -431,7 +476,8 @@
       "dom": "github.com",
       "u": "https://github.com/openai/whisper",
       "s": 102827,
-      "gh": "openai/whisper"
+      "gh": "openai/whisper",
+      "pays": "US"
     },
     {
       "c": "voice",
@@ -439,7 +485,8 @@
       "d": "Dictée vocale rapide (~150 mots/min) pour écrire à la voix.",
       "p": "freemium",
       "dom": "wisprflow.ai",
-      "u": "https://wisprflow.ai"
+      "u": "https://wisprflow.ai",
+      "pays": "US"
     },
     {
       "c": "voice",
@@ -448,7 +495,8 @@
       "p": "freemium",
       "dom": "suno.com",
       "u": "https://suno.com",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "voice",
@@ -457,7 +505,8 @@
       "p": "freemium",
       "dom": "descript.com",
       "u": "https://www.descript.com",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "meeting",
@@ -465,7 +514,8 @@
       "d": "Transcription et résumé automatiques de réunions.",
       "p": "freemium",
       "dom": "fireflies.ai",
-      "u": "https://fireflies.ai"
+      "u": "https://fireflies.ai",
+      "pays": "US"
     },
     {
       "c": "meeting",
@@ -473,7 +523,8 @@
       "d": "Transcription automatique de réunions.",
       "p": "freemium",
       "dom": "otter.ai",
-      "u": "https://otter.ai"
+      "u": "https://otter.ai",
+      "pays": "US"
     },
     {
       "c": "meeting",
@@ -481,7 +532,8 @@
       "d": "Notes de réunion assistées par IA.",
       "p": "freemium",
       "dom": "granola.ai",
-      "u": "https://www.granola.ai"
+      "u": "https://www.granola.ai",
+      "pays": "GB"
     },
     {
       "c": "meeting",
@@ -489,7 +541,8 @@
       "d": "Notes de réunion RGPD (Zoom/Meet/Teams), connectée à 8000 apps.",
       "p": "freemium",
       "dom": "noota.io",
-      "u": "https://www.noota.io"
+      "u": "https://www.noota.io",
+      "pays": "FR"
     },
     {
       "c": "meeting",
@@ -498,7 +551,8 @@
       "p": "freemium",
       "dom": "fathom.video",
       "u": "https://fathom.video",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "meeting",
@@ -506,7 +560,8 @@
       "d": "Transcription, résumé et analyse de réunions et d'appels commerciaux (français, RGPD).",
       "p": "payant",
       "dom": "leexi.ai",
-      "u": "https://www.leexi.ai"
+      "u": "https://www.leexi.ai",
+      "pays": "BE"
     },
     {
       "c": "design",
@@ -514,7 +569,8 @@
       "d": "Visuels et présentations marketing, avec Magic Studio IA.",
       "p": "freemium",
       "dom": "canva.com",
-      "u": "https://www.canva.com"
+      "u": "https://www.canva.com",
+      "pays": "AU"
     },
     {
       "c": "design",
@@ -522,7 +578,8 @@
       "d": "Génère présentations et pitch decks.",
       "p": "freemium",
       "dom": "gamma.app",
-      "u": "https://gamma.app"
+      "u": "https://gamma.app",
+      "pays": "US"
     },
     {
       "c": "design",
@@ -530,7 +587,8 @@
       "d": "Transforme un texte en visuels et schémas.",
       "p": "freemium",
       "dom": "napkin.ai",
-      "u": "https://www.napkin.ai"
+      "u": "https://www.napkin.ai",
+      "pays": "US"
     },
     {
       "c": "design",
@@ -540,7 +598,8 @@
       "dom": "diagrams.net",
       "u": "https://www.diagrams.net",
       "s": 6110,
-      "gh": "jgraph/drawio"
+      "gh": "jgraph/drawio",
+      "pays": "GB"
     },
     {
       "c": "design",
@@ -550,7 +609,8 @@
       "dom": "mermaid.js.org",
       "u": "https://mermaid.js.org",
       "s": 88676,
-      "gh": "mermaid-js/mermaid"
+      "gh": "mermaid-js/mermaid",
+      "pays": "US"
     },
     {
       "c": "design",
@@ -559,7 +619,8 @@
       "p": "freemium",
       "dom": "framer.com",
       "u": "https://www.framer.com",
-      "nv": 1
+      "nv": 1,
+      "pays": "NL"
     },
     {
       "c": "veille",
@@ -567,7 +628,8 @@
       "d": "Agrégateur de flux RSS pour centraliser sa veille (IA intégrée).",
       "p": "freemium",
       "dom": "feedly.com",
-      "u": "https://feedly.com"
+      "u": "https://feedly.com",
+      "pays": "US"
     },
     {
       "c": "veille",
@@ -575,7 +637,8 @@
       "d": "Agrégateur RSS avancé.",
       "p": "freemium",
       "dom": "inoreader.com",
-      "u": "https://www.inoreader.com"
+      "u": "https://www.inoreader.com",
+      "pays": "BG"
     },
     {
       "c": "veille",
@@ -583,7 +646,8 @@
       "d": "Tendances de recherche, signaux de demande.",
       "p": "gratuit",
       "dom": "trends.google.com",
-      "u": "https://trends.google.com"
+      "u": "https://trends.google.com",
+      "pays": "US"
     },
     {
       "c": "veille",
@@ -591,7 +655,8 @@
       "d": "Recherche web pour la veille et les agents IA.",
       "p": "freemium",
       "dom": "tavily.com",
-      "u": "https://www.tavily.com"
+      "u": "https://www.tavily.com",
+      "pays": "US"
     },
     {
       "c": "veille",
@@ -599,7 +664,8 @@
       "d": "Interrogez vos propres documents et obtenez des réponses sourcées.",
       "p": "freemium",
       "dom": "notebooklm.google.com",
-      "u": "https://notebooklm.google.com"
+      "u": "https://notebooklm.google.com",
+      "pays": "US"
     },
     {
       "c": "veille",
@@ -608,7 +674,8 @@
       "p": "freemium",
       "dom": "exa.ai",
       "u": "https://exa.ai",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -618,7 +685,8 @@
       "dom": "langchain.com",
       "u": "https://www.langchain.com",
       "s": 139456,
-      "gh": "langchain-ai/langchain"
+      "gh": "langchain-ai/langchain",
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -628,7 +696,8 @@
       "dom": "langchain.com",
       "u": "https://www.langchain.com/langgraph",
       "s": 34923,
-      "gh": "langchain-ai/langgraph"
+      "gh": "langchain-ai/langgraph",
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -638,7 +707,8 @@
       "dom": "langflow.org",
       "u": "https://www.langflow.org",
       "s": 149734,
-      "gh": "langflow-ai/langflow"
+      "gh": "langflow-ai/langflow",
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -648,7 +718,8 @@
       "dom": "crewai.com",
       "u": "https://www.crewai.com",
       "s": 53687,
-      "gh": "crewAIInc/crewAI"
+      "gh": "crewAIInc/crewAI",
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -658,7 +729,8 @@
       "dom": "microsoft.github.io",
       "u": "https://microsoft.github.io/autogen",
       "s": 59002,
-      "gh": "microsoft/autogen"
+      "gh": "microsoft/autogen",
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -666,7 +738,8 @@
       "d": "Le « GitHub de l'IA » : hub de 1M+ modèles et jeux de données open-source, librairies (Transformers) et hébergement.",
       "p": "freemium",
       "dom": "huggingface.co",
-      "u": "https://huggingface.co"
+      "u": "https://huggingface.co",
+      "pays": "FR"
     },
     {
       "c": "advanced",
@@ -674,7 +747,8 @@
       "d": "Base de données vectorielle pour le RAG.",
       "p": "freemium",
       "dom": "pinecone.io",
-      "u": "https://www.pinecone.io"
+      "u": "https://www.pinecone.io",
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -684,7 +758,8 @@
       "dom": "ollama.com",
       "u": "https://ollama.com",
       "s": 174296,
-      "gh": "ollama/ollama"
+      "gh": "ollama/ollama",
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -694,7 +769,8 @@
       "dom": "openwebui.com",
       "u": "https://openwebui.com",
       "s": 141771,
-      "gh": "open-webui/open-webui"
+      "gh": "open-webui/open-webui",
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -704,7 +780,8 @@
       "dom": "pinokio.computer",
       "u": "https://pinokio.computer",
       "s": 7564,
-      "gh": "pinokiocomputer/pinokio"
+      "gh": "pinokiocomputer/pinokio",
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -715,7 +792,8 @@
       "u": "https://www.llamaindex.ai",
       "s": 50165,
       "gh": "run-llama/llama_index",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -724,7 +802,8 @@
       "p": "gratuit",
       "dom": "lmstudio.ai",
       "u": "https://lmstudio.ai",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     },
     {
       "c": "advanced",
@@ -735,7 +814,8 @@
       "u": "https://dify.ai",
       "s": 145458,
       "gh": "langgenius/dify",
-      "nv": 1
+      "nv": 1,
+      "pays": "US"
     }
   ],
   "valos": [
@@ -772,7 +852,7 @@
       "v": 32,
       "d": "2025",
       "cf": "moyen",
-      "src": "https://www.builtinsf.com/articles/safe-superintelligence-raises-2b-32b-valuation-20250415"
+      "src": "https://www.builtinsf.com/articles/safe-superintelligence-raises-2b-32b-valuation-20150415"
     },
     {
       "n": "Scale AI",
