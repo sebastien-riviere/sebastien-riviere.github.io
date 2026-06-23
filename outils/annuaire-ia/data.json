@@ -1,5 +1,5 @@
 {
-  "maj": "2026-06-17",
+  "maj": "2026-06-23",
   "cats": [
     [
       "assistants",
@@ -499,6 +499,14 @@
       "dom": "fathom.video",
       "u": "https://fathom.video",
       "nv": 1
+    },
+    {
+      "c": "meeting",
+      "n": "Leexi",
+      "d": "Transcription, résumé et analyse de réunions et d'appels commerciaux (français, RGPD).",
+      "p": "payant",
+      "dom": "leexi.ai",
+      "u": "https://www.leexi.ai"
     },
     {
       "c": "design",
