@@ -1,11 +1,79 @@
 {
-  "maj": "2026-06-23",
-  "total": 75,
+  "maj": "2026-06-24",
+  "total": 79,
   "byTheme": {
-    "data": 64,
+    "data": 68,
     "ia": 11
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Mise en oeuvre du RGPD et externalisation de la mission de Délégué à la protection des données pour le Crous Bordeaux-Aquitaine",
+      "a": "CROUS de Bordeaux",
+      "dep": "33",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-24",
+      "dl": "2026-07-23T10:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-61600%22",
+      "k": "crous de bordeaux|mise en oeuvre du rgpd et externalisation de la mission de delegue a la protection des don",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Reprise et maintenance du référentiel de données multimodal Atoumod",
+      "a": "Syndicat mixte Atoumod",
+      "dep": "76,75",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-24",
+      "dl": "2026-08-07T16:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-61366%22",
+      "k": "syndicat mixte atoumod|reprise et maintenance du referentiel de donnees multimodal atoumod",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "26DSIN125_Services de télécommunications fixe, mobile, réseaux privés de données, Internet et hébergement.",
+      "a": "Communauté d'Agglomération Territoire de la Côte Ouest (974)",
+      "dep": "974",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-24",
+      "dl": "2026-07-31T08:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-61580%22",
+      "k": "communaute d agglomeration territoire de|26dsin125 services de telecommunications fixe mobile reseaux prives de donnees internet et",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Prestation externalisée de délégué à la protection des données (DPO ou DPD)",
+      "a": "AGENCE NATIONALE DES FREQUENCES",
+      "dep": "94",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-23",
+      "dl": "2026-07-30T11:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "http://www.klekoon.com",
+      "k": "agence nationale des frequences|prestation externalisee de delegue a la protection des donnees dpo ou dpd",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -956,7 +1024,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-37482%22",
       "k": "eptb seine grands lacs|maintenance et evolutions de l outil de gestion des donnees d exploitation ogde de l eptb ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -973,7 +1041,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-37034%22",
       "k": "ville de sanary sur mer 83|prestations de delegue a la protection des donnees externalise et d assistance a la confor",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -990,7 +1058,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-36146%22",
       "k": "inpi|acces a un service de recherche expert sur les bases de donnees de noms de domaine",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -1024,7 +1092,7 @@
       "th": "ia",
       "u": "https://www.marches-publics.gouv.fr/entreprise/consultation/2977123?orgAcronyme=f5j",
       "k": "centre national de la musique|mesure des enjeux sociaux environnementaux et economiques relatifs a l usage de l intellig",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
