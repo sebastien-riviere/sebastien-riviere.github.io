@@ -1,11 +1,62 @@
 {
-  "maj": "2026-06-24",
-  "total": 79,
+  "maj": "2026-06-25",
+  "total": 82,
   "byTheme": {
-    "data": 68,
+    "data": 71,
     "ia": 11
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Solutions et prestations de Business Intelligence et de valorisation de données",
+      "a": "REGION NORMANDIE",
+      "dep": "14,50,61,27,76",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-25",
+      "dl": "2026-07-28T14:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-62741%22",
+      "k": "region normandie|solutions et prestations de business intelligence et de valorisation de donnees",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Réalisation d’un observatoire des données économiques des exploitations fruitières et légumières, et de la production de légumes pour l’industrie en France.",
+      "a": "FRANCEAGRIMER",
+      "dep": "93,75,94,92,91,77",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-25",
+      "dl": "2026-07-24T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-62278%22",
+      "k": "franceagrimer|realisation d un observatoire des donnees economiques des exploitations fruitieres et legu",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Assistance technique, Développements et veille Data :\nBig Data - Maintenance et évolution de la Stack Data (Apache Kafka - Opensearch - écosystème Data )\nVeille technolo",
+      "a": "Tisséo Voyageurs",
+      "dep": "31",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-24",
+      "dl": "2026-09-08T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1838190",
+      "k": "tisseo voyageurs|assistance technique developpements et veille data big data maintenance et evolution de la",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -939,7 +990,7 @@
       "th": "data",
       "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1812797",
       "k": "departement de la moselle|2026 sa0045 fourniture de previsions et d observations de donnees meteorologiques",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -956,7 +1007,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-41555%22",
       "k": "syndicat mixte des gorges du gardon|vulgarisation des donnees et mise en forme de quatre documents dans le cadre du projet lif",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -973,7 +1024,7 @@
       "th": "data",
       "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1808722",
       "k": "plateforme des donnees de sante|accompagnement a la conception et production d une exposition itinerante sur le numerique ",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -990,7 +1041,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-39325%22",
       "k": "mairie de lunel|deploiement d un territoire connecte pour lunel travaux d extension et maintenance des dis",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -1007,7 +1058,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-37976%22",
       "k": "chambre de commerce et d industrie seine|accord cadre de prestations de formation dans le domaine de la cybersecurite et protection",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
