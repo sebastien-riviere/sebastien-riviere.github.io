@@ -1,5 +1,5 @@
 {
-  "maj": "2026-06-25",
+  "maj": "2026-06-26",
   "total": 82,
   "byTheme": {
     "data": 71,
@@ -854,7 +854,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-44604%22",
       "k": "conseil departemental des vosges|achat de donnees d un systeme d aide a la decision en viabilite hivernale sadvh",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -871,7 +871,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-44450%22",
       "k": "opco atlas|actions de formation dans le cadre de campusatlas data et intelligence artificielle",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -888,7 +888,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-44098%22",
       "k": "etablissement d enseignement superieur c|prestations de conseil de collecte de developpement d exploitation de donnees pour le data",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -905,7 +905,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-43783%22",
       "k": "sud retz atlantique 44|prestation de delegue a la protection des donnees personnelles",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -922,7 +922,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-42647%22",
       "k": "france travail|accord cadre d accompagnement des projets maintenance et l assistance utilisateur du si de",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -939,7 +939,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-42777%22",
       "k": "departement des cotes d armor|mise a disposition de previsions et observations de donnees meteorologiques",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -956,7 +956,7 @@
       "th": "ia",
       "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1813081",
       "k": "entente pour la foret mediterraneenne|fourniture d un serveur de calcul dedie aux modeles d intelligence artificielle",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -973,7 +973,7 @@
       "th": "data",
       "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1798752",
       "k": "communaute urbaine d arras|accord cadre a bons de commande mise a disposition d un outil de consultation de donnees s",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
