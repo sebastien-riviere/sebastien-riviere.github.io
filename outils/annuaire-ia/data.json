@@ -1010,6 +1010,26 @@
       "u": "https://theresanaiforthat.com",
       "pays": "US",
       "off": 1
+    },
+    {
+      "c": "image",
+      "n": "Magnific",
+      "d": "Upscaler et enhancer d'images IA : agrandit et invente des détails réalistes (photo, illustration).",
+      "p": "freemium",
+      "dom": "magnific.ai",
+      "u": "https://magnific.ai",
+      "pays": "ES",
+      "off": 1
+    },
+    {
+      "c": "image",
+      "n": "Recraft",
+      "d": "Générateur d'images et de visuels de marque, dont le vectoriel/SVG et des styles cohérents.",
+      "p": "freemium",
+      "dom": "recraft.ai",
+      "u": "https://recraft.ai",
+      "pays": "UK",
+      "off": 1
     }
   ],
   "valos": [
