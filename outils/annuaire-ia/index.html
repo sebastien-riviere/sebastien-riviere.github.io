@@ -122,6 +122,8 @@ details.section .grid{margin-top:16px;}
 .tag.freemium{background:var(--violet-soft);color:var(--violet);}
 .tag.payant{background:var(--amber-soft);color:var(--amber);}
 .tag.nouveau{background:var(--accent);color:#fff;}
+.tag.officiel{background:var(--accent-soft);color:var(--accent);}
+.tag.communaute{background:transparent;color:var(--muted);border:1px solid var(--border-hover);}
 .stars{display:inline-flex;align-items:center;gap:3px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;color:var(--faint);}
 .stars svg{width:12px;height:12px;fill:var(--star);stroke:var(--star);}
 .card-desc{font-family:'Lora',serif;font-size:13px;color:var(--muted);line-height:1.5;flex:1;}
@@ -198,7 +200,11 @@ footer a:hover{color:var(--accent);}
   <div class="country-filter" id="countryFilter"></div>
   <div id="catalogue"></div>
   <div class="no-result" id="noResult">Aucun outil ne correspond à votre recherche.</div>
-  <p class="disclaimer">Sélection indicative, non exhaustive et non sponsorisée — les outils, tarifs et chiffres évoluent vite. Mise à jour régulière. Tarifs : <strong>Gratuit</strong> (libre/open-source), <strong>Freemium</strong> (palier gratuit + offres payantes), <strong>Payant</strong> (sans usage gratuit). Un outil manquant ou une erreur ? <a href="mailto:rsebastien@protonmail.com">Signalez-le</a>.</p>
+  <p class="disclaimer">Sélection indicative, non exhaustive et non sponsorisée — les outils, tarifs et chiffres évoluent vite. Mise à jour régulière. Tarifs : <strong>Gratuit</strong> (libre/open-source), <strong>Freemium</strong> (palier gratuit + offres payantes), <strong>Payant</strong> (sans usage gratuit). Badges <strong>Officiel</strong> = édité par son propriétaire (1ʳᵉ partie) ; <strong>Communautaire</strong> = outil tiers/open-source — vérifie maturité &amp; support avant un usage pro. Un outil manquant ou une erreur ? <a href="mailto:rsebastien@protonmail.com">Signalez-le</a>.</p>
+  <div style="text-align:center;margin:34px auto 4px;padding:26px 22px;max-width:580px;background:var(--accent-soft);border-radius:16px;">
+    <p style="font-family:'Nunito',sans-serif;font-weight:700;color:var(--accent);margin:0 0 14px;font-size:16px;line-height:1.45;">Un projet IA, une question, besoin d'y voir clair&nbsp;?</p>
+    <a href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" style="display:inline-block;background:var(--accent);color:#fff;font-family:'Nunito',sans-serif;font-weight:800;text-decoration:none;padding:11px 24px;border-radius:10px;">Échangeons sur LinkedIn →</a>
+  </div>
 </main>
 
 <footer>
@@ -255,11 +261,12 @@ function cardHTML(t){
   const title=t.u?`<a href="${t.u}" target="_blank" rel="noopener">${esc(t.n)}</a>`:esc(t.n);
   const stars=t.s?`<span class="stars">${STAR}${fmtStars(t.s)}</span>`:'';
   const nv=t.nv?'<span class="tag nouveau">Nouveau</span>':'';
+  const off=t.off===1?'<span class="tag officiel" title="Édité par son propriétaire (première partie)">Officiel</span>':t.off===0?'<span class="tag communaute" title="Outil tiers / communautaire, non affilié à la plateforme sous-jacente">Communautaire</span>':'';
   const flag=flagImg(t.pays);
   const linkRow=t.u?`<a class="card-link" href="${t.u}" target="_blank" rel="noopener">Visiter le site →</a>`:'';
   return `<div class="card${t.u?' link':''}" data-search="${esc((t.n+' '+t.d+' '+t.c).toLowerCase())}" data-pays="${t.pays||''}">
     <div class="card-head">${logo}<div class="card-title">${title}</div></div>
-    <div class="badges"><span class="tag ${t.p}">${tarifLabel(t.p)}</span>${stars}${nv}${flag}</div>
+    <div class="badges"><span class="tag ${t.p}">${tarifLabel(t.p)}</span>${stars}${off}${nv}${flag}</div>
     <div class="card-desc">${esc(t.d)}</div>${linkRow}
   </div>`;
 }

@@ -1,5 +1,5 @@
 {
-  "maj": "2026-06-23",
+  "maj": "2026-06-26",
   "cats": [
     [
       "assistants",
@@ -40,6 +40,10 @@
     [
       "advanced",
       "Aller plus loin : agents, RAG & local"
+    ],
+    [
+      "souverain",
+      "IA publique & souveraine"
     ]
   ],
   "tools": [
@@ -816,6 +820,196 @@
       "gh": "langgenius/dify",
       "nv": 1,
       "pays": "US"
+    },
+    {
+      "c": "souverain",
+      "n": "Compar:IA",
+      "d": "Service public : dialoguez avec deux IA anonymes et votez pour la meilleure — révèle leurs différences et leurs biais.",
+      "p": "gratuit",
+      "dom": "comparia.beta.gouv.fr",
+      "u": "https://comparia.beta.gouv.fr",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "Café IA",
+      "d": "Dispositif national (DGE/CNNum) pour comprendre et débattre de l'IA entre citoyens — ressources d'animation gratuites et libres.",
+      "p": "gratuit",
+      "dom": "cafeia.org",
+      "u": "https://cafeia.org",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "Albert",
+      "d": "Plateforme IA souveraine de l'État français (open source), hébergée en France — réservée aux agents publics.",
+      "p": "gratuit",
+      "dom": "github.com/etalab-ia/albert",
+      "u": "https://github.com/etalab-ia/albert",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "La Suite numérique",
+      "d": "Alternative souveraine à Google/Microsoft (Docs, Visio, Grist, Tchap) avec fonctions IA — open source, par l'État.",
+      "p": "gratuit",
+      "dom": "lasuite.numerique.gouv.fr",
+      "u": "https://lasuite.numerique.gouv.fr",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "Mistral (modèles ouverts)",
+      "d": "Modèles à poids ouverts (Small, NeMo…) de l'éditeur français, déployables sur vos serveurs — qualité pro et souveraineté.",
+      "p": "gratuit",
+      "dom": "mistral.ai",
+      "u": "https://mistral.ai/technology",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "Lucie",
+      "d": "Modèle de langage français ouvert de bout en bout (poids, code et données) — Linagora / OpenLLM-France. À déployer soi-même.",
+      "p": "gratuit",
+      "dom": "huggingface.co/OpenLLM-France",
+      "u": "https://huggingface.co/OpenLLM-France",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "CroissantLLM",
+      "d": "Petit modèle franco-anglais ouvert (CentraleSupélec/Illuin) qui tourne sur un simple PC — argument confidentialité.",
+      "p": "gratuit",
+      "dom": "huggingface.co/croissantllm",
+      "u": "https://huggingface.co/croissantllm",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "EuroLLM",
+      "d": "Modèle ouvert européen couvrant 24 langues de l'UE (projet EuroHPC) — souveraineté multilingue.",
+      "p": "gratuit",
+      "dom": "huggingface.co/utter-project",
+      "u": "https://huggingface.co/utter-project/EuroLLM-9B-Instruct",
+      "pays": "EU",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "data.gouv.fr",
+      "d": "Plateforme open data de l'État : ~71 000 jeux de données publics réutilisables (Licence Ouverte).",
+      "p": "gratuit",
+      "dom": "data.gouv.fr",
+      "u": "https://www.data.gouv.fr",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "API Sirene (INSEE)",
+      "d": "Base officielle et gratuite des entreprises françaises (SIREN/SIRET) — fiabiliser un fichier ou un CRM.",
+      "p": "gratuit",
+      "dom": "sirene.fr",
+      "u": "https://www.sirene.fr",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "Common Corpus",
+      "d": "Plus grand corpus d'entraînement IA libre de droits et traçable (PleIAs) — la matière d'une IA éthique.",
+      "p": "gratuit",
+      "dom": "huggingface.co/datasets/PleIAs",
+      "u": "https://huggingface.co/datasets/PleIAs/common_corpus",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "Recommandations IA — CNIL",
+      "d": "Fiches officielles pour développer une IA conforme au RGPD — le cadre français, gratuit.",
+      "p": "gratuit",
+      "dom": "cnil.fr",
+      "u": "https://www.cnil.fr/fr/intelligence-artificielle/lia-cnil",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "Outil PIA (CNIL)",
+      "d": "Logiciel open source de la CNIL pour mener une analyse d'impact sur la protection des données (AIPD).",
+      "p": "gratuit",
+      "dom": "cnil.fr",
+      "u": "https://www.cnil.fr/fr/outil-pia-telechargez-et-installez-le-logiciel-de-la-cnil",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "AI Act Service Desk",
+      "d": "Guichet officiel de la Commission européenne sur le Règlement IA, avec un vérificateur de conformité.",
+      "p": "gratuit",
+      "dom": "digital-strategy.ec.europa.eu",
+      "u": "https://digital-strategy.ec.europa.eu/en/policies/ai-act-service-desk",
+      "pays": "EU",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "ANSSI — sécurité IA générative",
+      "d": "Guide officiel de cybersécurité pour déployer des systèmes d'IA générative en confiance.",
+      "p": "gratuit",
+      "dom": "cyber.gouv.fr",
+      "u": "https://cyber.gouv.fr/publications/recommandations-de-securite-pour-un-systeme-dia-generative",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "Pix",
+      "d": "Service public d'évaluation et de certification des compétences numériques, dont l'IA — gratuit.",
+      "p": "gratuit",
+      "dom": "pix.fr",
+      "u": "https://pix.fr",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "souverain",
+      "n": "FIDLE",
+      "d": "Formation gratuite et ouverte au deep learning, portée par le CNRS — cours et vidéos en accès libre.",
+      "p": "gratuit",
+      "dom": "fidle.cnrs.fr",
+      "u": "https://fidle.cnrs.fr",
+      "pays": "FR",
+      "off": 1
+    },
+    {
+      "c": "advanced",
+      "n": "Kaggle",
+      "d": "Plateforme Google d'apprentissage par la pratique : compétitions IA, datasets publics et notebooks partagés.",
+      "p": "gratuit",
+      "dom": "kaggle.com",
+      "u": "https://www.kaggle.com",
+      "pays": "US",
+      "off": 1
+    },
+    {
+      "c": "veille",
+      "n": "There's An AI For That",
+      "d": "Annuaire géant d'outils IA classés par usage — pour repérer rapidement l'outil qui existe déjà.",
+      "p": "freemium",
+      "dom": "theresanaiforthat.com",
+      "u": "https://theresanaiforthat.com",
+      "pays": "US",
+      "off": 1
     }
   ],
   "valos": [
