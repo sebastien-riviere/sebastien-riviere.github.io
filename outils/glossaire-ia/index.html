@@ -118,6 +118,14 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f1f5f9;c
 .note b{color:#64748b}
 footer{max-width:920px;margin:0 auto;padding:8px 24px 0;font-size:12px;color:#94a3b8}
 
+svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.head .ic svg{width:22px;height:22px;stroke:#2563eb}
+.search .mag svg{width:18px;height:18px;display:block}
+.pill{display:inline-flex;align-items:center;gap:6px}
+.pill svg{width:14px;height:14px;flex:0 0 auto}
+.caret svg{width:16px;height:16px;display:block}
+.fld .i svg{width:15px;height:15px;display:block}
+
 @media(max-width:680px){
   .rail{display:none}
   .head h1{font-size:23px}
@@ -132,7 +140,7 @@ footer{max-width:920px;margin:0 auto;padding:8px 24px 0;font-size:12px;color:#94
   <a href="/" class="crumb"><span>‹</span><span>Tous les outils</span></a>
 
   <div class="head">
-    <div class="ic">📘</div>
+    <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
     <div>
       <h1>Glossaire de l'IA</h1>
       <p>Les mots de l'intelligence artificielle expliqués <strong>en clair, sans jargon</strong>. Une analogie, pourquoi ça compte, et le piège à éviter. <span id="pillCount"></span></p>
@@ -156,7 +164,7 @@ footer{max-width:920px;margin:0 auto;padding:8px 24px 0;font-size:12px;color:#94
     <p class="unlock" id="unlockedNote"></p>
 
     <div class="search">
-      <span class="mag">⌕</span>
+      <span class="mag"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
       <input type="text" id="q" placeholder="Rechercher un terme (ex. hallucination, RAG, biais…)" autocomplete="off">
     </div>
 
@@ -183,13 +191,28 @@ footer{max-width:920px;margin:0 auto;padding:8px 24px 0;font-size:12px;color:#94
 
 <script>
 /* ── catégories : id CSV → label + couleur du dot ── */
+const ICN={
+  search:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
+  chev:'<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>',
+  an:'<svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg>',
+  pq:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>',
+  pi:'<svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>',
+  cat:{
+    fondamentaux:'<svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>',
+    generatif:'<svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>',
+    agents:'<svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M12 5v4M12 5a1.6 1.6 0 1 0 0-3.2A1.6 1.6 0 0 0 12 5z"/><path d="M8.5 14h.01M15.5 14h.01M9.5 17.5h5"/></svg>',
+    donnees:'<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>',
+    ethique:'<svg viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M6 6h12"/><path d="M6 6 3 13a3.5 3.5 0 0 0 6 0zM18 6l-3 7a3.5 3.5 0 0 0 6 0z"/></svg>',
+    entreprise:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M16 7h5v5"/></svg>'
+  }
+};
 const CATS={
-  'fondamentaux':{l:'🧠 Fondamentaux',c:'#7c3aed'},
-  'generatif':{l:'✨ Génératif & LLM',c:'#0ea5e9'},
-  'agents':{l:'🤖 Agents IA',c:'#d946ef'},
-  'donnees':{l:'🗄️ Données & infra',c:'#0891b2'},
-  'ethique':{l:'⚖️ Éthique & conformité',c:'#e11d48'},
-  'entreprise':{l:'📈 Entreprise & éco',c:'#d97706'}
+  'fondamentaux':{l:'Fondamentaux',c:'#7c3aed'},
+  'generatif':{l:'Génératif & LLM',c:'#0ea5e9'},
+  'agents':{l:'Agents IA',c:'#d946ef'},
+  'donnees':{l:'Données & infra',c:'#0891b2'},
+  'ethique':{l:'Éthique & conformité',c:'#e11d48'},
+  'entreprise':{l:'Entreprise & éco',c:'#d97706'}
 };
 const NIVS=['débutant','intermédiaire','avancé'];
 const NATS={'établi':'Établi','émergent':'Émergent','survendu':'Survendu'};
@@ -255,13 +278,13 @@ function row(t){
       +'<span class="dot" style="background:'+cat.c+'"></span>'
       +'<div class="names"><span class="term">'+esc(t.t)+'</span>'+(t.en&&t.en!==t.t?'<span class="en">'+esc(t.en)+'</span>':'')+'</div>'
       +'<span class="badge">'+esc(t.n||'')+'</span>'+nat
-      +'<span class="caret">⌄</span>'
+      +'<span class="caret">'+ICN.chev+'</span>'
     +'</div>'
     +'<div class="body">'
       +'<p class="def">'+esc(t.ex)+'</p>'
-      +(t.an?'<div class="fld an"><span class="i">◆</span><div><strong>Comme… </strong>'+esc(t.an)+'</div></div>':'')
-      +(t.pq?'<div class="fld pq"><span class="i">▣</span><div><strong>Pourquoi ça compte : </strong>'+esc(t.pq)+'</div></div>':'')
-      +(t.pi?'<div class="fld trap"><span class="i">▲</span><div><strong>Le piège : </strong>'+esc(t.pi)+'</div></div>':'')
+      +(t.an?'<div class="fld an"><span class="i">'+ICN.an+'</span><div><strong>Comme… </strong>'+esc(t.an)+'</div></div>':'')
+      +(t.pq?'<div class="fld pq"><span class="i">'+ICN.pq+'</span><div><strong>Pourquoi ça compte : </strong>'+esc(t.pq)+'</div></div>':'')
+      +(t.pi?'<div class="fld trap"><span class="i">'+ICN.pi+'</span><div><strong>Le piège : </strong>'+esc(t.pi)+'</div></div>':'')
       +(t.ac?'<div class="hook"><b>Angle</b>'+esc(t.ac)+'</div>':'')
       +(links?'<div class="see"><span class="lab">Voir aussi :</span>'+links+'</div>':'')
     +'</div>'
@@ -290,9 +313,9 @@ function goTo(i){
 }
 document.addEventListener('click',e=>{const lk=e.target.closest('.lk[data-go]');if(lk)goTo(parseInt(lk.dataset.go));});
 
-function pill(label,val,cur,cls){return '<button class="pill '+cls+(val===cur?' on':'')+'" data-v="'+esc(val)+'">'+esc(label)+'</button>';}
+function pill(label,val,cur,cls,icon){return '<button class="pill '+cls+(val===cur?' on':'')+'" data-v="'+esc(val)+'">'+(icon||'')+'<span>'+esc(label)+'</span></button>';}
 function buildChips(){
-  document.getElementById('catChips').innerHTML=pill('Toutes catégories','',fCat,'')+Object.keys(CATS).map(k=>pill(CATS[k].l,k,fCat,'')).join('');
+  document.getElementById('catChips').innerHTML=pill('Toutes catégories','',fCat,'')+Object.keys(CATS).map(k=>pill(CATS[k].l,k,fCat,'',ICN.cat[k])).join('');
   document.getElementById('lvlChips').innerHTML=pill('Tous niveaux','',fLvl,'lvl')+NIVS.map(n=>pill(n,n,fLvl,'lvl')).join('');
   document.getElementById('catChips').onclick=e=>{const c=e.target.closest('.pill');if(!c)return;fCat=c.dataset.v;buildChips();render();};
   document.getElementById('lvlChips').onclick=e=>{const c=e.target.closest('.pill');if(!c)return;fLvl=c.dataset.v;buildChips();render();};
