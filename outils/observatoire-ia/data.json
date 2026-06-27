@@ -1,5 +1,5 @@
 {
-  "maj": "2026-06-26",
+  "maj": "2026-06-27",
   "total": 82,
   "byTheme": {
     "data": 71,
@@ -718,7 +718,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-47786%22",
       "k": "region ile de france|dsp relative a la conception la construction l entretien maintenance et l exploitation du ",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -735,7 +735,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-48046%22",
       "k": "departement des bouches du rhone|previsions et donnees meteorologiques pour les services du departement des bouches du rhon",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -752,7 +752,7 @@
       "th": "data",
       "u": "https://www.marches-publics.gouv.fr/?page=Entreprise.EntrepriseAdvancedSearch&AllCons&id=2977558&orgAcronyme=x7c",
       "k": "chu grenoble alpes|mise en conformite construction et exploitation d un entrepot de donnees de sante eds et a",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -769,7 +769,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-47000%22",
       "k": "region occitanie|leves aeriens valorisation des donnees et services innovants associes",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -786,7 +786,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-46966%22",
       "k": "haute autorite de sante|le present marche a pour objet des prestations de maintien en condition operationnelle de ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -803,7 +803,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-46260%22",
       "k": "paris saclay cancer cluster|developpement d un portail web de faisabilite et de demande d acces aux donnees dans le ca",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -820,7 +820,7 @@
       "th": "data",
       "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1817594",
       "k": "communaute de communes de bayeux interco|georeferencement en classe a des reseaux d eau potable d assainissement et d eaux pluviale",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -837,7 +837,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-45082%22",
       "k": "ville de mamoudzou 976|mission amo pour la structuration l integration technique la conformite feder eui la secur",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
