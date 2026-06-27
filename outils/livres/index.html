@@ -20,6 +20,7 @@
   --t-ia:#41586b;    --t-ia-soft:#e7ebf1;
   --t-data:#2f7d76;  --t-data-soft:#dcefe9;
   --t-block:#b8570f; --t-block-soft:#f8e2cd;
+  --t-biz:#7b5ea3;   --t-biz-soft:#ece4f4;
 }
 @media(prefers-color-scheme:dark){
   :root{
@@ -32,6 +33,7 @@
     --t-ia:#9fb3c9; --t-ia-soft:#222b35;
     --t-data:#7fcabf; --t-data-soft:#16302c;
     --t-block:#e09254; --t-block-soft:#37271a;
+    --t-biz:#b89ad6; --t-biz-soft:#2a2235;
   }
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -156,7 +158,7 @@ footer a{color:var(--accent-ink);text-decoration:none}
 
   <header class="hero">
     <div class="kicker">Bibliothèque · sélection</div>
-    <h1>Les livres pour comprendre l'<em>IA</em>, la <em>data</em> &amp; la <em>blockchain</em></h1>
+    <h1>Les livres qui comptent en <em>IA</em>, <em>data</em>, <em>blockchain</em> &amp; <em>business</em></h1>
     <p>Une sélection vivante d'ouvrages — des fondamentaux aux essais critiques — avec résumé, disponibilité en français et couverture. De quoi choisir sa prochaine lecture.</p>
     <div class="stats" id="stats"></div>
   </header>
@@ -187,7 +189,8 @@ footer a{color:var(--accent-ink);text-decoration:none}
 const CATS={
   ia:{l:"IA",tint:"var(--t-ia)",soft:"var(--t-ia-soft)"},
   data:{l:"Data",tint:"var(--t-data)",soft:"var(--t-data-soft)"},
-  blockchain:{l:"Blockchain",tint:"var(--t-block)",soft:"var(--t-block-soft)"}
+  blockchain:{l:"Blockchain",tint:"var(--t-block)",soft:"var(--t-block-soft)"},
+  business:{l:"Business",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"}
 };
 const NAT={livre:"Livre",papier:"Papier de recherche",guide:"Guide",rapport:"Rapport",mooc:"Cours en ligne"};
 let BOOKS=[], fCat="", fFr=false, q="";
