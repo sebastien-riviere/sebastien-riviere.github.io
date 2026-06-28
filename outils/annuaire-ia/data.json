@@ -1,5 +1,5 @@
 {
-  "maj": "2026-06-26",
+  "maj": "2026-06-28",
   "cats": [
     [
       "assistants",
@@ -108,7 +108,7 @@
       "p": "freemium",
       "dom": "deepseek.com",
       "u": "https://chat.deepseek.com",
-      "s": 103753,
+      "s": 103821,
       "gh": "deepseek-ai/DeepSeek-V3",
       "pays": "CN"
     },
@@ -138,7 +138,7 @@
       "p": "gratuit",
       "dom": "llama.com",
       "u": "https://www.llama.com",
-      "s": 7630,
+      "s": 7645,
       "gh": "meta-llama/llama-models",
       "nv": 1,
       "pays": "US"
@@ -270,7 +270,7 @@
       "p": "freemium",
       "dom": "n8n.io",
       "u": "https://n8n.io",
-      "s": 192767,
+      "s": 194298,
       "gh": "n8n-io/n8n",
       "pays": "DE"
     },
@@ -308,7 +308,7 @@
       "p": "freemium",
       "dom": "bfl.ai",
       "u": "https://bfl.ai",
-      "s": 25632,
+      "s": 25676,
       "gh": "black-forest-labs/flux",
       "pays": "DE"
     },
@@ -479,7 +479,7 @@
       "p": "gratuit",
       "dom": "github.com",
       "u": "https://github.com/openai/whisper",
-      "s": 102827,
+      "s": 103746,
       "gh": "openai/whisper",
       "pays": "US"
     },
@@ -601,7 +601,7 @@
       "p": "gratuit",
       "dom": "diagrams.net",
       "u": "https://www.diagrams.net",
-      "s": 6110,
+      "s": 6417,
       "gh": "jgraph/drawio",
       "pays": "GB"
     },
@@ -612,7 +612,7 @@
       "p": "gratuit",
       "dom": "mermaid.js.org",
       "u": "https://mermaid.js.org",
-      "s": 88676,
+      "s": 88897,
       "gh": "mermaid-js/mermaid",
       "pays": "US"
     },
@@ -688,7 +688,7 @@
       "p": "freemium",
       "dom": "langchain.com",
       "u": "https://www.langchain.com",
-      "s": 139456,
+      "s": 140350,
       "gh": "langchain-ai/langchain",
       "pays": "US"
     },
@@ -699,7 +699,7 @@
       "p": "freemium",
       "dom": "langchain.com",
       "u": "https://www.langchain.com/langgraph",
-      "s": 34923,
+      "s": 35907,
       "gh": "langchain-ai/langgraph",
       "pays": "US"
     },
@@ -710,7 +710,7 @@
       "p": "freemium",
       "dom": "langflow.org",
       "u": "https://www.langflow.org",
-      "s": 149734,
+      "s": 150142,
       "gh": "langflow-ai/langflow",
       "pays": "US"
     },
@@ -721,7 +721,7 @@
       "p": "freemium",
       "dom": "crewai.com",
       "u": "https://www.crewai.com",
-      "s": 53687,
+      "s": 54472,
       "gh": "crewAIInc/crewAI",
       "pays": "US"
     },
@@ -732,7 +732,7 @@
       "p": "gratuit",
       "dom": "microsoft.github.io",
       "u": "https://microsoft.github.io/autogen",
-      "s": 59002,
+      "s": 59299,
       "gh": "microsoft/autogen",
       "pays": "US"
     },
@@ -761,7 +761,7 @@
       "p": "gratuit",
       "dom": "ollama.com",
       "u": "https://ollama.com",
-      "s": 174296,
+      "s": 175009,
       "gh": "ollama/ollama",
       "pays": "US"
     },
@@ -772,7 +772,7 @@
       "p": "gratuit",
       "dom": "openwebui.com",
       "u": "https://openwebui.com",
-      "s": 141771,
+      "s": 143255,
       "gh": "open-webui/open-webui",
       "pays": "US"
     },
@@ -783,7 +783,7 @@
       "p": "gratuit",
       "dom": "pinokio.computer",
       "u": "https://pinokio.computer",
-      "s": 7564,
+      "s": 7645,
       "gh": "pinokiocomputer/pinokio",
       "pays": "US"
     },
@@ -794,7 +794,7 @@
       "p": "freemium",
       "dom": "llamaindex.ai",
       "u": "https://www.llamaindex.ai",
-      "s": 50165,
+      "s": 50456,
       "gh": "run-llama/llama_index",
       "nv": 1,
       "pays": "US"
@@ -816,7 +816,7 @@
       "p": "freemium",
       "dom": "dify.ai",
       "u": "https://dify.ai",
-      "s": 145458,
+      "s": 146789,
       "gh": "langgenius/dify",
       "nv": 1,
       "pays": "US"
