@@ -1,5 +1,5 @@
 {
-  "maj": "2026-06-27",
+  "maj": "2026-06-28",
   "total": 82,
   "byTheme": {
     "data": 71,
@@ -582,7 +582,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-50623%22",
       "k": "departement des alpes de haute provence|acquisition mise en oeuvre et exploitation d un centre territorial de donnees securise",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -599,7 +599,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-50325%22",
       "k": "neoma reims|organiser l ia generative derriere les processus metiers a neoma",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -616,7 +616,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-50505%22",
       "k": "ministere de l agriculture|certification externe des donnees produites constatant la pousse de l herbe dans un reseau",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -633,7 +633,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-49409%22",
       "k": "cnfpt direction de l achat public|realisation d actions de formations sur le theme usage des outils numeriques et de l intel",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -650,7 +650,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-49737%22",
       "k": "dir nord ouest|accord cadre a bons de commande relatif aux services de fourniture et d analyse de donnees",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -667,7 +667,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-49056%22",
       "k": "ville de fort de france|mission d assistance a maitrise d ouvrage implantation d un laboratoire d innovation en in",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -684,7 +684,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-48491%22",
       "k": "ministere de l agriculture de l agro ali|hebergement maintien en conditions operationnelles et mises a jour des donnees de l applic",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -701,7 +701,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-48447%22",
       "k": "office de l eau reunion|acquisition d equipements d enregistrement et de transfert des donnees pour le suivi des m",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
