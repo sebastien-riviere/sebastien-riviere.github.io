@@ -98,7 +98,9 @@ header{padding:30px 40px 24px;}
 .name{font-family:var(--ui);font-weight:800;font-size:28px;color:var(--title);letter-spacing:-0.8px;line-height:1.05;}
 .name a:hover{color:var(--accent-ink);}
 .sub{font-family:var(--ui);font-weight:700;font-size:12.5px;color:var(--faint);letter-spacing:.3px;margin-top:4px;}
-.head-actions{margin-left:auto;display:flex;align-items:center;gap:9px;}
+.head-actions{margin-left:auto;display:flex;align-items:center;gap:9px;position:relative;}
+.copy-toast{position:absolute;top:48px;right:0;background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:6px 11px;border-radius:8px;white-space:nowrap;opacity:0;transform:translateY(-4px);transition:opacity .18s,transform .18s;pointer-events:none;z-index:30;box-shadow:var(--shadow);}
+.copy-toast.show{opacity:1;transform:translateY(0);}
 .theme-btn{
   width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;border:0;
   background:#b8731e;color:#fff;
@@ -257,12 +259,13 @@ footer a:hover{color:var(--accent-ink);}
           <svg class="ic-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
           <svg class="ic-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
         </button>
-        <a class="icon-btn mail" href="mailto:rsebastien@protonmail.com" title="Email" aria-label="Envoyer un email">
+        <a class="icon-btn mail" id="mailBtn" href="mailto:rsebastien@protonmail.com" title="M'écrire (clic = copie l'adresse)" aria-label="M'écrire par email">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
         </a>
         <a class="icon-btn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
         </a>
+        <span class="copy-toast" id="copyToast" role="status" aria-live="polite"></span>
       </div>
     </div>
     <p class="tagline">Comprendre l'IA, le numérique et l'achat public — et <b>passer à l'action</b>, avec des outils simples et gratuits.</p>
@@ -536,6 +539,24 @@ footer a:hover{color:var(--accent-ink);}
     root.setAttribute('data-theme',next);
     try{localStorage.setItem('theme',next);}catch(e){}
     syncMeta();
+  });
+})();
+
+/* ── Bouton mail : ouvre le client mail si dispo, ET copie l'adresse (secours webmail) ── */
+(function(){
+  var mail=document.getElementById('mailBtn'); if(!mail) return;
+  var toast=document.getElementById('copyToast');
+  var addr=(mail.getAttribute('href')||'').replace('mailto:','');
+  mail.addEventListener('click',function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(addr).then(function(){
+        if(!toast)return;
+        toast.textContent='Adresse copiée : '+addr;
+        toast.classList.add('show');
+        clearTimeout(toast._t);
+        toast._t=setTimeout(function(){toast.classList.remove('show');},2800);
+      }).catch(function(){});
+    }
   });
 })();
 
