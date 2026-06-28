@@ -195,7 +195,6 @@ main{flex:1;padding:26px 40px 60px;}
 @media(prefers-color-scheme:dark){.badge-new{color:#1a1208;}}
 html[data-theme="dark"] .badge-new{color:#1a1208;}
 html[data-theme="light"] .badge-new{color:#fff;}
-.view-badge{margin-left:7px;padding:2px 8px;border-radius:20px;background:var(--tint-soft);font-family:var(--ui);font-size:10.5px;font-weight:800;color:var(--tint);vertical-align:middle;white-space:nowrap;}
 
 /* lower band: 3 petites rubriques côte à côte */
 .band{display:grid;grid-template-columns:1.55fr 1fr 1fr;gap:26px;}
@@ -501,7 +500,6 @@ footer a:hover{color:var(--accent-ink);}
 
 <footer class="maxw">
   <span>© Sébastien Rivière · 2026</span>
-  <a href="https://page-counter.sebastienriviere-contact.workers.dev/stats" target="_blank" rel="noopener">Stats →</a>
   <span class="foot-contact">
     <a class="contact-btn" href="mailto:rsebastien@protonmail.com" title="Email" aria-label="Envoyer un email">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
@@ -575,35 +573,6 @@ footer a:hover{color:var(--accent-ink);}
     });
   },{rootMargin:'-42% 0px -52% 0px',threshold:0});
   document.querySelectorAll('section.section').forEach(function(s){io.observe(s);});
-})();
-
-/* ── Compteur de vues (conservé) ── */
-(async () => {
-  const BASE = 'https://page-counter.sebastienriviere-contact.workers.dev';
-  const MAP = {
-    '/guide/guide-token':  'guide-token',
-    '/outils/annuaire-ia/': 'annuaire-ia',
-    '/outils/glossaire-ia/': 'glossaire-ia',
-    '/outils/MD-Convert/': 'md-convert',
-    '/outils/MonBureauPDF/': 'monbureaupdf',
-    '/outils/quiz-ia/': 'quiz-ia',
-    '/guide/prise-en-main-claude/': 'guide-claude',
-  };
-  fetch(BASE + '/count?page=home', { method: 'POST' }).catch(() => {});
-  for (const [href, page] of Object.entries(MAP)) {
-    const link = document.querySelector(`a[href="${href}"]`);
-    if (!link) continue;
-    const titleEl = link.querySelector('.card-title');
-    if (!titleEl) continue;
-    try {
-      const { count } = await (await fetch(`${BASE}/count?page=${page}`)).json();
-      if (!count) continue;
-      const badge = document.createElement('span');
-      badge.className = 'view-badge';
-      badge.textContent = count.toLocaleString('fr-FR') + ' vues';
-      titleEl.appendChild(badge);
-    } catch {}
-  }
 })();
 </script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
