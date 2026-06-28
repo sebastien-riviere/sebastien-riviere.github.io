@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bibliothèque IA &amp; Data — Sébastien Rivière</title>
-<meta name="description" content="Une bibliothèque sélective de livres sur l'intelligence artificielle et la data : résumés, disponibilité en français et couvertures.">
+<title>Bibliothèque IA — références &amp; imaginaire — Sébastien Rivière</title>
+<meta name="description" content="Une bibliothèque sélective de livres sur l'IA et la data, et l'imaginaire de l'IA en science-fiction : résumés, disponibilité en français et couvertures.">
 <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110d" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
@@ -154,8 +154,8 @@ body{
 <div class="wrap">
   <header class="hero">
     <div class="kicker">Bibliothèque · sélection</div>
-    <h1>Les livres qui comptent en <em>IA</em> &amp; <em>data</em></h1>
-    <p>Une sélection vivante d'ouvrages — des fondamentaux aux essais critiques — avec résumé, disponibilité en français et couverture. De quoi choisir sa prochaine lecture.</p>
+    <h1>Les livres qui comptent sur l'<em>IA</em> — <em>références</em> &amp; <em>imaginaire</em></h1>
+    <p>Une sélection vivante — des <strong>références</strong> (IA, data) à l'<strong>imaginaire</strong> (science-fiction) — avec résumé, disponibilité en français et couverture. De quoi choisir sa prochaine lecture.</p>
     <div class="stats" id="stats"></div>
   </header>
 
@@ -193,11 +193,17 @@ body{
 const CATS={
   ia:{l:"IA",tint:"var(--t-ia)",soft:"var(--t-ia-soft)"},
   data:{l:"Data",tint:"var(--t-data)",soft:"var(--t-data-soft)"},
+  fiction:{l:"Fiction",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"},
   blockchain:{l:"Blockchain",tint:"var(--t-block)",soft:"var(--t-block-soft)"},
   business:{l:"Business",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"}
 };
+// 2 grandes sections : références pro (ia/data) vs imaginaire / culture IA (fiction)
+const SECT={
+  ref:{l:"Références",tint:"var(--t-ia)",soft:"var(--t-ia-soft)"},
+  cult:{l:"Culture IA",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"}
+};
 const NAT={livre:"Livre",papier:"Papier de recherche",guide:"Guide",rapport:"Rapport",mooc:"Cours en ligne"};
-let BOOKS=[], fCat="", fFr=false, q="";
+let BOOKS=[], fSec="", fFr=false, q="";
 const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tintVars=c=>`--tint:${CATS[c].tint};--tint-soft:${CATS[c].soft}`;
 
@@ -208,11 +214,12 @@ fetch("./data.json").then(r=>r.json()).then(d=>{
   document.getElementById("stats").innerHTML=
     `<div class="stat"><b>${d.count}</b> ouvrages</div>`+
     Object.keys(CATS).filter(c=>by[c]).map(c=>`<div class="stat"><b>${by[c]}</b> ${CATS[c].l}</div>`).join("");
-  // chips
-  const chips=[{k:"",l:"Tout"}].concat(Object.keys(CATS).filter(c=>by[c]).map(c=>({k:c,l:CATS[c].l})));
+  // chips = sections (Tout / Références / Culture IA)
+  const bs=d.by_section||{};
+  const chips=[{k:"",l:"Tout"}].concat(Object.keys(SECT).filter(s=>bs[s]).map(s=>({k:s,l:SECT[s].l,t:`--tint:${SECT[s].tint};--tint-soft:${SECT[s].soft}`})));
   document.getElementById("chips").innerHTML=chips.map(c=>
-    `<button class="chip${c.k===fCat?" on":""}" data-c="${c.k}" ${c.k?`style="${tintVars(c.k)}"`:""}>${c.k?'<span class="dot"></span>':""}${c.l}</button>`).join("");
-  document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{fCat=b.dataset.c;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.c===fCat));render();});
+    `<button class="chip${c.k===fSec?" on":""}" data-c="${c.k}" ${c.k?`style="${c.t}"`:""}>${c.k?'<span class="dot"></span>':""}${c.l}</button>`).join("");
+  document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{fSec=b.dataset.c;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.c===fSec));render();});
   render();
 });
 document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();render();});
@@ -220,13 +227,13 @@ document.getElementById("frOnly").addEventListener("change",e=>{fFr=e.target.che
 
 function render(){
   let list=BOOKS.filter(b=>{
-    if(fCat && b.c!==fCat) return false;
+    if(fSec && b.s!==fSec) return false;
     if(fFr && b.d!=="oui") return false;
     if(q){const h=(b.t+" "+b.vo+" "+b.a).toLowerCase();if(!h.includes(q))return false;}
     return true;
   });
   document.getElementById("countLine").textContent=
-    list.length+(list.length>1?" livres affichés":" livre affiché")+(fCat||fFr||q?" (filtré)":"");
+    list.length+(list.length>1?" livres affichés":" livre affiché")+(fSec||fFr||q?" (filtré)":"");
   const g=document.getElementById("grid");
   if(!list.length){g.innerHTML='<div class="empty">Aucun livre ne correspond. Élargissez la recherche.</div>';return;}
   g.innerHTML=list.map((b,i)=>{
