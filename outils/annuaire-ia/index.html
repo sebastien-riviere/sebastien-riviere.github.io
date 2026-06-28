@@ -120,6 +120,11 @@ details.section .grid{margin-top:16px;}
 .expand-toggle:hover{text-decoration:underline;}
 @media(max-width:600px){.expand-toggle{margin-left:0;width:100%;justify-content:flex-start;}}
 
+/* renvoi vers le quiz (aide au choix d'un assistant) */
+.quiz-hint{display:flex;align-items:center;gap:9px;font-family:var(--ui);font-size:13px;color:var(--muted);line-height:1.45;margin:0 0 16px;padding:11px 15px;background:var(--ia-soft);border:1px solid var(--ia-line);border-radius:var(--radius-sm);}
+.quiz-hint svg{width:17px;height:17px;flex:none;fill:none;stroke:var(--ia);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.quiz-hint a{font-weight:800;color:var(--ia-ink);}
+
 .disclaimer{font-family:var(--ui);font-size:13px;color:var(--faint);line-height:1.6;margin-top:26px;padding-top:20px;border-top:1px solid var(--border);max-width:720px;}
 .disclaimer a{color:var(--ia-ink);}
 
@@ -176,6 +181,7 @@ details.section .grid{margin-top:16px;}
 
   <div class="cat-nav" id="catNav"></div>
   <div class="country-filter" id="countryFilter"></div>
+  <p class="quiz-hint"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3"/><path d="M12 17h.01"/></svg><span>Pas sûr de l'assistant généraliste à choisir (ChatGPT, Claude, Gemini, Mistral) ? <a href="/outils/quiz-ia/">Faites le quiz « Quelle IA est faite pour vous ? » →</a></span></p>
   <div id="catalogue"></div>
   <div class="no-result" id="noResult">Aucun outil ne correspond à votre recherche.</div>
   <p class="disclaimer">Sélection indicative, non exhaustive et non sponsorisée — les outils, tarifs et chiffres évoluent vite. Mise à jour régulière. Tarifs : <strong>Gratuit</strong> (libre/open-source), <strong>Freemium</strong> (palier gratuit + offres payantes), <strong>Payant</strong> (sans usage gratuit). Badges <strong>Officiel</strong> = édité par son propriétaire (1ʳᵉ partie) ; <strong>Communautaire</strong> = outil tiers/open-source — vérifie maturité &amp; support avant un usage pro. Un outil manquant ou une erreur ? <a href="mailto:rsebastien@protonmail.com">Signalez-le</a>.</p>
