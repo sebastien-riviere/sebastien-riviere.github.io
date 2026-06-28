@@ -7,119 +7,108 @@
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <meta name="description" content="Un glossaire de l'intelligence artificielle expliqué simplement : pour chaque terme, une analogie, pourquoi ça compte, le piège à éviter. Classé par ordre alphabétique, avec recherche et filtres.">
-<meta name="theme-color" content="#f1f5f9">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../styles/ia-kit.css">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f1f5f9;color:#0f172a;-webkit-font-smoothing:antialiased}
-::selection{background:#dbeafe}
-.gl-scroll{scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent}
+/* --- spécifique glossaire-ia (le reste vient de ia-kit.css) --- */
+::selection{background:var(--ia-soft)}
+.gl-scroll{scrollbar-width:thin;scrollbar-color:var(--border-strong) transparent}
 .gl-scroll::-webkit-scrollbar{width:8px}
-.gl-scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:8px}
+.gl-scroll::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:8px}
 
-.wrap{min-height:100vh;padding:28px 0 80px}
+.wrap{min-height:100vh;padding:0 0 80px}
 .inner{max-width:920px;margin:0 auto;padding:0 24px}
 
-.crumb{display:flex;align-items:center;gap:6px;color:#64748b;font-size:13px;font-weight:600;margin-bottom:18px;text-decoration:none}
-.crumb:hover{color:#2563eb}
-
-.head{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
-.head .ic{width:42px;height:42px;border-radius:11px;background:#dbeafe;display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:20px}
-.head h1{font-size:27px;font-weight:800;color:#0f172a;letter-spacing:-.02em;line-height:1.1}
-.head p{font-size:14px;color:#64748b;line-height:1.5;margin-top:6px;max-width:640px}
-.head p strong{color:#334155;font-weight:700}
-
 /* gate */
-.gate{max-width:520px;margin:34px auto 10px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 4px 22px rgba(15,23,42,.06);padding:26px 24px;text-align:center}
-.gate svg{width:32px;height:32px;stroke:#2563eb;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-bottom:6px}
-.gate h2{font-size:18px;font-weight:800;color:#0f172a;margin-bottom:8px}
-.gate p{font-size:14px;line-height:1.6;color:#64748b;margin-bottom:16px}
-.gate p a{color:#2563eb;font-weight:600}
+.gate{max-width:520px;margin:34px auto 10px;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:26px 24px;text-align:center}
+.gate svg{width:32px;height:32px;stroke:var(--ia);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-bottom:6px}
+.gate h2{font-size:18px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.gate p{font-size:14px;line-height:1.6;color:var(--muted);margin-bottom:16px}
+.gate p a{color:var(--ia-ink);font-weight:600}
 .gate .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.gate input{font-size:15px;font-weight:700;letter-spacing:1px;text-align:center;color:#0f172a;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:11px 14px;width:170px;text-transform:uppercase;font-family:inherit}
-.gate input:focus{outline:none;border-color:#2563eb}
-.gate button{font-size:14px;font-weight:700;cursor:pointer;color:#fff;background:#2563eb;border:none;border-radius:10px;padding:11px 18px;font-family:inherit}
-.gate button:hover{filter:brightness(1.06)}
-.gate .err{font-size:13px;font-weight:600;color:#dc2626;margin-top:12px;min-height:18px}
+.gate input{font-size:15px;font-weight:700;letter-spacing:1px;text-align:center;color:var(--ink);background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px;width:170px;text-transform:uppercase;font-family:inherit}
+.gate input:focus{outline:none;border-color:var(--ia);box-shadow:0 0 0 3px var(--ia-soft)}
+.gate button{font-size:14px;font-weight:700;cursor:pointer;color:#fff;background:var(--ia);border:none;border-radius:10px;padding:11px 18px;font-family:inherit}
+.gate button:hover{background:var(--ia-ink)}
+.gate .err{font-size:13px;font-weight:600;color:var(--bad);margin-top:12px;min-height:18px}
 
-.unlock{font-size:12px;color:#94a3b8;text-align:right;margin:0 2px 8px;font-weight:600}
-.unlock a{color:#2563eb;cursor:pointer;font-weight:700;text-decoration:none}
+.unlock{font-size:12px;color:var(--faint);text-align:right;margin:0 2px 8px;font-weight:600}
+.unlock a{color:var(--ia-ink);cursor:pointer;font-weight:700;text-decoration:none}
 
 /* search */
 .search{position:relative;margin:18px 0 14px}
-.search .mag{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:16px}
-.search input{width:100%;border:1px solid #e2e8f0;background:#fff;border-radius:13px;padding:15px 16px 15px 46px;font-size:15px;font-family:inherit;color:#0f172a;outline:none;box-shadow:0 1px 2px rgba(15,23,42,.04)}
-.search input:focus{border-color:#2563eb}
+.search .mag{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--faint);font-size:16px}
+.search input{width:100%;border:1px solid var(--border);background:var(--card);border-radius:13px;padding:15px 16px 15px 46px;font-size:15px;font-family:inherit;color:var(--ink);outline:none;box-shadow:var(--shadow-sm)}
+.search input:focus{border-color:var(--ia);box-shadow:0 0 0 3px var(--ia-soft)}
 
 /* filters */
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
-.pill{padding:7px 14px;border-radius:999px;border:1px solid #e2e8f0;background:#fff;color:#475569;font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap}
-.pill:hover{border-color:#cbd5e1}
-.pill.on{border-color:#2563eb;background:#2563eb;color:#fff}
-.pill.lvl.on{border-color:#0f172a;background:#0f172a}
+.pill{padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap}
+.pill:hover{border-color:var(--ia);color:var(--ia-ink)}
+.pill.on{border-color:var(--ia);background:var(--ia-soft);color:var(--ia-ink)}
+.pill.lvl.on{border-color:var(--ink);background:var(--ink);color:var(--card)}
 
 /* counter */
-.counter{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 10px;border-bottom:1px solid #e2e8f0;margin-bottom:6px}
-.counter .c{font-size:13px;color:#475569;font-weight:600}
-.counter .c b{color:#2563eb;font-weight:800}
-.counter .c .suf{color:#94a3b8;font-weight:500}
-.counter .az{font-size:12px;color:#94a3b8;font-weight:600}
+.counter{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 10px;border-bottom:1px solid var(--border);margin-bottom:6px}
+.counter .c{font-size:13px;color:var(--muted);font-weight:600}
+.counter .c b{color:var(--ia-ink);font-weight:800}
+.counter .c .suf{color:var(--faint);font-weight:500}
+.counter .az{font-size:12px;color:var(--faint);font-weight:600}
 
 /* layout */
 .layout{display:flex;gap:18px;align-items:flex-start}
 .col{flex:1;min-width:0}
 
 .lsep{display:flex;align-items:center;gap:12px;margin:18px 0 8px;padding-top:4px}
-.lsep .L{font-size:15px;font-weight:800;color:#2563eb;width:22px}
-.lsep .ln{flex:1;height:1px;background:#e2e8f0}
+.lsep .L{font-size:15px;font-weight:800;color:var(--ia-ink);width:22px}
+.lsep .ln{flex:1;height:1px;background:var(--border)}
 
-.row{border-bottom:1px solid #eef2f6}
+.row{border-bottom:1px solid var(--border-soft)}
 .rhead{display:flex;align-items:center;gap:12px;padding:13px 14px;cursor:pointer;border-radius:10px;transition:background .12s}
-.rhead:hover{background:#f8fafc}
-.row.open .rhead{background:#f8fafc}
+.rhead:hover{background:var(--bg-2)}
+.row.open .rhead{background:var(--bg-2)}
 .dot{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
 .names{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
-.term{font-size:14.5px;font-weight:700;color:#0f172a;line-height:1.25}
-.en{font-size:12px;color:#94a3b8;font-weight:500;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.badge{flex:0 0 auto;font-size:11px;font-weight:600;color:#0369a1;background:#e0f2fe;padding:3px 9px;border-radius:6px;white-space:nowrap}
+.term{font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.25}
+.en{font-size:12px;color:var(--faint);font-weight:500;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{flex:0 0 auto;font-size:11px;font-weight:600;color:var(--ia-ink);background:var(--ia-soft);padding:3px 9px;border-radius:6px;white-space:nowrap}
 .nat{flex:0 0 auto;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;white-space:nowrap}
-.nat-etabli{background:#dcfce7;color:#15803d}.nat-emergent{background:#e0f2fe;color:#0369a1}.nat-survendu{background:#fef3c7;color:#b45309}
-.caret{flex:0 0 auto;color:#94a3b8;font-size:13px;transition:transform .15s}
+.nat-etabli{background:var(--ok-soft);color:var(--ok)}.nat-emergent{background:var(--ia-soft);color:var(--ia-ink)}.nat-survendu{background:var(--warn-soft);color:var(--warn)}
+.caret{flex:0 0 auto;color:var(--faint);font-size:13px;transition:transform .15s}
 .row.open .caret{transform:rotate(180deg)}
 
 .body{display:none;padding:2px 14px 18px 30px;flex-direction:column;gap:11px}
 .row.open .body{display:flex}
-.body .def{font-size:14px;color:#334155;line-height:1.6;max-width:640px}
-.fld{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;line-height:1.55;color:#475569}
+.body .def{font-size:14px;color:var(--ink);line-height:1.6;max-width:640px}
+.fld{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;line-height:1.55;color:var(--muted)}
 .fld .i{flex:0 0 auto}
 .fld.an .i{color:#0ea5e9}.fld.an strong{color:#0369a1}
 .fld.pq .i{color:#0d9488}.fld.pq strong{color:#0f766e}
-.fld.trap{color:#854d0e;background:#fffbeb;border:1px solid #fde68a;border-radius:9px;padding:10px 12px}
-.fld.trap .i{color:#d97706}.fld.trap strong{color:#b45309}
+.fld.trap{color:var(--warn-ink, #7a4a0a);background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);border-radius:9px;padding:10px 12px}
+.fld.trap .i{color:var(--warn)}.fld.trap strong{color:var(--warn)}
 .fld strong{font-weight:700}
 .see{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:2px}
-.see .lab{font-size:11px;font-weight:700;color:#94a3b8}
-.lk{font-size:12px;font-weight:600;cursor:pointer;color:#2563eb;background:#eff6ff;border:1px solid transparent;border-radius:16px;padding:3px 10px}
-.lk:hover{border-color:#2563eb}
-.hook{font-size:12.5px;font-style:italic;color:#64748b;background:#eff6ff;border-left:3px solid #2563eb;border-radius:0 8px 8px 0;padding:8px 11px}
-.hook b{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#2563eb;display:block;margin-bottom:2px}
+.see .lab{font-size:11px;font-weight:700;color:var(--faint)}
+.lk{font-size:12px;font-weight:600;cursor:pointer;color:var(--ia-ink);background:var(--ia-soft);border:1px solid transparent;border-radius:16px;padding:3px 10px}
+.lk:hover{border-color:var(--ia)}
+.hook{font-size:12.5px;font-style:italic;color:var(--muted);background:var(--ia-soft);border-left:3px solid var(--ia);border-radius:0 8px 8px 0;padding:8px 11px}
+.hook b{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--ia-ink);display:block;margin-bottom:2px}
 
-.empty{text-align:center;padding:60px 20px;color:#94a3b8;font-size:14px}
+.empty{text-align:center;padding:60px 20px;color:var(--faint);font-size:14px}
 
 /* A-Z rail */
 .rail{position:sticky;top:16px;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 2px;max-height:calc(100vh - 32px)}
-.rail button{width:20px;height:18px;display:flex;align-items:center;justify-content:center;border:none;background:none;border-radius:5px;font-size:11px;font-weight:700;font-family:inherit;color:#cbd5e1}
-.rail button.has{color:#2563eb;cursor:pointer}
-.rail button.has:hover{background:#eff6ff}
+.rail button{width:20px;height:18px;display:flex;align-items:center;justify-content:center;border:none;background:none;border-radius:5px;font-size:11px;font-weight:700;font-family:inherit;color:var(--border-strong)}
+.rail button.has{color:var(--ia-ink);cursor:pointer}
+.rail button.has:hover{background:var(--ia-soft)}
 
-.note{font-size:12.5px;line-height:1.6;color:#94a3b8;margin-top:28px;border-top:1px solid #e2e8f0;padding-top:16px}
-.note b{color:#64748b}
-footer{max-width:920px;margin:0 auto;padding:8px 24px 0;font-size:12px;color:#94a3b8}
+.note{font-size:12.5px;line-height:1.6;color:var(--faint);margin-top:28px;border-top:1px solid var(--border);padding-top:16px}
+.note b{color:var(--muted)}
 
 svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.head .ic svg{width:22px;height:22px;stroke:#2563eb}
+.head-ic svg{width:22px;height:22px;stroke:var(--ia)}
 .search .mag svg{width:18px;height:18px;display:block}
 .pill{display:inline-flex;align-items:center;gap:6px}
 .pill svg{width:14px;height:14px;flex:0 0 auto}
@@ -128,24 +117,35 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
 
 @media(max-width:680px){
   .rail{display:none}
-  .head h1{font-size:23px}
+  .ia-title{font-size:23px}
   .en{display:none}
+}
+@media(max-width:600px){
+  .inner{padding:0 20px}
 }
 </style>
 </head>
 <body>
+
+<div class="ia-crumb"><a href="/"><svg class="ic" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Tous les outils</a></div>
+
+<div class="ia-band">
+  <header class="ia-head">
+    <div class="ia-brand">
+      <div class="ia-logo"><img src="../../logo.png" alt="Logo Sébastien Rivière" width="40" height="40"></div>
+      <div>
+        <div class="name"><a href="/">Sébastien Rivière</a></div>
+        <div class="sub">Outils &amp; guides gratuits</div>
+      </div>
+    </div>
+    <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Glossaire · IA</div>
+    <h1 class="ia-title">Glossaire de l'IA</h1>
+    <p class="ia-lead">Les mots de l'intelligence artificielle expliqués <strong>en clair, sans jargon</strong>. Une analogie, pourquoi ça compte, et le piège à éviter. <span id="pillCount"></span></p>
+  </header>
+</div>
+
 <div class="wrap">
 <div class="inner">
-
-  <a href="/" class="crumb"><span>‹</span><span>Tous les outils</span></a>
-
-  <div class="head">
-    <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
-    <div>
-      <h1>Glossaire de l'IA</h1>
-      <p>Les mots de l'intelligence artificielle expliqués <strong>en clair, sans jargon</strong>. Une analogie, pourquoi ça compte, et le piège à éviter. <span id="pillCount"></span></p>
-    </div>
-  </div>
 
   <!-- gate -->
   <div class="gate" id="gate" style="display:none">
@@ -187,7 +187,15 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
 </div>
 </div>
 
-<footer>© Sébastien Rivière · Glossaire indicatif et pédagogique, enrichi en continu. Accès réservé par code.</footer>
+<footer class="ia-footer">
+  <span>© Sébastien Rivière · Glossaire indicatif et pédagogique, enrichi en continu. Accès réservé par code.</span>
+  <span class="ia-foot-contact">
+    <a class="ia-contact-btn" href="mailto:rsebastien@protonmail.com" title="Me contacter" aria-label="Me contacter">
+      <svg class="ic" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+    </a>
+    <span>Me contacter</span>
+  </span>
+</footer>
 
 <script>
 /* ── catégories : id CSV → label + couleur du dot ── */
