@@ -254,7 +254,7 @@ function cardHTML(t){
 
 function renderCatalogue(){
   catalogue.innerHTML=CATS.map(([key,label])=>{
-    const items=TOOLS.filter(t=>t.c===key);
+    const items=TOOLS.filter(t=>t.c===key).sort((a,b)=>(a.prio||99)-(b.prio||99));
     if(!items.length)return '';
     return `<details class="section" data-cat="${key}"${key===DEFAULT_OPEN?' open':''}>
       <summary class="section-title"><svg viewBox="0 0 24 24">${ICONS[key]||''}</svg>${esc(label)}<span class="n">${items.length}</span><span class="chev">›</span></summary>

@@ -54,7 +54,8 @@
       "p": "freemium",
       "dom": "chatgpt.com",
       "u": "https://chatgpt.com",
-      "pays": "US"
+      "pays": "US",
+      "prio": 1
     },
     {
       "c": "assistants",
@@ -63,7 +64,8 @@
       "p": "freemium",
       "dom": "claude.ai",
       "u": "https://claude.ai",
-      "pays": "US"
+      "pays": "US",
+      "prio": 2
     },
     {
       "c": "assistants",
@@ -72,7 +74,8 @@
       "p": "freemium",
       "dom": "gemini.google.com",
       "u": "https://gemini.google.com",
-      "pays": "US"
+      "pays": "US",
+      "prio": 3
     },
     {
       "c": "assistants",
@@ -150,7 +153,8 @@
       "p": "freemium",
       "dom": "lovable.dev",
       "u": "https://lovable.dev",
-      "pays": "SE"
+      "pays": "SE",
+      "prio": 1
     },
     {
       "c": "build",
@@ -204,7 +208,8 @@
       "p": "freemium",
       "dom": "cursor.com",
       "u": "https://www.cursor.com",
-      "pays": "US"
+      "pays": "US",
+      "prio": 2
     },
     {
       "c": "build",
@@ -223,7 +228,8 @@
       "dom": "github.com",
       "u": "https://github.com/features/copilot",
       "nv": 1,
-      "pays": "US"
+      "pays": "US",
+      "prio": 3
     },
     {
       "c": "build",
@@ -252,7 +258,8 @@
       "p": "freemium",
       "dom": "make.com",
       "u": "https://www.make.com",
-      "pays": "CZ"
+      "pays": "CZ",
+      "prio": 1
     },
     {
       "c": "auto",
@@ -261,7 +268,8 @@
       "p": "freemium",
       "dom": "zapier.com",
       "u": "https://zapier.com",
-      "pays": "US"
+      "pays": "US",
+      "prio": 2
     },
     {
       "c": "auto",
@@ -272,7 +280,8 @@
       "u": "https://n8n.io",
       "s": 194298,
       "gh": "n8n-io/n8n",
-      "pays": "DE"
+      "pays": "DE",
+      "prio": 3
     },
     {
       "c": "auto",
@@ -299,7 +308,8 @@
       "p": "payant",
       "dom": "midjourney.com",
       "u": "https://www.midjourney.com",
-      "pays": "US"
+      "pays": "US",
+      "prio": 1
     },
     {
       "c": "image",
@@ -310,7 +320,8 @@
       "u": "https://bfl.ai",
       "s": 25676,
       "gh": "black-forest-labs/flux",
-      "pays": "DE"
+      "pays": "DE",
+      "prio": 2
     },
     {
       "c": "image",
@@ -367,7 +378,8 @@
       "dom": "firefly.adobe.com",
       "u": "https://firefly.adobe.com",
       "nv": 1,
-      "pays": "US"
+      "pays": "US",
+      "prio": 3
     },
     {
       "c": "image",
@@ -386,7 +398,8 @@
       "p": "freemium",
       "dom": "cloud.google.com",
       "u": "https://cloud.google.com/vertex-ai",
-      "pays": "US"
+      "pays": "US",
+      "prio": 1
     },
     {
       "c": "video",
@@ -422,7 +435,8 @@
       "p": "freemium",
       "dom": "synthesia.io",
       "u": "https://www.synthesia.io",
-      "pays": "GB"
+      "pays": "GB",
+      "prio": 3
     },
     {
       "c": "video",
@@ -441,7 +455,8 @@
       "dom": "runwayml.com",
       "u": "https://runwayml.com",
       "nv": 1,
-      "pays": "US"
+      "pays": "US",
+      "prio": 2
     },
     {
       "c": "video",
@@ -470,7 +485,8 @@
       "p": "freemium",
       "dom": "elevenlabs.io",
       "u": "https://elevenlabs.io",
-      "pays": "US"
+      "pays": "US",
+      "prio": 1
     },
     {
       "c": "voice",
@@ -481,7 +497,8 @@
       "u": "https://github.com/openai/whisper",
       "s": 103746,
       "gh": "openai/whisper",
-      "pays": "US"
+      "pays": "US",
+      "prio": 2
     },
     {
       "c": "voice",
@@ -500,7 +517,8 @@
       "dom": "suno.com",
       "u": "https://suno.com",
       "nv": 1,
-      "pays": "US"
+      "pays": "US",
+      "prio": 3
     },
     {
       "c": "voice",
@@ -519,7 +537,8 @@
       "p": "freemium",
       "dom": "fireflies.ai",
       "u": "https://fireflies.ai",
-      "pays": "US"
+      "pays": "US",
+      "prio": 2
     },
     {
       "c": "meeting",
@@ -528,7 +547,8 @@
       "p": "freemium",
       "dom": "otter.ai",
       "u": "https://otter.ai",
-      "pays": "US"
+      "pays": "US",
+      "prio": 1
     },
     {
       "c": "meeting",
@@ -556,7 +576,8 @@
       "dom": "fathom.video",
       "u": "https://fathom.video",
       "nv": 1,
-      "pays": "US"
+      "pays": "US",
+      "prio": 3
     },
     {
       "c": "meeting",
@@ -574,7 +595,8 @@
       "p": "freemium",
       "dom": "canva.com",
       "u": "https://www.canva.com",
-      "pays": "AU"
+      "pays": "AU",
+      "prio": 1
     },
     {
       "c": "design",
@@ -583,7 +605,8 @@
       "p": "freemium",
       "dom": "gamma.app",
       "u": "https://gamma.app",
-      "pays": "US"
+      "pays": "US",
+      "prio": 2
     },
     {
       "c": "design",
@@ -592,7 +615,8 @@
       "p": "freemium",
       "dom": "napkin.ai",
       "u": "https://www.napkin.ai",
-      "pays": "US"
+      "pays": "US",
+      "prio": 3
     },
     {
       "c": "design",
@@ -633,7 +657,8 @@
       "p": "freemium",
       "dom": "feedly.com",
       "u": "https://feedly.com",
-      "pays": "US"
+      "pays": "US",
+      "prio": 1
     },
     {
       "c": "veille",
@@ -651,7 +676,8 @@
       "p": "gratuit",
       "dom": "trends.google.com",
       "u": "https://trends.google.com",
-      "pays": "US"
+      "pays": "US",
+      "prio": 3
     },
     {
       "c": "veille",
@@ -669,7 +695,8 @@
       "p": "freemium",
       "dom": "notebooklm.google.com",
       "u": "https://notebooklm.google.com",
-      "pays": "US"
+      "pays": "US",
+      "prio": 2
     },
     {
       "c": "veille",
@@ -690,7 +717,8 @@
       "u": "https://www.langchain.com",
       "s": 140350,
       "gh": "langchain-ai/langchain",
-      "pays": "US"
+      "pays": "US",
+      "prio": 2
     },
     {
       "c": "advanced",
@@ -743,7 +771,8 @@
       "p": "freemium",
       "dom": "huggingface.co",
       "u": "https://huggingface.co",
-      "pays": "FR"
+      "pays": "FR",
+      "prio": 1
     },
     {
       "c": "advanced",
@@ -763,7 +792,8 @@
       "u": "https://ollama.com",
       "s": 175009,
       "gh": "ollama/ollama",
-      "pays": "US"
+      "pays": "US",
+      "prio": 3
     },
     {
       "c": "advanced",
@@ -829,7 +859,8 @@
       "dom": "comparia.beta.gouv.fr",
       "u": "https://comparia.beta.gouv.fr",
       "pays": "FR",
-      "off": 1
+      "off": 1,
+      "prio": 3
     },
     {
       "c": "souverain",
@@ -849,7 +880,8 @@
       "dom": "github.com/etalab-ia/albert",
       "u": "https://github.com/etalab-ia/albert",
       "pays": "FR",
-      "off": 1
+      "off": 1,
+      "prio": 1
     },
     {
       "c": "souverain",
@@ -869,7 +901,8 @@
       "dom": "mistral.ai",
       "u": "https://mistral.ai/technology",
       "pays": "FR",
-      "off": 1
+      "off": 1,
+      "prio": 2
     },
     {
       "c": "souverain",
