@@ -6,12 +6,24 @@
       "Assistants IA généralistes"
     ],
     [
-      "build",
-      "Créer un site / une app sans (trop) coder"
-    ],
-    [
       "auto",
       "Automatiser ses tâches"
+    ],
+    [
+      "meeting",
+      "Réunions & prise de notes"
+    ],
+    [
+      "veille",
+      "Veille & recherche"
+    ],
+    [
+      "design",
+      "Présentations, visuels & schémas"
+    ],
+    [
+      "build",
+      "Créer un site / une app sans (trop) coder"
     ],
     [
       "image",
@@ -26,24 +38,12 @@
       "Voix & audio"
     ],
     [
-      "meeting",
-      "Réunions & prise de notes"
-    ],
-    [
-      "design",
-      "Présentations, visuels & schémas"
-    ],
-    [
-      "veille",
-      "Veille & recherche"
+      "souverain",
+      "IA publique & souveraine"
     ],
     [
       "advanced",
       "Aller plus loin : agents, RAG & local"
-    ],
-    [
-      "souverain",
-      "IA publique & souveraine"
     ]
   ],
   "tools": [
