@@ -100,11 +100,12 @@ header{padding:30px 40px 24px;}
 .sub{font-family:var(--ui);font-weight:700;font-size:12.5px;color:var(--faint);letter-spacing:.3px;margin-top:4px;}
 .head-actions{margin-left:auto;display:flex;align-items:center;gap:9px;}
 .theme-btn{
-  width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;
-  border:1px solid var(--border);background:var(--card);color:var(--faint);
-  display:flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s;
+  width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;border:0;
+  background:#b8731e;color:#fff;
+  display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;
 }
-.theme-btn:hover{color:var(--accent-ink);border-color:var(--accent);}
+.theme-btn:hover{filter:brightness(1.08);}
+.theme-btn:active{transform:scale(.96);}
 .theme-btn svg{width:19px;height:19px;}
 .theme-btn .ic-dark{display:none;}
 @media(prefers-color-scheme:dark){.theme-btn .ic-dark{display:block;}.theme-btn .ic-light{display:none;}}
@@ -113,20 +114,26 @@ html[data-theme="dark"] .theme-btn .ic-light{display:none;}
 html[data-theme="light"] .theme-btn .ic-dark{display:none;}
 html[data-theme="light"] .theme-btn .ic-light{display:block;}
 .icon-btn{
-  width:38px;height:38px;flex:none;border-radius:10px;
-  border:1px solid var(--border);background:var(--card);color:var(--faint);
-  display:flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s;
+  width:38px;height:38px;flex:none;border-radius:10px;border:0;color:#fff;
+  display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;
 }
-.icon-btn:hover{color:var(--accent-ink);border-color:var(--accent);}
+.icon-btn:hover{filter:brightness(1.08);text-decoration:none;}
+.icon-btn:active{transform:scale(.96);}
 .icon-btn svg{width:18px;height:18px;}
+.icon-btn.mail{background:#41586b;}
+.icon-btn.li{background:#0a66c2;}
 .tagline{font-family:var(--ui);font-weight:800;font-size:clamp(20px,2.6vw,25px);letter-spacing:-.01em;color:var(--title);margin-top:18px;max-width:720px;line-height:1.32;}
 .tagline b{color:var(--accent-ink);}
 .props{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;}
-.prop{display:inline-flex;align-items:center;gap:7px;font-family:var(--ui);font-weight:700;font-size:12.5px;border-radius:20px;padding:5px 12px;border:1px solid transparent;}
-.prop svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.prop{display:inline-flex;align-items:center;gap:7px;font-family:var(--ui);font-weight:700;font-size:12.5px;border-radius:20px;padding:4px 12px 4px 4px;border:1px solid transparent;}
+.prop .pic{width:22px;height:22px;border-radius:50%;flex:none;display:inline-flex;align-items:center;justify-content:center;color:var(--card);}
+.prop .pic svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
 .prop.local{color:var(--t-prod);background:var(--t-prod-soft);}
+.prop.local .pic{background:var(--t-prod);}
 .prop.noacc{color:var(--t-ia);background:var(--t-ia-soft);}
+.prop.noacc .pic{background:var(--t-ia);}
 .prop.free{color:var(--t-block);background:var(--t-block-soft);}
+.prop.free .pic{background:var(--t-block);}
 
 /* ── Sticky category nav ── */
 .catnav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(9px);border-bottom:1px solid var(--border);}
@@ -250,19 +257,19 @@ footer a:hover{color:var(--accent-ink);}
           <svg class="ic-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
           <svg class="ic-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
         </button>
-        <a class="icon-btn" href="mailto:rsebastien@protonmail.com" title="Email" aria-label="Envoyer un email">
+        <a class="icon-btn mail" href="mailto:rsebastien@protonmail.com" title="Email" aria-label="Envoyer un email">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
         </a>
-        <a class="icon-btn" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
+        <a class="icon-btn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
         </a>
       </div>
     </div>
-    <p class="tagline">Des outils concrets pour l'IA, le numérique et l'achat public — <b>sans compte, sans installation, en local.</b></p>
+    <p class="tagline">Comprendre l'IA, le numérique et l'achat public — et <b>passer à l'action</b>, avec des outils simples et gratuits.</p>
     <div class="props">
-      <span class="prop local"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>En local</span>
-      <span class="prop noacc"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Sans compte</span>
-      <span class="prop free"><svg viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.4"/></svg>Gratuit</span>
+      <span class="prop local"><span class="pic"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>En local</span>
+      <span class="prop noacc"><span class="pic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Sans compte</span>
+      <span class="prop free"><span class="pic"><svg viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.4"/></svg></span>Gratuit</span>
     </div>
   </header>
 </div>
