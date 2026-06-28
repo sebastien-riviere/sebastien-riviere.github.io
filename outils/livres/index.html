@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bibliothèque IA, Data &amp; Blockchain — Sébastien Rivière</title>
-<meta name="description" content="Une bibliothèque sélective de livres sur l'intelligence artificielle, la data et la blockchain : résumés, disponibilité en français et couvertures.">
+<title>Bibliothèque IA &amp; Data — Sébastien Rivière</title>
+<meta name="description" content="Une bibliothèque sélective de livres sur l'intelligence artificielle et la data : résumés, disponibilité en français et couvertures.">
 <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110d" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
@@ -154,7 +154,7 @@ body{
 <div class="wrap">
   <header class="hero">
     <div class="kicker">Bibliothèque · sélection</div>
-    <h1>Les livres qui comptent en <em>IA</em>, <em>data</em>, <em>blockchain</em> &amp; <em>business</em></h1>
+    <h1>Les livres qui comptent en <em>IA</em> &amp; <em>data</em></h1>
     <p>Une sélection vivante d'ouvrages — des fondamentaux aux essais critiques — avec résumé, disponibilité en français et couverture. De quoi choisir sa prochaine lecture.</p>
     <div class="stats" id="stats"></div>
   </header>
@@ -209,7 +209,7 @@ fetch("./data.json").then(r=>r.json()).then(d=>{
     `<div class="stat"><b>${d.count}</b> ouvrages</div>`+
     Object.keys(CATS).filter(c=>by[c]).map(c=>`<div class="stat"><b>${by[c]}</b> ${CATS[c].l}</div>`).join("");
   // chips
-  const chips=[{k:"",l:"Tout"}].concat(Object.keys(CATS).map(c=>({k:c,l:CATS[c].l})));
+  const chips=[{k:"",l:"Tout"}].concat(Object.keys(CATS).filter(c=>by[c]).map(c=>({k:c,l:CATS[c].l})));
   document.getElementById("chips").innerHTML=chips.map(c=>
     `<button class="chip${c.k===fCat?" on":""}" data-c="${c.k}" ${c.k?`style="${tintVars(c.k)}"`:""}>${c.k?'<span class="dot"></span>':""}${c.l}</button>`).join("");
   document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{fCat=b.dataset.c;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.c===fCat));render();});
