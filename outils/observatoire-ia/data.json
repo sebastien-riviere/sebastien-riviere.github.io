@@ -1,11 +1,28 @@
 {
-  "maj": "2026-06-28",
-  "total": 82,
+  "maj": "2026-06-29",
+  "total": 83,
   "byTheme": {
-    "data": 71,
+    "data": 72,
     "ia": 11
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "M4D0139ND ACQUISITION de DONNEES ISSUES de TRACES GPS et des BORNAGES GSM pour la Métropole de Montpellier",
+      "a": "Montpellier Méditerranée Métropole",
+      "dep": "34",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-28",
+      "dl": "2026-07-31T10:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-63525%22",
+      "k": "montpellier mediterranee metropole|m4d0139nd acquisition de donnees issues de traces gps et des bornages gsm pour la metropol",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -463,7 +480,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-53545%22",
       "k": "inpi|prestations de formation a l ingenierie de requete prompt engineering et a l intelligence ",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -480,7 +497,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-52648%22",
       "k": "ca grand paris sud seine essonne senart|acquisition installation et maintenance de capteurs traitement et analyse de donnees par i",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -497,7 +514,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-52332%22",
       "k": "conseil departemental de la mayenne|refonte du systeme d information routes et riviere sir de la direction des infrastructures",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -514,7 +531,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-52320%22",
       "k": "departement du var|assistance et administration des bases de donnees du systeme d information departemental",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -531,7 +548,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-51835%22",
       "k": "ecole nationale de l aviation civile|fourniture de cartes militaires base de donnees format arinc 424 pour simulateurs de vols",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -548,7 +565,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-52325%22",
       "k": "bordeaux metropole|maintenance des stations meteorologiques et traitement des donnees",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -565,7 +582,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-51464%22",
       "k": "criann|nettoyage et entretien des locaux du criann et du centre de donnees regional",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
