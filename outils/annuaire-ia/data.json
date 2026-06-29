@@ -1063,6 +1063,74 @@
       "u": "https://recraft.ai",
       "pays": "UK",
       "off": 1
+    },
+    {
+      "c": "advanced",
+      "n": "Jan",
+      "d": "Alternative open source a ChatGPT, 100% hors ligne : chat, gestionnaire de modeles et serveur API integres.",
+      "p": "gratuit",
+      "dom": "jan.ai",
+      "u": "https://jan.ai",
+      "gh": "janhq/jan",
+      "pays": "US"
+    },
+    {
+      "c": "advanced",
+      "n": "GPT4All",
+      "d": "Application cle en main pour debutants : telecharger un modele et discuter en local, sans aucune configuration.",
+      "p": "gratuit",
+      "dom": "gpt4all.io",
+      "u": "https://gpt4all.io",
+      "gh": "nomic-ai/gpt4all",
+      "pays": "US"
+    },
+    {
+      "c": "advanced",
+      "n": "AnythingLLM",
+      "d": "Transforme une IA locale en base de connaissances : discuter avec ses PDF, docs et notes, sans cloud.",
+      "p": "gratuit",
+      "dom": "anythingllm.com",
+      "u": "https://anythingllm.com",
+      "gh": "Mintplex-Labs/anything-llm",
+      "pays": "US"
+    },
+    {
+      "c": "advanced",
+      "n": "LocalAI",
+      "d": "Remplacant de l'API OpenAI a heberger soi-meme : ses outils existants continuent de marcher, pointes sur sa machine.",
+      "p": "gratuit",
+      "dom": "localai.io",
+      "u": "https://localai.io",
+      "gh": "mudler/LocalAI",
+      "pays": "IT"
+    },
+    {
+      "c": "advanced",
+      "n": "Msty",
+      "d": "Application de bureau orientee confidentialite : chat multi-modeles et documents, sans envoi de donnees.",
+      "p": "freemium",
+      "dom": "msty.app",
+      "u": "https://msty.app",
+      "pays": "US"
+    },
+    {
+      "c": "advanced",
+      "n": "llamafile",
+      "d": "Un seul fichier executable qui lance un modele complet : telecharger, double-cliquer, c'est pret.",
+      "p": "gratuit",
+      "dom": "github.com",
+      "u": "https://github.com/Mozilla-Ocho/llamafile",
+      "gh": "Mozilla-Ocho/llamafile",
+      "pays": "US"
+    },
+    {
+      "c": "advanced",
+      "n": "Koboldcpp",
+      "d": "Inference IA a long contexte qui tourne meme sur du materiel ancien.",
+      "p": "gratuit",
+      "dom": "github.com",
+      "u": "https://github.com/LostRuins/koboldcpp",
+      "gh": "LostRuins/koboldcpp"
     }
   ],
   "valos": [
