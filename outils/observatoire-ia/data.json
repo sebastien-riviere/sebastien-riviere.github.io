@@ -1,11 +1,45 @@
 {
-  "maj": "2026-06-29",
-  "total": 83,
+  "maj": "2026-06-30",
+  "total": 85,
   "byTheme": {
-    "data": 72,
+    "data": 74,
     "ia": 11
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Marché de prestation d'externalisation de la fonction de Délégué à la Protection des Données Personnelles (DPO) pour le Groupe CRC",
+      "a": "LES CAISSES REUNIONNAISES COMPLEMENTAIRES - Groupe CRC",
+      "dep": "974",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-30",
+      "dl": "2026-08-03T10:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-64122%22",
+      "k": "les caisses reunionnaises complementaire|marche de prestation d externalisation de la fonction de delegue a la protection des donne",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "ASSISTANCE, MAINTENANCE CORRECTVE ET EVOLUTIVE DES BASES DE DONNEES THERIAQUE ET ONCOTHERIAQUE",
+      "a": "HOPITAL NORD OUEST - VILLEFRANCHE SUR SAONE",
+      "dep": "69,1",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-06-30",
+      "dl": "2026-08-31T10:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-64137%22",
+      "k": "hopital nord ouest villefranche sur saon|assistance maintenance correctve et evolutive des bases de donnees theriaque et oncotheria",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -378,7 +412,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-54607%22",
       "k": "le havre seine metropole|fourniture de donnees et informations meteorologiques et mise en oeuvre d un dispositif de",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -395,7 +429,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-55160%22",
       "k": "ile de france mobilites|le present marche a pour objet l ensemble des prestations relatives au controle exterieur ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -412,7 +446,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-54388%22",
       "k": "dgampa|dgampa num 2025 06 data fourniture de prestations de valorisation des donnees",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -429,7 +463,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-53280%22",
       "k": "action logement services|fourniture et mise en oeuvre d une solution etl deployee en environnement on premise et de",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -446,7 +480,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-53868%22",
       "k": "universite de perpignan via domitia|mise en uvre d un systeme integre et innovant de surveillance du littoral par video en int",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -463,7 +497,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-54240%22",
       "k": "association ags|le present marche a pour objet l organisation et la realisation de formations sur le regle",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
