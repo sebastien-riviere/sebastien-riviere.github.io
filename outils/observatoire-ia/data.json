@@ -1,11 +1,79 @@
 {
-  "maj": "2026-07-01",
-  "total": 85,
+  "maj": "2026-07-02",
+  "total": 89,
   "byTheme": {
-    "data": 74,
-    "ia": 11
+    "ia": 13,
+    "data": 76
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Formation sur les usages et application de l'intelligence artificielle (IA)",
+      "a": "Région Grand Est",
+      "dep": "67,8,10,51,52,54,55,57,68",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-02",
+      "dl": "2026-08-20T10:00:00+00:00",
+      "m": "",
+      "th": "ia",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-65044%22",
+      "k": "region grand est|formation sur les usages et application de l intelligence artificielle ia",
+      "ia": 1
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "FORMATION - Architecture, développement et administration des SI - Intelligence Artificielle (IA) - A7A",
+      "a": "CNFPT - Direction de l'achat public",
+      "dep": "83,4,5,6,13,84",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-02",
+      "dl": "2026-09-04T15:00:00+00:00",
+      "m": "",
+      "th": "ia",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-64694%22",
+      "k": "cnfpt direction de l achat public|formation architecture developpement et administration des si intelligence artificielle ia",
+      "ia": 1
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "SERVICES DE TELECOMMUNICATIONS VOIX ET DONNEES",
+      "a": "CCAS de Saint-Pierre",
+      "dep": "974",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-01",
+      "dl": "2026-08-18T11:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-64540%22",
+      "k": "ccas de saint pierre|services de telecommunications voix et donnees",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Mise en oeuvre d'une solution logicielle de gestion du Centre Municipal de Santé incluant hébergement, maintenance et reprise de données",
+      "a": "Ville de Sevran",
+      "dep": "93",
+      "fam": "Marchés <90 k€ (MAPA)",
+      "tm": "Fournitures",
+      "proc": "Procédure Adaptée",
+      "dp": "2026-07-01",
+      "dl": "2026-07-27T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-65059%22",
+      "k": "ville de sevran|mise en oeuvre d une solution logicielle de gestion du centre municipal de sante incluant ",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -344,7 +412,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-56091%22",
       "k": "s i a r e|2026 meteo mise a disposition d un outil de suivi en temps reel des donnees meteorologique",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -361,7 +429,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-56288%22",
       "k": "epa shom|prestations de formations specialisees relatives a la conversion s 57 s 101 et a la produc",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -378,7 +446,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-55194%22",
       "k": "universite d artois|la fourniture l installation et la mise en service de systemes d acquisition de donnees",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -395,7 +463,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-55931%22",
       "k": "le mans metropole|acquisition de donnees relatives a la promotion immobiliere annees 2026 a 2029",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
