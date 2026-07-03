@@ -1,11 +1,62 @@
 {
-  "maj": "2026-07-02",
-  "total": 89,
+  "maj": "2026-07-03",
+  "total": 92,
   "byTheme": {
-    "ia": 13,
-    "data": 76
+    "data": 79,
+    "ia": 13
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Prestation d’aide à l’investigation pour le recueil de données et la saisie d’une recherche",
+      "a": "14 CHRU",
+      "dep": "14",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-03",
+      "dl": "2026-08-14T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-65755%22",
+      "k": "14 chru|prestation d aide a l investigation pour le recueil de donnees et la saisie d une recherch",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "SERVICE DE LOCATION D'ESPACE HAUTEMENT SECURISE ET HAUTE DISPONIBILITE D'HEBERGEMENT PHYSIQUE DE SERVEURS PAR LE CENTRE D'ACCES SECURISE AUX DONNEES (CASD)",
+      "a": "CENTRE D'ACCES SECURISE AUX DONNEES (CASD)",
+      "dep": "92,75,77,78",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-03",
+      "dl": "2026-08-05T15:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-65363%22",
+      "k": "centre d acces securise aux donnees casd|service de location d espace hautement securise et haute disponibilite d hebergement physi",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Maintenance et évolution des outils logiciels et matériels informatiques pour l'exploitation des équipements et des données du réseau d'assainissement du Val-de-Marne",
+      "a": "Département du Val-de-Marne",
+      "dep": "94",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-03",
+      "dl": "2026-08-17T14:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-65387%22",
+      "k": "departement du val de marne|maintenance et evolution des outils logiciels et materiels informatiques pour l exploitati",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -310,7 +361,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-59326%22",
       "k": "regie des eaux de montpellier mediterran|mise a disposition d une plateforme d exploitation des donnees issues de la telereleve des",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -344,7 +395,7 @@
       "th": "data",
       "u": "https://www.marches-publics.gouv.fr/entreprise/consultation/3018589?orgAcronyme=x7c",
       "k": "assistance publique hopitaux de paris|mise en place d une plateforme d hebergement de donnees de sante destinee a l organisation",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -361,7 +412,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-58387%22",
       "k": "cstb|prestations de mise a disposition d une plateforme de collecte de donnees et de services a",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -378,7 +429,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-57990%22",
       "k": "bordeaux metropole|collecte donnees iop",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -395,7 +446,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-57241%22",
       "k": "caisse des depots|fourniture de donnees pour la realisation des diligences kyc",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
