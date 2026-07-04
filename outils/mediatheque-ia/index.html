@@ -93,7 +93,18 @@ body{
 .toggle input:checked + .sw{background:var(--ia)}
 .toggle input:checked + .sw::after{transform:translateX(16px)}
 
-.count-line{font-size:.84rem;color:var(--faint);margin:6px 2px 18px}
+/* rangée de filtres secondaires (facettes) */
+.facets{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:12px 2px 2px}
+.facets:empty{display:none}
+.facets .flabel{font-size:.64rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-right:2px}
+.fchip{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid var(--border);border-radius:999px;
+  background:transparent;color:var(--muted);font:inherit;font-family:var(--ui);font-size:.8rem;font-weight:700;cursor:pointer;transition:.14s}
+.fchip:hover{border-color:var(--ia);color:var(--ia-ink)}
+.fchip .cn{opacity:.55;font-size:.72rem}
+.fchip.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.fchip.on .cn{opacity:.7}
+
+.count-line{font-size:.84rem;color:var(--faint);margin:14px 2px 18px}
 
 /* --- grille couvertures --- */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:30px 22px;padding-bottom:40px}
@@ -207,6 +218,7 @@ body{
       <label class="toggle"><input type="checkbox" id="frOnly"><span class="sw"></span>Dispo en français</label>
     </div>
   </div>
+  <div class="facets" id="facets"></div>
   <div class="count-line" id="countLine"></div>
 
   <main class="grid" id="grid"></main>
@@ -255,9 +267,10 @@ function matchView(b,k){
   if(k==="ref"||k==="cult") return b.s===k;
   return b.s==="ecran" && b.c===k;                 // film / serie / documentaire
 }
-let BOOKS=[], fView="", fFr=false, q="", sortMode="sel";
+let BOOKS=[], fView="", fFacet="", fFr=false, q="", sortMode="sel";
 const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tintVars=c=>`--tint:${CATS[c].tint};--tint-soft:${CATS[c].soft}`;
+const facetOf=b=> b.s==="ecran" ? (FAM[b.fam]||b.fam||"") : (b.scat||"");   // facette secondaire : famille (écran) / sous-catégorie (livres)
 const norm=t=>{t=(t||"").toLowerCase();for(const p of["the ","la ","le ","les ","l'","l’","un ","une "])if(t.startsWith(p))t=t.slice(p.length);return t;};
 const starsHTML=p=>{p=+p||0;let s="";for(let i=1;i<=3;i++)s+=i<=p?"<b>★</b>":"<i>★</i>";return s;};
 
@@ -292,8 +305,28 @@ function buildChips(){
   const el=document.getElementById("chips");
   el.innerHTML=html;
   el.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{
-    fView=b.dataset.c;
+    fView=b.dataset.c; fFacet="";
     el.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.c===fView));
+    buildFacets();
+    render();
+  });
+}
+
+function buildFacets(){
+  const el=document.getElementById("facets");
+  if(!fView){el.innerHTML="";return;}                 // uniquement quand une catégorie primaire est choisie
+  const base=BOOKS.filter(b=>matchView(b,fView));
+  const counts={};
+  base.forEach(b=>{const f=facetOf(b); if(f) counts[f]=(counts[f]||0)+1;});
+  const keys=Object.keys(counts).sort((a,b)=>counts[b]-counts[a]||a.localeCompare(b));
+  if(keys.length<2){el.innerHTML="";return;}          // inutile si 0/1 facette
+  const label=(fView==="ref"||fView==="cult")?"Sous-catégorie":"Famille";
+  el.innerHTML=`<span class="flabel">${label}</span>`+
+    `<button class="fchip${fFacet===""?" on":""}" data-f="">Toutes<span class="cn">${base.length}</span></button>`+
+    keys.map(k=>`<button class="fchip${k===fFacet?" on":""}" data-f="${esc(k)}">${esc(k)}<span class="cn">${counts[k]}</span></button>`).join("");
+  el.querySelectorAll(".fchip").forEach(b=>b.onclick=()=>{
+    fFacet=b.dataset.f;
+    el.querySelectorAll(".fchip").forEach(x=>x.classList.toggle("on",x.dataset.f===fFacet));
     render();
   });
 }
@@ -301,6 +334,7 @@ function buildChips(){
 function render(){
   let list=BOOKS.filter(b=>{
     if(!matchView(b,fView)) return false;
+    if(fFacet && facetOf(b)!==fFacet) return false;         // filtre secondaire (famille / sous-catégorie)
     if(fFr && b.s!=="ecran" && b.d!=="oui") return false;   // toggle FR = livres uniquement
     if(q){const h=(b.t+" "+b.vo+" "+b.a).toLowerCase();if(!h.includes(q))return false;}
     return true;
