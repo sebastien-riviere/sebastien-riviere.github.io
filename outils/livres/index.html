@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bibliothèque IA — références &amp; imaginaire — Sébastien Rivière</title>
-<meta name="description" content="Une bibliothèque sélective de livres sur l'IA et la data, et l'imaginaire de l'IA en science-fiction : résumés, disponibilité en français et couvertures.">
+<title>Médiathèque IA — livres, films &amp; séries — Sébastien Rivière</title>
+<meta name="description" content="Une médiathèque sélective sur l'IA : livres de référence (IA, data), imaginaire de science-fiction, et films, séries &amp; documentaires — avec résumés, couvertures et repère réflexion / divertissement.">
 <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14110d" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
@@ -108,6 +108,9 @@ body{
 .tag .dot{width:6px;height:6px;border-radius:50%;background:var(--tint)}
 .fr{font-size:.66rem;font-weight:800;letter-spacing:.04em;padding:3px 7px;border-radius:6px;
   background:var(--t-data-soft);color:var(--t-data);text-transform:uppercase}
+.intr{font-size:.66rem;font-weight:800;letter-spacing:.03em;padding:3px 7px;border-radius:6px;text-transform:uppercase;white-space:nowrap}
+.intr.refl{background:var(--t-ia-soft);color:var(--t-ia)}
+.intr.dulc{background:var(--bg-2);color:var(--faint)}
 
 .empty{text-align:center;padding:60px 20px;color:var(--faint)}
 
@@ -153,9 +156,9 @@ body{
 
 <div class="wrap">
   <header class="hero">
-    <div class="kicker">Bibliothèque · sélection</div>
-    <h1>Les livres qui comptent sur l'<em>IA</em> — <em>références</em> &amp; <em>imaginaire</em></h1>
-    <p>Une sélection vivante — des <strong>références</strong> (IA, data) à l'<strong>imaginaire</strong> (science-fiction) — avec résumé, disponibilité en français et couverture. De quoi choisir sa prochaine lecture.</p>
+    <div class="kicker">Médiathèque · sélection</div>
+    <h1>Ce qui compte sur l'<em>IA</em> — <em>livres</em>, <em>films</em> &amp; <em>séries</em></h1>
+    <p>Une sélection vivante — des <strong>références</strong> (IA, data) à l'<strong>imaginaire</strong> (science-fiction), jusqu'à ce qui se passe <strong>à l'écran</strong> (films, séries, documentaires) — avec résumé, couverture et repère <strong>réflexion</strong> / <strong>divertissement</strong>. De quoi choisir sa prochaine lecture… ou séance.</p>
     <div class="stats" id="stats"></div>
   </header>
 
@@ -195,14 +198,19 @@ const CATS={
   data:{l:"Data",tint:"var(--t-data)",soft:"var(--t-data-soft)"},
   fiction:{l:"Fiction",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"},
   blockchain:{l:"Blockchain",tint:"var(--t-block)",soft:"var(--t-block-soft)"},
-  business:{l:"Business",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"}
+  business:{l:"Business",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"},
+  film:{l:"Film",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"},
+  serie:{l:"Série",tint:"var(--t-block)",soft:"var(--t-block-soft)"},
+  documentaire:{l:"Documentaire",tint:"var(--t-data)",soft:"var(--t-data-soft)"}
 };
-// 2 grandes sections : références pro (ia/data) vs imaginaire / culture IA (fiction)
+// 3 grandes sections : références pro (ia/data) · imaginaire / culture IA (fiction) · à l'écran (films/séries/docs)
 const SECT={
   ref:{l:"Références",tint:"var(--t-ia)",soft:"var(--t-ia-soft)"},
-  cult:{l:"Culture IA",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"}
+  cult:{l:"Culture IA",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"},
+  ecran:{l:"À l’écran",tint:"var(--t-block)",soft:"var(--t-block-soft)"}
 };
-const NAT={livre:"Livre",papier:"Papier de recherche",guide:"Guide",rapport:"Rapport",mooc:"Cours en ligne"};
+const NAT={livre:"Livre",papier:"Papier de recherche",guide:"Guide",rapport:"Rapport",mooc:"Cours en ligne",film:"Film",serie:"Série",documentaire:"Documentaire"};
+const INT={reflexion:"Réflexion","les-deux":"Réflexion + divertissement",divertissement:"Divertissement"};
 let BOOKS=[], fSec="", fFr=false, q="";
 const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tintVars=c=>`--tint:${CATS[c].tint};--tint-soft:${CATS[c].soft}`;
@@ -212,7 +220,7 @@ fetch("./data.json").then(r=>r.json()).then(d=>{
   // stats
   const by=d.by_cat||{};
   document.getElementById("stats").innerHTML=
-    `<div class="stat"><b>${d.count}</b> ouvrages</div>`+
+    `<div class="stat"><b>${d.count}</b> titres</div>`+
     Object.keys(CATS).filter(c=>by[c]).map(c=>`<div class="stat"><b>${by[c]}</b> ${CATS[c].l}</div>`).join("");
   // chips = sections (Tout / Références / Culture IA)
   const bs=d.by_section||{};
@@ -228,24 +236,25 @@ document.getElementById("frOnly").addEventListener("change",e=>{fFr=e.target.che
 function render(){
   let list=BOOKS.filter(b=>{
     if(fSec && b.s!==fSec) return false;
-    if(fFr && b.d!=="oui") return false;
+    if(fFr && b.s!=="ecran" && b.d!=="oui") return false;  // toggle FR = livres uniquement
     if(q){const h=(b.t+" "+b.vo+" "+b.a).toLowerCase();if(!h.includes(q))return false;}
     return true;
   });
   document.getElementById("countLine").textContent=
-    list.length+(list.length>1?" livres affichés":" livre affiché")+(fSec||fFr||q?" (filtré)":"");
+    list.length+(list.length>1?" titres affichés":" titre affiché")+(fSec||fFr||q?" (filtré)":"");
   const g=document.getElementById("grid");
-  if(!list.length){g.innerHTML='<div class="empty">Aucun livre ne correspond. Élargissez la recherche.</div>';return;}
+  if(!list.length){g.innerHTML='<div class="empty">Aucun titre ne correspond. Élargissez la recherche.</div>';return;}
   g.innerHTML=list.map((b,i)=>{
     const ph=`<div class="ph"><span class="brand">${esc(CATS[b.c].l)}</span><div><div class="pt">${esc(b.t)}</div><div class="pa">${esc(b.a)}</div></div></div>`;
     const img=b.cv?`<img src="${esc(b.cv)}" alt="${esc(b.t)}" loading="lazy" onerror="this.remove()" onload="if(this.naturalWidth<=2)this.remove()">`:"";
     const fr=b.d==="oui"?'<span class="fr">FR</span>':"";
+    const intr=b.i?`<span class="intr ${b.i==="divertissement"?"dulc":"refl"}">${b.i==="les-deux"?"Réflexion +":b.i==="reflexion"?"Réflexion":"Divertissement"}</span>`:"";
     return `<button class="book" data-i="${BOOKS.indexOf(b)}" style="${tintVars(b.c)}">
       <div class="cover">${ph}${img}</div>
       <div class="meta">
         <div class="bt">${esc(b.t)}</div>
         <div class="ba">${esc(b.a)}${b.y?" · "+esc(b.y):""}</div>
-        <div class="br"><span class="tag"><span class="dot"></span>${esc(CATS[b.c].l)}</span>${fr}</div>
+        <div class="br"><span class="tag"><span class="dot"></span>${esc(CATS[b.c].l)}</span>${fr}${intr}</div>
       </div></button>`;
   }).join("");
   g.querySelectorAll(".book").forEach(el=>el.onclick=()=>openModal(BOOKS[el.dataset.i]));
@@ -254,10 +263,13 @@ function render(){
 function openModal(b){
   const img=b.cv?`<img src="${esc(b.cv)}" alt="" onerror="this.remove()" onload="if(this.naturalWidth<=2)this.remove()">`:"";
   const ph=`<div class="ph">${esc(b.t)}</div>`;
+  const isScreen=b.s==="ecran";
   const tags=[CATS[b.c].l,NAT[b.n]||b.n,b.y].filter(Boolean).map(t=>`<span>${esc(t)}</span>`).join("")
+    +(isScreen&&b.i?`<span style="background:var(--t-ia-soft);color:var(--t-ia)">${esc(INT[b.i]||b.i)}</span>`:"")
+    +(isScreen&&b.th?`<span>${esc(b.th)}</span>`:"")
     +(b.d==="oui"?'<span style="background:var(--t-data-soft);color:var(--t-data)">Disponible en français</span>':b.d==="non"?'<span>VO uniquement</span>':"");
   const links=[];
-  if(b.u) links.push(`<a class="btn btn-p" href="${esc(b.u)}" target="_blank" rel="noopener">Voir le livre ↗</a>`);
+  if(b.u) links.push(`<a class="btn btn-p" href="${esc(b.u)}" target="_blank" rel="noopener">${isScreen?"Voir la fiche ↗":"Voir le livre ↗"}</a>`);
   const c=document.getElementById("mContent");
   c.innerHTML=`<div class="m-grid" style="${tintVars(b.c)}">
     <div class="m-cover">${ph}${img}</div>
