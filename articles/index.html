@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articles &amp; enquêtes — Sébastien Rivière</title>
+<meta name="description" content="Analyses, décryptages, enquêtes et dossiers autour de l'IA, des outils numériques, de la conformité et de la commande publique.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sébastien Rivière">
+<meta property="og:title" content="Articles &amp; enquêtes — Sébastien Rivière">
+<meta property="og:description" content="Analyses, décryptages et dossiers autour de l'IA, des outils numériques et de la conformité.">
+<meta property="og:url" content="https://sebastien-riviere.github.io/articles/">
+<meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --bg:#f5f7fa; --bg-band:#eceff4;
+  --text:#1b2733; --muted:#566778; --faint:#8493a3;
+  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6;
+  --title:#1b2733; --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
+  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
+  --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+    --card:#16212e; --border:#26333f; --border-soft:#1e2a36; --title:#e7eef5;
+    --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37;
+    --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415; --shadow:0 6px 26px rgba(0,0,0,.42);
+    --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+    --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+    --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+  }
+}
+html[data-theme="light"]{
+  --bg:#f5f7fa; --bg-band:#eceff4; --text:#1b2733; --muted:#566778; --faint:#8493a3;
+  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6; --title:#1b2733;
+  --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
+  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6; --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
+  --t-art:#4453c4; --t-art-soft:#e4e6f8; --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+}
+html[data-theme="dark"]{
+  --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:#26333f; --border-soft:#1e2a36; --title:#e7eef5;
+  --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37;
+  --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415; --shadow:0 6px 26px rgba(0,0,0,.42);
+  --t-art:#9aa5ef; --t-art-soft:#1a1e33; --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--ui);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:inherit;text-decoration:none;}
+.maxw{max-width:1120px;width:100%;margin:0 auto;}
+.header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
+header{padding:24px 40px 0;}
+.head-top{display:flex;align-items:center;gap:16px;}
+.brand{display:flex;align-items:center;gap:15px;min-width:0;}
+.logo{flex:none;width:48px;height:48px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(60,45,25,.18);}
+.logo img{width:36px;height:36px;object-fit:contain;display:block;}
+.name{font-family:var(--ui);font-weight:800;font-size:25px;color:var(--title);letter-spacing:-0.7px;line-height:1.05;}
+.name a:hover{color:var(--accent-ink);}
+.sub{font-weight:700;font-size:12px;color:var(--faint);letter-spacing:.3px;margin-top:3px;}
+.head-actions{margin-left:auto;display:flex;align-items:center;gap:9px;}
+.theme-btn{width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;border:0;background:#b8731e;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;}
+.theme-btn:hover{filter:brightness(1.08);}.theme-btn:active{transform:scale(.96);}.theme-btn svg{width:19px;height:19px;}.theme-btn .ic-dark{display:none;}
+@media(prefers-color-scheme:dark){.theme-btn .ic-dark{display:block;}.theme-btn .ic-light{display:none;}}
+html[data-theme="dark"] .theme-btn .ic-dark{display:block;}html[data-theme="dark"] .theme-btn .ic-light{display:none;}
+html[data-theme="light"] .theme-btn .ic-dark{display:none;}html[data-theme="light"] .theme-btn .ic-light{display:block;}
+.icon-btn{width:38px;height:38px;flex:none;border-radius:10px;border:0;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s;}
+.icon-btn:hover{filter:brightness(1.08);}.icon-btn svg{width:18px;height:18px;}.icon-btn.li{background:#0a66c2;}
+.mainnav{display:flex;gap:4px;margin-top:20px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+.mainnav::-webkit-scrollbar{display:none;}
+.mainnav a{position:relative;white-space:nowrap;font-weight:700;font-size:14.5px;color:var(--muted);padding:11px 15px;border-radius:9px 9px 0 0;transition:color .15s,background .15s;}
+.mainnav a:hover{color:var(--text);background:color-mix(in srgb,var(--accent) 8%,transparent);}
+.mainnav a.active{color:var(--accent-ink);}
+.mainnav a.active::after{content:"";position:absolute;left:15px;right:15px;bottom:-1px;height:2.5px;border-radius:2px;background:var(--pop);}
+main{flex:1;padding:34px 40px 64px;}
+
+.page-head{margin-bottom:28px;}
+.page-head .kick{font-weight:800;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--pop-ink);}
+.page-head h1{font-weight:800;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.02em;color:var(--title);margin:8px 0 10px;}
+.page-head p{font-size:15px;color:var(--muted);line-height:1.55;max-width:660px;}
+
+/* Hero d'attente */
+.empty-hero{position:relative;border:1.5px dashed var(--t-art);border-radius:16px;background:radial-gradient(120% 140% at 100% 0%,var(--t-art-soft),transparent 60%),var(--card);padding:40px 34px;text-align:center;margin-bottom:38px;}
+.empty-hero .eh-ic{width:60px;height:60px;margin:0 auto 16px;border-radius:16px;background:var(--t-art-soft);color:var(--t-art);display:flex;align-items:center;justify-content:center;}
+.empty-hero .eh-ic svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.empty-hero h2{font-weight:800;font-size:20px;color:var(--title);margin-bottom:8px;}
+.empty-hero p{font-size:14.5px;color:var(--muted);line-height:1.6;max-width:520px;margin:0 auto;}
+.empty-hero .btn{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-weight:700;font-size:14px;padding:11px 20px;border-radius:11px;background:var(--t-art);color:#fff;transition:filter .15s;}
+.empty-hero .btn:hover{filter:brightness(1.08);}
+
+.section{margin-bottom:36px;}
+.section-title{display:flex;align-items:center;gap:11px;font-weight:800;font-size:18px;letter-spacing:-.2px;color:var(--title);margin-bottom:16px;}
+.section-title .rule{flex:1;height:2px;border-radius:2px;background:var(--border);}
+
+/* Catégories */
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
+.cat{border:1px solid var(--border);border-left:3px solid var(--c);border-radius:11px;background:var(--card);padding:15px 17px;}
+.cat .clabel{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--c);background:var(--cs);border-radius:20px;padding:3px 9px;margin-bottom:9px;}
+.cat h3{font-weight:800;font-size:15px;color:var(--title);margin-bottom:4px;}
+.cat p{font-size:12.5px;color:var(--muted);line-height:1.5;}
+
+/* Anatomie d'une future carte article */
+.note{border:1px solid var(--border);border-radius:12px;background:var(--bg-band);padding:16px 18px;font-size:13px;color:var(--muted);line-height:1.6;}
+.note b{color:var(--text);}
+.note .pill{display:inline-block;font-size:11px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);border-radius:6px;padding:2px 8px;margin:2px 3px;}
+
+footer{padding:22px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);}
+footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px;}
+@media(max-width:600px){
+  header{padding:20px 18px 0;}main{padding:26px 18px 44px;}footer{padding:18px;}
+  .name{font-size:22px;}.mainnav{margin-top:16px;}.mainnav a{font-size:14px;padding:10px 12px;}
+  .cats{grid-template-columns:1fr;}.empty-hero{padding:32px 20px;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="header-band">
+  <header class="maxw">
+    <div class="head-top">
+      <div class="brand">
+        <div class="logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="36" height="36"></div>
+        <div>
+          <div class="name"><a href="/">Sébastien Rivière</a></div>
+          <div class="sub">Apprendre, comprendre, transmettre</div>
+        </div>
+      </div>
+      <div class="head-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Basculer le thème clair / sombre" title="Thème clair / sombre">
+          <svg class="ic-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="ic-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
+        </button>
+        <a class="icon-btn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+        </a>
+      </div>
+    </div>
+    <nav class="mainnav maxw" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+      <a href="/articles/" class="active">Articles &amp; enquêtes</a>
+      <a href="/outils/">Outils</a>
+      <a href="/a-propos/">À propos</a>
+    </nav>
+  </header>
+</div>
+
+<main class="maxw">
+  <div class="page-head">
+    <div class="kick">Rubrique éditoriale</div>
+    <h1>Articles &amp; enquêtes</h1>
+    <p>Analyses, décryptages, enquêtes et dossiers autour de l'IA, des outils numériques, de la conformité et de la commande publique. Un regard indépendant, sourcé, sans jargon inutile.</p>
+  </div>
+
+  <div class="empty-hero">
+    <div class="eh-ic"><svg viewBox="0 0 24 24"><path d="M4 4h13a2 2 0 0 1 2 2v14H6a2 2 0 0 1-2-2z"/><path d="M19 6h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2M8 8h7M8 12h7M8 16h4"/></svg></div>
+    <h2>La rubrique démarre — les premiers contenus arrivent</h2>
+    <p>Les premiers articles et enquêtes sont en préparation. En attendant, explorez les outils et la médiathèque, ou suivez les publications sur LinkedIn pour être prévenu.</p>
+    <a class="btn" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener">Suivre sur LinkedIn →</a>
+  </div>
+
+  <section class="section">
+    <h2 class="section-title">Ce que couvrira la rubrique <span class="rule"></span></h2>
+    <div class="cats">
+      <div class="cat" style="--c:var(--t-ia);--cs:var(--t-ia-soft)">
+        <span class="clabel">IA</span>
+        <h3>Intelligence artificielle</h3>
+        <p>Décryptages de modèles, d'usages et de tendances, sans survente ni catastrophisme.</p>
+      </div>
+      <div class="cat" style="--c:var(--t-prod);--cs:var(--t-prod-soft)">
+        <span class="clabel">Outils</span>
+        <h3>Outils &amp; comparatifs</h3>
+        <p>Tests, comparatifs et retours d'expérience sur les outils numériques du quotidien.</p>
+      </div>
+      <div class="cat" style="--c:var(--t-art);--cs:var(--t-art-soft)">
+        <span class="clabel">Conformité</span>
+        <h3>Conformité &amp; gouvernance</h3>
+        <p>RGPD, IA Act, mise en conformité opérationnelle — expliqués pour agir concrètement.</p>
+      </div>
+      <div class="cat" style="--c:var(--t-cp);--cs:var(--t-cp-soft)">
+        <span class="clabel">Commande publique &amp; IA</span>
+        <h3>Achat public &amp; IA</h3>
+        <p>À la croisée de la commande publique et de l'IA : marchés, méthodes, cas concrets.</p>
+      </div>
+      <div class="cat" style="--c:var(--t-block);--cs:var(--t-block-soft)">
+        <span class="clabel">Blockchain</span>
+        <h3>Blockchain &amp; traçabilité</h3>
+        <p>Web3 utile, preuve, traçabilité et architectures de confiance — au-delà de la spéculation.</p>
+      </div>
+      <div class="cat" style="--c:var(--t-labo);--cs:var(--t-labo-soft)">
+        <span class="clabel">Enquêtes</span>
+        <h3>Enquêtes &amp; dossiers</h3>
+        <p>Investigations et dossiers de fond, documentés et croisés à partir de sources primaires.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="note">
+      Chaque article affichera : <span class="pill">catégorie</span><span class="pill">titre</span><span class="pill">résumé</span><span class="pill">date</span><span class="pill">temps de lecture</span> et un bouton <b>Lire l'article</b>. Le fil se remplira au rythme des publications.
+    </div>
+  </section>
+</main>
+
+<footer class="maxw">
+  <span>© Sébastien Rivière · 2026</span>
+  <span class="foot-links">
+    <a href="/">Accueil</a>
+    <a href="/outils/">Outils</a>
+    <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+    <a href="/a-propos/">À propos</a>
+  </span>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,saved=null;
+  try{saved=localStorage.getItem('theme');}catch(e){}
+  if(saved==='light'||saved==='dark')root.setAttribute('data-theme',saved);
+  var btn=document.getElementById('themeBtn');
+  function current(){var a=root.getAttribute('data-theme');if(a)return a;return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+  function syncMeta(){var m=document.querySelectorAll('meta[name=theme-color]');if(root.getAttribute('data-theme')){m.forEach(function(x){x.remove();});var meta=document.createElement('meta');meta.name='theme-color';meta.content=current()==='dark'?'#0f1722':'#f5f7fa';document.head.appendChild(meta);}}
+  btn.addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next);}catch(e){}syncMeta();});
+})();
+</script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

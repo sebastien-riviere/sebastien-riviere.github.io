@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sébastien Rivière — Apprendre, comprendre, transmettre</title>
-<meta name="description" content="Un hub d'outils et de guides gratuits qui tournent dans votre navigateur : sans compte, sans installation, sans envoi de vos données.">
+<title>Sébastien Rivière — IA, outils numériques & ressources pratiques</title>
+<meta name="description" content="Un hub d'outils, de guides, de glossaires, d'enquêtes et de ressources pour comprendre l'IA, choisir les bons usages et structurer ses pratiques numériques.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Sébastien Rivière — Apprendre, comprendre, transmettre">
-<meta property="og:title" content="Sébastien Rivière — Apprendre, comprendre, transmettre">
-<meta property="og:description" content="Des outils concrets pour l'IA, le numérique et l'achat public — simples, sans compte, en local.">
+<meta property="og:site_name" content="Sébastien Rivière">
+<meta property="og:title" content="Sébastien Rivière — IA, outils numériques & ressources pratiques">
+<meta property="og:description" content="Comprendre l'IA, choisir les bons outils, structurer ses usages, publier des analyses.">
 <meta property="og:url" content="https://sebastien-riviere.github.io/">
 <meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -20,25 +20,22 @@
 <style>
 /* ============================================================
    PALETTE — slate IA + pop ambre, police Inter (locale)
-   Aligné sur styles/ia-kit.css des pages outils.
-   5 familles = 5 teintes --t-* (code couleur conservé).
+   6 familles = 6 teintes --t-* (IA, Cde publique, Prod, Blockchain, Labo, Articles)
    ============================================================ */
 :root{
-  /* fonts (Inter local, partagé avec le kit des pages outils) */
   --ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --bg:#f5f7fa; --bg-band:#eceff4;
   --text:#1b2733; --muted:#566778; --faint:#8493a3;
   --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6;
   --title:#1b2733; --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
-  /* pop chaud (ambre) — accent SOBRE : kicker, badge Nouveau, survols */
   --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
   --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
-  /* teintes catégorie (5 familles — inchangées) */
   --t-ia:#41586b;    --t-ia-soft:#e9ecf2;
   --t-cp:#b23b3b;    --t-cp-soft:#f6dede;
   --t-prod:#3f7a4e;  --t-prod-soft:#e3efe1;
   --t-block:#b8570f; --t-block-soft:#fae0cc;
   --t-labo:#7345a0;  --t-labo-soft:#ece2f6;
+  --t-art:#4453c4;   --t-art-soft:#e4e6f8;
 }
 @media(prefers-color-scheme:dark){
   :root{
@@ -53,9 +50,9 @@
     --t-prod:#8fc09a;  --t-prod-soft:#1a2a20;
     --t-block:#f07838; --t-block-soft:#28180a;
     --t-labo:#c2a3e3;  --t-labo-soft:#251a33;
+    --t-art:#9aa5ef;   --t-art-soft:#1a1e33;
   }
 }
-/* override explicite quand l'utilisateur choisit un thème (JS) */
 html[data-theme="light"]{
   --bg:#f5f7fa; --bg-band:#eceff4; --text:#1b2733; --muted:#566778; --faint:#8493a3;
   --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6; --title:#1b2733;
@@ -64,7 +61,7 @@ html[data-theme="light"]{
   --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
   --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
   --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
-  --t-labo:#7345a0; --t-labo-soft:#ece2f6;
+  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
 }
 html[data-theme="dark"]{
   --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
@@ -74,7 +71,7 @@ html[data-theme="dark"]{
   --shadow:0 6px 26px rgba(0,0,0,.42);
   --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
   --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
-  --t-labo:#c2a3e3; --t-labo-soft:#251a33;
+  --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -88,24 +85,20 @@ body{
 a{color:inherit;text-decoration:none;}
 .maxw{max-width:1120px;width:100%;margin:0 auto;}
 
-/* ── Header (compact) ── */
+/* ── Header ── */
 .header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
-header{padding:30px 40px 24px;}
-.head-top{display:flex;align-items:flex-start;gap:16px;}
+header{padding:24px 40px 0;}
+.head-top{display:flex;align-items:center;gap:16px;}
 .brand{display:flex;align-items:center;gap:15px;min-width:0;}
-.logo{flex:none;width:50px;height:50px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(60,45,25,.18);}
-.logo img{width:38px;height:38px;object-fit:contain;display:block;}
-.name{font-family:var(--ui);font-weight:800;font-size:28px;color:var(--title);letter-spacing:-0.8px;line-height:1.05;}
+.logo{flex:none;width:48px;height:48px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(60,45,25,.18);}
+.logo img{width:36px;height:36px;object-fit:contain;display:block;}
+.name{font-family:var(--ui);font-weight:800;font-size:25px;color:var(--title);letter-spacing:-0.7px;line-height:1.05;}
 .name a:hover{color:var(--accent-ink);}
-.sub{font-family:var(--ui);font-weight:700;font-size:12.5px;color:var(--faint);letter-spacing:.3px;margin-top:4px;}
+.sub{font-family:var(--ui);font-weight:700;font-size:12px;color:var(--faint);letter-spacing:.3px;margin-top:3px;}
 .head-actions{margin-left:auto;display:flex;align-items:center;gap:9px;position:relative;}
 .copy-toast{position:absolute;top:48px;right:0;background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:6px 11px;border-radius:8px;white-space:nowrap;opacity:0;transform:translateY(-4px);transition:opacity .18s,transform .18s;pointer-events:none;z-index:30;box-shadow:var(--shadow);}
 .copy-toast.show{opacity:1;transform:translateY(0);}
-.theme-btn{
-  width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;border:0;
-  background:#b8731e;color:#fff;
-  display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;
-}
+.theme-btn{width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;border:0;background:#b8731e;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;}
 .theme-btn:hover{filter:brightness(1.08);}
 .theme-btn:active{transform:scale(.96);}
 .theme-btn svg{width:19px;height:19px;}
@@ -115,19 +108,38 @@ html[data-theme="dark"] .theme-btn .ic-dark{display:block;}
 html[data-theme="dark"] .theme-btn .ic-light{display:none;}
 html[data-theme="light"] .theme-btn .ic-dark{display:none;}
 html[data-theme="light"] .theme-btn .ic-light{display:block;}
-.icon-btn{
-  width:38px;height:38px;flex:none;border-radius:10px;border:0;color:#fff;
-  display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;
-}
+.icon-btn{width:38px;height:38px;flex:none;border-radius:10px;border:0;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;}
 .icon-btn:hover{filter:brightness(1.08);text-decoration:none;}
 .icon-btn:active{transform:scale(.96);}
 .icon-btn svg{width:18px;height:18px;}
 .icon-btn.mail{background:#41586b;}
 .icon-btn.li{background:#0a66c2;}
-.tagline{font-family:var(--ui);font-weight:800;font-size:clamp(20px,2.6vw,25px);letter-spacing:-.01em;color:var(--title);margin-top:18px;max-width:720px;line-height:1.32;}
-.tagline b{color:var(--accent-ink);}
-.props{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;}
-.prop{display:inline-flex;align-items:center;gap:7px;font-family:var(--ui);font-weight:700;font-size:12.5px;border-radius:20px;padding:4px 12px 4px 4px;border:1px solid transparent;}
+
+/* ── Nav principale (site) ── */
+.mainnav{display:flex;gap:4px;margin-top:20px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+.mainnav::-webkit-scrollbar{display:none;}
+.mainnav a{position:relative;white-space:nowrap;font-family:var(--ui);font-weight:700;font-size:14.5px;color:var(--muted);padding:11px 15px;border-radius:9px 9px 0 0;transition:color .15s,background .15s;}
+.mainnav a:hover{color:var(--text);background:color-mix(in srgb,var(--accent) 8%,transparent);}
+.mainnav a.active{color:var(--accent-ink);}
+.mainnav a.active::after{content:"";position:absolute;left:15px;right:15px;bottom:-1px;height:2.5px;border-radius:2px;background:var(--pop);}
+
+/* ── Main ── */
+main{flex:1;padding:34px 40px 64px;}
+
+/* ── Hero ── */
+.hero{margin-bottom:38px;}
+.hero h1{font-family:var(--ui);font-weight:800;font-size:clamp(26px,4vw,40px);letter-spacing:-.02em;line-height:1.12;color:var(--title);max-width:820px;}
+.hero h1 b{color:var(--accent-ink);}
+.hero p{font-size:clamp(15px,1.8vw,18px);color:var(--muted);line-height:1.55;max-width:660px;margin-top:16px;}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--ui);font-weight:700;font-size:14.5px;padding:12px 20px;border-radius:11px;border:1.5px solid transparent;transition:transform .12s,filter .15s,background .15s,border-color .15s;}
+.btn:active{transform:scale(.98);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{filter:brightness(1.08);}
+.btn-ghost{background:var(--card);color:var(--text);border-color:var(--border);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-ink);}
+.hero-props{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px;}
+.prop{display:inline-flex;align-items:center;gap:7px;font-family:var(--ui);font-weight:700;font-size:12.5px;border-radius:20px;padding:4px 12px 4px 4px;}
 .prop .pic{width:22px;height:22px;border-radius:50%;flex:none;display:inline-flex;align-items:center;justify-content:center;color:var(--card);}
 .prop .pic svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
 .prop.local{color:var(--t-prod);background:var(--t-prod-soft);}
@@ -137,51 +149,17 @@ html[data-theme="light"] .theme-btn .ic-light{display:block;}
 .prop.free{color:var(--t-block);background:var(--t-block-soft);}
 .prop.free .pic{background:var(--t-block);}
 
-/* ── Sticky category nav ── */
-.catnav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(9px);border-bottom:1px solid var(--border);}
-.catnav-inner{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:9px 40px;}
-.catnav-inner::-webkit-scrollbar{display:none;}
-.catnav a{display:flex;align-items:center;gap:7px;white-space:nowrap;font-family:var(--ui);font-weight:700;font-size:13px;color:var(--muted);padding:6px 13px;border-radius:20px;border:1.5px solid transparent;transition:color .15s,border-color .15s,background .15s;}
-.catnav a .dot{width:8px;height:8px;border-radius:50%;background:var(--d);flex:none;}
-.catnav a .ct{font-size:11px;color:var(--faint);font-weight:800;}
-.catnav a:hover{color:var(--text);border-color:var(--border);}
-.catnav a.active{color:var(--text);background:var(--card);border-color:currentColor;}
-.catnav a.active .ct{color:var(--muted);}
-
-/* ── Main ── */
-main{flex:1;padding:26px 40px 60px;}
-
-/* ── À la une ── */
-.eyebrow{display:flex;align-items:center;gap:13px;margin:6px 0 14px;}
-.eyebrow .lbl{font-family:var(--ui);font-weight:700;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--pop-ink);}
-.eyebrow .rule{flex:1;height:1px;background:var(--border);}
-.featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px;}
-.feat{
-  position:relative;border:1.5px solid var(--border);border-radius:13px;
-  background:radial-gradient(130% 150% at 100% 0%,var(--tint-soft),transparent 62%),var(--card);
-  transition:transform .18s,box-shadow .18s,border-color .18s;
-}
-.feat:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--tint);}
-.feat>a{display:block;padding:22px 24px;}
-.feat .card-title{font-size:22px;}
-.feat .card-desc{-webkit-line-clamp:2;}
-
 /* ── Sections ── */
-.section{margin-bottom:34px;scroll-margin-top:66px;}
-.section-title{display:flex;align-items:center;gap:11px;font-family:var(--ui);font-weight:800;font-size:19px;letter-spacing:-.2px;color:var(--title);margin-bottom:16px;}
-.section-title .s-ic{width:30px;height:30px;flex:none;border-radius:9px;background:var(--tint-soft);color:var(--tint);display:flex;align-items:center;justify-content:center;}
-.section-title .s-ic svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.section-title .count{font-family:var(--ui);font-size:12px;font-weight:800;color:var(--muted);background:var(--tint-soft);border-radius:20px;padding:2px 10px;}
-.section-title .rule{flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--tint),transparent);opacity:.55;}
+.section{margin-bottom:40px;}
+.section-head{display:flex;align-items:baseline;gap:11px;margin-bottom:18px;}
+.section-head h2{font-family:var(--ui);font-weight:800;font-size:19px;letter-spacing:-.2px;color:var(--title);}
+.section-head .rule{flex:1;height:2px;border-radius:2px;background:var(--border);}
+.section-head .more{font-family:var(--ui);font-weight:700;font-size:13px;color:var(--accent);white-space:nowrap;}
+.section-head .more:hover{color:var(--pop-ink);}
 
-/* ── Cards (structure conservée + teinte catégorie) ── */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(296px,1fr));gap:14px;}
-.card{
-  background:var(--card);
-  background:color-mix(in srgb,var(--tint) 7%,var(--card));
-  border:1px solid var(--border);border-radius:12px;
-  transition:transform .18s,box-shadow .18s,border-color .18s;
-}
+/* ── Cartes ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:14px;}
+.card{background:color-mix(in srgb,var(--tint) 7%,var(--card));border:1px solid var(--border);border-radius:12px;transition:transform .18s,box-shadow .18s,border-color .18s;}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--tint);}
 .card>a{display:block;padding:17px 18px;color:inherit;}
 .card-icon{width:36px;height:36px;border-radius:10px;background:var(--tint-soft);color:var(--tint);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
@@ -196,47 +174,71 @@ main{flex:1;padding:26px 40px 60px;}
 html[data-theme="dark"] .badge-new{color:#1a1208;}
 html[data-theme="light"] .badge-new{color:#fff;}
 
-/* lower band: 3 petites rubriques côte à côte */
-.band{display:grid;grid-template-columns:1.55fr 1fr 1fr;gap:26px;}
-.band .section{margin-bottom:0;}
-.band .grid{grid-template-columns:1fr;}
+/* ── Carte phare (featured) ── */
+.feat{position:relative;border:1.5px solid var(--tint);border-radius:15px;background:radial-gradient(130% 150% at 100% 0%,var(--tint-soft),transparent 60%),var(--card);transition:transform .18s,box-shadow .18s;overflow:hidden;}
+.feat::before{content:"";position:absolute;inset:0;border-radius:15px;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tint) 30%,transparent);pointer-events:none;}
+.feat:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.feat>a{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;padding:26px 30px;}
+.feat-badge{position:absolute;top:16px;right:18px;font-family:var(--ui);font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--tint);background:var(--tint-soft);padding:4px 11px;border-radius:20px;}
+.feat-ic{width:66px;height:66px;flex:none;border-radius:16px;background:var(--tint-soft);color:var(--tint);display:flex;align-items:center;justify-content:center;}
+.feat-ic svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.feat-body .card-label{color:var(--tint);}
+.feat-body h3{font-family:var(--ui);font-weight:800;font-size:clamp(20px,2.6vw,25px);letter-spacing:-.3px;color:var(--title);line-height:1.2;margin:2px 0 8px;}
+.feat-body p{font-size:14.5px;color:var(--muted);line-height:1.55;max-width:560px;}
+.feat-cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--ui);font-weight:800;font-size:14px;color:#fff;background:var(--tint);padding:10px 18px;border-radius:11px;transition:filter .15s;}
+.feat:hover .feat-cta{filter:brightness(1.08);}
 
-/* entrée discrète */
+/* ── Carte article (empty state) ── */
+.article-empty{grid-column:1/-1;border:1.5px dashed var(--tint);border-radius:14px;background:var(--tint-soft);padding:26px 28px;display:flex;flex-wrap:wrap;align-items:center;gap:18px;}
+.article-empty .ae-body{flex:1;min-width:240px;}
+.article-empty .card-label{color:var(--tint);}
+.article-empty h3{font-family:var(--ui);font-weight:800;font-size:18px;color:var(--title);margin:4px 0 6px;}
+.article-empty p{font-size:13.5px;color:var(--muted);line-height:1.55;max-width:520px;}
+
+/* ── À propos court ── */
+.about-block{border:1px solid var(--border);border-radius:14px;background:var(--card);padding:24px 28px;display:flex;flex-wrap:wrap;align-items:center;gap:18px;}
+.about-block .ab-ic{width:46px;height:46px;flex:none;border-radius:12px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;}
+.about-block .ab-ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.about-block .ab-body{flex:1;min-width:260px;}
+.about-block h3{font-family:var(--ui);font-weight:800;font-size:17px;color:var(--title);margin-bottom:5px;}
+.about-block p{font-size:13.5px;color:var(--muted);line-height:1.55;}
+
 @keyframes rise{from{opacity:0;transform:translateY(9px);}to{opacity:1;transform:none;}}
-.grid .card,.feat{animation:rise .4s ease both;}
+.grid .card,.feat,.hero{animation:rise .4s ease both;}
 .grid .card:nth-child(2){animation-delay:.04s;}
 .grid .card:nth-child(3){animation-delay:.08s;}
 .grid .card:nth-child(4){animation-delay:.12s;}
 
 /* ── Footer ── */
-footer{padding:20px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);}
+footer{padding:22px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);}
 footer a{color:var(--faint);}
 footer a:hover{color:var(--accent-ink);}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px;}
 .foot-contact{display:inline-flex;align-items:center;gap:7px;margin-left:auto;}
 .contact-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--accent-soft);border:1px solid var(--border);color:var(--accent-ink);transition:background .15s,color .15s;}
 .contact-btn:hover{background:var(--accent);color:#fff;}
 .contact-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 
 /* ── Responsive ── */
-@media(max-width:880px){
-  .featured-grid{grid-template-columns:1fr;}
-  .band{grid-template-columns:1fr;gap:30px;}
-  .band .section{margin-bottom:0;}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(248px,1fr));}
+@media(max-width:760px){
+  .feat>a{grid-template-columns:1fr;gap:14px;padding:22px 20px;}
+  .feat-ic{width:54px;height:54px;}
+  .feat-ic svg{width:28px;height:28px;}
+  .feat-badge{position:static;align-self:flex-start;margin-bottom:2px;}
 }
 @media(max-width:600px){
-  header{padding:24px 18px 20px;}
-  main{padding:20px 18px 44px;}
-  .catnav-inner{padding:9px 18px;}
+  header{padding:20px 18px 0;}
+  main{padding:26px 18px 44px;}
   footer{padding:18px;}
-  .name{font-size:25px;}
-  .tagline{font-size:15px;}
-  .props{display:none;}
+  .name{font-size:22px;}
+  .hero-props{display:none;}
   .grid{grid-template-columns:1fr;}
+  .mainnav{margin-top:16px;}
+  .mainnav a{font-size:14px;padding:10px 12px;}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
-  .grid .card,.feat{animation:none;}
+  .grid .card,.feat,.hero{animation:none;}
   *{transition:none!important;}
 }
 </style>
@@ -247,9 +249,9 @@ footer a:hover{color:var(--accent-ink);}
   <header class="maxw">
     <div class="head-top">
       <div class="brand">
-        <div class="logo"><img src="logo.png" alt="Logo Sébastien Rivière" width="38" height="38"></div>
+        <div class="logo"><img src="logo.png" alt="Logo Sébastien Rivière" width="36" height="36"></div>
         <div>
-          <h1 class="name"><a href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener">Sébastien Rivière</a></h1>
+          <div class="name"><a href="/">Sébastien Rivière</a></div>
           <div class="sub">Apprendre, comprendre, transmettre</div>
         </div>
       </div>
@@ -267,70 +269,61 @@ footer a:hover{color:var(--accent-ink);}
         <span class="copy-toast" id="copyToast" role="status" aria-live="polite"></span>
       </div>
     </div>
-    <p class="tagline">Comprendre l'IA, le numérique et l'achat public — et <b>passer à l'action</b>, avec des outils simples et gratuits.</p>
-    <div class="props">
+    <nav class="mainnav maxw" aria-label="Navigation principale">
+      <a href="/" class="active">Accueil</a>
+      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+      <a href="/articles/">Articles &amp; enquêtes</a>
+      <a href="/outils/">Outils</a>
+      <a href="/a-propos/">À propos</a>
+    </nav>
+  </header>
+</div>
+
+<main class="maxw">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>IA, outils numériques <b>&amp; ressources pratiques</b></h1>
+    <p>Des outils, guides, glossaires, enquêtes et ressources pour comprendre l'intelligence artificielle, choisir les bons usages et structurer ses pratiques numériques.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="/outils/">Découvrir les outils IA →</a>
+      <a class="btn btn-ghost" href="/outils/mediatheque-ia/">Explorer la médiathèque IA</a>
+    </div>
+    <div class="hero-props">
       <span class="prop local"><span class="pic"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>En local</span>
       <span class="prop noacc"><span class="pic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Sans compte</span>
       <span class="prop free"><span class="pic"><svg viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.4"/></svg></span>Gratuit</span>
     </div>
-  </header>
-</div>
+  </section>
 
-<nav class="catnav" aria-label="Catégories">
-  <div class="catnav-inner maxw">
-    <a href="#ia" data-target="ia"><span class="dot" style="--d:var(--t-ia)"></span>IA <span class="ct">6</span></a>
-    <a href="#commande-publique" data-target="commande-publique"><span class="dot" style="--d:var(--t-cp)"></span>Commande publique <span class="ct">5</span></a>
-    <a href="#productivite" data-target="productivite"><span class="dot" style="--d:var(--t-prod)"></span>Productivité <span class="ct">3</span></a>
-    <a href="#blockchain" data-target="blockchain"><span class="dot" style="--d:var(--t-block)"></span>Blockchain &amp; Finance <span class="ct">1</span></a>
-    <a href="#labo" data-target="labo"><span class="dot" style="--d:var(--t-labo)"></span>Labo <span class="ct">1</span></a>
-  </div>
-</nav>
-
-<main class="maxw">
-
-  <!-- À LA UNE -->
-  <div class="eyebrow"><span class="lbl">À la une</span><span class="rule"></span></div>
-  <div class="featured-grid">
-    <div class="card feat" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
+  <!-- OUTIL PHARE -->
+  <section class="section" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
+    <div class="feat">
+      <span class="feat-badge">Outil phare</span>
       <a href="/outils/quiz-ia/">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
-        <div class="card-label">Outil · Intelligence artificielle</div>
-        <h3 class="card-title">Quelle IA est faite pour vous ?</h3>
-        <div class="card-desc">Un questionnaire pour trouver l'assistant IA le plus adapté à votre usage — et découvrir ce qu'une IA sait faire en 2026.</div>
-        <div class="card-arrow">Ouvrir l'outil →</div>
+        <div class="feat-ic"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+        <div class="feat-body">
+          <div class="card-label">Diagnostic IA</div>
+          <h3>Quelle IA est faite pour vous ?</h3>
+          <p>Un questionnaire simple pour identifier l'assistant IA le plus adapté à votre profil, vos usages et votre niveau.</p>
+          <span class="feat-cta">Commencer le questionnaire →</span>
+        </div>
       </a>
     </div>
-    <div class="card feat" style="--tint:var(--t-cp);--tint-soft:var(--t-cp-soft)">
-      <a href="/outils/achat-public/">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 4-5"/></svg></div>
-        <div class="card-label">Outil · Commande publique</div>
-        <h3 class="card-title">Computation des seuils <span class="badge-new">Nouveau</span></h3>
-        <div class="card-desc">Cumul par famille homogène, procédure applicable, alerte de fractionnement et reporting annuel. Seuils 2026 sourcés.</div>
-        <div class="card-arrow">Ouvrir l'outil →</div>
-      </a>
-    </div>
-  </div>
+  </section>
 
-  <!-- IA -->
-  <section class="section" id="ia" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
-    <h2 class="section-title">
-      <span class="s-ic"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span>
-      Intelligence artificielle <span class="count">6</span><span class="rule"></span>
-    </h2>
+  <!-- RESSOURCES IA ESSENTIELLES -->
+  <section class="section" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
+    <div class="section-head">
+      <h2>Ressources IA essentielles</h2>
+      <span class="rule"></span>
+      <a class="more" href="/outils/">Tout voir →</a>
+    </div>
     <div class="grid">
-      <div class="card">
-        <a href="/outils/quiz-ia/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-          <div class="card-label">Outil · Choisir son IA</div>
-          <h3 class="card-title">Quelle IA est faite pour vous ?</h3>
-          <div class="card-desc">Un questionnaire pour trouver l'assistant IA le plus adapté à votre usage — et découvrir ce qu'une IA sait faire en 2026.</div>
-          <div class="card-arrow">Ouvrir l'outil →</div>
-        </a>
-      </div>
       <div class="card">
         <a href="/guide/prise-en-main-claude/">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M18 3v18"/><path d="M8 8h6M8 11h6"/></svg></div>
-          <div class="card-label">Guide · Débuter avec Claude</div>
+          <div class="card-label">Guide</div>
           <h3 class="card-title">Prendre Claude en main</h3>
           <div class="card-desc">Guide pas-à-pas pour débuter : choisir son modèle, paramétrer instructions, mémoire, projets et connecteurs — avec prompts à copier-coller.</div>
           <div class="card-arrow">Lire le guide →</div>
@@ -339,7 +332,7 @@ footer a:hover{color:var(--accent-ink);}
       <div class="card">
         <a href="/guide/guide-token">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2 4 7v10l8 5 8-5V7z"/><path d="m9.5 12 1.8 1.8 3.7-3.8"/></svg></div>
-          <div class="card-label">Guide · Tokens &amp; usage</div>
+          <div class="card-label">Guide</div>
           <h3 class="card-title">Vos tokens Claude, c'est précieux</h3>
           <div class="card-desc">Comprendre, configurer et optimiser votre usage de Claude au quotidien.</div>
           <div class="card-arrow">Lire le guide →</div>
@@ -350,7 +343,7 @@ footer a:hover{color:var(--accent-ink);}
           <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
           <div class="card-label">Annuaire</div>
           <h3 class="card-title">Annuaire des outils IA</h3>
-          <div class="card-desc">Une sélection d'outils IA classés par usage et expliqués simplement, avec repères chiffrés (valorisations, audience, popularité). Sans jargon.</div>
+          <div class="card-desc">Une sélection d'outils IA classés par usage et expliqués simplement, avec repères chiffrés. Sans jargon.</div>
           <div class="card-arrow">Ouvrir l'annuaire →</div>
         </a>
       </div>
@@ -358,8 +351,8 @@ footer a:hover{color:var(--accent-ink);}
         <a href="/outils/glossaire-ia/">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
           <div class="card-label">Glossaire</div>
-          <h3 class="card-title">Glossaire de l'IA <span class="badge-new">Nouveau</span></h3>
-          <div class="card-desc">Les mots de l'IA expliqués en clair : pour chaque terme, une analogie, pourquoi ça compte et le piège à éviter. Recherche, filtres et repère « hype ».</div>
+          <h3 class="card-title">Glossaire de l'IA</h3>
+          <div class="card-desc">Les mots de l'IA expliqués en clair : pour chaque terme, une analogie, pourquoi ça compte et le piège à éviter.</div>
           <div class="card-arrow">Ouvrir le glossaire →</div>
         </a>
       </div>
@@ -367,139 +360,93 @@ footer a:hover{color:var(--accent-ink);}
         <a href="/outils/mediatheque-ia/">
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 4h6v16H4z"/><path d="M10 4h6v16h-6z"/><path d="m16 4 4 .8-2.6 14.4-4-.8z"/></svg></div>
           <div class="card-label">Médiathèque</div>
-          <h3 class="card-title">Livres, films &amp; séries sur l'IA <span class="badge-new">Nouveau</span></h3>
-          <div class="card-desc">Une sélection pour comprendre l'IA et la data (livres de référence), explorer son imaginaire (science-fiction) et ce qui se joue à l'écran (films, séries, documentaires) — avec résumés, couvertures et repère réflexion / divertissement.</div>
+          <h3 class="card-title">Livres, films &amp; séries sur l'IA</h3>
+          <div class="card-desc">Une sélection pour comprendre l'IA (livres de référence), explorer son imaginaire et ce qui se joue à l'écran — résumés, couvertures, repère réflexion / divertissement.</div>
           <div class="card-arrow">Ouvrir la médiathèque →</div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- COMMANDE PUBLIQUE -->
-  <section class="section" id="commande-publique" style="--tint:var(--t-cp);--tint-soft:var(--t-cp-soft)">
-    <h2 class="section-title">
-      <span class="s-ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M8 21h8M6 7h12M6 7l-3 6a3 3 0 0 0 6 0zM18 7l-3 6a3 3 0 0 0 6 0z"/></svg></span>
-      Commande publique <span class="count">5</span><span class="rule"></span>
-    </h2>
+  <!-- ARTICLES & ENQUÊTES -->
+  <section class="section" style="--tint:var(--t-art);--tint-soft:var(--t-art-soft)">
+    <div class="section-head">
+      <h2>Derniers articles &amp; enquêtes</h2>
+      <span class="rule"></span>
+      <a class="more" href="/articles/">Toute la rubrique →</a>
+    </div>
+    <div class="grid">
+      <div class="article-empty">
+        <div class="ae-body">
+          <div class="card-label">Articles &amp; enquêtes</div>
+          <h3>Bientôt : analyses, décryptages et dossiers</h3>
+          <p>Des analyses, décryptages et dossiers autour de l'IA, des outils numériques et de la conformité. La rubrique démarre — les premiers contenus arrivent.</p>
+        </div>
+        <a class="btn btn-primary" href="/articles/">Découvrir la rubrique →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTILS PRATIQUES -->
+  <section class="section" style="--tint:var(--t-prod);--tint-soft:var(--t-prod-soft)">
+    <div class="section-head">
+      <h2>Outils pratiques</h2>
+      <span class="rule"></span>
+      <a class="more" href="/outils/#productivite">Voir tous les outils →</a>
+    </div>
     <div class="grid">
       <div class="card">
-        <a href="/outils/delais-marches/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M9 14l2 2 4-4"/></svg></div>
+        <a href="/outils/MD-Convert/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h2v4M14 13l1.5 4 1.5-4"/></svg></div>
           <div class="card-label">Outil</div>
-          <h3 class="card-title">Rétroplanning des délais</h3>
-          <div class="card-desc">Choisissez une procédure et une date cible : l'outil cale les délais légaux et déroule le calendrier de toute la procédure (8 procédures, MAPA à concours). Report jours fériés, export agenda.</div>
+          <h3 class="card-title">MD Convert</h3>
+          <div class="card-desc">Convertissez vos fichiers en Markdown en local — PDF, DOCX, images — sans rien installer ni envoyer.</div>
           <div class="card-arrow">Ouvrir l'outil →</div>
         </a>
       </div>
       <div class="card">
-        <a href="/outils/annuaire-achat-public/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <a href="/outils/MonBureauPDF/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="13" height="16" rx="2"/><path d="M8 8h5M8 12h5"/><path d="M8 21h10a2 2 0 0 0 2-2V8"/></svg></div>
           <div class="card-label">Outil</div>
-          <h3 class="card-title">Annuaire de l'écosystème</h3>
-          <div class="card-desc">Tout l'écosystème de la commande publique au même endroit : plateformes, centrales, sources officielles, presse, experts et cabinets d'AMO — par région, besoin et usage. ~164 sources vérifiées.</div>
+          <h3 class="card-title">MonBureauPDF</h3>
+          <div class="card-desc">Fusionnez, réorganisez, compressez et exportez vos PDF directement dans le navigateur — sans compte, sans upload.</div>
           <div class="card-arrow">Ouvrir l'outil →</div>
         </a>
       </div>
       <div class="card">
-        <a href="/outils/observatoire-ia/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4.9 19.1A10 10 0 0 1 19.1 4.9M7.8 16.2a6 6 0 0 1 8.4-8.4"/><circle cx="12" cy="12" r="2"/></svg></div>
-          <div class="card-label">Observatoire</div>
-          <h3 class="card-title">Marchés publics IA</h3>
-          <div class="card-desc">Le fil des consultations « intelligence artificielle, données, numérique » publiées en France — capté, filtré et dédoublonné. Filtres par thème, source et échéance. Mis à jour chaque jour.</div>
-          <div class="card-arrow">Ouvrir l'observatoire →</div>
-        </a>
-      </div>
-      <div class="card">
-        <a href="/outils/grille-criteres/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <a href="/outils/MonBureauRECORD/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/></svg></div>
           <div class="card-label">Outil</div>
-          <h3 class="card-title">Assistant de critères &amp; notation</h3>
-          <div class="card-desc">Composez des critères d'attribution adaptés à l'objet : sous-critères par type de marché, pondérations conseillées et formules de notation — avec l'alerte du critère environnemental obligatoire au 21 août 2026.</div>
+          <h3 class="card-title">MonBureauRECORD</h3>
+          <div class="card-desc">Enregistrez vos réunions Zoom, Teams ou Meet et obtenez un compte rendu — sans compte, sans upload, sans IA.</div>
           <div class="card-arrow">Ouvrir l'outil →</div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- BAND : Productivité + Blockchain + Labo -->
-  <div class="band">
-    <section class="section" id="productivite" style="--tint:var(--t-prod);--tint-soft:var(--t-prod-soft)">
-      <h2 class="section-title">
-        <span class="s-ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.7 2.7-2-2z"/></svg></span>
-        Productivité <span class="count">3</span>
-      </h2>
-      <div class="grid">
-        <div class="card">
-          <a href="/outils/MD-Convert/">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h2v4M14 13l1.5 4 1.5-4"/></svg></div>
-            <div class="card-label">Outil</div>
-            <h3 class="card-title">MD Convert</h3>
-            <div class="card-desc">Convertissez vos fichiers en Markdown en local — PDF, DOCX, images — sans rien installer ni envoyer.</div>
-            <div class="card-arrow">Ouvrir l'outil →</div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="/outils/MonBureauPDF/">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="13" height="16" rx="2"/><path d="M8 8h5M8 12h5"/><path d="M8 21h10a2 2 0 0 0 2-2V8"/></svg></div>
-            <div class="card-label">Outil</div>
-            <h3 class="card-title">MonBureauPDF</h3>
-            <div class="card-desc">Fusionnez, réorganisez, compressez et exportez vos PDF directement dans le navigateur — sans compte, sans upload.</div>
-            <div class="card-arrow">Ouvrir l'outil →</div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="/outils/MonBureauRECORD/">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/></svg></div>
-            <div class="card-label">Outil</div>
-            <h3 class="card-title">MonBureauRECORD</h3>
-            <div class="card-desc">Enregistrez vos réunions Zoom, Teams ou Meet et obtenez un compte rendu — sans compte, sans upload, sans IA.</div>
-            <div class="card-arrow">Ouvrir l'outil →</div>
-          </a>
-        </div>
+  <!-- À PROPOS COURT -->
+  <section class="section">
+    <div class="about-block">
+      <div class="ab-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+      <div class="ab-body">
+        <h3>À propos</h3>
+        <p>Un espace de veille, d'outils et d'analyse autour de l'IA, de la conformité, de l'automatisation et des usages numériques professionnels.</p>
       </div>
-    </section>
-
-    <section class="section" id="blockchain" style="--tint:var(--t-block);--tint-soft:var(--t-block-soft)">
-      <h2 class="section-title">
-        <span class="s-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4a3 3 0 0 1 3 3V14"/></svg></span>
-        Blockchain &amp; Finance <span class="count">1</span>
-      </h2>
-      <div class="grid">
-        <div class="card">
-          <a href="https://cryptopilot.pages.dev/" target="_blank" rel="noopener">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><polyline points="3 16 9 10 13 13 21 5"/><polyline points="21 10 21 5 16 5"/></svg></div>
-            <div class="card-label">Outil · Fiscalité crypto</div>
-            <h3 class="card-title">CryptoPilot</h3>
-            <div class="card-desc">Organisez vos revenus et plus-values crypto et préparez votre déclaration française. 100 % local, gratuit, sans compte.</div>
-            <div class="card-arrow">Ouvrir l'outil →</div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="labo" style="--tint:var(--t-labo);--tint-soft:var(--t-labo-soft)">
-      <h2 class="section-title">
-        <span class="s-ic"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/><path d="M7.5 15h9"/></svg></span>
-        Labo <span class="count">1</span>
-      </h2>
-      <div class="grid">
-        <div class="card">
-          <a href="https://peiscope.vercel.app/" target="_blank" rel="noopener">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9 3 3 5v16l6-2 6 2 6-2V3l-6 2-6-2z"/><path d="M9 3v16M15 5v16"/></svg></div>
-            <div class="card-label">Intelligence territoriale · La Réunion</div>
-            <h3 class="card-title">PéiScope</h3>
-            <div class="card-desc">Cartographie sourcée de l'écosystème public réunionnais : collectivités, élus, organismes, mandats, budgets, parlementaires. Carte, graphe, observatoire et classements.</div>
-            <div class="card-arrow">Ouvrir l'expérimentation →</div>
-          </a>
-        </div>
-      </div>
-    </section>
-  </div>
+      <a class="btn btn-ghost" href="/a-propos/">En savoir plus →</a>
+    </div>
+  </section>
 
 </main>
 
 <footer class="maxw">
   <span>© Sébastien Rivière · 2026</span>
+  <span class="foot-links">
+    <a href="/outils/">Outils</a>
+    <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+    <a href="/articles/">Articles</a>
+    <a href="/a-propos/">À propos</a>
+  </span>
   <span class="foot-contact">
     <a class="contact-btn" href="mailto:rsebastien@protonmail.com" title="Email" aria-label="Envoyer un email">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
@@ -511,36 +458,17 @@ footer a:hover{color:var(--accent-ink);}
 </footer>
 
 <script>
-/* ── Thème : choix mémorisé, sinon préférence OS ── */
+/* ── Thème ── */
 (function(){
   var root=document.documentElement,saved=null;
   try{saved=localStorage.getItem('theme');}catch(e){}
   if(saved==='light'||saved==='dark')root.setAttribute('data-theme',saved);
   var btn=document.getElementById('themeBtn');
-  function current(){
-    var a=root.getAttribute('data-theme');
-    if(a)return a;
-    return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
-  }
-  function syncMeta(){
-    var m=document.querySelectorAll('meta[name=theme-color]');
-    /* laisse les media metas faire le travail si pas de choix manuel */
-    if(root.getAttribute('data-theme')){
-      m.forEach(function(x){x.remove();});
-      var meta=document.createElement('meta');meta.name='theme-color';
-      meta.content=current()==='dark'?'#0f1722':'#f5f7fa';
-      document.head.appendChild(meta);
-    }
-  }
-  btn.addEventListener('click',function(){
-    var next=current()==='dark'?'light':'dark';
-    root.setAttribute('data-theme',next);
-    try{localStorage.setItem('theme',next);}catch(e){}
-    syncMeta();
-  });
+  function current(){var a=root.getAttribute('data-theme');if(a)return a;return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+  function syncMeta(){var m=document.querySelectorAll('meta[name=theme-color]');if(root.getAttribute('data-theme')){m.forEach(function(x){x.remove();});var meta=document.createElement('meta');meta.name='theme-color';meta.content=current()==='dark'?'#0f1722':'#f5f7fa';document.head.appendChild(meta);}}
+  btn.addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next);}catch(e){}syncMeta();});
 })();
-
-/* ── Bouton mail : ouvre le client mail si dispo, ET copie l'adresse (secours webmail) ── */
+/* ── Bouton mail : copie l'adresse (secours webmail) ── */
 (function(){
   var mail=document.getElementById('mailBtn'); if(!mail) return;
   var toast=document.getElementById('copyToast');
@@ -548,31 +476,11 @@ footer a:hover{color:var(--accent-ink);}
   mail.addEventListener('click',function(){
     if(navigator.clipboard&&navigator.clipboard.writeText){
       navigator.clipboard.writeText(addr).then(function(){
-        if(!toast)return;
-        toast.textContent='Adresse copiée : '+addr;
-        toast.classList.add('show');
-        clearTimeout(toast._t);
-        toast._t=setTimeout(function(){toast.classList.remove('show');},2800);
+        if(!toast)return;toast.textContent='Adresse copiée : '+addr;toast.classList.add('show');
+        clearTimeout(toast._t);toast._t=setTimeout(function(){toast.classList.remove('show');},2800);
       }).catch(function(){});
     }
   });
-})();
-
-/* ── Scrollspy : rubrique active dans la nav ── */
-(function(){
-  if(!('IntersectionObserver' in window))return;
-  var links={};
-  document.querySelectorAll('.catnav a').forEach(function(a){links[a.dataset.target]=a;});
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      var a=links[en.target.id];if(!a)return;
-      if(en.isIntersecting){
-        Object.keys(links).forEach(function(k){links[k].classList.remove('active');});
-        a.classList.add('active');
-      }
-    });
-  },{rootMargin:'-42% 0px -52% 0px',threshold:0});
-  document.querySelectorAll('section.section').forEach(function(s){io.observe(s);});
 })();
 </script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count"

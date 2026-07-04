@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outils — Sébastien Rivière</title>
+<meta name="description" content="Le catalogue complet des outils et ressources : diagnostic IA, outils IA, productivité, commande publique, blockchain & finance, labo. Gratuits, en local, sans compte.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sébastien Rivière">
+<meta property="og:title" content="Outils — Sébastien Rivière">
+<meta property="og:description" content="Tous les outils et ressources, rangés par famille : IA, productivité, commande publique, blockchain, labo.">
+<meta property="og:url" content="https://sebastien-riviere.github.io/outils/">
+<meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --bg:#f5f7fa; --bg-band:#eceff4;
+  --text:#1b2733; --muted:#566778; --faint:#8493a3;
+  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6;
+  --title:#1b2733; --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
+  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
+  --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
+  --t-ia:#41586b;    --t-ia-soft:#e9ecf2;
+  --t-cp:#b23b3b;    --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e;  --t-prod-soft:#e3efe1;
+  --t-block:#b8570f; --t-block-soft:#fae0cc;
+  --t-labo:#7345a0;  --t-labo-soft:#ece2f6;
+  --t-art:#4453c4;   --t-art-soft:#e4e6f8;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1722; --bg-band:#13202e;
+    --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+    --card:#16212e; --border:#26333f; --border-soft:#1e2a36;
+    --title:#e7eef5; --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37;
+    --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415;
+    --shadow:0 6px 26px rgba(0,0,0,.42);
+    --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+    --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+    --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+  }
+}
+html[data-theme="light"]{
+  --bg:#f5f7fa; --bg-band:#eceff4; --text:#1b2733; --muted:#566778; --faint:#8493a3;
+  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6; --title:#1b2733;
+  --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
+  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
+  --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+}
+html[data-theme="dark"]{
+  --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:#26333f; --border-soft:#1e2a36; --title:#e7eef5;
+  --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37;
+  --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415;
+  --shadow:0 6px 26px rgba(0,0,0,.42);
+  --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+  --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--ui);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:inherit;text-decoration:none;}
+.maxw{max-width:1120px;width:100%;margin:0 auto;}
+
+/* Header + nav (partagé avec l'accueil) */
+.header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
+header{padding:24px 40px 0;}
+.head-top{display:flex;align-items:center;gap:16px;}
+.brand{display:flex;align-items:center;gap:15px;min-width:0;}
+.logo{flex:none;width:48px;height:48px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(60,45,25,.18);}
+.logo img{width:36px;height:36px;object-fit:contain;display:block;}
+.name{font-family:var(--ui);font-weight:800;font-size:25px;color:var(--title);letter-spacing:-0.7px;line-height:1.05;}
+.name a:hover{color:var(--accent-ink);}
+.sub{font-family:var(--ui);font-weight:700;font-size:12px;color:var(--faint);letter-spacing:.3px;margin-top:3px;}
+.head-actions{margin-left:auto;display:flex;align-items:center;gap:9px;}
+.theme-btn{width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;border:0;background:#b8731e;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;}
+.theme-btn:hover{filter:brightness(1.08);}.theme-btn:active{transform:scale(.96);}
+.theme-btn svg{width:19px;height:19px;}.theme-btn .ic-dark{display:none;}
+@media(prefers-color-scheme:dark){.theme-btn .ic-dark{display:block;}.theme-btn .ic-light{display:none;}}
+html[data-theme="dark"] .theme-btn .ic-dark{display:block;}html[data-theme="dark"] .theme-btn .ic-light{display:none;}
+html[data-theme="light"] .theme-btn .ic-dark{display:none;}html[data-theme="light"] .theme-btn .ic-light{display:block;}
+.icon-btn{width:38px;height:38px;flex:none;border-radius:10px;border:0;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;}
+.icon-btn:hover{filter:brightness(1.08);}.icon-btn:active{transform:scale(.96);}.icon-btn svg{width:18px;height:18px;}
+.icon-btn.li{background:#0a66c2;}
+.mainnav{display:flex;gap:4px;margin-top:20px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+.mainnav::-webkit-scrollbar{display:none;}
+.mainnav a{position:relative;white-space:nowrap;font-family:var(--ui);font-weight:700;font-size:14.5px;color:var(--muted);padding:11px 15px;border-radius:9px 9px 0 0;transition:color .15s,background .15s;}
+.mainnav a:hover{color:var(--text);background:color-mix(in srgb,var(--accent) 8%,transparent);}
+.mainnav a.active{color:var(--accent-ink);}
+.mainnav a.active::after{content:"";position:absolute;left:15px;right:15px;bottom:-1px;height:2.5px;border-radius:2px;background:var(--pop);}
+
+/* Sticky famille nav */
+.catnav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(9px);border-bottom:1px solid var(--border);}
+.catnav-inner{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:9px 40px;}
+.catnav-inner::-webkit-scrollbar{display:none;}
+.catnav a{display:flex;align-items:center;gap:7px;white-space:nowrap;font-family:var(--ui);font-weight:700;font-size:13px;color:var(--muted);padding:6px 13px;border-radius:20px;border:1.5px solid transparent;transition:color .15s,border-color .15s,background .15s;}
+.catnav a .dot{width:8px;height:8px;border-radius:50%;background:var(--d);flex:none;}
+.catnav a .ct{font-size:11px;color:var(--faint);font-weight:800;}
+.catnav a:hover{color:var(--text);border-color:var(--border);}
+.catnav a.active{color:var(--text);background:var(--card);border-color:currentColor;}
+.catnav a.active .ct{color:var(--muted);}
+
+main{flex:1;padding:30px 40px 64px;}
+.page-head{margin-bottom:30px;}
+.page-head .kick{font-family:var(--ui);font-weight:800;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--pop-ink);}
+.page-head h1{font-family:var(--ui);font-weight:800;font-size:clamp(24px,3.2vw,32px);letter-spacing:-.02em;color:var(--title);margin:8px 0 10px;}
+.page-head p{font-size:15px;color:var(--muted);line-height:1.55;max-width:640px;}
+
+.section{margin-bottom:38px;scroll-margin-top:64px;}
+.section-title{display:flex;align-items:center;gap:11px;font-family:var(--ui);font-weight:800;font-size:19px;letter-spacing:-.2px;color:var(--title);margin-bottom:16px;}
+.section-title .s-ic{width:30px;height:30px;flex:none;border-radius:9px;background:var(--tint-soft);color:var(--tint);display:flex;align-items:center;justify-content:center;}
+.section-title .s-ic svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.section-title .count{font-family:var(--ui);font-size:12px;font-weight:800;color:var(--muted);background:var(--tint-soft);border-radius:20px;padding:2px 10px;}
+.section-title .rule{flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--tint),transparent);opacity:.55;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:14px;}
+.card{background:color-mix(in srgb,var(--tint) 7%,var(--card));border:1px solid var(--border);border-radius:12px;transition:transform .18s,box-shadow .18s,border-color .18s;}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--tint);}
+.card>a{display:block;padding:17px 18px;color:inherit;}
+.card-icon{width:36px;height:36px;border-radius:10px;background:var(--tint-soft);color:var(--tint);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.card-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.card-label{font-family:var(--ui);font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--tint);margin-bottom:6px;}
+.card-title{font-family:var(--ui);font-weight:800;font-size:16px;color:var(--title);line-height:1.3;margin-bottom:6px;}
+.card-desc{font-family:var(--ui);font-size:13px;color:var(--muted);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.card-arrow{display:inline-block;margin-top:12px;font-family:var(--ui);font-size:12.5px;font-weight:800;color:var(--tint);transition:transform .18s;}
+.card:hover .card-arrow{transform:translateX(5px);}
+.badge-new{display:inline-block;font-family:var(--ui);font-size:9.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#fff;background:var(--pop);border-radius:20px;padding:2px 8px;margin-left:5px;vertical-align:middle;}
+@media(prefers-color-scheme:dark){.badge-new{color:#1a1208;}}
+html[data-theme="dark"] .badge-new{color:#1a1208;}html[data-theme="light"] .badge-new{color:#fff;}
+
+footer{padding:22px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);}
+footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px;}
+
+@media(max-width:600px){
+  header{padding:20px 18px 0;}
+  main{padding:24px 18px 44px;}
+  .catnav-inner{padding:9px 18px;}
+  footer{padding:18px;}
+  .name{font-size:22px;}
+  .grid{grid-template-columns:1fr;}
+  .mainnav{margin-top:16px;}
+  .mainnav a{font-size:14px;padding:10px 12px;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="header-band">
+  <header class="maxw">
+    <div class="head-top">
+      <div class="brand">
+        <div class="logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="36" height="36"></div>
+        <div>
+          <div class="name"><a href="/">Sébastien Rivière</a></div>
+          <div class="sub">Apprendre, comprendre, transmettre</div>
+        </div>
+      </div>
+      <div class="head-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Basculer le thème clair / sombre" title="Thème clair / sombre">
+          <svg class="ic-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="ic-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
+        </button>
+        <a class="icon-btn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+        </a>
+      </div>
+    </div>
+    <nav class="mainnav maxw" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+      <a href="/articles/">Articles &amp; enquêtes</a>
+      <a href="/outils/" class="active">Outils</a>
+      <a href="/a-propos/">À propos</a>
+    </nav>
+  </header>
+</div>
+
+<nav class="catnav" aria-label="Familles d'outils">
+  <div class="catnav-inner maxw">
+    <a href="#diagnostic-ia" data-target="diagnostic-ia"><span class="dot" style="--d:var(--t-ia)"></span>Diagnostic IA</a>
+    <a href="#outils-ia" data-target="outils-ia"><span class="dot" style="--d:var(--t-ia)"></span>Outils IA <span class="ct">4</span></a>
+    <a href="#productivite" data-target="productivite"><span class="dot" style="--d:var(--t-prod)"></span>Productivité <span class="ct">3</span></a>
+    <a href="#commande-publique" data-target="commande-publique"><span class="dot" style="--d:var(--t-cp)"></span>Commande publique <span class="ct">5</span></a>
+    <a href="#blockchain-finance" data-target="blockchain-finance"><span class="dot" style="--d:var(--t-block)"></span>Blockchain &amp; finance <span class="ct">1</span></a>
+    <a href="#labo" data-target="labo"><span class="dot" style="--d:var(--t-labo)"></span>Labo <span class="ct">1</span></a>
+  </div>
+</nav>
+
+<main class="maxw">
+  <div class="page-head">
+    <div class="kick">Catalogue complet</div>
+    <h1>Outils &amp; ressources</h1>
+    <p>Tous les outils et ressources, rangés par famille. Gratuits, la plupart tournant en local dans votre navigateur — sans compte, sans installation, sans envoi de vos données.</p>
+  </div>
+
+  <!-- DIAGNOSTIC IA -->
+  <section class="section" id="diagnostic-ia" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
+    <h2 class="section-title">
+      <span class="s-ic"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span>
+      Diagnostic IA <span class="rule"></span>
+    </h2>
+    <div class="grid">
+      <div class="card">
+        <a href="/outils/quiz-ia/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div class="card-label">Outil · Choisir son IA</div>
+          <h3 class="card-title">Quelle IA est faite pour vous ?</h3>
+          <div class="card-desc">Un questionnaire simple pour identifier l'assistant IA le plus adapté à votre profil, vos usages et votre niveau — et découvrir ce qu'une IA sait faire en 2026.</div>
+          <div class="card-arrow">Commencer le questionnaire →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTILS IA -->
+  <section class="section" id="outils-ia" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
+    <h2 class="section-title">
+      <span class="s-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+      Outils IA <span class="count">4</span><span class="rule"></span>
+    </h2>
+    <div class="grid">
+      <div class="card">
+        <a href="/outils/annuaire-ia/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+          <div class="card-label">Annuaire</div>
+          <h3 class="card-title">Annuaire des outils IA</h3>
+          <div class="card-desc">Une sélection d'outils IA classés par usage et expliqués simplement, avec repères chiffrés (valorisations, audience, popularité). Sans jargon.</div>
+          <div class="card-arrow">Ouvrir l'annuaire →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/outils/glossaire-ia/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <div class="card-label">Glossaire</div>
+          <h3 class="card-title">Glossaire de l'IA</h3>
+          <div class="card-desc">Les mots de l'IA expliqués en clair : pour chaque terme, une analogie, pourquoi ça compte et le piège à éviter. Recherche, filtres et repère « hype ».</div>
+          <div class="card-arrow">Ouvrir le glossaire →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/guide/prise-en-main-claude/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M18 3v18"/><path d="M8 8h6M8 11h6"/></svg></div>
+          <div class="card-label">Guide</div>
+          <h3 class="card-title">Prendre Claude en main</h3>
+          <div class="card-desc">Guide pas-à-pas pour débuter : choisir son modèle, paramétrer instructions, mémoire, projets et connecteurs — avec prompts à copier-coller.</div>
+          <div class="card-arrow">Lire le guide →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/guide/guide-token">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2 4 7v10l8 5 8-5V7z"/><path d="m9.5 12 1.8 1.8 3.7-3.8"/></svg></div>
+          <div class="card-label">Guide</div>
+          <h3 class="card-title">Vos tokens Claude, c'est précieux</h3>
+          <div class="card-desc">Comprendre, configurer et optimiser votre usage de Claude au quotidien.</div>
+          <div class="card-arrow">Lire le guide →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTIVITÉ -->
+  <section class="section" id="productivite" style="--tint:var(--t-prod);--tint-soft:var(--t-prod-soft)">
+    <h2 class="section-title">
+      <span class="s-ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.7 2.7-2-2z"/></svg></span>
+      Productivité <span class="count">3</span><span class="rule"></span>
+    </h2>
+    <div class="grid">
+      <div class="card">
+        <a href="/outils/MD-Convert/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h2v4M14 13l1.5 4 1.5-4"/></svg></div>
+          <div class="card-label">Outil</div>
+          <h3 class="card-title">MD Convert</h3>
+          <div class="card-desc">Convertissez vos fichiers en Markdown en local — PDF, DOCX, images — sans rien installer ni envoyer.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/outils/MonBureauPDF/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="13" height="16" rx="2"/><path d="M8 8h5M8 12h5"/><path d="M8 21h10a2 2 0 0 0 2-2V8"/></svg></div>
+          <div class="card-label">Outil</div>
+          <h3 class="card-title">MonBureauPDF</h3>
+          <div class="card-desc">Fusionnez, réorganisez, compressez et exportez vos PDF directement dans le navigateur — sans compte, sans upload.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/outils/MonBureauRECORD/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/></svg></div>
+          <div class="card-label">Outil</div>
+          <h3 class="card-title">MonBureauRECORD</h3>
+          <div class="card-desc">Enregistrez vos réunions Zoom, Teams ou Meet et obtenez un compte rendu — sans compte, sans upload, sans IA.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMANDE PUBLIQUE -->
+  <section class="section" id="commande-publique" style="--tint:var(--t-cp);--tint-soft:var(--t-cp-soft)">
+    <h2 class="section-title">
+      <span class="s-ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M8 21h8M6 7h12M6 7l-3 6a3 3 0 0 0 6 0zM18 7l-3 6a3 3 0 0 0 6 0z"/></svg></span>
+      Commande publique <span class="count">5</span><span class="rule"></span>
+    </h2>
+    <div class="grid">
+      <div class="card">
+        <a href="/outils/achat-public/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 4-5"/></svg></div>
+          <div class="card-label">Outil</div>
+          <h3 class="card-title">Computation des seuils</h3>
+          <div class="card-desc">Cumul par famille homogène, procédure applicable, alerte de fractionnement et reporting annuel. Seuils 2026 sourcés.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/outils/delais-marches/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M9 14l2 2 4-4"/></svg></div>
+          <div class="card-label">Outil</div>
+          <h3 class="card-title">Rétroplanning des délais</h3>
+          <div class="card-desc">Choisissez une procédure et une date cible : l'outil cale les délais légaux et déroule le calendrier (8 procédures, MAPA à concours). Report jours fériés, export agenda.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/outils/annuaire-achat-public/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div class="card-label">Outil</div>
+          <h3 class="card-title">Annuaire de l'écosystème</h3>
+          <div class="card-desc">Tout l'écosystème de la commande publique au même endroit : plateformes, centrales, sources officielles, presse, experts et AMO — par région, besoin et usage. ~164 sources vérifiées.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/outils/observatoire-ia/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4.9 19.1A10 10 0 0 1 19.1 4.9M7.8 16.2a6 6 0 0 1 8.4-8.4"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <div class="card-label">Observatoire</div>
+          <h3 class="card-title">Marchés publics IA</h3>
+          <div class="card-desc">Le fil des consultations « intelligence artificielle, données, numérique » publiées en France — capté, filtré et dédoublonné. Filtres par thème, source et échéance. Mis à jour chaque jour.</div>
+          <div class="card-arrow">Ouvrir l'observatoire →</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="/outils/grille-criteres/">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div class="card-label">Outil</div>
+          <h3 class="card-title">Assistant de critères &amp; notation</h3>
+          <div class="card-desc">Composez des critères d'attribution adaptés à l'objet : sous-critères par type de marché, pondérations conseillées et formules — avec l'alerte du critère environnemental obligatoire au 21 août 2026.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCKCHAIN & FINANCE -->
+  <section class="section" id="blockchain-finance" style="--tint:var(--t-block);--tint-soft:var(--t-block-soft)">
+    <h2 class="section-title">
+      <span class="s-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4a3 3 0 0 1 3 3V14"/></svg></span>
+      Blockchain &amp; finance <span class="count">1</span><span class="rule"></span>
+    </h2>
+    <div class="grid">
+      <div class="card">
+        <a href="https://cryptopilot.pages.dev/" target="_blank" rel="noopener">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><polyline points="3 16 9 10 13 13 21 5"/><polyline points="21 10 21 5 16 5"/></svg></div>
+          <div class="card-label">Outil · Fiscalité crypto</div>
+          <h3 class="card-title">CryptoPilot</h3>
+          <div class="card-desc">Organisez vos revenus et plus-values crypto et préparez votre déclaration française. 100 % local, gratuit, sans compte.</div>
+          <div class="card-arrow">Ouvrir l'outil →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LABO -->
+  <section class="section" id="labo" style="--tint:var(--t-labo);--tint-soft:var(--t-labo-soft)">
+    <h2 class="section-title">
+      <span class="s-ic"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/><path d="M7.5 15h9"/></svg></span>
+      Labo <span class="count">1</span><span class="rule"></span>
+    </h2>
+    <div class="grid">
+      <div class="card">
+        <a href="https://peiscope.vercel.app/" target="_blank" rel="noopener">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9 3 3 5v16l6-2 6 2 6-2V3l-6 2-6-2z"/><path d="M9 3v16M15 5v16"/></svg></div>
+          <div class="card-label">Intelligence territoriale · La Réunion</div>
+          <h3 class="card-title">PéiScope</h3>
+          <div class="card-desc">Cartographie sourcée de l'écosystème public réunionnais : collectivités, élus, organismes, mandats, budgets, parlementaires. Carte, graphe, observatoire et classements.</div>
+          <div class="card-arrow">Ouvrir l'expérimentation →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="maxw">
+  <span>© Sébastien Rivière · 2026</span>
+  <span class="foot-links">
+    <a href="/">Accueil</a>
+    <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+    <a href="/articles/">Articles</a>
+    <a href="/a-propos/">À propos</a>
+  </span>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,saved=null;
+  try{saved=localStorage.getItem('theme');}catch(e){}
+  if(saved==='light'||saved==='dark')root.setAttribute('data-theme',saved);
+  var btn=document.getElementById('themeBtn');
+  function current(){var a=root.getAttribute('data-theme');if(a)return a;return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+  function syncMeta(){var m=document.querySelectorAll('meta[name=theme-color]');if(root.getAttribute('data-theme')){m.forEach(function(x){x.remove();});var meta=document.createElement('meta');meta.name='theme-color';meta.content=current()==='dark'?'#0f1722':'#f5f7fa';document.head.appendChild(meta);}}
+  btn.addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next);}catch(e){}syncMeta();});
+})();
+/* Scrollspy familles */
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var links={};
+  document.querySelectorAll('.catnav a').forEach(function(a){links[a.dataset.target]=a;});
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      var a=links[en.target.id];if(!a)return;
+      if(en.isIntersecting){Object.keys(links).forEach(function(k){links[k].classList.remove('active');});a.classList.add('active');}
+    });
+  },{rootMargin:'-42% 0px -52% 0px',threshold:0});
+  document.querySelectorAll('section.section').forEach(function(s){io.observe(s);});
+})();
+</script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

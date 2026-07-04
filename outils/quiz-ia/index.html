@@ -11,6 +11,7 @@
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <link rel="stylesheet" href="../../fonts/fonts.css">
 <link rel="stylesheet" href="../../styles/ia-kit.css">
+<link rel="stylesheet" href="/styles/hub-nav.css">
 <style>
 /* --- spécifique quiz-ia (le reste vient de ia-kit.css) --- */
 .ic-lg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-right:8px;vertical-align:-4px;}
@@ -67,7 +68,30 @@ label:has(input:checked){border-color:var(--ia);background:var(--ia-soft);}
 </head>
 <body>
 
-<div class="ia-crumb read"><a href="/"><svg class="ic" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Tous les outils</a></div>
+<div class="hub-band">
+  <div class="hub-head">
+    <div class="hub-top">
+      <div class="hub-brand">
+        <div class="hub-logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="34" height="34"></div>
+        <div>
+          <div class="hub-name"><a href="/">Sébastien Rivière</a></div>
+          <div class="hub-sub">Apprendre, comprendre, transmettre</div>
+        </div>
+      </div>
+      <div class="hub-actions">
+        <a class="hub-ic mail" href="mailto:rsebastien@protonmail.com" title="M'écrire" aria-label="M'écrire par email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
+        <a class="hub-ic li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg></a>
+      </div>
+    </div>
+    <nav class="hub-nav" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+      <a href="/articles/">Articles &amp; enquêtes</a>
+      <a href="/outils/" class="active">Outils</a>
+      <a href="/a-propos/">À propos</a>
+    </nav>
+  </div>
+</div>
 
 <div class="ia-band">
   <header class="ia-head read">
