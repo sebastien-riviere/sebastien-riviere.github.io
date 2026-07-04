@@ -259,8 +259,7 @@
       "dom": "windsurf.com",
       "u": "https://windsurf.com",
       "nv": 1,
-      "pays": "US",
-      "off": 1
+      "pays": "US"
     },
     {
       "c": "auto",
@@ -497,8 +496,7 @@
       "dom": "sora.com",
       "u": "https://sora.com",
       "nv": 1,
-      "pays": "US",
-      "off": 1
+      "pays": "US"
     },
     {
       "c": "video",
@@ -508,8 +506,7 @@
       "dom": "higgsfield.ai",
       "u": "https://higgsfield.ai",
       "nv": 1,
-      "pays": "US",
-      "off": 1
+      "pays": "US"
     },
     {
       "c": "voice",
@@ -571,8 +568,7 @@
       "dom": "voicein.io",
       "u": "https://voicein.io",
       "nv": 1,
-      "pays": "US",
-      "off": 1
+      "pays": "US"
     },
     {
       "c": "voice",
@@ -582,8 +578,7 @@
       "dom": "podcast.adobe.com",
       "u": "https://podcast.adobe.com",
       "nv": 1,
-      "pays": "US",
-      "off": 1
+      "pays": "US"
     },
     {
       "c": "meeting",
@@ -651,8 +646,7 @@
       "dom": "dicte.ai",
       "u": "https://www.dicte.ai",
       "nv": 1,
-      "pays": "FR",
-      "off": 1
+      "pays": "FR"
     },
     {
       "c": "design",
@@ -1107,8 +1101,7 @@
       "p": "freemium",
       "dom": "theresanaiforthat.com",
       "u": "https://theresanaiforthat.com",
-      "pays": "US",
-      "off": 1
+      "pays": "US"
     },
     {
       "c": "image",
@@ -1117,8 +1110,7 @@
       "p": "freemium",
       "dom": "magnific.ai",
       "u": "https://magnific.ai",
-      "pays": "ES",
-      "off": 1
+      "pays": "ES"
     },
     {
       "c": "image",
@@ -1127,8 +1119,7 @@
       "p": "freemium",
       "dom": "recraft.ai",
       "u": "https://recraft.ai",
-      "pays": "UK",
-      "off": 1
+      "pays": "UK"
     },
     {
       "c": "advanced",
