@@ -1,11 +1,28 @@
 {
-  "maj": "2026-07-03",
-  "total": 92,
+  "maj": "2026-07-04",
+  "total": 93,
   "byTheme": {
-    "data": 79,
+    "data": 80,
     "ia": 13
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Création d'une base de données et gestion de la taxe locale sur les publicités extérieures (Tlpe) avec assistance administrative, technique et juridique",
+      "a": "Ville Liévin",
+      "dep": "62",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-03",
+      "dl": "2026-08-07T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-66208%22",
+      "k": "ville lievin|creation d une base de donnees et gestion de la taxe locale sur les publicites exterieures",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -310,7 +327,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-59860%22",
       "k": "epa shom|traitement de donnees lidar topographiques et bathymetriques en nouvelle caledonie",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -327,7 +344,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-59725%22",
       "k": "centre nationale du cinema|acquisition des donnees de frequentation des salles de cinema pour les annees 2027 a 2030",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -344,7 +361,7 @@
       "th": "data",
       "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1837571",
       "k": "departement de la sarthe|mise a disposition de previsions et d observations de donnees meteorologiques pour le depa",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -378,7 +395,7 @@
       "th": "data",
       "u": "https://marchespublics.nantesmetropole.fr/entreprise/consultation/532335?orgAcronyme=t5y",
       "k": "nantes metropole|accompagnement a la conception et a la realisation d applications de visualisation de donn",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
