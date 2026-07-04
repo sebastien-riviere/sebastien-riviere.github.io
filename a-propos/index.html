@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — Sébastien Rivière</title>
+<meta name="description" content="Qui porte ce site, pourquoi il existe, et les expertises de fond : marchés publics, IA & conformité, blockchain & traçabilité, automatisation.">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Sébastien Rivière">
+<meta property="og:title" content="À propos — Sébastien Rivière">
+<meta property="og:description" content="Un espace de veille, d'outils et d'analyse autour de l'IA, de la conformité, de l'automatisation et des usages numériques professionnels.">
+<meta property="og:url" content="https://sebastien-riviere.github.io/a-propos/">
+<meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --bg:#f5f7fa; --bg-band:#eceff4;
+  --text:#1b2733; --muted:#566778; --faint:#8493a3;
+  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6;
+  --title:#1b2733; --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
+  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
+  --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+    --card:#16212e; --border:#26333f; --border-soft:#1e2a36; --title:#e7eef5;
+    --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37;
+    --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415; --shadow:0 6px 26px rgba(0,0,0,.42);
+    --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+    --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+    --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+  }
+}
+html[data-theme="light"]{
+  --bg:#f5f7fa; --bg-band:#eceff4; --text:#1b2733; --muted:#566778; --faint:#8493a3;
+  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6; --title:#1b2733;
+  --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2; --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
+  --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+}
+html[data-theme="dark"]{
+  --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:#26333f; --border-soft:#1e2a36; --title:#e7eef5;
+  --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37; --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415;
+  --shadow:0 6px 26px rgba(0,0,0,.42);
+  --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+  --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--ui);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:inherit;text-decoration:none;}
+.maxw{max-width:1120px;width:100%;margin:0 auto;}
+.readw{max-width:760px;}
+.header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
+header{padding:24px 40px 0;}
+.head-top{display:flex;align-items:center;gap:16px;}
+.brand{display:flex;align-items:center;gap:15px;min-width:0;}
+.logo{flex:none;width:48px;height:48px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(60,45,25,.18);}
+.logo img{width:36px;height:36px;object-fit:contain;display:block;}
+.name{font-weight:800;font-size:25px;color:var(--title);letter-spacing:-0.7px;line-height:1.05;}
+.name a:hover{color:var(--accent-ink);}
+.sub{font-weight:700;font-size:12px;color:var(--faint);letter-spacing:.3px;margin-top:3px;}
+.head-actions{margin-left:auto;display:flex;align-items:center;gap:9px;}
+.theme-btn{width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;border:0;background:#b8731e;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;}
+.theme-btn:hover{filter:brightness(1.08);}.theme-btn:active{transform:scale(.96);}.theme-btn svg{width:19px;height:19px;}.theme-btn .ic-dark{display:none;}
+@media(prefers-color-scheme:dark){.theme-btn .ic-dark{display:block;}.theme-btn .ic-light{display:none;}}
+html[data-theme="dark"] .theme-btn .ic-dark{display:block;}html[data-theme="dark"] .theme-btn .ic-light{display:none;}
+html[data-theme="light"] .theme-btn .ic-dark{display:none;}html[data-theme="light"] .theme-btn .ic-light{display:block;}
+.icon-btn{width:38px;height:38px;flex:none;border-radius:10px;border:0;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s;}
+.icon-btn:hover{filter:brightness(1.08);}.icon-btn svg{width:18px;height:18px;}.icon-btn.mail{background:#41586b;}.icon-btn.li{background:#0a66c2;}
+.mainnav{display:flex;gap:4px;margin-top:20px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+.mainnav::-webkit-scrollbar{display:none;}
+.mainnav a{position:relative;white-space:nowrap;font-weight:700;font-size:14.5px;color:var(--muted);padding:11px 15px;border-radius:9px 9px 0 0;transition:color .15s,background .15s;}
+.mainnav a:hover{color:var(--text);background:color-mix(in srgb,var(--accent) 8%,transparent);}
+.mainnav a.active{color:var(--accent-ink);}
+.mainnav a.active::after{content:"";position:absolute;left:15px;right:15px;bottom:-1px;height:2.5px;border-radius:2px;background:var(--pop);}
+main{flex:1;padding:34px 40px 64px;}
+
+.page-head{margin-bottom:6px;}
+.page-head .kick{font-weight:800;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--pop-ink);}
+.page-head h1{font-weight:800;font-size:clamp(26px,3.6vw,36px);letter-spacing:-.02em;color:var(--title);margin:8px 0 0;}
+
+.block{margin-top:34px;}
+.block h2{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--title);margin-bottom:12px;}
+.block h2 .n{width:26px;height:26px;flex:none;border-radius:8px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;}
+.block p{font-size:15px;color:var(--muted);line-height:1.68;margin-bottom:12px;}
+.block p b{color:var(--text);}
+.block ul{list-style:none;margin:4px 0 8px;}
+.block ul li{position:relative;padding-left:20px;font-size:14.5px;color:var(--muted);line-height:1.6;margin-bottom:7px;}
+.block ul li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:50%;background:var(--pop);}
+
+/* Expertises */
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;}
+.exp{border:1px solid var(--border);border-top:3px solid var(--c);border-radius:12px;background:var(--card);padding:18px 20px;}
+.exp .ic{width:38px;height:38px;border-radius:10px;background:var(--cs);color:var(--c);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.exp .ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.exp h3{font-weight:800;font-size:15.5px;color:var(--title);margin-bottom:6px;}
+.exp p{font-size:13px;color:var(--muted);line-height:1.55;}
+.exp .badge{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--c);background:var(--cs);border-radius:20px;padding:2px 9px;margin-top:10px;}
+
+/* Contact */
+.contact{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
+.cbtn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:14px;padding:11px 18px;border-radius:11px;border:1.5px solid var(--border);background:var(--card);color:var(--text);transition:border-color .15s,color .15s;}
+.cbtn:hover{border-color:var(--accent);color:var(--accent-ink);}
+.cbtn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.linkrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
+.linkchip{font-weight:700;font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:9px;padding:8px 13px;transition:filter .15s;}
+.linkchip:hover{filter:brightness(1.05);color:var(--accent-ink);}
+
+footer{padding:22px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);margin-top:24px;}
+footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px;}
+@media(max-width:600px){
+  header{padding:20px 18px 0;}main{padding:26px 18px 44px;}footer{padding:18px;}
+  .name{font-size:22px;}.mainnav{margin-top:16px;}.mainnav a{font-size:14px;padding:10px 12px;}
+  .exp-grid{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="header-band">
+  <header class="maxw">
+    <div class="head-top">
+      <div class="brand">
+        <div class="logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="36" height="36"></div>
+        <div>
+          <div class="name"><a href="/">Sébastien Rivière</a></div>
+          <div class="sub">Apprendre, comprendre, transmettre</div>
+        </div>
+      </div>
+      <div class="head-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Basculer le thème clair / sombre" title="Thème clair / sombre">
+          <svg class="ic-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="ic-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
+        </button>
+        <a class="icon-btn mail" href="mailto:rsebastien@protonmail.com" title="M'écrire" aria-label="M'écrire par email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        </a>
+        <a class="icon-btn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+        </a>
+      </div>
+    </div>
+    <nav class="mainnav maxw" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+      <a href="/articles/">Articles &amp; enquêtes</a>
+      <a href="/outils/">Outils</a>
+      <a href="/a-propos/" class="active">À propos</a>
+    </nav>
+  </header>
+</div>
+
+<main class="maxw readw">
+  <div class="page-head">
+    <div class="kick">À propos</div>
+    <h1>Comprendre l'IA, le numérique et l'action publique — et passer à l'action.</h1>
+  </div>
+
+  <div class="block">
+    <h2><span class="n">1</span>Qui suis-je&nbsp;?</h2>
+    <p>Je suis <b>Sébastien Rivière</b>, basé à La&nbsp;Réunion. Après un parcours dans la <b>commande publique</b>, je construis aujourd'hui une activité de <b>conseil indépendant en IA et transformation numérique</b>, en me formant à un niveau certifiant (Consulting IA, puis Blockchain).</p>
+    <p>Ce site est mon atelier : j'y publie les <b>outils</b> que je fabrique pour mon propre usage et celui des organisations que j'accompagne, les <b>ressources</b> que je capitalise, et les <b>analyses</b> qui en découlent.</p>
+  </div>
+
+  <div class="block">
+    <h2><span class="n">2</span>Pourquoi ce site&nbsp;?</h2>
+    <p>Parce que l'IA et le numérique avancent vite, souvent dans le jargon et la survente. Mon parti pris : des ressources <b>concrètes, sourcées et vulgarisées</b>, qui aident à <b>comprendre</b>, à <b>choisir</b> et à <b>agir</b> — plutôt qu'à impressionner.</p>
+    <p>Tout est <b>gratuit</b>, la plupart des outils tournent <b>en local</b> dans votre navigateur (sans compte, sans installation, sans envoi de vos données).</p>
+  </div>
+
+  <div class="block">
+    <h2><span class="n">3</span>Ce que vous trouverez ici</h2>
+    <ul>
+      <li><b>Des outils</b> pratiques&nbsp;: diagnostic IA, productivité (PDF, Markdown, comptes rendus), commande publique, fiscalité crypto.</li>
+      <li><b>Une médiathèque IA</b>&nbsp;: livres, films, séries et documentaires pour comprendre et explorer l'imaginaire de l'IA.</li>
+      <li><b>Des ressources de référence</b>&nbsp;: annuaire d'outils IA, glossaire pédagogique, guides pour bien utiliser les assistants.</li>
+      <li><b>Des articles &amp; enquêtes</b>&nbsp;: analyses, décryptages et dossiers autour de l'IA, des outils et de la conformité.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2><span class="n">4</span>Expertises &amp; parcours</h2>
+    <div class="exp-grid">
+      <div class="exp" style="--c:var(--t-cp);--cs:var(--t-cp-soft)">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M8 21h8M6 7h12M6 7l-3 6a3 3 0 0 0 6 0zM18 7l-3 6a3 3 0 0 0 6 0z"/></svg></div>
+        <h3>Marchés publics</h3>
+        <p>Expérience en commande publique, achats, procédures, analyse des besoins, sécurisation contractuelle et pilotage opérationnel.</p>
+        <span class="badge">Socle de crédibilité</span>
+      </div>
+      <div class="exp" style="--c:var(--t-ia);--cs:var(--t-ia-soft)">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+        <h3>IA / conformité</h3>
+        <p>Usages professionnels de l'intelligence artificielle, gouvernance, RGPD, IA Act et mise en conformité opérationnelle.</p>
+        <span class="badge">Cœur d'activité</span>
+      </div>
+      <div class="exp" style="--c:var(--t-block);--cs:var(--t-block-soft)">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4a3 3 0 0 1 3 3V14"/></svg></div>
+        <h3>Blockchain / traçabilité</h3>
+        <p>Approche orientée preuve, traçabilité, transparence, Web3 utile, NFT utilitaires et architectures de confiance numérique.</p>
+        <span class="badge">En développement</span>
+      </div>
+      <div class="exp" style="--c:var(--t-prod);--cs:var(--t-prod-soft)">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.7 2.7-2-2z"/></svg></div>
+        <h3>Automatisation</h3>
+        <p>Assistants IA, outils no-code, workflows, tableaux de bord, structuration documentaire et productivité augmentée.</p>
+        <span class="badge">Pratique quotidienne</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2><span class="n">5</span>Contact &amp; liens utiles</h2>
+    <div class="contact">
+      <a class="cbtn" href="mailto:rsebastien@protonmail.com">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        rsebastien@protonmail.com
+      </a>
+      <a class="cbtn" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <div class="linkrow">
+      <a class="linkchip" href="/outils/">Tous les outils</a>
+      <a class="linkchip" href="/outils/mediatheque-ia/">Médiathèque IA</a>
+      <a class="linkchip" href="/outils/annuaire-ia/">Annuaire des outils IA</a>
+      <a class="linkchip" href="/outils/glossaire-ia/">Glossaire de l'IA</a>
+      <a class="linkchip" href="/articles/">Articles &amp; enquêtes</a>
+    </div>
+  </div>
+</main>
+
+<footer class="maxw">
+  <span>© Sébastien Rivière · 2026</span>
+  <span class="foot-links">
+    <a href="/">Accueil</a>
+    <a href="/outils/">Outils</a>
+    <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+    <a href="/articles/">Articles</a>
+  </span>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,saved=null;
+  try{saved=localStorage.getItem('theme');}catch(e){}
+  if(saved==='light'||saved==='dark')root.setAttribute('data-theme',saved);
+  var btn=document.getElementById('themeBtn');
+  function current(){var a=root.getAttribute('data-theme');if(a)return a;return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+  function syncMeta(){var m=document.querySelectorAll('meta[name=theme-color]');if(root.getAttribute('data-theme')){m.forEach(function(x){x.remove();});var meta=document.createElement('meta');meta.name='theme-color';meta.content=current()==='dark'?'#0f1722':'#f5f7fa';document.head.appendChild(meta);}}
+  btn.addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next);}catch(e){}syncMeta();});
+})();
+</script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
