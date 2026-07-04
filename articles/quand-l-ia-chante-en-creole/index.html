@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quand l'IA chante en créole — Sébastien Rivière</title>
+<meta name="description" content="Enquête sur le séga et le maloya générés par IA à La Réunion : créateurs, chiffres, droit, culture. La vraie question n'est pas « pour ou contre l'IA », mais : où est l'humain ?">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Sébastien Rivière">
+<meta property="og:title" content="Quand l'IA chante en créole">
+<meta property="og:description" content="Séga et maloya générés par IA à La Réunion : une enquête sourcée. La vraie question n'est pas « pour ou contre l'IA », mais : où est l'humain ?">
+<meta property="og:url" content="https://sebastien-riviere.github.io/articles/quand-l-ia-chante-en-creole/">
+<meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --bg:#f5f7fa; --bg-band:#eceff4;
+  --text:#1b2733; --muted:#566778; --faint:#8493a3;
+  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6;
+  --title:#1b2733; --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
+  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
+  --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+    --card:#16212e; --border:#26333f; --border-soft:#1e2a36; --title:#e7eef5;
+    --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37;
+    --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415; --shadow:0 6px 26px rgba(0,0,0,.42);
+    --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+    --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+    --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+  }
+}
+html[data-theme="light"]{
+  --bg:#f5f7fa; --bg-band:#eceff4; --text:#1b2733; --muted:#566778; --faint:#8493a3;
+  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6; --title:#1b2733;
+  --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
+  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6; --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
+  --t-art:#4453c4; --t-art-soft:#e4e6f8; --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+}
+html[data-theme="dark"]{
+  --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:#26333f; --border-soft:#1e2a36; --title:#e7eef5;
+  --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37;
+  --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415; --shadow:0 6px 26px rgba(0,0,0,.42);
+  --t-art:#9aa5ef; --t-art-soft:#1a1e33; --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--ui);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:inherit;text-decoration:none;}
+.maxw{max-width:1120px;width:100%;margin:0 auto;}
+.header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
+header{padding:24px 40px 0;}
+.head-top{display:flex;align-items:center;gap:16px;}
+.brand{display:flex;align-items:center;gap:15px;min-width:0;}
+.logo{flex:none;width:48px;height:48px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(60,45,25,.18);}
+.logo img{width:36px;height:36px;object-fit:contain;display:block;}
+.name{font-family:var(--ui);font-weight:800;font-size:25px;color:var(--title);letter-spacing:-0.7px;line-height:1.05;}
+.name a:hover{color:var(--accent-ink);}
+.sub{font-weight:700;font-size:12px;color:var(--faint);letter-spacing:.3px;margin-top:3px;}
+.head-actions{margin-left:auto;display:flex;align-items:center;gap:9px;}
+.theme-btn{width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;border:0;background:#b8731e;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;}
+.theme-btn:hover{filter:brightness(1.08);}.theme-btn:active{transform:scale(.96);}.theme-btn svg{width:19px;height:19px;}.theme-btn .ic-dark{display:none;}
+@media(prefers-color-scheme:dark){.theme-btn .ic-dark{display:block;}.theme-btn .ic-light{display:none;}}
+html[data-theme="dark"] .theme-btn .ic-dark{display:block;}html[data-theme="dark"] .theme-btn .ic-light{display:none;}
+html[data-theme="light"] .theme-btn .ic-dark{display:none;}html[data-theme="light"] .theme-btn .ic-light{display:block;}
+.icon-btn{width:38px;height:38px;flex:none;border-radius:10px;border:0;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s;}
+.icon-btn:hover{filter:brightness(1.08);}.icon-btn svg{width:18px;height:18px;}.icon-btn.li{background:#0a66c2;}
+.mainnav{display:flex;gap:4px;margin-top:20px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+.mainnav::-webkit-scrollbar{display:none;}
+.mainnav a{position:relative;white-space:nowrap;font-weight:700;font-size:14.5px;color:var(--muted);padding:11px 15px;border-radius:9px 9px 0 0;transition:color .15s,background .15s;}
+.mainnav a:hover{color:var(--text);background:color-mix(in srgb,var(--accent) 8%,transparent);}
+.mainnav a.active{color:var(--accent-ink);}
+.mainnav a.active::after{content:"";position:absolute;left:15px;right:15px;bottom:-1px;height:2.5px;border-radius:2px;background:var(--pop);}
+main{flex:1;padding:34px 40px 64px;}
+
+/* ===== ARTICLE ===== */
+.art{max-width:720px;margin:0 auto;}
+.art .breadcrumb{font-size:13px;font-weight:600;color:var(--faint);margin-bottom:20px;}
+.art .breadcrumb a:hover{color:var(--accent-ink);}
+.art-kick{font-weight:800;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--t-labo);}
+.art h1{font-weight:800;font-size:clamp(28px,5vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--title);margin:10px 0 16px;}
+.art-meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13.5px;font-weight:600;color:var(--muted);padding-bottom:22px;border-bottom:1px solid var(--border);margin-bottom:8px;}
+.art-meta .dot{color:var(--faint);}
+.lede{font-size:clamp(18px,2.4vw,21px);line-height:1.55;color:var(--text);font-weight:500;margin:26px 0;}
+.lede strong{color:var(--title);font-weight:700;}
+
+.art h2{font-weight:800;font-size:clamp(22px,3.2vw,28px);line-height:1.2;letter-spacing:-.01em;color:var(--title);margin:44px 0 14px;padding-top:8px;}
+.art h2 .num{color:var(--t-labo);margin-right:6px;}
+.art h3{font-weight:800;font-size:18px;color:var(--title);margin:26px 0 8px;}
+.art p{margin:0 0 16px;}
+.art p strong{color:var(--title);font-weight:700;}
+.art em{font-style:italic;}
+.art a.inline{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);}
+.art a.inline:hover{color:var(--pop-ink);}
+.art hr{border:0;height:1px;background:var(--border);margin:40px 0;}
+
+/* Citation */
+.art blockquote{border-left:3px solid var(--pop);background:var(--bg-band);border-radius:0 10px 10px 0;padding:14px 20px;margin:22px 0;font-size:17px;line-height:1.55;color:var(--text);}
+.art blockquote .src{display:block;margin-top:8px;font-size:13px;font-weight:600;color:var(--faint);font-style:normal;}
+
+/* Encadré */
+.box{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--bc,var(--t-ia));border-radius:12px;padding:18px 22px;margin:26px 0;box-shadow:var(--shadow);}
+.box h4{font-size:15px;font-weight:800;color:var(--title);margin:0 0 8px;display:flex;align-items:center;gap:8px;}
+.box p{font-size:14.5px;line-height:1.6;margin:0 0 8px;color:var(--text);}
+.box p:last-child{margin-bottom:0;}
+.box .note{font-size:12.5px;color:var(--muted);}
+.box.ia{--bc:var(--t-ia);} .box.block{--bc:var(--t-block);} .box.prod{--bc:var(--t-prod);}
+.box.muted{--bc:var(--faint);background:var(--bg-band);box-shadow:none;}
+
+/* Deux pièges — colonnes */
+.pieges{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0;}
+.piege{border:1px solid var(--border);border-radius:12px;padding:16px 18px;background:var(--card);box-shadow:var(--shadow);}
+.piege .lbl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;border-radius:20px;padding:3px 10px;margin-bottom:8px;}
+.piege.a .lbl{color:var(--t-cp);background:var(--t-cp-soft);}
+.piege.b .lbl{color:var(--t-ia);background:var(--t-ia-soft);}
+.piege p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;}
+.piege b{color:var(--title);}
+
+/* Figure / graphique — surface claire constante (data-viz) */
+.figure{margin:28px 0;}
+.figure .surface{background:#ffffff;border:1px solid #e3e8ef;border-radius:14px;padding:18px 20px;overflow-x:auto;}
+.figure svg{display:block;max-width:100%;height:auto;margin:0 auto;}
+.figure figcaption{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:10px;padding:0 2px;}
+.figure figcaption a{color:var(--accent-ink);text-decoration:underline;}
+
+/* Tableaux */
+.tbl-wrap{overflow-x:auto;margin:26px 0;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow);}
+table.data{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+table.data caption{text-align:left;font-weight:800;font-size:16px;color:var(--title);padding:16px 16px 2px;}
+table.data .capsub{font-weight:500;font-size:12.5px;color:var(--muted);}
+table.data th{text-align:left;font-weight:700;color:var(--muted);border-bottom:1px solid var(--border);padding:10px 14px;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;}
+table.data td{border-bottom:1px solid var(--border-soft);padding:11px 14px;vertical-align:top;}
+table.data tr:last-child td{border-bottom:0;}
+table.data .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+table.data a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;white-space:nowrap;}
+.badge.yes{color:var(--t-prod);background:var(--t-prod-soft);}
+.badge.no{color:var(--muted);background:var(--bg-band);}
+.tbl-src{font-size:12px;color:var(--muted);padding:10px 16px 14px;line-height:1.5;}
+
+/* Stat strip */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:26px 0;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;box-shadow:var(--shadow);}
+.stat .big{font-weight:800;font-size:26px;color:var(--title);letter-spacing:-.02em;}
+.stat .lab{font-size:12px;color:var(--muted);line-height:1.4;margin-top:4px;}
+
+/* Embed vidéo */
+.embed{margin:26px 0;}
+.embed .frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--border);}
+.embed .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.embed figcaption{font-size:13px;color:var(--muted);line-height:1.5;margin-top:9px;}
+.embed figcaption b{color:var(--title);}
+
+/* Carte-lien / repli */
+.callout{border:1px solid var(--border);border-left:4px solid var(--t-cp);border-radius:12px;background:var(--bg-band);padding:16px 20px;margin:26px 0;}
+.callout p{font-size:14px;line-height:1.6;color:var(--text);margin:0;}
+.callout b{color:var(--title);}
+.callout a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;}
+
+/* Sources + signature */
+.sources{margin:44px 0 0;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);}
+.sources h2{font-size:20px;margin:0 0 6px;padding:0;}
+.sources .intro{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:16px;}
+.sources h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--t-labo);margin:18px 0 8px;}
+.sources ul{margin:0;padding-left:18px;}
+.sources li{font-size:13.5px;line-height:1.6;margin-bottom:6px;color:var(--muted);}
+.sources a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;}
+.legal{font-size:13px;color:var(--muted);line-height:1.6;margin:24px 0 0;padding:14px 18px;border:1px dashed var(--border);border-radius:10px;background:var(--bg-band);}
+.signature{font-size:13px;font-style:italic;color:var(--faint);text-align:center;margin:26px 0 0;line-height:1.6;}
+
+footer{padding:22px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);}
+footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px;}
+@media(max-width:600px){
+  header{padding:20px 18px 0;}main{padding:26px 18px 44px;}footer{padding:18px;}
+  .name{font-size:22px;}.mainnav{margin-top:16px;}.mainnav a{font-size:14px;padding:10px 12px;}
+  .pieges{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="header-band">
+  <header class="maxw">
+    <div class="head-top">
+      <div class="brand">
+        <div class="logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="36" height="36"></div>
+        <div>
+          <div class="name"><a href="/">Sébastien Rivière</a></div>
+          <div class="sub">Apprendre, comprendre, transmettre</div>
+        </div>
+      </div>
+      <div class="head-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Basculer le thème clair / sombre" title="Thème clair / sombre">
+          <svg class="ic-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="ic-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
+        </button>
+        <a class="icon-btn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+        </a>
+      </div>
+    </div>
+    <nav class="mainnav maxw" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+      <a href="/articles/" class="active">Articles &amp; enquêtes</a>
+      <a href="/outils/">Outils</a>
+      <a href="/a-propos/">À propos</a>
+    </nav>
+  </header>
+</div>
+
+<main class="maxw">
+<article class="art">
+
+  <div class="breadcrumb"><a href="/articles/" class="inline">← Articles &amp; enquêtes</a></div>
+  <div class="art-kick">Enquête · Culture &amp; IA</div>
+  <h1>Quand l'IA chante en créole</h1>
+  <div class="art-meta">
+    <span>Par Sébastien Rivière</span><span class="dot">·</span>
+    <span>4 juillet 2026</span><span class="dot">·</span>
+    <span>Lecture ~10 min</span><span class="dot">·</span>
+    <span>La Réunion</span>
+  </div>
+
+  <!-- CHAPÔ -->
+  <figure class="embed">
+    <div class="frame"><iframe src="https://www.youtube.com/embed/pXHsR0DauUA" title="El Bandido 974 — Ma Pala" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <figcaption><b>El Bandido 974 / MISS-IA — « Ma Pala »</b> · le séga 100 % IA aux 1,1 M de vues qui a lancé le phénomène.</figcaption>
+  </figure>
+
+  <p class="lede">Un séga qui cartonne à <strong>1,1 million de vues</strong>. Un refrain que tout le monde fredonne. Un clip, des paroles en créole, une histoire bien de chez nous… et <strong>pas un instrument enregistré, pas un studio</strong>. Juste quelqu'un, une appli, une idée. Bienvenue dans le séga IA.</p>
+
+  <p>Depuis quelques mois, sur les réseaux péi, l'intelligence artificielle s'est mise à chanter en créole — et franchement, parfois, on s'y laisse prendre. Rien d'étonnant : selon une étude Deezer/Ipsos, <strong>97 % des auditeurs ne font plus la différence</strong> entre une musique pondue par une machine et une vraie.</p>
+
+  <p>Alors, faut-il s'en réjouir ou s'en inquiéter ? <em>Spoiler</em> : ni l'un, ni l'autre. Parce que la vraie question n'est pas « pour ou contre l'IA ». Elle est ailleurs — et c'est justement ce qu'on va aller voir, extraits, chiffres et cas concrets à l'appui.</p>
+
+  <hr>
+
+  <!-- ===== 1 ===== -->
+  <h2><span class="num">1.</span> Un séga sans instruments (et ça marche)</h2>
+
+  <p>Tout part — ou presque — d'<strong>applis comme Suno</strong> (les plus calés en tech en connaissent d'autres, genre Udio). Tu écris deux-trois lignes (« un séga joyeux en créole sur un papa qui mange trop de cochon »), tu cliques, et trente secondes plus tard t'as une chanson. Gratuite. Prête à poster.</p>
+
+  <div class="box ia">
+    <h4>🎛️ C'est quoi Suno ?</h4>
+    <p>Suno, c'est une <b>appli qui transforme une phrase en chanson</b>. Tu écris « un séga joyeux en créole sur les vacances », tu attends trente secondes, et l'appli te sort un morceau complet : musique, voix, refrain. Lancée fin 2023 aux États-Unis, elle est aujourd'hui la plus connue d'une famille d'outils (Udio, Riffusion…) que les plus calés en tech savent aller chercher plus loin.</p>
+    <p class="note">Suno est aujourd'hui poursuivie en justice par les majors du disque (Universal, Sony, Warner), qui l'accusent de s'être entraînée sur leurs catalogues sans autorisation.</p>
+  </div>
+
+  <p>Résultat : depuis 2025, les réseaux péi se remplissent de séga et de maloya « faits maison »… sans instruments. Les sujets ? Ultra-locaux : le prix du caddie, la santé, les embrouilles de famille, l'humour kréol. C'est ça qui accroche — on s'y reconnaît.</p>
+
+  <p>La figure de proue, c'est <strong>El Bandido 974</strong>. Son projet <strong>MISS-IA</strong>, un « personnage » entièrement virtuel, a dépassé <strong>1,1 million de vues</strong> avec un seul titre. Et il ne s'en cache pas : « musique créée par intelligence artificielle », écrit-il noir sur blanc sous ses vidéos. Il en a même fait sa signature.</p>
+
+  <p>Il n'est pas seul. <strong>DJ-ia 974</strong> (le nom est un aveu), <strong>Cris Toukour</strong> — qui raconte avoir créé son morceau « lors d'un live TikTok, pour découvrir Suno avec ses abonnés ». Et puis il y a les autres — <strong>WAZOMI</strong>, <strong>Ov3rDoZz</strong>… dont on reparlera, parce qu'avec eux, justement, rien n'est sûr.</p>
+
+  <!-- TABLEAU CRÉATEURS -->
+  <div class="tbl-wrap">
+    <table class="data">
+      <caption>Le séga IA péi : qui fait quoi<br><span class="capsub">Créateurs de séga / maloya IA à La Réunion — relevé juillet 2026</span></caption>
+      <thead>
+        <tr><th>Créateur</th><th>Titre</th><th class="num">Vues</th><th>Assume l'IA ?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>El Bandido 974 / MISS-IA</td><td><a href="https://www.youtube.com/watch?v=pXHsR0DauUA">Ma Pala</a></td><td class="num">1,1 M</td><td><span class="badge yes">oui, assumé</span></td></tr>
+        <tr><td>WAZOMI</td><td><a href="https://www.youtube.com/watch?v=2NFVYy96a3A">Fiy Graamoun Baba</a></td><td class="num">62 k</td><td><span class="badge no">non déclaré</span></td></tr>
+        <tr><td>El Bandido 974</td><td><a href="https://www.youtube.com/watch?v=0wrvFKem6fw">Papa i mange pi cochon</a></td><td class="num">~59 k</td><td><span class="badge yes">oui, assumé</span></td></tr>
+        <tr><td>Ov3rDoZz_974</td><td><a href="https://www.youtube.com/watch?v=eIae9awJS9c">Il était une fois…</a></td><td class="num">37 k</td><td><span class="badge no">non déclaré</span></td></tr>
+        <tr><td>DJ-ia 974</td><td><a href="https://www.youtube.com/watch?v=e-qF-XBRh8E">In Ti Flanm Pou Ou</a></td><td class="num">22 k</td><td><span class="badge yes">oui, assumé</span></td></tr>
+        <tr><td>Cris Toukour</td><td><a href="https://www.youtube.com/watch?v=JLnGEKgIxC4">Loin de la Réunion</a></td><td class="num">4,7 k</td><td><span class="badge yes">oui, assumé</span></td></tr>
+        <tr><td>Kawabonga (Ryuzaki Labs)</td><td><a href="https://www.youtube.com/watch?v=nFMihSGo94U">Persé Mèt Sék</a> — « 1<sup>er</sup> maloya IA »</td><td class="num">~2 k</td><td><span class="badge yes">oui, assumé</span></td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-src">Sources : relevés YouTube (juillet 2026) · La 1ère (Kawabonga). « Non déclaré » = aucune mention d'IA sur la vidéo, statut non prouvé — pas une accusation.</p>
+  </div>
+
+  <p>Petit vertige au passage : à l'échelle mondiale, Deezer reçoit déjà <strong>75 000 titres 100 % IA par jour — 44 % de tout ce qui est mis en ligne</strong>. La Réunion n'a rien inventé. Mais elle le fait à sa sauce : en créole.</p>
+
+  <!-- GRAPHIQUE DEEZER -->
+  <figure class="figure">
+    <div class="surface">
+      <svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Inter, system-ui, sans-serif">
+        <title>La musique 100 % IA sur Deezer</title>
+        <desc>Part des titres 100 % IA dans les mises en ligne quotidiennes sur Deezer : 28 % en septembre 2025, 39 % en janvier 2026, 44 % en avril 2026.</desc>
+        <text x="40" y="44" font-size="22" font-weight="700" fill="#1b2733">La musique 100 % IA sur Deezer</text>
+        <text x="40" y="68" font-size="14" fill="#566778">Part des titres 100 % IA dans les mises en ligne quotidiennes</text>
+        <line x1="80" y1="290" x2="660" y2="290" stroke="#eceff4" stroke-width="1"/>
+        <line x1="80" y1="240" x2="660" y2="240" stroke="#eceff4" stroke-width="1"/>
+        <line x1="80" y1="190" x2="660" y2="190" stroke="#eceff4" stroke-width="1"/>
+        <line x1="80" y1="140" x2="660" y2="140" stroke="#eceff4" stroke-width="1"/>
+        <text x="68" y="344" font-size="12" fill="#8493a3" text-anchor="end">0 %</text>
+        <text x="68" y="294" font-size="12" fill="#8493a3" text-anchor="end">10 %</text>
+        <text x="68" y="244" font-size="12" fill="#8493a3" text-anchor="end">20 %</text>
+        <text x="68" y="194" font-size="12" fill="#8493a3" text-anchor="end">30 %</text>
+        <text x="68" y="144" font-size="12" fill="#8493a3" text-anchor="end">40 %</text>
+        <line x1="80" y1="90" x2="660" y2="90" stroke="#c47d23" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <text x="660" y="84" font-size="12" fill="#9a5f15" text-anchor="end">la moitié (50 %)</text>
+        <line x1="80" y1="340" x2="660" y2="340" stroke="#c3c2b7" stroke-width="1.5"/>
+        <path d="M150 340 L150 200 L370 145 L590 120 L590 340 Z" fill="#4453c4" fill-opacity="0.12"/>
+        <polyline points="150,200 370,145 590,120" fill="none" stroke="#4453c4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="150" cy="200" r="6" fill="#4453c4" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="370" cy="145" r="6" fill="#4453c4" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="590" cy="120" r="6" fill="#4453c4" stroke="#ffffff" stroke-width="2"/>
+        <text x="150" y="184" font-size="17" font-weight="700" fill="#1b2733" text-anchor="middle">28 %</text>
+        <text x="370" y="129" font-size="17" font-weight="700" fill="#1b2733" text-anchor="middle">39 %</text>
+        <text x="590" y="104" font-size="17" font-weight="700" fill="#1b2733" text-anchor="middle">44 %</text>
+        <text x="150" y="364" font-size="13" fill="#566778" text-anchor="middle">sept. 2025</text>
+        <text x="370" y="364" font-size="13" fill="#566778" text-anchor="middle">janv. 2026</text>
+        <text x="590" y="364" font-size="13" fill="#566778" text-anchor="middle">avr. 2026</text>
+      </svg>
+    </div>
+    <figcaption>En 8 mois, la musique 100 % IA est passée de 28 % à 44 % des titres mis en ligne chaque jour. Source : <a href="https://newsroom-deezer.com/fr/2026/04/deezer-les-morceaux-generes-par-la-representent-desormais-44-de-lensemble-des-nouveaux-titres-mis-en-ligne/">Deezer Newsroom</a> (2025-2026).</figcaption>
+  </figure>
+
+  <hr>
+
+  <!-- ===== 2 ===== -->
+  <h2><span class="num">2.</span> « Pour ou contre l'IA ? » — la mauvaise question</h2>
+
+  <p>Dès qu'on parle de musique IA, tout le monde se range dans un camp. Et en général, deux voix crient plus fort que les autres. Le souci, c'est que les deux passent à côté.</p>
+
+  <div class="pieges">
+    <div class="piege a"><span class="lbl">Les éternels enthousiastes</span><p>« C'est génial, l'IA démocratise la création, tout le monde est artiste ! » — Sauf que balancer un <b>prompt</b> et cliquer, ce n'est pas créer : c'est commander.</p></div>
+    <div class="piege b"><span class="lbl">Les anti-tout</span><p>« C'est de la triche, la mort de la musique, faut tout interdire ! » — Position confortable, mais paresseuse : parfois, ça marche vraiment.</p></div>
+  </div>
+
+  <p><strong>D'un côté, les éternels enthousiastes</strong>, restés bouche bée devant la nouveauté. Ceux qui te sortent : « c'est génial, l'IA démocratise la création, tout le monde est artiste maintenant ! ». Sauf que balancer un <em>prompt</em> de trois mots et cliquer, ce n'est pas créer — c'est commander. Et quand des milliers de gens font pareil, ça donne ce qu'on voit déjà : des plateformes noyées sous des morceaux sans âme, produits à la chaîne, parfois juste pour gratter des vues ou des streams. <em>(les chiffres, plus bas, font peur.)</em> La quantité a remplacé l'intention.</p>
+
+  <p><strong>De l'autre, les anti-tout</strong>, ceux qui rejettent tout en bloc : « c'est de la triche, c'est la mort de la musique, faut tout interdire ». Position confortable, mais paresseuse. Deux nuances, quand même. Un : à La Réunion, l'argument dérape vite vers un terrain miné — « qui a le droit de toucher à <em>notre</em> musique ? » — parfois récupéré pour de mauvaises raisons (on y revient avec le maloya). Deux, et c'est plus sérieux : derrière l'inquiétude, il y a de <strong>vraies</strong> raisons — des <strong>artistes</strong> dont le métier est menacé, des <strong>droits d'auteur</strong> piétinés, des <strong>revenus</strong> qui fondent. Ces peurs-là sont <strong>légitimes</strong>, et on les prendra au sérieux, chiffres à l'appui. Mais tout interdire en bloc, c'est refuser de voir que, parfois, ça marche vraiment — et passer à côté de la vraie question.</p>
+
+  <p>Entre les deux, on tourne en rond. Parce que « pour ou contre l'IA ? » n'a pas de réponse — autant demander si on est <em>pour ou contre le marteau</em>. Ça dépend de qui tient le manche, et de ce qu'il en fait.</p>
+
+  <p>La seule question qui tienne, c'est celle-là : <strong>dans tout ça, où est passé l'humain ?</strong></p>
+
+  <hr>
+
+  <!-- ===== 3 ===== -->
+  <h2><span class="num">3.</span> Le vrai critère : où est l'humain</h2>
+
+  <p>Fais le test. Écoute deux morceaux IA à la suite : l'un te scotche, l'autre te fait fuir. La différence, ce n'est pas l'outil — c'est le même. C'est ce que la personne a mis dedans.</p>
+
+  <p>D'un côté, quelqu'un qui a une vraie idée : un concept, un texte travaillé, un angle, une intention. Qui connaît déjà la musique et qui se sert de l'IA comme d'un instrument de plus. <strong>El Bandido</strong>, encore lui : il écrit ses propres paroles, il construit un personnage (MISS-IA), il assume la démarche. L'IA ne le remplace pas — elle décuple ce qu'il sait déjà faire.</p>
+
+  <blockquote>« Il faut connaître la musique, il faut connaître les accords, développer et utiliser l'intelligence artificielle. »<span class="src">— Jimmy Sincère, musicien (La 1ère, 24/06/2026)</span></blockquote>
+
+  <p>Ou <strong>Cris Toukour</strong>, qui raconte tranquillement avoir sorti son morceau « lors d'un live TikTok avec les abonnés afin de découvrir l'application Suno » : il y a une intention, un partage, une histoire.</p>
+
+  <figure class="embed">
+    <div class="frame"><iframe src="https://www.youtube.com/embed/JLnGEKgIxC4" title="Cris Toukour — Loin de la Réunion" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <figcaption><b>Cris Toukour — « Loin de la Réunion »</b> · né d'un live TikTok pour découvrir Suno. IA assumée.</figcaption>
+  </figure>
+
+  <p>De l'autre côté, le vide. Un <em>prompt</em> vite fait, aucune idée derrière, zéro travail — juste l'espoir d'un buzz ou de trois streams grattés. Ça ne crée rien. Ça remplit. Et ça dessert tout le monde : les artistes, la culture… et l'IA elle-même, qu'on rabaisse à une machine à bruit.</p>
+
+  <p>Le vrai critère tient en quatre mots : <strong>intention, travail, maîtrise, respect</strong>. Le talent, lui, passe à travers l'outil. Donne un pinceau — ou un logiciel — à quelqu'un qui a quelque chose à dire, il en fera quelque chose. Donne les mêmes à quelqu'un qui n'a rien à dire, tu auras… rien. L'outil n'a jamais fait l'artiste.</p>
+
+  <p><strong>Sauf que — soyons honnêtes.</strong> On a envie de se rassurer : « c'est comme le synthé, comme l'autotune, à chaque nouvel outil on crie au loup ». En partie vrai. En partie seulement. Parce que cette fois, l'outil ne t'aide pas à jouer : il joue <strong>à ta place</strong>. Entièrement. Sans que tu saches lire une note. À l'infini. Gratuitement. Et 97 % des gens n'y voient que du feu. Ce saut-là — de quantité — pourrait bien devenir un saut de nature. C'est ça qui rend le sujet neuf — pas juste un énième « c'était mieux avant ».</p>
+
+  <hr>
+
+  <!-- ===== 4 ===== -->
+  <h2><span class="num">4.</span> Le maloya, lui, n'est pas une musique comme les autres</h2>
+
+  <div class="box block">
+    <h4>🥁 Le maloya en 30 secondes</h4>
+    <p>Le maloya est né dans les <b>camps d'esclaves</b> des plantations réunionnaises. Chanté en créole, porté par le roulèr, le kayamb et le pikèr, c'était la musique de ceux à qui on avait tout pris — une parole de résistance. Il a été <b>censuré jusque dans les années 1980</b>, joué en cachette.</p>
+    <p>En 2009, l'UNESCO l'a inscrit au <b>patrimoine culturel immatériel de l'humanité</b>. D'où la question qui traverse tout ce dossier : une machine peut-elle chanter une mémoire qu'elle n'a pas vécue ?</p>
+  </div>
+
+  <p>Un séga rigolo sur le cari cochon généré par IA, à la limite, ça fait sourire. Mais le maloya, c'est autre chose. Cette musique est née dans la douleur — celle de l'esclavage —, elle a été interdite, chantée en cachette, et elle est aujourd'hui inscrite au <strong>patrimoine mondial de l'UNESCO</strong> (2009). Le maloya, ce n'est pas que des rythmes : c'est une histoire, des instruments, une transmission, un combat.</p>
+
+  <p>Alors forcément, quand une machine s'y met, ça remue. En août 2025, le collectif <strong>Ryuzaki Labs</strong> sortait « le premier maloya créé par IA », sous un groupe virtuel baptisé <strong>Kawabonga</strong>. Techniquement bluffant. Mais est-ce encore du maloya ?</p>
+
+  <figure class="embed">
+    <div class="frame"><iframe src="https://www.youtube.com/embed/nFMihSGo94U" title="Kawabonga — Persé Mèt Sék" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <figcaption><b>Kawabonga (Ryuzaki Labs) — « Persé Mèt Sék »</b> · présenté comme le premier maloya créé par IA (août 2025, via Suno).</figcaption>
+  </figure>
+
+  <p>Ma position, tu la connais maintenant : comme jeu, comme expérience, comme clin d'œil — pourquoi pas, tant qu'on respecte les codes et qu'on ne prétend pas remplacer l'original. Le problème commence si ça devient le mode <strong>principal</strong> : le jour où l'on écoute plus de maloya sorti d'une appli que de maloya porté par des femmes et des hommes qui en connaissent l'histoire, on aura perdu l'essentiel.</p>
+
+  <div class="box muted">
+    <h4>🌏 Pas qu'ici</h4>
+    <p>La Réunion n'est pas seule. À <b>Wallis-et-Futuna</b>, les chants locaux sont déjà revisités par l'IA — même engouement du public, mêmes craintes des artistes (La 1ère). Partout où une musique porte une âme, la question ressurgit.</p>
+  </div>
+
+  <p>Et attention : le maloya est déjà un terrain miné, bien <strong>avant</strong> l'IA. En juin 2026, une <strong>polémique sur fond d'appropriation culturelle</strong> a éclaté — d'un côté, le militant <strong>Gaël Velleyen</strong> (Kréolokoz), en porte-parole : <em>« Kan un zorey i pran nout musik li pass davan nou, li export, li pran larzen […] mé li pran pa lo komba, la mizèr […] »</em> — en clair : quand un « zorey » (métropolitain) prend notre musique, passe devant nous, l'exporte, prend l'argent… mais pas le combat ni la misère qui vont avec. De l'autre, une <strong>tribune de près de 200 artistes</strong> — dont <strong>Danyèl Waro</strong> et <strong>Christine Salem</strong> : <em>« Ne les mettons pas sous cloche »</em>, <em>« Aucun combat ne mérite qu'on l'érige en dogme au point d'oublier toute humanité »</em>.</p>
+
+  <p>Même si, a priori, ce débat n'est pas le sujet ici, il dit quelque chose d'essentiel pour notre propos : si, <strong>entre humains</strong>, on se déchire déjà pour savoir qui a le droit de porter le maloya, c'est bien que cette musique charrie plus que des notes — une mémoire, un vécu, une douleur. Et ça, justement, c'est ce qu'une machine ne portera jamais.</p>
+
+  <p>Le vrai risque de l'IA, ce n'est donc pas « une IA n'a pas le droit ». C'est : qu'est-ce qu'il reste quand plus personne, humainement, ne porte l'histoire derrière les notes ? <em>(Et il existe un cas encore plus troublant — quand l'IA ne recrée pas un style, mais la voix d'un artiste disparu. On y arrive.)</em></p>
+
+  <hr>
+
+  <!-- ===== 5 ===== -->
+  <h2><span class="num">5.</span> Derrière la chanson, une industrie (et de vrais enjeux)</h2>
+
+  <p>Jusqu'ici on a parlé création, culture, talent. Mais il y a un étage au-dessus — l'argent, le marché, le droit. Et c'est là que « l'humain au cœur » ne suffit plus : même le meilleur créateur ne pèse rien, seul, face au système.</p>
+
+  <h3>L'argent</h3>
+  <p>La musique n'a jamais autant rapporté, et l'IA veut sa part : le générateur star, <strong>Suno</strong>, vaut aujourd'hui plus cher que bien des maisons de disques.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="big">31,7 Md$</div><div class="lab">marché mondial de la musique (2025)</div></div>
+    <div class="stat"><div class="big">≈ 70 %</div><div class="lab">part du streaming · 22 Md$</div></div>
+    <div class="stat"><div class="big">837 M</div><div class="lab">abonnés payants dans le monde</div></div>
+    <div class="stat"><div class="big">5,4 Md$</div><div class="lab">valorisation de Suno (2026)</div></div>
+  </div>
+
+  <h3>Le trop-plein</h3>
+  <p>Sauf que cette abondance a un revers. Sur Deezer, la musique 100 % IA représente déjà près de la <strong>moitié</strong> de ce qui est mis en ligne chaque jour — et la courbe grimpe vite <em>(voir le graphique plus haut : 28 % → 44 % en 8 mois)</em>. Bonne nouvelle : ces morceaux ne pèsent que <strong>1 à 3 % des écoutes réelles</strong>. Mauvaise : jusqu'à <strong>85 % des streams</strong> qu'ils génèrent seraient <strong>frauduleux</strong> — des bots qui écoutent des bots pour gratter des royalties.</p>
+
+  <p>Résultat pour les vrais artistes ? Ils sont inquiets — et leurs revenus sont directement dans le viseur.</p>
+
+  <!-- STATS ARTISTES -->
+  <figure class="figure">
+    <div class="surface">
+      <svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Inter, system-ui, sans-serif">
+        <title>Ce que l'IA fait aux artistes</title>
+        <desc>79 % des artistes voient l'IA comme une menace (Adami, 2024) ; jusqu'à −24 % de leurs revenus menacés d'ici 2028 (CISAC, 2024).</desc>
+        <text x="40" y="42" font-size="21" font-weight="700" fill="#1b2733">Ce que l'IA fait aux artistes</text>
+        <line x1="360" y1="74" x2="360" y2="210" stroke="#eceff4" stroke-width="1"/>
+        <text x="200" y="140" font-size="60" font-weight="800" fill="#b23b3b" text-anchor="middle">79 %</text>
+        <text x="200" y="172" font-size="14" fill="#566778" text-anchor="middle">des artistes voient</text>
+        <text x="200" y="191" font-size="14" fill="#566778" text-anchor="middle">l'IA comme une menace</text>
+        <text x="200" y="216" font-size="11.5" fill="#8493a3" text-anchor="middle">Source : étude Adami, 2024</text>
+        <text x="520" y="140" font-size="60" font-weight="800" fill="#b23b3b" text-anchor="middle">−24 %</text>
+        <text x="520" y="172" font-size="14" fill="#566778" text-anchor="middle">de leurs revenus</text>
+        <text x="520" y="191" font-size="14" fill="#566778" text-anchor="middle">menacés d'ici 2028</text>
+        <text x="520" y="216" font-size="11.5" fill="#8493a3" text-anchor="middle">Source : étude CISAC, 2024</text>
+      </svg>
+    </div>
+    <figcaption>Sources : <a href="https://www.adami.fr/les-artistes-face-a-lintelligence-artificielle-saison-2/">étude Adami « Les artistes face à l'IA »</a> (2024) · <a href="https://www.cisac.org/Newsroom/news-releases/global-economic-study-shows-human-creators-future-risk-generative-ai">étude CISAC / PMP Strategy</a> (2024).</figcaption>
+  </figure>
+
+  <p>C'est ça, le vrai problème — pas « la machine fait du maloya », mais « la machine dilue le gâteau ».</p>
+
+  <h3>Les règles</h3>
+  <p>Face à ça, le monde réagit — en ordre dispersé :</p>
+  <p>En France, la <strong>SACEM</strong> a dégainé dès <strong>octobre 2023</strong> son droit d'opposition : son répertoire ne peut pas servir à entraîner une IA sans autorisation. Sa directrice générale, <strong>Cécile Rap-Veber</strong>, ne mâche pas ses mots : « c'est totalement injuste que les IA aient pillé toute la culture » sans rémunération. Les majors <strong>Universal et Sony attaquent Suno et Udio</strong> en justice ; <strong>Warner</strong> et <strong>Universal</strong>, eux, ont fini par signer des accords.</p>
+
+  <!-- TABLEAU JURIDIQUE -->
+  <div class="tbl-wrap" id="recap-juridique">
+    <table class="data">
+      <caption>Musique IA : comment le monde réagit<br><span class="capsub">Les principales réponses juridiques, en ordre dispersé</span></caption>
+      <thead>
+        <tr><th>Où</th><th>Ce que ça change</th><th class="num">Depuis / échéance</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>France — SACEM</b></td><td>Droit d'opposition : son répertoire ne peut pas servir à entraîner une IA sans autorisation</td><td class="num">oct. 2023</td></tr>
+        <tr><td><b>Europe — AI Act (art. 50)</b></td><td>Tout contenu généré par IA doit être marqué comme tel</td><td class="num">2 août 2026</td></tr>
+        <tr><td><b>USA — ELVIS Act (Tennessee)</b></td><td>Protège la voix des artistes contre le clonage par IA</td><td class="num">juil. 2024</td></tr>
+        <tr><td><b>Chine — règles CAC</b></td><td>Étiquetage obligatoire de tous les contenus générés par IA</td><td class="num">sept. 2025</td></tr>
+        <tr><td><b>International — justice</b></td><td>Universal et Sony poursuivent Suno et Udio ; Warner et Universal ont signé des accords</td><td class="num">2024-2025</td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-src">Sources : SACEM · règlement européen 2024/1689 (AI Act) · État du Tennessee · Cyberspace Administration of China · RIAA / communiqués des majors.</p>
+  </div>
+
+  <h3>Et concrètement, on repère l'IA ?</h3>
+  <div class="box prod">
+    <h4>🔍 Peut-on reconnaître l'IA ?</h4>
+    <p>Pas toujours à l'oreille. Les indices existent — une voix un peu trop <b>lisse</b>, des paroles vagues, des instruments qui « bavent » sur les aigus — mais les outils progressent si vite que le doute s'installe.</p>
+    <p>Des plateformes comme Deezer disent désormais <b>détecter et étiqueter</b> les titres 100 % IA ; l'<b>IRCAM</b> (français) annonce un détecteur à 98,5 %. Et à partir du <b>2 août 2026</b>, l'AI Act imposera de marquer tout contenu généré par IA. Mais souviens-toi : <b>97 % des auditeurs</b>, eux, n'entendent pas la différence. La machine repère la machine ; nos oreilles, non.</p>
+  </div>
+
+  <p>Tout ça dit une chose : la place de l'humain ne se défend pas <strong>seulement</strong> au niveau du créateur (l'intention, le talent). Elle se joue aussi au niveau des <strong>règles</strong> — qui est payé, qui est crédité, qui est prévenu. Sans ça, même les artistes les plus honnêtes finiront noyés.</p>
+
+  <hr>
+
+  <!-- ===== 6 ===== -->
+  <h2><span class="num">6.</span> Et ce n'est que le début</h2>
+
+  <p>Le séga IA n'est que la partie visible. À La Réunion, des créateurs se sont emparés de ces outils bien avant la vague — souvent avec un vrai savoir-faire. Et le cas que j'annonçais en est l'exemple le plus vertigineux.</p>
+
+  <p>Prends <strong>Ryuzaki Labs</strong>. Ce collectif de passionnés de tech réunionnais explore l'IA depuis des années, avec exigence. Dès 2023, dans le cadre de son projet <strong>« Edo Tensei »</strong>, il a recréé par IA la voix d'<strong>Alain Peters</strong>, figure culte de la musique péi disparue en 1995 — non pas pour faire le buzz, mais dans une démarche assumée de patrimoine : préserver, faire revivre, transmettre. Son président, Shanmougame, y voit « un pont entre le passé et l'avenir ». La prouesse technique est réelle, l'intention sincère.</p>
+
+  <div class="callout">
+    <p><b>L'extrait, aujourd'hui retiré.</b> La vidéo d'origine (projet « Edo Tensei »), publiée sur Instagram, a depuis été supprimée. La voix du disparu y était posée sur une chanson de <b>Davy Sicard</b>, artiste bien vivant — et ça a créé un tollé. L'épisode reste documenté ici : <a href="https://www.linfo.re/la-reunion/societe/musique-la-voix-d-alain-peters-reproduite-par-les-technologies-de-machine-learning">LINFO.re, oct. 2023</a>.</p>
+  </div>
+
+  <p>On touche là une vraie question, pas contre eux mais pour nous tous : entendre chanter un mort, sans qu'il ait rien demandé, sans que ses proches aient leur mot à dire… jusqu'où ? C'est précisément ce que des lois comme l'<strong>ELVIS Act</strong> <em>(<a href="#recap-juridique" class="inline">voir le récap juridique</a>)</em> tentent d'encadrer. Et c'est peut-être là le mérite de ces expérimentations : nous forcer à nous poser la question avant tout le monde.</p>
+
+  <p>Le même collectif a d'ailleurs mis l'IA au service de la <strong>mémoire</strong>, avec une œuvre visuelle sur la révolte des esclaves de Saint-Leu, exposée au musée Stella Matutina. Là, la technologie sert clairement quelque chose.</p>
+
+  <p>Et la création péi ne s'arrête pas à la musique. <strong>Nico Ocin</strong> croque la vie politique locale et fait revivre la Réunion des années 80 en images — un vrai travail d'auteur, drôle et affûté, qui trouve son public. L'IA, ici, prolonge un regard, une patte, un humour bien de chez nous.</p>
+
+  <div class="callout" style="border-left-color:var(--t-prod)">
+    <p><b>Nico Ocin</b> (Les Avirons) — satire politique et Réunion des années 80 en images. Ses créations sont sur Facebook : <a href="https://www.facebook.com/reel/1455602426337824">voir un Reel</a> · <a href="https://www.facebook.com/nico.ocin.902">sa page</a>.</p>
+  </div>
+
+  <p>Là où ça se corse, ce n'est pas quand un créateur talentueux s'empare de l'outil — c'est quand l'outil <strong>change de mains</strong>. Aux <strong>municipales 2026</strong>, des chansons de campagne IA ont circulé, et le risque de <em>deepfakes</em> plane, alors que le code électoral français ne dit toujours rien sur l'IA. La même techno qui sert la créativité peut servir la manipulation. Tout dépend, encore et toujours, de qui la tient — et de ce qu'il en fait.</p>
+
+  <p>Musique, patrimoine, satire, politique : partout la même histoire. La question « où est l'humain ? » ne concerne pas que les musiciens. Elle nous concerne tous.</p>
+
+  <hr>
+
+  <!-- ===== 7 ===== -->
+  <h2><span class="num">7.</span> Alors, on fait quoi ?</h2>
+
+  <p>Revenons à la question de départ : pour ou contre la musique IA ? Tu l'as compris — c'est un piège. La vraie question, c'est : <strong>où est l'humain là-dedans ?</strong></p>
+
+  <p>Et ma conviction, la voici, assumée. L'IA n'est ni le diable ni le messie : c'est un outil, un de plus. Entre les mains de quelqu'un qui a une intention, un talent, une histoire à raconter et le respect de ce qu'il touche, elle peut donner de belles choses — El Bandido, Cris Toukour, Ryuzaki Labs le prouvent. Utilisée à vide, pour noyer, gratter ou tromper, elle ne fait que du bruit — et elle abîme au passage les artistes, la culture, et sa propre réputation.</p>
+
+  <p>Mais je ne vais pas te laisser sur une jolie phrase. La place de l'humain ne se défend pas <strong>qu'</strong>au niveau du créateur. Un artiste honnête ne pèse rien si, en face, des millions de morceaux vides saturent les plateformes et raflent les revenus. Elle se joue aussi dans les <strong>règles</strong> : qui est payé, qui est crédité, qui est prévenu qu'il écoute une machine. Sans ça, les bons paieront pour les mauvais.</p>
+
+  <p>Alors, notre musique ? Le maloya, le séga survivront à l'IA — comme ils ont survécu à l'interdiction, au disque, à l'autotune — tant qu'il restera des femmes et des hommes pour porter l'histoire derrière les notes. L'IA ne tuera pas la musique péi. Le vrai risque, c'est qu'on oublie, nous, ce qui fait sa valeur.</p>
+
+  <p>La prochaine fois qu'un séga te trotte dans la tête, pose-toi juste la question : derrière ce refrain, il y a qui ? Et si tu ne sais pas répondre… c'est peut-être ça, le vrai sujet.</p>
+
+  <!-- SOURCES -->
+  <section class="sources">
+    <h2>Sources</h2>
+    <p class="intro">Toutes les affirmations chiffrées et les citations de cet article ont été vérifiées à leur source première (juillet 2026). Les liens directs sont fournis quand ils sont publics ; les références sans lien renvoient à des articles de presse consultables par recherche du titre.</p>
+
+    <h4>Les créations (vidéos)</h4>
+    <ul>
+      <li>El Bandido 974 / MISS-IA — <a href="https://www.youtube.com/watch?v=pXHsR0DauUA">Ma Pala</a> · <a href="https://www.youtube.com/watch?v=0wrvFKem6fw">Papa i mange pi cochon</a></li>
+      <li>WAZOMI — <a href="https://www.youtube.com/watch?v=2NFVYy96a3A">Fiy Graamoun Baba</a> · Ov3rDoZz_974 — <a href="https://www.youtube.com/watch?v=eIae9awJS9c">Il était une fois…</a></li>
+      <li>DJ-ia 974 — <a href="https://www.youtube.com/watch?v=e-qF-XBRh8E">In Ti Flanm Pou Ou</a> · Cris Toukour — <a href="https://www.youtube.com/watch?v=JLnGEKgIxC4">Loin de la Réunion</a></li>
+      <li>Kawabonga (Ryuzaki Labs) — <a href="https://www.youtube.com/watch?v=nFMihSGo94U">Persé Mèt Sék</a>, « premier maloya IA »</li>
+    </ul>
+
+    <h4>Les chiffres</h4>
+    <ul>
+      <li>Deezer Newsroom — <a href="https://newsroom-deezer.com/fr/2026/04/deezer-les-morceaux-generes-par-la-representent-desormais-44-de-lensemble-des-nouveaux-titres-mis-en-ligne/">44 % des nouveaux titres générés par IA</a> (avril 2026) ; étude Deezer/Ipsos (97 % ne distinguent pas l'IA).</li>
+      <li>Adami — <a href="https://www.adami.fr/les-artistes-face-a-lintelligence-artificielle-saison-2/">« Les artistes face à l'IA »</a> (79 %, oct. 2024) · CISAC / PMP Strategy — <a href="https://www.cisac.org/Newsroom/news-releases/global-economic-study-shows-human-creators-future-risk-generative-ai">étude économique mondiale</a> (−24 % d'ici 2028, déc. 2024).</li>
+      <li>IFPI — <a href="https://www.ifpi.org/">Global Music Report 2026</a> (31,7 Md$, streaming ≈ 70 %) · Suno valorisé 5,4 Md$ (Music Business Worldwide / Variety, juin 2026).</li>
+    </ul>
+
+    <h4>Le cadre juridique</h4>
+    <ul>
+      <li>SACEM — droit d'opposition (12 oct. 2023 ; art. L.122-5-3 CPI), déclaration de Cécile Rap-Veber.</li>
+      <li>Union européenne — <a href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32024R1689">Règlement (UE) 2024/1689 (AI Act)</a>, art. 50, applicable au 2 août 2026.</li>
+      <li>ELVIS Act (Tennessee, en vigueur 1er juil. 2024) · Chine — étiquetage IA obligatoire (CAC, sept. 2025) · procès Universal / Sony c. Suno et Udio, accords Warner / Universal (RIAA).</li>
+      <li>IRCAM Amplify — détecteur de musique IA (~98,5 %, 2024).</li>
+    </ul>
+
+    <h4>Le maloya, la culture, la politique</h4>
+    <ul>
+      <li>UNESCO — <a href="https://ich.unesco.org/fr/RL/le-maloya-00249">Le maloya, patrimoine culturel immatériel de l'humanité</a> (2009).</li>
+      <li>Kawabonga, « premier maloya IA » — <a href="https://la1ere.franceinfo.fr/reunion/le-premier-maloya-cree-avec-de-l-intelligence-artificielle-1611984.html">La 1ère, 8 août 2025</a>.</li>
+      <li>Ryuzaki Labs, projet « Edo Tensei » (voix d'Alain Peters recréée par IA sur une chanson de Davy Sicard) — <a href="https://www.linfo.re/la-reunion/societe/musique-la-voix-d-alain-peters-reproduite-par-les-technologies-de-machine-learning">LINFO.re, 26 oct. 2023</a> (vidéo d'origine retirée depuis).</li>
+      <li>Polémique sur l'appropriation culturelle du maloya (groupe Saodaj), prise de position de Gaël Velleyen (Kréolokoz) et tribune de ~200 artistes (Danyèl Waro, Christine Salem) — presse réunionnaise, juin 2026.</li>
+      <li>Wallis-et-Futuna : chants traditionnels revisités par l'IA — La 1ère. Municipales 2026, chansons IA (dont Jimmy Sincère) — La 1ère, 24 juin 2026. Nico Ocin — Facebook / Free Dom.</li>
+    </ul>
+
+    <p class="legal"><b>Droit de réponse.</b> Cet article cite des créateurs qui publient publiquement leur travail ; il distingue systématiquement ce qui est <em>assumé</em> de ce qui est <em>non prouvé</em>, et ne porte aucune accusation. Un créateur cité souhaite une précision ou un rectificatif ? <a href="/a-propos/">Écris-moi</a>, je corrigerai.</p>
+
+    <p class="signature">Article rédigé par un humain et augmenté par une IA (ressources documentaires, création des visuels, mise en forme et code de l'article).</p>
+  </section>
+
+</article>
+</main>
+
+<footer class="maxw">
+  <span>© Sébastien Rivière · 2026</span>
+  <span class="foot-links">
+    <a href="/">Accueil</a>
+    <a href="/articles/">Articles</a>
+    <a href="/outils/">Outils</a>
+    <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+    <a href="/a-propos/">À propos</a>
+  </span>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,saved=null;
+  try{saved=localStorage.getItem('theme');}catch(e){}
+  if(saved==='light'||saved==='dark')root.setAttribute('data-theme',saved);
+  var btn=document.getElementById('themeBtn');
+  function current(){var a=root.getAttribute('data-theme');if(a)return a;return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+  function syncMeta(){var m=document.querySelectorAll('meta[name=theme-color]');if(root.getAttribute('data-theme')){m.forEach(function(x){x.remove();});var meta=document.createElement('meta');meta.name='theme-color';meta.content=current()==='dark'?'#0f1722':'#f5f7fa';document.head.appendChild(meta);}}
+  btn.addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next);}catch(e){}syncMeta();});
+})();
+</script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

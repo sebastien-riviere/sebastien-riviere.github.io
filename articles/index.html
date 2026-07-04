@@ -100,6 +100,17 @@ main{flex:1;padding:34px 40px 64px;}
 .empty-hero .btn{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-weight:700;font-size:14px;padding:11px 20px;border-radius:11px;background:var(--t-art);color:#fff;transition:filter .15s;}
 .empty-hero .btn:hover{filter:brightness(1.08);}
 
+/* Carte article */
+.artgrid{display:grid;gap:14px;margin-bottom:38px;}
+.artcard{display:block;border:1px solid var(--border);border-left:3px solid var(--t-labo);border-radius:14px;background:var(--card);padding:20px 22px;box-shadow:var(--shadow);transition:transform .12s ease,box-shadow .15s;}
+.artcard:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(20,33,46,.08),0 14px 34px rgba(20,33,46,.12);}
+.artcard .ac-cat{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--t-labo);background:var(--t-labo-soft);border-radius:20px;padding:3px 10px;margin-bottom:11px;}
+.artcard h2{font-weight:800;font-size:21px;letter-spacing:-.01em;color:var(--title);margin-bottom:7px;line-height:1.2;}
+.artcard p{font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:13px;max-width:640px;}
+.artcard .ac-meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12.5px;font-weight:600;color:var(--faint);}
+.artcard .ac-meta .ac-go{color:var(--pop-ink);margin-left:auto;}
+@media(max-width:600px){.artcard .ac-meta .ac-go{margin-left:0;}}
+
 .section{margin-bottom:36px;}
 .section-title{display:flex;align-items:center;gap:11px;font-weight:800;font-size:18px;letter-spacing:-.2px;color:var(--title);margin-bottom:16px;}
 .section-title .rule{flex:1;height:2px;border-radius:2px;background:var(--border);}
@@ -166,11 +177,16 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
     <p>Analyses, décryptages, enquêtes et dossiers autour de l'IA, des outils numériques, de la conformité et de la commande publique. Un regard indépendant, sourcé, sans jargon inutile.</p>
   </div>
 
-  <div class="empty-hero">
-    <div class="eh-ic"><svg viewBox="0 0 24 24"><path d="M4 4h13a2 2 0 0 1 2 2v14H6a2 2 0 0 1-2-2z"/><path d="M19 6h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2M8 8h7M8 12h7M8 16h4"/></svg></div>
-    <h2>La rubrique démarre — les premiers contenus arrivent</h2>
-    <p>Les premiers articles et enquêtes sont en préparation. En attendant, explorez les outils et la médiathèque, ou suivez les publications sur LinkedIn pour être prévenu.</p>
-    <a class="btn" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener">Suivre sur LinkedIn →</a>
+  <div class="artgrid">
+    <a class="artcard" href="/articles/quand-l-ia-chante-en-creole/">
+      <span class="ac-cat">Enquête · Culture &amp; IA</span>
+      <h2>Quand l'IA chante en créole</h2>
+      <p>Séga et maloya générés par IA à La Réunion : créateurs, chiffres, droit, culture. La vraie question n'est pas « pour ou contre l'IA », mais : où est passé l'humain ?</p>
+      <div class="ac-meta">
+        <span>4 juillet 2026</span><span>·</span><span>Lecture ~10 min</span>
+        <span class="ac-go">Lire l'article →</span>
+      </div>
+    </a>
   </div>
 
   <section class="section">
