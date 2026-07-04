@@ -155,6 +155,9 @@ body{
 .m-meta span{font-size:.62rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--faint)}
 .m-meta b{font-size:.9rem;color:var(--ink);font-weight:700}
 .m-rem{margin-top:12px;font-size:.85rem;color:var(--muted);font-style:italic;line-height:1.55}
+.m-why{margin-top:16px;padding:13px 15px;border-radius:var(--radius-sm);background:var(--ia-soft);border:1px solid color-mix(in srgb,var(--ia) 20%,transparent)}
+.m-why span{display:block;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ia-ink);margin-bottom:5px}
+.m-why p{font-size:.9rem;color:var(--ink);line-height:1.55}
 .m-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:var(--radius-sm);font-weight:800;font-family:var(--ui);font-size:.88rem;text-decoration:none;transition:.16s}
 .btn-p{background:var(--ia);color:#fff}.btn-p:hover{background:var(--ia-ink)}
@@ -334,6 +337,7 @@ function openModal(b){
   const isScreen=b.s==="ecran";
   const tags=[CATS[b.c].l,NAT[b.n]||b.n,b.y,isScreen?b.pays:""].filter(Boolean).map(t=>`<span>${esc(t)}</span>`).join("")
     +(isScreen&&b.fam?`<span class="fam">${esc(FAM[b.fam]||b.fam)}</span>`:"")
+    +(!isScreen&&b.scat?`<span class="fam">${esc(b.scat)}</span>`:"")
     +(isScreen&&b.i?`<span style="background:var(--t-ia-soft);color:var(--t-ia)">${esc(INT[b.i]||b.i)}</span>`:"")
     +(b.d==="oui"?'<span style="background:var(--t-data-soft);color:var(--t-data)">Disponible en français</span>':b.d==="non"?'<span>VO uniquement</span>':"");
   const pertRow=b.p?`<div class="pert" style="margin:2px 0 12px"><span class="stars">${starsHTML(b.p)}</span><span class="plabel">Pertinence · ${esc(PLABEL[b.p]||b.p+"/3")}</span></div>`:"";
@@ -343,6 +347,7 @@ function openModal(b){
   if(b.ang) rows.push(["Angle",b.ang]);
   if(b.rec) rows.push(["Réception",b.rec]);
   const metaTable=rows.length?`<div class="m-meta">${rows.map(r=>`<div><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("")}</div>`:"";
+  const why=b.pq?`<div class="m-why"><span>Pourquoi ce ${isScreen?"titre":"livre"}</span><p>${esc(b.pq)}</p></div>`:"";
   const rem=b.rem?`<p class="m-rem">${esc(b.rem)}</p>`:"";
   const links=[];
   if(b.u) links.push(`<a class="btn btn-p" href="${esc(b.u)}" target="_blank" rel="noopener">${isScreen?"Voir la fiche ↗":"Voir le livre ↗"}</a>`);
@@ -357,6 +362,7 @@ function openModal(b){
       <div class="m-tags">${tags}</div>
       <div class="m-res">${esc(b.r)||"<em>Résumé à venir.</em>"}</div>
       ${metaTable}
+      ${why}
       ${rem}
       <div class="m-links">${links.join("")}</div>
     </div></div>`;
