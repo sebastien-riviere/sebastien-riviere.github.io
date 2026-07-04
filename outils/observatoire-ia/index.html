@@ -198,6 +198,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
 .gate-err{color:#e05252;font-size:13px;font-weight:700;margin-top:10px;min-height:18px;}
 #gate-loading{font-size:13px;color:var(--muted);margin-top:10px;}
 </style>
+<link rel="stylesheet" href="/styles/hub-nav.css">
 </head>
 <body>
 
@@ -214,9 +215,32 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
   </div>
 </div>
 
+<div class="hub-band">
+  <div class="hub-head">
+    <div class="hub-top">
+      <div class="hub-brand">
+        <div class="hub-logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="34" height="34"></div>
+        <div>
+          <div class="hub-name"><a href="/">Sébastien Rivière</a></div>
+          <div class="hub-sub">Apprendre, comprendre, transmettre</div>
+        </div>
+      </div>
+      <div class="hub-actions">
+        <a class="hub-ic mail" href="mailto:rsebastien@protonmail.com" title="M'écrire" aria-label="M'écrire par email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
+        <a class="hub-ic li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg></a>
+      </div>
+    </div>
+    <nav class="hub-nav" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+      <a href="/articles/">Articles &amp; enquêtes</a>
+      <a href="/outils/" class="active">Outils</a>
+      <a href="/a-propos/">À propos</a>
+    </nav>
+  </div>
+</div>
 <div class="header-band">
   <header>
-    <a href="/" class="back-link"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Tous les outils</a>
     <div class="titlewrap">
       <div class="titleicon"><svg viewBox="0 0 24 24"><path d="M4.9 19.1A10 10 0 0 1 19.1 4.9M7.8 16.2a6 6 0 0 1 8.4-8.4"/><circle cx="12" cy="12" r="2"/></svg></div>
       <h1>Observatoire des marchés publics IA</h1>
