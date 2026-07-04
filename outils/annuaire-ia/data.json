@@ -1,5 +1,5 @@
 {
-  "maj": "2026-06-28",
+  "maj": "2026-07-04",
   "cats": [
     [
       "assistants",
@@ -252,6 +252,17 @@
       "pays": "US"
     },
     {
+      "c": "build",
+      "n": "Windsurf",
+      "d": "Éditeur de code assisté par IA (rebaptisé Devin Desktop en 2026, rachat Cognition). Alternative directe à Cursor.",
+      "p": "freemium",
+      "dom": "windsurf.com",
+      "u": "https://windsurf.com",
+      "nv": 1,
+      "pays": "US",
+      "off": 1
+    },
+    {
       "c": "auto",
       "n": "Make",
       "d": "Automatisation visuelle no-code, avec briques d'IA.",
@@ -479,6 +490,28 @@
       "pays": "US"
     },
     {
+      "c": "video",
+      "n": "Sora",
+      "d": "Génération de vidéo d'OpenAI : du texte ou d'une image à la vidéo (intégrée à ChatGPT).",
+      "p": "freemium",
+      "dom": "sora.com",
+      "u": "https://sora.com",
+      "nv": 1,
+      "pays": "US",
+      "off": 1
+    },
+    {
+      "c": "video",
+      "n": "Higgsfield",
+      "d": "Agrégateur vidéo : Sora, Kling, Veo, Seedance… réunis dans une interface, plus des outils cinéma. Compare les modèles côte à côte.",
+      "p": "freemium",
+      "dom": "higgsfield.ai",
+      "u": "https://higgsfield.ai",
+      "nv": 1,
+      "pays": "US",
+      "off": 1
+    },
+    {
       "c": "voice",
       "n": "ElevenLabs",
       "d": "Voix synthétiques réalistes et clonage vocal (référence du marché).",
@@ -529,6 +562,28 @@
       "u": "https://www.descript.com",
       "nv": 1,
       "pays": "US"
+    },
+    {
+      "c": "voice",
+      "n": "Voice In",
+      "d": "Dictée vocale dans le navigateur (équivalent Windows de Wispr Flow) : écrire à la voix dans n'importe quel champ.",
+      "p": "freemium",
+      "dom": "voicein.io",
+      "u": "https://voicein.io",
+      "nv": 1,
+      "pays": "US",
+      "off": 1
+    },
+    {
+      "c": "voice",
+      "n": "Adobe Podcast",
+      "d": "Améliore la qualité d'un enregistrement vocal (retire le bruit, effet studio), avec transcription et montage audio.",
+      "p": "freemium",
+      "dom": "podcast.adobe.com",
+      "u": "https://podcast.adobe.com",
+      "nv": 1,
+      "pays": "US",
+      "off": 1
     },
     {
       "c": "meeting",
@@ -587,6 +642,17 @@
       "dom": "leexi.ai",
       "u": "https://www.leexi.ai",
       "pays": "BE"
+    },
+    {
+      "c": "meeting",
+      "n": "Dicte.ai",
+      "d": "Assistant de réunion français : transcription, comptes rendus et analyses. Serveurs à Paris, audio supprimé après traitement (RGPD).",
+      "p": "freemium",
+      "dom": "dicte.ai",
+      "u": "https://www.dicte.ai",
+      "nv": 1,
+      "pays": "FR",
+      "off": 1
     },
     {
       "c": "design",
