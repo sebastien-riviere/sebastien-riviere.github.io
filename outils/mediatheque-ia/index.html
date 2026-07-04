@@ -185,11 +185,66 @@ body{
   .m-grid{grid-template-columns:1fr;padding:22px}
   .m-cover{max-width:160px;margin:0 auto}
 }
+
+/* --- bandeau de navigation du hub (partagé accueil/outils/articles/à propos) --- */
+.hub-band{background:linear-gradient(180deg,var(--bg-2),var(--bg));border-bottom:1px solid var(--border)}
+.hub-head{max-width:var(--wrap-app);margin:0 auto;padding:20px 24px 0}
+.hub-top{display:flex;align-items:center;gap:16px}
+.hub-brand{display:flex;align-items:center;gap:14px;min-width:0}
+.hub-logo{flex:none;width:46px;height:46px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(60,45,25,.18)}
+.hub-logo img{width:34px;height:34px;object-fit:contain;display:block}
+.hub-name{font-family:var(--ui);font-weight:800;font-size:23px;color:var(--ink);letter-spacing:-.7px;line-height:1.05}
+.hub-name a:hover{color:var(--ia-ink);text-decoration:none}
+.hub-sub{font-family:var(--ui);font-weight:700;font-size:11.5px;color:var(--faint);letter-spacing:.3px;margin-top:3px}
+.hub-actions{margin-left:auto;display:flex;align-items:center;gap:9px}
+.hub-ic{width:37px;height:37px;flex:none;border-radius:10px;border:0;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s}
+.hub-ic:hover{filter:brightness(1.08);text-decoration:none}
+.hub-ic svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hub-ic.mail{background:#41586b}.hub-ic.li{background:#0a66c2}
+.hub-nav{display:flex;gap:4px;margin-top:18px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.hub-nav::-webkit-scrollbar{display:none}
+.hub-nav a{position:relative;white-space:nowrap;font-family:var(--ui);font-weight:700;font-size:14.5px;color:var(--muted);padding:11px 15px;border-radius:9px 9px 0 0;transition:color .15s,background .15s}
+.hub-nav a:hover{color:var(--ink);background:color-mix(in srgb,var(--ia) 8%,transparent);text-decoration:none}
+.hub-nav a.active{color:var(--ink)}
+.hub-nav a.active::after{content:"";position:absolute;left:15px;right:15px;bottom:-1px;height:2.5px;border-radius:2px;background:var(--pop)}
+@media(max-width:600px){
+  .hub-head{padding:16px 18px 0}
+  .hub-name{font-size:20px}
+  .hub-nav{margin-top:14px}
+  .hub-nav a{font-size:14px;padding:10px 12px}
+}
 </style>
 </head>
 <body>
 
-<div class="ia-crumb"><a href="/"><svg class="ic" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Accueil</a></div>
+<div class="hub-band">
+  <div class="hub-head">
+    <div class="hub-top">
+      <div class="hub-brand">
+        <div class="hub-logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="34" height="34"></div>
+        <div>
+          <div class="hub-name"><a href="/">Sébastien Rivière</a></div>
+          <div class="hub-sub">Apprendre, comprendre, transmettre</div>
+        </div>
+      </div>
+      <div class="hub-actions">
+        <a class="hub-ic mail" href="mailto:rsebastien@protonmail.com" title="M'écrire" aria-label="M'écrire par email">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        </a>
+        <a class="hub-ic li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+        </a>
+      </div>
+    </div>
+    <nav class="hub-nav" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/outils/mediatheque-ia/" class="active">Médiathèque IA</a>
+      <a href="/articles/">Articles &amp; enquêtes</a>
+      <a href="/outils/">Outils</a>
+      <a href="/a-propos/">À propos</a>
+    </nav>
+  </div>
+</div>
 
 <div class="wrap">
   <header class="hero">
