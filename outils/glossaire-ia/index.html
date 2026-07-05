@@ -116,6 +116,31 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
 .caret svg{width:16px;height:16px;display:block}
 .fld .i svg{width:15px;height:15px;display:block}
 
+/* légende maturité (hype) */
+.hype-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:12px;color:var(--muted);background:var(--card);border:1px solid var(--border-soft);border-radius:10px;padding:9px 13px;margin:2px 0 14px}
+.hype-legend .hl-lbl{font-weight:800;color:var(--ink);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;margin-right:2px}
+.hype-legend .hl-pair{display:inline-flex;align-items:center;gap:6px}
+.hype-legend .hl-txt{color:var(--faint)}
+
+/* section « pour commencer » + intitulés */
+.essentials{margin:4px 0 8px}
+.ess-head{display:flex;align-items:center;gap:11px;margin:0 0 4px}
+.ess-head .k{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--pop-ink)}
+.ess-head .ln{flex:1;height:1px;background:var(--border)}
+.ess-sub{font-size:12.5px;color:var(--faint);margin:4px 0 12px}
+
+/* sections thématiques pliables */
+.catsec{border:1px solid var(--border);border-radius:12px;background:var(--card);margin-bottom:10px;overflow:hidden}
+.catsec>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:14px 16px;font-weight:800;font-size:15px;color:var(--ink);user-select:none}
+.catsec>summary::-webkit-details-marker{display:none}
+.catsec>summary .cdot{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
+.catsec>summary .ccount{font-size:12px;font-weight:800;color:var(--muted);background:var(--bg-2);border-radius:20px;padding:2px 10px}
+.catsec>summary .cchev{margin-left:auto;transition:transform .2s;color:var(--faint);display:flex}
+.catsec>summary .cchev svg{width:18px;height:18px;display:block}
+.catsec[open]>summary .cchev{transform:rotate(180deg)}
+.catsec>summary:hover{background:var(--bg-2)}
+.catsec .csbody{padding:2px 14px 12px}
+
 @media(max-width:680px){
   .rail{display:none}
   .ia-title{font-size:23px}
@@ -123,6 +148,7 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
 }
 @media(max-width:600px){
   .inner{padding:0 20px}
+  .hype-legend{font-size:11.5px}
 }
 </style>
 </head>
@@ -164,7 +190,7 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
     </div>
     <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Glossaire · IA</div>
     <h1 class="ia-title">Glossaire de l'IA</h1>
-    <p class="ia-lead">Les mots de l'intelligence artificielle expliqués <strong>en clair, sans jargon</strong>. Une analogie, pourquoi ça compte, et le piège à éviter. <span id="pillCount"></span></p>
+    <p class="ia-lead"><strong>Plus de 500 mots de l'intelligence artificielle</strong> expliqués <strong>en clair, sans jargon</strong> : une analogie, pourquoi ça compte, et le piège à éviter. <span id="pillCount"></span></p>
   </header>
 </div>
 
@@ -194,6 +220,13 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
 
     <div class="filters" id="catChips"></div>
     <div class="filters" id="lvlChips"></div>
+
+    <div class="hype-legend">
+      <span class="hl-lbl">Repère maturité</span>
+      <span class="hl-pair"><span class="nat nat-etabli">Établi</span> <span class="hl-txt">techno mûre, éprouvée</span></span>
+      <span class="hl-pair"><span class="nat nat-emergent">Émergent</span> <span class="hl-txt">prometteur mais jeune</span></span>
+      <span class="hl-pair"><span class="nat nat-survendu">Survendu</span> <span class="hl-txt">au-delà du réel (hype)</span></span>
+    </div>
 
     <div class="counter">
       <div class="c"><b id="cnt">0</b> <span id="cntLbl">termes</span><span class="suf" id="cntSuf"></span></div>
@@ -277,17 +310,41 @@ function filtered(){
   }).sort((a,b)=>(a.t||'').localeCompare(b.t||'','fr'));
 }
 
+/* ── Normalisation : schéma de catégories unifié (6) + accents niveau/nature ── */
+const CAT_ALIAS={'genai-llm':'generatif','infra-donnees':'donnees','ml':'fondamentaux','ethique-reglementaire':'ethique','business-usage':'entreprise'};
+function fixNiv(n){const k=norm(n);return k==='debutant'?'débutant':k==='intermediaire'?'intermédiaire':k==='avance'?'avancé':(n||'');}
+function fixNat(x){if(!x)return x;const k=norm(x);return k==='etabli'?'établi':k==='emergent'?'émergent':k==='survendu'?'survendu':x;}
+
+/* ── « Pour commencer » : notions clés (résolues sur les libellés réels) ── */
+const ESSENTIELS=['hallucination','grand modele de langage','rag','prompt engineering','token','agent ia','biais (ia)','ia generative','fine-tuning','fenetre de contexte','machine learning','transformer'];
+function essentialTerms(){
+  const out=[],seen=new Set();
+  ESSENTIELS.forEach(key=>{
+    let t=DATA.find(x=>norm(x.t)===key);
+    if(!t)t=DATA.find(x=>norm(x.t).startsWith(key));
+    if(t&&!seen.has(t.i)){seen.add(t.i);out.push(t);}
+  });
+  return out;
+}
+
 function render(){
   const items=filtered();
   document.getElementById('cnt').textContent=items.length;
   document.getElementById('cntLbl').textContent=items.length>1?'termes':'terme';
   const bits=[];
-  if(fCat)bits.push(CATS[fCat].l); if(fLvl)bits.push(fLvl); if(fQ.trim())bits.push('« '+fQ.trim()+' »');
-  document.getElementById('cntSuf').textContent=bits.length?'  ·  '+bits.join(' · '):(items.length<DATA.length?'':'');
+  if(fCat)bits.push((CATS[fCat]||{l:fCat}).l); if(fLvl)bits.push(fLvl); if(fQ.trim())bits.push('« '+fQ.trim()+' »');
+  document.getElementById('cntSuf').textContent=bits.length?'  ·  '+bits.join(' · '):'';
 
   const list=document.getElementById('list');
-  if(!items.length){ list.innerHTML='<div class="empty">Aucun terme ne correspond. Essayez un autre mot ou retirez un filtre.</div>'; buildRail(new Set()); return; }
+  const rail=document.getElementById('rail');
+  const browse=!fCat&&!fLvl&&!fQ.trim();
+  if(rail)rail.style.display=browse?'none':'';
+  if(!items.length){ list.innerHTML='<div class="empty">Aucun terme ne correspond. Essayez un autre mot ou retirez un filtre.</div>'; if(rail)buildRail(new Set()); return; }
+  if(browse) renderBrowse(); else renderFlat(items);
+}
 
+function renderFlat(items){
+  const list=document.getElementById('list');
   const groups={};
   items.forEach(t=>{const L=firstLetter(t.t);(groups[L]=groups[L]||[]).push(t);});
   const letters=Object.keys(groups).sort((a,b)=>a.localeCompare(b,'fr'));
@@ -300,13 +357,42 @@ function render(){
   buildRail(new Set(letters));
 }
 
-function row(t){
+function renderBrowse(){
+  const list=document.getElementById('list');
+  const ess=essentialTerms();
+  const essHtml=ess.length?('<div class="essentials">'
+    +'<div class="ess-head"><span class="k">Pour commencer</span><span class="ln"></span></div>'
+    +'<div class="ess-sub">Les notions clés pour comprendre l\'IA — déplie une fiche pour l\'analogie, le pourquoi et le piège.</div>'
+    +ess.map(t=>row(t,'e-')).join('')
+    +'</div>'):'';
+  const byCat={};
+  DATA.forEach(t=>{const c=CATS[t.c]?t.c:'_autre';(byCat[c]=byCat[c]||[]).push(t);});
+  const order=Object.keys(CATS).concat(byCat['_autre']?['_autre']:[]);
+  const labelOf=k=>CATS[k]?CATS[k].l:'Divers';
+  const colorOf=k=>CATS[k]?CATS[k].c:'#94a3b8';
+  const catsHtml=order.map(k=>{
+    const arr=(byCat[k]||[]).slice().sort((a,b)=>(a.t||'').localeCompare(b.t||'','fr'));
+    if(!arr.length)return '';
+    return '<details class="catsec"><summary>'
+      +'<span class="cdot" style="background:'+colorOf(k)+'"></span>'+esc(labelOf(k))
+      +'<span class="ccount">'+arr.length+'</span>'
+      +'<span class="cchev">'+ICN.chev+'</span></summary>'
+      +'<div class="csbody">'+arr.map(t=>row(t)).join('')+'</div></details>';
+  }).join('');
+  list.innerHTML=essHtml
+    +'<div class="ess-head" style="margin-top:22px"><span class="k">Explorer par thème</span><span class="ln"></span></div>'
+    +'<div class="ess-sub">Déplie une catégorie pour parcourir ses termes.</div>'
+    +catsHtml;
+}
+
+function row(t,pfx){
+  pfx=pfx||'';
   const cat=CATS[t.c]||{l:t.c,c:'#94a3b8'};
   const open=!!OPEN[t.i];
   const nat=t.na?'<span class="nat nat-'+slug(t.na)+'">'+esc(NATS[t.na]||t.na)+'</span>':'';
   const links=(t.li||[]).map(s=>{const idx=KEYMAP[s];return idx==null?null:'<span class="lk" data-go="'+idx+'">'+esc(DATA[idx].t)+'</span>';}).filter(Boolean).join('');
-  return '<div class="row'+(open?' open':'')+'" id="r-'+t.i+'">'
-    +'<div class="rhead" onclick="toggle('+t.i+')">'
+  return '<div class="row'+(open?' open':'')+'" id="r-'+pfx+t.i+'">'
+    +'<div class="rhead" onclick="toggleRow(this)">'
       +'<span class="dot" style="background:'+cat.c+'"></span>'
       +'<div class="names"><span class="term">'+esc(t.t)+'</span>'+(t.en&&t.en!==t.t?'<span class="en">'+esc(t.en)+'</span>':'')+'</div>'
       +'<span class="badge">'+esc(t.n||'')+'</span>'+nat
@@ -323,7 +409,7 @@ function row(t){
   +'</div>';
 }
 
-function toggle(i){ OPEN[i]=!OPEN[i]; const el=document.getElementById('r-'+i); if(el)el.classList.toggle('open',!!OPEN[i]); }
+function toggleRow(el){ const r=el.closest('.row'); if(r) r.classList.toggle('open'); }
 
 function buildRail(present){
   const ABC='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -339,8 +425,10 @@ document.getElementById('rail')?.addEventListener('click',e=>{
 });
 
 function goTo(i){
-  fCat=fLvl=fQ=''; document.getElementById('q').value='';
-  OPEN[i]=true; buildChips(); render();
+  const t=DATA[i]; if(!t)return;
+  fCat=fLvl=''; OPEN[i]=true;
+  fQ=t.t; document.getElementById('q').value=t.t;   // recherche = affiche la fiche (mode plat)
+  buildChips(); render();
   setTimeout(()=>{const el=document.getElementById('r-'+i);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});},50);
 }
 document.addEventListener('click',e=>{const lk=e.target.closest('.lk[data-go]');if(lk)goTo(parseInt(lk.dataset.go));});
@@ -358,7 +446,7 @@ const WORKER='https://veille-bot.sebastienriviere-contact.workers.dev';
 let LOADED=false;
 
 function renderData(d){
-  DATA=d.termes.map((t,i)=>({...t,i}));
+  DATA=d.termes.map((t,i)=>({...t,i,c:(CAT_ALIAS[t.c]||t.c),n:fixNiv(t.n),na:fixNat(t.na)}));
   KEYMAP={};
   DATA.forEach(t=>buildKeys(t).forEach(k=>{ if(KEYMAP[k]==null)KEYMAP[k]=t.i; }));
   document.getElementById('pillCount').innerHTML='<strong>'+d.count+' termes.</strong>';
