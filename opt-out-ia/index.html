@@ -101,8 +101,20 @@ main{flex:1;padding:34px 40px 64px;}
 footer{padding:22px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);margin-top:26px;}
 footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
 .foot-links{display:flex;flex-wrap:wrap;gap:14px;}
-.ai-optout{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;color:var(--ok-ink);background:var(--ok-soft);border:1px solid var(--ok);padding:3px 10px;border-radius:999px;}
-.ai-optout svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.ai-optout{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:800;letter-spacing:.2px;color:var(--text);background:var(--card);border:1px solid var(--border);padding:5px 12px 5px 6px;border-radius:999px;box-shadow:var(--shadow);transition:transform .12s,border-color .12s;}
+.ai-optout:hover{transform:translateY(-1px);border-color:var(--ok);color:var(--text);}
+.ai-optout .ico{flex:none;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--ok);color:#fff;}
+.ai-optout .ico svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;}
+.schema{margin:24px 0 6px;padding:16px 16px 12px;border:1px solid var(--border);border-radius:14px;background:var(--card);box-shadow:var(--shadow);overflow-x:auto;}
+.schema svg{width:100%;min-width:520px;height:auto;display:block;}
+.schema figcaption{margin-top:10px;font-size:12.5px;color:var(--faint);text-align:center;line-height:1.5;}
+.res{margin-top:14px;display:grid;gap:8px;}
+.res a{display:flex;align-items:center;gap:9px;padding:11px 14px;border:1px solid var(--border);border-radius:10px;background:var(--card);font-size:13.5px;font-weight:600;color:var(--text);transition:border-color .15s,transform .1s;}
+.res a:hover{border-color:var(--accent);transform:translateX(2px);color:var(--accent-ink);}
+.res a .lab{color:var(--accent-ink);font-weight:800;}
+.res a .arw{margin-left:auto;color:var(--faint);}
+.case a.inline{color:var(--accent-ink);font-weight:700;border-bottom:1px solid var(--accent-soft);}
+.case a.inline:hover{border-bottom-color:var(--accent);}
 @media(max-width:600px){
   header{padding:20px 18px 0;}main{padding:26px 18px 44px;}footer{padding:18px;}
   .name{font-size:22px;}.mainnav{margin-top:16px;}.mainnav a{font-size:14px;padding:10px 12px;}
@@ -157,6 +169,37 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
     <span class="txt"><b>Opt-out actif sur ce site.</b> Une réservation des droits lisible par machine (<code style="font-family:ui-monospace,monospace;font-size:12px">robots.txt</code> + <code style="font-family:ui-monospace,monospace;font-size:12px">/.well-known/tdmrep.json</code>) interdit l'usage de son contenu pour l'entraînement de modèles d'IA.</span>
   </div>
 
+  <figure class="schema">
+    <svg viewBox="0 0 760 250" role="img" font-family="Inter, system-ui, sans-serif" aria-label="Schéma : sans opt-out, une œuvre publiée en ligne est aspirée pour entraîner l'IA (défaut légal). Avec opt-out (robots.txt + TDMRep), les droits sont réservés et l'œuvre est protégée.">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8493a3"/></marker>
+        <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2f8a63"/></marker>
+      </defs>
+      <text x="24" y="26" fill="var(--pop-ink)" font-size="12.5" font-weight="800" letter-spacing="1">1 · SANS RIEN FAIRE — LE DÉFAUT LÉGAL</text>
+      <rect x="24" y="38" width="196" height="64" rx="12" fill="var(--card)" stroke="var(--border)"/>
+      <text x="122" y="66" text-anchor="middle" fill="var(--text)" font-size="13.5" font-weight="700">Votre œuvre</text>
+      <text x="122" y="85" text-anchor="middle" fill="var(--muted)" font-size="12.5">publiée en ligne</text>
+      <line x1="228" y1="70" x2="470" y2="70" stroke="#8493a3" stroke-width="2" marker-end="url(#ah)"/>
+      <text x="349" y="60" text-anchor="middle" fill="var(--faint)" font-size="11.5" font-style="italic">le silence = « oui »</text>
+      <rect x="478" y="38" width="258" height="64" rx="12" fill="var(--pop-soft)" stroke="var(--pop)"/>
+      <text x="607" y="64" text-anchor="middle" fill="var(--pop-ink)" font-size="13.5" font-weight="800">Aspirée pour entraîner l'IA</text>
+      <text x="607" y="84" text-anchor="middle" fill="var(--pop-ink)" font-size="11.5">exception TDM · directive DSM</text>
+      <text x="24" y="150" fill="var(--ok-ink)" font-size="12.5" font-weight="800" letter-spacing="1">2 · AVEC OPT-OUT — CE QUE FAIT CE SITE</text>
+      <rect x="24" y="162" width="170" height="64" rx="12" fill="var(--card)" stroke="var(--border)"/>
+      <text x="109" y="190" text-anchor="middle" fill="var(--text)" font-size="13.5" font-weight="700">Votre œuvre</text>
+      <text x="109" y="209" text-anchor="middle" fill="var(--muted)" font-size="12.5">publiée en ligne</text>
+      <line x1="200" y1="194" x2="266" y2="194" stroke="#2f8a63" stroke-width="2" marker-end="url(#ahg)"/>
+      <rect x="272" y="162" width="176" height="64" rx="12" fill="var(--ok-soft)" stroke="var(--ok)"/>
+      <text x="360" y="188" text-anchor="middle" fill="var(--ok-ink)" font-size="12.5" font-weight="800">Panneau « opt-out »</text>
+      <text x="360" y="207" text-anchor="middle" fill="var(--ok-ink)" font-size="11.5">robots.txt + TDMRep</text>
+      <line x1="454" y1="194" x2="520" y2="194" stroke="#2f8a63" stroke-width="2" marker-end="url(#ahg)"/>
+      <rect x="526" y="162" width="210" height="64" rx="12" fill="var(--ok-soft)" stroke="var(--ok)"/>
+      <text x="631" y="188" text-anchor="middle" fill="var(--ok-ink)" font-size="13.5" font-weight="800">Droits réservés</text>
+      <text x="631" y="207" text-anchor="middle" fill="var(--ok-ink)" font-size="11.5">→ œuvre protégée</text>
+    </svg>
+    <figcaption>Par défaut, publier en ligne = autoriser l'entraînement. L'opt-out inverse ce réglage — de façon lisible par les robots.</figcaption>
+  </figure>
+
   <div class="block">
     <h2><span class="n">1</span>Le problème : par défaut, c'est « oui »</h2>
     <p>Une règle européenne — l'<b>exception TDM</b> (« fouille de textes et de données », directive DSM de 2019) — autorise les IA à s'entraîner sur les contenus <b>accessibles en ligne</b>, y compris pour un usage commercial. Vos textes, photos, morceaux, illustrations : tant qu'ils sont publics, ils sont aspirables.</p>
@@ -178,7 +221,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
       </div>
       <div class="case">
         <h3><span class="tag">Artistes</span>Vous créez des images</h3>
-        <p>Passez par <b>Have I Been Trained</b> (Spawning) : vérifiez si vos images ont déjà été aspirées, et inscrivez-les au registre <b>« Do Not Train »</b>. Des acteurs majeurs (Stability AI, Hugging Face) s'engagent à le respecter.</p>
+        <p>Passez par <a class="inline" href="https://haveibeentrained.com/" target="_blank" rel="noopener">Have I Been Trained</a> (Spawning) : vérifiez si vos images ont déjà été aspirées, et inscrivez-les au registre <b>« Do Not Train »</b>. Des acteurs majeurs (Stability AI, Hugging Face) s'engagent à le respecter.</p>
       </div>
       <div class="case">
         <h3><span class="tag">Solide</span>Vous avez votre propre site</h3>
@@ -202,6 +245,18 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
     <p>On ne vous demande pas de choisir un camp. La vraie question, c'est le <b>curseur</b> : jusqu'où laissez-vous vos créations nourrir des machines sans un mot ? Aujourd'hui, <b>ne rien faire est déjà une réponse — et c'est « oui »</b>.</p>
   </div>
 
+  <div class="block">
+    <h2><span class="n">5</span>Sources &amp; ressources officielles</h2>
+    <div class="res">
+      <a href="https://haveibeentrained.com/" target="_blank" rel="noopener"><span class="lab">Have I Been Trained</span>&nbsp;— vérifier / retirer ses images (Spawning)<span class="arw">↗</span></a>
+      <a href="https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240202/" target="_blank" rel="noopener"><span class="lab">TDMRep</span>&nbsp;— le standard W3C (spécification + exemples)<span class="arw">↗</span></a>
+      <a href="https://www.sne.fr/" target="_blank" rel="noopener"><span class="lab">Clause-type SNE</span>&nbsp;— opposition contractuelle à la fouille (éditeurs)<span class="arw">↗</span></a>
+      <a href="https://artificialintelligenceact.eu/article/53/" target="_blank" rel="noopener"><span class="lab">AI Act · article 53</span>&nbsp;— l'obligation de respecter les réservations<span class="arw">↗</span></a>
+      <a href="https://eur-lex.europa.eu/eli/dir/2019/790/oj" target="_blank" rel="noopener"><span class="lab">Directive DSM · article 4</span>&nbsp;— l'exception TDM et l'opt-out<span class="arw">↗</span></a>
+      <a href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai" target="_blank" rel="noopener"><span class="lab">Code de bonnes pratiques GPAI</span>&nbsp;— chapitre droit d'auteur (Commission UE)<span class="arw">↗</span></a>
+    </div>
+  </div>
+
   <div class="cta">
     <p><b>Envie d'aller plus loin ?</b> Le dossier complet (le droit, les outils, le débat) arrive dans les articles. En attendant, ces démarches suffisent à reprendre la main.</p>
     <div class="linkrow">
@@ -221,7 +276,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
     <a href="/a-propos/">À propos</a>
   </span>
   <span class="ai-optout" title="Ce site a réservé ses droits contre l'entraînement des IA">
-    <svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg>
+    <span class="ico"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
     Sans entraînement IA
   </span>
 </footer>

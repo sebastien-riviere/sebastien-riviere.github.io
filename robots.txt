@@ -1,20 +1,21 @@
 # robots.txt — sebastien-riviere.github.io
 # ─────────────────────────────────────────────────────────────
-# OPT-OUT ENTRAÎNEMENT IA — réservation des droits (art. 4 de la
-# directive (UE) 2019/790 « DSM » + art. 53 du règlement IA).
-# Le contenu de ce site (textes, articles, visuels) ne peut être
-# utilisé pour l'entraînement de modèles d'IA sans autorisation.
-# Réservation lisible par machine complétée par /.well-known/tdmrep.json
+# OPT-OUT ENTRAÎNEMENT IA — réservation des droits
+# (art. 4 de la directive (UE) 2019/790 « DSM » + art. 53 du règlement
+#  (UE) 2024/1689 « AI Act », qui impose de respecter cette réservation).
+#
+# PRINCIPE : on bloque les robots qui ENTRAÎNENT des modèles d'IA sur le
+# contenu ; on LAISSE PASSER les robots de recherche/citation IA et les
+# moteurs classiques → le site reste visible sans nourrir l'entraînement.
+# Réservation complétée, de façon lisible par machine, par
+# /.well-known/tdmrep.json (protocole W3C TDMRep).
 # ─────────────────────────────────────────────────────────────
 
-# --- Robots d'entraînement / collecte pour IA : ACCÈS REFUSÉ ---
+# --- Robots d'ENTRAÎNEMENT IA : ACCÈS REFUSÉ ---
 User-agent: GPTBot
 Disallow: /
 
-User-agent: OAI-SearchBot
-Disallow: /
-
-User-agent: ChatGPT-User
+User-agent: Google-Extended
 Disallow: /
 
 User-agent: ClaudeBot
@@ -23,37 +24,22 @@ Disallow: /
 User-agent: anthropic-ai
 Disallow: /
 
-User-agent: Claude-Web
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
-
 User-agent: Applebot-Extended
 Disallow: /
 
 User-agent: Meta-ExternalAgent
 Disallow: /
 
-User-agent: FacebookBot
-Disallow: /
-
-User-agent: Bytespider
+User-agent: CCBot
 Disallow: /
 
 User-agent: Amazonbot
 Disallow: /
 
-User-agent: PerplexityBot
+User-agent: Bytespider
 Disallow: /
 
 User-agent: cohere-ai
-Disallow: /
-
-User-agent: Diffbot
 Disallow: /
 
 User-agent: Omgilibot
@@ -62,6 +48,13 @@ Disallow: /
 User-agent: ImagesiftBot
 Disallow: /
 
-# --- Tous les autres robots (moteurs de recherche) : ACCÈS AUTORISÉ ---
+User-agent: Diffbot
+Disallow: /
+
+# --- Tous les autres robots : AUTORISÉS ---
+# Inclut volontairement les moteurs classiques (Googlebot, Bingbot…) ET les
+# robots de recherche/citation IA (OAI-SearchBot, ChatGPT-User,
+# Claude-SearchBot, PerplexityBot…), qui n'entraînent pas les modèles.
+# → on reste trouvable dans la recherche IA, sans autoriser l'entraînement.
 User-agent: *
 Allow: /
