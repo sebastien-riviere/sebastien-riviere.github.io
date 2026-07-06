@@ -108,11 +108,35 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
 .schema{margin:24px 0 6px;padding:16px 16px 12px;border:1px solid var(--border);border-radius:14px;background:var(--card);box-shadow:var(--shadow);overflow-x:auto;}
 .schema svg{width:100%;min-width:520px;height:auto;display:block;}
 .schema figcaption{margin-top:10px;font-size:12.5px;color:var(--faint);text-align:center;line-height:1.5;}
-.res{margin-top:14px;display:grid;gap:8px;}
-.res a{display:flex;align-items:center;gap:9px;padding:11px 14px;border:1px solid var(--border);border-radius:10px;background:var(--card);font-size:13.5px;font-weight:600;color:var(--text);transition:border-color .15s,transform .1s;}
-.res a:hover{border-color:var(--accent);transform:translateX(2px);color:var(--accent-ink);}
-.res a .lab{color:var(--accent-ink);font-weight:800;}
-.res a .arw{margin-left:auto;color:var(--faint);}
+abbr.term{text-decoration:none;border-bottom:1.6px dotted var(--faint);cursor:help;}
+.glossary{margin-top:16px;border:1px solid var(--border);border-radius:14px;background:var(--card);box-shadow:var(--shadow);overflow:hidden;}
+.glossary .gh{display:flex;align-items:center;gap:9px;padding:12px 16px;background:var(--accent-soft);border-bottom:1px solid var(--border);font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);}
+.glossary .gh svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.glossary dl{margin:0;padding:8px 18px 16px;}
+.glossary dt{font-weight:800;font-size:14px;color:var(--title);margin-top:12px;}
+.glossary dd{margin:3px 0 0;font-size:13.5px;color:var(--muted);line-height:1.55;}
+.glossary dd a{color:var(--accent-ink);font-weight:700;}
+.case .chead{display:flex;align-items:center;gap:11px;margin-bottom:9px;}
+.case .cic{flex:none;width:36px;height:36px;border-radius:10px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;}
+.case .cic svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round;}
+.case .ctitle{font-weight:800;font-size:15.5px;color:var(--title);flex:1;min-width:0;}
+.case .tag{flex:none;font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);border-radius:20px;padding:3px 9px;}
+.note{margin-top:14px;display:flex;align-items:center;gap:11px;padding:13px 16px;border:1px solid var(--ok);border-radius:11px;font-size:13.5px;color:var(--ok-ink);line-height:1.5;background:var(--ok-soft);}
+.note svg{flex:none;width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.res-group{margin-top:16px;}
+.res-group .rgt{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--faint);margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+.res-group .rgt svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.res a{display:flex;align-items:flex-start;gap:11px;padding:13px 14px;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow);transition:border-color .15s,transform .1s;}
+.res a:hover{border-color:var(--accent);transform:translateY(-1px);}
+.res a .ric{flex:none;width:33px;height:33px;border-radius:9px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;}
+.res a .ric svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round;}
+.res a .rtx{flex:1;min-width:0;}
+.res a .lab{display:block;color:var(--title);font-weight:800;font-size:13.5px;}
+.res a .dsc{display:block;color:var(--muted);font-size:12.5px;line-height:1.45;margin-top:2px;}
+.res a .ext{flex:none;color:var(--faint);}
+.res a .ext svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:600px){.res{grid-template-columns:1fr;}}
 .case a.inline{color:var(--accent-ink);font-weight:700;border-bottom:1px solid var(--accent-soft);}
 .case a.inline:hover{border-bottom-color:var(--accent);}
 @media(max-width:600px){
@@ -200,31 +224,47 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
     <figcaption>Par défaut, publier en ligne = autoriser l'entraînement. L'opt-out inverse ce réglage — de façon lisible par les robots.</figcaption>
   </figure>
 
+  <div class="glossary">
+    <div class="gh"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>Les mots-clés, en clair</div>
+    <dl>
+      <dt>TDM — fouille de textes et de données</dt>
+      <dd>L'analyse automatique de grandes masses de contenus. C'est ce que fait une IA pour « apprendre » à partir d'œuvres existantes.</dd>
+      <dt>Opt-out — la réservation de droits</dt>
+      <dd>Dire « non » à cet usage, à l'avance. Sans opt-out, la loi considère que vous êtes d'accord.</dd>
+      <dt>Directive DSM (2019)</dt>
+      <dd>La loi européenne sur le droit d'auteur dans le « marché unique numérique ». Son <a href="https://eur-lex.europa.eu/eli/dir/2019/790/oj" target="_blank" rel="noopener">article 4</a> crée l'exception TDM… et le droit de s'y opposer.</dd>
+      <dt>TDMRep</dt>
+      <dd>Le standard technique (W3C) qui exprime votre « non » dans un format lisible par les robots.</dd>
+      <dt>AI Act (2024)</dt>
+      <dd>Le règlement européen sur l'IA. Son <a href="https://artificialintelligenceact.eu/article/53/" target="_blank" rel="noopener">article 53</a> oblige les fournisseurs d'IA à respecter votre opt-out.</dd>
+    </dl>
+  </div>
+
   <div class="block">
     <h2><span class="n">1</span>Le problème : par défaut, c'est « oui »</h2>
-    <p>Une règle européenne — l'<b>exception TDM</b> (« fouille de textes et de données », directive DSM de 2019) — autorise les IA à s'entraîner sur les contenus <b>accessibles en ligne</b>, y compris pour un usage commercial. Vos textes, photos, morceaux, illustrations : tant qu'ils sont publics, ils sont aspirables.</p>
+    <p>Une règle européenne — l'<b>exception <abbr class="term" title="Text and Data Mining : la fouille automatique de textes et de données">TDM</abbr></b> — autorise les IA à s'entraîner sur les contenus <b>accessibles en ligne</b>, y compris pour un usage commercial. Elle figure à l'<a class="inline" href="https://eur-lex.europa.eu/eli/dir/2019/790/oj" target="_blank" rel="noopener">article 4 de la directive <abbr class="term" title="Digital Single Market — directive (UE) 2019/790 sur le droit d'auteur dans le marché unique numérique">DSM</abbr></a> (2019). Vos textes, photos, morceaux, illustrations : tant qu'ils sont publics, ils sont aspirables.</p>
     <p><b>Sauf si vous avez explicitement dit non, à l'avance.</b> Autrement dit : le silence vaut autorisation. Ce n'est pas à l'IA de demander la permission — c'est à vous de la refuser.</p>
   </div>
 
   <div class="block">
     <h2><span class="n">2</span>L'opt-out, en clair</h2>
     <p>« Opt-out » = <b>se retirer</b>. Concrètement, c'est <b>réserver ses droits</b> : poser un panneau « interdit à l'entraînement IA » sur ses œuvres. Le piège : ce panneau doit être <b>lisible par une machine</b>. Écrire « je refuse l'usage IA » dans une bio ou des mentions légales ne suffit pas — un robot ne lit pas vos phrases, il lit des signaux techniques.</p>
-    <p>Bonne nouvelle : depuis août 2025, le <b>règlement européen sur l'IA (AI Act)</b> oblige les fournisseurs de grands modèles à <b>respecter ces réservations</b>. L'opt-out gagne enfin un vrai levier.</p>
+    <p>Bonne nouvelle : depuis août 2025, le règlement européen sur l'IA (<a class="inline" href="https://artificialintelligenceact.eu/article/53/" target="_blank" rel="noopener"><b>AI Act</b>, art. 53</a>) oblige les fournisseurs de grands modèles à <b>respecter ces réservations</b> — avec des sanctions applicables dès le 2 août 2026. L'opt-out gagne enfin un vrai levier.</p>
   </div>
 
   <div class="block">
     <h2><span class="n">3</span>Comment protéger vos créations (selon votre cas)</h2>
     <div class="cases">
       <div class="case">
-        <h3><span class="tag">Le + simple</span>Vous publiez sur une plateforme</h3>
+        <div class="chead"><span class="cic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span><span class="ctitle">Vous publiez sur une plateforme</span><span class="tag">Le + simple</span></div>
         <p>Substack, Wix, Cloudflare, DeviantArt, Tumblr… Cherchez dans les réglages l'option <b>« bloquer l'entraînement IA »</b> / « AI training : off ». De plus en plus de plateformes l'ajoutent. Un clic.</p>
       </div>
       <div class="case">
-        <h3><span class="tag">Artistes</span>Vous créez des images</h3>
+        <div class="chead"><span class="cic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></span><span class="ctitle">Vous créez des images</span><span class="tag">Artistes</span></div>
         <p>Passez par <a class="inline" href="https://haveibeentrained.com/" target="_blank" rel="noopener">Have I Been Trained</a> (Spawning) : vérifiez si vos images ont déjà été aspirées, et inscrivez-les au registre <b>« Do Not Train »</b>. Des acteurs majeurs (Stability AI, Hugging Face) s'engagent à le respecter.</p>
       </div>
       <div class="case">
-        <h3><span class="tag">Solide</span>Vous avez votre propre site</h3>
+        <div class="chead"><span class="cic"><svg viewBox="0 0 24 24"><path d="m8 9-3 3 3 3M16 9l3 3-3 3M13 6l-2 12"/></svg></span><span class="ctitle">Vous avez votre propre site</span><span class="tag">Solide</span></div>
         <p>Deux fichiers à la racine (ou demandez-les à votre webmaster) — c'est exactement ce que fait ce site :</p>
         <ul>
           <li>Dans <code>robots.txt</code> : bloquer les robots d'entraînement nommés — <code>GPTBot</code>, <code>ClaudeBot</code>, <code>CCBot</code>, <code>Google-Extended</code>, <code>Applebot-Extended</code>…</li>
@@ -232,11 +272,11 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
         </ul>
       </div>
       <div class="case">
-        <h3><span class="tag">Éditeurs</span>Vous diffusez via une structure</h3>
+        <div class="chead"><span class="cic"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></svg></span><span class="ctitle">Vous diffusez via une structure</span><span class="tag">Éditeurs</span></div>
         <p>Il existe une <b>clause-type</b> (proposée par le Syndicat national de l'édition) pour s'opposer par contrat à la fouille IA. À glisser dans vos accords.</p>
       </div>
     </div>
-    <div class="note">⏱️ Comptez <b>10 à 20 minutes</b> pour verrouiller l'essentiel. Aucune de ces démarches n'exige d'être développeur.</div>
+    <div class="note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Comptez <b>10 à 20 minutes</b> pour verrouiller l'essentiel. Aucune de ces démarches n'exige d'être développeur.</span></div>
   </div>
 
   <div class="block">
@@ -247,13 +287,45 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
 
   <div class="block">
     <h2><span class="n">5</span>Sources &amp; ressources officielles</h2>
-    <div class="res">
-      <a href="https://haveibeentrained.com/" target="_blank" rel="noopener"><span class="lab">Have I Been Trained</span>&nbsp;— vérifier / retirer ses images (Spawning)<span class="arw">↗</span></a>
-      <a href="https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240202/" target="_blank" rel="noopener"><span class="lab">TDMRep</span>&nbsp;— le standard W3C (spécification + exemples)<span class="arw">↗</span></a>
-      <a href="https://www.sne.fr/" target="_blank" rel="noopener"><span class="lab">Clause-type SNE</span>&nbsp;— opposition contractuelle à la fouille (éditeurs)<span class="arw">↗</span></a>
-      <a href="https://artificialintelligenceact.eu/article/53/" target="_blank" rel="noopener"><span class="lab">AI Act · article 53</span>&nbsp;— l'obligation de respecter les réservations<span class="arw">↗</span></a>
-      <a href="https://eur-lex.europa.eu/eli/dir/2019/790/oj" target="_blank" rel="noopener"><span class="lab">Directive DSM · article 4</span>&nbsp;— l'exception TDM et l'opt-out<span class="arw">↗</span></a>
-      <a href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai" target="_blank" rel="noopener"><span class="lab">Code de bonnes pratiques GPAI</span>&nbsp;— chapitre droit d'auteur (Commission UE)<span class="arw">↗</span></a>
+    <div class="res-group">
+      <div class="rgt"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.7 2.7-2-2z"/></svg>Outils pour agir</div>
+      <div class="res">
+        <a href="https://haveibeentrained.com/" target="_blank" rel="noopener">
+          <span class="ric"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+          <span class="rtx"><span class="lab">Have I Been Trained</span><span class="dsc">Vérifier et retirer ses images (Spawning)</span></span>
+          <span class="ext"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+        <a href="https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240202/" target="_blank" rel="noopener">
+          <span class="ric"><svg viewBox="0 0 24 24"><path d="m8 9-3 3 3 3M16 9l3 3-3 3"/></svg></span>
+          <span class="rtx"><span class="lab">TDMRep — standard W3C</span><span class="dsc">La spécification technique + exemples</span></span>
+          <span class="ext"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+        <a href="https://www.sne.fr/" target="_blank" rel="noopener">
+          <span class="ric"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></svg></span>
+          <span class="rtx"><span class="lab">Clause-type SNE</span><span class="dsc">Opposition contractuelle (éditeurs)</span></span>
+          <span class="ext"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+      </div>
+    </div>
+    <div class="res-group">
+      <div class="rgt"><svg viewBox="0 0 24 24"><path d="M3 6h18M6 6v13a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6M9 6V3h6v3"/></svg>Textes de référence</div>
+      <div class="res">
+        <a href="https://artificialintelligenceact.eu/article/53/" target="_blank" rel="noopener">
+          <span class="ric"><svg viewBox="0 0 24 24"><path d="M12 3 3 7v6c0 5 3.8 7.4 9 8 5.2-.6 9-3 9-8V7z"/></svg></span>
+          <span class="rtx"><span class="lab">AI Act · article 53</span><span class="dsc">L'obligation de respecter les opt-out</span></span>
+          <span class="ext"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+        <a href="https://eur-lex.europa.eu/eli/dir/2019/790/oj" target="_blank" rel="noopener">
+          <span class="ric"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M14 3v4h4"/></svg></span>
+          <span class="rtx"><span class="lab">Directive DSM · article 4</span><span class="dsc">L'exception TDM et l'opt-out</span></span>
+          <span class="ext"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+        <a href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai" target="_blank" rel="noopener">
+          <span class="ric"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4-3 6.5-7 7-4-.5-7-3-7-7V7z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <span class="rtx"><span class="lab">Code de pratiques GPAI</span><span class="dsc">Chapitre droit d'auteur (Commission UE)</span></span>
+          <span class="ext"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+      </div>
     </div>
   </div>
 
