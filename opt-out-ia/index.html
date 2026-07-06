@@ -313,6 +313,23 @@ details.acc[open]>summary{border-bottom:1px solid var(--border-soft);}
 
       <details class="acc">
         <summary>
+          <span class="sic"><svg viewBox="0 0 24 24"><path d="M6 4h11a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M8 4v16"/></svg></span>
+          <span class="slab"><span class="stt">Livres &amp; ouvrages</span><span class="sex">auteurs · autrices</span><span class="slev">Clause au contrat + société d'auteurs</span></span>
+          <span class="chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+        </summary>
+        <div class="acc-body">
+          <p>Trois leviers, selon votre situation :</p>
+          <ul>
+            <li><b>Édité·e</b> : demandez à votre éditeur d'inscrire une <b>clause de réservation TDM / IA</b> au contrat (clause-type du Syndicat national de l'édition ; l'Authors Guild propose son équivalent). Même réflexe que le cas « structure » ci-dessous.</li>
+            <li><b>Auto-édité·e</b> (Amazon KDP, Kobo…) : vérifiez les réglages IA de la plateforme, et réservez vos droits sur tout site ou blog où vous publiez des extraits (<code>robots.txt</code> + TDMRep).</li>
+            <li><b>Collectivement</b> : les sociétés d'auteurs (en France <b>SGDL</b>, <b>SNE</b>, <b>SNAC</b>) agissent — elles ont assigné Meta en 2025 pour l'usage d'œuvres littéraires piratées.</li>
+          </ul>
+          <p><b>La réalité, sans langue de bois :</b> beaucoup de livres ont déjà été aspirés via des bibliothèques pirates (type LibGen). Là, le recours n'est pas une case à cocher mais l'<b>action collective</b> — Anthropic a accepté fin 2025 de verser <b>1,5 milliard de dollars</b> pour régler une action de groupe d'auteurs. Si vos ouvrages sont concernés, rapprochez-vous de votre société d'auteurs.</p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>
           <span class="sic"><svg viewBox="0 0 24 24"><path d="m8 9-3 3 3 3M16 9l3 3-3 3M13 6l-2 12"/></svg></span>
           <span class="slab"><span class="stt">Votre propre site</span><span class="sex">blog ou portfolio auto-hébergé</span><span class="slev">robots.txt + TDMRep</span></span>
           <span class="chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
@@ -334,6 +351,24 @@ details.acc[open]>summary{border-bottom:1px solid var(--border-soft);}
         </summary>
         <div class="acc-body">
           <p>Il existe une <b>clause-type</b> (proposée par le Syndicat national de l'édition) pour s'opposer par contrat à la fouille IA. À glisser dans vos accords.</p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>
+          <span class="sic"><svg viewBox="0 0 24 24"><path d="M4 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H5a1 1 0 0 1-1-1z"/><path d="M8.5 9.5h.01M12 9.5h.01M15.5 9.5h.01"/></svg></span>
+          <span class="slab"><span class="stt">Vos échanges avec une IA</span><span class="sex">ChatGPT · Claude · Gemini · Copilot</span><span class="slev">Décocher l'entraînement dans les réglages</span></span>
+          <span class="chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+        </summary>
+        <div class="acc-body">
+          <p>Autre logique ici : il ne s'agit pas de ce que vous <b>publiez</b>, mais de ce que vous <b>confiez</b> à l'outil — vos conversations, les fichiers que vous y déposez. Par défaut, plusieurs IA s'en servent pour s'entraîner. À vérifier :</p>
+          <ul>
+            <li><b>ChatGPT</b> : Réglages → Contrôles des données → <b>« Améliorer le modèle pour tous »</b> → désactiver (activé par défaut).</li>
+            <li><b>Claude</b> (Anthropic) : Réglages → Confidentialité → <b>« Aider à améliorer Claude »</b> → désactiver. <b>À noter</b> : depuis fin 2025, c'est un choix explicite — laissé activé, vos échanges peuvent être conservés jusqu'à 5 ans.</li>
+            <li><b>Gemini</b> (Google) : <b>« Activité des applications Gemini »</b> → désactiver.</li>
+            <li><b>Copilot</b> (Microsoft, grand public) : pas d'opt-out d'entraînement à ce jour — vous pouvez seulement supprimer votre historique.</li>
+          </ul>
+          <p>Comme partout, l'opt-out est <b>prospectif</b> : il ne retire pas ce qui a déjà servi. Le plus tôt est le mieux.</p>
         </div>
       </details>
 
