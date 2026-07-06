@@ -1,11 +1,28 @@
 {
-  "maj": "2026-07-05",
-  "total": 93,
+  "maj": "2026-07-06",
+  "total": 94,
   "byTheme": {
-    "data": 80,
+    "data": 81,
     "ia": 13
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Entretien-maintenance, paramétrage des horodateurs et gestion des bases de données liées au stationnement",
+      "a": "Commune de Talence",
+      "dep": "33",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-05",
+      "dl": "2026-08-26T14:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-66501%22",
+      "k": "commune de talence|entretien maintenance parametrage des horodateurs et gestion des bases de donnees liees au",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
