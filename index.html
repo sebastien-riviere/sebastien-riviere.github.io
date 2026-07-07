@@ -3,296 +3,294 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sébastien Rivière — IA, outils numériques & ressources pratiques</title>
+<title>Sébastien Rivière — IA, outils numériques &amp; ressources pratiques</title>
 <meta name="description" content="Un hub d'outils, de guides, de glossaires, d'enquêtes et de ressources pour comprendre l'IA, choisir les bons usages et structurer ses pratiques numériques.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sébastien Rivière">
-<meta property="og:title" content="Sébastien Rivière — IA, outils numériques & ressources pratiques">
+<meta property="og:title" content="Sébastien Rivière — IA, outils numériques &amp; ressources pratiques">
 <meta property="og:description" content="Comprendre l'IA, choisir les bons outils, structurer ses usages, publier des analyses.">
 <meta property="og:url" content="https://sebastien-riviere.github.io/">
 <meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#e9eef4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 /* ============================================================
-   PALETTE — slate IA + pop ambre, police Inter (locale)
-   6 familles = 6 teintes --t-* (IA, Cde publique, Prod, Blockchain, Labo, Articles)
+   COMIC-LITE BLEU — Nunito, 6 familles de couleur, clair + sombre
    ============================================================ */
 :root{
-  --ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --bg:#f5f7fa; --bg-band:#eceff4;
-  --text:#1b2733; --muted:#566778; --faint:#8493a3;
-  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6;
-  --title:#1b2733; --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
-  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
-  --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
-  --t-ia:#41586b;    --t-ia-soft:#e9ecf2;
-  --t-cp:#b23b3b;    --t-cp-soft:#f6dede;
-  --t-prod:#3f7a4e;  --t-prod-soft:#e3efe1;
-  --t-block:#b8570f; --t-block-soft:#fae0cc;
-  --t-labo:#7345a0;  --t-labo-soft:#ece2f6;
-  --t-art:#4453c4;   --t-art-soft:#e4e6f8;
+  --bg:#e9eef4; --card:#ffffff; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --line:#1b2836; --line-soft:#d5dee8;
+  --accent:#2f6fb0; --accent-soft:#dbe8f6; --accent-ink:#245a91; --mk-fg:#fff;
+  --btn-bg:#28455f; --btn-fg:#fff; --unread:#eef4fb; --pop:#d64550;
+  --sh:3px 3px 0 rgba(20,33,46,.12); --sh-sm:2px 2px 0 rgba(20,33,46,.11);
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-block:#b8570f; --t-block-soft:#fae0cc; --t-labo:#7345a0; --t-labo-soft:#ece2f6;
 }
 @media(prefers-color-scheme:dark){
   :root{
-    --bg:#0f1722; --bg-band:#13202e;
-    --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
-    --card:#16212e; --border:#26333f; --border-soft:#1e2a36;
-    --title:#e7eef5; --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37;
-    --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415;
-    --shadow:0 6px 26px rgba(0,0,0,.42);
-    --t-ia:#95abce;    --t-ia-soft:#1b2636;
-    --t-cp:#e08c8c;    --t-cp-soft:#2f1a1a;
-    --t-prod:#8fc09a;  --t-prod-soft:#1a2a20;
-    --t-block:#f07838; --t-block-soft:#28180a;
-    --t-labo:#c2a3e3;  --t-labo-soft:#251a33;
-    --t-art:#9aa5ef;   --t-art-soft:#1a1e33;
+    --bg:#0f1722; --card:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+    --line:rgba(221,233,244,.20); --line-soft:rgba(221,233,244,.09);
+    --accent:#5b9bd8; --accent-soft:#1b2b3c; --accent-ink:#9cc6ec; --mk-fg:#0f1722;
+    --btn-bg:#5b9bd8; --btn-fg:#0f1722; --unread:#1a2735; --pop:#e5686f;
+    --sh:3px 3px 0 rgba(0,0,0,.42); --sh-sm:2px 2px 0 rgba(0,0,0,.4);
+    --t-ia:#95abce; --t-ia-soft:#1b2636; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+    --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+    --t-block:#f07838; --t-block-soft:#28180a; --t-labo:#c2a3e3; --t-labo-soft:#251a33;
   }
 }
 html[data-theme="light"]{
-  --bg:#f5f7fa; --bg-band:#eceff4; --text:#1b2733; --muted:#566778; --faint:#8493a3;
-  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6; --title:#1b2733;
-  --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
-  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
-  --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
-  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
-  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
-  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+  --bg:#e9eef4; --card:#ffffff; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --line:#1b2836; --line-soft:#d5dee8; --accent:#2f6fb0; --accent-soft:#dbe8f6; --accent-ink:#245a91; --mk-fg:#fff;
+  --btn-bg:#28455f; --btn-fg:#fff; --unread:#eef4fb; --pop:#d64550;
+  --sh:3px 3px 0 rgba(20,33,46,.12); --sh-sm:2px 2px 0 rgba(20,33,46,.11);
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-block:#b8570f; --t-block-soft:#fae0cc; --t-labo:#7345a0; --t-labo-soft:#ece2f6;
 }
 html[data-theme="dark"]{
-  --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
-  --card:#16212e; --border:#26333f; --border-soft:#1e2a36; --title:#e7eef5;
-  --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37;
-  --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415;
-  --shadow:0 6px 26px rgba(0,0,0,.42);
-  --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
-  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
-  --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+  --bg:#0f1722; --card:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --line:rgba(221,233,244,.20); --line-soft:rgba(221,233,244,.09);
+  --accent:#5b9bd8; --accent-soft:#1b2b3c; --accent-ink:#9cc6ec; --mk-fg:#0f1722;
+  --btn-bg:#5b9bd8; --btn-fg:#0f1722; --unread:#1a2735; --pop:#e5686f;
+  --sh:3px 3px 0 rgba(0,0,0,.42); --sh-sm:2px 2px 0 rgba(0,0,0,.4);
+  --t-ia:#95abce; --t-ia-soft:#1b2636; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+  --t-block:#f07838; --t-block-soft:#28180a; --t-labo:#c2a3e3; --t-labo-soft:#251a33;
 }
-
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:var(--ui);font-size:16px;line-height:1.6;
-  min-height:100vh;display:flex;flex-direction:column;
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;line-height:1.55;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(var(--line-soft) 1.2px,transparent 1.3px);background-size:34px 34px;}
 a{color:inherit;text-decoration:none;}
-.maxw{max-width:1120px;width:100%;margin:0 auto;}
+.maxw{max-width:1120px;width:100%;margin:0 auto;padding:0 40px;}
 
-/* ── Header ── */
-.header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
-header{padding:24px 40px 0;}
-.head-top{display:flex;align-items:center;gap:16px;}
-.brand{display:flex;align-items:center;gap:15px;min-width:0;}
-.logo{flex:none;width:48px;height:48px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(60,45,25,.18);}
-.logo img{width:36px;height:36px;object-fit:contain;display:block;}
-.name{font-family:var(--ui);font-weight:800;font-size:25px;color:var(--title);letter-spacing:-0.7px;line-height:1.05;}
-.name a:hover{color:var(--accent-ink);}
-.sub{font-family:var(--ui);font-weight:700;font-size:12px;color:var(--faint);letter-spacing:.3px;margin-top:3px;}
-.head-actions{margin-left:auto;display:flex;align-items:center;gap:9px;position:relative;}
-.copy-toast{position:absolute;top:48px;right:0;background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:6px 11px;border-radius:8px;white-space:nowrap;opacity:0;transform:translateY(-4px);transition:opacity .18s,transform .18s;pointer-events:none;z-index:30;box-shadow:var(--shadow);}
-.copy-toast.show{opacity:1;transform:translateY(0);}
-.theme-btn{width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;border:0;background:#b8731e;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;}
-.theme-btn:hover{filter:brightness(1.08);}
-.theme-btn:active{transform:scale(.96);}
-.theme-btn svg{width:19px;height:19px;}
+/* NAV */
+.navband{background:var(--card);border-bottom:2px solid var(--line);box-shadow:0 3px 0 rgba(20,33,46,.05);position:sticky;top:0;z-index:40;}
+.navtop{display:flex;align-items:center;gap:16px;padding:15px 0 0;}
+.brand{display:flex;align-items:center;gap:12px;min-width:0;}
+.logo{width:46px;height:46px;flex:none;border-radius:13px;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-sm);}
+.logo img{width:32px;height:32px;object-fit:contain;display:block;}
+.brand .nm{font-weight:800;font-size:22px;color:var(--text);line-height:1;letter-spacing:-.4px;}
+.brand .nm a:hover{color:var(--accent-ink);}
+.brand .tg{font-family:'Caveat',cursive;font-size:18px;color:var(--accent-ink);margin-top:3px;}
+.hactions{margin-left:auto;display:flex;gap:9px;align-items:center;}
+.ibtn{width:40px;height:40px;flex:none;border-radius:11px;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-sm);cursor:pointer;background:var(--card);color:var(--text);transition:transform .1s;}
+.ibtn:active{transform:scale(.95);}
+.ibtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.ibtn.ml{background:var(--t-ia);color:#fff;}
+.ibtn.li{background:#0a66c2;color:#fff;}
+html[data-theme="dark"] .ibtn.ml{color:#0f1722;}
 .theme-btn .ic-dark{display:none;}
 @media(prefers-color-scheme:dark){.theme-btn .ic-dark{display:block;}.theme-btn .ic-light{display:none;}}
-html[data-theme="dark"] .theme-btn .ic-dark{display:block;}
-html[data-theme="dark"] .theme-btn .ic-light{display:none;}
-html[data-theme="light"] .theme-btn .ic-dark{display:none;}
-html[data-theme="light"] .theme-btn .ic-light{display:block;}
-.icon-btn{width:38px;height:38px;flex:none;border-radius:10px;border:0;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;}
-.icon-btn:hover{filter:brightness(1.08);text-decoration:none;}
-.icon-btn:active{transform:scale(.96);}
-.icon-btn svg{width:18px;height:18px;}
-.icon-btn.mail{background:#41586b;}
-.icon-btn.li{background:#0a66c2;}
+html[data-theme="dark"] .theme-btn .ic-dark{display:block;}html[data-theme="dark"] .theme-btn .ic-light{display:none;}
+html[data-theme="light"] .theme-btn .ic-dark{display:none;}html[data-theme="light"] .theme-btn .ic-light{display:block;}
 
-/* ── Nav principale (site) ── */
-.mainnav{display:flex;gap:4px;margin-top:20px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+/* CLOCHE + PANNEAU */
+.notif-wrap{position:relative;}
+.bell-btn{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink);}
+.bell-badge{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--pop);
+  color:#fff;font-weight:800;font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;border:2px solid var(--card);}
+.bell-badge[data-count="0"]{display:none;}
+.notif-panel{position:absolute;top:52px;right:0;width:344px;max-width:calc(100vw - 32px);background:var(--card);border:2px solid var(--line);border-radius:16px;
+  box-shadow:0 18px 46px rgba(20,33,46,.26);z-index:60;overflow:hidden;
+  opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .16s,transform .16s,visibility .16s;}
+.notif-panel.open{opacity:1;visibility:visible;transform:translateY(0);}
+.np-head{display:flex;align-items:center;gap:10px;padding:15px 17px 11px;border-bottom:2px solid var(--line-soft);}
+.np-head h3{font-weight:800;font-size:17px;color:var(--text);}
+.np-head .cnt{font-weight:700;font-size:12px;color:#fff;background:var(--accent);border-radius:20px;padding:2px 9px;}
+html[data-theme="dark"] .np-head .cnt{color:#0f1722;}
+.np-head .cnt[data-count="0"]{background:var(--faint);}
+.np-head .markall{margin-left:auto;font-weight:800;font-size:12.5px;color:var(--accent-ink);cursor:pointer;background:none;border:0;}
+.np-head .markall:hover{text-decoration:underline;}
+.np-list{max-height:440px;overflow-y:auto;}
+.notif{display:grid;grid-template-columns:auto 1fr auto;gap:11px;padding:13px 17px;align-items:start;cursor:pointer;transition:background .12s;}
+.notif+.notif{border-top:2px solid var(--line-soft);}
+.notif.unread{background:var(--unread);}
+.notif:hover{background:var(--accent-soft);}
+.notif .dot{width:13px;height:13px;border-radius:50%;background:var(--tint);border:2px solid var(--line);margin-top:4px;box-shadow:var(--sh-sm);}
+.notif .body .lab{font-weight:800;font-size:11.5px;color:var(--tint);margin-bottom:2px;}
+.notif .body .ttl{font-weight:700;font-size:14.5px;line-height:1.25;color:var(--text);}
+.notif .when{font-weight:700;font-size:11.5px;color:var(--faint);white-space:nowrap;padding-top:2px;}
+.notif .new{width:9px;height:9px;border-radius:50%;background:var(--accent);margin:5px 0 0 auto;flex:none;}
+.notif:not(.unread) .new{visibility:hidden;}
+.notif:not(.unread) .ttl{color:var(--muted);font-weight:700;}
+.np-foot{padding:11px 17px;border-top:2px solid var(--line-soft);text-align:center;background:var(--card);}
+.np-foot a{font-weight:800;font-size:13.5px;color:var(--accent-ink);}
+
+.mainnav{display:flex;gap:5px;padding:14px 0 0;overflow-x:auto;scrollbar-width:none;}
 .mainnav::-webkit-scrollbar{display:none;}
-.mainnav a{position:relative;white-space:nowrap;font-family:var(--ui);font-weight:700;font-size:14.5px;color:var(--muted);padding:11px 15px;border-radius:9px 9px 0 0;transition:color .15s,background .15s;}
-.mainnav a:hover{color:var(--text);background:color-mix(in srgb,var(--accent) 8%,transparent);}
-.mainnav a.active{color:var(--accent-ink);}
-.mainnav a.active::after{content:"";position:absolute;left:15px;right:15px;bottom:-1px;height:2.5px;border-radius:2px;background:var(--pop);}
+.mainnav a{white-space:nowrap;font-weight:700;font-size:14.5px;color:var(--muted);padding:11px 14px;border-radius:9px 9px 0 0;position:relative;transition:color .15s,background .15s;}
+.mainnav a:hover{color:var(--text);background:var(--accent-soft);}
+.mainnav a.active{color:var(--text);}
+.mainnav a.active::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:3px;border-radius:2px;background:var(--accent);}
 
-/* ── Main ── */
-main{flex:1;padding:34px 40px 64px;}
+main{flex:1;padding:40px 0 24px;}
 
-/* ── Hero ── */
-.hero{margin-bottom:38px;}
-.hero h1{font-family:var(--ui);font-weight:800;font-size:clamp(26px,4vw,40px);letter-spacing:-.02em;line-height:1.12;color:var(--title);max-width:820px;}
-.hero h1 b{color:var(--accent-ink);}
-.hero p{font-size:clamp(15px,1.8vw,18px);color:var(--muted);line-height:1.55;max-width:660px;margin-top:16px;}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
-.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--ui);font-weight:700;font-size:14.5px;padding:12px 20px;border-radius:11px;border:1.5px solid transparent;transition:transform .12s,filter .15s,background .15s,border-color .15s;}
-.btn:active{transform:scale(.98);}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-primary:hover{filter:brightness(1.08);}
-.btn-ghost{background:var(--card);color:var(--text);border-color:var(--border);}
-.btn-ghost:hover{border-color:var(--accent);color:var(--accent-ink);}
+/* HERO */
+.hero{margin-bottom:40px;}
+.hero h1{font-weight:900;font-size:clamp(28px,4.4vw,44px);line-height:1.07;letter-spacing:-.5px;max-width:840px;color:var(--text);}
+.mk{display:inline-block;background:var(--accent);color:var(--mk-fg);padding:0 10px;border:2px solid var(--line);border-radius:8px;box-shadow:var(--sh-sm);transform:rotate(-.5deg);}
+.hero .cta{display:flex;flex-wrap:wrap;gap:13px;align-items:center;margin-top:26px;}
+.btn{font-weight:800;font-size:15px;border:2px solid var(--line);border-radius:12px;padding:12px 20px;box-shadow:var(--sh);transition:transform .1s,filter .15s;}
+.btn:active{transform:translate(1px,1px);}
+.btn.p{background:var(--btn-bg);color:var(--btn-fg);}
+.btn.g{background:var(--card);color:var(--text);}
+.hnote{font-family:'Caveat',cursive;font-weight:700;font-size:23px;color:var(--accent);display:flex;align-items:center;gap:7px;}
+.hnote svg{width:52px;height:26px;stroke:var(--accent);fill:none;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;}
 
-/* ── Sections ── */
+/* SECTION HEAD */
 .section{margin-bottom:40px;}
-.section-head{display:flex;align-items:baseline;gap:11px;margin-bottom:18px;}
-.section-head h2{font-family:var(--ui);font-weight:800;font-size:19px;letter-spacing:-.2px;color:var(--title);}
-.section-head .rule{flex:1;height:2px;border-radius:2px;background:var(--border);}
-.section-head .more{font-family:var(--ui);font-weight:700;font-size:13px;color:var(--accent);white-space:nowrap;}
-.section-head .more:hover{color:var(--pop-ink);}
+.shead{display:flex;align-items:baseline;gap:12px;margin-bottom:18px;}
+.shead h2{font-weight:800;font-size:26px;color:var(--text);letter-spacing:-.4px;}
+.shead .sc{font-family:'Caveat',cursive;font-size:21px;color:var(--tint);}
+.shead .more{margin-left:auto;font-weight:800;font-size:14px;color:var(--tint);white-space:nowrap;}
+.shead .more:hover{filter:brightness(1.1);}
 
-/* ── Cartes ── */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:14px;}
-.card{background:color-mix(in srgb,var(--tint) 7%,var(--card));border:1px solid var(--border);border-radius:12px;transition:transform .18s,box-shadow .18s,border-color .18s;}
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--tint);}
-.card>a{display:block;padding:17px 18px;color:inherit;}
-.card-icon{width:36px;height:36px;border-radius:10px;background:var(--tint-soft);color:var(--tint);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
-.card-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.card-label{font-family:var(--ui);font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--tint);margin-bottom:6px;}
-.card-title{font-family:var(--ui);font-weight:800;font-size:16px;color:var(--title);line-height:1.3;margin-bottom:6px;}
-.card-desc{font-family:var(--ui);font-size:13px;color:var(--muted);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
-.card-arrow{display:inline-block;margin-top:12px;font-family:var(--ui);font-size:12.5px;font-weight:800;color:var(--tint);transition:transform .18s;}
-.card-meta{font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--faint);margin-top:11px;}
-.card:hover .card-arrow{transform:translateX(5px);}
-.badge-new{display:inline-block;font-family:var(--ui);font-size:9.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#fff;background:var(--pop);border-radius:20px;padding:2px 8px;margin-left:5px;vertical-align:middle;}
-@media(prefers-color-scheme:dark){.badge-new{color:#1a1208;}}
-html[data-theme="dark"] .badge-new{color:#1a1208;}
-html[data-theme="light"] .badge-new{color:#fff;}
+/* FEATURED */
+.feat{position:relative;background:radial-gradient(130% 150% at 100% 0%,var(--tint-soft),transparent 62%),var(--card);
+  border:2px solid var(--tint);border-radius:16px;box-shadow:var(--sh);transition:transform .15s;}
+.feat:hover{transform:translateY(-2px);}
+.feat>a{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;padding:26px 28px;}
+.feat-badge{position:absolute;top:-13px;left:22px;background:var(--tint);color:#fff;border:2px solid var(--line);border-radius:9px;
+  padding:4px 13px;font-weight:800;font-size:13px;box-shadow:var(--sh-sm);}
+html[data-theme="dark"] .feat-badge{color:#0f1722;}
+.feat-ic{width:70px;height:70px;flex:none;border-radius:16px;background:var(--tint-soft);border:2px solid var(--tint);display:flex;align-items:center;justify-content:center;color:var(--tint);}
+.feat-ic svg{width:36px;height:36px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.lbl{font-weight:800;font-size:12.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--tint);}
+.feat h3{font-weight:800;font-size:27px;line-height:1.08;margin:5px 0 8px;color:var(--text);}
+.feat p{font-size:16px;font-weight:600;color:var(--muted);line-height:1.45;max-width:600px;}
+.feat-cta{display:inline-block;margin-top:14px;font-weight:800;font-size:15px;background:var(--tint);color:#fff;border:2px solid var(--line);border-radius:11px;padding:10px 18px;box-shadow:var(--sh-sm);}
+html[data-theme="dark"] .feat-cta{color:#0f1722;}
 
-/* ── Carte phare (featured) ── */
-.feat{position:relative;border:1.5px solid var(--tint);border-radius:15px;background:radial-gradient(130% 150% at 100% 0%,var(--tint-soft),transparent 60%),var(--card);transition:transform .18s,box-shadow .18s;overflow:hidden;}
-.feat::before{content:"";position:absolute;inset:0;border-radius:15px;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tint) 30%,transparent);pointer-events:none;}
-.feat:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
-.feat>a{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;padding:26px 30px;}
-.feat-badge{position:absolute;top:16px;right:18px;font-family:var(--ui);font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--tint);background:var(--tint-soft);padding:4px 11px;border-radius:20px;}
-.feat-ic{width:66px;height:66px;flex:none;border-radius:16px;background:var(--tint-soft);color:var(--tint);display:flex;align-items:center;justify-content:center;}
-.feat-ic svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
-.feat-body .card-label{color:var(--tint);}
-.feat-body h3{font-family:var(--ui);font-weight:800;font-size:clamp(20px,2.6vw,25px);letter-spacing:-.3px;color:var(--title);line-height:1.2;margin:2px 0 8px;}
-.feat-body p{font-size:14.5px;color:var(--muted);line-height:1.55;max-width:560px;}
-.feat-cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--ui);font-weight:800;font-size:14px;color:#fff;background:var(--tint);padding:10px 18px;border-radius:11px;transition:filter .15s;}
-.feat:hover .feat-cta{filter:brightness(1.08);}
+/* GRID CARDS */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;}
+.card{background:var(--card);border:2px solid var(--line);border-radius:15px;box-shadow:var(--sh);transition:transform .12s;}
+.card:hover{transform:translateY(-3px);}
+.card>a{display:flex;flex-direction:column;height:100%;padding:22px 20px;}
+.ic{width:48px;height:48px;border-radius:13px;background:var(--tint-soft);border:2px solid var(--tint);display:flex;align-items:center;justify-content:center;color:var(--tint);margin-bottom:13px;}
+.ic svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;}
+.card h3{font-weight:800;font-size:19px;line-height:1.14;color:var(--text);margin-top:2px;}
+.card p{font-size:14.5px;font-weight:600;color:var(--muted);line-height:1.44;margin-top:8px;}
+.card .meta{font-family:'Caveat',cursive;font-size:18px;color:var(--faint);margin-top:10px;}
+.card .go{margin-top:auto;padding-top:13px;font-weight:800;font-size:14.5px;color:var(--tint);}
+.card.wide{grid-column:1/-1;}
+.card.wide h3{font-size:24px;}
 
-/* ── Carte article (empty state) ── */
-.article-empty{grid-column:1/-1;border:1.5px dashed var(--tint);border-radius:14px;background:var(--tint-soft);padding:26px 28px;display:flex;flex-wrap:wrap;align-items:center;gap:18px;}
-.article-empty .ae-body{flex:1;min-width:240px;}
-.article-empty .card-label{color:var(--tint);}
-.article-empty h3{font-family:var(--ui);font-weight:800;font-size:18px;color:var(--title);margin:4px 0 6px;}
-.article-empty p{font-size:13.5px;color:var(--muted);line-height:1.55;max-width:520px;}
+/* FOOTER */
+.footband{border-top:2px solid var(--line);margin-top:12px;background:var(--card);}
+footer{padding:26px 0;display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;}
+footer .fn{font-weight:800;font-size:15px;color:var(--text);}
+footer .fl{display:flex;flex-wrap:wrap;gap:16px;}
+footer .fl a{font-weight:700;font-size:14.5px;color:var(--muted);}
+footer .fl a:hover{color:var(--accent-ink);}
+footer .fbadge{margin-left:auto;display:inline-flex;align-items:center;gap:8px;background:var(--card);color:var(--text);
+  border:2px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;font-weight:800;font-size:13.5px;box-shadow:var(--sh-sm);}
+footer .fbadge .d{width:23px;height:23px;border-radius:50%;background:#2f8a63;display:flex;align-items:center;justify-content:center;}
+footer .fbadge .d svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;}
 
-/* ── À propos court ── */
-.about-block{border:1px solid var(--border);border-radius:14px;background:var(--card);padding:24px 28px;display:flex;flex-wrap:wrap;align-items:center;gap:18px;}
-.about-block .ab-ic{width:46px;height:46px;flex:none;border-radius:12px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;}
-.about-block .ab-ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
-.about-block .ab-body{flex:1;min-width:260px;}
-.about-block h3{font-family:var(--ui);font-weight:800;font-size:17px;color:var(--title);margin-bottom:5px;}
-.about-block p{font-size:13.5px;color:var(--muted);line-height:1.55;}
+.copy-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(8px);background:var(--accent);color:#fff;font-weight:800;font-size:13px;padding:9px 15px;border-radius:11px;box-shadow:var(--sh);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:80;}
+.copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-@keyframes rise{from{opacity:0;transform:translateY(9px);}to{opacity:1;transform:none;}}
-.grid .card,.feat,.hero{animation:rise .4s ease both;}
-.grid .card:nth-child(2){animation-delay:.04s;}
-.grid .card:nth-child(3){animation-delay:.08s;}
-.grid .card:nth-child(4){animation-delay:.12s;}
-
-/* ── Footer ── */
-footer{padding:22px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);}
-footer a{color:var(--faint);}
-footer a:hover{color:var(--accent-ink);}
-.ai-optout{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:800;letter-spacing:.2px;color:var(--text);background:var(--card);border:1px solid var(--border);padding:5px 12px 5px 6px;border-radius:999px;box-shadow:var(--shadow);transition:transform .12s,border-color .12s;}
-.ai-optout:hover{transform:translateY(-1px);border-color:var(--accent);color:var(--text);}
-.ai-optout .ico{flex:none;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#2f8a63;color:#fff;}
-.ai-optout .ico svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;}
-.foot-links{display:flex;flex-wrap:wrap;gap:14px;}
-.foot-contact{display:inline-flex;align-items:center;gap:7px;margin-left:auto;}
-.contact-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--accent-soft);border:1px solid var(--border);color:var(--accent-ink);transition:background .15s,color .15s;}
-.contact-btn:hover{background:var(--accent);color:#fff;}
-.contact-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-
-/* ── Responsive ── */
-@media(max-width:760px){
-  .feat>a{grid-template-columns:1fr;gap:14px;padding:22px 20px;}
-  .feat-ic{width:54px;height:54px;}
-  .feat-ic svg{width:28px;height:28px;}
-  .feat-badge{position:static;align-self:flex-start;margin-bottom:2px;}
-}
 @media(max-width:600px){
-  header{padding:20px 18px 0;}
-  main{padding:26px 18px 44px;}
-  footer{padding:18px;}
-  .name{font-size:22px;}
-  .grid{grid-template-columns:1fr;}
-  .mainnav{margin-top:16px;}
-  .mainnav a{font-size:14px;padding:10px 12px;}
+  .maxw{padding:0 18px;}
+  .brand .nm{font-size:20px;}
 }
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto;}
-  .grid .card,.feat,.hero{animation:none;}
-  *{transition:none!important;}
-}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
 </style>
 </head>
 <body>
 
-<div class="header-band">
-  <header class="maxw">
-    <div class="head-top">
-      <div class="brand">
-        <div class="logo"><img src="logo.png" alt="Logo Sébastien Rivière" width="36" height="36"></div>
-        <div>
-          <div class="name"><a href="/">Sébastien Rivière</a></div>
-          <div class="sub">Apprendre, comprendre, transmettre</div>
+<!-- NAV -->
+<div class="navband"><div class="maxw">
+  <div class="navtop">
+    <div class="brand">
+      <div class="logo"><img src="logo.png" alt="Logo Sébastien Rivière" width="32" height="32"></div>
+      <div><div class="nm"><a href="/">Sébastien Rivière</a></div><div class="tg">apprendre · comprendre · transmettre</div></div>
+    </div>
+    <div class="hactions">
+      <div class="notif-wrap">
+        <button class="ibtn bell-btn" id="bellBtn" title="Quoi de neuf" aria-label="Quoi de neuf">
+          <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <span class="bell-badge" id="bellBadge" data-count="0">0</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" role="dialog" aria-label="Quoi de neuf">
+          <div class="np-head">
+            <h3>Quoi de neuf</h3>
+            <span class="cnt" id="npCount" data-count="0">0 non lus</span>
+            <button class="markall" id="markAll">Tout marquer comme lu</button>
+          </div>
+          <div class="np-list" id="npList">
+            <a class="notif" data-id="creole-2026-07-04" style="--tint:var(--t-art)" href="/articles/quand-l-ia-chante-en-creole/">
+              <span class="dot"></span>
+              <span class="body"><span class="lab">Article</span><span class="ttl">Quand l'IA chante en créole</span></span>
+              <span class="when">4 juil.</span><span class="new"></span>
+            </a>
+            <a class="notif" data-id="mediatheque-2026-07" style="--tint:var(--t-labo)" href="/outils/mediatheque-ia/">
+              <span class="dot"></span>
+              <span class="body"><span class="lab">Médiathèque</span><span class="ttl">Films &amp; séries sur l'IA ajoutés</span></span>
+              <span class="when">juillet</span><span class="new"></span>
+            </a>
+            <a class="notif" data-id="glossaire-2026-07" style="--tint:var(--t-ia)" href="/outils/glossaire-ia/">
+              <span class="dot"></span>
+              <span class="body"><span class="lab">Glossaire</span><span class="ttl">Nouvelles définitions IA</span></span>
+              <span class="when">cette sem.</span><span class="new"></span>
+            </a>
+            <a class="notif" data-id="optout-2026-07" style="--tint:var(--t-prod)" href="/opt-out-ia/">
+              <span class="dot"></span>
+              <span class="body"><span class="lab">Guide</span><span class="ttl">Refuser l'entraînement des IA (opt-out)</span></span>
+              <span class="when">nouveau</span><span class="new"></span>
+            </a>
+          </div>
+          <div class="np-foot"><a href="/outils/">Tout le hub →</a></div>
         </div>
       </div>
-      <div class="head-actions">
-        <button class="theme-btn" id="themeBtn" aria-label="Basculer le thème clair / sombre" title="Thème clair / sombre">
-          <svg class="ic-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
-          <svg class="ic-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
-        </button>
-        <a class="icon-btn mail" id="mailBtn" href="mailto:rsebastien@protonmail.com" title="M'écrire (clic = copie l'adresse)" aria-label="M'écrire par email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-        </a>
-        <a class="icon-btn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
-        </a>
-        <span class="copy-toast" id="copyToast" role="status" aria-live="polite"></span>
-      </div>
+      <button class="ibtn theme-btn" id="themeBtn" title="Thème clair / sombre" aria-label="Basculer le thème clair / sombre">
+        <svg class="ic-light" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+        <svg class="ic-dark" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <a class="ibtn ml" id="mailBtn" href="mailto:rsebastien@protonmail.com" title="M'écrire (clic = copie l'adresse)" aria-label="M'écrire par email">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      </a>
+      <a class="ibtn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+      </a>
     </div>
-    <nav class="mainnav maxw" aria-label="Navigation principale">
-      <a href="/" class="active">Accueil</a>
-      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
-      <a href="/articles/">Articles &amp; enquêtes</a>
-      <a href="/outils/">Outils</a>
-      <a href="/a-propos/">À propos</a>
-    </nav>
-  </header>
-</div>
+  </div>
+  <nav class="mainnav" aria-label="Navigation principale">
+    <a href="/" class="active">Accueil</a>
+    <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+    <a href="/articles/">Articles &amp; enquêtes</a>
+    <a href="/outils/">Outils</a>
+  </nav>
+</div></div>
 
-<main class="maxw">
+<div class="maxw">
+<main>
 
-  <!-- HERO -->
   <section class="hero">
-    <h1>IA, outils numériques <b>&amp; ressources pratiques</b></h1>
-    <p>Des outils, guides, glossaires, enquêtes et ressources pour comprendre l'intelligence artificielle, choisir les bons usages et structurer ses pratiques numériques.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="/outils/">Découvrir les outils IA →</a>
-      <a class="btn btn-ghost" href="/outils/mediatheque-ia/">Explorer la médiathèque IA</a>
+    <h1>IA, outils numériques <span class="mk">&amp; ressources pratiques</span></h1>
+    <div class="cta">
+      <span class="hnote">commence ici
+        <svg viewBox="0 0 62 30"><path d="M4 13 C 20 5, 40 22, 58 15"/><path d="M49 9 l10 6 -8 9"/></svg>
+      </span>
+      <a class="btn p" href="/outils/">Découvrir les outils →</a>
+      <a class="btn g" href="/outils/mediatheque-ia/">Explorer la médiathèque IA</a>
     </div>
   </section>
 
-  <!-- OUTIL PHARE -->
   <section class="section" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
     <div class="feat">
-      <span class="feat-badge">Outil phare</span>
+      <span class="feat-badge">Pour débuter</span>
       <a href="/outils/quiz-ia/">
         <div class="feat-ic"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
         <div class="feat-body">
-          <div class="card-label">Diagnostic IA</div>
+          <div class="lbl">Diagnostic IA</div>
           <h3>Quelle IA est faite pour vous ?</h3>
           <p>Un questionnaire simple pour identifier l'assistant IA le plus adapté à votre profil, vos usages et votre niveau.</p>
           <span class="feat-cta">Commencer le questionnaire →</span>
@@ -301,183 +299,141 @@ footer a:hover{color:var(--accent-ink);}
     </div>
   </section>
 
-  <!-- RESSOURCES IA ESSENTIELLES -->
-  <section class="section" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
-    <div class="section-head">
-      <h2>Ressources IA essentielles</h2>
-      <span class="rule"></span>
-      <a class="more" href="/outils/">Tout voir →</a>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <a href="/guide/prise-en-main-claude/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M18 3v18"/><path d="M8 8h6M8 11h6"/></svg></div>
-          <div class="card-label">Guide</div>
-          <h3 class="card-title">Prendre Claude en main</h3>
-          <div class="card-desc">Guide pas-à-pas pour débuter : choisir son modèle, paramétrer instructions, mémoire, projets et connecteurs — avec prompts à copier-coller.</div>
-          <div class="card-arrow">Lire le guide →</div>
-        </a>
-      </div>
-      <div class="card">
-        <a href="/guide/guide-token">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2 4 7v10l8 5 8-5V7z"/><path d="m9.5 12 1.8 1.8 3.7-3.8"/></svg></div>
-          <div class="card-label">Guide</div>
-          <h3 class="card-title">Vos tokens Claude, c'est précieux</h3>
-          <div class="card-desc">Comprendre, configurer et optimiser votre usage de Claude au quotidien.</div>
-          <div class="card-arrow">Lire le guide →</div>
-        </a>
-      </div>
-      <div class="card">
-        <a href="/outils/annuaire-ia/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
-          <div class="card-label">Annuaire</div>
-          <h3 class="card-title">Annuaire des outils IA</h3>
-          <div class="card-desc">Une sélection d'outils IA classés par usage et expliqués simplement, avec repères chiffrés. Sans jargon.</div>
-          <div class="card-arrow">Ouvrir l'annuaire →</div>
-        </a>
-      </div>
-      <div class="card">
-        <a href="/outils/glossaire-ia/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
-          <div class="card-label">Glossaire</div>
-          <h3 class="card-title">Glossaire de l'IA</h3>
-          <div class="card-desc">Les mots de l'IA expliqués en clair : pour chaque terme, une analogie, pourquoi ça compte et le piège à éviter.</div>
-          <div class="card-arrow">Ouvrir le glossaire →</div>
-        </a>
-      </div>
-      <div class="card">
-        <a href="/outils/mediatheque-ia/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 4h6v16H4z"/><path d="M10 4h6v16h-6z"/><path d="m16 4 4 .8-2.6 14.4-4-.8z"/></svg></div>
-          <div class="card-label">Médiathèque</div>
-          <h3 class="card-title">Livres, films &amp; séries sur l'IA</h3>
-          <div class="card-desc">Une sélection pour comprendre l'IA (livres de référence), explorer son imaginaire et ce qui se joue à l'écran — résumés, couvertures, repère réflexion / divertissement.</div>
-          <div class="card-arrow">Ouvrir la médiathèque →</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ARTICLES & ENQUÊTES -->
   <section class="section" style="--tint:var(--t-art);--tint-soft:var(--t-art-soft)">
-    <div class="section-head">
-      <h2>Derniers articles &amp; enquêtes</h2>
-      <span class="rule"></span>
-      <a class="more" href="/articles/">Toute la rubrique →</a>
-    </div>
+    <div class="shead"><h2>Derniers articles &amp; enquêtes</h2><span class="sc">à lire</span><a class="more" href="/articles/">Toute la rubrique →</a></div>
     <div class="grid">
-      <div class="card" style="grid-column:1/-1">
-        <a href="/articles/quand-l-ia-chante-en-creole/">
-          <div class="card-label">Enquête · Culture &amp; IA</div>
-          <h3 class="card-title" style="font-size:20px">Quand l'IA chante en créole</h3>
-          <div class="card-desc">Séga et maloya générés par IA à La Réunion : créateurs, chiffres, droit, culture. La vraie question n'est pas « pour ou contre l'IA », mais : où est passé l'humain ?</div>
-          <div class="card-meta">4 juillet 2026 · Lecture ~10 min</div>
-          <div class="card-arrow">Lire l'article →</div>
-        </a>
-      </div>
+      <div class="card wide"><a href="/articles/quand-l-ia-chante-en-creole/">
+        <div class="lbl">Enquête · Culture &amp; IA</div>
+        <h3>Quand l'IA chante en créole</h3>
+        <p>Séga et maloya générés par IA à La Réunion : créateurs, chiffres, droit, culture. La vraie question n'est pas « pour ou contre l'IA », mais : où est passé l'humain ?</p>
+        <div class="meta">4 juillet 2026 · lecture ~10 min</div>
+        <span class="go">Lire l'article →</span>
+      </a></div>
     </div>
   </section>
 
-  <!-- OUTILS PRATIQUES -->
+  <section class="section" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
+    <div class="shead"><h2>Ressources IA essentielles</h2><span class="sc">comprendre &amp; apprendre</span><a class="more" href="/outils/">Tout voir →</a></div>
+    <div class="grid">
+      <div class="card"><a href="/guide/prise-en-main-claude/">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M18 3v18"/><path d="M8 8h6M8 11h6"/></svg></div>
+        <div class="lbl">Guide</div><h3>Prendre Claude en main</h3>
+        <p>Guide pas-à-pas pour débuter : choisir son modèle, paramétrer instructions, mémoire, projets et connecteurs — prompts à copier-coller.</p>
+        <span class="go">Lire le guide →</span>
+      </a></div>
+      <div class="card"><a href="/guide/guide-token">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 7v10l8 5 8-5V7z"/><path d="m9.5 12 1.8 1.8 3.7-3.8"/></svg></div>
+        <div class="lbl">Guide</div><h3>Vos tokens Claude, c'est précieux</h3>
+        <p>Comprendre, configurer et optimiser votre usage de Claude au quotidien.</p>
+        <span class="go">Lire le guide →</span>
+      </a></div>
+      <div class="card"><a href="/outils/annuaire-ia/">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+        <div class="lbl">Annuaire</div><h3>Annuaire des outils IA</h3>
+        <p>Une sélection d'outils IA classés par usage et expliqués simplement, avec repères chiffrés. Sans jargon.</p>
+        <span class="go">Ouvrir l'annuaire →</span>
+      </a></div>
+      <div class="card"><a href="/outils/glossaire-ia/">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="lbl">Glossaire</div><h3>Glossaire de l'IA</h3>
+        <p>Les mots de l'IA en clair : pour chaque terme, une analogie, pourquoi ça compte et le piège à éviter.</p>
+        <span class="go">Ouvrir le glossaire →</span>
+      </a></div>
+      <div class="card"><a href="/outils/mediatheque-ia/">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h6v16H4z"/><path d="M10 4h6v16h-6z"/><path d="m16 4 4 .8-2.6 14.4-4-.8z"/></svg></div>
+        <div class="lbl">Médiathèque</div><h3>Livres, films &amp; séries sur l'IA</h3>
+        <p>Une sélection pour comprendre l'IA, explorer son imaginaire et ce qui se joue à l'écran — résumés, couvertures, repères.</p>
+        <span class="go">Ouvrir la médiathèque →</span>
+      </a></div>
+    </div>
+  </section>
+
   <section class="section" style="--tint:var(--t-prod);--tint-soft:var(--t-prod-soft)">
-    <div class="section-head">
-      <h2>Outils pratiques</h2>
-      <span class="rule"></span>
-      <a class="more" href="/outils/#productivite">Voir tous les outils →</a>
-    </div>
+    <div class="shead"><h2>Outils pratiques</h2><span class="sc">dans le navigateur, sans compte</span><a class="more" href="/outils/#productivite">Voir tous les outils →</a></div>
     <div class="grid">
-      <div class="card">
-        <a href="/outils/MD-Convert/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h2v4M14 13l1.5 4 1.5-4"/></svg></div>
-          <div class="card-label">Outil</div>
-          <h3 class="card-title">MD Convert</h3>
-          <div class="card-desc">Convertissez vos fichiers en Markdown en local — PDF, DOCX, images — sans rien installer ni envoyer.</div>
-          <div class="card-arrow">Ouvrir l'outil →</div>
-        </a>
-      </div>
-      <div class="card">
-        <a href="/outils/MonBureauPDF/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="13" height="16" rx="2"/><path d="M8 8h5M8 12h5"/><path d="M8 21h10a2 2 0 0 0 2-2V8"/></svg></div>
-          <div class="card-label">Outil</div>
-          <h3 class="card-title">MonBureauPDF</h3>
-          <div class="card-desc">Fusionnez, réorganisez, compressez et exportez vos PDF directement dans le navigateur — sans compte, sans upload.</div>
-          <div class="card-arrow">Ouvrir l'outil →</div>
-        </a>
-      </div>
-      <div class="card">
-        <a href="/outils/MonBureauRECORD/">
-          <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/></svg></div>
-          <div class="card-label">Outil</div>
-          <h3 class="card-title">MonBureauRECORD</h3>
-          <div class="card-desc">Enregistrez vos réunions Zoom, Teams ou Meet et obtenez un compte rendu — sans compte, sans upload, sans IA.</div>
-          <div class="card-arrow">Ouvrir l'outil →</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- À PROPOS COURT -->
-  <section class="section">
-    <div class="about-block">
-      <div class="ab-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
-      <div class="ab-body">
-        <h3>À propos</h3>
-        <p>Un espace de veille, d'outils et d'analyse autour de l'IA, de la conformité, de l'automatisation et des usages numériques professionnels.</p>
-      </div>
-      <a class="btn btn-ghost" href="/a-propos/">En savoir plus →</a>
+      <div class="card"><a href="/outils/MD-Convert/">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h2v4M14 13l1.5 4 1.5-4"/></svg></div>
+        <div class="lbl">Outil</div><h3>MD Convert</h3>
+        <p>Convertissez vos fichiers en Markdown en local — PDF, DOCX, images — sans rien installer ni envoyer.</p>
+        <span class="go">Ouvrir l'outil →</span>
+      </a></div>
+      <div class="card"><a href="/outils/MonBureauPDF/">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="13" height="16" rx="2"/><path d="M8 8h5M8 12h5"/><path d="M8 21h10a2 2 0 0 0 2-2V8"/></svg></div>
+        <div class="lbl">Outil</div><h3>MonBureauPDF</h3>
+        <p>Fusionnez, réorganisez, compressez et exportez vos PDF directement dans le navigateur — sans compte, sans upload.</p>
+        <span class="go">Ouvrir l'outil →</span>
+      </a></div>
+      <div class="card"><a href="/outils/MonBureauRECORD/">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/></svg></div>
+        <div class="lbl">Outil</div><h3>MonBureauRECORD</h3>
+        <p>Enregistrez vos réunions Zoom, Teams ou Meet et obtenez un compte rendu — sans compte, sans upload, sans IA.</p>
+        <span class="go">Ouvrir l'outil →</span>
+      </a></div>
     </div>
   </section>
 
 </main>
+</div>
 
-<footer class="maxw">
-  <span>© Sébastien Rivière · 2026</span>
-  <span class="foot-links">
+<div class="footband"><div class="maxw"><footer>
+  <span class="fn">© Sébastien Rivière · 2026</span>
+  <span class="fl">
     <a href="/outils/">Outils</a>
     <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
     <a href="/articles/">Articles</a>
     <a href="/a-propos/">À propos</a>
   </span>
-  <span class="foot-contact">
-    <a class="contact-btn" href="mailto:rsebastien@protonmail.com" title="Email" aria-label="Envoyer un email">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-    </a>
-    <a class="contact-btn" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
-    </a>
-  </span>
-  <a class="ai-optout" href="/opt-out-ia/" title="Ce site refuse l'entraînement des IA — comprendre et faire pareil">
-    <span class="ico"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-    Sans entraînement IA
+  <a class="fbadge" href="/opt-out-ia/" title="Ce site refuse l'entraînement des IA — comprendre et faire pareil">
+    <span class="d"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Sans entraînement IA
   </a>
-</footer>
+</footer></div></div>
+
+<span class="copy-toast" id="copyToast" role="status" aria-live="polite"></span>
 
 <script>
-/* ── Thème ── */
+/* Thème (persistant + respect prefers-color-scheme + sync meta) */
 (function(){
   var root=document.documentElement,saved=null;
   try{saved=localStorage.getItem('theme');}catch(e){}
   if(saved==='light'||saved==='dark')root.setAttribute('data-theme',saved);
-  var btn=document.getElementById('themeBtn');
   function current(){var a=root.getAttribute('data-theme');if(a)return a;return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
-  function syncMeta(){var m=document.querySelectorAll('meta[name=theme-color]');if(root.getAttribute('data-theme')){m.forEach(function(x){x.remove();});var meta=document.createElement('meta');meta.name='theme-color';meta.content=current()==='dark'?'#0f1722':'#f5f7fa';document.head.appendChild(meta);}}
-  btn.addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next);}catch(e){}syncMeta();});
+  function syncMeta(){if(root.getAttribute('data-theme')){document.querySelectorAll('meta[name=theme-color]').forEach(function(x){x.remove();});var m=document.createElement('meta');m.name='theme-color';m.content=current()==='dark'?'#0f1722':'#e9eef4';document.head.appendChild(m);}}
+  document.getElementById('themeBtn').addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next);}catch(e){}syncMeta();});
 })();
-/* ── Bouton mail : copie l'adresse (secours webmail) ── */
+/* Bouton mail : copie l'adresse (secours webmail) */
 (function(){
-  var mail=document.getElementById('mailBtn'); if(!mail) return;
-  var toast=document.getElementById('copyToast');
+  var mail=document.getElementById('mailBtn');if(!mail)return;var toast=document.getElementById('copyToast');
   var addr=(mail.getAttribute('href')||'').replace('mailto:','');
   mail.addEventListener('click',function(){
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(addr).then(function(){
-        if(!toast)return;toast.textContent='Adresse copiée : '+addr;toast.classList.add('show');
-        clearTimeout(toast._t);toast._t=setTimeout(function(){toast.classList.remove('show');},2800);
-      }).catch(function(){});
-    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(addr).then(function(){
+      if(!toast)return;toast.textContent='Adresse copiée : '+addr;toast.classList.add('show');
+      clearTimeout(toast._t);toast._t=setTimeout(function(){toast.classList.remove('show');},2600);
+    }).catch(function(){});}
   });
 })();
+/* Cloche « Quoi de neuf » — état lu persistant (localStorage) */
+(function(){
+  var bell=document.getElementById('bellBtn'),panel=document.getElementById('notifPanel'),
+      badge=document.getElementById('bellBadge'),count=document.getElementById('npCount'),
+      items=[].slice.call(document.querySelectorAll('#npList .notif'));
+  var KEY='sr_notifs_read';
+  function readSet(){try{return JSON.parse(localStorage.getItem(KEY)||'[]');}catch(e){return [];}}
+  function saveRead(arr){try{localStorage.setItem(KEY,JSON.stringify(arr));}catch(e){}}
+  function markUI(it,isRead){it.classList.toggle('unread',!isRead);}
+  function refresh(){var n=items.filter(function(it){return it.classList.contains('unread');}).length;
+    badge.textContent=n;badge.setAttribute('data-count',n);
+    count.textContent=n+' non lus';count.setAttribute('data-count',n);}
+  var read=readSet();
+  items.forEach(function(it){markUI(it,read.indexOf(it.getAttribute('data-id'))>-1);});
+  refresh();
+  function setRead(id){var r=readSet();if(r.indexOf(id)<0){r.push(id);saveRead(r);}}
+  bell.addEventListener('click',function(e){e.stopPropagation();panel.classList.toggle('open');});
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&!bell.contains(e.target))panel.classList.remove('open');});
+  items.forEach(function(it){it.addEventListener('click',function(){var id=it.getAttribute('data-id');setRead(id);markUI(it,true);refresh();});});
+  document.getElementById('markAll').addEventListener('click',function(e){e.stopPropagation();
+    items.forEach(function(it){setRead(it.getAttribute('data-id'));markUI(it,true);});refresh();});
+})();
 </script>
-<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
