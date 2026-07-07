@@ -11,7 +11,8 @@
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="../../fonts/fonts.css">
 <link rel="stylesheet" href="../../styles/ia-kit.css">
-<link rel="stylesheet" href="/styles/hub-nav.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 /* --- spécifique à cette page (le reste vient de ia-kit.css) --- */
 main{flex:1;padding:14px 24px 80px;max-width:var(--wrap-read);width:100%;margin:0 auto;}
@@ -199,30 +200,7 @@ footer.dark-footer strong{color:color-mix(in srgb,var(--code-ink) 78%,transparen
 <body>
 <div class="progress-bar" id="progress"></div>
 
-<div class="hub-band">
-  <div class="hub-head">
-    <div class="hub-top">
-      <div class="hub-brand">
-        <div class="hub-logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="34" height="34"></div>
-        <div>
-          <div class="hub-name"><a href="/">Sébastien Rivière</a></div>
-          <div class="hub-sub">Apprendre, comprendre, transmettre</div>
-        </div>
-      </div>
-      <div class="hub-actions">
-        <a class="hub-ic mail" href="mailto:rsebastien@protonmail.com" title="M'écrire" aria-label="M'écrire par email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
-        <a class="hub-ic li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg></a>
-      </div>
-    </div>
-    <nav class="hub-nav" aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
-      <a href="/articles/">Articles &amp; enquêtes</a>
-      <a href="/outils/" class="active">Outils</a>
-      <a href="/a-propos/">À propos</a>
-    </nav>
-  </div>
-</div>
+<div id="sr-header" data-active="outils"></div>
 
 <nav>
   <div class="nav-inner">
@@ -741,9 +719,7 @@ Tu peux résumer ou supprimer le reste.</pre>
 
 </main>
 
-<footer class="dark-footer">
-  <p><strong>Sébastien Rivière</strong> · Juin 2026<br>Guide libre de partage — partagez-le sans retenue<br><span style="font-size:12px;">Vos retours sont bienvenus. Ils aident à améliorer ce contenu.</span></p>
-</footer>
+<div id="sr-footer"></div>
 
 <script>
 window.addEventListener('scroll',()=>{
@@ -787,6 +763,7 @@ window.addEventListener('load',()=>{
   });
 });
 </script>
+<script src="/assets/site.js" defer></script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
