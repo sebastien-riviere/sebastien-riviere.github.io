@@ -1,11 +1,45 @@
 {
-  "maj": "2026-07-06",
-  "total": 94,
+  "maj": "2026-07-07",
+  "total": 96,
   "byTheme": {
-    "data": 81,
+    "data": 83,
     "ia": 13
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "LA PRESTATION DE SERVICE DE MISE A DISPOSTION DE CONTENU OU DE DONNEES (CDN : CONTENT DELIVERY NETWORK)",
+      "a": "CDC Informatique",
+      "dep": "92",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-07",
+      "dl": "2026-09-14T10:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-66776%22",
+      "k": "cdc informatique|la prestation de service de mise a dispostion de contenu ou de donnees cdn content deliver",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Collecte des données concernant les parcours d'études et l'insertion professionnelle des étudiants de l'Université Gustave Eiffel 18 mois après l'obtention de leur diplôme",
+      "a": "IFSTTAR",
+      "dep": "77",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-06",
+      "dl": "2026-09-01T14:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.marches-publics.gouv.fr/?page=Entreprise.EntrepriseAdvancedSearch&AllCons&id=3033384&orgAcronyme=f2h",
+      "k": "ifsttar|collecte des donnees concernant les parcours d etudes et l insertion professionnelle des e",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
