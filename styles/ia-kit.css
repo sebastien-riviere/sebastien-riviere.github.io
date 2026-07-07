@@ -5,48 +5,67 @@
    Police : Inter (locale). Spine = slate IA. Pop = ambre, sobre.
    Importer APRÈS fonts.css.
    ============================================================ */
+/* Comic-lite bleu (mappé sur les tokens du kit) — clair, sombre auto + toggle data-theme */
 :root{
   /* surfaces */
-  --bg:#f5f7fa; --bg-2:#eceff4; --card:#ffffff;
-  --border:#e3e8ef; --border-strong:#cfd8e3; --border-soft:#eef1f6;
+  --bg:#e9eef4; --bg-2:#dfe7f0; --card:#ffffff;
+  --border:#1b2836; --border-strong:#1b2836; --border-soft:#d5dee8;
   /* texte */
-  --ink:#1b2733; --muted:#566778; --faint:#8493a3;
+  --ink:#1c2a37; --muted:#57697a; --faint:#8496a5;
   /* identité IA (slate) — code couleur catégorie */
-  --ia:#41586b; --ia-ink:#33485a; --ia-soft:#e8ecf2; --ia-line:#d4dce6;
-  /* pop chaud (ambre) — accent SOBRE : labels, états actifs, "règle" */
-  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
+  --ia:#41586b; --ia-ink:#33485a; --ia-soft:#e9ecf2; --ia-line:#c9d3e0;
+  /* pop (accent bleu comic) — labels, états actifs, "règle" */
+  --pop:#2f6fb0; --pop-ink:#245a91; --pop-soft:#dbe8f6;
   /* fonctionnels */
-  --ok:#2f8a63; --ok-soft:#e4f3ec;
-  --warn:#a8761c; --warn-soft:#f9efd9;
-  --bad:#c0433a; --bad-soft:#fbe6e4;
+  --ok:#3f7a4e; --ok-soft:#e3efe1;
+  --warn:#b8570f; --warn-soft:#fae0cc;
+  --bad:#c0433a; --bad-soft:#f6dede;
   /* code */
   --code-bg:#13212e; --code-ink:#dfe9f2;
   /* formes */
   --radius:12px; --radius-sm:8px; --radius-xs:6px;
-  --shadow-sm:0 1px 2px rgba(20,33,46,.05);
-  --shadow:0 1px 2px rgba(20,33,46,.04),0 6px 20px rgba(20,33,46,.07);
-  --shadow-lg:0 18px 44px rgba(20,33,46,.16);
+  --shadow-sm:2px 2px 0 rgba(20,33,46,.11);
+  --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --shadow-lg:0 18px 44px rgba(20,33,46,.22);
   /* typo */
-  --ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --ui:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;
   /* largeurs */
   --wrap-read:860px; --wrap-app:1080px;
 }
 @media(prefers-color-scheme:dark){
   :root{
-    --bg:#0f1722; --bg-2:#13202e; --card:#16212e;
-    --border:#26333f; --border-strong:#33424f; --border-soft:#1e2a36;
+    --bg:#0f1722; --bg-2:#16212e; --card:#16212e;
+    --border:rgba(221,233,244,.22); --border-strong:rgba(221,233,244,.3); --border-soft:rgba(221,233,244,.10);
     --ink:#e7eef5; --muted:#a3b3c2; --faint:#728398;
-    --ia:#9fb3c9; --ia-ink:#bccddf; --ia-soft:#1d2a37; --ia-line:#2a3a48;
-    --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415;
-    --ok:#5fc596; --ok-soft:#162720;
-    --warn:#e0b061; --warn-soft:#2a2414;
+    --ia:#95abce; --ia-ink:#bccddf; --ia-soft:#1b2636; --ia-line:#2a3a48;
+    --pop:#5b9bd8; --pop-ink:#9cc6ec; --pop-soft:#1b2b3c;
+    --ok:#8fc09a; --ok-soft:#1a2a20;
+    --warn:#f07838; --warn-soft:#28180a;
     --bad:#e58b83; --bad-soft:#2e1b19;
     --code-bg:#0b1320; --code-ink:#cfe0f0;
-    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 26px rgba(0,0,0,.5);
+    --shadow-sm:2px 2px 0 rgba(0,0,0,.4);
+    --shadow:3px 3px 0 rgba(0,0,0,.42);
     --shadow-lg:0 22px 54px rgba(0,0,0,.62);
   }
+}
+html[data-theme="light"]{
+  --bg:#e9eef4; --bg-2:#dfe7f0; --card:#ffffff;
+  --border:#1b2836; --border-strong:#1b2836; --border-soft:#d5dee8;
+  --ink:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --ia:#41586b; --ia-ink:#33485a; --ia-soft:#e9ecf2; --ia-line:#c9d3e0;
+  --pop:#2f6fb0; --pop-ink:#245a91; --pop-soft:#dbe8f6;
+  --ok:#3f7a4e; --ok-soft:#e3efe1; --warn:#b8570f; --warn-soft:#fae0cc; --bad:#c0433a; --bad-soft:#f6dede;
+  --shadow-sm:2px 2px 0 rgba(20,33,46,.11); --shadow:3px 3px 0 rgba(20,33,46,.12); --shadow-lg:0 18px 44px rgba(20,33,46,.22);
+}
+html[data-theme="dark"]{
+  --bg:#0f1722; --bg-2:#16212e; --card:#16212e;
+  --border:rgba(221,233,244,.22); --border-strong:rgba(221,233,244,.3); --border-soft:rgba(221,233,244,.10);
+  --ink:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --ia:#95abce; --ia-ink:#bccddf; --ia-soft:#1b2636; --ia-line:#2a3a48;
+  --pop:#5b9bd8; --pop-ink:#9cc6ec; --pop-soft:#1b2b3c;
+  --ok:#8fc09a; --ok-soft:#1a2a20; --warn:#f07838; --warn-soft:#28180a; --bad:#e58b83; --bad-soft:#2e1b19;
+  --shadow-sm:2px 2px 0 rgba(0,0,0,.4); --shadow:3px 3px 0 rgba(0,0,0,.42); --shadow-lg:0 22px 54px rgba(0,0,0,.62);
 }
 
 /* ---------- base ---------- */
@@ -54,6 +73,7 @@
 html{scroll-behavior:smooth;}
 body{
   background:var(--bg);color:var(--ink);
+  background-image:radial-gradient(var(--border-soft) 1.2px,transparent 1.3px);background-size:34px 34px;
   font-family:var(--ui);font-size:16px;line-height:1.62;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
   min-height:100vh;display:flex;flex-direction:column;
@@ -83,7 +103,7 @@ hr{border:none;border-top:1px solid var(--border);margin:34px 0;}
 .ia-crumb a .ic{width:14px;height:14px;}
 
 /* ---------- en-tête : marque + titre ---------- */
-.ia-band{background:linear-gradient(180deg,var(--bg-2),var(--bg));border-bottom:1px solid var(--border);}
+.ia-band{background:linear-gradient(180deg,var(--bg-2),var(--bg));border-bottom:2px solid var(--border);}
 .ia-head{max-width:var(--wrap-app);width:100%;margin:0 auto;padding:22px 24px 30px;}
 .ia-head.read{max-width:var(--wrap-read);}
 .ia-brand{display:flex;align-items:center;gap:13px;}
@@ -103,7 +123,7 @@ hr{border:none;border-top:1px solid var(--border);margin:34px 0;}
 .ia-lead{font-size:1.02rem;line-height:1.6;color:var(--muted);max-width:640px;margin-top:16px;}
 
 /* ---------- cartes ---------- */
-.ia-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+.ia-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);
   padding:20px 22px;box-shadow:var(--shadow);}
 
 /* ---------- callouts ---------- */
@@ -122,8 +142,8 @@ hr{border:none;border-top:1px solid var(--border);margin:34px 0;}
   color:var(--pop-ink);font-weight:500;}
 
 /* ---------- boutons / pills / tags ---------- */
-.ia-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--ui);font-weight:700;font-size:.88rem;
-  padding:9px 15px;border-radius:var(--radius-sm);border:1px solid var(--ia);background:var(--ia);color:#fff;cursor:pointer;transition:.16s;}
+.ia-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--ui);font-weight:800;font-size:.88rem;
+  padding:9px 15px;border-radius:var(--radius-sm);border:2px solid var(--border);background:var(--ia);color:#fff;box-shadow:var(--shadow-sm);cursor:pointer;transition:.16s;}
 .ia-btn:hover{background:var(--ia-ink);text-decoration:none;}
 .ia-btn.ghost{background:var(--ia-soft);color:var(--ia-ink);}
 .ia-btn.ghost:hover{background:var(--ia-line);}
