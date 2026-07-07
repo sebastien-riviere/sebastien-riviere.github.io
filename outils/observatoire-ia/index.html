@@ -11,30 +11,45 @@
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="alternate" type="application/rss+xml" title="Observatoire des marchés publics IA" href="./feed.xml">
 <link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
+/* Comic-lite bleu, accent famille = ROUGE commande publique */
 :root{
-  --bg:#fbf4f4; --bg-band:#eaf2f9;
-  --text:#1a2a35; --muted:#5a7a92; --faint:#5f7e94;
-  --card:#ffffff; --border:#dde9f2; --border-hover:#b8d0e4;
-  --title:#1e3a52; --accent:#b23b3b; --accent-soft:#f6dede;
-  --shadow:0 4px 22px rgba(30,58,82,0.10);
+  --bg:#e9eef4; --bg-band:#dfe7f0;
+  --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --card:#ffffff; --border:#1b2836; --border-hover:#b23b3b;
+  --title:#1c2a37; --accent:#b23b3b; --accent-soft:#f6dede;
+  --shadow:3px 3px 0 rgba(20,33,46,.12);
   --ia:#6d5bd0; --ia-soft:#efecfb; --data:#1f8a5b; --data-soft:#e6f4ec; --num:#b9791f; --num-soft:#f6ecdc;
   --urgent:#c0392b; --soon:#b9791f;
 }
 @media(prefers-color-scheme:dark){
   :root{
-    --bg:#0f1722; --bg-band:#15212f;
-    --text:#e7eef5; --muted:#9fb6c8; --faint:#8ba3b8;
-    --card:#16212e; --border:#24333f; --border-hover:#b23b3b;
-    --title:#eaf2f9; --accent:#e08c8c; --accent-soft:#2f1a1a;
-    --shadow:0 6px 26px rgba(0,0,0,0.45);
+    --bg:#0f1722; --bg-band:#16212e;
+    --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+    --card:#16212e; --border:rgba(221,233,244,.22); --border-hover:#e08c8c;
+    --title:#e7eef5; --accent:#e08c8c; --accent-soft:#2f1a1a;
+    --shadow:3px 3px 0 rgba(0,0,0,.42);
     --ia:#a796f0; --ia-soft:#241f38; --data:#5cc08c; --data-soft:#16291f; --num:#d6a24e; --num-soft:#2c2415;
     --urgent:#e8786b; --soon:#d6a24e;
   }
 }
+html[data-theme="light"]{
+  --bg:#e9eef4; --bg-band:#dfe7f0; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --card:#ffffff; --border:#1b2836; --border-hover:#b23b3b; --title:#1c2a37; --accent:#b23b3b; --accent-soft:#f6dede;
+  --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --ia:#6d5bd0; --ia-soft:#efecfb; --data:#1f8a5b; --data-soft:#e6f4ec; --num:#b9791f; --num-soft:#f6ecdc; --urgent:#c0392b; --soon:#b9791f;
+}
+html[data-theme="dark"]{
+  --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:rgba(221,233,244,.22); --border-hover:#e08c8c; --title:#e7eef5; --accent:#e08c8c; --accent-soft:#2f1a1a;
+  --shadow:3px 3px 0 rgba(0,0,0,.42);
+  --ia:#a796f0; --ia-soft:#241f38; --data:#5cc08c; --data-soft:#16291f; --num:#d6a24e; --num-soft:#2c2415; --urgent:#e8786b; --soon:#d6a24e;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Lora',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);background-image:radial-gradient(rgba(27,40,54,.09) 1.2px,transparent 1.3px);background-size:34px 34px;color:var(--text);font-family:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
 svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
 /* ── Header ── */
@@ -198,7 +213,6 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
 .gate-err{color:#e05252;font-size:13px;font-weight:700;margin-top:10px;min-height:18px;}
 #gate-loading{font-size:13px;color:var(--muted);margin-top:10px;}
 </style>
-<link rel="stylesheet" href="/styles/hub-nav.css">
 </head>
 <body>
 
@@ -215,30 +229,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
   </div>
 </div>
 
-<div class="hub-band">
-  <div class="hub-head">
-    <div class="hub-top">
-      <div class="hub-brand">
-        <div class="hub-logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="34" height="34"></div>
-        <div>
-          <div class="hub-name"><a href="/">Sébastien Rivière</a></div>
-          <div class="hub-sub">Apprendre, comprendre, transmettre</div>
-        </div>
-      </div>
-      <div class="hub-actions">
-        <a class="hub-ic mail" href="mailto:rsebastien@protonmail.com" title="M'écrire" aria-label="M'écrire par email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
-        <a class="hub-ic li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg></a>
-      </div>
-    </div>
-    <nav class="hub-nav" aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
-      <a href="/articles/">Articles &amp; enquêtes</a>
-      <a href="/outils/" class="active">Outils</a>
-      <a href="/a-propos/">À propos</a>
-    </nav>
-  </div>
-</div>
+<div id="sr-header" data-active="outils"></div>
 <div class="header-band">
   <header>
     <div class="titlewrap">
@@ -294,6 +285,8 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
   Fil non exhaustif : seuls les <b>faits publics</b> (objet, acheteur, dates, lien officiel) sont republiés ; les analyses « en clair » sont générées automatiquement à partir de l'avis et ne se substituent pas à sa lecture. Source structurée : <a href="https://www.boamp.fr" target="_blank" rel="noopener">BOAMP</a> via l'open data DILA (Licence Ouverte / Etalab), complétée par des alertes de plateformes. <b>Vérifiez toujours l'avis source avant de candidater.</b>
   <br>© Sébastien Rivière
 </footer>
+
+<div id="sr-footer"></div>
 
 <script>
 // ── Gate pleine page ──
@@ -507,6 +500,7 @@ fetch('./data.json?v='+Date.now()).then(r => r.json()).then(d => {
   if(saved) tryCode(saved);
 }).catch(() => { document.getElementById('stat').textContent = 'Données momentanément indisponibles.'; });
 </script>
+<script src="/assets/site.js" defer></script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
