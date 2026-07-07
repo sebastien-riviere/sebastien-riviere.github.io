@@ -11,121 +11,180 @@
 <meta property="og:description" content="Un espace de veille, d'outils et d'analyse autour de l'IA, de la conformité, de l'automatisation et des usages numériques professionnels.">
 <meta property="og:url" content="https://sebastien-riviere.github.io/a-propos/">
 <meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
-<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#e9eef4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/fonts/fonts.css">
 <style>
+/* ============================================================
+   COMIC-LITE BLEU — Nunito, 6 familles de couleur, clair + sombre
+   ============================================================ */
 :root{
-  --ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --bg:#f5f7fa; --bg-band:#eceff4;
-  --text:#1b2733; --muted:#566778; --faint:#8493a3;
-  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6;
-  --title:#1b2733; --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2;
-  --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
-  --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
-  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
-  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
-  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+  --bg:#e9eef4; --card:#ffffff; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --line:#1b2836; --line-soft:#d5dee8;
+  --accent:#2f6fb0; --accent-soft:#dbe8f6; --accent-ink:#245a91; --mk-fg:#fff;
+  --btn-bg:#28455f; --btn-fg:#fff; --unread:#eef4fb; --pop:#d64550;
+  --sh:3px 3px 0 rgba(20,33,46,.12); --sh-sm:2px 2px 0 rgba(20,33,46,.11);
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-block:#b8570f; --t-block-soft:#fae0cc; --t-labo:#7345a0; --t-labo-soft:#ece2f6;
 }
 @media(prefers-color-scheme:dark){
   :root{
-    --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
-    --card:#16212e; --border:#26333f; --border-soft:#1e2a36; --title:#e7eef5;
-    --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37;
-    --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415; --shadow:0 6px 26px rgba(0,0,0,.42);
-    --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
-    --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
-    --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+    --bg:#0f1722; --card:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+    --line:rgba(221,233,244,.20); --line-soft:rgba(221,233,244,.09);
+    --accent:#5b9bd8; --accent-soft:#1b2b3c; --accent-ink:#9cc6ec; --mk-fg:#0f1722;
+    --btn-bg:#5b9bd8; --btn-fg:#0f1722; --unread:#1a2735; --pop:#e5686f;
+    --sh:3px 3px 0 rgba(0,0,0,.42); --sh-sm:2px 2px 0 rgba(0,0,0,.4);
+    --t-ia:#95abce; --t-ia-soft:#1b2636; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+    --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+    --t-block:#f07838; --t-block-soft:#28180a; --t-labo:#c2a3e3; --t-labo-soft:#251a33;
   }
 }
 html[data-theme="light"]{
-  --bg:#f5f7fa; --bg-band:#eceff4; --text:#1b2733; --muted:#566778; --faint:#8493a3;
-  --card:#ffffff; --border:#e3e8ef; --border-soft:#eef1f6; --title:#1b2733;
-  --accent:#41586b; --accent-ink:#33485a; --accent-soft:#e8ecf2; --pop:#c47d23; --pop-ink:#9a5f15; --pop-soft:#f8ecd6;
-  --shadow:0 1px 2px rgba(20,33,46,.04),0 7px 22px rgba(20,33,46,.08);
-  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
-  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
-  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+  --bg:#e9eef4; --card:#ffffff; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --line:#1b2836; --line-soft:#d5dee8; --accent:#2f6fb0; --accent-soft:#dbe8f6; --accent-ink:#245a91; --mk-fg:#fff;
+  --btn-bg:#28455f; --btn-fg:#fff; --unread:#eef4fb; --pop:#d64550;
+  --sh:3px 3px 0 rgba(20,33,46,.12); --sh-sm:2px 2px 0 rgba(20,33,46,.11);
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-block:#b8570f; --t-block-soft:#fae0cc; --t-labo:#7345a0; --t-labo-soft:#ece2f6;
 }
 html[data-theme="dark"]{
-  --bg:#0f1722; --bg-band:#13202e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
-  --card:#16212e; --border:#26333f; --border-soft:#1e2a36; --title:#e7eef5;
-  --accent:#9fb3c9; --accent-ink:#bccddf; --accent-soft:#1d2a37; --pop:#e0a458; --pop-ink:#f0bd83; --pop-soft:#2c2415;
-  --shadow:0 6px 26px rgba(0,0,0,.42);
-  --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
-  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
-  --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+  --bg:#0f1722; --card:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --line:rgba(221,233,244,.20); --line-soft:rgba(221,233,244,.09);
+  --accent:#5b9bd8; --accent-soft:#1b2b3c; --accent-ink:#9cc6ec; --mk-fg:#0f1722;
+  --btn-bg:#5b9bd8; --btn-fg:#0f1722; --unread:#1a2735; --pop:#e5686f;
+  --sh:3px 3px 0 rgba(0,0,0,.42); --sh-sm:2px 2px 0 rgba(0,0,0,.4);
+  --t-ia:#95abce; --t-ia-soft:#1b2636; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+  --t-block:#f07838; --t-block-soft:#28180a; --t-labo:#c2a3e3; --t-labo-soft:#251a33;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--ui);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;line-height:1.55;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(var(--line-soft) 1.2px,transparent 1.3px);background-size:34px 34px;}
 a{color:inherit;text-decoration:none;}
-.maxw{max-width:1120px;width:100%;margin:0 auto;}
-.readw{max-width:760px;}
-.header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
-header{padding:24px 40px 0;}
-.head-top{display:flex;align-items:center;gap:16px;}
-.brand{display:flex;align-items:center;gap:15px;min-width:0;}
-.logo{flex:none;width:48px;height:48px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(60,45,25,.18);}
-.logo img{width:36px;height:36px;object-fit:contain;display:block;}
-.name{font-weight:800;font-size:25px;color:var(--title);letter-spacing:-0.7px;line-height:1.05;}
-.name a:hover{color:var(--accent-ink);}
-.sub{font-weight:700;font-size:12px;color:var(--faint);letter-spacing:.3px;margin-top:3px;}
-.head-actions{margin-left:auto;display:flex;align-items:center;gap:9px;}
-.theme-btn{width:40px;height:40px;flex:none;border-radius:10px;cursor:pointer;border:0;background:#b8731e;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s,transform .1s;}
-.theme-btn:hover{filter:brightness(1.08);}.theme-btn:active{transform:scale(.96);}.theme-btn svg{width:19px;height:19px;}.theme-btn .ic-dark{display:none;}
+.maxw{max-width:1120px;width:100%;margin:0 auto;padding:0 40px;}
+.readw{max-width:800px;}
+
+/* NAV */
+.navband{background:var(--card);border-bottom:2px solid var(--line);box-shadow:0 3px 0 rgba(20,33,46,.05);position:sticky;top:0;z-index:40;}
+.navtop{display:flex;align-items:center;gap:16px;padding:15px 0 0;}
+.brand{display:flex;align-items:center;gap:12px;min-width:0;}
+.logo{width:46px;height:46px;flex:none;border-radius:13px;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-sm);}
+.logo img{width:32px;height:32px;object-fit:contain;display:block;}
+.brand .nm{font-weight:800;font-size:22px;color:var(--text);line-height:1;letter-spacing:-.4px;}
+.brand .nm a:hover{color:var(--accent-ink);}
+.brand .tg{font-family:'Caveat',cursive;font-size:18px;color:var(--accent-ink);margin-top:3px;}
+.hactions{margin-left:auto;display:flex;gap:9px;align-items:center;}
+.ibtn{width:40px;height:40px;flex:none;border-radius:11px;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-sm);cursor:pointer;background:var(--card);color:var(--text);transition:transform .1s;}
+.ibtn:active{transform:scale(.95);}
+.ibtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.ibtn.ml{background:var(--t-ia);color:#fff;}
+.ibtn.li{background:#0a66c2;color:#fff;}
+html[data-theme="dark"] .ibtn.ml{color:#0f1722;}
+.theme-btn .ic-dark{display:none;}
 @media(prefers-color-scheme:dark){.theme-btn .ic-dark{display:block;}.theme-btn .ic-light{display:none;}}
 html[data-theme="dark"] .theme-btn .ic-dark{display:block;}html[data-theme="dark"] .theme-btn .ic-light{display:none;}
 html[data-theme="light"] .theme-btn .ic-dark{display:none;}html[data-theme="light"] .theme-btn .ic-light{display:block;}
-.icon-btn{width:38px;height:38px;flex:none;border-radius:10px;border:0;color:#fff;display:flex;align-items:center;justify-content:center;transition:filter .15s;}
-.icon-btn:hover{filter:brightness(1.08);}.icon-btn svg{width:18px;height:18px;}.icon-btn.mail{background:#41586b;}.icon-btn.li{background:#0a66c2;}
-.mainnav{display:flex;gap:4px;margin-top:20px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+
+/* CLOCHE + PANNEAU */
+.notif-wrap{position:relative;}
+.bell-btn{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink);}
+.bell-badge{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--pop);
+  color:#fff;font-weight:800;font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;border:2px solid var(--card);}
+.bell-badge[data-count="0"]{display:none;}
+.notif-panel{position:absolute;top:52px;right:0;width:344px;max-width:calc(100vw - 32px);background:var(--card);border:2px solid var(--line);border-radius:16px;
+  box-shadow:0 18px 46px rgba(20,33,46,.26);z-index:60;overflow:hidden;
+  opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .16s,transform .16s,visibility .16s;}
+.notif-panel.open{opacity:1;visibility:visible;transform:translateY(0);}
+.np-head{display:flex;align-items:center;gap:10px;padding:15px 17px 11px;border-bottom:2px solid var(--line-soft);}
+.np-head h3{font-weight:800;font-size:17px;color:var(--text);}
+.np-head .cnt{font-weight:700;font-size:12px;color:#fff;background:var(--accent);border-radius:20px;padding:2px 9px;}
+html[data-theme="dark"] .np-head .cnt{color:#0f1722;}
+.np-head .cnt[data-count="0"]{background:var(--faint);}
+.np-head .markall{margin-left:auto;font-weight:800;font-size:12.5px;color:var(--accent-ink);cursor:pointer;background:none;border:0;}
+.np-head .markall:hover{text-decoration:underline;}
+.np-list{max-height:440px;overflow-y:auto;}
+.notif{display:grid;grid-template-columns:auto 1fr auto;gap:11px;padding:13px 17px;align-items:start;cursor:pointer;transition:background .12s;}
+.notif+.notif{border-top:2px solid var(--line-soft);}
+.notif.unread{background:var(--unread);}
+.notif:hover{background:var(--accent-soft);}
+.notif .dot{width:13px;height:13px;border-radius:50%;background:var(--tint);border:2px solid var(--line);margin-top:4px;box-shadow:var(--sh-sm);}
+.notif .body .lab{font-weight:800;font-size:11.5px;color:var(--tint);margin-bottom:2px;}
+.notif .body .ttl{font-weight:700;font-size:14.5px;line-height:1.25;color:var(--text);}
+.notif .when{font-weight:700;font-size:11.5px;color:var(--faint);white-space:nowrap;padding-top:2px;}
+.notif .new{width:9px;height:9px;border-radius:50%;background:var(--accent);margin:5px 0 0 auto;flex:none;}
+.notif:not(.unread) .new{visibility:hidden;}
+.notif:not(.unread) .ttl{color:var(--muted);font-weight:700;}
+.np-foot{padding:11px 17px;border-top:2px solid var(--line-soft);text-align:center;background:var(--card);}
+.np-foot a{font-weight:800;font-size:13.5px;color:var(--accent-ink);}
+
+.mainnav{display:flex;gap:5px;padding:14px 0 0;overflow-x:auto;scrollbar-width:none;}
 .mainnav::-webkit-scrollbar{display:none;}
-.mainnav a{position:relative;white-space:nowrap;font-weight:700;font-size:14.5px;color:var(--muted);padding:11px 15px;border-radius:9px 9px 0 0;transition:color .15s,background .15s;}
-.mainnav a:hover{color:var(--text);background:color-mix(in srgb,var(--accent) 8%,transparent);}
-.mainnav a.active{color:var(--accent-ink);}
-.mainnav a.active::after{content:"";position:absolute;left:15px;right:15px;bottom:-1px;height:2.5px;border-radius:2px;background:var(--pop);}
-main{flex:1;padding:34px 40px 64px;}
+.mainnav a{white-space:nowrap;font-weight:700;font-size:14.5px;color:var(--muted);padding:11px 14px;border-radius:9px 9px 0 0;position:relative;transition:color .15s,background .15s;}
+.mainnav a:hover{color:var(--text);background:var(--accent-soft);}
+.mainnav a.active{color:var(--text);}
+.mainnav a.active::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:3px;border-radius:2px;background:var(--accent);}
 
-.page-head{margin-bottom:6px;}
-.page-head .kick{font-weight:800;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--pop-ink);}
-.page-head h1{font-weight:800;font-size:clamp(26px,3.6vw,36px);letter-spacing:-.02em;color:var(--title);margin:8px 0 0;}
+main{flex:1;padding:40px 0 24px;}
 
+/* PAGE HEAD */
+.page-head{margin-bottom:10px;}
+.page-head .kick{font-family:'Caveat',cursive;font-size:22px;color:var(--accent-ink);}
+.page-head h1{font-weight:900;font-size:clamp(27px,4vw,38px);line-height:1.09;letter-spacing:-.5px;color:var(--text);margin-top:2px;}
+
+/* BLOCKS */
 .block{margin-top:34px;}
-.block h2{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--title);margin-bottom:12px;}
-.block h2 .n{width:26px;height:26px;flex:none;border-radius:8px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;}
-.block p{font-size:15px;color:var(--muted);line-height:1.68;margin-bottom:12px;}
-.block p b{color:var(--text);}
+.block h2{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px;color:var(--text);margin-bottom:13px;letter-spacing:-.3px;}
+.block h2 .n{width:30px;height:30px;flex:none;border-radius:9px;background:var(--accent-soft);color:var(--accent-ink);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;box-shadow:var(--sh-sm);}
+.block p{font-size:16px;color:var(--muted);font-weight:600;line-height:1.65;margin-bottom:12px;}
+.block p b{color:var(--text);font-weight:800;}
 .block ul{list-style:none;margin:4px 0 8px;}
-.block ul li{position:relative;padding-left:20px;font-size:14.5px;color:var(--muted);line-height:1.6;margin-bottom:7px;}
-.block ul li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:50%;background:var(--pop);}
+.block ul li{position:relative;padding-left:22px;font-size:15.5px;color:var(--muted);font-weight:600;line-height:1.6;margin-bottom:9px;}
+.block ul li b{color:var(--text);font-weight:800;}
+.block ul li::before{content:"";position:absolute;left:2px;top:9px;width:8px;height:8px;border-radius:50%;background:var(--accent);border:1.5px solid var(--line);}
 
-/* Expertises */
-.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;}
-.exp{border:1px solid var(--border);border-top:3px solid var(--c);border-radius:12px;background:var(--card);padding:18px 20px;}
-.exp .ic{width:38px;height:38px;border-radius:10px;background:var(--cs);color:var(--c);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
-.exp .ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.exp h3{font-weight:800;font-size:15.5px;color:var(--title);margin-bottom:6px;}
-.exp p{font-size:13px;color:var(--muted);line-height:1.55;}
-.exp .badge{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--c);background:var(--cs);border-radius:20px;padding:2px 9px;margin-top:10px;}
+/* EXPERTISES */
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px;}
+.exp{border:2px solid var(--line);border-top:5px solid var(--c);border-radius:15px;background:var(--card);padding:20px 22px;box-shadow:var(--sh);}
+.exp .ic{width:44px;height:44px;border-radius:12px;background:var(--cs);color:var(--c);border:2px solid var(--c);display:flex;align-items:center;justify-content:center;margin-bottom:13px;}
+.exp .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.exp h3{font-weight:800;font-size:17px;color:var(--text);margin-bottom:7px;}
+.exp p{font-size:14px;color:var(--muted);font-weight:600;line-height:1.55;}
+.exp .badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:var(--c);border:2px solid var(--line);border-radius:20px;padding:3px 11px;margin-top:12px;box-shadow:var(--sh-sm);}
+html[data-theme="dark"] .exp .badge{color:#0f1722;}
 
-/* Contact */
-.contact{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
-.cbtn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:14px;padding:11px 18px;border-radius:11px;border:1.5px solid var(--border);background:var(--card);color:var(--text);transition:border-color .15s,color .15s;}
-.cbtn:hover{border-color:var(--accent);color:var(--accent-ink);}
-.cbtn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-.linkrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
-.linkchip{font-weight:700;font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:9px;padding:8px 13px;transition:filter .15s;}
-.linkchip:hover{filter:brightness(1.05);color:var(--accent-ink);}
+/* CONTACT */
+.contact{display:flex;flex-wrap:wrap;gap:13px;margin-top:8px;}
+.cbtn{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:14.5px;padding:12px 19px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--text);box-shadow:var(--sh-sm);transition:transform .1s;}
+.cbtn:active{transform:translate(1px,1px);}
+.cbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.linkrow{display:flex;flex-wrap:wrap;gap:11px;margin-top:14px;}
+.linkchip{font-weight:800;font-size:13.5px;color:var(--accent-ink);background:var(--accent-soft);border:2px solid var(--accent);border-radius:10px;padding:8px 14px;box-shadow:var(--sh-sm);transition:transform .1s;}
+.linkchip:active{transform:translate(1px,1px);}
 
-footer{padding:22px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);margin-top:24px;}
-footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
-.foot-links{display:flex;flex-wrap:wrap;gap:14px;}
+/* FOOTER */
+.footband{border-top:2px solid var(--line);margin-top:40px;background:var(--card);}
+footer{padding:26px 0;display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;}
+footer .fn{font-weight:800;font-size:15px;color:var(--text);}
+footer .fl{display:flex;flex-wrap:wrap;gap:16px;}
+footer .fl a{font-weight:700;font-size:14.5px;color:var(--muted);}
+footer .fl a:hover{color:var(--accent-ink);}
+footer .fbadge{margin-left:auto;display:inline-flex;align-items:center;gap:8px;background:var(--card);color:var(--text);
+  border:2px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;font-weight:800;font-size:13.5px;box-shadow:var(--sh-sm);}
+footer .fbadge .d{width:23px;height:23px;border-radius:50%;background:#2f8a63;display:flex;align-items:center;justify-content:center;}
+footer .fbadge .d svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;}
+
+.copy-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(8px);background:var(--accent);color:#fff;font-weight:800;font-size:13px;padding:9px 15px;border-radius:11px;box-shadow:var(--sh);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:80;}
+.copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
 @media(max-width:600px){
-  header{padding:20px 18px 0;}main{padding:26px 18px 44px;}footer{padding:18px;}
-  .name{font-size:22px;}.mainnav{margin-top:16px;}.mainnav a{font-size:14px;padding:10px 12px;}
+  .maxw{padding:0 18px;}
+  .brand .nm{font-size:20px;}
   .exp-grid{grid-template-columns:1fr;}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
@@ -133,42 +192,74 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
 </head>
 <body>
 
-<div class="header-band">
-  <header class="maxw">
-    <div class="head-top">
-      <div class="brand">
-        <div class="logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="36" height="36"></div>
-        <div>
-          <div class="name"><a href="/">Sébastien Rivière</a></div>
-          <div class="sub">Apprendre, comprendre, transmettre</div>
+<!-- NAV -->
+<div class="navband"><div class="maxw">
+  <div class="navtop">
+    <div class="brand">
+      <div class="logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="32" height="32"></div>
+      <div><div class="nm"><a href="/">Sébastien Rivière</a></div><div class="tg">apprendre · comprendre · transmettre</div></div>
+    </div>
+    <div class="hactions">
+      <div class="notif-wrap">
+        <button class="ibtn bell-btn" id="bellBtn" title="Quoi de neuf" aria-label="Quoi de neuf">
+          <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <span class="bell-badge" id="bellBadge" data-count="0">0</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" role="dialog" aria-label="Quoi de neuf">
+          <div class="np-head">
+            <h3>Quoi de neuf</h3>
+            <span class="cnt" id="npCount" data-count="0">0 non lus</span>
+            <button class="markall" id="markAll">Tout marquer comme lu</button>
+          </div>
+          <div class="np-list" id="npList">
+            <a class="notif" data-id="creole-2026-07-04" style="--tint:var(--t-art)" href="/articles/quand-l-ia-chante-en-creole/">
+              <span class="dot"></span>
+              <span class="body"><span class="lab">Article</span><span class="ttl">Quand l'IA chante en créole</span></span>
+              <span class="when">4 juil.</span><span class="new"></span>
+            </a>
+            <a class="notif" data-id="mediatheque-2026-07" style="--tint:var(--t-labo)" href="/outils/mediatheque-ia/">
+              <span class="dot"></span>
+              <span class="body"><span class="lab">Médiathèque</span><span class="ttl">Films &amp; séries sur l'IA ajoutés</span></span>
+              <span class="when">juillet</span><span class="new"></span>
+            </a>
+            <a class="notif" data-id="glossaire-2026-07" style="--tint:var(--t-ia)" href="/outils/glossaire-ia/">
+              <span class="dot"></span>
+              <span class="body"><span class="lab">Glossaire</span><span class="ttl">Nouvelles définitions IA</span></span>
+              <span class="when">cette sem.</span><span class="new"></span>
+            </a>
+            <a class="notif" data-id="optout-2026-07" style="--tint:var(--t-prod)" href="/opt-out-ia/">
+              <span class="dot"></span>
+              <span class="body"><span class="lab">Guide</span><span class="ttl">Refuser l'entraînement des IA (opt-out)</span></span>
+              <span class="when">nouveau</span><span class="new"></span>
+            </a>
+          </div>
+          <div class="np-foot"><a href="/outils/">Tout le hub →</a></div>
         </div>
       </div>
-      <div class="head-actions">
-        <button class="theme-btn" id="themeBtn" aria-label="Basculer le thème clair / sombre" title="Thème clair / sombre">
-          <svg class="ic-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
-          <svg class="ic-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
-        </button>
-        <a class="icon-btn mail" href="mailto:rsebastien@protonmail.com" title="M'écrire" aria-label="M'écrire par email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-        </a>
-        <a class="icon-btn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
-        </a>
-      </div>
+      <button class="ibtn theme-btn" id="themeBtn" title="Thème clair / sombre" aria-label="Basculer le thème clair / sombre">
+        <svg class="ic-light" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+        <svg class="ic-dark" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <a class="ibtn ml" id="mailBtn" href="mailto:rsebastien@protonmail.com" title="M'écrire (clic = copie l'adresse)" aria-label="M'écrire par email">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      </a>
+      <a class="ibtn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+      </a>
     </div>
-    <nav class="mainnav maxw" aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
-      <a href="/articles/">Articles &amp; enquêtes</a>
-      <a href="/outils/">Outils</a>
-      <a href="/a-propos/" class="active">À propos</a>
-    </nav>
-  </header>
-</div>
+  </div>
+  <nav class="mainnav" aria-label="Navigation principale">
+    <a href="/">Accueil</a>
+    <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
+    <a href="/articles/">Articles &amp; enquêtes</a>
+    <a href="/outils/">Outils</a>
+  </nav>
+</div></div>
 
-<main class="maxw readw">
+<div class="maxw">
+<main class="readw">
   <div class="page-head">
-    <div class="kick">À propos</div>
+    <div class="kick">à propos</div>
     <h1>Comprendre l'IA, le numérique et l'action publique — et passer à l'action.</h1>
   </div>
 
@@ -245,29 +336,67 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
     </div>
   </div>
 </main>
+</div>
 
-<footer class="maxw">
-  <span>© Sébastien Rivière · 2026</span>
-  <span class="foot-links">
-    <a href="/">Accueil</a>
+<div class="footband"><div class="maxw"><footer>
+  <span class="fn">© Sébastien Rivière · 2026</span>
+  <span class="fl">
     <a href="/outils/">Outils</a>
     <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
     <a href="/articles/">Articles</a>
+    <a href="/a-propos/">À propos</a>
   </span>
-</footer>
+  <a class="fbadge" href="/opt-out-ia/" title="Ce site refuse l'entraînement des IA — comprendre et faire pareil">
+    <span class="d"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Sans entraînement IA
+  </a>
+</footer></div></div>
+
+<span class="copy-toast" id="copyToast" role="status" aria-live="polite"></span>
 
 <script>
+/* Thème (persistant + respect prefers-color-scheme + sync meta) */
 (function(){
   var root=document.documentElement,saved=null;
   try{saved=localStorage.getItem('theme');}catch(e){}
   if(saved==='light'||saved==='dark')root.setAttribute('data-theme',saved);
-  var btn=document.getElementById('themeBtn');
   function current(){var a=root.getAttribute('data-theme');if(a)return a;return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
-  function syncMeta(){var m=document.querySelectorAll('meta[name=theme-color]');if(root.getAttribute('data-theme')){m.forEach(function(x){x.remove();});var meta=document.createElement('meta');meta.name='theme-color';meta.content=current()==='dark'?'#0f1722':'#f5f7fa';document.head.appendChild(meta);}}
-  btn.addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next);}catch(e){}syncMeta();});
+  function syncMeta(){if(root.getAttribute('data-theme')){document.querySelectorAll('meta[name=theme-color]').forEach(function(x){x.remove();});var m=document.createElement('meta');m.name='theme-color';m.content=current()==='dark'?'#0f1722':'#e9eef4';document.head.appendChild(m);}}
+  document.getElementById('themeBtn').addEventListener('click',function(){var next=current()==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next);}catch(e){}syncMeta();});
+})();
+/* Bouton mail : copie l'adresse (secours webmail) */
+(function(){
+  var mail=document.getElementById('mailBtn');if(!mail)return;var toast=document.getElementById('copyToast');
+  var addr=(mail.getAttribute('href')||'').replace('mailto:','');
+  mail.addEventListener('click',function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(addr).then(function(){
+      if(!toast)return;toast.textContent='Adresse copiée : '+addr;toast.classList.add('show');
+      clearTimeout(toast._t);toast._t=setTimeout(function(){toast.classList.remove('show');},2600);
+    }).catch(function(){});}
+  });
+})();
+/* Cloche « Quoi de neuf » — état lu persistant (localStorage) */
+(function(){
+  var bell=document.getElementById('bellBtn'),panel=document.getElementById('notifPanel'),
+      badge=document.getElementById('bellBadge'),count=document.getElementById('npCount'),
+      items=[].slice.call(document.querySelectorAll('#npList .notif'));
+  var KEY='sr_notifs_read';
+  function readSet(){try{return JSON.parse(localStorage.getItem(KEY)||'[]');}catch(e){return [];}}
+  function saveRead(arr){try{localStorage.setItem(KEY,JSON.stringify(arr));}catch(e){}}
+  function markUI(it,isRead){it.classList.toggle('unread',!isRead);}
+  function refresh(){var n=items.filter(function(it){return it.classList.contains('unread');}).length;
+    badge.textContent=n;badge.setAttribute('data-count',n);
+    count.textContent=n+' non lus';count.setAttribute('data-count',n);}
+  var read=readSet();
+  items.forEach(function(it){markUI(it,read.indexOf(it.getAttribute('data-id'))>-1);});
+  refresh();
+  function setRead(id){var r=readSet();if(r.indexOf(id)<0){r.push(id);saveRead(r);}}
+  bell.addEventListener('click',function(e){e.stopPropagation();panel.classList.toggle('open');});
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&!bell.contains(e.target))panel.classList.remove('open');});
+  items.forEach(function(it){it.addEventListener('click',function(){var id=it.getAttribute('data-id');setRead(id);markUI(it,true);refresh();});});
+  document.getElementById('markAll').addEventListener('click',function(e){e.stopPropagation();
+    items.forEach(function(it){setRead(it.getAttribute('data-id'));markUI(it,true);});refresh();});
 })();
 </script>
-<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
