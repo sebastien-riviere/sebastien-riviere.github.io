@@ -11,7 +11,8 @@
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <link rel="stylesheet" href="../../fonts/fonts.css">
 <link rel="stylesheet" href="../../styles/ia-kit.css">
-<link rel="stylesheet" href="/styles/hub-nav.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 /* --- spécifique annuaire-ia (le reste vient de ia-kit.css) --- */
 
@@ -142,40 +143,10 @@ details.section .grid{margin-top:16px;}
 </head>
 <body>
 
-<div class="hub-band">
-  <div class="hub-head">
-    <div class="hub-top">
-      <div class="hub-brand">
-        <div class="hub-logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="34" height="34"></div>
-        <div>
-          <div class="hub-name"><a href="/">Sébastien Rivière</a></div>
-          <div class="hub-sub">Apprendre, comprendre, transmettre</div>
-        </div>
-      </div>
-      <div class="hub-actions">
-        <a class="hub-ic mail" href="mailto:rsebastien@protonmail.com" title="M'écrire" aria-label="M'écrire par email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
-        <a class="hub-ic li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg></a>
-      </div>
-    </div>
-    <nav class="hub-nav" aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
-      <a href="/articles/">Articles &amp; enquêtes</a>
-      <a href="/outils/" class="active">Outils</a>
-      <a href="/a-propos/">À propos</a>
-    </nav>
-  </div>
-</div>
+<div id="sr-header" data-active="outils"></div>
 
 <div class="ia-band">
   <header class="ia-head">
-    <div class="ia-brand">
-      <div class="ia-logo"><img src="../../logo.png" alt="Logo Sébastien Rivière" width="40" height="40"></div>
-      <div>
-        <div class="name"><a href="/">Sébastien Rivière</a></div>
-        <div class="sub">Apprendre, comprendre, transmettre</div>
-      </div>
-    </div>
     <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> Annuaire · Outils IA</div>
     <h1 class="ia-title">Annuaire des outils IA</h1>
     <p class="ia-lead">Sélection d'outils d'IA <strong>classés par usage</strong>, décrits en une phrase. Pour chacun : modèle tarifaire, origine et <strong>repères chiffrés sourcés</strong> quand ils existent. Liste indicative, non exhaustive, mise à jour régulièrement.</p>
@@ -215,16 +186,7 @@ details.section .grid{margin-top:16px;}
   </div>
 </main>
 
-<footer class="ia-footer">
-  <span>© Sébastien Rivière · 2026</span>
-  <a href="/">Accueil</a>
-  <span class="ia-foot-contact">
-    <a class="ia-contact-btn" href="mailto:rsebastien@protonmail.com" title="Me contacter" aria-label="Me contacter">
-      <svg class="ic" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-    </a>
-    <span>Me contacter</span>
-  </span>
-</footer>
+<div id="sr-footer"></div>
 
 <script>
 const STAR = '<svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 16.5 14 18.5 21 12 17 5.5 21 7.5 14 2 9.3 9 9"/></svg>';
@@ -424,6 +386,7 @@ function filter(){
   head.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();set(head.classList.contains('closed'));}});
 })();
 </script>
+<script src="/assets/site.js" defer></script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
