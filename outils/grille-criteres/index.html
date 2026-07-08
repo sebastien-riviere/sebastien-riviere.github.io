@@ -10,21 +10,36 @@
 <meta name="theme-color" content="#fbf4f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
+/* Comic-lite bleu, accent famille = ROUGE commande publique */
 :root{
-  --bg:#fbf4f4; --bg-band:#eaf2f9; --text:#1a2a35; --muted:#5a7a92; --faint:#5f7e94;
-  --card:#ffffff; --border:#dde9f2; --border-hover:#b8d0e4; --title:#1e3a52;
-  --accent:#b23b3b; --accent-soft:#f6dede; --shadow:0 4px 22px rgba(30,58,82,0.10);
-  --ok:#1f8a5b; --ok-soft:#e6f4ec; --warn:#b9791f; --warn-soft:#f6ecdc; --bad:#c0392b; --bad-soft:#fbeae8; --gold:#caa53d;
+  --bg:#e9eef4; --bg-band:#dfe7f0; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --card:#ffffff; --border:#1b2836; --border-hover:#b23b3b; --title:#1c2a37;
+  --accent:#b23b3b; --accent-soft:#f6dede; --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --ok:#3f7a4e; --ok-soft:#e3efe1; --warn:#b8570f; --warn-soft:#fae0cc; --bad:#c0392b; --bad-soft:#f6dede; --gold:#caa53d;
 }
 @media(prefers-color-scheme:dark){:root{
-  --bg:#0f1722; --bg-band:#15212f; --text:#e7eef5; --muted:#9fb6c8; --faint:#8ba3b8;
-  --card:#16212e; --border:#24333f; --border-hover:#b23b3b; --title:#eaf2f9;
-  --accent:#e08c8c; --accent-soft:#2f1a1a; --shadow:0 6px 26px rgba(0,0,0,0.45);
-  --ok:#5cc08c; --ok-soft:#16291f; --warn:#d6a24e; --warn-soft:#2c2415; --bad:#e8786b; --bad-soft:#2c1a18; --gold:#d8b85a;
+  --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:rgba(221,233,244,.22); --border-hover:#e08c8c; --title:#e7eef5;
+  --accent:#e08c8c; --accent-soft:#2f1a1a; --shadow:3px 3px 0 rgba(0,0,0,.42);
+  --ok:#8fc09a; --ok-soft:#1a2a20; --warn:#f07838; --warn-soft:#28180a; --bad:#e8786b; --bad-soft:#2c1a18; --gold:#d8b85a;
 }}
+html[data-theme="light"]{
+  --bg:#e9eef4; --bg-band:#dfe7f0; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --card:#ffffff; --border:#1b2836; --border-hover:#b23b3b; --title:#1c2a37;
+  --accent:#b23b3b; --accent-soft:#f6dede; --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --ok:#3f7a4e; --ok-soft:#e3efe1; --warn:#b8570f; --warn-soft:#fae0cc; --bad:#c0392b; --bad-soft:#f6dede; --gold:#caa53d;
+}
+html[data-theme="dark"]{
+  --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:rgba(221,233,244,.22); --border-hover:#e08c8c; --title:#e7eef5;
+  --accent:#e08c8c; --accent-soft:#2f1a1a; --shadow:3px 3px 0 rgba(0,0,0,.42);
+  --ok:#8fc09a; --ok-soft:#1a2a20; --warn:#f07838; --warn-soft:#28180a; --bad:#e8786b; --bad-soft:#2c1a18; --gold:#d8b85a;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Lora',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);background-image:radial-gradient(rgba(27,40,54,.09) 1.2px,transparent 1.3px);background-size:34px 34px;color:var(--text);font-family:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
 svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
 .header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
@@ -35,7 +50,7 @@ header{padding:46px 40px 28px;max-width:1040px;width:100%;margin:0 auto;}
 .titleicon{flex:none;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;}
 .titleicon svg{width:24px;height:24px;}
 h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:28px;color:var(--title);letter-spacing:-0.5px;line-height:1.1;}
-.tagline{font-family:'Lora',serif;font-size:16px;line-height:1.6;color:var(--muted);max-width:720px;margin-top:13px;}
+.tagline{font-family:'Nunito',sans-serif;font-size:16px;line-height:1.6;color:var(--muted);max-width:720px;margin-top:13px;}
 .pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;}
 .pill{display:inline-flex;align-items:center;gap:7px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:var(--title);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 12px;}
 .pill svg{width:14px;height:14px;stroke:var(--accent);}
@@ -62,7 +77,7 @@ select:focus,input:focus{outline:none;border-color:var(--accent);}
 .envtag{font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;color:var(--ok);background:var(--ok-soft);border-radius:5px;padding:2px 7px;}
 .del{cursor:pointer;color:var(--faint);background:none;border:none;display:inline-flex;padding:5px;border-radius:6px;}
 .del:hover{color:var(--bad);background:var(--bad-soft);} .del svg{width:15px;height:15px;}
-.conseil{font-family:'Lora',serif;font-style:italic;font-size:12px;color:var(--faint);margin:6px 0 0 2px;}
+.conseil{font-family:'Nunito',sans-serif;font-style:italic;font-size:12px;color:var(--faint);margin:6px 0 0 2px;}
 .formbox{font-family:'Nunito',sans-serif;font-size:12px;margin-top:10px;background:var(--accent-soft);border-radius:8px;padding:9px 11px;color:var(--muted);}
 .formbox b{color:var(--title);} .formbox .pi{color:var(--warn);font-weight:700;}
 .formbox select{width:auto;display:inline-block;margin-bottom:6px;font-size:12.5px;padding:5px 8px;}
@@ -95,38 +110,14 @@ table{width:100%;border-collapse:collapse;font-family:'Nunito',sans-serif;font-s
 
 .legal{font-family:'Nunito',sans-serif;font-size:13px;line-height:1.7;color:var(--muted);}
 .legal b{color:var(--title);} .legal a{color:var(--accent);} .legal ul{margin:8px 0 0 18px;}
-.disclaimer{font-family:'Lora',serif;font-style:italic;font-size:12.5px;color:var(--faint);margin-top:14px;border-left:2px solid var(--border);padding-left:11px;}
+.disclaimer{font-family:'Nunito',sans-serif;font-style:italic;font-size:12.5px;color:var(--faint);margin-top:14px;border-left:2px solid var(--border);padding-left:11px;}
 footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--faint);border-top:1px solid var(--border);}
 @media print{.no-print{display:none!important;} .sec{box-shadow:none;break-inside:avoid;}}
 @media(max-width:600px){header,main,footer{padding-left:16px;padding-right:16px;} h1{font-size:22px;}}
 </style>
-<link rel="stylesheet" href="/styles/hub-nav.css">
 </head>
 <body>
-<div class="hub-band">
-  <div class="hub-head">
-    <div class="hub-top">
-      <div class="hub-brand">
-        <div class="hub-logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="34" height="34"></div>
-        <div>
-          <div class="hub-name"><a href="/">Sébastien Rivière</a></div>
-          <div class="hub-sub">Apprendre, comprendre, transmettre</div>
-        </div>
-      </div>
-      <div class="hub-actions">
-        <a class="hub-ic mail" href="mailto:rsebastien@protonmail.com" title="M'écrire" aria-label="M'écrire par email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>
-        <a class="hub-ic li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg></a>
-      </div>
-    </div>
-    <nav class="hub-nav" aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
-      <a href="/articles/">Articles &amp; enquêtes</a>
-      <a href="/outils/" class="active">Outils</a>
-      <a href="/a-propos/">À propos</a>
-    </nav>
-  </div>
-</div>
+<div id="sr-header" data-active="outils"></div>
 
 <div class="header-band">
   <header>
@@ -192,7 +183,7 @@ footer{width:100%;max-width:1040px;margin:0 auto;padding:22px 40px;font-family:'
   </div>
 </main>
 
-<footer>© Sébastien Rivière · Outil en local, aucune donnée n'est envoyée.</footer>
+<div id="sr-footer"></div>
 
 <script>
 const ICO_DEL='<svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>';
@@ -394,6 +385,7 @@ fetch('./criteres-referentiel.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   renderScore();
 }).catch(()=>{ document.getElementById('critList').innerHTML='<div style="color:var(--bad)">Référentiel indisponible.</div>'; });
 </script>
+<script src="/assets/site.js" defer></script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
