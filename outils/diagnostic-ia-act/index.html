@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Êtes-vous aux commandes de vos IA ? — Diagnostic EU AI Act — Sébastien Rivière</title>
+<meta name="description" content="Diagnostic gratuit EU AI Act : croise votre exposition réglementaire et votre maîtrise réelle (supervision humaine, transparence, données, sécurité). Matrice, radar, export. 100 % dans votre navigateur, aucune donnée envoyée.">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../styles/ia-kit.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+:root{
+    --ground:var(--bg); --ink-soft:var(--muted); --line:var(--border);
+    --accent:var(--ia); --accent-ink:var(--ia-ink);
+    --crit:var(--bad); --vig:var(--warn); --ctrl:var(--ok); --ser:var(--ia);
+    --crit-bg:var(--bad-soft); --vig-bg:var(--warn-soft); --ctrl-bg:var(--ok-soft); --ser-bg:var(--ia-soft);
+    --r:var(--radius); --maxw:var(--wrap-read);
+    --font:var(--ui); --display:var(--ui); --hand:'Caveat','Segoe UI',cursive;
+  }
+  /* --ink, --card, --mono, --shadow, --radius hérités de ia-kit.css (thème géré par le kit) */
+  main{flex:1;padding:8px 20px 72px;max-width:var(--maxw);width:100%;margin:0 auto;}
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  .wrap{}
+  .inner{max-width:var(--maxw);margin:0 auto;}
+  .eyebrow{font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink);display:flex;align-items:center;gap:9px;}
+  .eyebrow .rule{width:26px;height:2px;background:var(--accent);border-radius:2px;}
+  h1{font-size:clamp(30px,6vw,46px);margin:.3em 0 .1em;letter-spacing:-.028em;font-weight:800;text-wrap:balance;}
+  h1 .amp{color:var(--accent);}
+  .lede{color:var(--ink-soft);font-size:17px;max-width:62ch;}
+  .lede strong{color:var(--ink);}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+  .chip{font-size:12.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);padding:6px 12px;border-radius:999px;font-weight:600;}
+  .chip.free{background:var(--accent);color:#fff;border-color:transparent;}
+  section.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:26px;margin-top:22px;}
+  .axis-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;}
+  .axis-n{font-family:var(--mono);font-size:13px;font-weight:700;color:#fff;background:var(--accent);width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none;}
+  .axis-t{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);}
+  .axis-sub{color:var(--ink-soft);font-size:14px;margin:2px 0 4px;}
+  .q{padding:20px 0;border-top:1px solid var(--line);}
+  .q:first-of-type{border-top:none;padding-top:8px;}
+  .q-title{font-size:17.5px;font-weight:700;margin:0 0 3px;letter-spacing:-.01em;}
+  .q-hint{color:var(--ink-soft);font-size:13.5px;margin-bottom:13px;}
+  .art{font-size:11px;font-family:var(--mono);font-weight:700;color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 13%,transparent);padding:2px 7px;border-radius:6px;margin-left:4px;white-space:nowrap;}
+  .cond{font-size:11.5px;font-weight:700;color:var(--vig);background:var(--vig-bg);padding:2px 8px;border-radius:6px;margin-left:4px;}
+  .opts{display:flex;flex-wrap:wrap;gap:8px;}
+  .opt{flex:1 1 auto;min-width:110px;cursor:pointer;border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:11px 13px;border-radius:11px;font-size:14px;font-weight:600;font-family:var(--font);text-align:center;transition:transform .07s,border-color .12s,background .12s;}
+  .opt:hover{border-color:var(--accent);}
+  .opt:active{transform:translateY(1px);}
+  .opt.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent-ink);}
+  .checks{display:grid;gap:8px;}
+  .check{display:flex;gap:11px;align-items:flex-start;cursor:pointer;border:1.5px solid var(--line);border-radius:11px;padding:11px 13px;font-size:14px;font-weight:550;transition:border-color .12s,background .12s;}
+  .check:hover{border-color:var(--accent);}
+  .check.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 11%,transparent);}
+  .check.danger.sel{border-color:var(--crit);background:var(--crit-bg);}
+  .check .box{width:19px;height:19px;border-radius:6px;border:2px solid var(--line);flex:none;margin-top:1px;display:grid;place-items:center;font-size:12px;color:#fff;font-weight:900;}
+  .check.sel .box{background:var(--accent);border-color:var(--accent);}
+  .check.danger.sel .box{background:var(--crit);border-color:var(--crit);}
+  .btn{display:block;width:100%;cursor:pointer;border:none;background:var(--accent);color:#fff;font-family:var(--font);font-size:16.5px;font-weight:750;padding:16px;border-radius:13px;box-shadow:0 2px 0 var(--accent-ink);transition:transform .07s,filter .12s;}
+  .btn:hover{filter:brightness(1.05);}
+  .btn:active{transform:translateY(2px);box-shadow:0 0 0;}
+  .btn.ghost{background:transparent;color:var(--accent-ink);box-shadow:none;border:1.5px solid var(--line);font-size:14px;padding:12px;}
+  .btn.small{font-size:13.5px;padding:11px 14px;width:auto;box-shadow:0 2px 0 var(--accent-ink);}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .progress{position:sticky;bottom:14px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:22px 0 12px;box-shadow:0 2px 8px -3px rgba(0,0,0,.25);}
+  .progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 60%,var(--ctrl)));width:0;transition:width .3s;}
+  #result{display:none;}
+  #result.show{display:block;animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  .verdict-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .vtag{font-size:12.5px;font-weight:800;padding:6px 13px;border-radius:999px;letter-spacing:.03em;color:#fff;}
+  .vtitle{font-size:24px;font-weight:800;letter-spacing:-.015em;margin:15px 0 5px;text-wrap:balance;}
+  .vtext{color:var(--ink-soft);font-size:15px;margin:0;}
+  .scores{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0 4px;}
+  .score-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .score-box .lbl{font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);}
+  .score-box .val{font-size:21px;font-weight:800;margin-top:3px;letter-spacing:-.01em;}
+  .viz{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0 6px;align-items:center;}
+  @media(max-width:560px){.viz{grid-template-columns:1fr;}.scores{grid-template-columns:1fr;}}
+  .viz figure{margin:0;}
+  .viz figcaption{text-align:center;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px;}
+  .subhead{font-size:12.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin:26px 0 12px;display:flex;align-items:center;gap:10px;}
+  .subhead::after{content:"";flex:1;height:1px;background:var(--line);}
+  .obl{display:grid;gap:9px;padding:0;margin:0;}
+  .obl li{list-style:none;display:flex;gap:11px;align-items:flex-start;font-size:14.5px;}
+  .obl li .mk{flex:none;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-weight:900;font-size:11px;margin-top:1px;font-family:var(--mono);}
+  .mk.duty{background:color-mix(in srgb,var(--accent) 17%,transparent);color:var(--accent-ink);}
+  .mk.oblig{background:var(--crit-bg);color:var(--crit);}
+  .mk.reco{background:var(--vig-bg);color:var(--vig);}
+  .mk.ok{background:var(--ctrl-bg);color:var(--ctrl);}
+  .obl li .tail{margin-left:auto;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+  .tail.oblig{color:var(--crit);} .tail.reco{color:var(--vig);}
+  .note{font-size:13.5px;color:var(--ink-soft);border-left:3px solid var(--accent);padding:4px 0 4px 13px;margin:14px 0;}
+  .timeline{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .tl{font-size:12px;font-family:var(--mono);background:color-mix(in srgb,var(--accent) 9%,transparent);border:1px solid var(--line);padding:5px 10px;border-radius:8px;color:var(--ink);}
+  .tl b{color:var(--accent-ink);}
+  .disclaim{font-size:12.5px;color:var(--ink-soft);margin-top:24px;padding:14px 16px;border:1px dashed var(--line);border-radius:12px;}
+  .disclaim strong{color:var(--ink);}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--ground);padding:11px 18px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;transition:.3s;pointer-events:none;z-index:50;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .foot{text-align:center;color:var(--ink-soft);font-size:12.5px;margin-top:32px;line-height:1.7;}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  @media print{
+    .wrap{background:#fff;padding:0;} #quiz,.no-print,.progress{display:none!important;}
+    #result{display:block!important;} section.card{box-shadow:none;border-color:#ccc;break-inside:avoid;}
+  }
+
+  /* ===== Habillage comic-lite (Fredoka + Caveat · bleu famille IA · ombres douces) ===== */
+  h1,.axis-t,.vtitle,.subhead,.q-title,.score-box .val,.vtag,.btn,.chip,.eyebrow,.axis-n,.free-hand,figcaption{ font-family:var(--display); }
+  h1{ font-weight:700; letter-spacing:-.015em; }
+  .q-title{ font-weight:600; }
+  .btn{ font-weight:600; border-radius:15px; }
+  .btn.small{ border-radius:12px; }
+  .chip{ font-weight:500; border-radius:999px; }
+  section.card{ border-radius:24px; border-width:1.5px;
+    box-shadow:var(--shadow); }
+  .opt,.check{ border-radius:14px; }
+  .score-box{ border-radius:16px; border-width:1.5px; }
+  .axis-n{ border-radius:10px; box-shadow:0 3px 0 var(--accent-ink); }
+  .free-hand{ font-family:var(--hand); font-weight:700; font-size:22px; color:var(--accent); display:inline-block; transform:rotate(-4deg); margin-left:4px; }
+  .vtag{ box-shadow:0 3px 0 rgba(0,0,0,.12); }
+  .progress{ border:1.5px solid var(--line); }
+</style>
+</head>
+<body>
+
+<div id="sr-header" data-active="outils"></div>
+
+<div class="ia-band">
+  <header class="ia-head read">
+    <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-3px"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg> Outil · Conformité IA Act</div>
+    <h1 class="ia-title">Êtes-vous aux commandes de vos IA&nbsp;?</h1>
+    <div class="ia-meta"><span>Fondé sur l'EU AI Act (2024/1689)</span><span>~7 min · 15 questions</span><span>Aucune donnée envoyée</span></div>
+    <p class="ia-lead">La plupart des diagnostics IA Act donnent une étiquette de risque, puis s'arrêtent. Celui-ci mesure aussi <strong>ce que vous maîtrisez vraiment</strong> — supervision humaine, transparence, données, sécurité. Parce qu'un système exposé mais tenu n'est pas un danger&nbsp;: un système exposé et livré à lui-même, si.</p>
+    <p class="disclaimer-lead">Outil en <strong>version de test</strong> — il ne s'agit pas d'un conseil juridique. Pour contrôler votre conformité, rapprochez-vous d'un conseil juridique.</p>
+  </header>
+</div>
+
+<main>
+<div id="quiz">
+      <section class="card">
+        <div class="axis-head"><span class="axis-n">A</span><span class="axis-t">Votre exposition — ce que la loi impose</span></div>
+        <p class="axis-sub">Répondez d'après ce que fait vraiment votre outil, avec vos mots. Aucune connaissance juridique requise — en cas de doute, choisissez l'option la plus prudente.</p>
+
+        <div class="q" data-type="check" data-key="interdit" data-danger="1">
+          <div class="q-title">Est-ce que votre outil fait l'une de ces choses&nbsp;?</div>
+          <div class="q-hint">Si aucune ne correspond, cochez la dernière case — c'est le cas le plus fréquent.</div>
+          <div class="checks">
+            <label class="check danger" data-v="1"><span class="box">✓</span> Il influence les gens à leur insu pour les pousser à agir contre leur intérêt</label>
+            <label class="check danger" data-v="1"><span class="box">✓</span> Il cible des personnes fragiles (enfants, personnes âgées, en situation de handicap ou de précarité) pour les influencer</label>
+            <label class="check danger" data-v="1"><span class="box">✓</span> Il attribue aux gens une «&nbsp;note de confiance&nbsp;» générale qui peut les pénaliser dans d'autres situations</label>
+            <label class="check danger" data-v="1"><span class="box">✓</span> Il essaie de prédire si une personne va commettre un délit, d'après son profil</label>
+            <label class="check danger" data-v="1"><span class="box">✓</span> Il constitue une base de visages en récupérant en masse des photos sur internet ou la vidéosurveillance</label>
+            <label class="check danger" data-v="1"><span class="box">✓</span> Il devine l'humeur ou les émotions des gens (visage, voix) au travail ou à l'école</label>
+            <label class="check danger" data-v="1"><span class="box">✓</span> Il déduit des informations intimes à partir du visage ou du corps (origine, religion, opinions, orientation)</label>
+            <label class="check danger" data-v="1"><span class="box">✓</span> Il reconnaît des personnes par leur visage, en direct, via des caméras dans des lieux publics</label>
+            <label class="check none" data-v="0"><span class="box">✓</span> Aucune de ces situations</label>
+          </div>
+        </div>
+
+        <div class="q" data-type="check" data-key="domaine">
+          <div class="q-title">À quoi sert votre outil, concrètement&nbsp;?</div>
+          <div class="q-hint">Cochez le ou les usages les plus proches de la réalité.</div>
+          <div class="checks">
+            <label class="check" data-v="1"><span class="box">✓</span> Choisir ou évaluer des personnes au travail&nbsp;: recrutement, tri de CV, évaluation, promotion, licenciement</label>
+            <label class="check" data-v="1"><span class="box">✓</span> Décider d'un crédit, d'un prêt, d'une assurance, ou calculer un score financier</label>
+            <label class="check" data-v="1"><span class="box">✓</span> Noter des élèves ou étudiants, gérer des admissions, surveiller des examens</label>
+            <label class="check" data-v="1"><span class="box">✓</span> Attribuer des aides sociales ou des logements, ou trier des appels d'urgence</label>
+            <label class="check" data-v="1"><span class="box">✓</span> Aider la police, la justice, le contrôle aux frontières, influencer un vote ou une élection, ou identifier des gens par biométrie</label>
+            <label class="check" data-v="2"><span class="box">✓</span> Faire fonctionner un produit qui doit être certifié pour la sécurité (machine, dispositif médical, jouet, véhicule…)</label>
+            <label class="check none" data-v="0"><span class="box">✓</span> Rien de tout ça — usage interne, marketing, productivité, contenu, support client…</label>
+          </div>
+        </div>
+
+        <div class="q" data-type="opt" data-key="annexICert">
+          <div class="q-title">Si c'est un produit certifié pour la sécurité&nbsp;: doit-il déjà être contrôlé par un organisme indépendant avant d'être vendu&nbsp;?</div>
+          <div class="q-hint">À remplir seulement si vous avez coché « produit certifié » au-dessus. Exemple&nbsp;: un dispositif médical ou une machine dont la sécurité est validée par un tiers.</div>
+          <div class="opts">
+            <button class="opt" data-v="1">Oui</button>
+            <button class="opt" data-v="0">Non</button>
+            <button class="opt" data-v="2">Je ne sais pas</button>
+          </div>
+        </div>
+
+        <div class="q" data-type="opt" data-key="exception">
+          <div class="q-title">Quand votre outil donne un résultat, que se passe-t-il ensuite&nbsp;?</div>
+          <div class="q-hint">À remplir seulement si vous avez coché un usage juste au-dessus. Sinon, passez à la question suivante.</div>
+          <div class="opts">
+            <button class="opt" data-v="task">Il fait une petite tâche de préparation (mise en forme, classement, résumé) — l'humain fait le vrai travail</button>
+            <button class="opt" data-v="improve">Il propose, mais une personne examine et prend vraiment la décision finale</button>
+            <button class="opt" data-v="deviation">Il signale des anomalies ou des écarts, sans remplacer le jugement humain</button>
+            <button class="opt" data-v="influence">Son résultat est suivi presque tel quel, ou il décide tout seul</button>
+            <button class="opt" data-v="profiling">Il analyse le comportement ou le profil des personnes pour prédire quelque chose</button>
+          </div>
+        </div>
+
+        <div class="q" data-type="opt" data-key="interaction">
+          <div class="q-title">Des personnes échangent-elles directement avec votre outil&nbsp;?</div>
+          <div class="q-hint">Par exemple un chatbot, un assistant, une messagerie automatique ou une voix.</div>
+          <div class="opts"><button class="opt" data-v="1">Oui</button><button class="opt" data-v="0">Non</button></div>
+        </div>
+
+        <div class="q" data-type="opt" data-key="contenu">
+          <div class="q-title">Votre outil fabrique-t-il des textes, images, voix ou vidéos&nbsp;?</div>
+          <div class="q-hint">Du contenu produit ou retouché par l'IA, qui pourrait passer pour réel ou humain.</div>
+          <div class="opts"><button class="opt" data-v="1">Oui</button><button class="opt" data-v="0">Non</button></div>
+        </div>
+
+        <div class="q" data-type="opt" data-key="gpai">
+          <div class="q-title">Fabriquez-vous vous-même le «&nbsp;moteur&nbsp;» d'IA&nbsp;?</div>
+          <div class="q-hint">C'est-à-dire entraîner votre propre modèle (un «&nbsp;ChatGPT maison&nbsp;») que d'autres utiliseront. La plupart des entreprises utilisent des outils existants → répondez Non.</div>
+          <div class="opts"><button class="opt" data-v="1">Oui</button><button class="opt" data-v="0">Non</button></div>
+        </div>
+
+        <div class="q" data-type="opt" data-key="perso">
+          <div class="q-title">Votre outil utilise-t-il des données personnelles&nbsp;?</div>
+          <div class="q-hint">Noms, e-mails, photos, historiques d'achat, données de clients ou de salariés…</div>
+          <div class="opts"><button class="opt" data-v="1">Oui</button><button class="opt" data-v="0">Non</button></div>
+        </div>
+
+        <div class="q" data-type="opt" data-key="role">
+          <div class="q-title">Vous, par rapport à cet outil, vous êtes plutôt…</div>
+          <div class="q-hint">Pour savoir quelles responsabilités vous concernent.</div>
+          <div class="opts">
+            <button class="opt" data-v="fournisseur">Je l'ai conçu, ou je le vends</button>
+            <button class="opt" data-v="deployeur">Je l'utilise dans mon activité</button>
+            <button class="opt" data-v="both">Les deux</button>
+            <button class="opt" data-v="autre">Un autre rôle (je revends, j'importe, je représente…)</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="axis-head"><span class="axis-n">B</span><span class="axis-t">Votre maîtrise — ce que vous tenez déjà</span></div>
+        <p class="axis-sub">Ces questions portent sur vos habitudes actuelles, en langage courant. Répondez honnêtement&nbsp;: c'est le meilleur moyen de voir où renforcer. C'est ici que se joue «&nbsp;garder les commandes&nbsp;».</p>
+        <div id="maitrise"></div>
+      </section>
+
+      <div class="progress no-print"><i id="bar"></i></div>
+      <button class="btn" id="go">Établir mon diagnostic →</button>
+      <button class="btn ghost" id="reset" style="margin-top:12px;">Tout effacer</button>
+    </div>
+
+    <div id="result"></div>
+</main>
+
+<div id="sr-footer"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  const MAITRISE=[
+    {k:'m1',art:'Art. 14',t:"Une personne peut-elle vérifier, corriger ou annuler ce que l'outil décide, avant que ça produise un effet ?",g:"Supervision humaine effective",short:"Supervision"},
+    {k:'m2',art:'Art. 50/13',t:"Les personnes concernées savent-elles clairement qu'une IA est utilisée (et quand un contenu est généré par IA) ?",g:"Transparence envers les personnes",short:"Transparence"},
+    {k:'m3',art:'Art. 11',t:"Avez-vous écrit noir sur blanc comment l'outil fonctionne, à quoi il sert et quelles sont ses limites ?",g:"Documentation technique",short:"Documentation"},
+    {k:'m4',art:'Art. 10',t:"Savez-vous d'où viennent les données de l'outil, et si elles pourraient favoriser ou défavoriser certains groupes ?",g:"Gouvernance des données & biais",short:"Données"},
+    {k:'m5',art:'Art. 12',t:"L'outil garde-t-il une trace (un historique) de ce qu'il fait, que vous pourriez consulter en cas de problème ?",g:"Journalisation des événements",short:"Journalisation"},
+    {k:'m6',art:'Art. 9',t:"Avez-vous listé ce qui pourrait mal tourner (erreurs, discriminations, fuites de données) et prévu comment réagir ?",g:"Gestion des risques",short:"Risques"},
+    {k:'m7',art:'Art. 15',t:"L'outil a-t-il été testé pour être fiable, éviter les erreurs et résister aux attaques informatiques ?",g:"Exactitude, robustesse & cybersécurité",short:"Robustesse"},
+    {k:'m8',art:'Art. 4',t:"Les personnes qui utilisent l'outil ont-elles été sensibilisées à ses risques et à ses limites ?",g:"Littératie & formation des équipes",short:"Littératie"},
+  ];
+  const KEY='aux-commandes-v1';
+  const EXPORT={text:'#1c2a37',soft:'#57697a',line:'#d5dee8',accent:'#41586b',accentInk:'#33485a',card:'#ffffff',bg:'#f4f7fb',crit:'#c0433a',vig:'#b8570f',ctrl:'#3f7a4e',ser:'#41586b',critBg:'#f6dede',vigBg:'#fae0cc',ctrlBg:'#e3efe1',serBg:'#e9ecf2'};
+  const state=JSON.parse(localStorage.getItem(KEY)||'{}');
+  let lastResult=null;
+  const $=s=>document.querySelector(s);
+  const toastEl=$('#toast');
+  function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(()=>toastEl.classList.remove('show'),2200);}
+
+  // build maitrise
+  const mWrap=$('#maitrise');
+  MAITRISE.forEach(m=>{
+    const d=document.createElement('div');
+    d.className='q';d.dataset.type='opt';d.dataset.key=m.k;
+    d.innerHTML=`<div class="q-title">${m.t}</div>
+      <div class="opts">
+        <button class="opt" data-v="2">Oui, pleinement</button>
+        <button class="opt" data-v="1">En partie</button>
+        <button class="opt" data-v="0">Non / pas encore</button>
+      </div>`;
+    mWrap.appendChild(d);
+  });
+
+  // single-choice
+  document.querySelectorAll('.q[data-type="opt"]').forEach(q=>{
+    const key=q.dataset.key;
+    q.querySelectorAll('.opt').forEach(btn=>{
+      if(state[key]!==undefined&&String(state[key])===btn.dataset.v)btn.classList.add('sel');
+      btn.addEventListener('click',()=>{
+        q.querySelectorAll('.opt').forEach(b=>b.classList.remove('sel'));
+        btn.classList.add('sel');
+        const v=btn.dataset.v;
+        state[key]=isNaN(Number(v))?v:Number(v);
+        save();
+      });
+    });
+  });
+  // multi-checks
+  document.querySelectorAll('.q[data-type="check"]').forEach(q=>{
+    const key=q.dataset.key;
+    if(!Array.isArray(state[key]))state[key]=[];
+    const checks=[...q.querySelectorAll('.check')];
+    checks.forEach((c,i)=>{
+      if(state[key].includes(i))c.classList.add('sel');
+      c.addEventListener('click',()=>{
+        if(c.classList.contains('none')){
+          checks.forEach(o=>o.classList.remove('sel'));c.classList.add('sel');state[key]=[i];
+        }else{
+          checks.filter(o=>o.classList.contains('none')).forEach(o=>o.classList.remove('sel'));
+          c.classList.toggle('sel');
+          state[key]=checks.map((o,idx)=>o.classList.contains('sel')?idx:-1).filter(x=>x>=0);
+        }
+        save();
+      });
+    });
+  });
+
+  function save(){localStorage.setItem(KEY,JSON.stringify(state));progress();}
+  function progress(){
+    const qs=document.querySelectorAll('.q[data-type="opt"]');let done=0;
+    qs.forEach(q=>{if(state[q.dataset.key]!==undefined)done++;});
+    $('#bar').style.width=Math.round(done/qs.length*100)+'%';
+  }
+  progress();
+  $('#reset').addEventListener('click',()=>{localStorage.removeItem(KEY);location.reload();});
+  $('#go').addEventListener('click',diagnose);
+
+  function diagnose(){
+    const dom=state.domaine||[];
+    const prohibited=(state.interdit||[]).some(i=>i<8);
+    const annexISel=dom.includes(5);
+    const annexIHigh=annexISel&&state.annexICert!==0; // art. 6§1 : haut risque seulement si certification par un tiers (critère cumulatif)
+    const annexIII=dom.some(i=>i<5);
+    const exc=state.exception;
+    const interaction=state.interaction===1, contenu=state.contenu===1, gpai=state.gpai===1, perso=state.perso===1;
+    const role=state.role||'deployeur';
+    const transpTrigger=interaction||contenu;
+
+    // tier + Art 6(3) exemption logic
+    let tier,tierLabel,exemptFlag=false;
+    if(prohibited){tier='interdit';tierLabel='Pratique interdite (art. 5)';}
+    else if(annexIHigh){tier='haut';tierLabel='Haut risque — produit réglementé (Annexe I)';}
+    else if(annexIII){
+      if(exc==='profiling'){tier='haut';tierLabel='Haut risque — profilage (Annexe III)';}
+      else if(exc==='influence'||exc===undefined){tier='haut';tierLabel='Haut risque (Annexe III)';}
+      else{tier='exempt';tierLabel='Annexe III — exemption art. 6§3 probable';exemptFlag=true;}
+    }
+    else if(gpai){tier='gpai';tierLabel="Modèle à usage général (GPAI)";}
+    else if(transpTrigger){tier='transparence';tierLabel='Risque limité — transparence';}
+    else{tier='minimal';tierLabel='Risque minimal';}
+
+    // maitrise
+    let sum=0;const vals=MAITRISE.map(m=>{const v=(state[m.k]!==undefined)?state[m.k]:0;sum+=v;return v;});
+    const pct=Math.round(sum/(MAITRISE.length*2)*100);
+
+    const expoHigh=['haut','interdit','gpai'].includes(tier);
+    const expoVal={interdit:100,haut:86,gpai:66,transparence:44,exempt:36,minimal:14}[tier];
+    const maitriseHigh=pct>=60;
+
+    // quadrant verdict
+    let vTag,vColor,vTitle,vText;
+    if(tier==='interdit'){
+      vTag='ZONE ROUGE';vColor=EXPORT.crit;vTitle="Usage interdit en l'état";
+      vText="Une des pratiques cochées est proscrite par l'article 5, indépendamment de votre maîtrise. Le système doit être arrêté ou reconçu avant tout déploiement — aucune mesure ne rend un usage interdit conforme.";
+    }else if(expoHigh&&!maitriseHigh){
+      vTag='ZONE CRITIQUE';vColor=EXPORT.crit;vTitle="Forte exposition, contrôle insuffisant";
+      vText="La combinaison la plus risquée : la loi vous impose beaucoup et vos garde-fous ne suivent pas encore. Ce n'est pas le niveau de risque le problème — c'est l'écart avec votre maîtrise. Priorité absolue.";
+    }else if(expoHigh&&maitriseHigh){
+      vTag='SOUS CONTRÔLE';vColor=EXPORT.ctrl;vTitle="Exposition élevée, mais bien tenue";
+      vText="Votre exposition est forte, vos garde-fous largement en place. C'est la posture visée : un système puissant dont l'humain garde les commandes. Reste à combler les derniers écarts ci-dessous.";
+    }else if(!expoHigh&&!maitriseHigh){
+      vTag='VIGILANCE';vColor=EXPORT.vig;vTitle="Peu d'obligations, mais garde-fous légers";
+      vText="La loi vous en demande peu aujourd'hui, mais vos garde-fous sont minces. Peu d'obligations n'égale pas absence de risque : un biais, une erreur visible ou une plainte restent possibles. Quelques réflexes sécurisent l'essentiel.";
+    }else{
+      vTag='SEREIN';vColor=EXPORT.ser;vTitle="Faible exposition, bien maîtrisé";
+      vText="Peu d'obligations réglementaires et de solides garde-fous déjà en place. Maintenez le cap, documentez, et refaites ce diagnostic à chaque nouvel usage de l'IA.";
+    }
+
+    // obligations
+    const duties=[];
+    const D=(t)=>duties.push(t);
+    if(tier==='interdit'){
+      D("Réexaminer ou abandonner l'usage interdit (art. 5) — préalable à toute autre démarche.");
+      D("⚠️ Certaines pratiques de l'art. 5 admettent des exceptions très strictes (raison médicale ou de sécurité, preuves préexistantes, menace grave ciblée) — à faire vérifier par un juriste.");
+    }
+    if(role==='autre')D("D'autres rôles de la chaîne de valeur — mandataire (art. 22), importateur (art. 23), distributeur (art. 24) — ont leurs propres obligations. À faire préciser par un juriste.");
+    if(tier==='haut'){
+      const prov=(role==='fournisseur'||role==='both');
+      const depl=(role==='deployeur'||role==='both');
+      if(prov){
+        D("Système de gestion des risques sur tout le cycle de vie (art. 9)");
+        D("Gouvernance des données d'entraînement, de validation et de test (art. 10)");
+        D("Documentation technique complète — Annexe IV (art. 11)");
+        D("Journalisation automatique des événements (art. 12)");
+        D("Information et instructions d'usage pour le déployeur (art. 13)");
+        D("Supervision humaine intégrée dès la conception (art. 14)");
+        D("Exactitude, robustesse et cybersécurité (art. 15)");
+        D("Système de management de la qualité (art. 17)");
+        D("Évaluation de conformité + marquage CE (art. 43) et enregistrement dans la base UE (art. 49)");
+        D("Surveillance après commercialisation + signalement des incidents graves (art. 72-73)");
+      }
+      if(depl){
+        D("Utiliser le système conformément à la notice et affecter une supervision humaine (art. 26)");
+        D("Assurer la pertinence des données d'entrée que vous fournissez (art. 26)");
+        D("Conserver les journaux et surveiller le fonctionnement (art. 26)");
+        D("Informer les travailleurs et leurs représentants avant mise en service (art. 26)");
+        D("Informer les personnes soumises à une décision assistée par l'IA (art. 26§11)");
+        D("Réaliser une analyse d'impact sur les droits fondamentaux si vous êtes un organisme public ou visé (art. 27)");
+      }
+    }
+    if(tier==='gpai'){
+      D("Documentation technique du modèle et information des fournisseurs en aval (art. 53)");
+      D("Politique de respect du droit d'auteur (art. 53)");
+      D("Résumé public des contenus utilisés pour l'entraînement (art. 53)");
+      D("Si risque systémique (>10²⁵ FLOP) : évaluation, tests adverses, atténuation, signalement d'incidents (art. 55)");
+    }
+    if(tier==='exempt'){
+      D("Documenter l'évaluation qui justifie l'exemption art. 6§3 (art. 6§4)");
+      D("Vous enregistrer tout de même dans la base de données UE (art. 49§2)");
+      D("Réévaluer la qualification à chaque évolution du système.");
+    }
+    if(tier==='transparence'||transpTrigger){
+      if(interaction)D("Informer les personnes qu'elles interagissent avec une IA, sauf évidence (art. 50§1)");
+      if(contenu){D("Marquer les contenus générés comme artificiels, en format lisible par machine (art. 50§2)");D("Signaler clairement les « deepfakes » et contenus manipulés (art. 50§4)");}
+    }
+    if(tier==='minimal')D("Aucune obligation forte spécifique — codes de conduite volontaires encouragés (art. 95).");
+    D("Assurer une littératie IA suffisante de vos équipes — obligatoire pour tous depuis février 2025 (art. 4)");
+    if(perso)D("RGPD : base légale, minimisation, information ; AIPD si traitement à risque ; art. 22 pour toute décision entièrement automatisée.");
+
+    // gaps with mandatory flag
+    const mandatory=MAITRISE.map((m,i)=>{
+      if(expoHigh)return true;
+      if(i===7)return true;                 // littératie : art 4, tous
+      if(i===1)return transpTrigger||tier==='transparence'; // transparence
+      if(i===2&&tier==='exempt')return true; // doc pour justifier exemption
+      return false;
+    });
+    const gaps=[];
+    MAITRISE.forEach((m,i)=>{
+      const v=vals[i];
+      if(v===2)return;
+      gaps.push({g:m.g,art:m.art,partial:v===1,mand:mandatory[i]});
+    });
+    gaps.sort((a,b)=>{
+      const s=x=>(x.mand?0:2)+(x.partial?1:0);
+      return s(a)-s(b);
+    });
+    const oks=MAITRISE.filter((m,i)=>vals[i]===2).map(m=>m.g);
+
+    // timeline
+    const TL={
+      interdit:[['2 fév. 2025','Interdictions applicables']],
+      haut:annexIHigh?[['2 août 2027','Obligations haut risque (produits Annexe I)']]:[['2 août 2026','Obligations haut risque (Annexe III)']],
+      exempt:[['2 août 2026','Cadre haut risque applicable si l\'exemption tombe']],
+      gpai:[['2 août 2025','Obligations GPAI applicables']],
+      transparence:[['2 août 2026','Obligations de transparence (art. 50)']],
+      minimal:[['—','Pas d\'échéance spécifique']]
+    }[tier]||[];
+    TL.push(['Depuis fév. 2025','Littératie IA obligatoire (art. 4)']);
+
+    const penalty={
+      interdit:'Jusqu\'à 35 M€ ou 7 % du CA mondial',
+      haut:'Jusqu\'à 15 M€ ou 3 % du CA mondial',
+      gpai:'Jusqu\'à 15 M€ ou 3 % du CA mondial',
+      exempt:'Jusqu\'à 15 M€ ou 3 % si requalifié',
+      transparence:'Jusqu\'à 15 M€ ou 3 % du CA mondial',
+      minimal:'—'
+    }[tier];
+
+    lastResult={tier,tierLabel,pct,expoVal,vTag,vColor,vTitle,vText,duties,gaps,oks,vals,exemptFlag,timeline:TL,penalty,date:new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})};
+    render(lastResult);
+  }
+
+  // ---------- visuals ----------
+  function matrixSVG(pal,expoVal,pct,color){
+    const x=46+(expoVal/100)*(322-46), y=250-(pct/100)*(250-30);
+    return `<svg viewBox="0 0 362 296" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="46" y="30" width="138" height="110" fill="${pal.vigBg}"/><rect x="184" y="30" width="138" height="110" fill="${pal.critBg}"/>
+      <rect x="46" y="140" width="138" height="110" fill="${pal.serBg}"/><rect x="184" y="140" width="138" height="110" fill="${pal.ctrlBg}"/>
+      <line x1="184" y1="30" x2="184" y2="250" stroke="${pal.line}" stroke-width="1.4" stroke-dasharray="4 4"/>
+      <line x1="46" y1="140" x2="322" y2="140" stroke="${pal.line}" stroke-width="1.4" stroke-dasharray="4 4"/>
+      <text x="115" y="23" text-anchor="middle" font-size="10" font-weight="700" fill="${pal.vig}" font-family="sans-serif">VIGILANCE</text>
+      <text x="253" y="23" text-anchor="middle" font-size="10" font-weight="700" fill="${pal.crit}" font-family="sans-serif">CRITIQUE</text>
+      <text x="115" y="268" text-anchor="middle" font-size="10" font-weight="700" fill="${pal.ser}" font-family="sans-serif">SEREIN</text>
+      <text x="253" y="268" text-anchor="middle" font-size="10" font-weight="700" fill="${pal.ctrl}" font-family="sans-serif">SOUS CONTRÔLE</text>
+      <text x="30" y="140" text-anchor="middle" font-size="9" font-weight="700" fill="${pal.soft}" font-family="sans-serif" transform="rotate(-90 30 140)">MAÎTRISE →</text>
+      <text x="184" y="286" text-anchor="middle" font-size="9" font-weight="700" fill="${pal.soft}" font-family="sans-serif">EXPOSITION RÉGLEMENTAIRE →</text>
+      <circle cx="${x}" cy="${y}" r="10" fill="${color}"/><circle cx="${x}" cy="${y}" r="10" fill="none" stroke="#fff" stroke-width="2.5"/>
+      <text x="${x}" y="${y-17}" text-anchor="middle" font-size="11" font-weight="800" fill="${pal.text}" font-family="sans-serif">Vous</text>
+    </svg>`;
+  }
+  function radarSVG(pal,vals,color){
+    const cx=140,cy=136,R=95,N=vals.length;
+    const pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/N;return[cx+r*Math.cos(a),cy+r*Math.sin(a)];};
+    let rings='';[0.33,0.66,1].forEach(f=>{
+      const p=vals.map((_,i)=>pt(i,R*f).map(n=>n.toFixed(1)).join(',')).join(' ');
+      rings+=`<polygon points="${p}" fill="none" stroke="${pal.line}" stroke-width="1"/>`;
+    });
+    let spokes='',labels='';
+    vals.forEach((v,i)=>{
+      const[ex,ey]=pt(i,R);spokes+=`<line x1="${cx}" y1="${cy}" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" stroke="${pal.line}" stroke-width="1"/>`;
+      const[lx,ly]=pt(i,R+16);const anchor=Math.abs(lx-cx)<8?'middle':(lx>cx?'start':'end');
+      labels+=`<text x="${lx.toFixed(1)}" y="${(ly+3).toFixed(1)}" text-anchor="${anchor}" font-size="9.5" font-weight="700" fill="${pal.soft}" font-family="sans-serif">${MAITRISE[i].short}</text>`;
+    });
+    const poly=vals.map((v,i)=>pt(i,R*(v/2)).map(n=>n.toFixed(1)).join(',')).join(' ');
+    const dots=vals.map((v,i)=>{const[px,py]=pt(i,R*(v/2));return`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="3" fill="${color}"/>`;}).join('');
+    return `<svg viewBox="0 0 280 272" width="100%" xmlns="http://www.w3.org/2000/svg">
+      ${rings}${spokes}
+      <polygon points="${poly}" fill="${color}" fill-opacity="0.18" stroke="${color}" stroke-width="2"/>
+      ${dots}${labels}</svg>`;
+  }
+
+  function render(d){
+    const pal={text:'var(--ink)',soft:'var(--ink-soft)',line:'var(--line)',vig:EXPORT.vig,crit:EXPORT.crit,ctrl:EXPORT.ctrl,ser:EXPORT.ser,vigBg:'var(--vig-bg)',critBg:'var(--crit-bg)',ctrlBg:'var(--ctrl-bg)',serBg:'var(--ser-bg)'};
+    const dutyLi=d.duties.map(t=>`<li><span class="mk duty">§</span><span>${t}</span></li>`).join('');
+    const gapLi=d.gaps.length?d.gaps.map(g=>`<li><span class="mk ${g.mand?'oblig':'reco'}">${g.mand?'!':'~'}</span><span>${g.g} ${g.partial?'<em style="color:var(--ink-soft)">— partiel, à consolider</em>':''} <span class="art">${g.art}</span></span><span class="tail ${g.mand?'oblig':'reco'}">${g.mand?'obligatoire':'conseillé'}</span></li>`).join(''):`<li><span class="mk ok">✓</span><span>Aucun garde-fou manquant. Beau travail.</span></li>`;
+    const okLi=d.oks.map(t=>`<li><span class="mk ok">✓</span><span>${t}</span></li>`).join('');
+    const tl=d.timeline.map(r=>`<span class="tl"><b>${r[0]}</b> · ${r[1]}</span>`).join('');
+
+    $('#result').innerHTML=`
+      <section class="card" id="report">
+        <div class="verdict-head">
+          <span class="vtag" style="background:${d.vColor}">${d.vTag}</span>
+          <span class="chip">${d.date}</span>
+        </div>
+        <div class="vtitle">${d.vTitle}</div>
+        <p class="vtext">${d.vText}</p>
+
+        <div class="scores">
+          <div class="score-box"><div class="lbl">Exposition réglementaire</div><div class="val">${d.tierLabel}</div></div>
+          <div class="score-box"><div class="lbl">Indice de maîtrise</div><div class="val">${d.pct}<span style="font-size:14px;color:var(--ink-soft)"> / 100</span></div></div>
+        </div>
+
+        <div class="viz">
+          <figure>${matrixSVG(pal,d.expoVal,d.pct,d.vColor)}<figcaption>Votre position</figcaption></figure>
+          <figure>${radarSVG(pal,d.vals,d.vColor)}<figcaption>Vos 8 garde-fous</figcaption></figure>
+        </div>
+
+        <div class="subhead">Ce que la loi attend de vous</div>
+        <ul class="obl">${dutyLi}</ul>
+        <div class="timeline">${tl}</div>
+        ${d.penalty!=='—'?`<p class="note">Sanction encourue à ce niveau : <strong>${d.penalty}</strong>. Autre palier (art. 99) : jusqu'à 7,5 M€ ou 1 % du CA mondial pour toute information incorrecte fournie aux autorités.</p>`:''}
+
+        <div class="subhead">Vos garde-fous manquants — par priorité</div>
+        <ul class="obl">${gapLi}</ul>
+        ${d.oks.length?`<div class="subhead">Déjà en place</div><ul class="obl">${okLi}</ul>`:''}
+
+        <div class="disclaim"><strong>Outil en version de test.</strong> Il ne s'agit pas d'un conseil juridique. Pour contrôler votre conformité, rapprochez-vous d'un conseil juridique (avocat ou juriste spécialisé). Ce diagnostic repère les grands enjeux du règlement (UE) 2024/1689 (AI&nbsp;Act) à partir de vos réponses ; la qualification définitive dépend d'une analyse du contexte d'usage.</div>
+      </section>
+
+      <div class="btn-row no-print">
+        <button class="btn small" id="exp-png">⬇ Image (PNG)</button>
+        <button class="btn small" id="exp-print">🖨 Imprimer / PDF</button>
+        <button class="btn small" id="exp-share">↗ Partager</button>
+        <button class="btn small ghost" id="exp-json">⬇ Données (JSON)</button>
+      </div>
+      <button class="btn ghost no-print" id="restart" style="margin-top:12px;">↻ Recommencer</button>
+    `;
+    $('#quiz').style.display='none';
+    const r=$('#result');r.classList.add('show');r.scrollIntoView({behavior:'smooth',block:'start'});
+    $('#restart').addEventListener('click',()=>location.reload());
+    $('#exp-print').addEventListener('click',()=>window.print());
+    $('#exp-png').addEventListener('click',exportPNG);
+    $('#exp-share').addEventListener('click',shareReport);
+    $('#exp-json').addEventListener('click',exportJSON);
+  }
+
+  // ---------- export ----------
+  function summaryText(d){
+    const top=d.gaps.filter(g=>g.mand).slice(0,4).map(g=>'• '+g.g).join('\n')||'• Aucun garde-fou obligatoire manquant';
+    return `AUX COMMANDES — Diagnostic EU AI Act (${d.date})\n\n`+
+      `Verdict : ${d.vTag} — ${d.vTitle}\n`+
+      `Exposition : ${d.tierLabel}\nIndice de maîtrise : ${d.pct}/100\n\n`+
+      `Priorités (garde-fous obligatoires manquants) :\n${top}\n\n`+
+      `Diagnostic pédagogique fondé sur le règlement (UE) 2024/1689. Ne constitue pas un conseil juridique.`;
+  }
+  function exportJSON(){
+    const blob=new Blob([JSON.stringify({answers:state,result:lastResult},null,2)],{type:'application/json'});
+    triggerDownload(URL.createObjectURL(blob),'aux-commandes-diagnostic.json');
+    toast('Données exportées');
+  }
+  async function shareReport(){
+    const txt=summaryText(lastResult);
+    if(navigator.share){try{await navigator.share({title:'Mon diagnostic IA Act',text:txt});return;}catch(e){}}
+    try{await navigator.clipboard.writeText(txt);toast('Résumé copié dans le presse-papier');}
+    catch(e){toast('Copie impossible sur ce navigateur');}
+  }
+  function exportPNG(){
+    const d=lastResult;const P=EXPORT;
+    const W=820,H=1180;
+    const wrapText=(s,n)=>s.length>n?s.slice(0,n-1)+'…':s;
+    const gaps=d.gaps.slice(0,6).map((g,i)=>`<text x="56" y="${812+i*30}" font-size="15" font-family="sans-serif" fill="${P.text}"><tspan font-weight="700" fill="${g.mand?P.crit:P.vig}">${g.mand?'! ':'~ '}</tspan>${wrapText(g.g,52)}</text>`).join('');
+    const matrix=matrixSVG(P,d.expoVal,d.pct,d.vColor);
+    const radar=radarSVG(P,d.vals,d.vColor);
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <rect width="${W}" height="${H}" fill="${P.bg}"/>
+      <rect x="24" y="24" width="${W-48}" height="${H-48}" rx="20" fill="${P.card}" stroke="${P.line}"/>
+      <text x="56" y="80" font-size="14" font-weight="800" letter-spacing="3" fill="${P.accentInk}" font-family="sans-serif">DIAGNOSTIC EU AI ACT</text>
+      <text x="56" y="120" font-size="34" font-weight="800" fill="${P.text}" font-family="sans-serif">Aux Commandes</text>
+      <text x="${W-56}" y="80" text-anchor="end" font-size="14" fill="${P.soft}" font-family="sans-serif">${d.date}</text>
+      <rect x="56" y="146" width="${W-112}" height="1" fill="${P.line}"/>
+      <rect x="56" y="172" width="200" height="34" rx="17" fill="${d.vColor}"/>
+      <text x="156" y="194" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" font-family="sans-serif">${d.vTag}</text>
+      <text x="56" y="244" font-size="26" font-weight="800" fill="${P.text}" font-family="sans-serif">${wrapText(d.vTitle,44)}</text>
+      <text x="56" y="286" font-size="15" fill="${P.soft}" font-family="sans-serif">Exposition : ${wrapText(d.tierLabel,40)}</text>
+      <text x="56" y="312" font-size="15" fill="${P.soft}" font-family="sans-serif">Indice de maîtrise : ${d.pct}/100</text>
+      <g transform="translate(56,340) scale(1.15)">${matrix}</g>
+      <g transform="translate(430,346) scale(1.05)">${radar}</g>
+      <text x="56" y="792" font-size="14" font-weight="800" letter-spacing="1.5" fill="${P.soft}" font-family="sans-serif">GARDE-FOUS MANQUANTS — PAR PRIORITÉ</text>
+      ${gaps}
+      <text x="56" y="${H-70}" font-size="12" fill="${P.soft}" font-family="sans-serif">Outil en version de test — pas un conseil juridique. Pour contrôler votre conformité, consultez un conseil juridique.</text>
+      <text x="56" y="${H-50}" font-size="12" fill="${P.soft}" font-family="sans-serif">Outil gratuit et anonyme — vos réponses ne quittent pas votre navigateur.</text>
+    </svg>`;
+    const blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const img=new Image();
+    img.onload=function(){
+      const s=2,c=document.createElement('canvas');c.width=W*s;c.height=H*s;
+      const ctx=c.getContext('2d');ctx.scale(s,s);ctx.drawImage(img,0,0);
+      URL.revokeObjectURL(url);
+      c.toBlob(b=>{triggerDownload(URL.createObjectURL(b),'aux-commandes-diagnostic.png');toast('Image exportée');},'image/png');
+    };
+    img.onerror=function(){toast('Export image indisponible ici');URL.revokeObjectURL(url);};
+    img.src=url;
+  }
+  function triggerDownload(url,name){const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();}
+})();
+</script>
+<script src="/assets/site.js" defer></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
