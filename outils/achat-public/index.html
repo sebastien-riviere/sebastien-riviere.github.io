@@ -17,26 +17,41 @@
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
+/* Comic-lite bleu, accent famille = ROUGE commande publique */
 :root{
-  --bg:#fbf4f4; --bg-band:#eaf2f9;
-  --text:#1a2a35; --muted:#5a7a92; --faint:#8faabb;
-  --card:#ffffff; --border:#dde9f2; --border-hover:#b8d0e4;
-  --title:#1e3a52; --accent:#b23b3b; --accent-soft:#f6dede;
-  --logo-a:#b23b3b; --logo-b:#1e3a52; --shadow:0 4px 22px rgba(30,58,82,0.10);
-  --ok:#2e9e6b; --ok-soft:#e3f5ec; --warn:#c77d20; --warn-soft:#fdf3e0; --bad:#cf4b43; --bad-soft:#fbe9e8; --track:#e7eef5;
-  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --serif:Georgia,Cambria,'Times New Roman',serif;
+  --bg:#e9eef4; --bg-band:#dfe7f0;
+  --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --card:#ffffff; --border:#1b2836; --border-hover:#b23b3b;
+  --title:#1c2a37; --accent:#b23b3b; --accent-soft:#f6dede;
+  --logo-a:#b23b3b; --logo-b:#1e3a52; --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --ok:#3f7a4e; --ok-soft:#e3efe1; --warn:#b8570f; --warn-soft:#fae0cc; --bad:#c0392b; --bad-soft:#f6dede; --track:#d5dee8;
+  --sans:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
 @media(prefers-color-scheme:dark){:root{
-  --bg:#0f1722; --bg-band:#15212f; --text:#e7eef5; --muted:#9fb6c8; --faint:#6f8aa0;
-  --card:#16212e; --border:#24333f; --border-hover:#b23b3b; --title:#eaf2f9; --accent:#e08c8c; --accent-soft:#2f1a1a;
-  --logo-a:#4a9ad4; --logo-b:#274b6b; --shadow:0 6px 26px rgba(0,0,0,0.45);
-  --ok:#3fb980; --ok-soft:#16302440; --warn:#e0a04a; --warn-soft:#3a2c1040; --bad:#e0635a; --bad-soft:#3a181640; --track:#24333f;
+  --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:rgba(221,233,244,.22); --border-hover:#e08c8c; --title:#e7eef5; --accent:#e08c8c; --accent-soft:#2f1a1a;
+  --logo-a:#e08c8c; --logo-b:#9cc6ec; --shadow:3px 3px 0 rgba(0,0,0,.42);
+  --ok:#8fc09a; --ok-soft:#1a2a20; --warn:#f07838; --warn-soft:#28180a; --bad:#e0635a; --bad-soft:#2f1a1a; --track:#24333f;
 }}
+html[data-theme="light"]{
+  --bg:#e9eef4; --bg-band:#dfe7f0; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --card:#ffffff; --border:#1b2836; --border-hover:#b23b3b; --title:#1c2a37; --accent:#b23b3b; --accent-soft:#f6dede;
+  --logo-a:#b23b3b; --logo-b:#1e3a52; --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --ok:#3f7a4e; --ok-soft:#e3efe1; --warn:#b8570f; --warn-soft:#fae0cc; --bad:#c0392b; --bad-soft:#f6dede; --track:#d5dee8;
+}
+html[data-theme="dark"]{
+  --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:rgba(221,233,244,.22); --border-hover:#e08c8c; --title:#e7eef5; --accent:#e08c8c; --accent-soft:#2f1a1a;
+  --logo-a:#e08c8c; --logo-b:#9cc6ec; --shadow:3px 3px 0 rgba(0,0,0,.42);
+  --ok:#8fc09a; --ok-soft:#1a2a20; --warn:#f07838; --warn-soft:#28180a; --bad:#e0635a; --bad-soft:#2f1a1a; --track:#24333f;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);background-image:radial-gradient(rgba(27,40,54,.09) 1.2px,transparent 1.3px);background-size:34px 34px;color:var(--text);font-family:var(--sans);min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
 .nun{font-family:var(--sans);}
 .ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;}
 .header-band{background:linear-gradient(180deg,var(--bg-band),var(--bg));border-bottom:1px solid var(--border);}
@@ -139,23 +154,13 @@ footer a{color:var(--faint);text-decoration:none;} footer a:hover{color:var(--ac
 @media(max-width:640px){ header{padding:28px 16px 20px;} main{padding:14px 16px 40px;} .quickadd{grid-template-columns:1fr 1fr;} }
 @media print{ .no-print{display:none!important;} .panel{display:block!important;} body{background:#fff;} .card,.fam-card,.bp-card{break-inside:avoid;} .print-only{display:block;} }
 </style>
-<link rel="stylesheet" href="/styles/hub-nav.css">
 </head>
 <body>
 
+<div id="sr-header" data-active="outils"></div>
+
 <div class="header-band">
   <header>
-    <div class="brand">
-      <div class="logo"><img src="../../logo.png" alt="Logo Sébastien Rivière" width="40" height="40"></div>
-      <div><div class="name"><a href="../../">Sébastien Rivière</a></div><div class="sub">Apprendre, comprendre, transmettre</div></div>
-    </div>
-    <nav class="hub-nav" aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/outils/mediatheque-ia/">Médiathèque IA</a>
-      <a href="/articles/">Articles &amp; enquêtes</a>
-      <a href="/outils/" class="active">Outils</a>
-      <a href="/a-propos/">À propos</a>
-    </nav>
     <h1>Computation des seuils — marchés de fournitures &amp; services</h1>
     <p class="lead">Additionnez vos achats par <b>famille homogène</b>, et l'outil détermine la <b>procédure applicable</b>, repère les <b>approches de seuil</b> et les risques de <b>fractionnement</b>. Pour les fournitures et services — les travaux (unités fonctionnelles) ne sont pas couverts.</p>
     <span class="local-band"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 6.5 7 9 4-2.5 7-5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg> 100 % dans votre navigateur — aucune donnée n'est envoyée (aucun serveur, aucun cookie, aucun suivi)</span>
@@ -341,7 +346,8 @@ footer a{color:var(--faint);text-decoration:none;} footer a:hover{color:var(--ac
   </section>
 </main>
 
-<footer class="no-print"><span>© Sébastien Rivière · 2026</span><a href="../../">← Tous les outils</a><a href="#" id="footLegal">Mentions légales</a></footer>
+<footer class="no-print" style="text-align:center;padding:16px;font-size:12.5px;color:var(--faint)"><a href="#" id="footLegal" style="color:var(--accent);font-weight:700">Mentions légales</a></footer>
+<div id="sr-footer"></div>
 
 <script>
 "use strict";
@@ -619,5 +625,6 @@ el('footLegal').addEventListener('click',function(e){ e.preventDefault(); docume
 Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(b){ b.addEventListener('click',function(){ document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');}); document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); el('panel-'+b.dataset.tab).classList.add('active'); window.scrollTo(0,0); }); });
 load(); renderAll();
 </script>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
