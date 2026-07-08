@@ -1,11 +1,11 @@
 /* main.css — Variables, reset, typographie */
 
 :root {
-  /* Couleurs */
-  --color-bg: #f5f4f2;
+  /* Couleurs — comic-lite bleu, accent famille = VERT productivité */
+  --color-bg: #e9eef4;
   --color-surface: #ffffff;
-  --color-surface-hover: #f8f7f5;
-  --color-border: #e2e0db;
+  --color-surface-hover: #f0f4f8;
+  --color-border: #d5dee8;
   --color-border-focus: #3f7a4e;
 
   --color-primary: #3f7a4e;
@@ -19,18 +19,18 @@
   --color-warning-light: #fdf6e3;
 
   --color-danger: #c0392b;
-  --color-danger-light: #fdf0ee;
+  --color-danger-light: #f6dede;
 
-  --color-text: #1a1a1a;
-  --color-text-secondary: #6b6860;
-  --color-text-muted: #9b9890;
+  --color-text: #1c2a37;
+  --color-text-secondary: #57697a;
+  --color-text-muted: #8496a5;
 
   --color-selected: #3f7a4e;
   --color-selected-bg: #e3efe1;
   --color-selected-border: #3f7a4e;
 
   /* Typographie */
-  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-size-xs: 11px;
   --font-size-sm: 12px;
   --font-size-base: 13px;
