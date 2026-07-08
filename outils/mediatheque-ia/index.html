@@ -5,38 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Médiathèque IA — livres, films &amp; séries — Sébastien Rivière</title>
 <meta name="description" content="Une médiathèque sélective sur l'IA : livres de référence (IA, data), imaginaire de science-fiction, et films, séries &amp; documentaires — avec résumés, couvertures et repère réflexion / divertissement.">
-<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#14110d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#e9eef4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <link rel="stylesheet" href="../../fonts/fonts.css">
 <link rel="stylesheet" href="../../styles/ia-kit.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
-/* --- surcharge surfaces crème (âme bibliothèque) --- */
+/* --- comic-lite bleu (base) + pastilles catégories conservées --- */
 :root{
-  --bg:#f4f1ea; --bg-2:#ece5d6; --card:#fbf8f2;
-  --border:#e4ddcf; --border-strong:#d0c8b8; --border-soft:#efe9dd;
-  --ink:#2a2723; --muted:#6f685d; --faint:#938a7b;
-  /* pastilles catégories — conservées distinctes */
-  --t-ia:#41586b;    --t-ia-soft:#e7ebf1;
+  --bg:#e9eef4; --bg-2:#dfe7f0; --card:#ffffff;
+  --border:#1b2836; --border-strong:#1b2836; --border-soft:#d5dee8;
+  --ink:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --t-ia:#41586b;    --t-ia-soft:#e9ecf2;
   --t-data:#2f7d76;  --t-data-soft:#dcefe9;
   --t-block:#b8570f; --t-block-soft:#f8e2cd;
   --t-biz:#7b5ea3;   --t-biz-soft:#ece4f4;
-  --shadow:0 1px 2px rgba(60,45,25,.05),0 10px 30px rgba(60,45,25,.10);
-  --shadow-lg:0 20px 50px rgba(50,38,20,.20);
+  --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --shadow-lg:0 20px 50px rgba(20,33,46,.22);
 }
 @media(prefers-color-scheme:dark){
   :root{
-    --bg:#14110d; --bg-2:#1c1812; --card:#1f1a13;
-    --border:#322a1f; --border-strong:#3e3327; --border-soft:#2a2218;
-    --ink:#ece5d8; --muted:#a99f8e; --faint:#7d7464;
-    --t-ia:#9fb3c9; --t-ia-soft:#222b35;
+    --bg:#0f1722; --bg-2:#16212e; --card:#16212e;
+    --border:rgba(221,233,244,.22); --border-strong:rgba(221,233,244,.3); --border-soft:rgba(221,233,244,.10);
+    --ink:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+    --t-ia:#95abce; --t-ia-soft:#222b35;
     --t-data:#7fcabf; --t-data-soft:#16302c;
     --t-block:#e09254; --t-block-soft:#37271a;
     --t-biz:#b89ad6; --t-biz-soft:#2a2235;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 34px rgba(0,0,0,.5);
+    --shadow:3px 3px 0 rgba(0,0,0,.42);
     --shadow-lg:0 24px 60px rgba(0,0,0,.65);
   }
+}
+html[data-theme="light"]{
+  --bg:#e9eef4; --bg-2:#dfe7f0; --card:#ffffff;
+  --border:#1b2836; --border-strong:#1b2836; --border-soft:#d5dee8;
+  --ink:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-data:#2f7d76; --t-data-soft:#dcefe9;
+  --t-block:#b8570f; --t-block-soft:#f8e2cd; --t-biz:#7b5ea3; --t-biz-soft:#ece4f4;
+  --shadow:3px 3px 0 rgba(20,33,46,.12); --shadow-lg:0 20px 50px rgba(20,33,46,.22);
+}
+html[data-theme="dark"]{
+  --bg:#0f1722; --bg-2:#16212e; --card:#16212e;
+  --border:rgba(221,233,244,.22); --border-strong:rgba(221,233,244,.3); --border-soft:rgba(221,233,244,.10);
+  --ink:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --t-ia:#95abce; --t-ia-soft:#222b35; --t-data:#7fcabf; --t-data-soft:#16302c;
+  --t-block:#e09254; --t-block-soft:#37271a; --t-biz:#b89ad6; --t-biz-soft:#2a2235;
+  --shadow:3px 3px 0 rgba(0,0,0,.42); --shadow-lg:0 24px 60px rgba(0,0,0,.65);
 }
 
 /* --- layout général --- */
@@ -217,34 +234,7 @@ body{
 </head>
 <body>
 
-<div class="hub-band">
-  <div class="hub-head">
-    <div class="hub-top">
-      <div class="hub-brand">
-        <div class="hub-logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="34" height="34"></div>
-        <div>
-          <div class="hub-name"><a href="/">Sébastien Rivière</a></div>
-          <div class="hub-sub">Apprendre, comprendre, transmettre</div>
-        </div>
-      </div>
-      <div class="hub-actions">
-        <a class="hub-ic mail" href="mailto:rsebastien@protonmail.com" title="M'écrire" aria-label="M'écrire par email">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-        </a>
-        <a class="hub-ic li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">
-          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
-        </a>
-      </div>
-    </div>
-    <nav class="hub-nav" aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/outils/mediatheque-ia/" class="active">Médiathèque IA</a>
-      <a href="/articles/">Articles &amp; enquêtes</a>
-      <a href="/outils/">Outils</a>
-      <a href="/a-propos/">À propos</a>
-    </nav>
-  </div>
-</div>
+<div id="sr-header" data-active="mediatheque"></div>
 
 <div class="wrap">
   <header class="hero">
@@ -291,6 +281,8 @@ body{
     </div>
   </footer>
 </div>
+
+<div id="sr-footer"></div>
 
 <div class="ov" id="ov"><div class="modal"><button class="m-close" id="mClose" aria-label="Fermer">✕</button><div id="mContent"></div></div></div>
 
@@ -463,5 +455,6 @@ document.getElementById("mClose").onclick=close;
 ov.onclick=e=>{if(e.target===ov)close();};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
 </script>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
