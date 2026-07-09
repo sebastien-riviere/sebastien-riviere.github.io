@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Êtes-vous aux commandes de vos IA ? — Diagnostic EU AI Act — Sébastien Rivière</title>
 <meta name="description" content="Diagnostic gratuit EU AI Act : croise votre exposition réglementaire et votre maîtrise réelle (supervision humaine, transparence, données, sécurité). Matrice, radar, export. 100 % dans votre navigateur, aucune donnée envoyée.">
+<link rel="canonical" href="https://sebastien-riviere.github.io/outils/diagnostic-ia-act/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Êtes-vous aux commandes de vos IA ? — Diagnostic EU AI Act">
+<meta property="og:description" content="Diagnostic gratuit : croisez votre exposition réglementaire (EU AI Act) et votre maîtrise réelle. Matrice, radar, export — 100 % dans votre navigateur, aucune donnée envoyée.">
+<meta property="og:url" content="https://sebastien-riviere.github.io/outils/diagnostic-ia-act/">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
@@ -20,30 +27,23 @@
     --crit:var(--bad); --vig:var(--warn); --ctrl:var(--ok); --ser:var(--ia);
     --crit-bg:var(--bad-soft); --vig-bg:var(--warn-soft); --ctrl-bg:var(--ok-soft); --ser-bg:var(--ia-soft);
     --r:var(--radius); --maxw:var(--wrap-read);
-    --font:var(--ui); --display:var(--ui); --hand:'Caveat','Segoe UI',cursive;
+    --font:var(--ui); --display:var(--ui);
   }
   /* --ink, --card, --mono, --shadow, --radius hérités de ia-kit.css (thème géré par le kit) */
   main{flex:1;padding:8px 20px 72px;max-width:var(--maxw);width:100%;margin:0 auto;}
   *{box-sizing:border-box;}
   body{margin:0;}
-  .wrap{}
-  .inner{max-width:var(--maxw);margin:0 auto;}
-  .eyebrow{font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink);display:flex;align-items:center;gap:9px;}
-  .eyebrow .rule{width:26px;height:2px;background:var(--accent);border-radius:2px;}
   h1{font-size:clamp(30px,6vw,46px);margin:.3em 0 .1em;letter-spacing:-.028em;font-weight:800;text-wrap:balance;}
-  h1 .amp{color:var(--accent);}
-  .lede{color:var(--ink-soft);font-size:17px;max-width:62ch;}
-  .lede strong{color:var(--ink);}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
   .chip{font-size:12.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);padding:6px 12px;border-radius:999px;font-weight:600;}
-  .chip.free{background:var(--accent);color:#fff;border-color:transparent;}
   section.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:26px;margin-top:22px;}
   .axis-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;}
   .axis-n{font-family:var(--mono);font-size:13px;font-weight:700;color:#fff;background:var(--accent);width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none;}
-  .axis-t{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);}
+  .axis-t{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);margin:0;}
   .axis-sub{color:var(--ink-soft);font-size:14px;margin:2px 0 4px;}
-  .q{padding:20px 0;border-top:1px solid var(--line);}
-  .q:first-of-type{border-top:none;padding-top:8px;}
+  .q{padding:20px 0;border-top:1px solid var(--line);scroll-margin-top:90px;}
+  .q:first-of-type,.axis-sub+.q{border-top:none;padding-top:8px;}
+  .q[hidden]{display:none;}
+  .q.missing .q-title::after{content:"À répondre";font-size:11.5px;font-weight:700;color:var(--crit);background:var(--crit-bg);padding:2px 8px;border-radius:6px;margin-left:8px;vertical-align:2px;white-space:nowrap;}
   .q-title{font-size:17.5px;font-weight:700;margin:0 0 3px;letter-spacing:-.01em;}
   .q-hint{color:var(--ink-soft);font-size:13.5px;margin-bottom:13px;}
   .art{font-size:11px;font-family:var(--mono);font-weight:700;color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 13%,transparent);padding:2px 7px;border-radius:6px;margin-left:4px;white-space:nowrap;}
@@ -58,16 +58,18 @@
   .check:hover{border-color:var(--accent);}
   .check.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 11%,transparent);}
   .check.danger.sel{border-color:var(--crit);background:var(--crit-bg);}
-  .check .box{width:19px;height:19px;border-radius:6px;border:2px solid var(--line);flex:none;margin-top:1px;display:grid;place-items:center;font-size:12px;color:#fff;font-weight:900;}
-  .check.sel .box{background:var(--accent);border-color:var(--accent);}
-  .check.danger.sel .box{background:var(--crit);border-color:var(--crit);}
+  .check .box{width:19px;height:19px;border-radius:6px;border:2px solid var(--line);flex:none;margin-top:1px;display:grid;place-items:center;font-size:12px;color:transparent;font-weight:900;}
+  .check.sel .box{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .check.danger.sel .box{background:var(--crit);border-color:var(--crit);color:#fff;}
+  .opt:focus-visible,.check:focus-visible,.btn:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px;}
   .btn{display:block;width:100%;cursor:pointer;border:none;background:var(--accent);color:#fff;font-family:var(--font);font-size:16.5px;font-weight:750;padding:16px;border-radius:13px;box-shadow:0 2px 0 var(--accent-ink);transition:transform .07s,filter .12s;}
   .btn:hover{filter:brightness(1.05);}
   .btn:active{transform:translateY(2px);box-shadow:0 0 0;}
   .btn.ghost{background:transparent;color:var(--accent-ink);box-shadow:none;border:1.5px solid var(--line);font-size:14px;padding:12px;}
   .btn.small{font-size:13.5px;padding:11px 14px;width:auto;box-shadow:0 2px 0 var(--accent-ink);}
   .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
-  .progress{position:sticky;bottom:14px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:22px 0 12px;box-shadow:0 2px 8px -3px rgba(0,0,0,.25);}
+  .pmeta{font-size:12px;font-weight:700;color:var(--ink-soft);text-align:right;margin-top:18px;}
+  .progress{position:sticky;bottom:14px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 12px;box-shadow:0 2px 8px -3px rgba(0,0,0,.25);}
   .progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 60%,var(--ctrl)));width:0;transition:width .3s;}
   #result{display:none;}
   #result.show{display:block;animation:rise .5s ease both;}
@@ -106,12 +108,12 @@
   .foot{text-align:center;color:var(--ink-soft);font-size:12.5px;margin-top:32px;line-height:1.7;}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
   @media print{
-    .wrap{background:#fff;padding:0;} #quiz,.no-print,.progress{display:none!important;}
+    #quiz,.no-print,.progress,.pmeta{display:none!important;}
     #result{display:block!important;} section.card{box-shadow:none;border-color:#ccc;break-inside:avoid;}
   }
 
   /* ===== Habillage comic-lite (Fredoka + Caveat · bleu famille IA · ombres douces) ===== */
-  h1,.axis-t,.vtitle,.subhead,.q-title,.score-box .val,.vtag,.btn,.chip,.eyebrow,.axis-n,.free-hand,figcaption{ font-family:var(--display); }
+  h1,.axis-t,.vtitle,.subhead,.q-title,.score-box .val,.vtag,.btn,.chip,.axis-n,figcaption{ font-family:var(--display); }
   h1{ font-weight:700; letter-spacing:-.015em; }
   .q-title{ font-weight:600; }
   .btn{ font-weight:600; border-radius:15px; }
@@ -122,7 +124,6 @@
   .opt,.check{ border-radius:14px; }
   .score-box{ border-radius:16px; border-width:1.5px; }
   .axis-n{ border-radius:10px; box-shadow:0 3px 0 var(--accent-ink); }
-  .free-hand{ font-family:var(--hand); font-weight:700; font-size:22px; color:var(--accent); display:inline-block; transform:rotate(-4deg); margin-left:4px; }
   .vtag{ box-shadow:0 3px 0 rgba(0,0,0,.12); }
   .progress{ border:1.5px solid var(--line); }
 </style>
@@ -137,29 +138,29 @@
     <h1 class="ia-title">Êtes-vous aux commandes de vos IA&nbsp;?</h1>
     <div class="ia-meta"><span>Fondé sur l'EU AI Act (2024/1689)</span><span>~7 min · 15 questions</span><span>Aucune donnée envoyée</span></div>
     <p class="ia-lead">La plupart des diagnostics IA Act donnent une étiquette de risque, puis s'arrêtent. Celui-ci mesure aussi <strong>ce que vous maîtrisez vraiment</strong> — supervision humaine, transparence, données, sécurité. Parce qu'un système exposé mais tenu n'est pas un danger&nbsp;: un système exposé et livré à lui-même, si.</p>
-    <p class="disclaimer-lead">Outil en <strong>version de test</strong> — il ne s'agit pas d'un conseil juridique. Pour contrôler votre conformité, rapprochez-vous d'un conseil juridique.</p>
+    <p class="disclaimer-lead">Outil en <strong>version de test</strong> — il ne s'agit pas d'un conseil juridique. Pour contrôler votre conformité, rapprochez-vous d'un avocat ou d'un juriste spécialisé.</p>
   </header>
 </div>
 
 <main>
 <div id="quiz">
       <section class="card">
-        <div class="axis-head"><span class="axis-n">A</span><span class="axis-t">Votre exposition — ce que la loi impose</span></div>
+        <div class="axis-head"><span class="axis-n" aria-hidden="true">A</span><h2 class="axis-t">Votre exposition — ce que la loi impose</h2></div>
         <p class="axis-sub">Répondez d'après ce que fait vraiment votre outil, avec vos mots. Aucune connaissance juridique requise — en cas de doute, choisissez l'option la plus prudente.</p>
 
         <div class="q" data-type="check" data-key="interdit" data-danger="1">
           <div class="q-title">Est-ce que votre outil fait l'une de ces choses&nbsp;?</div>
           <div class="q-hint">Si aucune ne correspond, cochez la dernière case — c'est le cas le plus fréquent.</div>
           <div class="checks">
-            <label class="check danger" data-v="1"><span class="box">✓</span> Il influence les gens à leur insu pour les pousser à agir contre leur intérêt</label>
-            <label class="check danger" data-v="1"><span class="box">✓</span> Il cible des personnes fragiles (enfants, personnes âgées, en situation de handicap ou de précarité) pour les influencer</label>
-            <label class="check danger" data-v="1"><span class="box">✓</span> Il attribue aux gens une «&nbsp;note de confiance&nbsp;» générale qui peut les pénaliser dans d'autres situations</label>
-            <label class="check danger" data-v="1"><span class="box">✓</span> Il essaie de prédire si une personne va commettre un délit, d'après son profil</label>
-            <label class="check danger" data-v="1"><span class="box">✓</span> Il constitue une base de visages en récupérant en masse des photos sur internet ou la vidéosurveillance</label>
-            <label class="check danger" data-v="1"><span class="box">✓</span> Il devine l'humeur ou les émotions des gens (visage, voix) au travail ou à l'école</label>
-            <label class="check danger" data-v="1"><span class="box">✓</span> Il déduit des informations intimes à partir du visage ou du corps (origine, religion, opinions, orientation)</label>
-            <label class="check danger" data-v="1"><span class="box">✓</span> Il reconnaît des personnes par leur visage, en direct, via des caméras dans des lieux publics</label>
-            <label class="check none" data-v="0"><span class="box">✓</span> Aucune de ces situations</label>
+            <label class="check danger" data-v="1"><span class="box" aria-hidden="true">✓</span> Il influence les gens à leur insu pour les pousser à agir contre leur intérêt</label>
+            <label class="check danger" data-v="1"><span class="box" aria-hidden="true">✓</span> Il cible des personnes fragiles (enfants, personnes âgées, en situation de handicap ou de précarité) pour les influencer</label>
+            <label class="check danger" data-v="1"><span class="box" aria-hidden="true">✓</span> Il attribue aux gens une «&nbsp;note de confiance&nbsp;» générale qui peut les pénaliser dans d'autres situations</label>
+            <label class="check danger" data-v="1"><span class="box" aria-hidden="true">✓</span> Il essaie de prédire si une personne va commettre un délit, d'après son profil</label>
+            <label class="check danger" data-v="1"><span class="box" aria-hidden="true">✓</span> Il constitue une base de visages en récupérant en masse des photos sur internet ou la vidéosurveillance</label>
+            <label class="check danger" data-v="1"><span class="box" aria-hidden="true">✓</span> Il devine l'humeur ou les émotions des gens (visage, voix) au travail ou à l'école</label>
+            <label class="check danger" data-v="1"><span class="box" aria-hidden="true">✓</span> Il déduit des informations intimes à partir du visage ou du corps (origine, religion, opinions, orientation)</label>
+            <label class="check danger" data-v="1"><span class="box" aria-hidden="true">✓</span> Il reconnaît des personnes par leur visage, en direct, via des caméras dans des lieux publics</label>
+            <label class="check none" data-v="0"><span class="box" aria-hidden="true">✓</span> Aucune de ces situations</label>
           </div>
         </div>
 
@@ -167,90 +168,91 @@
           <div class="q-title">À quoi sert votre outil, concrètement&nbsp;?</div>
           <div class="q-hint">Cochez le ou les usages les plus proches de la réalité.</div>
           <div class="checks">
-            <label class="check" data-v="1"><span class="box">✓</span> Choisir ou évaluer des personnes au travail&nbsp;: recrutement, tri de CV, évaluation, promotion, licenciement</label>
-            <label class="check" data-v="1"><span class="box">✓</span> Décider d'un crédit, d'un prêt, d'une assurance, ou calculer un score financier</label>
-            <label class="check" data-v="1"><span class="box">✓</span> Noter des élèves ou étudiants, gérer des admissions, surveiller des examens</label>
-            <label class="check" data-v="1"><span class="box">✓</span> Attribuer des aides sociales ou des logements, ou trier des appels d'urgence</label>
-            <label class="check" data-v="1"><span class="box">✓</span> Aider la police, la justice, le contrôle aux frontières, influencer un vote ou une élection, ou identifier des gens par biométrie</label>
-            <label class="check" data-v="2"><span class="box">✓</span> Faire fonctionner un produit qui doit être certifié pour la sécurité (machine, dispositif médical, jouet, véhicule…)</label>
-            <label class="check none" data-v="0"><span class="box">✓</span> Rien de tout ça — usage interne, marketing, productivité, contenu, support client…</label>
+            <label class="check" data-v="1"><span class="box" aria-hidden="true">✓</span> Choisir ou évaluer des personnes au travail&nbsp;: recrutement, tri de CV, évaluation, promotion, licenciement</label>
+            <label class="check" data-v="1"><span class="box" aria-hidden="true">✓</span> Décider d'un crédit, d'un prêt, d'une assurance, ou calculer un score financier</label>
+            <label class="check" data-v="1"><span class="box" aria-hidden="true">✓</span> Noter des élèves ou étudiants, gérer des admissions, surveiller des examens</label>
+            <label class="check" data-v="1"><span class="box" aria-hidden="true">✓</span> Attribuer des aides sociales ou des logements, ou trier des appels d'urgence</label>
+            <label class="check" data-v="1"><span class="box" aria-hidden="true">✓</span> Aider la police, la justice, le contrôle aux frontières, influencer un vote ou une élection, ou identifier des gens par biométrie</label>
+            <label class="check" data-v="2"><span class="box" aria-hidden="true">✓</span> Faire fonctionner un produit qui doit être certifié pour la sécurité (machine, dispositif médical, jouet, véhicule…)</label>
+            <label class="check none" data-v="0"><span class="box" aria-hidden="true">✓</span> Rien de tout ça — usage interne, marketing, productivité, contenu, support client…</label>
           </div>
         </div>
 
-        <div class="q" data-type="opt" data-key="annexICert">
-          <div class="q-title">Si c'est un produit certifié pour la sécurité&nbsp;: doit-il déjà être contrôlé par un organisme indépendant avant d'être vendu&nbsp;?</div>
-          <div class="q-hint">À remplir seulement si vous avez coché « produit certifié » au-dessus. Exemple&nbsp;: un dispositif médical ou une machine dont la sécurité est validée par un tiers.</div>
+        <div class="q" data-type="opt" data-key="annexICert" hidden>
+          <div class="q-title">Ce produit certifié doit-il déjà être contrôlé par un organisme indépendant avant d'être vendu&nbsp;?</div>
+          <div class="q-hint">Cette question apparaît car vous avez coché «&nbsp;produit certifié&nbsp;». Exemple&nbsp;: un dispositif médical ou une machine dont la sécurité est validée par un tiers.</div>
           <div class="opts">
-            <button class="opt" data-v="1">Oui</button>
-            <button class="opt" data-v="0">Non</button>
-            <button class="opt" data-v="2">Je ne sais pas</button>
+            <button type="button" class="opt" data-v="1">Oui</button>
+            <button type="button" class="opt" data-v="0">Non</button>
+            <button type="button" class="opt" data-v="2">Je ne sais pas</button>
           </div>
         </div>
 
-        <div class="q" data-type="opt" data-key="exception">
+        <div class="q" data-type="opt" data-key="exception" hidden>
           <div class="q-title">Quand votre outil donne un résultat, que se passe-t-il ensuite&nbsp;?</div>
-          <div class="q-hint">À remplir seulement si vous avez coché un usage juste au-dessus. Sinon, passez à la question suivante.</div>
+          <div class="q-hint">Cette question apparaît car vous avez coché un usage sensible juste au-dessus.</div>
           <div class="opts">
-            <button class="opt" data-v="task">Il fait une petite tâche de préparation (mise en forme, classement, résumé) — l'humain fait le vrai travail</button>
-            <button class="opt" data-v="improve">Il propose, mais une personne examine et prend vraiment la décision finale</button>
-            <button class="opt" data-v="deviation">Il signale des anomalies ou des écarts, sans remplacer le jugement humain</button>
-            <button class="opt" data-v="influence">Son résultat est suivi presque tel quel, ou il décide tout seul</button>
-            <button class="opt" data-v="profiling">Il analyse le comportement ou le profil des personnes pour prédire quelque chose</button>
+            <button type="button" class="opt" data-v="task">Il fait une petite tâche de préparation (mise en forme, classement, résumé) — l'humain fait le vrai travail</button>
+            <button type="button" class="opt" data-v="improve">Il propose, mais une personne examine et prend vraiment la décision finale</button>
+            <button type="button" class="opt" data-v="deviation">Il signale des anomalies ou des écarts, sans remplacer le jugement humain</button>
+            <button type="button" class="opt" data-v="influence">Son résultat est suivi presque tel quel, ou il décide tout seul</button>
+            <button type="button" class="opt" data-v="profiling">Il analyse le comportement ou le profil des personnes pour prédire quelque chose</button>
           </div>
         </div>
 
         <div class="q" data-type="opt" data-key="interaction">
           <div class="q-title">Des personnes échangent-elles directement avec votre outil&nbsp;?</div>
           <div class="q-hint">Par exemple un chatbot, un assistant, une messagerie automatique ou une voix.</div>
-          <div class="opts"><button class="opt" data-v="1">Oui</button><button class="opt" data-v="0">Non</button></div>
+          <div class="opts"><button type="button" class="opt" data-v="1">Oui</button><button type="button" class="opt" data-v="0">Non</button></div>
         </div>
 
         <div class="q" data-type="opt" data-key="contenu">
           <div class="q-title">Votre outil fabrique-t-il des textes, images, voix ou vidéos&nbsp;?</div>
           <div class="q-hint">Du contenu produit ou retouché par l'IA, qui pourrait passer pour réel ou humain.</div>
-          <div class="opts"><button class="opt" data-v="1">Oui</button><button class="opt" data-v="0">Non</button></div>
+          <div class="opts"><button type="button" class="opt" data-v="1">Oui</button><button type="button" class="opt" data-v="0">Non</button></div>
         </div>
 
         <div class="q" data-type="opt" data-key="gpai">
           <div class="q-title">Fabriquez-vous vous-même le «&nbsp;moteur&nbsp;» d'IA&nbsp;?</div>
           <div class="q-hint">C'est-à-dire entraîner votre propre modèle (un «&nbsp;ChatGPT maison&nbsp;») que d'autres utiliseront. La plupart des entreprises utilisent des outils existants → répondez Non.</div>
-          <div class="opts"><button class="opt" data-v="1">Oui</button><button class="opt" data-v="0">Non</button></div>
+          <div class="opts"><button type="button" class="opt" data-v="1">Oui</button><button type="button" class="opt" data-v="0">Non</button></div>
         </div>
 
         <div class="q" data-type="opt" data-key="perso">
           <div class="q-title">Votre outil utilise-t-il des données personnelles&nbsp;?</div>
           <div class="q-hint">Noms, e-mails, photos, historiques d'achat, données de clients ou de salariés…</div>
-          <div class="opts"><button class="opt" data-v="1">Oui</button><button class="opt" data-v="0">Non</button></div>
+          <div class="opts"><button type="button" class="opt" data-v="1">Oui</button><button type="button" class="opt" data-v="0">Non</button></div>
         </div>
 
         <div class="q" data-type="opt" data-key="role">
           <div class="q-title">Vous, par rapport à cet outil, vous êtes plutôt…</div>
           <div class="q-hint">Pour savoir quelles responsabilités vous concernent.</div>
           <div class="opts">
-            <button class="opt" data-v="fournisseur">Je l'ai conçu, ou je le vends</button>
-            <button class="opt" data-v="deployeur">Je l'utilise dans mon activité</button>
-            <button class="opt" data-v="both">Les deux</button>
-            <button class="opt" data-v="autre">Un autre rôle (je revends, j'importe, je représente…)</button>
+            <button type="button" class="opt" data-v="fournisseur">Je l'ai conçu, ou je le vends</button>
+            <button type="button" class="opt" data-v="deployeur">Je l'utilise dans mon activité</button>
+            <button type="button" class="opt" data-v="both">Les deux</button>
+            <button type="button" class="opt" data-v="autre">Un autre rôle (je revends, j'importe, je représente…)</button>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <div class="axis-head"><span class="axis-n">B</span><span class="axis-t">Votre maîtrise — ce que vous tenez déjà</span></div>
+        <div class="axis-head"><span class="axis-n" aria-hidden="true">B</span><h2 class="axis-t">Votre maîtrise — ce que vous tenez déjà</h2></div>
         <p class="axis-sub">Ces questions portent sur vos habitudes actuelles, en langage courant. Répondez honnêtement&nbsp;: c'est le meilleur moyen de voir où renforcer. C'est ici que se joue «&nbsp;garder les commandes&nbsp;».</p>
         <div id="maitrise"></div>
       </section>
 
-      <div class="progress no-print"><i id="bar"></i></div>
-      <button class="btn" id="go">Établir mon diagnostic →</button>
-      <button class="btn ghost" id="reset" style="margin-top:12px;">Tout effacer</button>
+      <div class="pmeta no-print" id="pmeta"></div>
+      <div class="progress no-print" id="progress" role="progressbar" aria-label="Progression du questionnaire" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="bar"></i></div>
+      <button type="button" class="btn" id="go">Établir mon diagnostic →</button>
+      <button type="button" class="btn ghost" id="reset" style="margin-top:12px;">Tout effacer</button>
     </div>
 
     <div id="result"></div>
 </main>
 
 <div id="sr-footer"></div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
@@ -267,9 +269,11 @@
   ];
   const KEY='aux-commandes-v1';
   const EXPORT={text:'#1c2a37',soft:'#57697a',line:'#d5dee8',accent:'#41586b',accentInk:'#33485a',card:'#ffffff',bg:'#f4f7fb',crit:'#c0433a',vig:'#b8570f',ctrl:'#3f7a4e',ser:'#41586b',critBg:'#f6dede',vigBg:'#fae0cc',ctrlBg:'#e3efe1',serBg:'#e9ecf2'};
-  const state=JSON.parse(localStorage.getItem(KEY)||'{}');
+  let state={};
+  try{const raw=JSON.parse(localStorage.getItem(KEY)||'{}');if(raw&&typeof raw==='object'&&!Array.isArray(raw))state=raw;}catch(e){}
   let lastResult=null;
   const $=s=>document.querySelector(s);
+  const escX=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); // échappement XML pour les SVG exportés en image
   const toastEl=$('#toast');
   function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(()=>toastEl.classList.remove('show'),2200);}
 
@@ -280,9 +284,9 @@
     d.className='q';d.dataset.type='opt';d.dataset.key=m.k;
     d.innerHTML=`<div class="q-title">${m.t}</div>
       <div class="opts">
-        <button class="opt" data-v="2">Oui, pleinement</button>
-        <button class="opt" data-v="1">En partie</button>
-        <button class="opt" data-v="0">Non / pas encore</button>
+        <button type="button" class="opt" data-v="2">Oui, pleinement</button>
+        <button type="button" class="opt" data-v="1">En partie</button>
+        <button type="button" class="opt" data-v="0">Non / pas encore</button>
       </div>`;
     mWrap.appendChild(d);
   });
@@ -291,10 +295,12 @@
   document.querySelectorAll('.q[data-type="opt"]').forEach(q=>{
     const key=q.dataset.key;
     q.querySelectorAll('.opt').forEach(btn=>{
-      if(state[key]!==undefined&&String(state[key])===btn.dataset.v)btn.classList.add('sel');
+      const sel=state[key]!==undefined&&String(state[key])===btn.dataset.v;
+      if(sel)btn.classList.add('sel');
+      btn.setAttribute('aria-pressed',sel?'true':'false');
       btn.addEventListener('click',()=>{
-        q.querySelectorAll('.opt').forEach(b=>b.classList.remove('sel'));
-        btn.classList.add('sel');
+        q.querySelectorAll('.opt').forEach(b=>{b.classList.remove('sel');b.setAttribute('aria-pressed','false');});
+        btn.classList.add('sel');btn.setAttribute('aria-pressed','true');
         const v=btn.dataset.v;
         state[key]=isNaN(Number(v))?v:Number(v);
         save();
@@ -306,9 +312,11 @@
     const key=q.dataset.key;
     if(!Array.isArray(state[key]))state[key]=[];
     const checks=[...q.querySelectorAll('.check')];
+    const syncAria=()=>checks.forEach(o=>o.setAttribute('aria-checked',o.classList.contains('sel')?'true':'false'));
     checks.forEach((c,i)=>{
+      c.setAttribute('role','checkbox');c.tabIndex=0;
       if(state[key].includes(i))c.classList.add('sel');
-      c.addEventListener('click',()=>{
+      const apply=()=>{
         if(c.classList.contains('none')){
           checks.forEach(o=>o.classList.remove('sel'));c.classList.add('sel');state[key]=[i];
         }else{
@@ -316,22 +324,61 @@
           c.classList.toggle('sel');
           state[key]=checks.map((o,idx)=>o.classList.contains('sel')?idx:-1).filter(x=>x>=0);
         }
-        save();
-      });
+        syncAria();save();
+      };
+      c.addEventListener('click',apply);
+      c.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();apply();}});
     });
+    syncAria();
   });
 
-  function save(){localStorage.setItem(KEY,JSON.stringify(state));progress();}
-  function progress(){
-    const qs=document.querySelectorAll('.q[data-type="opt"]');let done=0;
-    qs.forEach(q=>{if(state[q.dataset.key]!==undefined)done++;});
-    $('#bar').style.width=Math.round(done/qs.length*100)+'%';
+  // questions conditionnelles : visibles seulement si le domaine coché les concerne
+  function updateConditionals(){
+    const dom=state.domaine||[];
+    const qCert=document.querySelector('.q[data-key="annexICert"]');
+    const qExc=document.querySelector('.q[data-key="exception"]');
+    if(qCert)qCert.hidden=!dom.includes(5);
+    if(qExc)qExc.hidden=!dom.some(i=>i<5);
   }
-  progress();
+  function requiredKeys(){
+    const dom=state.domaine||[];
+    const keys=['interdit','domaine','interaction','contenu','gpai','perso','role'];
+    if(dom.includes(5))keys.push('annexICert');
+    if(dom.some(i=>i<5))keys.push('exception');
+    MAITRISE.forEach(m=>keys.push(m.k));
+    return keys;
+  }
+  const answered=k=>{const v=state[k];return Array.isArray(v)?v.length>0:v!==undefined;};
+
+  function save(){
+    localStorage.setItem(KEY,JSON.stringify(state));
+    updateConditionals();
+    document.querySelectorAll('.q.missing').forEach(q=>{if(answered(q.dataset.key))q.classList.remove('missing');});
+    progress();
+  }
+  function progress(){
+    const keys=requiredKeys();
+    const done=keys.filter(answered).length;
+    const p=Math.round(done/keys.length*100);
+    $('#bar').style.width=p+'%';
+    $('#progress').setAttribute('aria-valuenow',p);
+    $('#pmeta').textContent=done+' / '+keys.length+' réponses';
+  }
+  updateConditionals();progress();
   $('#reset').addEventListener('click',()=>{localStorage.removeItem(KEY);location.reload();});
   $('#go').addEventListener('click',diagnose);
 
   function diagnose(){
+    // garde-fou : pas de verdict sur un questionnaire incomplet
+    document.querySelectorAll('.q.missing').forEach(q=>q.classList.remove('missing'));
+    const missing=requiredKeys().filter(k=>!answered(k));
+    if(missing.length){
+      missing.forEach(k=>{const q=document.querySelector(`.q[data-key="${k}"]`);if(q)q.classList.add('missing');});
+      const first=document.querySelector('.q.missing');
+      if(first)first.scrollIntoView({behavior:'smooth',block:'center'});
+      toast(missing.length===1?'Il reste 1 question sans réponse':`Il reste ${missing.length} questions sans réponse`);
+      return;
+    }
     const dom=state.domaine||[];
     const prohibited=(state.interdit||[]).some(i=>i<8);
     const annexISel=dom.includes(5);
@@ -538,8 +585,8 @@
         </div>
 
         <div class="viz">
-          <figure>${matrixSVG(pal,d.expoVal,d.pct,d.vColor)}<figcaption>Votre position</figcaption></figure>
-          <figure>${radarSVG(pal,d.vals,d.vColor)}<figcaption>Vos 8 garde-fous</figcaption></figure>
+          <figure role="img" aria-label="Matrice exposition / maîtrise : votre position est « ${d.vTag} »">${matrixSVG(pal,d.expoVal,d.pct,d.vColor)}<figcaption>Votre position</figcaption></figure>
+          <figure role="img" aria-label="Radar de vos 8 garde-fous, indice global ${d.pct} sur 100">${radarSVG(pal,d.vals,d.vColor)}<figcaption>Vos 8 garde-fous</figcaption></figure>
         </div>
 
         <div class="subhead">Ce que la loi attend de vous</div>
@@ -595,7 +642,10 @@
     const d=lastResult;const P=EXPORT;
     const W=820,H=1180;
     const wrapText=(s,n)=>s.length>n?s.slice(0,n-1)+'…':s;
-    const gaps=d.gaps.slice(0,6).map((g,i)=>`<text x="56" y="${812+i*30}" font-size="15" font-family="sans-serif" fill="${P.text}"><tspan font-weight="700" fill="${g.mand?P.crit:P.vig}">${g.mand?'! ':'~ '}</tspan>${wrapText(g.g,52)}</text>`).join('');
+    // escX obligatoire : un « & » brut (ex. « données & biais ») invalide le XML et fait échouer l'export
+    const gaps=d.gaps.length
+      ?d.gaps.slice(0,6).map((g,i)=>`<text x="56" y="${812+i*30}" font-size="15" font-family="sans-serif" fill="${P.text}"><tspan font-weight="700" fill="${g.mand?P.crit:P.vig}">${g.mand?'! ':'~ '}</tspan>${escX(wrapText(g.g,52))}</text>`).join('')
+      :`<text x="56" y="812" font-size="15" font-family="sans-serif" fill="${P.ctrl}" font-weight="700">✓ Aucun garde-fou manquant</text>`;
     const matrix=matrixSVG(P,d.expoVal,d.pct,d.vColor);
     const radar=radarSVG(P,d.vals,d.vColor);
     const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
@@ -607,8 +657,8 @@
       <rect x="56" y="146" width="${W-112}" height="1" fill="${P.line}"/>
       <rect x="56" y="172" width="200" height="34" rx="17" fill="${d.vColor}"/>
       <text x="156" y="194" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" font-family="sans-serif">${d.vTag}</text>
-      <text x="56" y="244" font-size="26" font-weight="800" fill="${P.text}" font-family="sans-serif">${wrapText(d.vTitle,44)}</text>
-      <text x="56" y="286" font-size="15" fill="${P.soft}" font-family="sans-serif">Exposition : ${wrapText(d.tierLabel,40)}</text>
+      <text x="56" y="244" font-size="26" font-weight="800" fill="${P.text}" font-family="sans-serif">${escX(wrapText(d.vTitle,44))}</text>
+      <text x="56" y="286" font-size="15" fill="${P.soft}" font-family="sans-serif">Exposition : ${escX(wrapText(d.tierLabel,40))}</text>
       <text x="56" y="312" font-size="15" fill="${P.soft}" font-family="sans-serif">Indice de maîtrise : ${d.pct}/100</text>
       <g transform="translate(56,340) scale(1.15)">${matrix}</g>
       <g transform="translate(430,346) scale(1.05)">${radar}</g>
@@ -629,7 +679,7 @@
     img.onerror=function(){toast('Export image indisponible ici');URL.revokeObjectURL(url);};
     img.src=url;
   }
-  function triggerDownload(url,name){const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();}
+  function triggerDownload(url,name){const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);}
 })();
 </script>
 <script src="/assets/site.js" defer></script>
