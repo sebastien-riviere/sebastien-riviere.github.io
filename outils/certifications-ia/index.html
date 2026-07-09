@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certifications &amp; formations IA/Data gratuites — Sébastien Rivière</title>
+<meta name="description" content="Formations et certifications en intelligence artificielle et data — classées par domaine, avec un statut de gratuité HONNÊTE : vraiment gratuit, cours gratuit mais certificat payant, conditionnel, ou finançable CPF. Sans fausse promesse.">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../styles/ia-kit.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+/* --- spécifique certifications-ia (le reste vient de ia-kit.css) --- */
+
+/* encart pédagogique : les 4 statuts de gratuité (le différenciateur) */
+.legend-box{max-width:var(--wrap-app);width:100%;margin:2px auto 0;padding:0 24px;}
+.legend-inner{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;}
+.legend-inner h2{font-family:var(--ui);font-weight:900;font-size:14px;color:var(--ink);margin:0 0 4px;display:flex;align-items:center;gap:8px;}
+.legend-inner h2 svg{width:17px;height:17px;fill:none;stroke:var(--ia);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.legend-inner p.sub{font-family:var(--ui);font-size:12.5px;color:var(--faint);line-height:1.5;margin:0 0 14px;max-width:660px;}
+.legend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;}
+.legend-item{display:flex;gap:10px;align-items:flex-start;font-family:var(--ui);font-size:12.5px;line-height:1.45;color:var(--muted);}
+.legend-item .dot{flex:none;width:12px;height:12px;border-radius:50%;margin-top:3px;}
+.legend-item b{color:var(--ink);font-weight:800;}
+.d-vrai{background:var(--ok);}
+.d-audit{background:var(--warn);}
+.d-cond{background:#d98a24;}
+.d-cpf{background:var(--ia);}
+
+/* barre de recherche sticky */
+.toolbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 72%,transparent);padding:16px 24px 12px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
+.search-wrap{position:relative;}
+.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:var(--faint);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;}
+#search{width:100%;font-family:var(--ui);font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 16px 13px 42px;outline:none;transition:border-color .15s,box-shadow .15s;}
+#search:focus{border-color:var(--ia);box-shadow:0 0 0 3px var(--ia-soft);}
+#search::placeholder{color:var(--faint);}
+.count{font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--faint);margin-top:9px;}
+
+main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
+
+/* pastilles de filtre (gratuité = primaire, langue = secondaire) */
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 12px;}
+.filter-lbl{font-family:var(--ui);font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--faint);margin-right:2px;}
+.chip{font-family:var(--ui);font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:7px;
+  padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:.16s;}
+.chip:hover{border-color:var(--ia);color:var(--ia-ink);}
+.chip .cdot{width:9px;height:9px;border-radius:50%;flex:none;}
+.chip .cn{font-size:11px;font-weight:800;color:var(--faint);}
+.chip.on{background:var(--ia);border-color:var(--ia);color:#fff;}
+.chip.on .cn{color:#fff;opacity:.85;}
+/* teinte des pastilles gratuité à l'état actif → couleur sémantique */
+.chip.on[data-grat="vrai-gratuit"]{background:var(--ok);border-color:var(--ok);}
+.chip.on[data-grat="audit"]{background:var(--warn);border-color:var(--warn);}
+.chip.on[data-grat="conditionnel"]{background:#d98a24;border-color:#d98a24;}
+.chip.on[data-grat="cpf"]{background:var(--ia);border-color:var(--ia);}
+.expand-toggle{margin-left:auto;font-family:var(--ui);font-size:12.5px;font-weight:800;color:var(--ia-ink);background:none;border:none;cursor:pointer;padding:6px 2px;display:inline-flex;align-items:center;gap:5px;}
+.expand-toggle:hover{text-decoration:underline;}
+@media(max-width:600px){.expand-toggle{margin-left:0;width:100%;justify-content:flex-start;}}
+
+/* sections par domaine */
+.section{margin-bottom:34px;}
+details.section > summary.section-title{display:flex;align-items:center;gap:9px;font-family:var(--ui);font-weight:800;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);padding:10px 0 11px;border-bottom:1px solid var(--border);cursor:pointer;list-style:none;user-select:none;}
+summary.section-title::-webkit-details-marker{display:none;}
+summary.section-title svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+summary.section-title .n{font-size:11px;letter-spacing:0;color:var(--ia-ink);background:var(--ia-soft);padding:2px 9px;border-radius:20px;}
+summary.section-title .chev{margin-left:auto;font-size:14px;transition:transform .2s;opacity:.5;}
+details.section[open] .chev{transform:rotate(90deg);}
+details.section .grid{margin-top:16px;}
+
+/* grille de fiches */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:14px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:17px 19px;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--border-strong);}
+.card-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:9px;}
+.clogo{flex:none;width:34px;height:34px;border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;font-family:var(--ui);font-weight:900;font-size:15px;color:#fff;background:linear-gradient(135deg,var(--ia),var(--ia-ink));}
+.card-title{font-family:var(--ui);font-weight:800;font-size:15px;color:var(--ink);line-height:1.25;flex:1;}
+.card-title a{color:inherit;text-decoration:none;}
+.card-title a:hover{text-decoration:underline;text-underline-offset:2px;}
+.card-org{font-family:var(--ui);font-size:11.5px;font-weight:700;color:var(--faint);margin-top:2px;}
+.badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px;}
+.tag{font-family:var(--ui);font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:4px;}
+.tag .tdot{width:7px;height:7px;border-radius:50%;}
+.g-vrai-gratuit{background:var(--ok-soft);color:var(--ok);}
+.g-vrai-gratuit .tdot{background:var(--ok);}
+.g-audit{background:var(--warn-soft);color:var(--warn);}
+.g-audit .tdot{background:var(--warn);}
+.g-conditionnel{background:#f6ecdb;color:#a5661a;}
+.g-conditionnel .tdot{background:#d98a24;}
+.g-cpf{background:var(--ia-soft);color:var(--ia-ink);}
+.g-cpf .tdot{background:var(--ia);}
+.tag.niv{background:var(--bg);color:var(--muted);border:1px solid var(--border);letter-spacing:.2px;text-transform:none;font-weight:700;}
+.tag.lang{background:var(--bg);color:var(--muted);border:1px solid var(--border);text-transform:none;font-weight:700;}
+.card-desc{font-family:var(--ui);font-size:13px;color:var(--muted);line-height:1.5;flex:1;}
+.card-desc .note-lbl{font-weight:800;color:var(--ink);}
+.meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:11px;font-family:var(--ui);font-size:11.5px;color:var(--faint);}
+.meta-row span{display:inline-flex;align-items:center;gap:4px;}
+.meta-row svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.card-link{margin-top:12px;font-family:var(--ui);font-size:12px;font-weight:800;color:var(--ia-ink);text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
+.card:hover .card-link{text-decoration:underline;}
+.verif{margin-top:9px;font-family:var(--ui);font-size:10.5px;color:var(--faint);display:inline-flex;align-items:center;gap:4px;}
+.verif svg{width:12px;height:12px;fill:none;stroke:var(--ok);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+
+.no-result{font-family:var(--ui);color:var(--faint);text-align:center;padding:40px 0;display:none;}
+.disclaimer{font-family:var(--ui);font-size:13px;color:var(--faint);line-height:1.6;margin-top:26px;padding-top:20px;border-top:1px solid var(--border);max-width:740px;}
+.disclaimer a{color:var(--ia-ink);}
+.cta-block{text-align:center;margin:34px auto 4px;padding:26px 22px;max-width:580px;background:var(--ia-soft);border-radius:var(--radius);}
+.cta-block p{font-family:var(--ui);font-weight:700;color:var(--ia-ink);margin:0 0 14px;font-size:16px;line-height:1.45;}
+
+@media(max-width:600px){
+  .toolbar{padding:14px 20px 10px;}
+  .legend-box{padding:0 20px;}
+  main{padding:4px 20px 48px;}
+  .grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="sr-header" data-active="outils"></div>
+
+<div class="ia-band">
+  <header class="ia-head">
+    <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg> Se former · IA &amp; Data</div>
+    <h1 class="ia-title">Certifications &amp; formations IA / Data gratuites</h1>
+    <p class="ia-lead">Une sélection de formations et certifications en <strong>intelligence artificielle et data</strong>, avec un statut de gratuité <strong>honnête</strong>&nbsp;: vraiment gratuit, cours gratuit mais certificat payant, conditionnel, ou finançable CPF. Parce que «&nbsp;gratuit&nbsp;» cache souvent un astérisque. <strong>Vérifié à la source</strong>, mis à jour régulièrement.</p>
+  </header>
+</div>
+
+<div class="legend-box">
+  <div class="legend-inner">
+    <h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Comment lire la gratuité</h2>
+    <p class="sub">La plupart des listes «&nbsp;X certifs IA gratuites&nbsp;» mélangent tout. Ici, chaque fiche affiche son <strong>vrai</strong> statut&nbsp;:</p>
+    <div class="legend-grid">
+      <div class="legend-item"><span class="dot d-vrai"></span><span><b>Vraiment gratuit</b> — cours <em>et</em> certificat/badge gratuits, ouverts à tous.</span></div>
+      <div class="legend-item"><span class="dot d-audit"></span><span><b>Cours gratuit, certif payante</b> — vous apprenez sans payer, mais le certificat est facturé.</span></div>
+      <div class="legend-item"><span class="dot d-cond"></span><span><b>Conditionnel</b> — gratuit sous condition&nbsp;: étudiant vérifié, partenaire, essai limité.</span></div>
+      <div class="legend-item"><span class="dot d-cpf"></span><span><b>Finançable CPF</b> — 0&nbsp;€ pour l'apprenant éligible, mais ce n'est pas «&nbsp;gratuit&nbsp;» au sens strict.</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input id="search" type="search" placeholder="Rechercher une formation, un organisme, un sujet (ex. LLM, Python, éthique…)" autocomplete="off">
+  </div>
+  <div class="count" id="count">Chargement…</div>
+</div>
+
+<main>
+  <div class="filter-row" id="gratNav"></div>
+  <div class="filter-row" id="langNav"></div>
+  <div id="catalogue"></div>
+  <div class="no-result" id="noResult">Aucune formation ne correspond à votre recherche.</div>
+
+  <p class="disclaimer">Sélection indicative et non exhaustive, non sponsorisée. Les offres «&nbsp;gratuites&nbsp;», paliers d'essai et tarifs de certification <strong>évoluent vite</strong>&nbsp;: chaque fiche porte sa <strong>date de vérification</strong> — recoupez toujours sur la page officielle avant de vous engager. Les crédits/équivalences annoncés (ACE, etc.) sont des <em>recommandations</em>, pas des équivalences automatiques en France. Une erreur, une formation manquante&nbsp;? <a href="mailto:rsebastien@protonmail.com">Signalez-le</a>.</p>
+
+  <div class="cta-block">
+    <p>Envie de vous former à l'IA mais perdu dans l'offre&nbsp;? Parlons-en.</p>
+    <a href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener" class="ia-btn">Échangeons sur LinkedIn →</a>
+  </div>
+</main>
+
+<div id="sr-footer"></div>
+
+<script>
+const GRAT = {
+  'vrai-gratuit': {lbl:'Vraiment gratuit', cls:'g-vrai-gratuit'},
+  'audit':        {lbl:'Cours gratuit · certif payante', cls:'g-audit'},
+  'conditionnel': {lbl:'Conditionnel', cls:'g-conditionnel'},
+  'cpf':          {lbl:'Finançable CPF', cls:'g-cpf'}
+};
+const GRAT_ORDER = ['vrai-gratuit','audit','conditionnel','cpf'];
+const CAT_ICON = {
+  fondamentaux:'<path d="M12 2 2 7l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/>',
+  genai:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/>',
+  data:'<path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="4" width="3" height="14"/>',
+  dataeng:'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>',
+  ml:'<circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/>',
+  ethique:'<path d="M12 3v18M5 7h14M7 7l-3 6a3 3 0 0 0 6 0zM17 7l-3 6a3 3 0 0 0 6 0z"/>'
+};
+
+let CATS=[], CERTS=[];
+let fGrat='', fLang='', allOpen=false;
+let DEFAULT_OPEN='';
+
+const catalogue=document.getElementById('catalogue');
+const noResult=document.getElementById('noResult');
+const countEl=document.getElementById('count');
+const search=document.getElementById('search');
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function initials(name){return esc((name||'?').replace(/[^A-Za-zÀ-ÿ0-9 ]/g,'').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase());}
+
+function cardHTML(c){
+  const g=GRAT[c.grat]||{lbl:c.grat,cls:''};
+  const title=c.u?`<a href="${esc(c.u)}" target="_blank" rel="noopener">${esc(c.n)}</a>`:esc(c.n);
+  const niv=c.niv?`<span class="tag niv">${esc(c.niv)}</span>`:'';
+  const lang=c.lang?`<span class="tag lang">${esc(c.lang)}</span>`:'';
+  const duree=c.duree?`<span title="Durée estimée"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${esc(c.duree)}</span>`:'';
+  const reco=c.reco?`<span title="Ce que vous obtenez"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></svg>${esc(c.reco)}</span>`:'';
+  const cout=(c.cout && c.cout!=='0')?`<span title="Coût réel"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>${esc(c.cout)}</span>`:'';
+  const note=c.note?`<div class="card-desc"><span class="note-lbl">À savoir&nbsp;:</span> ${esc(c.note)}</div>`:'';
+  const link=c.u?`<a class="card-link" href="${esc(c.u)}" target="_blank" rel="noopener">Voir la formation →</a>`:'';
+  const verif=c.verif?`<span class="verif"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Vérifié le ${esc(c.verif)}</span>`:'';
+  const sdata=esc(((c.n||'')+' '+(c.org||'')+' '+(c.note||'')+' '+(c.reco||'')).toLowerCase());
+  return `<div class="card" data-search="${sdata}" data-grat="${esc(c.grat)}" data-lang="${esc(c.lang||'')}">
+    <div class="card-head"><span class="clogo">${initials(c.org||c.n)}</span><div style="flex:1"><div class="card-title">${title}</div><div class="card-org">${esc(c.org||'')}</div></div></div>
+    <div class="badges"><span class="tag ${g.cls}"><span class="tdot"></span>${esc(g.lbl)}</span>${niv}${lang}</div>
+    ${note}
+    <div class="meta-row">${cout}${duree}${reco}</div>
+    ${link}
+    ${verif}
+  </div>`;
+}
+
+function renderCatalogue(){
+  catalogue.innerHTML=CATS.map(([key,label])=>{
+    const items=CERTS.filter(c=>c.cat===key);
+    if(!items.length)return '';
+    // tri : vrai-gratuit d'abord, puis par ordre de statut
+    items.sort((a,b)=>GRAT_ORDER.indexOf(a.grat)-GRAT_ORDER.indexOf(b.grat));
+    return `<details class="section" data-cat="${key}"${key===DEFAULT_OPEN?' open':''}>
+      <summary class="section-title"><svg viewBox="0 0 24 24">${CAT_ICON[key]||''}</svg>${esc(label)}<span class="n">${items.length}</span><span class="chev">›</span></summary>
+      <div class="grid">${items.map(cardHTML).join('')}</div>
+    </details>`;
+  }).join('');
+}
+
+function renderGratNav(){
+  const nav=document.getElementById('gratNav');
+  const counts={}; CERTS.forEach(c=>counts[c.grat]=(counts[c.grat]||0)+1);
+  const all=`<span class="filter-lbl">Gratuité</span><span class="chip on" data-grat="">Toutes<span class="cn">${CERTS.length}</span></span>`;
+  const chips=GRAT_ORDER.map(g=>counts[g]?`<span class="chip" data-grat="${g}"><span class="cdot d-${g==='vrai-gratuit'?'vrai':g==='conditionnel'?'cond':g}"></span>${GRAT[g].lbl}<span class="cn">${counts[g]}</span></span>`:'').join('');
+  nav.innerHTML=all+chips+`<button class="expand-toggle" id="expandToggle" type="button"><span id="expandLbl">Tout déplier</span></button>`;
+  nav.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+    nav.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+    c.classList.add('on'); fGrat=c.dataset.grat; filter();
+  }));
+  document.getElementById('expandToggle').addEventListener('click',toggleExpandAll);
+}
+
+function renderLangNav(){
+  const nav=document.getElementById('langNav');
+  const langs=[...new Set(CERTS.map(c=>c.lang).filter(Boolean))].sort();
+  if(langs.length<2){nav.style.display='none';return;}
+  nav.innerHTML='<span class="filter-lbl">Langue</span><span class="chip on" data-lang="">Toutes</span>'
+    +langs.map(l=>`<span class="chip" data-lang="${esc(l)}">${esc(l)}</span>`).join('');
+  nav.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+    nav.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+    c.classList.add('on'); fLang=c.dataset.lang; filter();
+  }));
+}
+
+function visibleSections(){return [...document.querySelectorAll('.section[data-cat]')].filter(s=>s.style.display!=='none');}
+function toggleExpandAll(){allOpen=!allOpen;visibleSections().forEach(s=>s.open=allOpen);syncExpandLabel();}
+function syncExpandLabel(){
+  const lbl=document.getElementById('expandLbl'); if(!lbl) return;
+  const secs=visibleSections();
+  allOpen=secs.length>0 && secs.every(s=>s.open);
+  lbl.textContent=allOpen?'Tout replier':'Tout déplier';
+}
+
+function filter(){
+  const q=search.value.trim().toLowerCase();
+  const active=!!(q||fGrat||fLang);
+  let visible=0;
+  document.querySelectorAll('.section[data-cat]').forEach(sec=>{
+    let sv=0;
+    sec.querySelectorAll('.card').forEach(card=>{
+      const m=!q||card.dataset.search.includes(q);
+      const mg=!fGrat||card.dataset.grat===fGrat;
+      const ml=!fLang||card.dataset.lang===fLang;
+      const show=m&&mg&&ml;
+      card.style.display=show?'':'none'; if(show){sv++;visible++;}
+    });
+    sec.style.display=sv?'':'none';
+    if(sv){sec.open=active?true:(sec.dataset.cat===DEFAULT_OPEN);}
+  });
+  noResult.style.display=visible?'none':'block';
+  countEl.textContent=active?`${visible} formation${visible>1?'s':''}`:`${CERTS.length} formations · ${CATS.filter(([k])=>CERTS.some(c=>c.cat===k)).length} domaines`;
+  syncExpandLabel();
+}
+
+(async function init(){
+  try{
+    const r=await fetch('data.json?v='+Date.now(),{cache:'no-cache'});
+    if(!r.ok) throw new Error('http '+r.status);
+    const data=await r.json();
+    CATS=data.cats||[]; CERTS=data.certs||[];
+    DEFAULT_OPEN=(CATS.find(([k])=>CERTS.some(c=>c.cat===k))||[])[0]||'';
+    renderCatalogue(); renderGratNav(); renderLangNav();
+    filter();
+    catalogue.addEventListener('toggle',syncExpandLabel,true);
+    search.addEventListener('input',filter);
+  }catch(e){
+    countEl.textContent='';
+    catalogue.innerHTML='<p style="font-family:Nunito,sans-serif;color:var(--faint);text-align:center;padding:40px 0;">Chargement impossible pour le moment. Réessayez plus tard.</p>';
+  }
+})();
+</script>
+<script src="/assets/site.js" defer></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
