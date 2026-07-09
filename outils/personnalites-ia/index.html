@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personnalités de l'IA — qui est qui — Sébastien Rivière</title>
+<meta name="description" content="Un who's who des personnalités de l'intelligence artificielle — chercheurs, dirigeants, régulateurs, vulgarisateurs — classés par rôle, avec un lien vers leur profil officiel. Sélection curée, sans photos.">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../styles/ia-kit.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+/* --- spécifique personnalites-ia (le reste vient de ia-kit.css) --- */
+.toolbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 72%,transparent);padding:16px 24px 12px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
+.search-wrap{position:relative;}
+.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:var(--faint);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;}
+#search{width:100%;font-family:var(--ui);font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 16px 13px 42px;outline:none;transition:border-color .15s,box-shadow .15s;}
+#search:focus{border-color:var(--ia);box-shadow:0 0 0 3px var(--ia-soft);}
+#search::placeholder{color:var(--faint);}
+.count{font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--faint);margin-top:9px;}
+
+main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
+
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 12px;}
+.filter-lbl{font-family:var(--ui);font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--faint);margin-right:2px;}
+.chip{font-family:var(--ui);font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:.16s;}
+.chip:hover{border-color:var(--ia);color:var(--ia-ink);}
+.chip .cdot{width:9px;height:9px;border-radius:50%;flex:none;}
+.chip .cn{font-size:11px;font-weight:800;color:var(--faint);}
+.chip.on{background:var(--ia);border-color:var(--ia);color:#fff;}
+.chip.on .cn{color:#fff;opacity:.85;}
+.chip.on[data-role="recherche"]{background:var(--r-rech);border-color:var(--r-rech);}
+.chip.on[data-role="entreprise"]{background:var(--r-ent);border-color:var(--r-ent);}
+.chip.on[data-role="regulation"]{background:var(--r-reg);border-color:var(--r-reg);}
+.chip.on[data-role="influence"]{background:var(--r-inf);border-color:var(--r-inf);}
+.expand-toggle{margin-left:auto;font-family:var(--ui);font-size:12.5px;font-weight:800;color:var(--ia-ink);background:none;border:none;cursor:pointer;padding:6px 2px;display:inline-flex;align-items:center;gap:5px;}
+.expand-toggle:hover{text-decoration:underline;}
+@media(max-width:600px){.expand-toggle{margin-left:0;width:100%;justify-content:flex-start;}}
+
+/* couleurs de rôle */
+:root{--r-rech:#2f6df0;--r-ent:#1f9d6b;--r-reg:#c0392b;--r-inf:#7d5bd0;}
+
+.section{margin-bottom:34px;}
+details.section > summary.section-title{display:flex;align-items:center;gap:9px;font-family:var(--ui);font-weight:800;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);padding:10px 0 11px;border-bottom:1px solid var(--border);cursor:pointer;list-style:none;user-select:none;}
+summary.section-title::-webkit-details-marker{display:none;}
+summary.section-title .dot{width:10px;height:10px;border-radius:50%;flex:none;}
+summary.section-title .n{font-size:11px;letter-spacing:0;color:var(--ia-ink);background:var(--ia-soft);padding:2px 9px;border-radius:20px;}
+summary.section-title .chev{margin-left:auto;font-size:14px;transition:transform .2s;opacity:.5;}
+details.section[open] .chev{transform:rotate(90deg);}
+details.section .grid{margin-top:16px;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:14px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--border-strong);}
+.card-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:9px;}
+.mono{flex:none;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ui);font-weight:800;font-size:14px;color:#fff;}
+.mono.recherche{background:linear-gradient(135deg,var(--r-rech),#1c4fc0);}
+.mono.entreprise{background:linear-gradient(135deg,var(--r-ent),#157a52);}
+.mono.regulation{background:linear-gradient(135deg,var(--r-reg),#961f14);}
+.mono.influence{background:linear-gradient(135deg,var(--r-inf),#5a3fb0);}
+.card-name{font-family:var(--ui);font-weight:800;font-size:15.5px;color:var(--ink);line-height:1.2;}
+.card-org{font-family:var(--ui);font-size:11.5px;font-weight:700;color:var(--faint);margin-top:3px;}
+.badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px;}
+.rbadge{font-family:var(--ui);font-size:10px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:5px;color:#fff;}
+.rbadge.recherche{background:var(--r-rech);}
+.rbadge.entreprise{background:var(--r-ent);}
+.rbadge.regulation{background:var(--r-reg);}
+.rbadge.influence{background:var(--r-inf);}
+.flag{height:13px;width:auto;flex:none;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.10);}
+.card-bio{font-family:var(--ui);font-size:13px;color:var(--muted);line-height:1.5;flex:1;}
+.links{display:flex;gap:8px;margin-top:12px;align-items:center;}
+.plink{font-family:var(--ui);font-size:12px;font-weight:800;color:var(--ia-ink);text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
+.plink:hover{text-decoration:underline;}
+.xlink{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid var(--border);border-radius:6px;color:var(--muted);}
+.xlink:hover{border-color:var(--ia);color:var(--ia-ink);}
+.xlink svg{width:13px;height:13px;fill:currentColor;}
+
+.no-result{font-family:var(--ui);color:var(--faint);text-align:center;padding:40px 0;display:none;}
+.disclaimer{font-family:var(--ui);font-size:13px;color:var(--faint);line-height:1.6;margin-top:26px;padding-top:20px;border-top:1px solid var(--border);max-width:740px;}
+.disclaimer a{color:var(--ia-ink);}
+
+@media(max-width:600px){
+  .toolbar{padding:14px 20px 10px;}
+  main{padding:4px 20px 48px;}
+  .grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="sr-header" data-active="outils"></div>
+
+<div class="ia-band">
+  <header class="ia-head">
+    <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Qui est qui · IA</div>
+    <h1 class="ia-title">Les personnalités de l'IA</h1>
+    <p class="ia-lead">Un <em>who's who</em> pour s'y retrouver dans les figures de l'intelligence artificielle&nbsp;: <strong>chercheurs, dirigeants, régulateurs, vulgarisateurs</strong>. Classés par rôle, avec un lien vers leur <strong>profil officiel</strong>. Sélection curée et non exhaustive — <strong>sans photos</strong>, on renvoie à la source.</p>
+  </header>
+</div>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input id="search" type="search" placeholder="Rechercher une personne, une organisation (ex. Mistral, LeCun, INRIA…)" autocomplete="off">
+  </div>
+  <div class="count" id="count">Chargement…</div>
+</div>
+
+<main>
+  <div class="filter-row" id="roleNav"></div>
+  <div class="filter-row" id="paysNav"></div>
+  <div id="catalogue"></div>
+  <div class="no-result" id="noResult">Aucune personne ne correspond à votre recherche.</div>
+
+  <p class="disclaimer">Sélection <strong>indicative, non exhaustive et curée</strong>, à visée informative et pédagogique. Aucune photo n'est hébergée&nbsp;: chaque fiche renvoie vers un <strong>profil public officiel</strong> (Wikipédia, site institutionnel, ou compte vérifié). Les rôles et rattachements évoluent&nbsp;; recoupez avant de citer. Une erreur, un oubli, ou une demande de retrait&nbsp;? <a href="mailto:rsebastien@protonmail.com">Écrivez-moi</a>.</p>
+</main>
+
+<div id="sr-footer"></div>
+
+<script>
+const ROLES = [
+  ["recherche",  "Recherche"],
+  ["entreprise", "Entreprise & fondateurs"],
+  ["regulation", "Régulation & politique"],
+  ["influence",  "Vulgarisation & influence"]
+];
+const RLABEL = Object.fromEntries(ROLES);
+const RVAR = {recherche:'rech', entreprise:'ent', regulation:'reg', influence:'inf'};
+const COUNTRY = {FR:'France',US:'États-Unis',GB:'Royaume-Uni',CA:'Canada',CN:'Chine',DE:'Allemagne',IL:'Israël',TW:'Taïwan',IN:'Inde',JP:'Japon',NL:'Pays-Bas',CH:'Suisse',DK:'Danemark',SE:'Suède',ES:'Espagne',IT:'Italie',BE:'Belgique'};
+const X_SVG = '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.5 8.6L23 22h-6.8l-5.3-7-6.1 7H1.7l8-9.2L1 2h7l4.8 6.4L18.9 2Zm-2.4 18h1.9L7.6 4H5.6l10.9 16Z"/></svg>';
+
+let ROLESET=[], PERS=[];
+let fRole='', fPays='', allOpen=false, DEFAULT_OPEN='';
+
+const catalogue=document.getElementById('catalogue');
+const noResult=document.getElementById('noResult');
+const countEl=document.getElementById('count');
+const search=document.getElementById('search');
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function initials(name){return esc((name||'?').replace(/[^A-Za-zÀ-ÿ0-9 ]/g,'').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase());}
+function flagImg(code){if(!code)return'';const c=code.toLowerCase(),n=COUNTRY[code]||code;return `<img class="flag" src="https://flagcdn.com/${c}.svg" alt="${n}" title="${n}" width="20" height="14" loading="lazy">`;}
+
+function cardHTML(p){
+  const prof=p.u?`<a class="plink" href="${esc(p.u)}" target="_blank" rel="noopener">Profil →</a>`:'';
+  const x=p.x?`<a class="xlink" href="https://x.com/${esc(p.x)}" target="_blank" rel="noopener" title="@${esc(p.x)} sur X" aria-label="Profil X">${X_SVG}</a>`:'';
+  const sdata=esc(((p.n||'')+' '+(p.org||'')+' '+(p.bio||'')).toLowerCase());
+  return `<div class="card" data-search="${sdata}" data-role="${esc(p.role)}" data-pays="${esc(p.pays||'')}">
+    <div class="card-head"><span class="mono ${esc(p.role)}">${initials(p.n)}</span><div style="flex:1"><div class="card-name">${esc(p.n)}</div><div class="card-org">${esc(p.org||'')}</div></div></div>
+    <div class="badges"><span class="rbadge ${esc(p.role)}">${esc(RLABEL[p.role]||p.role)}</span>${flagImg(p.pays)}</div>
+    <div class="card-bio">${esc(p.bio||'')}</div>
+    <div class="links">${prof}${x}</div>
+  </div>`;
+}
+
+function renderCatalogue(){
+  catalogue.innerHTML=ROLES.map(([key,label])=>{
+    const items=PERS.filter(p=>p.role===key).sort((a,b)=>(b.notoriete||0)-(a.notoriete||0)||(a.n||'').localeCompare(b.n||''));
+    if(!items.length)return '';
+    return `<details class="section" data-role="${key}"${key===DEFAULT_OPEN?' open':''}>
+      <summary class="section-title"><span class="dot" style="background:var(--r-${RVAR[key]})"></span>${esc(label)}<span class="n">${items.length}</span><span class="chev">›</span></summary>
+      <div class="grid">${items.map(cardHTML).join('')}</div>
+    </details>`;
+  }).join('');
+}
+
+function renderRoleNav(){
+  const nav=document.getElementById('roleNav');
+  const counts={}; PERS.forEach(p=>counts[p.role]=(counts[p.role]||0)+1);
+  const all=`<span class="filter-lbl">Rôle</span><span class="chip on" data-role="">Tous<span class="cn">${PERS.length}</span></span>`;
+  const chips=ROLES.map(([k,l])=>counts[k]?`<span class="chip" data-role="${k}"><span class="cdot" style="background:var(--r-${RVAR[k]})"></span>${l}<span class="cn">${counts[k]}</span></span>`:'').join('');
+  nav.innerHTML=all+chips+`<button class="expand-toggle" id="expandToggle" type="button"><span id="expandLbl">Tout déplier</span></button>`;
+  nav.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{nav.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');fRole=c.dataset.role;filter();}));
+  document.getElementById('expandToggle').addEventListener('click',toggleExpandAll);
+}
+
+function renderPaysNav(){
+  const nav=document.getElementById('paysNav');
+  const counts={}; PERS.forEach(p=>{if(p.pays)counts[p.pays]=(counts[p.pays]||0)+1;});
+  const pays=Object.keys(counts).sort((a,b)=>counts[b]-counts[a]);
+  if(pays.length<2){nav.style.display='none';return;}
+  nav.innerHTML='<span class="filter-lbl">Pays</span><span class="chip on" data-pays="">🌍 Tous</span>'
+    +pays.map(p=>`<span class="chip" data-pays="${p}">${flagImg(p)}${COUNTRY[p]||p}<span class="cn">${counts[p]}</span></span>`).join('');
+  nav.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{nav.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');fPays=c.dataset.pays;filter();}));
+}
+
+function visibleSections(){return [...document.querySelectorAll('.section[data-role]')].filter(s=>s.style.display!=='none');}
+function toggleExpandAll(){allOpen=!allOpen;visibleSections().forEach(s=>s.open=allOpen);syncExpandLabel();}
+function syncExpandLabel(){const lbl=document.getElementById('expandLbl');if(!lbl)return;const secs=visibleSections();allOpen=secs.length>0&&secs.every(s=>s.open);lbl.textContent=allOpen?'Tout replier':'Tout déplier';}
+
+function filter(){
+  const q=search.value.trim().toLowerCase();
+  const active=!!(q||fRole||fPays);
+  let visible=0;
+  document.querySelectorAll('.section[data-role]').forEach(sec=>{
+    if(fRole && sec.dataset.role!==fRole){sec.style.display='none';return;}
+    let sv=0;
+    sec.querySelectorAll('.card').forEach(card=>{
+      const m=!q||card.dataset.search.includes(q);
+      const mp=!fPays||card.dataset.pays===fPays;
+      const show=m&&mp;
+      card.style.display=show?'':'none'; if(show){sv++;visible++;}
+    });
+    sec.style.display=sv?'':'none';
+    if(sv){sec.open=active?true:(sec.dataset.role===DEFAULT_OPEN);}
+  });
+  noResult.style.display=visible?'none':'block';
+  countEl.textContent=active?`${visible} personne${visible>1?'s':''}`:`${PERS.length} personnalités · ${ROLES.filter(([k])=>PERS.some(p=>p.role===k)).length} rôles`;
+  syncExpandLabel();
+}
+
+(async function init(){
+  try{
+    const r=await fetch('data.json?v='+Date.now(),{cache:'no-cache'});
+    if(!r.ok) throw new Error('http '+r.status);
+    const data=await r.json();
+    PERS=data.persons||[];
+    DEFAULT_OPEN=(ROLES.find(([k])=>PERS.some(p=>p.role===k))||[])[0]||'';
+    renderCatalogue(); renderRoleNav(); renderPaysNav();
+    filter();
+    catalogue.addEventListener('toggle',syncExpandLabel,true);
+    search.addEventListener('input',filter);
+  }catch(e){
+    countEl.textContent='';
+    catalogue.innerHTML='<p style="font-family:Nunito,sans-serif;color:var(--faint);text-align:center;padding:40px 0;">Chargement impossible pour le moment. Réessayez plus tard.</p>';
+  }
+})();
+</script>
+<script src="/assets/site.js" defer></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

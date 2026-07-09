@@ -1,0 +1,435 @@
+{
+ "maj": "9 juillet 2026",
+ "persons": [
+  {
+   "n": "Yann LeCun",
+   "role": "recherche",
+   "org": "AMI Labs / NYU (ex-Meta)",
+   "pays": "FR",
+   "bio": "Pionnier du deep learning, prix Turing 2018 ; a quitté Meta fin 2025 pour fonder AMI Labs",
+   "u": "https://fr.wikipedia.org/wiki/Yann_Le_Cun",
+   "x": "ylecun",
+   "notoriete": 3
+  },
+  {
+   "n": "Geoffrey Hinton",
+   "role": "recherche",
+   "org": "Université de Toronto",
+   "pays": "CA",
+   "bio": "« Parrain » du deep learning, prix Turing 2018 et Nobel de physique 2024",
+   "u": "https://fr.wikipedia.org/wiki/Geoffrey_Hinton",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "Yoshua Bengio",
+   "role": "recherche",
+   "org": "Mila / Université de Montréal",
+   "pays": "CA",
+   "bio": "Pionnier du deep learning (Turing 2018), préside le rapport international sur la sûreté de l'IA",
+   "u": "https://fr.wikipedia.org/wiki/Yoshua_Bengio",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "Fei-Fei Li",
+   "role": "recherche",
+   "org": "Stanford (HAI) / World Labs",
+   "pays": "US",
+   "bio": "Créatrice d'ImageNet, pionnière de la vision par ordinateur, voix de l'« IA centrée humain »",
+   "u": "https://fr.wikipedia.org/wiki/Fei-Fei_Li",
+   "x": "drfeifei",
+   "notoriete": 3
+  },
+  {
+   "n": "Ilya Sutskever",
+   "role": "recherche",
+   "org": "Safe Superintelligence (SSI)",
+   "pays": "CA",
+   "bio": "Co-inventeur d'AlexNet, ex-chef scientifique d'OpenAI, fondateur de SSI (sûreté)",
+   "u": "https://fr.wikipedia.org/wiki/Ilya_Sutskever",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "Andrew Ng",
+   "role": "recherche",
+   "org": "Stanford / DeepLearning.AI",
+   "pays": "US",
+   "bio": "Cofondateur de Coursera et Google Brain, grand pédagogue du machine learning",
+   "u": "https://fr.wikipedia.org/wiki/Andrew_Ng",
+   "x": "AndrewYNg",
+   "notoriete": 3
+  },
+  {
+   "n": "Stuart Russell",
+   "role": "recherche",
+   "org": "UC Berkeley",
+   "pays": "GB",
+   "bio": "Auteur du manuel de référence en IA, figure majeure de la sûreté de l'IA",
+   "u": "https://fr.wikipedia.org/wiki/Stuart_Russell",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Alan Turing",
+   "role": "recherche",
+   "org": "Historique (Royaume-Uni)",
+   "pays": "GB",
+   "bio": "Père de l'informatique théorique et de l'IA, à l'origine du test de Turing",
+   "u": "https://fr.wikipedia.org/wiki/Alan_Turing",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "John McCarthy",
+   "role": "recherche",
+   "org": "Historique (Stanford)",
+   "pays": "US",
+   "bio": "A forgé le terme « intelligence artificielle » (1956) et créé le langage Lisp",
+   "u": "https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Marvin Minsky",
+   "role": "recherche",
+   "org": "Historique (MIT)",
+   "pays": "US",
+   "bio": "Cofondateur du laboratoire d'IA du MIT, théoricien pionnier de l'IA",
+   "u": "https://fr.wikipedia.org/wiki/Marvin_Minsky",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Luc Julia",
+   "role": "recherche",
+   "org": "Informaticien (ex-Renault, ex-Samsung)",
+   "pays": "FR",
+   "bio": "Co-concepteur de Siri, auteur de « L'intelligence artificielle n'existe pas »",
+   "u": "https://fr.wikipedia.org/wiki/Luc_Julia",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Aurélie Jean",
+   "role": "recherche",
+   "org": "In Silico Veritas",
+   "pays": "FR",
+   "bio": "Scientifique numéricienne, vulgarisatrice des algorithmes et de leurs biais",
+   "u": "https://fr.wikipedia.org/wiki/Aur%C3%A9lie_Jean",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Jean-Gabriel Ganascia",
+   "role": "recherche",
+   "org": "Sorbonne Université / LIP6",
+   "pays": "FR",
+   "bio": "Chercheur en IA et philosophe, spécialiste de l'éthique de l'IA",
+   "u": "https://fr.wikipedia.org/wiki/Jean-Gabriel_Ganascia",
+   "x": "",
+   "notoriete": 1
+  },
+  {
+   "n": "Sam Altman",
+   "role": "entreprise",
+   "org": "OpenAI",
+   "pays": "US",
+   "bio": "Cofondateur et CEO d'OpenAI, société derrière ChatGPT",
+   "u": "https://fr.wikipedia.org/wiki/Sam_Altman",
+   "x": "sama",
+   "notoriete": 3
+  },
+  {
+   "n": "Dario Amodei",
+   "role": "entreprise",
+   "org": "Anthropic",
+   "pays": "US",
+   "bio": "Cofondateur et CEO d'Anthropic (Claude), centré sur la sûreté de l'IA",
+   "u": "https://fr.wikipedia.org/wiki/Dario_Amodei",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "Demis Hassabis",
+   "role": "entreprise",
+   "org": "Google DeepMind",
+   "pays": "GB",
+   "bio": "Cofondateur de DeepMind (AlphaGo, AlphaFold), prix Nobel de chimie 2024",
+   "u": "https://fr.wikipedia.org/wiki/Demis_Hassabis",
+   "x": "demishassabis",
+   "notoriete": 3
+  },
+  {
+   "n": "Jensen Huang",
+   "role": "entreprise",
+   "org": "NVIDIA",
+   "pays": "US",
+   "bio": "Cofondateur et CEO de NVIDIA, dont les puces GPU font tourner l'IA mondiale",
+   "u": "https://fr.wikipedia.org/wiki/Jensen_Huang",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "Elon Musk",
+   "role": "entreprise",
+   "org": "xAI",
+   "pays": "US",
+   "bio": "Fondateur de xAI (Grok), cofondateur historique d'OpenAI",
+   "u": "https://fr.wikipedia.org/wiki/Elon_Musk",
+   "x": "elonmusk",
+   "notoriete": 3
+  },
+  {
+   "n": "Mark Zuckerberg",
+   "role": "entreprise",
+   "org": "Meta",
+   "pays": "US",
+   "bio": "PDG de Meta, moteur de l'IA open source (modèles Llama)",
+   "u": "https://fr.wikipedia.org/wiki/Mark_Zuckerberg",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "Sundar Pichai",
+   "role": "entreprise",
+   "org": "Google / Alphabet",
+   "pays": "US",
+   "bio": "PDG d'Alphabet et Google, pilote la stratégie IA Gemini",
+   "u": "https://fr.wikipedia.org/wiki/Sundar_Pichai",
+   "x": "sundarpichai",
+   "notoriete": 3
+  },
+  {
+   "n": "Satya Nadella",
+   "role": "entreprise",
+   "org": "Microsoft",
+   "pays": "US",
+   "bio": "PDG de Microsoft, artisan du partenariat OpenAI et de Copilot",
+   "u": "https://fr.wikipedia.org/wiki/Satya_Nadella",
+   "x": "satyanadella",
+   "notoriete": 3
+  },
+  {
+   "n": "Mira Murati",
+   "role": "entreprise",
+   "org": "Thinking Machines Lab",
+   "pays": "US",
+   "bio": "Ex-directrice technique d'OpenAI, fondatrice de Thinking Machines Lab",
+   "u": "https://fr.wikipedia.org/wiki/Mira_Murati",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Arthur Mensch",
+   "role": "entreprise",
+   "org": "Mistral AI",
+   "pays": "FR",
+   "bio": "Cofondateur et CEO de Mistral AI, champion européen des modèles ouverts",
+   "u": "https://fr.wikipedia.org/wiki/Arthur_Mensch",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "Rachel Delacour",
+   "role": "entreprise",
+   "org": "Sweep",
+   "pays": "FR",
+   "bio": "Entrepreneure French Tech (We Are Cloud, puis Sweep), business angel",
+   "u": "https://fr.wikipedia.org/wiki/Rachel_Delacour",
+   "x": "",
+   "notoriete": 1
+  },
+  {
+   "n": "Clément Delangue",
+   "role": "entreprise",
+   "org": "Hugging Face",
+   "pays": "FR",
+   "bio": "Cofondateur et CEO de Hugging Face, plateforme de référence de l'IA open source",
+   "u": "https://huggingface.co/clem",
+   "x": "clementdelangue",
+   "notoriete": 2
+  },
+  {
+   "n": "Clara Chappaz",
+   "role": "regulation",
+   "org": "Ambassadrice au Numérique et à l'IA (FR)",
+   "pays": "FR",
+   "bio": "Ex-ministre déléguée à l'IA/Numérique, désormais ambassadrice au numérique",
+   "u": "https://fr.wikipedia.org/wiki/Clara_Chappaz",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Anne Bouverot",
+   "role": "regulation",
+   "org": "Envoyée spéciale IA (FR) / ENS",
+   "pays": "FR",
+   "bio": "Présidente de l'ENS, organisatrice du Sommet pour l'action sur l'IA (Paris 2025)",
+   "u": "https://fr.wikipedia.org/wiki/Anne_Bouverot",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Gilles Babinet",
+   "role": "regulation",
+   "org": "Conseil national du numérique",
+   "pays": "FR",
+   "bio": "Entrepreneur, coprésident du Conseil national du numérique, essayiste sur l'IA",
+   "u": "https://fr.wikipedia.org/wiki/Gilles_Babinet",
+   "x": "",
+   "notoriete": 1
+  },
+  {
+   "n": "Thierry Breton",
+   "role": "regulation",
+   "org": "Ex-Commission européenne",
+   "pays": "FR",
+   "bio": "Ancien commissaire européen au Marché intérieur, artisan de l'AI Act",
+   "u": "https://fr.wikipedia.org/wiki/Thierry_Breton",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Margrethe Vestager",
+   "role": "regulation",
+   "org": "Ex-Commission européenne",
+   "pays": "DK",
+   "bio": "Ex-vice-présidente de la Commission (concurrence/numérique), régulation des Big Tech",
+   "u": "https://fr.wikipedia.org/wiki/Margrethe_Vestager",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Max Tegmark",
+   "role": "regulation",
+   "org": "Future of Life Institute / MIT",
+   "pays": "US",
+   "bio": "Physicien du MIT, dirige le Future of Life Institute (lettre appelant à une pause IA)",
+   "u": "https://fr.wikipedia.org/wiki/Max_Tegmark",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Timnit Gebru",
+   "role": "regulation",
+   "org": "DAIR",
+   "pays": "US",
+   "bio": "Chercheuse en éthique de l'IA, fondatrice de DAIR, lanceuse d'alerte sur les biais",
+   "u": "https://fr.wikipedia.org/wiki/Timnit_Gebru",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Cédric O",
+   "role": "regulation",
+   "org": "Ex-Secrétaire d'État au Numérique (FR)",
+   "pays": "FR",
+   "bio": "Ancien secrétaire d'État au Numérique, cofondateur de Mistral AI",
+   "u": "https://fr.wikipedia.org/wiki/C%C3%A9dric_O",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Audrey Tang",
+   "role": "regulation",
+   "org": "Ex-ministre du Numérique (Taïwan)",
+   "pays": "TW",
+   "bio": "Première ministre du Numérique de Taïwan, pionnière de la gouvernance ouverte",
+   "u": "https://fr.wikipedia.org/wiki/Audrey_Tang",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Cédric Villani",
+   "role": "regulation",
+   "org": "Mathématicien / ex-député (FR)",
+   "pays": "FR",
+   "bio": "Médaille Fields, auteur du rapport Villani sur la stratégie IA de la France",
+   "u": "https://fr.wikipedia.org/wiki/C%C3%A9dric_Villani",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Andrej Karpathy",
+   "role": "influence",
+   "org": "Eureka Labs (ex-OpenAI, ex-Tesla)",
+   "pays": "US",
+   "bio": "Ex-directeur IA de Tesla, cofondateur d'OpenAI, pédagogue star du deep learning",
+   "u": "https://fr.wikipedia.org/wiki/Andrej_Karpathy",
+   "x": "karpathy",
+   "notoriete": 3
+  },
+  {
+   "n": "Lex Fridman",
+   "role": "influence",
+   "org": "Podcast / MIT",
+   "pays": "US",
+   "bio": "Chercheur et podcasteur, entretiens de référence sur l'IA et la tech",
+   "u": "https://fr.wikipedia.org/wiki/Lex_Fridman",
+   "x": "lexfridman",
+   "notoriete": 3
+  },
+  {
+   "n": "Micode",
+   "role": "influence",
+   "org": "YouTube (Underscore_)",
+   "pays": "FR",
+   "bio": "Vidéaste tech et cybersécurité (Micode, Underscore_), vulgarisateur numérique",
+   "u": "https://fr.wikipedia.org/wiki/Micode",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Lê Nguyên Hoang",
+   "role": "influence",
+   "org": "Science4All / Calicarpa",
+   "pays": "FR",
+   "bio": "Vulgarisateur maths et IA (Science4All), chercheur en sûreté de l'IA",
+   "u": "https://fr.wikipedia.org/wiki/L%C3%AA_Nguy%C3%AAn_Hoang",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Gary Marcus",
+   "role": "influence",
+   "org": "New York University (émérite)",
+   "pays": "US",
+   "bio": "Sciences cognitives, voix critique de référence sur le « hype » de l'IA",
+   "u": "https://en.wikipedia.org/wiki/Gary_Marcus",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Hugo Décrypte",
+   "role": "influence",
+   "org": "HugoDécrypte (média)",
+   "pays": "FR",
+   "bio": "Média d'actualité en ligne (Hugo Travers), forte couverture IA et interviews de dirigeants tech",
+   "u": "https://fr.wikipedia.org/wiki/Hugo_D%C3%A9crypte",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Defend Intelligence",
+   "role": "influence",
+   "org": "YouTube (Defend Intelligence)",
+   "pays": "FR",
+   "bio": "Anis Ayari, ingénieur IA et vulgarisateur data/IA sur YouTube",
+   "u": "https://www.youtube.com/c/defendintelligence-tech",
+   "x": "DFintelligence",
+   "notoriete": 1
+  },
+  {
+   "n": "Mick Levy",
+   "role": "influence",
+   "org": "Conférencier Data/IA (Orange Business)",
+   "pays": "FR",
+   "bio": "Conférencier et auteur Data/IA, coanimateur du podcast Trench Tech",
+   "u": "https://www.micklevy.com/",
+   "x": "",
+   "notoriete": 1
+  }
+ ]
+}
