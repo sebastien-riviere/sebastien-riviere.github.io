@@ -9,7 +9,11 @@
    "bio": "Pionnier du deep learning, prix Turing 2018 ; a quitté Meta fin 2025 pour fonder AMI Labs",
    "u": "https://fr.wikipedia.org/wiki/Yann_Le_Cun",
    "x": "ylecun",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Yann_LeCun_-_2025_%28cropped%29.jpg/330px-Yann_LeCun_-_2025_%28cropped%29.jpg",
+   "photo_credit": "Ecole polytechnique from Paris",
+   "photo_license": "CC BY-SA 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Yann_LeCun_-_2025_(cropped).jpg"
   },
   {
    "n": "Geoffrey Hinton",
@@ -19,7 +23,11 @@
    "bio": "« Parrain » du deep learning, prix Turing 2018 et Nobel de physique 2024",
    "u": "https://fr.wikipedia.org/wiki/Geoffrey_Hinton",
    "x": "",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Geoffrey_Hinton_in_2026.jpg/330px-Geoffrey_Hinton_in_2026.jpg",
+   "photo_credit": "Cmichel67",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_in_2026.jpg"
   },
   {
    "n": "Yoshua Bengio",
@@ -29,7 +37,11 @@
    "bio": "Pionnier du deep learning (Turing 2018), préside le rapport international sur la sûreté de l'IA",
    "u": "https://fr.wikipedia.org/wiki/Yoshua_Bengio",
    "x": "",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Yoshua_Bengio_2019_cropped.jpg/330px-Yoshua_Bengio_2019_cropped.jpg",
+   "photo_credit": "Maryse Boyce",
+   "photo_license": "CC BY 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Yoshua_Bengio_2019_cropped.jpg"
   },
   {
    "n": "Fei-Fei Li",
@@ -39,7 +51,11 @@
    "bio": "Créatrice d'ImageNet, pionnière de la vision par ordinateur, voix de l'« IA centrée humain »",
    "u": "https://fr.wikipedia.org/wiki/Fei-Fei_Li",
    "x": "drfeifei",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Fei-Fei_Li_at_AI_for_Good_2017.jpg/330px-Fei-Fei_Li_at_AI_for_Good_2017.jpg",
+   "photo_credit": "ITU Pictures",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Fei-Fei_Li_at_AI_for_Good_2017.jpg"
   },
   {
    "n": "Ilya Sutskever",
@@ -49,7 +65,11 @@
    "bio": "Co-inventeur d'AlexNet, ex-chef scientifique d'OpenAI, fondateur de SSI (sûreté)",
    "u": "https://fr.wikipedia.org/wiki/Ilya_Sutskever",
    "x": "",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Ilya_Sutskever_and_Sam_Altman_in_TAU.jpg/330px-Ilya_Sutskever_and_Sam_Altman_in_TAU.jpg",
+   "photo_credit": "Eladkarmel",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Ilya_Sutskever_and_Sam_Altman_in_TAU.jpg"
   },
   {
    "n": "Andrew Ng",
@@ -59,7 +79,11 @@
    "bio": "Cofondateur de Coursera et Google Brain, grand pédagogue du machine learning",
    "u": "https://fr.wikipedia.org/wiki/Andrew_Ng",
    "x": "AndrewYNg",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg/330px-Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg",
+   "photo_credit": "TechCrunch",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg"
   },
   {
    "n": "Stuart Russell",
@@ -69,7 +93,11 @@
    "bio": "Auteur du manuel de référence en IA, figure majeure de la sûreté de l'IA",
    "u": "https://fr.wikipedia.org/wiki/Stuart_Russell",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Stuart_Russell_01.jpg/330px-Stuart_Russell_01.jpg",
+   "photo_credit": "Bengt Oberger",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Stuart_Russell_01.jpg"
   },
   {
    "n": "Alan Turing",
@@ -79,7 +107,11 @@
    "bio": "Père de l'informatique théorique et de l'IA, à l'origine du test de Turing",
    "u": "https://fr.wikipedia.org/wiki/Alan_Turing",
    "x": "",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Alan_Turing_%281912-1954%29_in_1936_at_Princeton_University.jpg/330px-Alan_Turing_%281912-1954%29_in_1936_at_Princeton_University.jpg",
+   "photo_credit": "Photographe inconnu",
+   "photo_license": "Public domain",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Alan_Turing_(1912-1954)_in_1936_at_Princeton_University.jpg"
   },
   {
    "n": "John McCarthy",
@@ -89,7 +121,11 @@
    "bio": "A forgé le terme « intelligence artificielle » (1956) et créé le langage Lisp",
    "u": "https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/John_McCarthy_Stanford.jpg/330px-John_McCarthy_Stanford.jpg",
+   "photo_credit": "\"null0\"",
+   "photo_license": "CC BY-SA 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:John_McCarthy_Stanford.jpg"
   },
   {
    "n": "Marvin Minsky",
@@ -99,7 +135,11 @@
    "bio": "Cofondateur du laboratoire d'IA du MIT, théoricien pionnier de l'IA",
    "u": "https://fr.wikipedia.org/wiki/Marvin_Minsky",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Marvin_Minsky_at_OLPC.jpg/330px-Marvin_Minsky_at_OLPC.jpg",
+   "photo_credit": "Sethwoodworth sur Wikipédia anglais, taken by Bcjordan",
+   "photo_license": "CC BY 3.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Marvin_Minsky_at_OLPC.jpg"
   },
   {
    "n": "Luc Julia",
@@ -109,7 +149,11 @@
    "bio": "Co-concepteur de Siri, auteur de « L'intelligence artificielle n'existe pas »",
    "u": "https://fr.wikipedia.org/wiki/Luc_Julia",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Luc_Julia_-_2019_%28cropped%29.jpg/330px-Luc_Julia_-_2019_%28cropped%29.jpg",
+   "photo_credit": "Conseil économique social et environnemental",
+   "photo_license": "CC BY 3.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Luc_Julia_-_2019_(cropped).jpg"
   },
   {
    "n": "Aurélie Jean",
@@ -119,7 +163,11 @@
    "bio": "Scientifique numéricienne, vulgarisatrice des algorithmes et de leurs biais",
    "u": "https://fr.wikipedia.org/wiki/Aur%C3%A9lie_Jean",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Aur%C3%A9lie_Jean_2018.png/330px-Aur%C3%A9lie_Jean_2018.png",
+   "photo_credit": "Bitcoin fr",
+   "photo_license": "CC BY 3.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Aur%C3%A9lie_Jean_2018.png"
   },
   {
    "n": "Jean-Gabriel Ganascia",
@@ -129,7 +177,11 @@
    "bio": "Chercheur en IA et philosophe, spécialiste de l'éthique de l'IA",
    "u": "https://fr.wikipedia.org/wiki/Jean-Gabriel_Ganascia",
    "x": "",
-   "notoriete": 1
+   "notoriete": 1,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/JGGanascia.jpg/330px-JGGanascia.jpg",
+   "photo_credit": "MoricetteMartin",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:JGGanascia.jpg"
   },
   {
    "n": "Sam Altman",
@@ -139,7 +191,11 @@
    "bio": "Cofondateur et CEO d'OpenAI, société derrière ChatGPT",
    "u": "https://fr.wikipedia.org/wiki/Sam_Altman",
    "x": "sama",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Sam_Altman_speaking_at_TED_%28cropped%29.jpg/330px-Sam_Altman_speaking_at_TED_%28cropped%29.jpg",
+   "photo_credit": "Steve Jurvetson",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Sam_Altman_speaking_at_TED_(cropped).jpg"
   },
   {
    "n": "Dario Amodei",
@@ -149,7 +205,11 @@
    "bio": "Cofondateur et CEO d'Anthropic (Claude), centré sur la sûreté de l'IA",
    "u": "https://fr.wikipedia.org/wiki/Dario_Amodei",
    "x": "",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Dario_Amodei_in_2023.jpg/330px-Dario_Amodei_in_2023.jpg",
+   "photo_credit": "UK Prime Minister",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Dario_Amodei_in_2023.jpg"
   },
   {
    "n": "Demis Hassabis",
@@ -159,7 +219,11 @@
    "bio": "Cofondateur de DeepMind (AlphaGo, AlphaFold), prix Nobel de chimie 2024",
    "u": "https://fr.wikipedia.org/wiki/Demis_Hassabis",
    "x": "demishassabis",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Demis_Hassabis%2C_2024_Nobel_Prize_Laureate_in_Chemistry_7_%28cropped%29.jpg/330px-Demis_Hassabis%2C_2024_Nobel_Prize_Laureate_in_Chemistry_7_%28cropped%29.jpg",
+   "photo_credit": "John Sears",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Demis_Hassabis,_2024_Nobel_Prize_Laureate_in_Chemistry_7_(cropped).jpg"
   },
   {
    "n": "Jensen Huang",
@@ -169,7 +233,11 @@
    "bio": "Cofondateur et CEO de NVIDIA, dont les puces GPU font tourner l'IA mondiale",
    "u": "https://fr.wikipedia.org/wiki/Jensen_Huang",
    "x": "",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Jen-Hsun_Huang_2025.jpg/330px-Jen-Hsun_Huang_2025.jpg",
+   "photo_credit": "The White House",
+   "photo_license": "Public domain",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Jen-Hsun_Huang_2025.jpg"
   },
   {
    "n": "Elon Musk",
@@ -179,7 +247,11 @@
    "bio": "Fondateur de xAI (Grok), cofondateur historique d'OpenAI",
    "u": "https://fr.wikipedia.org/wiki/Elon_Musk",
    "x": "elonmusk",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/The_White_House_-_54409525537_%28cropped%29_%28cropped%29.jpg/330px-The_White_House_-_54409525537_%28cropped%29_%28cropped%29.jpg",
+   "photo_credit": "The White House",
+   "photo_license": "Public domain",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:The_White_House_-_54409525537_(cropped)_(cropped).jpg"
   },
   {
    "n": "Mark Zuckerberg",
@@ -189,7 +261,11 @@
    "bio": "PDG de Meta, moteur de l'IA open source (modèles Llama)",
    "u": "https://fr.wikipedia.org/wiki/Mark_Zuckerberg",
    "x": "",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/F20250904AH-2915_%2854778607243%29_%28cropped%29.jpg/330px-F20250904AH-2915_%2854778607243%29_%28cropped%29.jpg",
+   "photo_credit": "The White House",
+   "photo_license": "Public domain",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:F20250904AH-2915_(54778607243)_(cropped).jpg"
   },
   {
    "n": "Sundar Pichai",
@@ -199,7 +275,11 @@
    "bio": "PDG d'Alphabet et Google, pilote la stratégie IA Gemini",
    "u": "https://fr.wikipedia.org/wiki/Sundar_Pichai",
    "x": "sundarpichai",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Sundar_Pichai_-_2023_%28cropped%29.jpg/330px-Sundar_Pichai_-_2023_%28cropped%29.jpg",
+   "photo_credit": "Photographer: Lukasz Kobus (European Commission)",
+   "photo_license": "CC BY 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Sundar_Pichai_-_2023_(cropped).jpg"
   },
   {
    "n": "Satya Nadella",
@@ -209,7 +289,11 @@
    "bio": "PDG de Microsoft, artisan du partenariat OpenAI et de Copilot",
    "u": "https://fr.wikipedia.org/wiki/Satya_Nadella",
    "x": "satyanadella",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/MS-Exec-Nadella-Satya-2017-08-31-22_%28cropped%29.jpg/330px-MS-Exec-Nadella-Satya-2017-08-31-22_%28cropped%29.jpg",
+   "photo_credit": "Brian Smale and Microsoft",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:MS-Exec-Nadella-Satya-2017-08-31-22_(cropped).jpg"
   },
   {
    "n": "Mira Murati",
@@ -219,7 +303,11 @@
    "bio": "Ex-directrice technique d'OpenAI, fondatrice de Thinking Machines Lab",
    "u": "https://fr.wikipedia.org/wiki/Mira_Murati",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Guests_at_the_2026_Met_Gala_274_%28Mira_Murati%29.jpg/330px-Guests_at_the_2026_Met_Gala_274_%28Mira_Murati%29.jpg",
+   "photo_credit": "SWinxy",
+   "photo_license": "CC BY 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Guests_at_the_2026_Met_Gala_274_(Mira_Murati).jpg"
   },
   {
    "n": "Arthur Mensch",
@@ -229,7 +317,11 @@
    "bio": "Cofondateur et CEO de Mistral AI, champion européen des modèles ouverts",
    "u": "https://fr.wikipedia.org/wiki/Arthur_Mensch",
    "x": "",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Arthur_Mensch.png/330px-Arthur_Mensch.png",
+   "photo_credit": "Jan2342342423",
+   "photo_license": "CC0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Arthur_Mensch.png"
   },
   {
    "n": "Rachel Delacour",
@@ -269,7 +361,11 @@
    "bio": "Présidente de l'ENS, organisatrice du Sommet pour l'action sur l'IA (Paris 2025)",
    "u": "https://fr.wikipedia.org/wiki/Anne_Bouverot",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Anne_Bouverot_GSR13_cropped.jpg/330px-Anne_Bouverot_GSR13_cropped.jpg",
+   "photo_credit": "ITU c/o: Rowan Farrell",
+   "photo_license": "CC BY-SA 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Anne_Bouverot_GSR13_cropped.jpg"
   },
   {
    "n": "Gilles Babinet",
@@ -279,7 +375,11 @@
    "bio": "Entrepreneur, coprésident du Conseil national du numérique, essayiste sur l'IA",
    "u": "https://fr.wikipedia.org/wiki/Gilles_Babinet",
    "x": "",
-   "notoriete": 1
+   "notoriete": 1,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Conf%C3%A9rencier-Gilles-Babinet.jpg/330px-Conf%C3%A9rencier-Gilles-Babinet.jpg",
+   "photo_credit": "AlixDebussche",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Conf%C3%A9rencier-Gilles-Babinet.jpg"
   },
   {
    "n": "Thierry Breton",
@@ -289,7 +389,11 @@
    "bio": "Ancien commissaire européen au Marché intérieur, artisan de l'AI Act",
    "u": "https://fr.wikipedia.org/wiki/Thierry_Breton",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Breton_EC_Portrait_2019_%28cropped%29.jpg/330px-Breton_EC_Portrait_2019_%28cropped%29.jpg",
+   "photo_credit": "Christophe Licoppe - European Commission",
+   "photo_license": "CC BY 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Breton_EC_Portrait_2019_(cropped).jpg"
   },
   {
    "n": "Margrethe Vestager",
@@ -299,7 +403,11 @@
    "bio": "Ex-vice-présidente de la Commission (concurrence/numérique), régulation des Big Tech",
    "u": "https://fr.wikipedia.org/wiki/Margrethe_Vestager",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/P059772-352564_%28cropped%29.jpg/330px-P059772-352564_%28cropped%29.jpg",
+   "photo_credit": "Aurore Martignoni - European Commission",
+   "photo_license": "CC BY 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:P059772-352564_(cropped).jpg"
   },
   {
    "n": "Max Tegmark",
@@ -309,7 +417,11 @@
    "bio": "Physicien du MIT, dirige le Future of Life Institute (lettre appelant à une pause IA)",
    "u": "https://fr.wikipedia.org/wiki/Max_Tegmark",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Max_Tegmark_2024_%28cropped%29.jpg/330px-Max_Tegmark_2024_%28cropped%29.jpg",
+   "photo_credit": "Web Summit",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Max_Tegmark_2024_(cropped).jpg"
   },
   {
    "n": "Timnit Gebru",
@@ -319,7 +431,11 @@
    "bio": "Chercheuse en éthique de l'IA, fondatrice de DAIR, lanceuse d'alerte sur les biais",
    "u": "https://fr.wikipedia.org/wiki/Timnit_Gebru",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Timnit_Gebru_crop.jpg/330px-Timnit_Gebru_crop.jpg",
+   "photo_credit": "TechCrunch",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Timnit_Gebru_crop.jpg"
   },
   {
    "n": "Cédric O",
@@ -329,7 +445,11 @@
    "bio": "Ancien secrétaire d'État au Numérique, cofondateur de Mistral AI",
    "u": "https://fr.wikipedia.org/wiki/C%C3%A9dric_O",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/20190401_Cedric_O_Portraits_PhotoG%C3%A9zelinGr%C3%A9e_02.jpg/330px-20190401_Cedric_O_Portraits_PhotoG%C3%A9zelinGr%C3%A9e_02.jpg",
+   "photo_credit": "Tamaya20",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:20190401_Cedric_O_Portraits_PhotoG%C3%A9zelinGr%C3%A9e_02.jpg"
   },
   {
    "n": "Audrey Tang",
@@ -339,7 +459,11 @@
    "bio": "Première ministre du Numérique de Taïwan, pionnière de la gouvernance ouverte",
    "u": "https://fr.wikipedia.org/wiki/Audrey_Tang",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Audrey_Tang_at_SXSW_2025_02_%28cropped%29.jpg/330px-Audrey_Tang_at_SXSW_2025_02_%28cropped%29.jpg",
+   "photo_credit": "Rosiestep",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Audrey_Tang_at_SXSW_2025_02_(cropped).jpg"
   },
   {
    "n": "Cédric Villani",
@@ -349,7 +473,11 @@
    "bio": "Médaille Fields, auteur du rapport Villani sur la stratégie IA de la France",
    "u": "https://fr.wikipedia.org/wiki/C%C3%A9dric_Villani",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Cedric_Villani_at_his_office_2015_n3.jpg/330px-Cedric_Villani_at_his_office_2015_n3.jpg",
+   "photo_credit": "Marie-Lan Nguyen",
+   "photo_license": "CC BY 3.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Cedric_Villani_at_his_office_2015_n3.jpg"
   },
   {
    "n": "Andrej Karpathy",
@@ -359,7 +487,11 @@
    "bio": "Ex-directeur IA de Tesla, cofondateur d'OpenAI, pédagogue star du deep learning",
    "u": "https://fr.wikipedia.org/wiki/Andrej_Karpathy",
    "x": "karpathy",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Andrej_Karpathy%2C_OpenAI.png/330px-Andrej_Karpathy%2C_OpenAI.png",
+   "photo_credit": "Gladwin Analytics",
+   "photo_license": "CC BY 3.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Andrej_Karpathy,_OpenAI.png"
   },
   {
    "n": "Lex Fridman",
@@ -369,7 +501,11 @@
    "bio": "Chercheur et podcasteur, entretiens de référence sur l'IA et la tech",
    "u": "https://fr.wikipedia.org/wiki/Lex_Fridman",
    "x": "lexfridman",
-   "notoriete": 3
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Lex_Fridman_teaching_at_MIT_in_2018.png/330px-Lex_Fridman_teaching_at_MIT_in_2018.png",
+   "photo_credit": "lexfridman",
+   "photo_license": "CC0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Lex_Fridman_teaching_at_MIT_in_2018.png"
   },
   {
    "n": "Micode",
@@ -379,7 +515,11 @@
    "bio": "Vidéaste tech et cybersécurité (Micode, Underscore_), vulgarisateur numérique",
    "u": "https://fr.wikipedia.org/wiki/Micode",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Micode_en_2026_dans_Zack_en_Roue_Libre.png/330px-Micode_en_2026_dans_Zack_en_Roue_Libre.png",
+   "photo_credit": "Zack Nani",
+   "photo_license": "CC BY 3.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Micode_en_2026_dans_Zack_en_Roue_Libre.png"
   },
   {
    "n": "Lê Nguyên Hoang",
@@ -389,7 +529,11 @@
    "bio": "Vulgarisateur maths et IA (Science4All), chercheur en sûreté de l'IA",
    "u": "https://fr.wikipedia.org/wiki/L%C3%AA_Nguy%C3%AAn_Hoang",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/L%C3%AA_Nguy%C3%AAn_Hoang_-_2018_%28cropped%29.jpg/330px-L%C3%AA_Nguy%C3%AAn_Hoang_-_2018_%28cropped%29.jpg",
+   "photo_credit": "Jérémy Barande",
+   "photo_license": "CC BY-SA 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:L%C3%AA_Nguy%C3%AAn_Hoang_-_2018_(cropped).jpg"
   },
   {
    "n": "Gary Marcus",
@@ -399,7 +543,11 @@
    "bio": "Sciences cognitives, voix critique de référence sur le « hype » de l'IA",
    "u": "https://en.wikipedia.org/wiki/Gary_Marcus",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Gary_Marcus_at_Web_Summit_2022.jpeg/330px-Gary_Marcus_at_Web_Summit_2022.jpeg",
+   "photo_credit": "Web Summit",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Gary_Marcus_at_Web_Summit_2022.jpeg"
   },
   {
    "n": "Hugo Décrypte",
@@ -430,6 +578,390 @@
    "u": "https://www.micklevy.com/",
    "x": "",
    "notoriete": 1
+  },
+  {
+   "n": "Gaël Varoquaux",
+   "role": "recherche",
+   "org": "INRIA",
+   "pays": "FR",
+   "bio": "Chercheur INRIA, cocréateur de scikit-learn, la bibliothèque Python de machine learning la plus utilisée.",
+   "u": "https://fr.wikipedia.org/wiki/Ga%C3%ABl_Varoquaux",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Gael_varoquaux.jpg/330px-Gael_varoquaux.jpg",
+   "photo_credit": "Gael Varoquaux",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Gael_varoquaux.jpg"
+  },
+  {
+   "n": "Léon Bottou",
+   "role": "recherche",
+   "org": "Meta",
+   "pays": "FR",
+   "bio": "Chercheur français chez Meta, pionnier de la descente de gradient stochastique au cœur de l'entraînement des réseaux de neurones.",
+   "u": "https://fr.wikipedia.org/wiki/L%C3%A9on_Bottou",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/SD_2025_-_L%C3%A9on_Bottou_02.jpg/330px-SD_2025_-_L%C3%A9on_Bottou_02.jpg",
+   "photo_credit": "Xuthoria",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:SD_2025_-_L%C3%A9on_Bottou_02.jpg"
+  },
+  {
+   "n": "Isabelle Guyon",
+   "role": "recherche",
+   "org": "Google DeepMind",
+   "pays": "FR",
+   "bio": "Chercheuse franco-américaine, coinventrice des machines à vecteurs de support (SVM), chez Google DeepMind.",
+   "u": "https://fr.wikipedia.org/wiki/Isabelle_Guyon",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/SD_2025_-_Isabelle_Guyon_02_%28cropped%29.jpg/330px-SD_2025_-_Isabelle_Guyon_02_%28cropped%29.jpg",
+   "photo_credit": "Xuthoria",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:SD_2025_-_Isabelle_Guyon_02_(cropped).jpg"
+  },
+  {
+   "n": "Francis Bach",
+   "role": "recherche",
+   "org": "INRIA / ENS",
+   "pays": "FR",
+   "bio": "Chercheur INRIA/ENS en apprentissage statistique et optimisation, membre de l'Académie des sciences.",
+   "u": "https://fr.wikipedia.org/wiki/Francis_Bach",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Stéphane Mallat",
+   "role": "recherche",
+   "org": "Collège de France",
+   "pays": "FR",
+   "bio": "Mathématicien, professeur au Collège de France, père de la théorie des ondelettes appliquée au signal et à l'IA.",
+   "u": "https://fr.wikipedia.org/wiki/St%C3%A9phane_Mallat",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/St%C3%A9phane_Mallat_-_2019_%28cropped%29.jpg/330px-St%C3%A9phane_Mallat_-_2019_%28cropped%29.jpg",
+   "photo_credit": "Jérémy Barande",
+   "photo_license": "CC BY-SA 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:St%C3%A9phane_Mallat_-_2019_(cropped).jpg"
+  },
+  {
+   "n": "Jean Ponce",
+   "role": "recherche",
+   "org": "ENS / NYU",
+   "pays": "FR",
+   "bio": "Chercheur en vision par ordinateur (ENS/NYU), coauteur du manuel de référence Computer Vision: A Modern Approach.",
+   "u": "https://www.di.ens.fr/~ponce/",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Ian Goodfellow",
+   "role": "recherche",
+   "org": "Google DeepMind",
+   "pays": "US",
+   "bio": "Chercheur en deep learning, inventeur des réseaux antagonistes génératifs (GAN), à l'origine de l'IA générative d'images.",
+   "u": "https://fr.wikipedia.org/wiki/Ian_Goodfellow",
+   "x": "",
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Ian_Goodfellow.jpg/330px-Ian_Goodfellow.jpg",
+   "photo_credit": "Ian Goodfellow",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Ian_Goodfellow.jpg"
+  },
+  {
+   "n": "Jürgen Schmidhuber",
+   "role": "recherche",
+   "org": "IDSIA / KAUST",
+   "pays": "DE",
+   "bio": "Informaticien allemand, coinventeur des réseaux LSTM qui ont longtemps dominé le traitement du langage.",
+   "u": "https://en.wikipedia.org/wiki/J%C3%BCrgen_Schmidhuber",
+   "x": "",
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/J%C3%BCrgen_Schmidhuber%2C_2017_%28cropped%29.jpg/330px-J%C3%BCrgen_Schmidhuber%2C_2017_%28cropped%29.jpg",
+   "photo_credit": "ITU/R.Farrell",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:J%C3%BCrgen_Schmidhuber,_2017_(cropped).jpg"
+  },
+  {
+   "n": "Richard Sutton",
+   "role": "recherche",
+   "org": "University of Alberta",
+   "pays": "CA",
+   "bio": "Pionnier de l'apprentissage par renforcement, prix Turing 2024, coauteur du manuel de référence du domaine.",
+   "u": "https://en.wikipedia.org/wiki/Richard_S._Sutton",
+   "x": "",
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/SD_2025_-_Richard_Sutton_01_%28cropped%29.jpg/330px-SD_2025_-_Richard_Sutton_01_%28cropped%29.jpg",
+   "photo_credit": "Xuthoria",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:SD_2025_-_Richard_Sutton_01_(cropped).jpg"
+  },
+  {
+   "n": "Peter Norvig",
+   "role": "recherche",
+   "org": "Stanford HAI",
+   "pays": "US",
+   "bio": "Coauteur du manuel d'IA le plus enseigné (AIMA), ancien directeur de la recherche chez Google.",
+   "u": "https://en.wikipedia.org/wiki/Peter_Norvig",
+   "x": "",
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Peter_Norvig_in_2019_%28cropped%29.jpg/330px-Peter_Norvig_in_2019_%28cropped%29.jpg",
+   "photo_credit": "Christopher Michel",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Peter_Norvig_in_2019_(cropped).jpg"
+  },
+  {
+   "n": "Sebastian Thrun",
+   "role": "recherche",
+   "org": "Udacity",
+   "pays": "DE",
+   "bio": "Roboticien, pionnier de la voiture autonome (Google), cofondateur de la plateforme d'e-learning Udacity.",
+   "u": "https://en.wikipedia.org/wiki/Sebastian_Thrun",
+   "x": "",
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Sebastian_Thrun_by_Christopher_Michel_-_6.jpg/330px-Sebastian_Thrun_by_Christopher_Michel_-_6.jpg",
+   "photo_credit": "Christopher Michel",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Sebastian_Thrun_by_Christopher_Michel_-_6.jpg"
+  },
+  {
+   "n": "Nozha Boujemaa",
+   "role": "recherche",
+   "org": "INRIA",
+   "pays": "FR",
+   "bio": "Directrice de recherche franco-tunisienne en IA, spécialiste de la data science de confiance et de l'éthique.",
+   "u": "https://fr.wikipedia.org/wiki/Nozha_Boujemaa",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Mustafa Suleyman",
+   "role": "entreprise",
+   "org": "Microsoft AI",
+   "pays": "GB",
+   "bio": "Cofondateur de DeepMind, aujourd'hui PDG de Microsoft AI et voix majeure sur l'IA responsable.",
+   "u": "https://en.wikipedia.org/wiki/Mustafa_Suleyman",
+   "x": "",
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Mustafa_Suleyman_photo_%28cropped%29.jpg/330px-Mustafa_Suleyman_photo_%28cropped%29.jpg",
+   "photo_credit": "Christopher Wilson",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Mustafa_Suleyman_photo_(cropped).jpg"
+  },
+  {
+   "n": "Alexandr Wang",
+   "role": "entreprise",
+   "org": "Meta",
+   "pays": "US",
+   "bio": "Fondateur de Scale AI (annotation de données), devenu directeur de l'IA chez Meta.",
+   "u": "https://en.wikipedia.org/wiki/Alexandr_Wang",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Alexandr_Wang%2C_Chief_A.I._Officer%2C_Meta.jpg/330px-Alexandr_Wang%2C_Chief_A.I._Officer%2C_Meta.jpg",
+   "photo_credit": "Meta Platforms, Inc.",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Alexandr_Wang,_Chief_A.I._Officer,_Meta.jpg"
+  },
+  {
+   "n": "Greg Brockman",
+   "role": "entreprise",
+   "org": "OpenAI",
+   "pays": "US",
+   "bio": "Cofondateur et président d'OpenAI, artisan technique du développement de ChatGPT.",
+   "u": "https://en.wikipedia.org/wiki/Greg_Brockman",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Disrupt_SF_TechCrunch_Disrupt_San_Francisco_2019_-_Day_2_%2848838200316%29_%28cropped%29.jpg/330px-Disrupt_SF_TechCrunch_Disrupt_San_Francisco_2019_-_Day_2_%2848838200316%29_%28cropped%29.jpg",
+   "photo_credit": "TechCrunch",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Disrupt_SF_TechCrunch_Disrupt_San_Francisco_2019_-_Day_2_(48838200316)_(cropped).jpg"
+  },
+  {
+   "n": "Daniela Amodei",
+   "role": "entreprise",
+   "org": "Anthropic",
+   "pays": "US",
+   "bio": "Cofondatrice et présidente d'Anthropic, éditeur de l'assistant IA Claude, orientée sécurité.",
+   "u": "https://en.wikipedia.org/wiki/Daniela_Amodei",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Rand Hindi",
+   "role": "entreprise",
+   "org": "Zama",
+   "pays": "FR",
+   "bio": "Entrepreneur IA français, fondateur de Snips (assistant vocal privé) puis de Zama (chiffrement homomorphe).",
+   "u": "https://fr.wikipedia.org/wiki/Rand_Hindi",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Rand_Hindi_%2822058742304%29_%28cropped%29.jpg",
+   "photo_credit": "TEDx Paris",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Rand_Hindi_(22058742304)_(cropped).jpg"
+  },
+  {
+   "n": "Dan Hendrycks",
+   "role": "regulation",
+   "org": "Center for AI Safety",
+   "pays": "US",
+   "bio": "Chercheur en sécurité de l'IA, directeur du Center for AI Safety, connu pour ses alertes sur les risques.",
+   "u": "https://en.wikipedia.org/wiki/Dan_Hendrycks",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Dan_Hendrycks_2025_%28cropped%29.jpg/330px-Dan_Hendrycks_2025_%28cropped%29.jpg",
+   "photo_credit": "TechCrunch",
+   "photo_license": "CC BY 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Dan_Hendrycks_2025_(cropped).jpg"
+  },
+  {
+   "n": "Paul Christiano",
+   "role": "regulation",
+   "org": "US AI Safety Institute (NIST)",
+   "pays": "US",
+   "bio": "Chercheur en alignement de l'IA, à l'origine du RLHF, responsable sécurité à l'institut américain (NIST).",
+   "u": "https://en.wikipedia.org/wiki/Paul_Christiano",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Nick Bostrom",
+   "role": "regulation",
+   "org": "University of Oxford",
+   "pays": "SE",
+   "bio": "Philosophe d'Oxford, auteur de Superintelligence, figure centrale du débat sur les risques existentiels de l'IA.",
+   "u": "https://en.wikipedia.org/wiki/Nick_Bostrom",
+   "x": "",
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Prof_Nick_Bostrom_324-1.jpg/330px-Prof_Nick_Bostrom_324-1.jpg",
+   "photo_credit": "Future of Humanity Institute",
+   "photo_license": "CC BY 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Prof_Nick_Bostrom_324-1.jpg"
+  },
+  {
+   "n": "Eliezer Yudkowsky",
+   "role": "regulation",
+   "org": "MIRI",
+   "pays": "US",
+   "bio": "Théoricien de l'alignement de l'IA (MIRI), fondateur de LessWrong, voix radicale sur les risques de l'IA.",
+   "u": "https://en.wikipedia.org/wiki/Eliezer_Yudkowsky",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Eliezer_Yudkowsky%2C_Stanford_2006_%28square_crop%29.jpg/330px-Eliezer_Yudkowsky%2C_Stanford_2006_%28square_crop%29.jpg",
+   "photo_credit": "\"null0\"",
+   "photo_license": "CC BY-SA 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Eliezer_Yudkowsky,_Stanford_2006_(square_crop).jpg"
+  },
+  {
+   "n": "Helen Toner",
+   "role": "regulation",
+   "org": "CSET (Georgetown)",
+   "pays": "AU",
+   "bio": "Spécialiste de la gouvernance de l'IA au CSET (Georgetown), ex-administratrice du conseil d'OpenAI.",
+   "u": "https://en.wikipedia.org/wiki/Helen_Toner",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Raja Chatila",
+   "role": "regulation",
+   "org": "Sorbonne Université / CNRS",
+   "pays": "FR",
+   "bio": "Chercheur en robotique et éthique de l'IA (Sorbonne/CNRS), figure de la normalisation IEEE sur l'IA responsable.",
+   "u": "https://en.wikipedia.org/wiki/Raja_Chatila",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Kate Crawford",
+   "role": "regulation",
+   "org": "Microsoft Research",
+   "pays": "AU",
+   "bio": "Chercheuse australienne sur les impacts sociaux et politiques de l'IA, autrice d'Atlas of AI.",
+   "u": "https://en.wikipedia.org/wiki/Kate_Crawford",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Kate_Crawford_in_2025_05.jpg/330px-Kate_Crawford_in_2025_05.jpg",
+   "photo_credit": "Cmichel67",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Kate_Crawford_in_2025_05.jpg"
+  },
+  {
+   "n": "Laurence Devillers",
+   "role": "regulation",
+   "org": "Sorbonne / CNRS",
+   "pays": "FR",
+   "bio": "Professeure (Sorbonne/CNRS) en IA affective, figure française de l'éthique et de la régulation de l'IA.",
+   "u": "https://fr.wikipedia.org/wiki/Laurence_Devillers",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Laurence_Devillers_Portrait.jpg/330px-Laurence_Devillers_Portrait.jpg",
+   "photo_credit": "Olivier Ezratty",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Laurence_Devillers_Portrait.jpg"
+  },
+  {
+   "n": "Ethan Mollick",
+   "role": "influence",
+   "org": "Wharton (UPenn)",
+   "pays": "US",
+   "bio": "Professeur à Wharton, vulgarisateur influent de l'usage concret de l'IA générative au travail et en éducation.",
+   "u": "https://en.wikipedia.org/wiki/Ethan_Mollick",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "David Louapre",
+   "role": "influence",
+   "org": "Science étonnante / Hugging Face",
+   "pays": "FR",
+   "bio": "Vulgarisateur scientifique français (Science étonnante), désormais AI educator chez Hugging Face.",
+   "u": "https://fr.wikipedia.org/wiki/David_Louapre",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/David_Louapre_2018.jpg/330px-David_Louapre_2018.jpg",
+   "photo_credit": "David Louapre, Fondation La main à la pâte",
+   "photo_license": "CC BY 3.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:David_Louapre_2018.jpg"
+  },
+  {
+   "n": "Joy Buolamwini",
+   "role": "influence",
+   "org": "Algorithmic Justice League",
+   "pays": "US",
+   "bio": "Chercheuse et activiste, fondatrice de l'Algorithmic Justice League contre les biais des systèmes d'IA.",
+   "u": "https://en.wikipedia.org/wiki/Joy_Buolamwini",
+   "x": "",
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Joy_Buolamwini_-_Wikimania_2018_01.jpg/330px-Joy_Buolamwini_-_Wikimania_2018_01.jpg",
+   "photo_credit": "Niccolò Caranti",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Joy_Buolamwini_-_Wikimania_2018_01.jpg"
+  },
+  {
+   "n": "Meredith Whittaker",
+   "role": "influence",
+   "org": "Signal Foundation",
+   "pays": "US",
+   "bio": "Présidente de Signal, cofondatrice de l'AI Now Institute, voix critique sur le pouvoir des géants de l'IA.",
+   "u": "https://en.wikipedia.org/wiki/Meredith_Whittaker",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Emily M. Bender",
+   "role": "influence",
+   "org": "University of Washington",
+   "pays": "US",
+   "bio": "Linguiste informatique (Univ. Washington), coautrice de « stochastic parrots », critique des grands modèles de langage.",
+   "u": "https://en.wikipedia.org/wiki/Emily_M._Bender",
+   "x": "",
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Emily_M_Bender_CHM_Mountain_View_March_2025.jpg/330px-Emily_M_Bender_CHM_Mountain_View_March_2025.jpg",
+   "photo_credit": "King of Hearts",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Emily_M_Bender_CHM_Mountain_View_March_2025.jpg"
   }
  ]
 }

@@ -62,6 +62,11 @@ details.section .grid{margin-top:16px;}
 .mono.entreprise{background:linear-gradient(135deg,var(--r-ent),#157a52);}
 .mono.regulation{background:linear-gradient(135deg,var(--r-reg),#961f14);}
 .mono.influence{background:linear-gradient(135deg,var(--r-inf),#5a3fb0);}
+.avatar{flex:none;width:40px;height:40px;border-radius:50%;overflow:hidden;display:block;box-shadow:0 0 0 1px var(--border-strong);background:var(--bg);}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.mono{width:40px;height:40px;}
+.credit-note{font-family:var(--ui);font-size:11.5px;color:var(--faint);line-height:1.55;margin-top:10px;}
+.credit-note a{color:var(--ia-ink);}
 .card-name{font-family:var(--ui);font-weight:800;font-size:15.5px;color:var(--ink);line-height:1.2;}
 .card-org{font-family:var(--ui);font-size:11.5px;font-weight:700;color:var(--faint);margin-top:3px;}
 .badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px;}
@@ -117,6 +122,7 @@ details.section .grid{margin-top:16px;}
   <div class="no-result" id="noResult">Aucune personne ne correspond à votre recherche.</div>
 
   <p class="disclaimer">Sélection <strong>indicative, non exhaustive et curée</strong>, à visée informative et pédagogique. Aucune photo n'est hébergée&nbsp;: chaque fiche renvoie vers un <strong>profil public officiel</strong> (Wikipédia, site institutionnel, ou compte vérifié). Les rôles et rattachements évoluent&nbsp;; recoupez avant de citer. Une erreur, un oubli, ou une demande de retrait&nbsp;? <a href="mailto:rsebastien@protonmail.com">Écrivez-moi</a>.</p>
+  <p class="credit-note">Portraits&nbsp;: <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>, sous licence libre (domaine public ou Creative Commons). L'auteur et la licence de chaque photo s'affichent au survol&nbsp;; cliquez une photo pour accéder à sa page source. Aucune photo sous licence non libre n'est utilisée.</p>
 </main>
 
 <div id="sr-footer"></div>
@@ -149,8 +155,11 @@ function cardHTML(p){
   const prof=p.u?`<a class="plink" href="${esc(p.u)}" target="_blank" rel="noopener">Profil →</a>`:'';
   const x=p.x?`<a class="xlink" href="https://x.com/${esc(p.x)}" target="_blank" rel="noopener" title="@${esc(p.x)} sur X" aria-label="Profil X">${X_SVG}</a>`:'';
   const sdata=esc(((p.n||'')+' '+(p.org||'')+' '+(p.bio||'')).toLowerCase());
+  const avatar = p.photo
+    ? `<a class="avatar" href="${esc(p.photo_src||p.photo)}" target="_blank" rel="noopener" title="Photo : ${esc(p.photo_credit||'')} · ${esc(p.photo_license||'')} · Wikimedia Commons"><img src="${esc(p.photo)}" alt="${esc(p.n)}" loading="lazy"></a>`
+    : `<span class="mono ${esc(p.role)}">${initials(p.n)}</span>`;
   return `<div class="card" data-search="${sdata}" data-role="${esc(p.role)}" data-pays="${esc(p.pays||'')}">
-    <div class="card-head"><span class="mono ${esc(p.role)}">${initials(p.n)}</span><div style="flex:1"><div class="card-name">${esc(p.n)}</div><div class="card-org">${esc(p.org||'')}</div></div></div>
+    <div class="card-head">${avatar}<div style="flex:1"><div class="card-name">${esc(p.n)}</div><div class="card-org">${esc(p.org||'')}</div></div></div>
     <div class="badges"><span class="rbadge ${esc(p.role)}">${esc(RLABEL[p.role]||p.role)}</span>${flagImg(p.pays)}</div>
     <div class="card-bio">${esc(p.bio||'')}</div>
     <div class="links">${prof}${x}</div>
