@@ -120,6 +120,9 @@ body{
 .fchip .cn{opacity:.55;font-size:.72rem}
 .fchip.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 .fchip.on .cn{opacity:.7}
+.facets2{margin:6px 2px 2px}
+.m-tags .lvl{background:var(--t-biz-soft);color:var(--t-biz)}
+.m-tags .thm{background:var(--t-block-soft);color:var(--t-block)}
 
 .count-line{font-size:.84rem;color:var(--faint);margin:14px 2px 18px}
 
@@ -264,6 +267,8 @@ body{
     </div>
   </div>
   <div class="facets" id="facets"></div>
+  <div class="facets facets2" id="facetsLevel"></div>
+  <div class="facets facets2" id="facetsTag"></div>
   <div class="count-line" id="countLine"></div>
 
   <main class="grid" id="grid"></main>
@@ -291,6 +296,7 @@ const CATS={
   ia:{l:"IA",tint:"var(--t-ia)",soft:"var(--t-ia-soft)"},
   data:{l:"Data",tint:"var(--t-data)",soft:"var(--t-data-soft)"},
   fiction:{l:"Fiction",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"},
+  "bd-manga":{l:"BD / Manga",tint:"var(--t-block)",soft:"var(--t-block-soft)"},
   blockchain:{l:"Blockchain",tint:"var(--t-block)",soft:"var(--t-block-soft)"},
   business:{l:"Business",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"},
   "agile-projet":{l:"Agile / Projet",tint:"var(--t-data)",soft:"var(--t-data-soft)"},
@@ -306,21 +312,25 @@ const CATS={
 const SECT={
   ref:{l:"Références",tint:"var(--t-ia)",soft:"var(--t-ia-soft)"},
   cult:{l:"Culture IA",tint:"var(--t-biz)",soft:"var(--t-biz-soft)"},
+  bd:{l:"BD / Manga",tint:"var(--t-block)",soft:"var(--t-block-soft)"},
   ecran:{l:"À l’écran",tint:"var(--t-block)",soft:"var(--t-block-soft)"}
 };
-const NAT={livre:"Livre",papier:"Papier de recherche",guide:"Guide",rapport:"Rapport",mooc:"Cours en ligne",film:"Film",serie:"Série",documentaire:"Documentaire"};
+// parcours éditorial (paliers soft) — cross-cutting, optionnel
+const LVL={debuter:"Pour débuter",approfondir:"Pour approfondir",loin:"Pour aller plus loin"};
+const LVL_ORDER=["debuter","approfondir","loin"];
+const NAT={livre:"Livre",papier:"Papier de recherche",guide:"Guide",rapport:"Rapport",mooc:"Cours en ligne",bd:"Bande dessinée",film:"Film",serie:"Série",documentaire:"Documentaire"};
 const INT={reflexion:"Réflexion","les-deux":"Réflexion + divertissement",divertissement:"Divertissement"};
 const FAM={"fiction-ia":"Fiction IA","robotique":"Robotique / androïdes","simulation":"Simulation / upload","documentaire":"Documentaire IA réelle","generative":"IA générative","peripherique":"Culture numérique"};
 const PLABEL={3:"Incontournable",2:"Recommandé",1:"Notable"};
 // navigation : Lire (livres) / Regarder (écran, par médium)
-const VIEWS=[{k:"",l:"Tout"},{g:"Lire",items:["ref","cult"]},{g:"Regarder",items:["film","serie","documentaire"]}];
+const VIEWS=[{k:"",l:"Tout"},{g:"Lire",items:["ref","cult","bd"]},{g:"Regarder",items:["film","serie","documentaire"]}];
 const viewMeta=k=>SECT[k]||CATS[k]||{l:k,tint:"var(--ia)",soft:"var(--ia-soft)"};
 function matchView(b,k){
   if(!k) return true;
-  if(k==="ref"||k==="cult") return b.s===k;
+  if(k==="ref"||k==="cult"||k==="bd") return b.s===k;
   return b.s==="ecran" && b.c===k;                 // film / serie / documentaire
 }
-let BOOKS=[], fView="", fFacet="", fFr=false, q="", sortMode="sel";
+let BOOKS=[], fView="", fFacet="", fLevel="", fTag="", fFr=false, q="", sortMode="sel";
 const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tintVars=c=>`--tint:${CATS[c].tint};--tint-soft:${CATS[c].soft}`;
 const facetOf=b=> b.s==="ecran" ? (FAM[b.fam]||b.fam||"") : (b.scat||"");   // facette secondaire : famille (écran) / sous-catégorie (livres)
@@ -334,6 +344,7 @@ fetch("./data.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>
     `<div class="stat"><b>${d.count}</b> titres</div>`+
     Object.keys(CATS).filter(c=>by[c]).map(c=>`<div class="stat"><b>${by[c]}</b> ${CATS[c].l}</div>`).join("");
   buildChips();
+  buildThemeFacets();
   document.getElementById("sort").addEventListener("change",e=>{sortMode=e.target.value;render();});
   document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();render();});
   document.getElementById("frOnly").addEventListener("change",e=>{fFr=e.target.checked;render();});
@@ -384,10 +395,38 @@ function buildFacets(){
   });
 }
 
+// facettes cross-cutting : Parcours (paliers) + Thèmes (tags). Optionnelles, combinables, comptages globaux.
+function buildThemeFacets(){
+  const lc={}, tc={};
+  BOOKS.forEach(b=>{ if(b.lvl)lc[b.lvl]=(lc[b.lvl]||0)+1; (b.tg||[]).forEach(t=>tc[t]=(tc[t]||0)+1); });
+  const lvlEl=document.getElementById("facetsLevel");
+  const lkeys=LVL_ORDER.filter(k=>lc[k]);
+  if(lkeys.length>=2){
+    lvlEl.innerHTML=`<span class="flabel">Parcours</span>`+
+      `<button class="fchip${fLevel===""?" on":""}" data-l="">Tous</button>`+
+      lkeys.map(k=>`<button class="fchip${k===fLevel?" on":""}" data-l="${k}">${LVL[k]}<span class="cn">${lc[k]}</span></button>`).join("");
+    lvlEl.querySelectorAll(".fchip").forEach(b=>b.onclick=()=>{
+      fLevel=b.dataset.l; lvlEl.querySelectorAll(".fchip").forEach(x=>x.classList.toggle("on",x.dataset.l===fLevel)); render();
+    });
+  } else lvlEl.innerHTML="";
+  const tagEl=document.getElementById("facetsTag");
+  const tkeys=Object.keys(tc).sort((a,b)=>tc[b]-tc[a]||a.localeCompare(b));
+  if(tkeys.length){
+    tagEl.innerHTML=`<span class="flabel">Thème</span>`+
+      `<button class="fchip${fTag===""?" on":""}" data-t="">Tous</button>`+
+      tkeys.map(k=>`<button class="fchip${k===fTag?" on":""}" data-t="${esc(k)}">${esc(k)}<span class="cn">${tc[k]}</span></button>`).join("");
+    tagEl.querySelectorAll(".fchip").forEach(b=>b.onclick=()=>{
+      fTag=b.dataset.t; tagEl.querySelectorAll(".fchip").forEach(x=>x.classList.toggle("on",x.dataset.t===fTag)); render();
+    });
+  } else tagEl.innerHTML="";
+}
+
 function render(){
   let list=BOOKS.filter(b=>{
     if(!matchView(b,fView)) return false;
     if(fFacet && facetOf(b)!==fFacet) return false;         // filtre secondaire (famille / sous-catégorie)
+    if(fLevel && b.lvl!==fLevel) return false;              // parcours éditorial
+    if(fTag && !(b.tg||[]).includes(fTag)) return false;    // thème
     if(fFr && b.s!=="ecran" && b.d!=="oui") return false;   // toggle FR = livres uniquement
     if(q){const h=(b.t+" "+b.vo+" "+b.a).toLowerCase();if(!h.includes(q))return false;}
     return true;
@@ -397,7 +436,7 @@ function render(){
   else if(sortMode==="az") list.sort((a,b)=>norm(a.t).localeCompare(norm(b.t)));
   // "sel" = ordre naturel (sections dans data.json)
   document.getElementById("countLine").textContent=
-    list.length+(list.length>1?" titres affichés":" titre affiché")+((fView||fFr||q||sortMode!=="sel")?" (filtré)":"");
+    list.length+(list.length>1?" titres affichés":" titre affiché")+((fView||fFacet||fLevel||fTag||fFr||q||sortMode!=="sel")?" (filtré)":"");
   const g=document.getElementById("grid");
   if(!list.length){g.innerHTML='<div class="empty">Aucun titre ne correspond. Élargissez la recherche.</div>';return;}
   g.innerHTML=list.map(b=>{
@@ -423,6 +462,8 @@ function openModal(b){
   const ph=`<div class="ph">${esc(b.t)}</div>`;
   const isScreen=b.s==="ecran";
   const tags=[CATS[b.c].l,NAT[b.n]||b.n,b.y,isScreen?b.pays:""].filter(Boolean).map(t=>`<span>${esc(t)}</span>`).join("")
+    +(b.lvl?`<span class="lvl">${esc(LVL[b.lvl]||b.lvl)}</span>`:"")
+    +((b.tg||[]).map(t=>`<span class="thm">${esc(t)}</span>`).join(""))
     +(isScreen&&b.fam?`<span class="fam">${esc(FAM[b.fam]||b.fam)}</span>`:"")
     +(!isScreen&&b.scat?`<span class="fam">${esc(b.scat)}</span>`:"")
     +(isScreen&&b.i?`<span style="background:var(--t-ia-soft);color:var(--t-ia)">${esc(INT[b.i]||b.i)}</span>`:"")
