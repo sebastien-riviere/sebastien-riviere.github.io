@@ -269,6 +269,54 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
 
   <p>Deux façons de vendre la même idée. Et déjà, un premier réflexe utile : ces annonces spectaculaires portent presque toujours sur des <strong>produits</strong> (une plateforme, une machine), pas sur une nouvelle preuve que « ça calcule mieux ». On y reviendra — c'est central.</p>
 
+  <figure class="figure">
+    <div class="surface">
+      <svg viewBox="0 0 720 214" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Inter, system-ui, sans-serif">
+        <title>Le biocomputing en un coup d'œil</title>
+        <desc>Quatre acteurs et leurs rôles : FinalSpark (Suisse, plateforme d'accès à distance), Cortical Labs (Australie, machine commerciale CL1), Johns Hopkins (USA, recherche académique, concept d'Organoid Intelligence), Koniku (USA, niche de détection olfactive).</desc>
+        <text x="20" y="28" font-size="19" font-weight="700" fill="#1b2733">Le biocomputing en un coup d'œil</text>
+        <text x="20" y="49" font-size="13" fill="#566778">Deux modèles industriels, la recherche académique, et une niche à part</text>
+        <g>
+          <rect x="20" y="70" width="158" height="126" rx="10" fill="#ffffff" stroke="#e3e8ef"/>
+          <rect x="20" y="70" width="5" height="126" rx="2" fill="#2f6fb0"/>
+          <text x="40" y="96" font-size="14" font-weight="800" fill="#1b2733">FinalSpark</text>
+          <text x="40" y="116" font-size="11.5" font-weight="700" fill="#245a91">🇨🇭 Plateforme</text>
+          <text x="40" y="140" font-size="11.5" fill="#566778">Loue l'accès à</text>
+          <text x="40" y="156" font-size="11.5" fill="#566778">ses neurones,</text>
+          <text x="40" y="172" font-size="11.5" fill="#566778">à distance.</text>
+        </g>
+        <g>
+          <rect x="194" y="70" width="158" height="126" rx="10" fill="#ffffff" stroke="#e3e8ef"/>
+          <rect x="194" y="70" width="5" height="126" rx="2" fill="#b8570f"/>
+          <text x="214" y="96" font-size="14" font-weight="800" fill="#1b2733">Cortical Labs</text>
+          <text x="214" y="116" font-size="11.5" font-weight="700" fill="#9a5f15">🇦🇺 Machine</text>
+          <text x="214" y="140" font-size="11.5" fill="#566778">Vend le CL1 ;</text>
+          <text x="214" y="156" font-size="11.5" fill="#566778">a réalisé</text>
+          <text x="214" y="172" font-size="11.5" fill="#566778">l'expérience Pong.</text>
+        </g>
+        <g>
+          <rect x="368" y="70" width="158" height="126" rx="10" fill="#ffffff" stroke="#e3e8ef"/>
+          <rect x="368" y="70" width="5" height="126" rx="2" fill="#7345a0"/>
+          <text x="388" y="96" font-size="14" font-weight="800" fill="#1b2733">Johns Hopkins</text>
+          <text x="388" y="116" font-size="11.5" font-weight="700" fill="#5e3785">🇺🇸 Recherche</text>
+          <text x="388" y="140" font-size="11.5" fill="#566778">A défini l'idée</text>
+          <text x="388" y="156" font-size="11.5" fill="#566778">d'« Organoid</text>
+          <text x="388" y="172" font-size="11.5" fill="#566778">Intelligence ».</text>
+        </g>
+        <g>
+          <rect x="542" y="70" width="158" height="126" rx="10" fill="#ffffff" stroke="#e3e8ef"/>
+          <rect x="542" y="70" width="5" height="126" rx="2" fill="#3f7a4e"/>
+          <text x="562" y="96" font-size="14" font-weight="800" fill="#1b2733">Koniku</text>
+          <text x="562" y="116" font-size="11.5" font-weight="700" fill="#2f6b3f">🇺🇸 Niche</text>
+          <text x="562" y="140" font-size="11.5" fill="#566778">Neurones pour</text>
+          <text x="562" y="156" font-size="11.5" fill="#566778">détecter des</text>
+          <text x="562" y="172" font-size="11.5" fill="#566778">odeurs.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>Les acteurs et leur rôle. À noter : les géants (Google, Nvidia) n'en font pas — ils <em>cartographient</em> le cerveau, ce qui est différent (on y revient plus bas).</figcaption>
+  </figure>
+
   <hr>
 
   <!-- ===== 2 ===== -->
@@ -303,6 +351,11 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
   <p>Ici, il faut abandonner tout ce qu'on croit savoir sur la programmation. On <strong>n'écrit pas de code</strong> pour un organoïde. On ne lui « installe » rien. On l'<strong>éduque</strong>, un peu comme on dresse un animal : par <strong>récompense</strong> et <strong>punition</strong>.</p>
 
   <p>L'expérience fondatrice s'appelle <strong>DishBrain</strong> (« cerveau dans une boîte »). En 2022, la société Cortical Labs a connecté ~800 000 neurones à un jeu de <strong>Pong</strong> (le tout premier jeu vidéo, une raquette qui renvoie une balle). Le résultat, publié dans la revue scientifique <em>Neuron</em>, a fait le tour du monde : les neurones ont « appris » à mieux jouer en cinq minutes.</p>
+
+  <figure class="figure">
+    <div class="surface"><img src="dishbrain-kagan-2022.jpg" alt="Schéma du dispositif DishBrain : des neurones en culture sur une grille d'électrodes, reliés en boucle fermée à un jeu de Pong simulé." loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;border-radius:8px;"></div>
+    <figcaption>Le dispositif <b>DishBrain</b> et son protocole : les neurones, sur la grille d'électrodes, « reçoivent » la position de la balle et « renvoient » la commande de la raquette — en boucle fermée. Illustration&nbsp;: <a href="https://commons.wikimedia.org/wiki/File:DishBrain_system_and_experimental_protocol_schematic.jpg">Kagan et al.</a>, <em>Neuron</em> (2022) — <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption>
+  </figure>
 
   <div class="box ia">
     <h4>🎯 Le « principe d'énergie libre » (la récompense)</h4>
