@@ -101,6 +101,8 @@ main{flex:1;padding:34px 40px 64px;}
 .box .note{font-size:12.5px;color:var(--muted);}
 .box.ia{--bc:var(--t-ia);} .box.block{--bc:var(--t-block);} .box.prod{--bc:var(--t-prod);}
 .box.muted{--bc:var(--faint);background:var(--bg-band);box-shadow:none;}
+.box h4 svg.ico{flex:none;width:19px;height:19px;stroke:var(--bc,var(--t-ia));stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+img.flag{width:17px;height:12px;border-radius:2px;vertical-align:-1px;margin-right:6px;box-shadow:0 0 0 1px rgba(0,0,0,.09);}
 .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;border-radius:20px;padding:2px 9px;vertical-align:middle;}
 .tag.ok{color:var(--t-prod);background:var(--t-prod-soft);}
 .tag.warn{color:var(--t-block);background:var(--t-block-soft);}
@@ -256,7 +258,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
   </figure>
 
   <div class="box ia">
-    <h4>🧠 C'est quoi un organoïde cérébral ?</h4>
+    <h4><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 4.5A2.5 2.5 0 0 0 7 7v.2A2.6 2.6 0 0 0 5 9.7c0 .8.3 1.4.8 1.9A2.6 2.6 0 0 0 5 13.9c0 1 .6 1.9 1.5 2.3A2.3 2.3 0 0 0 8.8 19c.8 0 1.4-.4 1.7-.9V6A2.5 2.5 0 0 0 9.5 4.5z"/><path d="M14.5 4.5A2.5 2.5 0 0 1 17 7v.2a2.6 2.6 0 0 1 2 2.5c0 .8-.3 1.4-.8 1.9a2.6 2.6 0 0 1 .8 2.3c0 1-.6 1.9-1.5 2.3A2.3 2.3 0 0 1 15.2 19c-.8 0-1.4-.4-1.7-.9V6A2.5 2.5 0 0 1 14.5 4.5z"/></svg> C'est quoi un organoïde cérébral ?</h4>
     <p>Un <b>organoïde cérébral</b>, c'est un petit amas de neurones vivants cultivé en laboratoire — une bille d'environ <b>1 millimètre</b>, soit une dizaine de milliers de neurones (notre cerveau en compte ~86 <b>milliards</b>). Ce n'est ni un cerveau, ni un mini-cerveau conscient : c'est un bout de tissu nerveux qui a une <b>activité électrique</b>, sans corps, sans yeux, sans comportement.</p>
     <p class="note">On parle aussi de « wetware » (matériel <em>humide</em>) par opposition au <em>hardware</em> (le matériel sec, les puces) et au <em>software</em> (les programmes). Tout se passe dans du liquide : les cellules vivantes exigent un milieu humide en permanence.</p>
   </div>
@@ -280,7 +282,8 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
           <rect x="20" y="70" width="158" height="126" rx="10" fill="#ffffff" stroke="#e3e8ef"/>
           <rect x="20" y="70" width="5" height="126" rx="2" fill="#2f6fb0"/>
           <text x="40" y="96" font-size="14" font-weight="800" fill="#1b2733">FinalSpark</text>
-          <text x="40" y="116" font-size="11.5" font-weight="700" fill="#245a91">🇨🇭 Plateforme</text>
+          <image href="https://flagcdn.com/ch.svg" x="40" y="106" width="16" height="12" preserveAspectRatio="xMidYMid meet"/>
+          <text x="61" y="116" font-size="11.5" font-weight="700" fill="#245a91">Plateforme</text>
           <text x="40" y="140" font-size="11.5" fill="#566778">Loue l'accès à</text>
           <text x="40" y="156" font-size="11.5" fill="#566778">ses neurones,</text>
           <text x="40" y="172" font-size="11.5" fill="#566778">à distance.</text>
@@ -289,7 +292,8 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
           <rect x="194" y="70" width="158" height="126" rx="10" fill="#ffffff" stroke="#e3e8ef"/>
           <rect x="194" y="70" width="5" height="126" rx="2" fill="#b8570f"/>
           <text x="214" y="96" font-size="14" font-weight="800" fill="#1b2733">Cortical Labs</text>
-          <text x="214" y="116" font-size="11.5" font-weight="700" fill="#9a5f15">🇦🇺 Machine</text>
+          <image href="https://flagcdn.com/au.svg" x="214" y="106" width="18" height="12" preserveAspectRatio="xMidYMid meet"/>
+          <text x="237" y="116" font-size="11.5" font-weight="700" fill="#9a5f15">Machine</text>
           <text x="214" y="140" font-size="11.5" fill="#566778">Vend le CL1 ;</text>
           <text x="214" y="156" font-size="11.5" fill="#566778">a réalisé</text>
           <text x="214" y="172" font-size="11.5" fill="#566778">l'expérience Pong.</text>
@@ -298,7 +302,8 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
           <rect x="368" y="70" width="158" height="126" rx="10" fill="#ffffff" stroke="#e3e8ef"/>
           <rect x="368" y="70" width="5" height="126" rx="2" fill="#7345a0"/>
           <text x="388" y="96" font-size="14" font-weight="800" fill="#1b2733">Johns Hopkins</text>
-          <text x="388" y="116" font-size="11.5" font-weight="700" fill="#5e3785">🇺🇸 Recherche</text>
+          <image href="https://flagcdn.com/us.svg" x="388" y="106" width="18" height="12" preserveAspectRatio="xMidYMid meet"/>
+          <text x="411" y="116" font-size="11.5" font-weight="700" fill="#5e3785">Recherche</text>
           <text x="388" y="140" font-size="11.5" fill="#566778">A défini l'idée</text>
           <text x="388" y="156" font-size="11.5" fill="#566778">d'« Organoid</text>
           <text x="388" y="172" font-size="11.5" fill="#566778">Intelligence ».</text>
@@ -307,7 +312,8 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
           <rect x="542" y="70" width="158" height="126" rx="10" fill="#ffffff" stroke="#e3e8ef"/>
           <rect x="542" y="70" width="5" height="126" rx="2" fill="#3f7a4e"/>
           <text x="562" y="96" font-size="14" font-weight="800" fill="#1b2733">Koniku</text>
-          <text x="562" y="116" font-size="11.5" font-weight="700" fill="#2f6b3f">🇺🇸 Niche</text>
+          <image href="https://flagcdn.com/us.svg" x="562" y="106" width="18" height="12" preserveAspectRatio="xMidYMid meet"/>
+          <text x="585" y="116" font-size="11.5" font-weight="700" fill="#2f6b3f">Niche</text>
           <text x="562" y="140" font-size="11.5" fill="#566778">Neurones pour</text>
           <text x="562" y="156" font-size="11.5" fill="#566778">détecter des</text>
           <text x="562" y="172" font-size="11.5" fill="#566778">odeurs.</text>
@@ -332,7 +338,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
   </ul>
 
   <div class="box ia">
-    <h4>🔬 C'est quoi les cellules souches « iPSC » ?</h4>
+    <h4><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6"/><path d="M10 3v6l-4.6 8.1A1.6 1.6 0 0 0 6.8 20h10.4a1.6 1.6 0 0 0 1.4-2.4L14 9V3"/><path d="M7.7 14.5h8.6"/></svg> C'est quoi les cellules souches « iPSC » ?</h4>
     <p>Les <b>iPSC</b> (« cellules souches pluripotentes induites ») sont des cellules adultes banales — de peau, par exemple — qu'on a <b>reprogrammées</b> pour qu'elles redeviennent « vierges », capables de donner n'importe quel tissu. Découverte majeure (prix Nobel 2012), elle a un avantage éthique décisif : <b>on n'utilise pas d'embryon</b>. C'est pour ça que le biocomputing échappe aux lois très strictes sur les cellules souches embryonnaires.</p>
   </div>
 
@@ -358,7 +364,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
   </figure>
 
   <div class="box ia">
-    <h4>🎯 Le « principe d'énergie libre » (la récompense)</h4>
+    <h4><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.2"/><circle cx="12" cy="12" r="1" fill="var(--bc)" stroke="none"/></svg> Le « principe d'énergie libre » (la récompense)</h4>
     <p>Comment « récompenser » des neurones ? L'idée, formulée par le neuroscientifique <b>Karl Friston</b>, est que tout système vivant <b>déteste la surprise</b> et cherche un environnement prévisible. Alors on triche : quand les neurones font <em>bien</em> (la raquette touche la balle), on leur envoie une stimulation <b>régulière, prévisible</b> = « bon ». Quand ils ratent, une stimulation <b>chaotique</b> = « mauvais ». Pour éviter le désordre, les neurones s'auto-organisent… et se mettent à mieux jouer. Personne ne leur a « dit » comment.</p>
   </div>
 
@@ -410,7 +416,8 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
         <!-- supercalc -->
         <rect x="40" y="150" width="620" height="34" rx="6" fill="#b8570f"/>
         <text x="52" y="172" font-size="14.5" font-weight="700" fill="#ffffff">Supercalculateur : ~20 000 000 W</text>
-        <text x="40" y="220" font-size="12.5" fill="#8493a3">⚠️ Ce rapport (~1 000 000×) compare un cerveau ENTIER (86 milliards de neurones) — pas un organoïde</text>
+        <path d="M40 213.5l5 8.5h-10z" fill="none" stroke="#c9922b" stroke-width="1.4" stroke-linejoin="round"/><path d="M45 217.2v2.1M45 220.8v.1" stroke="#c9922b" stroke-width="1.4" stroke-linecap="round"/>
+        <text x="55" y="221" font-size="12.5" fill="#8493a3">Ce rapport (~1 000 000×) compare un cerveau ENTIER (86 milliards de neurones) — pas un organoïde</text>
         <text x="40" y="238" font-size="12.5" fill="#8493a3">de ~10 000 neurones qui, aujourd'hui, ne calcule quasiment rien d'utile. À manier avec des pincettes.</text>
       </svg>
     </div>
@@ -455,18 +462,18 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
         <tr><th>Acteur</th><th>Pays</th><th>Ce qu'il fait</th><th>Statut</th></tr>
       </thead>
       <tbody>
-        <tr><td><b>FinalSpark</b></td><td>🇨🇭 Suisse</td><td>Accès distant à des neurones (plateforme-service)</td><td><span class="badge no">auto-financé</span></td></tr>
-        <tr><td><b>Cortical Labs</b></td><td>🇦🇺 Australie</td><td>Vend le CL1 ; a réalisé l'expérience Pong (2022)</td><td><span class="badge yes">commercial</span></td></tr>
-        <tr><td><b>Koniku</b></td><td>🇺🇸 USA</td><td>Neurones + puce pour <em>détecter des odeurs</em> (explosifs) — autre créneau</td><td><span class="badge no">niche</span></td></tr>
-        <tr><td><b>Johns Hopkins</b></td><td>🇺🇸 USA</td><td>Recherche ; a forgé le concept d'« Organoid Intelligence »</td><td><span class="badge no">académique</span></td></tr>
-        <tr><td><b>System1 Biosciences</b></td><td>🇺🇸 USA</td><td>Organoïdes pour la médecine (épilepsie, autisme)</td><td><span class="badge yes">25 M$ levés</span></td></tr>
+        <tr><td><b>FinalSpark</b></td><td><img class="flag" src="https://flagcdn.com/ch.svg" alt="" width="17" height="12" loading="lazy">Suisse</td><td>Accès distant à des neurones (plateforme-service)</td><td><span class="badge no">auto-financé</span></td></tr>
+        <tr><td><b>Cortical Labs</b></td><td><img class="flag" src="https://flagcdn.com/au.svg" alt="" width="17" height="12" loading="lazy">Australie</td><td>Vend le CL1 ; a réalisé l'expérience Pong (2022)</td><td><span class="badge yes">commercial</span></td></tr>
+        <tr><td><b>Koniku</b></td><td><img class="flag" src="https://flagcdn.com/us.svg" alt="" width="17" height="12" loading="lazy">USA</td><td>Neurones + puce pour <em>détecter des odeurs</em> (explosifs) — autre créneau</td><td><span class="badge no">niche</span></td></tr>
+        <tr><td><b>Johns Hopkins</b></td><td><img class="flag" src="https://flagcdn.com/us.svg" alt="" width="17" height="12" loading="lazy">USA</td><td>Recherche ; a forgé le concept d'« Organoid Intelligence »</td><td><span class="badge no">académique</span></td></tr>
+        <tr><td><b>System1 Biosciences</b></td><td><img class="flag" src="https://flagcdn.com/us.svg" alt="" width="17" height="12" loading="lazy">USA</td><td>Organoïdes pour la médecine (épilepsie, autisme)</td><td><span class="badge yes">25 M$ levés</span></td></tr>
       </tbody>
     </table>
     <p class="tbl-src">Sources : publications et presse spécialisée (FinalSpark <em>Frontiers in AI</em> 2024 ; Cortical Labs / DataCenterDynamics 2025 ; Johns Hopkins <em>Frontiers in Science</em> 2023). Les « géants » (Nvidia, Google) ne font <b>pas</b> de biocomputing : Google cartographie le cerveau (connectome), ce qui est différent.</p>
   </div>
 
   <div class="box block">
-    <h4>🔀 À ne pas confondre : biocomputing ≠ Neuralink</h4>
+    <h4><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="m4 4 5 5"/></svg> À ne pas confondre : biocomputing ≠ Neuralink</h4>
     <p>On mélange souvent tout ce qui touche « cerveau » et « ordinateur ». Ce sont deux directions <b>opposées</b> :</p>
     <p>• <b>Neuralink</b> (Elon Musk) met une puce <b>DANS</b> un cerveau humain vivant, pour lire/écrire ses signaux (aider un paralysé, à terme « augmenter » l'humain). Le cerveau reste dans la personne.</p>
     <p>• <b>Le biocomputing</b> (FinalSpark, Cortical) cultive des neurones <b>HORS</b> du corps et en fait la machine elle-même.</p>
