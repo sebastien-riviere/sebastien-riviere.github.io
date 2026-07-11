@@ -1,12 +1,29 @@
 {
-  "maj": "2026-07-10",
-  "total": 99,
+  "maj": "2026-07-11",
+  "total": 100,
   "byTheme": {
+    "data": 86,
     "numerique": 1,
-    "data": 85,
     "ia": 13
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture et maintenance  de sondes de télérelève de remplissage et logiciel d'exploitation des données collectées pour conteneurs d'apport volontaire à déchets ménagers",
+      "a": "Grenoble Alpes Metropole",
+      "dep": "38",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-10",
+      "dl": "2026-08-19T15:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.marches-publics.info/mpiaws/index.cfm?fuseaction=dematent.login&type=Dce&Idm=1848020",
+      "k": "grenoble alpes metropole|fourniture et maintenance de sondes de telereleve de remplissage et logiciel d exploitatio",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "Mentions Légales - Place - Plate-forme des achats de l'état",
