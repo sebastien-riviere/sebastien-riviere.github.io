@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Des neurones humains dans nos ordinateurs — Sébastien Rivière</title>
+<meta name="description" content="Enquête sourcée sur le biocomputing : ces « IA vivantes » qui calculent avec de vrais neurones humains. D'où viennent les cellules, comment ça marche, à quoi ça sert, risques et bénéfices — pour se faire un avis, en séparant le prouvé du promis.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Sébastien Rivière">
+<meta property="og:title" content="Des neurones humains dans nos ordinateurs">
+<meta property="og:description" content="Le biocomputing, ces « IA vivantes » qui calculent avec de vrais neurones humains. Une enquête sourcée qui sépare le prouvé du promis.">
+<meta property="og:url" content="https://sebastien-riviere.github.io/articles/des-neurones-humains-dans-nos-ordinateurs/">
+<meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+/* Palette comic-lite bleu (base remappée ; familles inchangées) */
+:root{
+  --ui:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --bg:#e9eef4; --bg-band:#dfe7f0;
+  --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --card:#ffffff; --border:#1b2836; --border-soft:#d5dee8;
+  --title:#1c2a37; --accent:#2f6fb0; --accent-ink:#245a91; --accent-soft:#dbe8f6;
+  --pop:#d64550; --pop-ink:#b23131; --pop-soft:#f6dede;
+  --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+    --card:#16212e; --border:rgba(221,233,244,.24); --border-soft:rgba(221,233,244,.10); --title:#e7eef5;
+    --accent:#5b9bd8; --accent-ink:#9cc6ec; --accent-soft:#1b2b3c;
+    --pop:#e5686f; --pop-ink:#e08c8c; --pop-soft:#2f1a1a; --shadow:3px 3px 0 rgba(0,0,0,.42);
+    --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+    --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+    --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+  }
+}
+html[data-theme="light"]{
+  --ui:'Nunito',system-ui,sans-serif; --bg:#e9eef4; --bg-band:#dfe7f0; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --card:#ffffff; --border:#1b2836; --border-soft:#d5dee8; --title:#1c2a37;
+  --accent:#2f6fb0; --accent-ink:#245a91; --accent-soft:#dbe8f6;
+  --pop:#d64550; --pop-ink:#b23131; --pop-soft:#f6dede; --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --t-art:#4453c4; --t-art-soft:#e4e6f8; --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+}
+html[data-theme="dark"]{
+  --ui:'Nunito',system-ui,sans-serif; --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:rgba(221,233,244,.24); --border-soft:rgba(221,233,244,.10); --title:#e7eef5;
+  --accent:#5b9bd8; --accent-ink:#9cc6ec; --accent-soft:#1b2b3c;
+  --pop:#e5686f; --pop-ink:#e08c8c; --pop-soft:#2f1a1a; --shadow:3px 3px 0 rgba(0,0,0,.42);
+  --t-art:#9aa5ef; --t-art-soft:#1a1e33; --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);background-image:radial-gradient(var(--border-soft) 1.2px,transparent 1.3px);background-size:34px 34px;color:var(--text);font-family:var(--ui);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:inherit;text-decoration:none;}
+.maxw{max-width:1120px;width:100%;margin:0 auto;}
+main{flex:1;padding:34px 40px 64px;}
+
+/* ===== ARTICLE ===== */
+.art{max-width:720px;margin:0 auto;}
+.art .breadcrumb{font-size:13px;font-weight:600;color:var(--faint);margin-bottom:20px;}
+.art .breadcrumb a:hover{color:var(--accent-ink);}
+.art-kick{font-weight:800;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--t-labo);}
+.art h1{font-weight:800;font-size:clamp(28px,5vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--title);margin:10px 0 16px;}
+.art-meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13.5px;font-weight:600;color:var(--muted);padding-bottom:22px;border-bottom:1px solid var(--border);margin-bottom:8px;}
+.art-meta .dot{color:var(--faint);}
+.lede{font-size:clamp(18px,2.4vw,21px);line-height:1.55;color:var(--text);font-weight:500;margin:26px 0;text-align:justify;-webkit-hyphens:auto;hyphens:auto;}
+.lede strong{color:var(--title);font-weight:700;}
+
+.art h2{font-weight:800;font-size:clamp(22px,3.2vw,28px);line-height:1.2;letter-spacing:-.01em;color:var(--title);margin:44px 0 14px;padding-top:8px;}
+.art h2 .num{color:var(--t-labo);margin-right:6px;}
+.art h3{font-weight:800;font-size:18px;color:var(--title);margin:26px 0 8px;}
+.art p{margin:0 0 16px;text-align:justify;-webkit-hyphens:auto;hyphens:auto;}
+.art p strong{color:var(--title);font-weight:700;}
+.art em{font-style:italic;}
+.art a.inline{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);}
+.art a.inline:hover{color:var(--pop-ink);}
+.art ul.body{margin:0 0 16px 0;padding-left:20px;}
+.art ul.body li{margin-bottom:7px;text-align:left;}
+.art hr{border:0;height:1px;background:var(--border);margin:40px 0;}
+
+/* Citation */
+.art blockquote{border-left:3px solid var(--pop);background:var(--bg-band);border-radius:0 10px 10px 0;padding:14px 20px;margin:22px 0;font-size:17px;line-height:1.55;color:var(--text);}
+.art blockquote .src{display:block;margin-top:8px;font-size:13px;font-weight:600;color:var(--faint);font-style:normal;}
+
+/* Encadré */
+.box{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--bc,var(--t-ia));border-radius:12px;padding:18px 22px;margin:26px 0;box-shadow:var(--shadow);}
+.box h4{font-size:15px;font-weight:800;color:var(--title);margin:0 0 8px;display:flex;align-items:center;gap:8px;}
+.box p{font-size:14.5px;line-height:1.6;margin:0 0 8px;color:var(--text);text-align:justify;-webkit-hyphens:auto;hyphens:auto;}
+.box p:last-child{margin-bottom:0;}
+.box .note{font-size:12.5px;color:var(--muted);}
+.box.ia{--bc:var(--t-ia);} .box.block{--bc:var(--t-block);} .box.prod{--bc:var(--t-prod);}
+.box.muted{--bc:var(--faint);background:var(--bg-band);box-shadow:none;}
+.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;border-radius:20px;padding:2px 9px;vertical-align:middle;}
+.tag.ok{color:var(--t-prod);background:var(--t-prod-soft);}
+.tag.warn{color:var(--t-block);background:var(--t-block-soft);}
+
+/* Deux colonnes (prouvé vs promis) */
+.pieges{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0;}
+.piege{border:1px solid var(--border);border-radius:12px;padding:16px 18px;background:var(--card);box-shadow:var(--shadow);}
+.piege .lbl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;border-radius:20px;padding:3px 10px;margin-bottom:8px;}
+.piege.a .lbl{color:var(--t-prod);background:var(--t-prod-soft);}
+.piege.b .lbl{color:var(--t-block);background:var(--t-block-soft);}
+.piege p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 7px;}
+.piege p:last-child{margin:0;}
+.piege b{color:var(--title);}
+
+/* Figure / graphique */
+.figure{margin:28px 0;}
+.figure .surface{background:#ffffff;border:1px solid #e3e8ef;border-radius:14px;padding:18px 20px;overflow-x:auto;}
+.figure svg{display:block;max-width:100%;height:auto;margin:0 auto;}
+.figure figcaption{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:10px;padding:0 2px;}
+.figure figcaption a{color:var(--accent-ink);text-decoration:underline;}
+
+/* Tableaux */
+.tbl-wrap{overflow-x:auto;margin:26px 0;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow);}
+table.data{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+table.data caption{text-align:left;font-weight:800;font-size:16px;color:var(--title);padding:16px 16px 2px;}
+table.data .capsub{font-weight:500;font-size:12.5px;color:var(--muted);}
+table.data th{text-align:left;font-weight:700;color:var(--muted);border-bottom:1px solid var(--border);padding:10px 14px;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;}
+table.data td{border-bottom:1px solid var(--border-soft);padding:11px 14px;vertical-align:top;}
+table.data tr:last-child td{border-bottom:0;}
+table.data .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+table.data a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;white-space:nowrap;}
+.badge.yes{color:var(--t-prod);background:var(--t-prod-soft);}
+.badge.no{color:var(--muted);background:var(--bg-band);}
+.tbl-src{font-size:12px;color:var(--muted);padding:10px 16px 14px;line-height:1.5;}
+
+/* Stat strip */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:26px 0;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;box-shadow:var(--shadow);}
+.stat .big{font-weight:800;font-size:26px;color:var(--title);letter-spacing:-.02em;}
+.stat .lab{font-size:12px;color:var(--muted);line-height:1.4;margin-top:4px;}
+
+/* Embed vidéo */
+.embed{margin:26px 0;}
+.embed .frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--border);}
+.embed .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.embed figcaption{font-size:13px;color:var(--muted);line-height:1.5;margin-top:9px;}
+.embed figcaption b{color:var(--title);}
+
+/* Carte-lien / repli */
+.callout{border:1px solid var(--border);border-left:4px solid var(--t-cp);border-radius:12px;background:var(--bg-band);padding:16px 20px;margin:26px 0;}
+.callout p{font-size:14px;line-height:1.6;color:var(--text);margin:0;}
+.callout b{color:var(--title);}
+.callout a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;}
+
+/* Sources + signature */
+.sources{margin:44px 0 0;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);}
+.sources h2{font-size:20px;margin:0 0 6px;padding:0;}
+.sources .intro{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:16px;}
+.sources h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--t-labo);margin:18px 0 8px;}
+.sources ul{margin:0;padding-left:18px;}
+.sources li{font-size:13.5px;line-height:1.6;margin-bottom:6px;color:var(--muted);}
+.sources a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;}
+.legal{font-size:13px;color:var(--muted);line-height:1.6;margin:24px 0 0;padding:14px 18px;border:1px dashed var(--border);border-radius:10px;background:var(--bg-band);}
+.signature{font-size:13px;font-style:italic;color:var(--faint);text-align:center;margin:26px 0 0;line-height:1.6;}
+
+footer{padding:22px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);}
+footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px;}
+@media(max-width:600px){
+  header{padding:20px 18px 0;}main{padding:26px 18px 44px;}footer{padding:18px;}
+  .name{font-size:22px;}.mainnav{margin-top:16px;}.mainnav a{font-size:14px;padding:10px 12px;}
+  .pieges{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div id="sr-header" data-active="articles"></div>
+
+<main class="maxw">
+<article class="art">
+
+  <div class="breadcrumb"><a href="/articles/" class="inline">← Articles &amp; enquêtes</a></div>
+  <div class="art-kick">Enquête · IA &amp; sciences du vivant</div>
+  <h1>Des neurones humains dans nos ordinateurs</h1>
+  <div class="art-meta">
+    <span>Par Sébastien Rivière</span><span class="dot">·</span>
+    <span>11 juillet 2026</span><span class="dot">·</span>
+    <span>Lecture ~16 min</span><span class="dot">·</span>
+    <span>Décrypter</span>
+  </div>
+
+  <p class="lede">Et si l'ordinateur qui fait tourner l'IA de demain n'était pas fait de silicium… mais de <strong>vrais neurones humains, vivants</strong> ? Ce n'est pas de la science-fiction : des entreprises cultivent déjà de minuscules amas de cellules de cerveau et leur font faire des calculs. On appelle ça le <strong>biocomputing</strong>. Fascinant, un peu vertigineux — et entouré d'un énorme malentendu entre <strong>ce qui est prouvé</strong> et <strong>ce qui est promis</strong>.</p>
+
+  <p>« On est en train de créer des IA vivantes. » La phrase est de <strong>Fred Jordan</strong>, cofondateur de la société suisse <strong>FinalSpark</strong>, dans une interview récente. Elle claque, elle inquiète, elle émerveille. Mais que veut-elle dire, <em>exactement</em> ? D'où viennent ces neurones ? Comment leur « apprend »-on quoi que ce soit ? En quoi ça concerne l'intelligence artificielle ? À quoi ça sert vraiment — et qu'est-ce qui relève encore du rêve ?</p>
+
+  <p>Le but de cet article est simple : qu'à la fin, <strong>vous puissiez vous faire votre propre avis</strong>, sur des bases claires et sourcées. On va tout reprendre, pas à pas, sans jargon inutile — et surtout, on va séparer en permanence les <span class="tag ok">Prouvé</span> des <span class="tag warn">Promis</span>. Parce que c'est là, dans cet écart, que se joue tout le sujet.</p>
+
+  <hr>
+
+  <!-- ===== 1 ===== -->
+  <h2><span class="num">1.</span> De quoi on parle : des « ordinateurs vivants »</h2>
+
+  <p>Depuis quelques années, une poignée d'entreprises et de laboratoires poursuivent une idée qui semble sortie d'un film : au lieu de <em>simuler</em> des neurones avec des puces électroniques (ce que fait toute l'IA actuelle, ChatGPT compris), pourquoi ne pas prendre de <strong>vrais neurones</strong> et les faire calculer directement ?</p>
+
+  <p>Concrètement, on fait pousser en laboratoire de minuscules boules de tissu cérébral — des <strong>organoïdes cérébraux</strong> —, on les pose sur une grille de micro-électrodes qui leur « parle » (envoie des signaux électriques) et les « écoute » (enregistre leurs réactions), et on essaie d'en tirer un calcul utile. Le neurone devient une brique d'ordinateur.</p>
+
+  <div class="box ia">
+    <h4>🧠 C'est quoi un organoïde cérébral ?</h4>
+    <p>Un <b>organoïde cérébral</b>, c'est un petit amas de neurones vivants cultivé en laboratoire — une bille d'environ <b>1 millimètre</b>, soit une dizaine de milliers de neurones (notre cerveau en compte ~86 <b>milliards</b>). Ce n'est ni un cerveau, ni un mini-cerveau conscient : c'est un bout de tissu nerveux qui a une <b>activité électrique</b>, sans corps, sans yeux, sans comportement.</p>
+    <p class="note">On parle aussi de « wetware » (matériel <em>humide</em>) par opposition au <em>hardware</em> (le matériel sec, les puces) et au <em>software</em> (les programmes). Tout se passe dans du liquide : les cellules vivantes exigent un milieu humide en permanence.</p>
+  </div>
+
+  <p>Deux acteurs mènent la danse, avec deux philosophies opposées :</p>
+  <ul class="body">
+    <li><strong>FinalSpark</strong> (Suisse) loue l'accès à ses neurones <em>à distance</em>, par internet : une plateforme-service que des chercheurs du monde entier utilisent depuis chez eux.</li>
+    <li><strong>Cortical Labs</strong> (Australie) vend une <em>machine</em> : le CL1, présenté en mars 2025 comme « le premier ordinateur biologique commercial du monde ».</li>
+  </ul>
+
+  <p>Deux façons de vendre la même idée. Et déjà, un premier réflexe utile : ces annonces spectaculaires portent presque toujours sur des <strong>produits</strong> (une plateforme, une machine), pas sur une nouvelle preuve que « ça calcule mieux ». On y reviendra — c'est central.</p>
+
+  <hr>
+
+  <!-- ===== 2 ===== -->
+  <h2><span class="num">2.</span> D'où viennent ces neurones ?</h2>
+
+  <p>Première surprise, et elle est rassurante : on ne va <strong>pas</strong> chercher des neurones dans des cerveaux. Le point de départ, c'est… un bout de <strong>peau</strong> (ou de sang) d'un donneur adulte. La chaîne est la suivante :</p>
+
+  <ul class="body">
+    <li>On prélève des cellules de peau ordinaires.</li>
+    <li>On les <strong>reprogramme</strong> en cellules souches dites <strong>iPSC</strong> — des cellules « remises à zéro », redevenues capables de se transformer en n'importe quel type de cellule du corps.</li>
+    <li>On les guide (on les « différencie ») vers le destin <strong>neurone</strong>, puis on les laisse s'agglomérer en organoïde. Plusieurs mois de culture, dans un incubateur chaud et humide.</li>
+    <li>Au bout d'un moment, les neurones se mettent spontanément à « parler » électriquement. C'est là qu'on les branche.</li>
+  </ul>
+
+  <div class="box ia">
+    <h4>🔬 C'est quoi les cellules souches « iPSC » ?</h4>
+    <p>Les <b>iPSC</b> (« cellules souches pluripotentes induites ») sont des cellules adultes banales — de peau, par exemple — qu'on a <b>reprogrammées</b> pour qu'elles redeviennent « vierges », capables de donner n'importe quel tissu. Découverte majeure (prix Nobel 2012), elle a un avantage éthique décisif : <b>on n'utilise pas d'embryon</b>. C'est pour ça que le biocomputing échappe aux lois très strictes sur les cellules souches embryonnaires.</p>
+  </div>
+
+  <p>Mais cette origine « propre » cache une vraie question, souvent passée sous silence : le <strong>consentement</strong>. Beaucoup de ces cellules proviennent de <strong>banques de tissus « dé-identifiés »</strong> (le nom du donneur a été effacé). Or un donneur qui a cédé un échantillon il y a des années « pour la recherche » n'a presque jamais imaginé qu'on en ferait un jour un composant d'ordinateur — ni qu'on s'interrogerait sur une éventuelle « conscience » de l'objet obtenu.</p>
+
+  <div class="box block">
+    <h4><span class="tag warn">Zone grise</span> Un consentement vraiment éclairé ?</h4>
+    <p>Le régime standard, c'est le « consentement large » : le donneur accepte que ses cellules servent à des recherches futures non précisées. Les cadres éthiques internationaux (lignes directrices <b>ISSCR</b> 2021) l'admettent. Mais les spécialistes eux-mêmes pointent la faille : on ne peut pas supposer qu'un donneur de banque a consenti <em>spécifiquement</em> à la recherche sur organoïdes cérébraux. C'est un débat ouvert, pas un scandale — mais un point à connaître.</p>
+  </div>
+
+  <hr>
+
+  <!-- ===== 3 ===== -->
+  <h2><span class="num">3.</span> Comment on leur « apprend » quelque chose</h2>
+
+  <p>Ici, il faut abandonner tout ce qu'on croit savoir sur la programmation. On <strong>n'écrit pas de code</strong> pour un organoïde. On ne lui « installe » rien. On l'<strong>éduque</strong>, un peu comme on dresse un animal : par <strong>récompense</strong> et <strong>punition</strong>.</p>
+
+  <p>L'expérience fondatrice s'appelle <strong>DishBrain</strong> (« cerveau dans une boîte »). En 2022, la société Cortical Labs a connecté ~800 000 neurones à un jeu de <strong>Pong</strong> (le tout premier jeu vidéo, une raquette qui renvoie une balle). Le résultat, publié dans la revue scientifique <em>Neuron</em>, a fait le tour du monde : les neurones ont « appris » à mieux jouer en cinq minutes.</p>
+
+  <div class="box ia">
+    <h4>🎯 Le « principe d'énergie libre » (la récompense)</h4>
+    <p>Comment « récompenser » des neurones ? L'idée, formulée par le neuroscientifique <b>Karl Friston</b>, est que tout système vivant <b>déteste la surprise</b> et cherche un environnement prévisible. Alors on triche : quand les neurones font <em>bien</em> (la raquette touche la balle), on leur envoie une stimulation <b>régulière, prévisible</b> = « bon ». Quand ils ratent, une stimulation <b>chaotique</b> = « mauvais ». Pour éviter le désordre, les neurones s'auto-organisent… et se mettent à mieux jouer. Personne ne leur a « dit » comment.</p>
+  </div>
+
+  <p>Attention au vocabulaire, car c'est là que la hype démarre. Le titre de l'étude parlait de <em>« sentience »</em> (le fait de ressentir) — un choix de mot très critiqué. La neuroscientifique <strong>Tara Spires-Jones</strong> (université d'Édimbourg) a résumé le fond de l'affaire d'une phrase qu'il faut garder en tête tout du long :</p>
+
+  <blockquote>« Ce sont de simples réponses de circuit, pas une intelligence de science-fiction dans une boîte. »<span class="src">— Tara Spires-Jones, à propos de l'étude DishBrain (Science Media Centre, 2022)</span></blockquote>
+
+  <p>Autrement dit : le fait est réel (des neurones s'adaptent à un retour d'information), mais « a appris à jouer à Pong » est un raccourci. Le système n'a pas « joué » comme vous ou moi — il a ajusté ses décharges pour réduire l'imprévisibilité de son environnement. D'autres méthodes existent aussi : inonder les neurones de <strong>dopamine</strong> (l'hormone de la récompense), ou, depuis peu, confier les stimulations à un <strong>agent IA classique</strong> qui pilote l'apprentissage à notre place.</p>
+
+  <div class="box block">
+    <h4><span class="tag warn">Promis</span> L'apprentissage n'est pas « maîtrisé »</h4>
+    <p>Faire apprendre <em>quelque chose de précis et reproductible</em> à un organoïde reste largement <b>non résolu</b>. On sait provoquer une adaptation sur des tâches très simples ; on ne sait pas « programmer » un apprentissage arbitraire, ni le rendre stable dans le temps. C'est même, de l'aveu des chercheurs, le principal verrou du domaine.</p>
+  </div>
+
+  <hr>
+
+  <!-- ===== 4 ===== -->
+  <h2><span class="num">4.</span> En quoi ça concerne l'intelligence artificielle</h2>
+
+  <p>Pourquoi s'embêter avec des cellules vivantes, capricieuses et mortelles, alors que le silicium marche très bien ? La réponse tient en un mot : <strong>l'énergie</strong>.</p>
+
+  <p>L'IA générative (ChatGPT et compagnie) a une faim d'électricité vertigineuse. Le projet <strong>Stargate</strong> d'OpenAI, annoncé en janvier 2025, vise à lui seul <strong>10 gigawatts</strong> de capacité — l'ordre de grandeur de la consommation électrique moyenne d'un pays comme la <strong>Belgique</strong>. Les géants de la tech rouvrent des centrales nucléaires pour tenir. C'est devenu un enjeu quasi géopolitique.</p>
+
+  <p>Or, sur ce terrain, le neurone biologique a un argument massue : il consommerait <strong>bien moins d'énergie</strong> qu'un neurone artificiel. C'est <em>l'argument de vente</em> du biocomputing. Mais c'est aussi le point où il faut être le plus prudent.</p>
+
+  <div class="pieges">
+    <div class="piege a">
+      <p class="lbl">Prouvé</p>
+      <p><b>Le cerveau humain est prodigieusement sobre.</b> Il fait tourner l'équivalent d'une intelligence générale avec ~20 watts — la puissance d'une ampoule. Un supercalculateur, pour des tâches comparables, engloutit des dizaines de mégawatts. Le rapport est réel.</p>
+    </div>
+    <div class="piege b">
+      <p class="lbl">Promis</p>
+      <p><b>Le « 1 million de fois moins d'énergie ».</b> Ce chiffre-vedette n'a <em>jamais</em> été mesuré sur un biocalculateur : c'est une extrapolation à partir du cerveau humain <em>entier</em>. Il « glisse » même à « 1 milliard » selon les sources — signal classique d'un chiffre qu'on manie sans le tenir.</p>
+    </div>
+  </div>
+
+  <figure class="figure">
+    <div class="surface">
+      <svg viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Inter, system-ui, sans-serif">
+        <title>D'où vient le chiffre « 1 million de fois »</title>
+        <desc>Le cerveau humain consomme environ 20 watts ; un supercalculateur pour des tâches comparables consomme de l'ordre de 20 millions de watts. Le rapport d'environ un million sert d'argument, mais il compare un cerveau entier, pas un organoïde de laboratoire.</desc>
+        <text x="40" y="40" font-size="21" font-weight="700" fill="#1b2733">D'où vient le chiffre « 1 million de fois »</text>
+        <text x="40" y="64" font-size="13.5" fill="#566778">Comparaison d'efficacité énergétique — cerveau humain entier vs supercalculateur</text>
+        <!-- cerveau -->
+        <rect x="40" y="96" width="90" height="34" rx="6" fill="#3f7a4e"/>
+        <text x="140" y="118" font-size="14.5" fill="#1b2733">Cerveau humain : <tspan font-weight="700">~20 W</tspan> (une ampoule)</text>
+        <!-- supercalc -->
+        <rect x="40" y="150" width="620" height="34" rx="6" fill="#b8570f"/>
+        <text x="52" y="172" font-size="14.5" font-weight="700" fill="#ffffff">Supercalculateur : ~20 000 000 W</text>
+        <text x="40" y="220" font-size="12.5" fill="#8493a3">⚠️ Ce rapport (~1 000 000×) compare un cerveau ENTIER (86 milliards de neurones) — pas un organoïde</text>
+        <text x="40" y="238" font-size="12.5" fill="#8493a3">de ~10 000 neurones qui, aujourd'hui, ne calcule quasiment rien d'utile. À manier avec des pincettes.</text>
+      </svg>
+    </div>
+    <figcaption>Le chiffre est <b>sourcé</b> (feuille de route « Organoid Intelligence », 2023) mais <b>non mesuré</b> sur un vrai biocalculateur. Barres non à l'échelle. Source : <a href="https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full">Frontiers in Science, 2023</a>.</figcaption>
+  </figure>
+
+  <p>Au-delà de l'énergie, il y a une seconde piste, plus spéculative : et si les neurones vivants aidaient à atteindre l'<strong>IA générale</strong> (une IA aussi polyvalente qu'un humain), que certains pensent hors de portée des seuls modèles de langage actuels ? L'idée serait de <strong>fusionner</strong> le biologique et le numérique : un organoïde branché à un modèle type ChatGPT. Fred Jordan affirme que son équipe le fait « tous les jours ». C'est <span class="tag warn">Promis</span> — intrigant, mais sans résultat public probant à ce stade.</p>
+
+  <hr>
+
+  <!-- ===== 5 ===== -->
+  <h2><span class="num">5.</span> À quoi ça sert vraiment — aujourd'hui vs demain</h2>
+
+  <p>C'est LA question qui tranche le vrai du vent. Il faut distinguer deux temporalités, et ne jamais les confondre.</p>
+
+  <div class="pieges">
+    <div class="piege a">
+      <p class="lbl">Aujourd'hui (prouvé)</p>
+      <p><b>Un outil de recherche.</b> Des labos louent l'accès aux neurones pour étudier le vivant. Et surtout, la vraie valeur économique est <b>médicale</b> : modéliser des maladies (épilepsie, autisme), tester des médicaments sur du tissu humain. Une startup comme System1 Biosciences a levé 25 M$ pour ça — pas pour remplacer un serveur.</p>
+    </div>
+    <div class="piege b">
+      <p class="lbl">Demain (promis)</p>
+      <p><b>Des « bio-serveurs » pour l'IA.</b> La vision — remplacer des data centers par des fermes de neurones — est affichée « à ~10 ans » par les acteurs eux-mêmes. Aucun système actuel ne calcule quoi que ce soit d'utile de façon compétitive. C'est une destination, pas une étape franchie.</p>
+    </div>
+  </div>
+
+  <p>Où en est-on <em>concrètement</em> ? Très, très loin du compte. Les démonstrations réelles se limitent à stocker environ <strong>un bit</strong> d'information, ou à des prouesses de labo comme connecter une main bionique à des organoïdes pour encoder le toucher. Impressionnant scientifiquement, minuscule côté « puissance de calcul ».</p>
+
+  <div class="stats">
+    <div class="stat"><div class="big">~160 000</div><div class="lab">neurones sur la plateforme de FinalSpark (16 organoïdes)</div></div>
+    <div class="stat"><div class="big">~1 bit</div><div class="lab">l'ordre de grandeur de ce qu'on stocke aujourd'hui</div></div>
+    <div class="stat"><div class="big">~100 j</div><div class="lab">durée de vie d'un organoïde (tout meurt à la fin)</div></div>
+    <div class="stat"><div class="big">850–1000 W</div><div class="lab">consommation du CL1 de Cortical Labs</div></div>
+  </div>
+
+  <p>Ce dernier chiffre mérite qu'on s'y arrête, parce qu'il est délicieusement ironique. La machine biologique « ultra-sobre » de Cortical Labs, le CL1, consomme <strong>850 à 1000 watts</strong> — autant qu'un gros PC de jeu. L'efficacité vantée concerne le <em>neurone lui-même</em> ; pas tout le système de survie (pompes, chauffage, capteurs) qu'il faut autour pour le maintenir en vie. Un rappel utile : l'argument énergétique, aujourd'hui, reste théorique.</p>
+
+  <div class="tbl-wrap">
+    <table class="data">
+      <caption>Qui fait quoi dans le biocomputing<br><span class="capsub">Les principaux acteurs — relevé juillet 2026</span></caption>
+      <thead>
+        <tr><th>Acteur</th><th>Pays</th><th>Ce qu'il fait</th><th>Statut</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>FinalSpark</b></td><td>🇨🇭 Suisse</td><td>Accès distant à des neurones (plateforme-service)</td><td><span class="badge no">auto-financé</span></td></tr>
+        <tr><td><b>Cortical Labs</b></td><td>🇦🇺 Australie</td><td>Vend le CL1 ; a réalisé l'expérience Pong (2022)</td><td><span class="badge yes">commercial</span></td></tr>
+        <tr><td><b>Koniku</b></td><td>🇺🇸 USA</td><td>Neurones + puce pour <em>détecter des odeurs</em> (explosifs) — autre créneau</td><td><span class="badge no">niche</span></td></tr>
+        <tr><td><b>Johns Hopkins</b></td><td>🇺🇸 USA</td><td>Recherche ; a forgé le concept d'« Organoid Intelligence »</td><td><span class="badge no">académique</span></td></tr>
+        <tr><td><b>System1 Biosciences</b></td><td>🇺🇸 USA</td><td>Organoïdes pour la médecine (épilepsie, autisme)</td><td><span class="badge yes">25 M$ levés</span></td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-src">Sources : publications et presse spécialisée (FinalSpark <em>Frontiers in AI</em> 2024 ; Cortical Labs / DataCenterDynamics 2025 ; Johns Hopkins <em>Frontiers in Science</em> 2023). Les « géants » (Nvidia, Google) ne font <b>pas</b> de biocomputing : Google cartographie le cerveau (connectome), ce qui est différent.</p>
+  </div>
+
+  <div class="box block">
+    <h4>🔀 À ne pas confondre : biocomputing ≠ Neuralink</h4>
+    <p>On mélange souvent tout ce qui touche « cerveau » et « ordinateur ». Ce sont deux directions <b>opposées</b> :</p>
+    <p>• <b>Neuralink</b> (Elon Musk) met une puce <b>DANS</b> un cerveau humain vivant, pour lire/écrire ses signaux (aider un paralysé, à terme « augmenter » l'humain). Le cerveau reste dans la personne.</p>
+    <p>• <b>Le biocomputing</b> (FinalSpark, Cortical) cultive des neurones <b>HORS</b> du corps et en fait la machine elle-même.</p>
+    <p class="note">Aucun lien direct entre les deux. Fred Jordan évoque juste un pont <em>possible, futur</em> avec ce genre de technologies — pas une collaboration.</p>
+  </div>
+
+  <hr>
+
+  <!-- ===== 6 ===== -->
+  <h2><span class="num">6.</span> Les vrais obstacles, et les vrais risques</h2>
+
+  <h3>Le mur physique</h3>
+  <p>Le premier obstacle n'est pas éthique ni financier : il est <strong>biologique</strong>, et personne ne sait le contourner. Un organoïde n'a <strong>pas de vaisseaux sanguins</strong>. Or l'oxygène et les nutriments ne se diffusent tout seuls que sur ~<strong>0,2 à 0,3 millimètre</strong>. Au-delà, le cœur de la boule <strong>meurt</strong> (nécrose). C'est pour ça que les organoïdes plafonnent à ~1 mm. Le rêve d'atteindre « 10 millions de neurones » suppose de résoudre d'abord cette plomberie. C'est le vrai verrou, et il est dur.</p>
+
+  <h3>La lenteur</h3>
+  <p>Un neurone « parle » en millisecondes ; un transistor, en milliardièmes de seconde. Le biologique est donc des <strong>millions de fois plus lent</strong> pour communiquer. L'avantage supposé n'est jamais la vitesse — c'est l'énergie et le fonctionnement massivement parallèle. Ça limite d'emblée les usages possibles.</p>
+
+  <h3>La conscience : la question qui dérange</h3>
+  <p>Puisqu'on manipule du tissu cérébral humain, la question tombe : ces organoïdes peuvent-ils <strong>ressentir</strong> quelque chose, voire <strong>souffrir</strong> ? La réponse honnête tient en trois temps.</p>
+  <ul class="body">
+    <li><strong>Le consensus scientifique</strong> : non, les organoïdes ne sont pas conscients, et ne le seront pas dans un futur proche. Fred Jordan situe les siens « au niveau d'une larve de mouche », et rappelle qu'ils n'ont pas de récepteurs de la douleur.</li>
+    <li><strong>La nuance</strong> : personne ne sait <em>mesurer</em> la conscience. Le concept est contesté, et un organoïde est « désincarné » (pas de corps, pas de comportement) — donc indétectable par nos moyens habituels. L'argument « pas de récepteurs → pas de souffrance » est celui d'un <em>acteur industriel</em>, défendable mais pas neutre.</li>
+    <li><strong>Le vrai débat</strong> porte donc sur le <em>seuil futur</em> : à partir de quelle complexité faudrait-il s'inquiéter ? Des bioéthiciens (comme Julian Koplin) plaident pour la prudence, surtout sur les versions « incarnées » (un organoïde qui reçoit des sensations <em>et</em> peut agir).</li>
+  </ul>
+
+  <div class="box ia">
+    <h4>🤖 Le miroir avec le « bien-être des IA »</h4>
+    <p>Étrange écho : au même moment, la question du « ressenti » se pose pour les IA logicielles. En 2024, <b>Anthropic</b> (créateur de Claude) a recruté <b>Kyle Fish</b>, premier salarié dédié au « <em>bien-être des modèles</em> », et a doté Claude de la capacité de <b>mettre fin à des conversations abusives</b> (2025). Organoïdes et IA posent la <b>même structure de problème</b> : une entité nouvelle dont on ne sait ni définir ni mesurer l'expérience, coincée entre « ne rien faire » et « anthropomorphiser ». C'est une <b>analogie</b>, pas une équivalence — un tissu vivant n'est pas un modèle statistique.</p>
+  </div>
+
+  <h3>Le risque le plus concret : la hype elle-même</h3>
+  <p>Le danger immédiat n'est ni Terminator ni un organoïde qui souffre. C'est plus prosaïque : la <strong>désillusion</strong>. En novembre 2025, l'agence STAT rapportait que les <em>pionniers eux-mêmes</em> du domaine craignent que les promesses gonflées ne finissent par « se retourner contre eux » — coupant les financements d'une recherche par ailleurs légitime. Trop vendre du rêve tue le rêve.</p>
+
+  <h3>Et la loi dans tout ça ?</h3>
+  <p>Fred Jordan affirme qu'« il n'existe aucune norme, le gouvernement ignore le sujet ». C'est <strong>à moitié vrai</strong>. Il n'existe effectivement <em>aucune loi dédiée</em> au biocomputing, nulle part. Mais ce n'est pas une zone de non-droit : le consentement des donneurs, la recherche sur tissus humains, les lignes directrices internationales (ISSCR) s'appliquent déjà. Et le vide commence à se combler : en avril 2025, la <strong>Chine</strong> a publié le premier cadre de gouvernance mondial dédié aux organoïdes, et la revue <em>Science</em> appelle à un effort international. La bonne formule n'est donc pas « pas de règles », mais « <strong>pas de règles dédiées</strong> ».</p>
+
+  <hr>
+
+  <!-- ===== 7 ===== -->
+  <h2><span class="num">7.</span> Alors, faut-il y croire ?</h2>
+
+  <p>Reprenons la phrase de départ — « on est en train de créer des IA vivantes » — et faisons le tri, une bonne fois.</p>
+
+  <p><strong>Ce qui est vrai, et solide.</strong> On sait cultiver des neurones humains, les garder vivants des mois, les brancher à un ordinateur, et provoquer chez eux une forme d'adaptation à un retour d'information (Pong, la séparation de sons). Le socle scientifique est réel, publié, sérieux. Et une utilité concrète existe déjà : la <strong>recherche médicale</strong>.</p>
+
+  <p><strong>Ce qui est promis, et fragile.</strong> Le « million de fois plus efficace », les bio-serveurs qui remplaceraient les data centers, la fusion avec les LLM pour atteindre l'IA générale : rien de tout cela n'est démontré. Ce sont des <em>caps</em>, freinés par un mur biologique bien concret (la vascularisation), une lenteur intrinsèque, et un apprentissage encore non maîtrisé.</p>
+
+  <p>Mon avis, tant qu'à le donner clairement : <strong>ce n'est ni une arnaque, ni la prochaine révolution imminente.</strong> C'est de la recherche fondamentale passionnante, à un stade très précoce, sur-vendue par un marketing qui a besoin de lever des fonds. La bonne posture n'est ni le rejet (« des trucs de savant fou ») ni l'émerveillement béat (« l'IA va devenir vivante »). C'est la <strong>curiosité lucide</strong> : suivre le sujet, s'émerveiller de la prouesse, et garder la main sur le bouton « prouvé / promis » à chaque annonce.</p>
+
+  <p>Car au fond, ce sujet est un révélateur. Neurones vivants ou modèles de langage, la même question revient, obstinée : à mesure qu'on fabrique des systèmes qu'on ne comprend plus tout à fait, <strong>qui garde le contrôle, et selon quels garde-fous ?</strong> La réponse, elle, ne se cultivera jamais en laboratoire. Elle est, et doit rester, entre nos mains.</p>
+
+  <!-- SOURCES -->
+  <section class="sources">
+    <h2>Sources</h2>
+    <p class="intro">Cet article s'appuie sur un dossier de recherche vérifiée (juillet 2026) croisant publications scientifiques revues par les pairs, sources primaires officielles et presse spécialisée. Chaque affirmation chiffrée distingue le résultat établi de l'extrapolation ou du claim d'entreprise.</p>
+
+    <h4>Le point de départ</h4>
+    <ul>
+      <li>Interview de Fred Jordan (FinalSpark), chaîne <em>Le Futurologue</em> — <a href="https://www.youtube.com/watch?v=pN7KTGCSDtI">« On est en train de créer des IA vivantes »</a>.</li>
+    </ul>
+
+    <h4>La science (publications de référence)</h4>
+    <ul>
+      <li>Kagan et al., <em>Neuron</em> (2022) — <a href="https://www.cell.com/neuron/fulltext/S0896-6273(22)00806-6">DishBrain : des neurones apprennent à jouer à Pong</a> · réaction critique de T. Spires-Jones, <a href="https://www.sciencemediacentre.org/expert-reaction-to-study-in-which-human-and-mouse-neurons-in-a-dish-learned-to-play-the-video-game-pong/">Science Media Centre</a>.</li>
+      <li>Isomura et al., <em>Nature Communications</em> (2023) — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10406890/">validation in vitro du principe d'énergie libre</a>.</li>
+      <li>Smirnova, Hartung et al., <em>Frontiers in Science</em> (2023) — <a href="https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full">« Organoid Intelligence » (feuille de route + chiffre « 1 M× »)</a>.</li>
+      <li>FinalSpark, <em>Frontiers in Artificial Intelligence</em> (2024) — <a href="https://www.frontiersin.org/articles/10.3389/frai.2024.1376042/full">la Neuroplatform</a> · synthèse <a href="https://www.sciencealert.com/swiss-startup-connects-16-human-mini-brains-to-create-low-energy-biocomputer">ScienceAlert</a>.</li>
+    </ul>
+
+    <h4>Les acteurs</h4>
+    <ul>
+      <li>Cortical Labs CL1 — <a href="https://www.datacenterdynamics.com/en/news/australian-startup-cortical-labs-unveils-worlds-first-commercial-biological-computer/">DataCenterDynamics</a> · <a href="https://www.livescience.com/technology/computing/worlds-1st-computer-that-combines-human-brain-with-silicon-now-available">Live Science</a> (2025).</li>
+      <li>Levée de fonds Cortical Labs (In-Q-Tel, Horizons) — <a href="https://techcrunch.com/2023/04/19/cortical-labs-raises-10m-for-its-pong-playing-stem-cells-which-eventually-could-power-ai/">TechCrunch</a> (2023) · Johns Hopkins « OI » — <a href="https://hub.jhu.edu/2023/02/28/organoid-intelligence-biocomputers/">JHU Hub</a>.</li>
+      <li>Google / connectome (à ne pas confondre avec le biocomputing) — <a href="https://research.google/blog/ten-years-of-neuroscience-at-google-yields-maps-of-human-brain/">Google Research</a>.</li>
+    </ul>
+
+    <h4>Énergie, éthique &amp; droit</h4>
+    <ul>
+      <li>Projet Stargate (10 GW) — <a href="https://www.datacenterfrontier.com/machine-learning/article/55319132/scaling-stargate-openais-five-new-us-data-centers-push-toward-10-gw-ai-infrastructure">Data Center Frontier</a> (2025).</li>
+      <li>Débat conscience / statut moral — <a href="https://www.mdpi.com/2674-1172/2/1/4">MDPI <em>Philosophies</em></a> (2023) · <a href="https://onlinelibrary.wiley.com/doi/10.1111/bioe.13290">J. Koplin, <em>Bioethics</em></a> (2024) · <a href="https://www.rtbf.be/article/wetware-ces-mini-cerveaux-humains-utilises-dans-des-ordinateurs-11617783">RTBF/AFP</a> (2025).</li>
+      <li>« Bien-être des IA » chez Anthropic (Kyle Fish) — <a href="https://www.transformernews.ai/p/anthropic-ai-welfare-researcher">Transformer News</a> (2024) · <a href="https://www.anthropic.com/research/end-subset-conversations">Anthropic</a> (2025).</li>
+      <li>Droit / régulation — <a href="https://academic.oup.com/jlb/article/11/2/lsae025/7925290">statut des organoïdes en droit suisse (<em>J. Law Biosci.</em>, 2024)</a> · lignes ISSCR 2021 · cadre chinois (avril 2025) · appel de <em>Science</em> (2025).</li>
+      <li>Crainte de <em>backlash</em> des pionniers — <a href="https://www.statnews.com/2025/11/17/brain-organoid-pioneers-fear-backlash-over-biocomputing/">STAT News</a> (nov. 2025).</li>
+      <li>Consentement des donneurs (iPSC / organoïdes) — <a href="https://link.springer.com/article/10.1007/s11948-024-00471-7"><em>Science and Engineering Ethics</em></a> (2024).</li>
+    </ul>
+
+    <p class="legal"><b>Note de méthode.</b> Le biocomputing est un domaine jeune, où les annonces d'entreprises précèdent souvent les preuves. Cet article a fait le choix d'indiquer, à chaque étape, ce qui relève du <em>prouvé</em> et du <em>promis</em>. Une imprécision, une source plus récente à signaler ? <a href="/a-propos/">Écrivez-moi</a>, je corrigerai.</p>
+
+    <p class="signature">Article rédigé par un humain et augmenté par une IA (recherche documentaire vérifiée, création des visuels, mise en forme et code de l'article). Aucune donnée personnelle de tiers n'a été traitée ; les personnes citées sont des figures publiques s'exprimant publiquement.</p>
+  </section>
+
+</article>
+</main>
+
+<div id="sr-footer"></div>
+
+<script src="/assets/site.js" defer></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
