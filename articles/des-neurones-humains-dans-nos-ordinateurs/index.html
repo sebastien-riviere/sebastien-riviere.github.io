@@ -195,11 +195,16 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
     <span>Décrypter</span>
   </div>
 
-  <p class="lede">Et si l'ordinateur qui fait tourner l'IA de demain n'était pas fait de silicium… mais de <strong>vrais neurones humains, vivants</strong> ? Ce n'est pas de la science-fiction : des entreprises cultivent déjà de minuscules amas de cellules de cerveau et leur font faire des calculs. On appelle ça le <strong>biocomputing</strong>. Fascinant, un peu vertigineux — et entouré d'un énorme malentendu entre <strong>ce qui est prouvé</strong> et <strong>ce qui est promis</strong>.</p>
+  <p class="lede">On fabrique aujourd'hui des ordinateurs avec de <strong>vrais neurones humains vivants</strong>. Ce n'est plus de la science-fiction — mais ce n'est pas non plus ce que beaucoup imaginent. Des laboratoires cultivent de minuscules amas de cellules de cerveau et leur font faire des calculs : on appelle ça le <strong>biocomputing</strong>. Et entre la prouesse réelle et le vertige fantasmé, tout se joue dans un écart — celui qui sépare <strong>ce qui est prouvé</strong> de <strong>ce qui n'est encore que promis</strong>.</p>
 
-  <p>« On est en train de créer des IA vivantes. » La phrase est de <strong>Fred Jordan</strong>, cofondateur de la société suisse <strong>FinalSpark</strong>, dans une interview récente. Elle claque, elle inquiète, elle émerveille. Mais que veut-elle dire, <em>exactement</em> ? D'où viennent ces neurones ? Comment leur « apprend »-on quoi que ce soit ? En quoi ça concerne l'intelligence artificielle ? À quoi ça sert vraiment — et qu'est-ce qui relève encore du rêve ?</p>
+  <p>« On est en train de créer des IA vivantes. » La phrase est de <strong>Fred Jordan</strong>, cofondateur de la société suisse <strong>FinalSpark</strong>, dans une interview récente. Elle claque, elle inquiète, elle émerveille. Mais que veut-elle dire, <em>exactement</em> ? D'où viennent ces neurones ? Comment leur « apprend »-on quoi que ce soit ? En quoi ça concerne l'intelligence artificielle ? À quoi ça sert vraiment — et qu'est-ce qui relève encore du rêve, ou du cauchemar ?</p>
 
-  <p>Le but de cet article est simple : qu'à la fin, <strong>vous puissiez vous faire votre propre avis</strong>, sur des bases claires et sourcées. On va tout reprendre, pas à pas, sans jargon inutile — et surtout, on va séparer en permanence les <span class="tag ok">Prouvé</span> des <span class="tag warn">Promis</span>. Parce que c'est là, dans cet écart, que se joue tout le sujet.</p>
+  <p>Cet article reprend le sujet pas à pas — d'où viennent ces neurones, comment on les « entraîne », à quoi ils servent, ce qu'ils risquent — en séparant systématiquement les <span class="tag ok">Prouvé</span> des <span class="tag warn">Promis</span>. Car c'est dans cet écart, souvent masqué par les effets d'annonce, que se joue l'essentiel.</p>
+
+  <figure class="embed">
+    <div class="frame"><iframe src="https://www.youtube.com/embed/pN7KTGCSDtI" title="Fred Jordan (FinalSpark) — « On est en train de créer des IA vivantes »" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <figcaption><b>L'interview de départ.</b> Fred Jordan (cofondateur de FinalSpark), sur la chaîne <em>Le Futurologue</em> — le point de départ de cette enquête.</figcaption>
+  </figure>
 
   <hr>
 
@@ -209,6 +214,46 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
   <p>Depuis quelques années, une poignée d'entreprises et de laboratoires poursuivent une idée qui semble sortie d'un film : au lieu de <em>simuler</em> des neurones avec des puces électroniques (ce que fait toute l'IA actuelle, ChatGPT compris), pourquoi ne pas prendre de <strong>vrais neurones</strong> et les faire calculer directement ?</p>
 
   <p>Concrètement, on fait pousser en laboratoire de minuscules boules de tissu cérébral — des <strong>organoïdes cérébraux</strong> —, on les pose sur une grille de micro-électrodes qui leur « parle » (envoie des signaux électriques) et les « écoute » (enregistre leurs réactions), et on essaie d'en tirer un calcul utile. Le neurone devient une brique d'ordinateur.</p>
+
+  <figure class="figure">
+    <div class="surface">
+      <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Inter, system-ui, sans-serif">
+        <title>Comment on « branche » un organoïde</title>
+        <desc>Un organoïde cérébral (amas de neurones vivants d'environ 1 mm) est posé sur une grille de micro-électrodes. L'ordinateur envoie des signaux électriques aux neurones (stimuler) et enregistre leurs réactions (écouter).</desc>
+        <text x="40" y="36" font-size="20" font-weight="700" fill="#1b2733">Comment on « branche » un organoïde</text>
+        <text x="40" y="58" font-size="13.5" fill="#566778">Le neurone vivant transformé en brique de calcul</text>
+        <ellipse cx="210" cy="150" rx="105" ry="72" fill="#ece2f6" stroke="#7345a0" stroke-width="2"/>
+        <g stroke="#b79fd6" stroke-width="1.4">
+          <line x1="165" y1="120" x2="220" y2="150"/><line x1="220" y1="150" x2="255" y2="115"/>
+          <line x1="220" y1="150" x2="180" y2="180"/><line x1="180" y1="180" x2="250" y2="185"/>
+          <line x1="255" y1="115" x2="270" y2="160"/><line x1="165" y1="120" x2="155" y2="165"/>
+          <line x1="250" y1="185" x2="270" y2="160"/><line x1="200" y1="130" x2="220" y2="150"/>
+        </g>
+        <g fill="#7345a0">
+          <circle cx="165" cy="120" r="6"/><circle cx="220" cy="150" r="6"/><circle cx="255" cy="115" r="6"/>
+          <circle cx="180" cy="180" r="6"/><circle cx="250" cy="185" r="6"/><circle cx="270" cy="160" r="6"/>
+          <circle cx="155" cy="165" r="6"/><circle cx="200" cy="130" r="5"/>
+        </g>
+        <text x="210" y="252" font-size="13" font-weight="700" fill="#1b2733" text-anchor="middle">Organoïde</text>
+        <text x="210" y="270" font-size="12" fill="#566778" text-anchor="middle">~10 000 neurones · ≈ 1 mm</text>
+        <g fill="#41586b">
+          <rect x="150" y="212" width="6" height="16"/><rect x="185" y="212" width="6" height="16"/>
+          <rect x="220" y="212" width="6" height="16"/><rect x="255" y="212" width="6" height="16"/>
+          <rect x="130" y="228" width="160" height="7" rx="2"/>
+        </g>
+        <text x="336" y="226" font-size="11.5" fill="#8493a3">micro-électrodes (MEA)</text>
+        <rect x="530" y="112" width="150" height="76" rx="10" fill="#e9ecf2" stroke="#41586b" stroke-width="2"/>
+        <text x="605" y="156" font-size="15" font-weight="700" fill="#1b2733" text-anchor="middle">Ordinateur</text>
+        <line x1="527" y1="132" x2="332" y2="132" stroke="#b8570f" stroke-width="2.4"/>
+        <polygon points="330,132 343,126 343,138" fill="#b8570f"/>
+        <text x="430" y="124" font-size="12.5" font-weight="700" fill="#9a5f15" text-anchor="middle">stimuler</text>
+        <line x1="332" y1="170" x2="527" y2="170" stroke="#3f7a4e" stroke-width="2.4"/>
+        <polygon points="529,170 516,164 516,176" fill="#3f7a4e"/>
+        <text x="430" y="188" font-size="12.5" font-weight="700" fill="#2f6b3f" text-anchor="middle">écouter</text>
+      </svg>
+    </div>
+    <figcaption>Le principe : l'ordinateur <b>envoie</b> des signaux aux neurones (stimuler) et <b>enregistre</b> leurs réactions (écouter). Toute la difficulté est de transformer cet échange en calcul utile. Schéma simplifié.</figcaption>
+  </figure>
 
   <div class="box ia">
     <h4>🧠 C'est quoi un organoïde cérébral ?</h4>
@@ -282,6 +327,8 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
 
   <p>Pourquoi s'embêter avec des cellules vivantes, capricieuses et mortelles, alors que le silicium marche très bien ? La réponse tient en un mot : <strong>l'énergie</strong>.</p>
 
+  <p>Mais l'énergie n'est que la face visible. Ce qui fascine les chercheurs, c'est qu'un neurone n'est pas un simple <em>interrupteur</em> (ouvert/fermé, 0 ou 1), comme un transistor. Il <strong>modifie en permanence la force de ses connexions</strong> : il s'adapte, mémorise, apprend — naturellement, sans qu'on lui écrive le moindre programme. Et il ne travaille pas seul : chaque neurone est relié à des <strong>milliers d'autres</strong> (de l'ordre de 10 000 connexions), si bien qu'un cerveau humain enchaînerait environ <strong>10<sup>15</sup> opérations par seconde</strong>… pour ~20 watts. C'est cette élégance-là que le biocomputing rêve de récupérer « gratuitement » — et c'est aussi ce qui la rend si difficile à reproduire.</p>
+
   <p>L'IA générative (ChatGPT et compagnie) a une faim d'électricité vertigineuse. Le projet <strong>Stargate</strong> d'OpenAI, annoncé en janvier 2025, vise à lui seul <strong>10 gigawatts</strong> de capacité — l'ordre de grandeur de la consommation électrique moyenne d'un pays comme la <strong>Belgique</strong>. Les géants de la tech rouvrent des centrales nucléaires pour tenir. C'est devenu un enjeu quasi géopolitique.</p>
 
   <p>Or, sur ce terrain, le neurone biologique a un argument massue : il consommerait <strong>bien moins d'énergie</strong> qu'un neurone artificiel. C'est <em>l'argument de vente</em> du biocomputing. Mais c'est aussi le point où il faut être le plus prudent.</p>
@@ -317,7 +364,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
     <figcaption>Le chiffre est <b>sourcé</b> (feuille de route « Organoid Intelligence », 2023) mais <b>non mesuré</b> sur un vrai biocalculateur. Barres non à l'échelle. Source : <a href="https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full">Frontiers in Science, 2023</a>.</figcaption>
   </figure>
 
-  <p>Au-delà de l'énergie, il y a une seconde piste, plus spéculative : et si les neurones vivants aidaient à atteindre l'<strong>IA générale</strong> (une IA aussi polyvalente qu'un humain), que certains pensent hors de portée des seuls modèles de langage actuels ? L'idée serait de <strong>fusionner</strong> le biologique et le numérique : un organoïde branché à un modèle type ChatGPT. Fred Jordan affirme que son équipe le fait « tous les jours ». C'est <span class="tag warn">Promis</span> — intrigant, mais sans résultat public probant à ce stade.</p>
+  <p>Au-delà de l'énergie, il y a une seconde piste, plus spéculative : et si les neurones vivants aidaient à atteindre l'<strong>IA générale</strong> (une IA aussi polyvalente qu'un humain), que certains pensent hors de portée des seuls modèles de langage actuels — un point qui fait lui-même <strong>largement débat</strong> dans la communauté scientifique ? L'idée serait de <strong>fusionner</strong> le biologique et le numérique : un organoïde branché à un modèle type ChatGPT. Fred Jordan affirme que son équipe le fait « tous les jours ». C'est <span class="tag warn">Promis</span> — intrigant, mais sans résultat public probant à ce stade.</p>
 
   <hr>
 
@@ -392,10 +439,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
     <li><strong>Le vrai débat</strong> porte donc sur le <em>seuil futur</em> : à partir de quelle complexité faudrait-il s'inquiéter ? Des bioéthiciens (comme Julian Koplin) plaident pour la prudence, surtout sur les versions « incarnées » (un organoïde qui reçoit des sensations <em>et</em> peut agir).</li>
   </ul>
 
-  <div class="box ia">
-    <h4>🤖 Le miroir avec le « bien-être des IA »</h4>
-    <p>Étrange écho : au même moment, la question du « ressenti » se pose pour les IA logicielles. En 2024, <b>Anthropic</b> (créateur de Claude) a recruté <b>Kyle Fish</b>, premier salarié dédié au « <em>bien-être des modèles</em> », et a doté Claude de la capacité de <b>mettre fin à des conversations abusives</b> (2025). Organoïdes et IA posent la <b>même structure de problème</b> : une entité nouvelle dont on ne sait ni définir ni mesurer l'expérience, coincée entre « ne rien faire » et « anthropomorphiser ». C'est une <b>analogie</b>, pas une équivalence — un tissu vivant n'est pas un modèle statistique.</p>
-  </div>
+  <p>Vertige supplémentaire : la même question — comment traiter une entité dont on ne sait pas mesurer l'expérience ? — agite jusqu'au monde de l'IA <em>logicielle</em>. Mais méfions-nous du raccourci : un tissu vivant n'est pas un programme, et rien n'établit que l'un ou l'autre « ressente » quoi que ce soit. Recentrons-nous sur les organoïdes.</p>
 
   <h3>Le risque le plus concret : la hype elle-même</h3>
   <p>Le danger immédiat n'est ni Terminator ni un organoïde qui souffre. C'est plus prosaïque : la <strong>désillusion</strong>. En novembre 2025, l'agence STAT rapportait que les <em>pionniers eux-mêmes</em> du domaine craignent que les promesses gonflées ne finissent par « se retourner contre eux » — coupant les financements d'une recherche par ailleurs légitime. Trop vendre du rêve tue le rêve.</p>
