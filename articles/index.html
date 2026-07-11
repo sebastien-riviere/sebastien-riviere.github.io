@@ -141,6 +141,7 @@ main{flex:1;padding:40px 0 24px;}
 .artgrid{display:grid;gap:16px;margin-bottom:44px;}
 .artcard{display:block;border:2px solid var(--line);border-left:6px solid var(--t-art);border-radius:15px;background:var(--card);padding:24px 26px;box-shadow:var(--sh);transition:transform .12s;}
 .artcard:hover{transform:translateY(-3px);}
+.artcard .ac-thumb{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:#0f1722;margin-bottom:16px;}
 .artcard .ac-cat{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--t-art);border:2px solid var(--line);border-radius:20px;padding:3px 11px;margin-bottom:13px;box-shadow:var(--sh-sm);}
 html[data-theme="dark"] .artcard .ac-cat{color:#0f1722;}
 .artcard h2{font-weight:800;font-size:24px;letter-spacing:-.3px;color:var(--text);margin-bottom:8px;line-height:1.16;}
@@ -270,6 +271,7 @@ footer .fbadge .d svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:
 
   <div class="artgrid">
     <a class="artcard" href="/articles/des-neurones-humains-dans-nos-ordinateurs/">
+      <img class="ac-thumb" src="/articles/des-neurones-humains-dans-nos-ordinateurs/og-biocomputing.jpg" alt="Un organoïde de neurones humains relié à une puce d'ordinateur" loading="lazy" width="1200" height="630">
       <span class="ac-cat">Enquête · IA &amp; sciences du vivant</span>
       <h2>Des neurones humains dans nos ordinateurs</h2>
       <p>Le biocomputing, ces « IA vivantes » qui calculent avec de vrais neurones humains : d'où viennent les cellules, comment ça marche, à quoi ça sert, risques et bénéfices. Une enquête sourcée qui sépare le prouvé du promis.</p>
@@ -279,6 +281,7 @@ footer .fbadge .d svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:
       </div>
     </a>
     <a class="artcard" href="/articles/quand-l-ia-chante-en-creole/">
+      <img class="ac-thumb" src="/articles/quand-l-ia-chante-en-creole/og-musique-ia.jpg" alt="Un tambour roulèr et un kayamb réunionnais mêlés à des notes et des données numériques" loading="lazy" width="1200" height="630">
       <span class="ac-cat">Enquête · Culture &amp; IA</span>
       <h2>Quand l'IA chante en créole</h2>
       <p>Séga et maloya générés par IA à La Réunion : créateurs, chiffres, droit, culture. La vraie question n'est pas « pour ou contre l'IA », mais : où est passé l'humain ?</p>
