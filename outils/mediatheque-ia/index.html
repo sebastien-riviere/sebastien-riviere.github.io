@@ -206,6 +206,25 @@ body{
   .m-cover{max-width:160px;margin:0 auto}
 }
 
+/* mobile : hero compact + filtres sur 1 ligne scrollable + grille resserree (moins de scroll avant le contenu) */
+@media(max-width:600px){
+  .hero{padding:12px 0 2px}
+  .kicker{margin-bottom:8px;font-size:.68rem}
+  .hero h1{font-size:clamp(1.45rem,6.4vw,2rem);line-height:1.12}
+  .hero p{display:none}            /* intro editoriale : desktop only */
+  .stats{display:none}             /* comptes deja visibles via les chips (Film 39...) et la count-line */
+  .bar{margin:12px 0 4px;padding:9px 0}
+  .bar-in{gap:9px}
+  .search{flex:1 1 100%;min-width:0}
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:3px;gap:7px}
+  .chips::-webkit-scrollbar{display:none}
+  .cgroup{flex-wrap:nowrap}
+  .facets{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .facets::-webkit-scrollbar{display:none}
+  .grid{gap:16px 12px}
+  .count-line{margin:10px 2px 14px}
+}
+
 /* --- bandeau de navigation du hub (partagé accueil/outils/articles/à propos) --- */
 .hub-band{background:linear-gradient(180deg,var(--bg-2),var(--bg));border-bottom:1px solid var(--border)}
 .hub-head{max-width:var(--wrap-app);margin:0 auto;padding:20px 24px 0}
