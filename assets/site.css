@@ -132,6 +132,10 @@ html[data-theme="dark"] .sr-np-head .cnt{color:#0f1722;}
   /* menu principal : tout visible (pas de scroll horizontal cache) */
   .sr-mainnav{flex-wrap:wrap;overflow-x:visible;justify-content:center;gap:2px 4px;padding-top:10px;}
   .sr-mainnav a{font-size:13.5px;padding:9px 11px;}
+  /* panneau notifs : bottom-sheet plein largeur (evite le debordement hors-ecran) */
+  .sr-panel{position:fixed;top:auto;bottom:12px;left:12px;right:12px;width:auto;max-width:none;}
+  .sr-panel.open{transform:none;}
+  .sr-np-list{max-height:52vh;}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
 
