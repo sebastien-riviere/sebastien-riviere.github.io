@@ -171,3 +171,28 @@ html[data-theme="dark"] .sr-np-head .cnt{color:#0f1722;}
 .sr-cue{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--accent,#2f6fb0);text-decoration:none;padding:2px 10px;border-radius:20px;border:1px solid var(--accent,#2f6fb0);cursor:pointer;transition:background .12s,color .12s;vertical-align:middle;}
 .sr-cue:hover{background:var(--accent,#2f6fb0);color:#fff;}
 .sr-cue svg{width:11px;height:11px;fill:currentColor;}
+
+/* ===== Bouton PARTAGER (cards + en-tête article) ===== */
+.sr-share{display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;
+  -webkit-appearance:none;appearance:none;font:inherit;line-height:1;
+  border:2px solid var(--line);background:var(--card);color:var(--muted);
+  border-radius:11px;box-shadow:var(--sh-sm);transition:transform .1s,color .1s,border-color .1s,background .1s;}
+.sr-share svg{width:17px;height:17px;fill:currentColor;stroke:none;display:block;}
+.sr-share:hover{color:var(--accent-ink);border-color:var(--accent);transform:translateY(-1px);}
+.sr-share:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.sr-share.icon{width:38px;height:38px;padding:0;}
+.sr-share.inline{padding:3px 11px;border-radius:20px;font-size:12.5px;font-weight:800;
+  color:var(--accent-ink);background:var(--accent-soft);border-color:var(--accent);}
+.sr-share.inline svg{width:13px;height:13px;}
+.sr-share.inline:hover{color:#fff;background:var(--accent);}
+
+/* Menu de repli (navigateurs sans partage natif) */
+.sr-sharemenu{position:fixed;z-index:90;min-width:196px;background:var(--card);
+  border:2px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:6px;
+  opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .14s,transform .14s;}
+.sr-sharemenu.open{opacity:1;transform:none;pointer-events:auto;}
+.sr-sharemenu button{display:flex;align-items:center;gap:11px;width:100%;text-align:left;
+  padding:9px 11px;border:0;background:none;border-radius:9px;cursor:pointer;
+  font:inherit;font-weight:700;font-size:14px;color:var(--text);}
+.sr-sharemenu button:hover{background:var(--accent-soft);color:var(--accent-ink);}
+.sr-sharemenu svg{width:18px;height:18px;fill:currentColor;stroke:none;flex:none;}
