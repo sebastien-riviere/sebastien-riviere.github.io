@@ -128,10 +128,18 @@ html[data-theme="dark"] .sr-np-head .cnt{color:#0f1722;}
 
 @media(max-width:600px){
   .sr-maxw{padding:0 18px;}
-  .sr-nm{font-size:20px;}
+  /* header compact : tagline masquee, logo + boutons resserres (evite un header geant) */
+  .sr-navtop{gap:9px;padding:11px 0 0;}
+  .sr-logo{width:40px;height:40px;}
+  .sr-logo img{width:27px;height:27px;}
+  .sr-nm{font-size:19px;line-height:1.05;}
+  .sr-tg{display:none;}
+  .sr-actions{gap:6px;}
+  .sr-ibtn{width:36px;height:36px;border-radius:10px;}
+  .sr-ibtn svg{width:16px;height:16px;}
   /* menu principal : tout visible (pas de scroll horizontal cache) */
-  .sr-mainnav{flex-wrap:wrap;overflow-x:visible;justify-content:center;gap:2px 4px;padding-top:10px;}
-  .sr-mainnav a{font-size:13.5px;padding:9px 11px;}
+  .sr-mainnav{flex-wrap:wrap;overflow-x:visible;justify-content:center;gap:2px 4px;padding-top:8px;}
+  .sr-mainnav a{font-size:13.5px;padding:8px 11px;}
   /* panneau notifs : bottom-sheet plein largeur (evite le debordement hors-ecran) */
   .sr-panel{position:fixed;top:auto;bottom:12px;left:12px;right:12px;width:auto;max-width:none;}
   .sr-panel.open{transform:none;}
