@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compteur de tokens — Sébastien Rivière</title>
+<meta name="description" content="Compte les tokens exacts d'un texte pour GPT-4 et GPT-4o (tokenizer officiel), estime le coût, et montre le découpage token par token. 100% local, aucune donnée envoyée.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sébastien Rivière">
+<meta property="og:title" content="Compteur de tokens — GPT-4 / GPT-4o">
+<meta property="og:description" content="Tokens exacts, coût estimé et découpage, 100% dans votre navigateur.">
+<meta property="og:url" content="https://sebastien-riviere.github.io/outils/compteur-tokens/">
+<meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
+<meta name="theme-color" content="#e9eef4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="../../styles/ia-kit.css">
+<link rel="stylesheet" href="/assets/site.css?v=2026071202">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+/* --- spécifique compteur-tokens (chrome partagé via site.css) --- */
+.maxw{max-width:920px;width:100%;margin:0 auto;padding:0 40px;}
+main{flex:1;padding:34px 0 48px;}
+.page-head{margin-bottom:22px;}
+.page-head .kick{font-family:'Caveat',cursive;font-size:22px;color:var(--accent-ink);}
+.page-head h1{font-weight:900;font-size:clamp(26px,4vw,38px);line-height:1.08;letter-spacing:-.5px;color:var(--text);margin:2px 0 10px;}
+.page-head p{font-size:15.5px;font-weight:600;color:var(--muted);line-height:1.55;max-width:660px;}
+
+.panelcard{border:2px solid var(--line);border-radius:16px;background:var(--card);box-shadow:var(--sh);padding:20px 22px;}
+.ctrl{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-end;margin-bottom:16px;}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field label{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);}
+select,input[type=number]{font:inherit;font-weight:700;font-size:14.5px;color:var(--text);background:var(--card);border:2px solid var(--line);border-radius:10px;padding:9px 12px;box-shadow:var(--sh-sm);}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--accent);}
+input[type=number]{width:120px;}
+textarea{width:100%;min-height:150px;resize:vertical;font-family:ui-monospace,Consolas,monospace;font-size:14px;line-height:1.5;color:var(--text);background:var(--card);border:2px solid var(--line);border-radius:12px;padding:13px 15px;box-shadow:var(--sh-sm);}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:16px 0 4px;}
+.stat{border:2px solid var(--line);border-radius:12px;background:var(--accent-soft);padding:12px 14px;box-shadow:var(--sh-sm);}
+.stat .v{font-weight:900;font-size:26px;color:var(--accent-ink);line-height:1;font-variant-numeric:tabular-nums;}
+.stat .k{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-top:5px;}
+.stat.cost .v{color:var(--text);}
+
+.rowline{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:14px 0 6px;}
+.toggle{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--muted);cursor:pointer;user-select:none;}
+.toggle input{width:16px;height:16px;accent-color:var(--accent);}
+.status{font-size:13px;font-weight:700;color:var(--faint);}
+.status.ok{color:var(--t-prod);}
+
+.toks{display:flex;flex-wrap:wrap;gap:4px;margin-top:12px;padding:14px;border:2px dashed var(--line-soft);border-radius:12px;background:var(--bg);max-height:320px;overflow:auto;}
+.tok{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;padding:3px 6px;border-radius:6px;border:1px solid var(--line-soft);white-space:pre;}
+.tok:nth-child(3n){background:var(--accent-soft);}
+.tok:nth-child(3n+1){background:var(--t-ia-soft);}
+.tok:nth-child(3n+2){background:var(--t-prod-soft);}
+.tok .id{color:var(--faint);font-size:10.5px;margin-left:4px;}
+.sp{color:var(--faint);}
+
+.note{border:2px solid var(--line);border-radius:12px;background:var(--accent-soft);padding:13px 16px;font-size:13px;font-weight:600;color:var(--muted);line-height:1.55;margin-top:18px;box-shadow:var(--sh-sm);}
+.note b{color:var(--text);}
+.warn{border-color:var(--t-cp);background:var(--t-cp-soft);}
+</style>
+</head>
+<body>
+
+<div id="sr-header" data-active="outils"></div>
+
+<div class="maxw">
+<main>
+  <div class="page-head">
+    <div class="kick">outil IA · gratuit &amp; local</div>
+    <h1>Compteur de tokens</h1>
+    <p>Colle un texte : compte les <b>tokens exacts</b> (tokenizer officiel de GPT-4 / GPT-4o), estime le <b>coût</b>, et montre le <b>découpage token par token</b>. Tout se passe dans ton navigateur — <b>aucune donnée n'est envoyée</b>.</p>
+  </div>
+
+  <div class="panelcard">
+    <div class="ctrl">
+      <div class="field">
+        <label for="model">Modèle / tokenizer</label>
+        <select id="model">
+          <option value="cl100k_base" selected>GPT-4 · GPT-4 Turbo · GPT-3.5 (cl100k)</option>
+          <option value="o200k_base">GPT-4o · GPT-4o mini · o1 (o200k)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="price">Prix / 1 M tokens</label>
+        <input id="price" type="number" min="0" step="0.01" value="2.50">
+      </div>
+      <div class="field">
+        <label for="cur">Devise</label>
+        <select id="cur"><option>$</option><option>€</option></select>
+      </div>
+      <div class="status" id="status">Chargement du tokenizer…</div>
+    </div>
+
+    <textarea id="txt" placeholder="Colle ou écris ton texte ici…">Qu'est-ce qu'un token ?</textarea>
+
+    <div class="stats">
+      <div class="stat"><div class="v" id="s-tok">0</div><div class="k">Tokens</div></div>
+      <div class="stat"><div class="v" id="s-char">0</div><div class="k">Caractères</div></div>
+      <div class="stat"><div class="v" id="s-word">0</div><div class="k">Mots</div></div>
+      <div class="stat"><div class="v" id="s-ratio">0</div><div class="k">Caractères / token</div></div>
+      <div class="stat cost"><div class="v" id="s-cost">0</div><div class="k">Coût estimé</div></div>
+    </div>
+
+    <div class="rowline">
+      <label class="toggle"><input type="checkbox" id="showids"> Afficher les identifiants (IDs)</label>
+      <span class="status" id="hint"></span>
+    </div>
+    <div class="toks" id="toks"></div>
+  </div>
+
+  <div class="note">
+    <b>Comment lire le découpage</b> : <span class="sp">␣</span> = espace, <span class="sp">⏎</span> = retour à la ligne. Un mot courant = souvent 1 token ; un mot rare ou accentué se coupe en plusieurs (ex. <code>unité</code> → <code>unit</code>+<code>é</code>). C'est pour ça que le <b>français coûte ~20-40 % de tokens de plus que l'anglais</b>.
+  </div>
+  <div class="note warn">
+    <b>Fiabilité</b> : les comptes sont <b>exacts pour les modèles OpenAI</b> (GPT-4 = cl100k, GPT-4o = o200k). <b>Claude, Gemini, Llama et Mistral utilisent d'autres tokenizers</b> — pour eux, ce compteur donne un ordre de grandeur, pas le chiffre exact. Les prix évoluent : le champ « prix / 1 M » est <b>modifiable</b>, vérifie le tarif officiel de ton modèle.
+  </div>
+</main>
+</div>
+
+<div id="sr-footer"></div>
+
+<script src="./lib/cl100k_base.js"></script>
+<script>
+(function(){
+  "use strict";
+  var LIBS = {
+    cl100k_base: function(){ return window.GPTTokenizer_cl100k_base; },
+    o200k_base:  function(){ return window.GPTTokenizer_o200k_base; }
+  };
+  var loaded = { cl100k_base: !!window.GPTTokenizer_cl100k_base, o200k_base: false };
+  var els = {
+    model: document.getElementById('model'), price: document.getElementById('price'),
+    cur: document.getElementById('cur'), txt: document.getElementById('txt'),
+    tok: document.getElementById('s-tok'), char: document.getElementById('s-char'),
+    word: document.getElementById('s-word'), ratio: document.getElementById('s-ratio'),
+    cost: document.getElementById('s-cost'), showids: document.getElementById('showids'),
+    toks: document.getElementById('toks'), status: document.getElementById('status'),
+    hint: document.getElementById('hint')
+  };
+  var MAX_CHIPS = 4000; // au-delà on n'affiche pas tous les chips (perf), mais on compte tout
+
+  function fmt(n){ return n.toLocaleString('fr-FR'); }
+  function esc(s){ return s.replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+  function vis(s){ return esc(s).replace(/ /g,'<span class="sp">␣</span>').replace(/\n/g,'<span class="sp">⏎</span>'); }
+
+  function ready(enc){ return loaded[enc] && LIBS[enc](); }
+
+  function loadEnc(enc, cb){
+    if (ready(enc)) { cb(); return; }
+    els.status.textContent = 'Chargement du tokenizer…'; els.status.className = 'status';
+    var s = document.createElement('script');
+    s.src = './lib/' + enc + '.js';
+    s.onload = function(){ loaded[enc] = true; cb(); };
+    s.onerror = function(){ els.status.textContent = 'Erreur de chargement du tokenizer.'; };
+    document.head.appendChild(s);
+  }
+
+  function run(){
+    var enc = els.model.value;
+    var api = ready(enc);
+    if (!api){ loadEnc(enc, run); return; }
+    els.status.textContent = 'Tokenizer prêt ✓'; els.status.className = 'status ok';
+
+    var text = els.txt.value;
+    var ids = text.length ? api.encode(text) : [];
+    var nTok = ids.length;
+    var nChar = text.length;
+    var nWord = (text.trim().match(/\S+/g) || []).length;
+
+    els.tok.textContent = fmt(nTok);
+    els.char.textContent = fmt(nChar);
+    els.word.textContent = fmt(nWord);
+    els.ratio.textContent = nTok ? (nChar / nTok).toFixed(2) : '0';
+
+    var price = parseFloat(els.price.value) || 0;
+    var cost = nTok / 1e6 * price;
+    els.cost.textContent = els.cur.value + cost.toFixed(cost < 1 ? 4 : 2);
+
+    // découpage
+    var showids = els.showids.checked;
+    if (nTok > MAX_CHIPS){
+      els.toks.innerHTML = '';
+      els.hint.textContent = 'Texte long : découpage masqué (' + fmt(nTok) + ' tokens) — le comptage reste exact.';
+      return;
+    }
+    els.hint.textContent = '';
+    var html = '';
+    for (var i = 0; i < ids.length; i++){
+      var piece = api.decode([ids[i]]);
+      html += '<span class="tok">' + vis(piece) + (showids ? '<span class="id">' + ids[i] + '</span>' : '') + '</span>';
+    }
+    els.toks.innerHTML = html;
+  }
+
+  var t;
+  function debounced(){ clearTimeout(t); t = setTimeout(run, 120); }
+  els.txt.addEventListener('input', debounced);
+  els.model.addEventListener('change', run);
+  els.price.addEventListener('input', run);
+  els.cur.addEventListener('change', run);
+  els.showids.addEventListener('change', run);
+
+  if (window.GPTTokenizer_cl100k_base) run();
+  else { var iv = setInterval(function(){ if (window.GPTTokenizer_cl100k_base){ loaded.cl100k_base = true; clearInterval(iv); run(); } }, 60); }
+})();
+</script>
+<script src="/assets/site.js?v=2026071202" defer></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
