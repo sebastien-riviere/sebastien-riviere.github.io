@@ -1,5 +1,5 @@
 {
- "maj": "9 juillet 2026",
+ "maj": "12 juillet 2026",
  "cats": [
   [
    "fondamentaux",
@@ -602,6 +602,22 @@
    "u": "https://www.coursera.org/specializations/prompting-essentials-google",
    "verif": "2026-07-09",
    "note": "C'est une spécialisation (4 cours) : pas d'audit gratuit complet — essai 7 jours puis abonnement. Certificat payant (aide financière possible). Surtout en anglais."
+  },
+  {
+   "n": "Generative AI for Educators",
+   "org": "Google (Grow with Google)",
+   "cat": "genai",
+   "grat": "vrai-gratuit",
+   "cout": "0",
+   "duree": "~2h (self-paced)",
+   "format": "Cours en ligne : vidéos + activités (Gemini & NotebookLM)",
+   "reco": "Certificat de complétion gratuit (recevable en crédit de formation continue selon l'établissement)",
+   "elig": "Tous ; conçu pour enseignants (collège/lycée), sans prérequis technique",
+   "lang": "EN",
+   "niv": "débutant",
+   "u": "https://grow.google/ai-for-educators/",
+   "verif": "2026-07-12",
+   "note": "Rare cours Google 100 % gratuit ET certifiant (à la différence de Google AI Essentials et Prompting Essentials, payants via Coursera). ~2h, orienté pédagogie : gagner du temps, différencier ses cours. Anglais uniquement pour l'instant. Porte d'entrée du hub « Google for Education / AI » qui agrège d'autres ressources gratuites."
   }
  ]
 }
