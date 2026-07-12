@@ -136,22 +136,26 @@ html[data-theme="dark"] .sr-np-head .cnt{color:#0f1722;}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
 
 /* ===== Lecteur audio « résumé » réutilisable (.sr-audio) + puce (.sr-cue) ===== */
-.sr-audio{display:flex;align-items:center;gap:14px;background:var(--card,#fff);border:1px solid var(--border,var(--faint,#e2e8f0));border-left:4px solid var(--accent,#2f6fb0);border-radius:14px;padding:14px 18px;margin:24px 0;box-shadow:0 1px 3px rgba(0,0,0,.05);}
-.sra-btn{flex:none;width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;background:var(--accent,#2f6fb0);display:flex;align-items:center;justify-content:center;transition:transform .12s ease,filter .12s;}
-.sra-btn:hover{filter:brightness(1.07);transform:scale(1.05);}
-.sra-btn:active{transform:scale(.95);}
-.sra-btn svg{width:22px;height:22px;fill:#fff;}
+.sr-audio{display:flex;align-items:center;gap:13px;max-width:540px;background:var(--card,#fff);border:1px solid var(--border,var(--faint,#e2e8f0));border-left:4px solid var(--accent,#2f6fb0);border-radius:14px;padding:12px 16px;margin:22px 0;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.sra-btn{flex:none;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;background:var(--accent,#2f6fb0);display:flex;align-items:center;justify-content:center;transition:filter .12s;}
+.sra-btn:hover{filter:brightness(1.08);}
+.sra-btn:active{filter:brightness(.9);}
+.sra-btn svg{width:20px;height:20px;fill:#fff;}
 .sra-btn .sra-pause{display:none;}
 .sr-audio.playing .sra-play{display:none;}
 .sr-audio.playing .sra-pause{display:block;}
 .sra-body{flex:1;min-width:0;}
-.sra-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px;}
-.sra-title{font-weight:800;font-size:14.5px;color:var(--title,var(--text,#1a2330));line-height:1.25;}
-.sra-time{font-size:12px;color:var(--muted,#5a6676);font-variant-numeric:tabular-nums;white-space:nowrap;}
-.sra-bar{height:7px;border-radius:5px;background:var(--border-soft,var(--faint,#e6ebf1));cursor:pointer;overflow:hidden;}
+.sra-top{display:flex;align-items:center;gap:7px;margin-bottom:7px;}
+.sra-title{flex:1;min-width:0;font-weight:700;font-size:13px;color:var(--title,var(--text,#1a2330));line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sra-info{flex:none;position:relative;width:16px;height:16px;border-radius:50%;border:1.3px solid var(--muted,#5a6676);color:var(--muted,#5a6676);font:italic 700 10px/1 Georgia,serif;display:inline-flex;align-items:center;justify-content:center;cursor:help;}
+.sra-info:hover,.sra-info:focus{border-color:var(--accent,#2f6fb0);color:var(--accent,#2f6fb0);outline:none;}
+.sra-tip{position:absolute;right:-4px;top:24px;z-index:20;width:224px;background:#1f2733;color:#fff;font:400 11.5px/1.45 -apple-system,Segoe UI,sans-serif;text-align:left;padding:9px 11px;border-radius:9px;box-shadow:0 6px 18px rgba(0,0,0,.22);opacity:0;visibility:hidden;transform:translateY(-3px);transition:opacity .15s,transform .15s;pointer-events:none;font-style:normal;font-weight:400;}
+.sra-info:hover .sra-tip,.sra-info:focus .sra-tip,.sra-info.open .sra-tip{opacity:1;visibility:visible;transform:translateY(0);}
+.sra-row{display:flex;align-items:center;gap:10px;}
+.sra-bar{flex:1;height:6px;border-radius:5px;background:var(--border-soft,var(--faint,#e6ebf1));cursor:pointer;}
 .sra-bar:focus-visible{outline:2px solid var(--accent,#2f6fb0);outline-offset:2px;}
 .sra-prog{height:100%;width:0;background:var(--accent,#2f6fb0);border-radius:5px;}
-.sra-note{font-size:11.5px;color:var(--muted,#5a6676);margin-top:7px;}
+.sra-time{flex:none;font-size:11.5px;color:var(--muted,#5a6676);font-variant-numeric:tabular-nums;white-space:nowrap;}
 .sr-cue{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--accent,#2f6fb0);text-decoration:none;padding:2px 10px;border-radius:20px;border:1px solid var(--accent,#2f6fb0);cursor:pointer;transition:background .12s,color .12s;vertical-align:middle;}
 .sr-cue:hover{background:var(--accent,#2f6fb0);color:#fff;}
 .sr-cue svg{width:11px;height:11px;fill:currentColor;}

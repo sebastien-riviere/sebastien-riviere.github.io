@@ -96,13 +96,15 @@
         +'<svg class="sra-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'
         +'<svg class="sra-pause" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>'
         +'<div class="sra-body"><div class="sra-top"><span class="sra-title">'+title+'</span>'
-        +'<span class="sra-time">'+(dur?('0:00 / '+dur):'')+'</span></div>'
-        +'<div class="sra-bar" role="slider" tabindex="0" aria-label="Position de lecture"><div class="sra-prog"></div></div>'
-        +(note?'<div class="sra-note">'+note+'</div>':'')+'</div>';
+        +(note?'<span class="sra-info" tabindex="0" role="button" aria-label="À propos de cet audio">i<span class="sra-tip">'+note+'</span></span>':'')
+        +'</div><div class="sra-row"><div class="sra-bar" role="slider" tabindex="0" aria-label="Position de lecture"><div class="sra-prog"></div></div>'
+        +'<span class="sra-time">'+(dur?('0:00 / '+dur):'')+'</span></div></div>';
       var btn=el.querySelector('.sra-btn'),bar=el.querySelector('.sra-bar'),
           prog=el.querySelector('.sra-prog'),time=el.querySelector('.sra-time');
       function up(){var d=a.duration||0,c=a.currentTime||0;if(d){prog.style.width=(c/d*100)+'%';time.textContent=fmtT(c)+' / '+fmtT(d);}}
-      btn.addEventListener('click',function(){if(a.paused){a.play();}else{a.pause();}});
+      btn.addEventListener('click',function(){if(a.paused){var pp=a.play();if(pp&&pp.catch){pp.catch(function(){});}}else{a.pause();}});
+      var info=el.querySelector('.sra-info');
+      if(info){info.addEventListener('click',function(){info.classList.toggle('open');});}
       a.addEventListener('play',function(){el.classList.add('playing');});
       a.addEventListener('pause',function(){el.classList.remove('playing');});
       a.addEventListener('ended',function(){el.classList.remove('playing');});

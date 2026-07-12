@@ -21,7 +21,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/fonts/fonts.css">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 /* Palette comic-lite bleu (base remappée ; familles inchangées) */
@@ -191,7 +191,8 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
     <span>Par Sébastien Rivière</span><span class="dot">·</span>
     <span>4 juillet 2026</span><span class="dot">·</span>
     <span>Lecture ~10 min</span><span class="dot">·</span>
-    <span>La Réunion</span>
+    <span>La Réunion</span><span class="dot">·</span>
+    <a class="sr-cue" data-audio="resume-audio" href="#resume-audio"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Écouter · 1:36</a>
   </div>
 
   <!-- CHAPÔ -->
@@ -201,6 +202,10 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
   </figure>
 
   <p class="lede">Un séga qui cartonne à <strong>1,1 million de vues</strong>. Un refrain que tout le monde fredonne. Un clip, des paroles en créole, une histoire bien de chez nous… et <strong>pas un instrument enregistré, pas un studio</strong>. Juste quelqu'un, une appli, une idée. Bienvenue dans le séga IA.</p>
+
+  <div class="sr-audio" id="resume-audio" data-src="resume-audio.mp3" data-title="Le résumé en audio — l'essentiel de l'enquête" data-dur="1:36" data-note="Ce résumé audio a été généré par une IA (Google NotebookLM) à partir de l'article. Voix synthétiques.">
+    <audio controls preload="none" src="resume-audio.mp3" style="width:100%"></audio>
+  </div>
 
   <p>Depuis quelques mois, sur les réseaux péi, l'intelligence artificielle s'est mise à chanter en créole — et franchement, parfois, on s'y laisse prendre. Rien d'étonnant : selon une étude Deezer/Ipsos, <strong>97 % des auditeurs ne font plus la différence</strong> entre une musique pondue par une machine et une vraie.</p>
 
@@ -533,7 +538,7 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
 
 <div id="sr-footer"></div>
 
-<script src="/assets/site.js" defer></script>
+<script src="/assets/site.js?v=2" defer></script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
