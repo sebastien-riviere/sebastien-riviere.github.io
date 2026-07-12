@@ -136,6 +136,13 @@ details.section .grid{margin-top:16px;}
   .toolbar{padding:14px 20px 10px;}
   main{padding:4px 20px 48px;}
   .grid{grid-template-columns:1fr;}
+  /* hero compact + filtres sur 1 ligne scrollable (moins de scroll avant les outils) */
+  .ia-lead{display:none;}
+  .cat-nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:3px;margin:2px 0 12px;}
+  .cat-nav::-webkit-scrollbar{display:none;}
+  .cat-nav .expand-toggle{width:auto;margin-left:6px;flex:none;white-space:nowrap;}
+  .country-filter{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+  .country-filter::-webkit-scrollbar{display:none;}
 }
 </style>
 </head>

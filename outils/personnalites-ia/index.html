@@ -92,6 +92,11 @@ details.section .grid{margin-top:16px;}
   .toolbar{padding:14px 20px 10px;}
   main{padding:4px 20px 48px;}
   .grid{grid-template-columns:1fr;}
+  /* hero compact + filtres sur 1 ligne scrollable */
+  .ia-lead{display:none;}
+  .filter-row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:3px;margin:2px 0 8px;}
+  .filter-row::-webkit-scrollbar{display:none;}
+  .filter-row .expand-toggle{width:auto;flex:none;white-space:nowrap;margin-left:6px;}
 }
 </style>
 </head>
