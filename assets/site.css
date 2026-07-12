@@ -134,3 +134,24 @@ html[data-theme="dark"] .sr-np-head .cnt{color:#0f1722;}
   .sr-mainnav a{font-size:13.5px;padding:9px 11px;}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+
+/* ===== Lecteur audio « résumé » réutilisable (.sr-audio) + puce (.sr-cue) ===== */
+.sr-audio{display:flex;align-items:center;gap:14px;background:var(--card,#fff);border:1px solid var(--border,var(--faint,#e2e8f0));border-left:4px solid var(--accent,#2f6fb0);border-radius:14px;padding:14px 18px;margin:24px 0;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.sra-btn{flex:none;width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;background:var(--accent,#2f6fb0);display:flex;align-items:center;justify-content:center;transition:transform .12s ease,filter .12s;}
+.sra-btn:hover{filter:brightness(1.07);transform:scale(1.05);}
+.sra-btn:active{transform:scale(.95);}
+.sra-btn svg{width:22px;height:22px;fill:#fff;}
+.sra-btn .sra-pause{display:none;}
+.sr-audio.playing .sra-play{display:none;}
+.sr-audio.playing .sra-pause{display:block;}
+.sra-body{flex:1;min-width:0;}
+.sra-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px;}
+.sra-title{font-weight:800;font-size:14.5px;color:var(--title,var(--text,#1a2330));line-height:1.25;}
+.sra-time{font-size:12px;color:var(--muted,#5a6676);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.sra-bar{height:7px;border-radius:5px;background:var(--border-soft,var(--faint,#e6ebf1));cursor:pointer;overflow:hidden;}
+.sra-bar:focus-visible{outline:2px solid var(--accent,#2f6fb0);outline-offset:2px;}
+.sra-prog{height:100%;width:0;background:var(--accent,#2f6fb0);border-radius:5px;}
+.sra-note{font-size:11.5px;color:var(--muted,#5a6676);margin-top:7px;}
+.sr-cue{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--accent,#2f6fb0);text-decoration:none;padding:2px 10px;border-radius:20px;border:1px solid var(--accent,#2f6fb0);cursor:pointer;transition:background .12s,color .12s;vertical-align:middle;}
+.sr-cue:hover{background:var(--accent,#2f6fb0);color:#fff;}
+.sr-cue svg{width:11px;height:11px;fill:currentColor;}
