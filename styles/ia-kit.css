@@ -103,8 +103,8 @@ hr{border:none;border-top:1px solid var(--border);margin:34px 0;}
 .ia-crumb a .ic{width:14px;height:14px;}
 
 /* ---------- en-tête : marque + titre ---------- */
-.ia-band{background:linear-gradient(180deg,var(--bg-2),var(--bg));border-bottom:2px solid var(--border);}
-.ia-head{max-width:var(--wrap-app);width:100%;margin:0 auto;padding:22px 24px 30px;}
+.ia-band{background:linear-gradient(180deg,var(--bg-2),var(--bg));border-bottom:1px solid var(--border-soft);}
+.ia-head{max-width:var(--wrap-app);width:100%;margin:0 auto;padding:16px 24px 20px;}
 .ia-head.read{max-width:var(--wrap-read);}
 .ia-brand{display:flex;align-items:center;gap:13px;}
 .ia-logo{flex:none;width:44px;height:44px;border-radius:11px;background:var(--card);
@@ -114,13 +114,14 @@ hr{border:none;border-top:1px solid var(--border);margin:34px 0;}
 .ia-brand .name a{color:inherit;}
 .ia-brand .sub{font-weight:600;font-size:12px;color:var(--faint);margin-top:1px;}
 .ia-kicker{display:inline-flex;align-items:center;gap:7px;margin-top:22px;font-size:.72rem;font-weight:700;
-  letter-spacing:.13em;text-transform:uppercase;color:var(--pop-ink);}
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ia-ink);}
+.ia-head>.ia-kicker:first-child{margin-top:0;}
 .ia-kicker .ic{width:14px;height:14px;}
-.ia-title{font-size:clamp(26px,4.5vw,38px);color:var(--ink);margin-top:12px;}
+.ia-title{font-size:clamp(25px,4.2vw,34px);color:var(--ink);margin-top:8px;}
 .ia-title em{font-style:normal;color:var(--ia);}
 .ia-meta{font-weight:600;font-size:12.5px;color:var(--faint);margin-top:12px;display:flex;flex-wrap:wrap;gap:6px 14px;}
 .ia-meta span{display:inline-flex;align-items:center;gap:6px;}
-.ia-lead{font-size:1.02rem;line-height:1.6;color:var(--muted);max-width:640px;margin-top:16px;}
+.ia-lead{font-size:.98rem;line-height:1.55;color:var(--muted);max-width:600px;margin-top:10px;}
 
 /* ---------- cartes ---------- */
 .ia-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);
@@ -186,5 +187,5 @@ table.ia-table td strong{color:var(--ink);}
 .ia-contact-btn .ic{width:16px;height:16px;}
 
 @media(max-width:600px){
-  .ia-head{padding:18px 20px 24px;} .ia-wrap{padding:0 20px;} .ia-footer{padding:20px;}
+  .ia-head{padding:13px 20px 15px;} .ia-wrap{padding:0 20px;} .ia-footer{padding:20px;}
 }
