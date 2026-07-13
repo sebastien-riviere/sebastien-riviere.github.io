@@ -19,54 +19,87 @@
 <link rel="stylesheet" href="/assets/site.css?v=2026071202">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
-/* Page Articles : chrome partagé via /assets/site.css ; ci-dessous le spécifique page */
+/* Page Articles — refonte 2026-07-13 : hero Globe + featured card + topics + grille serrée.
+   Accent turquoise SCOPÉ à cette page ; le chrome partagé (header/footer) garde le bleu. */
+:root{
+  --mint:#1eae8c; --mint-2:#25c79c; --mint-ink:#0c7d60; --mint-soft:#d7f4ec; --mint-glow:rgba(45,180,150,.4);
+  --panel:#0f1a26; --panel-ink:#eaf1f8; --panel-mut:#9fb2c4; --panel-b:rgba(146,183,214,.16);
+}
+@media(prefers-color-scheme:dark){:root{
+  --mint:#2fd6ab; --mint-2:#3ee6bb; --mint-ink:#8ff0d6; --mint-soft:#12312a; --mint-glow:rgba(47,214,171,.4);
+}}
+html[data-theme="light"]{--mint:#1eae8c;--mint-2:#25c79c;--mint-ink:#0c7d60;--mint-soft:#d7f4ec;--mint-glow:rgba(45,180,150,.4);}
+html[data-theme="dark"]{--mint:#2fd6ab;--mint-2:#3ee6bb;--mint-ink:#8ff0d6;--mint-soft:#12312a;--mint-glow:rgba(47,214,171,.4);}
+
 a{color:inherit;text-decoration:none;}
 .maxw{max-width:1120px;width:100%;margin:0 auto;padding:0 40px;}
-main{flex:1;padding:40px 0 24px;}
+main{flex:1;padding:30px 0 20px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--mint-ink);}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--mint);border-radius:2px;}
 
-/* PAGE HEAD */
-.page-head{margin-bottom:30px;}
-.page-head .kick{font-family:'Caveat',cursive;font-size:22px;color:var(--t-art);}
-.page-head h1{font-weight:900;font-size:clamp(27px,4vw,40px);line-height:1.08;letter-spacing:-.5px;color:var(--text);margin:2px 0 12px;}
-.page-head p{font-size:16px;font-weight:600;color:var(--muted);line-height:1.55;max-width:680px;}
+/* ===== HERO ===== */
+.stage{background:var(--panel);border:1px solid var(--panel-b);border-radius:22px;padding:6px;box-shadow:var(--sh-lg,0 22px 54px rgba(0,0,0,.3));overflow:hidden;margin-bottom:26px;}
+.ah{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:18px;padding:22px;border-radius:18px;background:
+  radial-gradient(120% 120% at 8% 0%,rgba(45,180,150,.18),transparent 46%),
+  radial-gradient(90% 120% at 100% 100%,rgba(91,155,216,.12),transparent 50%),var(--panel);}
+.ah-left{position:relative;border-radius:16px;background:linear-gradient(160deg,#123141,#0b1a26 70%);border:1px solid var(--panel-b);padding:28px 26px;overflow:hidden;min-height:260px;display:flex;flex-direction:column;justify-content:flex-end;}
+.globe{position:absolute;right:-30px;top:-24px;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle at 38% 34%,#3ee6bb,#1b9e8a 42%,#0e5f6e 74%,#0a3d52);
+  box-shadow:0 0 60px rgba(47,214,171,.32),inset -18px -14px 40px rgba(0,0,0,.5);opacity:.92;}
+.globe::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:repeating-linear-gradient(0deg,transparent 0 13px,rgba(3,25,20,.5) 13px 14px),repeating-linear-gradient(90deg,transparent 0 13px,rgba(3,25,20,.35) 13px 14px);mix-blend-mode:overlay;opacity:.5;}
+.node{position:absolute;width:23px;height:23px;border-radius:7px;background:#08131a;border:1px solid rgba(47,214,171,.5);box-shadow:0 4px 14px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;}
+.node i{width:9px;height:9px;border-radius:50%;background:var(--mint-2);box-shadow:0 0 10px var(--mint-2);}
+.n1{right:36px;top:58px;}.n2{right:116px;top:34px;}.n3{right:146px;top:116px;}
+.ah-left .k{position:relative;font-size:.7rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--mint-2);}
+.ah-left h1{position:relative;color:#fff;font-weight:900;font-size:clamp(26px,3.6vw,38px);line-height:1.06;letter-spacing:-.02em;margin-top:10px;}
+.ah-left p{position:relative;color:var(--panel-mut);font-size:.92rem;line-height:1.5;margin-top:12px;max-width:340px;}
+/* featured card */
+.feat{background:var(--card);border-radius:16px;padding:24px 24px 20px;display:flex;flex-direction:column;box-shadow:0 20px 50px rgba(0,0,0,.26);}
+.feat .flabel{align-self:flex-start;font-size:.68rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#04231b;background:var(--mint);padding:5px 11px;border-radius:7px;box-shadow:0 6px 16px var(--mint-glow);}
+.feat h2{color:var(--text);font-weight:800;font-size:clamp(22px,2.4vw,29px);line-height:1.14;letter-spacing:-.02em;margin-top:15px;}
+.feat p{color:var(--muted);font-size:14.5px;font-weight:600;line-height:1.5;margin-top:11px;flex:1;}
+.feat .fm{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:18px;padding-top:15px;border-top:1px solid var(--line-soft);font-size:12px;font-weight:800;color:var(--faint);}
+.feat .fm .cat{color:var(--t-ia);text-transform:uppercase;letter-spacing:.04em;}
+.feat .go{margin-left:auto;color:var(--mint-ink);font-weight:800;}
+.pill-audio{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--mint-ink);background:var(--mint-soft);border:1px solid color-mix(in srgb,var(--mint) 40%,transparent);border-radius:20px;padding:3px 10px;}
+.pill-audio svg{width:10px;height:10px;fill:currentColor;}
+.feat .sr-share{margin-left:auto;}
+.feat .fm .sr-share + *{margin-left:0;}
 
-/* CARTE ARTICLE */
-.artgrid{display:grid;gap:16px;margin-bottom:44px;}
-.artcard{position:relative;display:block;border:2px solid var(--line);border-left:6px solid var(--t-art);border-radius:15px;background:var(--card);padding:24px 26px;box-shadow:var(--sh);transition:transform .12s;}
-.artcard:hover{transform:translateY(-3px);}
-.artcard-share{position:absolute;top:14px;right:16px;z-index:2;}
-.artcard .ac-thumb{display:block;width:100%;height:clamp(150px,22vw,210px);object-fit:cover;object-position:center;border-radius:10px;border:1px solid var(--line);background:#0f1722;margin-bottom:16px;}
-.artcard .ac-cat{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--t-art);border:2px solid var(--line);border-radius:20px;padding:3px 11px;margin-bottom:13px;box-shadow:var(--sh-sm);}
-html[data-theme="dark"] .artcard .ac-cat{color:#0f1722;}
-.artcard h2{font-weight:800;font-size:24px;letter-spacing:-.3px;color:var(--text);margin-bottom:8px;line-height:1.16;}
-.artcard p{font-size:15.5px;font-weight:600;color:var(--muted);line-height:1.5;margin-bottom:15px;max-width:660px;}
-.artcard .ac-meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:13px;font-weight:700;color:var(--faint);}
-.artcard .ac-meta .ac-go{color:var(--t-art);margin-left:auto;font-weight:800;}
-.artcard .ac-audio{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;color:var(--accent-ink);background:var(--accent-soft);border:2px solid var(--accent);border-radius:20px;padding:2px 10px;box-shadow:var(--sh-sm);}
-.artcard .ac-audio svg{width:11px;height:11px;fill:currentColor;stroke:none;}
-@media(max-width:600px){.artcard .ac-meta .ac-go{margin-left:0;}}
+/* ===== TOPICS ===== */
+.topics-h{display:flex;align-items:center;gap:12px;font-weight:800;font-size:18px;letter-spacing:-.2px;color:var(--text);margin:6px 0 14px;}
+.topics-h .rule{flex:1;height:2px;border-radius:2px;background:var(--line-soft);}
+.topics{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px;}
+.topic{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 14px 9px 9px;box-shadow:var(--sh-sm);}
+.topic .ti{width:32px;height:32px;flex:none;border-radius:8px;background:var(--tc-s,var(--accent-soft));display:flex;align-items:center;justify-content:center;}
+.topic .ti span{width:12px;height:12px;border-radius:50%;background:var(--tc,var(--accent));}
+.topic b{font-size:14px;font-weight:800;color:var(--text);}
+.topic small{display:block;font-size:11.5px;color:var(--faint);font-weight:700;}
 
-.section{margin-bottom:40px;}
-.section-title{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;letter-spacing:-.3px;color:var(--text);margin-bottom:18px;}
-.section-title .rule{flex:1;height:2px;border-radius:2px;background:var(--line-soft);}
+/* ===== GRILLE ARTICLES (serré) ===== */
+.grid-h{display:flex;align-items:center;gap:12px;font-weight:800;font-size:18px;letter-spacing:-.2px;color:var(--text);margin:0 0 14px;}
+.grid-h .rule{flex:1;height:2px;border-radius:2px;background:var(--line-soft);}
+.artgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:20px;}
+.artcard{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card);box-shadow:var(--sh);transition:transform .16s,box-shadow .16s;}
+.artcard:hover{transform:translateY(-4px);box-shadow:var(--sh-lg,0 22px 54px rgba(0,0,0,.28));}
+.artcard .ac-thumb{display:block;width:100%;height:150px;object-fit:cover;object-position:center;background:#0f1722;}
+.artcard-share{position:absolute;top:11px;right:11px;z-index:2;}
+.artcard .sr-share.icon{width:34px;height:34px;background:rgba(10,18,26,.66);border-color:rgba(255,255,255,.18);color:#eaf1f8;}
+.artcard .sr-share.icon:hover{background:var(--mint);color:#04231b;border-color:var(--mint);}
+.ac-cat{position:absolute;top:12px;left:12px;z-index:2;font-size:11px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:#04231b;background:var(--mint);border-radius:6px;padding:4px 9px;}
+.ac-body{padding:15px 16px 16px;display:flex;flex-direction:column;flex:1;}
+.ac-body h3{font-weight:800;font-size:19px;letter-spacing:-.2px;color:var(--text);line-height:1.18;}
+.ac-body p{font-size:14px;font-weight:600;color:var(--muted);line-height:1.5;margin-top:8px;flex:1;}
+.ac-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;font-size:12px;font-weight:800;color:var(--faint);}
+.ac-meta .ac-go{margin-left:auto;color:var(--mint-ink);}
 
-/* CATÉGORIES */
-.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
-.cat{border:2px solid var(--line);border-left:6px solid var(--c);border-radius:14px;background:var(--card);padding:17px 19px;box-shadow:var(--sh-sm);}
-.cat .clabel{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#fff;background:var(--c);border-radius:20px;padding:3px 10px;margin-bottom:10px;}
-html[data-theme="dark"] .cat .clabel{color:#0f1722;}
-.cat h3{font-weight:800;font-size:16px;color:var(--text);margin-bottom:5px;}
-.cat p{font-size:13px;font-weight:600;color:var(--muted);line-height:1.5;}
+.foot-note{font-size:14px;font-weight:600;color:var(--muted);line-height:1.6;border:1px solid var(--line);border-radius:12px;background:var(--bg-2,var(--accent-soft));padding:15px 18px;margin-bottom:40px;}
+.foot-note b{color:var(--text);font-weight:800;}
 
-/* NOTE */
-.note{border:2px solid var(--line);border-radius:14px;background:var(--accent-soft);padding:18px 20px;font-size:14px;font-weight:600;color:var(--muted);line-height:1.6;box-shadow:var(--sh-sm);}
-.note b{color:var(--text);font-weight:800;}
-.note .pill{display:inline-block;font-size:11.5px;font-weight:800;color:var(--accent-ink);background:var(--card);border:2px solid var(--accent);border-radius:8px;padding:2px 9px;margin:2px 3px;}
-
-@media(max-width:600px){
-  .maxw{padding:0 18px;}
-  .cats{grid-template-columns:1fr;}
-}
+@media(max-width:820px){.ah{grid-template-columns:1fr;}}
+@media(max-width:600px){.maxw{padding:0 18px;}.artgrid{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;}}
 </style>
 </head>
 <body>
@@ -75,80 +108,62 @@ html[data-theme="dark"] .cat .clabel{color:#0f1722;}
 
 <div class="maxw">
 <main>
-  <div class="page-head">
-    <div class="kick">rubrique éditoriale</div>
-    <h1>Articles &amp; enquêtes</h1>
-    <p>Analyses, décryptages, enquêtes et dossiers autour de l'IA, des outils numériques, de la conformité et de la commande publique. Un regard indépendant, sourcé, sans jargon inutile.</p>
+
+  <div class="stage">
+    <div class="ah">
+      <div class="ah-left">
+        <div class="globe"></div>
+        <span class="node n1"><i></i></span><span class="node n2"><i></i></span><span class="node n3"><i></i></span>
+        <span class="k">Rubrique éditoriale</span>
+        <h1>Articles &amp; enquêtes</h1>
+        <p>Analyses, décryptages et enquêtes sourcées autour de l'IA, du numérique et de la conformité — un regard indépendant, sans jargon.</p>
+      </div>
+      <div class="feat">
+        <span class="flabel">Article à la une</span>
+        <h2>Des neurones humains dans nos ordinateurs</h2>
+        <p>Le biocomputing, ces « IA vivantes » qui calculent avec de vrais neurones humains : d'où viennent les cellules, à quoi ça sert, ce qui est prouvé et ce qui n'est que promis. Une enquête sourcée.</p>
+        <div class="fm">
+          <span class="cat">Enquête · IA &amp; vivant</span><span>·</span><span>16 min</span>
+          <span class="pill-audio"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>1:24</span>
+          <button type="button" class="sr-share icon" data-share data-share-url="/articles/des-neurones-humains-dans-nos-ordinateurs/" data-share-title="Des neurones humains dans nos ordinateurs" aria-label="Partager cet article" title="Partager"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></button>
+          <a class="go" href="/articles/des-neurones-humains-dans-nos-ordinateurs/">Lire →</a>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <div class="topics-h">Les thèmes de la rubrique <span class="rule"></span></div>
+  <div class="topics">
+    <div class="topic" style="--tc:var(--t-ia);--tc-s:var(--t-ia-soft,var(--accent-soft))"><span class="ti"><span></span></span><div><b>Intelligence artificielle</b><small>Décryptages &amp; tendances</small></div></div>
+    <div class="topic" style="--tc:var(--t-prod);--tc-s:var(--accent-soft)"><span class="ti"><span></span></span><div><b>Outils &amp; comparatifs</b><small>Tests, retours d'usage</small></div></div>
+    <div class="topic" style="--tc:var(--t-art);--tc-s:var(--accent-soft)"><span class="ti"><span></span></span><div><b>Conformité</b><small>RGPD, IA Act</small></div></div>
+    <div class="topic" style="--tc:var(--t-cp);--tc-s:var(--accent-soft)"><span class="ti"><span></span></span><div><b>Commande publique &amp; IA</b><small>Marchés, méthodes</small></div></div>
+    <div class="topic" style="--tc:var(--t-block);--tc-s:var(--accent-soft)"><span class="ti"><span></span></span><div><b>Blockchain</b><small>Traçabilité &amp; preuve</small></div></div>
+    <div class="topic" style="--tc:var(--t-labo);--tc-s:var(--accent-soft)"><span class="ti"><span></span></span><div><b>Enquêtes &amp; dossiers</b><small>Investigations de fond</small></div></div>
+  </div>
+
+  <div class="grid-h">Toutes les publications <span class="rule"></span></div>
   <div class="artgrid">
-    <a class="artcard" href="/articles/des-neurones-humains-dans-nos-ordinateurs/">
-      <button type="button" class="sr-share icon artcard-share" data-share data-share-url="/articles/des-neurones-humains-dans-nos-ordinateurs/" data-share-title="Des neurones humains dans nos ordinateurs" aria-label="Partager cet article" title="Partager"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></button>
-      <img class="ac-thumb" src="/articles/des-neurones-humains-dans-nos-ordinateurs/og-biocomputing.jpg" alt="Un organoïde de neurones humains relié à une puce d'ordinateur" loading="lazy" width="1200" height="630">
-      <span class="ac-cat">Enquête · IA &amp; sciences du vivant</span>
-      <h2>Des neurones humains dans nos ordinateurs</h2>
-      <p>Le biocomputing, ces « IA vivantes » qui calculent avec de vrais neurones humains : d'où viennent les cellules, comment ça marche, à quoi ça sert, risques et bénéfices. Une enquête sourcée qui sépare le prouvé du promis.</p>
-      <div class="ac-meta">
-        <span>11 juillet 2026</span><span>·</span><span>Lecture ~16 min</span>
-        <span class="ac-audio"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Résumé audio · 1:24</span>
-        <span class="ac-go">Lire l'article →</span>
-      </div>
-    </a>
     <a class="artcard" href="/articles/quand-l-ia-chante-en-creole/">
-      <button type="button" class="sr-share icon artcard-share" data-share data-share-url="/articles/quand-l-ia-chante-en-creole/" data-share-title="Quand l'IA chante en créole" aria-label="Partager cet article" title="Partager"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></button>
       <img class="ac-thumb" src="/articles/quand-l-ia-chante-en-creole/og-musique-ia.jpg" alt="Un tambour roulèr et un kayamb réunionnais mêlés à des notes et des données numériques" loading="lazy" width="1200" height="630">
-      <span class="ac-cat">Enquête · Culture &amp; IA</span>
-      <h2>Quand l'IA chante en créole</h2>
-      <p>Séga et maloya générés par IA à La Réunion : créateurs, chiffres, droit, culture. La vraie question n'est pas « pour ou contre l'IA », mais : où est passé l'humain ?</p>
-      <div class="ac-meta">
-        <span>4 juillet 2026</span><span>·</span><span>Lecture ~10 min</span>
-        <span class="ac-audio"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Résumé audio · 1:36</span>
-        <span class="ac-go">Lire l'article →</span>
+      <span class="ac-cat">Culture &amp; IA</span>
+      <button type="button" class="sr-share icon artcard-share" data-share data-share-url="/articles/quand-l-ia-chante-en-creole/" data-share-title="Quand l'IA chante en créole" aria-label="Partager cet article" title="Partager"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></button>
+      <div class="ac-body">
+        <h3>Quand l'IA chante en créole</h3>
+        <p>Séga et maloya générés par IA à La Réunion : créateurs, chiffres, droit, culture. La vraie question n'est pas « pour ou contre l'IA », mais : où est passé l'humain ?</p>
+        <div class="ac-meta">
+          <span>4 juil. 2026</span><span>·</span><span>10 min</span>
+          <span class="pill-audio"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>1:36</span>
+          <span class="ac-go">Lire →</span>
+        </div>
       </div>
     </a>
   </div>
 
-  <section class="section">
-    <h2 class="section-title">Ce que couvrira la rubrique <span class="rule"></span></h2>
-    <div class="cats">
-      <div class="cat" style="--c:var(--t-ia)">
-        <span class="clabel">IA</span>
-        <h3>Intelligence artificielle</h3>
-        <p>Décryptages de modèles, d'usages et de tendances, sans survente ni catastrophisme.</p>
-      </div>
-      <div class="cat" style="--c:var(--t-prod)">
-        <span class="clabel">Outils</span>
-        <h3>Outils &amp; comparatifs</h3>
-        <p>Tests, comparatifs et retours d'expérience sur les outils numériques du quotidien.</p>
-      </div>
-      <div class="cat" style="--c:var(--t-art)">
-        <span class="clabel">Conformité</span>
-        <h3>Conformité &amp; gouvernance</h3>
-        <p>RGPD, IA Act, mise en conformité opérationnelle — expliqués pour agir concrètement.</p>
-      </div>
-      <div class="cat" style="--c:var(--t-cp)">
-        <span class="clabel">Commande publique &amp; IA</span>
-        <h3>Achat public &amp; IA</h3>
-        <p>À la croisée de la commande publique et de l'IA : marchés, méthodes, cas concrets.</p>
-      </div>
-      <div class="cat" style="--c:var(--t-block)">
-        <span class="clabel">Blockchain</span>
-        <h3>Blockchain &amp; traçabilité</h3>
-        <p>Web3 utile, preuve, traçabilité et architectures de confiance — au-delà de la spéculation.</p>
-      </div>
-      <div class="cat" style="--c:var(--t-labo)">
-        <span class="clabel">Enquêtes</span>
-        <h3>Enquêtes &amp; dossiers</h3>
-        <p>Investigations et dossiers de fond, documentés et croisés à partir de sources primaires.</p>
-      </div>
-    </div>
-  </section>
+  <div class="foot-note">
+    <b>Le fil se remplit au rythme des publications.</b> Chaque enquête est sourcée, datée et accompagnée d'un résumé audio. D'autres dossiers — IA, conformité, blockchain, commande publique — arrivent.
+  </div>
 
-  <section class="section">
-    <div class="note">
-      Chaque article affiche&nbsp;: <span class="pill">catégorie</span><span class="pill">titre</span><span class="pill">résumé</span><span class="pill">date</span><span class="pill">temps de lecture</span> et un bouton <b>Lire l'article</b>. Le fil se remplit au rythme des publications.
-    </div>
-  </section>
 </main>
 </div>
 
