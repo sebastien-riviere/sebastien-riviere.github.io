@@ -9,7 +9,7 @@
   --accent:#12a082; --accent-soft:#dcf3ec; --accent-ink:#0c7d60; --mk-fg:#fff;
   --btn-bg:#28455f; --btn-fg:#fff; --unread:#eef4fb; --pop:#d64550;
   --sh:3px 3px 0 rgba(20,33,46,.12); --sh-sm:2px 2px 0 rgba(20,33,46,.11);
-  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+  --t-ia:#12a082; --t-ia-soft:#dcf3ec; --t-art:#4453c4; --t-art-soft:#e4e6f8;
   --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
   --t-block:#b8570f; --t-block-soft:#fae0cc; --t-labo:#7345a0; --t-labo-soft:#ece2f6;
 }
@@ -20,7 +20,7 @@
     --accent:#2fd6ab; --accent-soft:#12312a; --accent-ink:#3ee6bb; --mk-fg:#0f1722;
     --btn-bg:#5b9bd8; --btn-fg:#0f1722; --unread:#1a2735; --pop:#e5686f;
     --sh:3px 3px 0 rgba(0,0,0,.42); --sh-sm:2px 2px 0 rgba(0,0,0,.4);
-    --t-ia:#95abce; --t-ia-soft:#1b2636; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+    --t-ia:#2fd6ab; --t-ia-soft:#12312a; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
     --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
     --t-block:#f07838; --t-block-soft:#28180a; --t-labo:#c2a3e3; --t-labo-soft:#251a33;
   }
@@ -30,7 +30,7 @@ html[data-theme="light"]{
   --line:#1b2836; --line-soft:#d5dee8; --accent:#12a082; --accent-soft:#dcf3ec; --accent-ink:#0c7d60; --mk-fg:#fff;
   --btn-bg:#28455f; --btn-fg:#fff; --unread:#eef4fb; --pop:#d64550;
   --sh:3px 3px 0 rgba(20,33,46,.12); --sh-sm:2px 2px 0 rgba(20,33,46,.11);
-  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+  --t-ia:#12a082; --t-ia-soft:#dcf3ec; --t-art:#4453c4; --t-art-soft:#e4e6f8;
   --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
   --t-block:#b8570f; --t-block-soft:#fae0cc; --t-labo:#7345a0; --t-labo-soft:#ece2f6;
 }
@@ -40,7 +40,7 @@ html[data-theme="dark"]{
   --accent:#2fd6ab; --accent-soft:#12312a; --accent-ink:#3ee6bb; --mk-fg:#0f1722;
   --btn-bg:#5b9bd8; --btn-fg:#0f1722; --unread:#1a2735; --pop:#e5686f;
   --sh:3px 3px 0 rgba(0,0,0,.42); --sh-sm:2px 2px 0 rgba(0,0,0,.4);
-  --t-ia:#95abce; --t-ia-soft:#1b2636; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+  --t-ia:#2fd6ab; --t-ia-soft:#12312a; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
   --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
   --t-block:#f07838; --t-block-soft:#28180a; --t-labo:#c2a3e3; --t-labo-soft:#251a33;
 }

@@ -13,7 +13,7 @@
   /* texte */
   --ink:#1c2a37; --muted:#57697a; --faint:#8496a5;
   /* identité IA (slate) — code couleur catégorie */
-  --ia:#41586b; --ia-ink:#33485a; --ia-soft:#e9ecf2; --ia-line:#c9d3e0;
+  --ia:#12a082; --ia-ink:#0c7d60; --ia-soft:#dcf3ec; --ia-line:#b4e2d5;
   /* pop (accent bleu comic) — labels, états actifs, "règle" */
   --pop:#2f6fb0; --pop-ink:#245a91; --pop-soft:#dbe8f6;
   /* fonctionnels */
@@ -38,7 +38,7 @@
     --bg:#0f1722; --bg-2:#16212e; --card:#16212e;
     --border:rgba(221,233,244,.22); --border-strong:rgba(221,233,244,.3); --border-soft:rgba(221,233,244,.10);
     --ink:#e7eef5; --muted:#a3b3c2; --faint:#728398;
-    --ia:#95abce; --ia-ink:#bccddf; --ia-soft:#1b2636; --ia-line:#2a3a48;
+    --ia:#2fd6ab; --ia-ink:#3ee6bb; --ia-soft:#12312a; --ia-line:#215043;
     --pop:#5b9bd8; --pop-ink:#9cc6ec; --pop-soft:#1b2b3c;
     --ok:#8fc09a; --ok-soft:#1a2a20;
     --warn:#f07838; --warn-soft:#28180a;
@@ -53,7 +53,7 @@ html[data-theme="light"]{
   --bg:#e9eef4; --bg-2:#dfe7f0; --card:#ffffff;
   --border:#1b2836; --border-strong:#1b2836; --border-soft:#d5dee8;
   --ink:#1c2a37; --muted:#57697a; --faint:#8496a5;
-  --ia:#41586b; --ia-ink:#33485a; --ia-soft:#e9ecf2; --ia-line:#c9d3e0;
+  --ia:#12a082; --ia-ink:#0c7d60; --ia-soft:#dcf3ec; --ia-line:#b4e2d5;
   --pop:#2f6fb0; --pop-ink:#245a91; --pop-soft:#dbe8f6;
   --ok:#3f7a4e; --ok-soft:#e3efe1; --warn:#b8570f; --warn-soft:#fae0cc; --bad:#c0433a; --bad-soft:#f6dede;
   --shadow-sm:2px 2px 0 rgba(20,33,46,.11); --shadow:3px 3px 0 rgba(20,33,46,.12); --shadow-lg:0 18px 44px rgba(20,33,46,.22);
@@ -62,7 +62,7 @@ html[data-theme="dark"]{
   --bg:#0f1722; --bg-2:#16212e; --card:#16212e;
   --border:rgba(221,233,244,.22); --border-strong:rgba(221,233,244,.3); --border-soft:rgba(221,233,244,.10);
   --ink:#e7eef5; --muted:#a3b3c2; --faint:#728398;
-  --ia:#95abce; --ia-ink:#bccddf; --ia-soft:#1b2636; --ia-line:#2a3a48;
+  --ia:#2fd6ab; --ia-ink:#3ee6bb; --ia-soft:#12312a; --ia-line:#215043;
   --pop:#5b9bd8; --pop-ink:#9cc6ec; --pop-soft:#1b2b3c;
   --ok:#8fc09a; --ok-soft:#1a2a20; --warn:#f07838; --warn-soft:#28180a; --bad:#e58b83; --bad-soft:#2e1b19;
   --shadow-sm:2px 2px 0 rgba(0,0,0,.4); --shadow:3px 3px 0 rgba(0,0,0,.42); --shadow-lg:0 22px 54px rgba(0,0,0,.62);
