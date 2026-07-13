@@ -126,11 +126,16 @@ body.browse-default #facetsLevel,body.browse-default #facetsTag{display:none}
 /* barre de filtres compacte : 2 lignes max (recherche pleine largeur, puis chips scrollables + tri + toggle) */
 .bar{padding:11px 0}
 .bar-in{gap:10px 12px}
-.bar-in .search{flex:1 1 100%}
-.bar-in .chips{flex:1 1 0;min-width:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
-.bar-in .chips::-webkit-scrollbar{display:none}
-.bar-in .cgroup{flex:none}
-.bar-in .sortwrap,.bar-in .toggle{flex:none}
+/* desktop/tablette : recherche + tri + toggle sur la 1re ligne, chips pleine largeur en dessous (sans coupure) */
+@media(min-width:601px){
+  .bar-in{align-items:center;row-gap:10px}
+  .bar-in .search{flex:1 1 340px;order:1}
+  .bar-in .sortwrap{order:2}
+  .bar-in .toggle{order:2}
+  .bar-in .chips{order:3;flex:1 1 100%;min-width:0;flex-wrap:wrap;overflow:visible}
+  .bar-in .cgroup{flex:none}
+  .bar-in .sortwrap,.bar-in .toggle{flex:none}
+}
 
 /* --- layout général --- */
 body{
