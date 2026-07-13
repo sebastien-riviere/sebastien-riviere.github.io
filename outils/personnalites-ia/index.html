@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Personnalités de l'IA — qui est qui — Sébastien Rivière</title>
-<meta name="description" content="Un who's who des personnalités de l'intelligence artificielle — chercheurs, dirigeants, régulateurs, vulgarisateurs — classés par rôle, avec un lien vers leur profil officiel. Sélection curée, sans photos.">
+<meta name="description" content="Un who's who des personnalités de l'intelligence artificielle — chercheurs, dirigeants, régulateurs, vulgarisateurs — classés par rôle, avec un lien vers leur profil officiel.">
 <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
@@ -15,19 +15,42 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 /* --- spécifique personnalites-ia (le reste vient de ia-kit.css) --- */
-.toolbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 72%,transparent);padding:16px 24px 12px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
-.search-wrap{position:relative;}
+
+/* accent turquoise scopé à la page (base slate inchangée) */
+:root{--ia:#12a082;--ia-ink:#0c7d60;--ia-soft:#dcf3ec;--ia-line:#b4e2d5;--mint:#1eae8c}
+@media(prefers-color-scheme:dark){:root{--ia:#2fd6ab;--ia-ink:#3ee6bb;--ia-soft:#12312a;--ia-line:#215043;--mint:#2fd6ab}}
+:root[data-theme="light"]{--ia:#12a082;--ia-ink:#0c7d60;--ia-soft:#dcf3ec;--ia-line:#b4e2d5;--mint:#1eae8c}
+:root[data-theme="dark"]{--ia:#2fd6ab;--ia-ink:#3ee6bb;--ia-soft:#12312a;--ia-line:#215043;--mint:#2fd6ab}
+
+/* couleurs de rôle */
+:root{--r-rech:#2f6df0;--r-ent:#1f9d6b;--r-reg:#c0392b;--r-inf:#7d5bd0;}
+@media(prefers-color-scheme:dark){:root{--r-rech:#5b9bf5;--r-ent:#4fc48c;--r-reg:#e5776b;--r-inf:#a98ee6;}}
+:root[data-theme="light"]{--r-rech:#2f6df0;--r-ent:#1f9d6b;--r-reg:#c0392b;--r-inf:#7d5bd0;}
+:root[data-theme="dark"]{--r-rech:#5b9bf5;--r-ent:#4fc48c;--r-reg:#e5776b;--r-inf:#a98ee6;}
+
+::selection{background:var(--ia-soft)}
+
+.toolbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 74%,transparent);padding:16px 24px 10px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
+.tb-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.search-wrap{position:relative;flex:1 1 300px;}
 .search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:var(--faint);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;}
-#search{width:100%;font-family:var(--ui);font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 16px 13px 42px;outline:none;transition:border-color .15s,box-shadow .15s;}
+#search{width:100%;font-family:var(--ui);font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px 12px 42px;outline:none;transition:border-color .15s,box-shadow .15s;}
 #search:focus{border-color:var(--ia);box-shadow:0 0 0 3px var(--ia-soft);}
 #search::placeholder{color:var(--faint);}
+.sortsel{font-family:var(--ui);font-size:13px;font-weight:800;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 12px;cursor:pointer;}
+.sortsel:focus{outline:none;border-color:var(--ia);}
+.viewtog{display:inline-flex;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;flex:none;}
+.viewtog button{font-family:var(--ui);background:var(--card);border:none;padding:10px 11px;cursor:pointer;color:var(--faint);display:flex;align-items:center;}
+.viewtog button+button{border-left:1px solid var(--border);}
+.viewtog button.on{background:var(--ia);color:#fff;}
+.viewtog svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .count{font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--faint);margin-top:9px;}
 
 main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
 
 .filter-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 12px;}
 .filter-lbl{font-family:var(--ui);font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--faint);margin-right:2px;}
-.chip{font-family:var(--ui);font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:.16s;}
+.chip{font-family:var(--ui);font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:.16s;}
 .chip:hover{border-color:var(--ia);color:var(--ia-ink);}
 .chip .cdot{width:9px;height:9px;border-radius:50%;flex:none;}
 .chip .cn{font-size:11px;font-weight:800;color:var(--faint);}
@@ -37,66 +60,65 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
 .chip.on[data-role="entreprise"]{background:var(--r-ent);border-color:var(--r-ent);}
 .chip.on[data-role="regulation"]{background:var(--r-reg);border-color:var(--r-reg);}
 .chip.on[data-role="influence"]{background:var(--r-inf);border-color:var(--r-inf);}
-.expand-toggle{margin-left:auto;font-family:var(--ui);font-size:12.5px;font-weight:800;color:var(--ia-ink);background:none;border:none;cursor:pointer;padding:6px 2px;display:inline-flex;align-items:center;gap:5px;}
-.expand-toggle:hover{text-decoration:underline;}
-@media(max-width:600px){.expand-toggle{margin-left:0;width:100%;justify-content:flex-start;}}
 
-/* couleurs de rôle */
-:root{--r-rech:#2f6df0;--r-ent:#1f9d6b;--r-reg:#c0392b;--r-inf:#7d5bd0;}
-
-.section{margin-bottom:34px;}
-details.section > summary.section-title{display:flex;align-items:center;gap:9px;font-family:var(--ui);font-weight:800;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);padding:10px 0 11px;border-bottom:1px solid var(--border);cursor:pointer;list-style:none;user-select:none;}
-summary.section-title::-webkit-details-marker{display:none;}
-summary.section-title .dot{width:10px;height:10px;border-radius:50%;flex:none;}
-summary.section-title .n{font-size:11px;letter-spacing:0;color:var(--ia-ink);background:var(--ia-soft);padding:2px 9px;border-radius:20px;}
-summary.section-title .chev{margin-left:auto;font-size:14px;transition:transform .2s;opacity:.5;}
-details.section[open] .chev{transform:rotate(90deg);}
-details.section .grid{margin-top:16px;}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:14px;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--border-strong);}
-.card-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:9px;}
-.mono{flex:none;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ui);font-weight:800;font-size:14px;color:#fff;}
-.mono.recherche{background:linear-gradient(135deg,var(--r-rech),#1c4fc0);}
-.mono.entreprise{background:linear-gradient(135deg,var(--r-ent),#157a52);}
-.mono.regulation{background:linear-gradient(135deg,var(--r-reg),#961f14);}
-.mono.influence{background:linear-gradient(135deg,var(--r-inf),#5a3fb0);}
-.avatar{flex:none;width:40px;height:40px;border-radius:50%;overflow:hidden;display:block;box-shadow:0 0 0 1px var(--border-strong);background:var(--bg);}
+/* ── grille de cards ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:13px;}
+.grid>*{min-width:0;}
+.card{background:var(--card);border:1.5px solid var(--border-soft);border-top:3px solid var(--rc,var(--ia));border-radius:var(--radius);padding:15px;display:flex;flex-direction:column;gap:11px;min-width:0;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--border-strong);border-top-color:var(--rc,var(--ia));}
+.card-head{display:flex;align-items:center;gap:12px;}
+.avatar{flex:none;width:52px;height:52px;border-radius:50%;overflow:hidden;display:block;box-shadow:0 0 0 1.5px var(--border-soft);background:var(--bg);}
 .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-.mono{width:40px;height:40px;}
-.credit-note{font-family:var(--ui);font-size:11.5px;color:var(--faint);line-height:1.55;margin-top:10px;}
-.credit-note a{color:var(--ia-ink);}
+.mono{flex:none;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ui);font-weight:800;font-size:18px;color:#fff;background:linear-gradient(135deg,var(--rc),color-mix(in srgb,var(--rc) 55%,#000));}
+.card-id{min-width:0;flex:1;}
 .card-name{font-family:var(--ui);font-weight:800;font-size:15.5px;color:var(--ink);line-height:1.2;}
-.card-org{font-family:var(--ui);font-size:11.5px;font-weight:700;color:var(--faint);margin-top:3px;}
-.badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px;}
-.rbadge{font-family:var(--ui);font-size:10px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:5px;color:#fff;}
-.rbadge.recherche{background:var(--r-rech);}
-.rbadge.entreprise{background:var(--r-ent);}
-.rbadge.regulation{background:var(--r-reg);}
-.rbadge.influence{background:var(--r-inf);}
-.flag{height:13px;width:auto;flex:none;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.10);}
-.card-bio{font-family:var(--ui);font-size:13px;color:var(--muted);line-height:1.5;flex:1;}
-.links{display:flex;gap:8px;margin-top:12px;align-items:center;}
+.card-org{font-family:var(--ui);font-size:11.5px;font-weight:700;color:var(--faint);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rbadge{flex:none;font-family:var(--ui);font-size:9.5px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;padding:3px 8px;border-radius:5px;color:#fff;background:var(--rc,var(--ia));white-space:nowrap;}
+
+.metabox{background:var(--bg-2);border:1px solid var(--border-soft);border-radius:10px;padding:9px 11px;display:flex;flex-direction:column;gap:5px;}
+.mrow{display:flex;align-items:center;gap:7px;font-family:var(--ui);font-size:11.5px;color:var(--muted);font-weight:600;min-width:0;}
+.mrow svg{width:13px;height:13px;flex:none;color:var(--faint);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.mrow .mtxt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1 1 auto;min-width:0;}
+.mrow .flag{height:12px;width:auto;flex:none;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.10);}
+.stars{color:var(--ia-ink);letter-spacing:1.5px;font-size:11px;}
+.stars .off{color:var(--border-strong);opacity:.45;}
+
+.card-bio{font-family:var(--ui);font-size:12.5px;color:var(--muted);line-height:1.5;flex:1;}
+.links{display:flex;gap:8px;margin-top:auto;align-items:center;}
 .plink{font-family:var(--ui);font-size:12px;font-weight:800;color:var(--ia-ink);text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
 .plink:hover{text-decoration:underline;}
-.xlink{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid var(--border);border-radius:6px;color:var(--muted);}
+.xlink{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border:1px solid var(--border);border-radius:6px;color:var(--muted);}
 .xlink:hover{border-color:var(--ia);color:var(--ia-ink);}
 .xlink svg{width:13px;height:13px;fill:currentColor;}
+
+/* ── vue liste (compacte) ── */
+.grid.list{grid-template-columns:1fr;gap:8px;}
+.grid.list .card{flex-direction:row;align-items:center;gap:13px;border-top:1.5px solid var(--border-soft);border-left:3px solid var(--rc,var(--ia));padding:11px 15px;}
+.grid.list .card:hover{border-top-color:var(--border-strong);}
+.grid.list .card-head{flex:0 0 auto;width:min(230px,32%);}
+.grid.list .avatar,.grid.list .mono{width:42px;height:42px;font-size:15px;}
+.grid.list .metabox{flex-direction:row;align-items:center;gap:16px;flex:1;background:none;border:none;padding:0;}
+.grid.list .metabox .mrow-org{display:none;}
+.grid.list .card-bio{display:none;}
+.grid.list .rbadge{display:none;}
+.grid.list .links{margin:0;flex:0 0 auto;}
 
 .no-result{font-family:var(--ui);color:var(--faint);text-align:center;padding:40px 0;display:none;}
 .disclaimer{font-family:var(--ui);font-size:13px;color:var(--faint);line-height:1.6;margin-top:26px;padding-top:20px;border-top:1px solid var(--border);max-width:740px;}
 .disclaimer a{color:var(--ia-ink);}
+.credit-note{font-family:var(--ui);font-size:11.5px;color:var(--faint);line-height:1.55;margin-top:10px;}
+.credit-note a{color:var(--ia-ink);}
 
 @media(max-width:600px){
-  .toolbar{padding:14px 20px 10px;}
+  .toolbar{padding:14px 20px 8px;}
   main{padding:4px 20px 48px;}
-  .grid{grid-template-columns:1fr;}
-  /* hero compact + filtres sur 1 ligne scrollable */
+  .grid{grid-template-columns:minmax(0,1fr);}
+  .grid.list .card{flex-wrap:wrap;}
+  .grid.list .card-head{width:100%;}
+  .grid.list .metabox{flex-wrap:wrap;gap:10px;}
   .ia-lead{display:none;}
   .filter-row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:3px;margin:2px 0 8px;}
   .filter-row::-webkit-scrollbar{display:none;}
-  .filter-row .expand-toggle{width:auto;flex:none;white-space:nowrap;margin-left:6px;}
 }
 </style>
 </head>
@@ -108,14 +130,24 @@ details.section .grid{margin-top:16px;}
   <header class="ia-head">
     <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Qui est qui · IA</div>
     <h1 class="ia-title">Les personnalités de l'IA</h1>
-    <p class="ia-lead">Un <em>who's who</em> pour s'y retrouver dans les figures de l'intelligence artificielle&nbsp;: <strong>chercheurs, dirigeants, régulateurs, vulgarisateurs</strong>. Classés par rôle, avec un lien vers leur <strong>profil officiel</strong>. Sélection curée et non exhaustive — <strong>sans photos</strong>, on renvoie à la source.</p>
+    <p class="ia-lead">Un <em>who's who</em> pour s'y retrouver dans les figures de l'intelligence artificielle&nbsp;: <strong>chercheurs, dirigeants, régulateurs, vulgarisateurs</strong>. Filtre par rôle, trie, et clique un <strong>profil officiel</strong>. Sélection curée et non exhaustive.</p>
   </header>
 </div>
 
 <div class="toolbar">
-  <div class="search-wrap">
-    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-    <input id="search" type="search" placeholder="Rechercher une personne, une organisation (ex. Mistral, LeCun, INRIA…)" autocomplete="off">
+  <div class="tb-row">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Rechercher une personne, une organisation (ex. Mistral, LeCun, INRIA…)" autocomplete="off">
+    </div>
+    <select class="sortsel" id="sortSel" aria-label="Trier">
+      <option value="noto">Trier : notoriété</option>
+      <option value="az">Trier : A → Z</option>
+    </select>
+    <div class="viewtog" id="viewTog">
+      <button data-v="grid" class="on" title="Vue grille" aria-label="Vue grille"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></button>
+      <button data-v="list" title="Vue liste" aria-label="Vue liste"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></button>
+    </div>
   </div>
   <div class="count" id="count">Chargement…</div>
 </div>
@@ -123,10 +155,10 @@ details.section .grid{margin-top:16px;}
 <main>
   <div class="filter-row" id="roleNav"></div>
   <div class="filter-row" id="paysNav"></div>
-  <div id="catalogue"></div>
+  <div class="grid" id="catalogue"></div>
   <div class="no-result" id="noResult">Aucune personne ne correspond à votre recherche.</div>
 
-  <p class="disclaimer">Sélection <strong>indicative, non exhaustive et curée</strong>, à visée informative et pédagogique. Aucune photo n'est hébergée&nbsp;: chaque fiche renvoie vers un <strong>profil public officiel</strong> (Wikipédia, site institutionnel, ou compte vérifié). Les rôles et rattachements évoluent&nbsp;; recoupez avant de citer. Une erreur, un oubli, ou une demande de retrait&nbsp;? <a href="mailto:rsebastien@protonmail.com">Écrivez-moi</a>.</p>
+  <p class="disclaimer">Sélection <strong>indicative, non exhaustive et curée</strong>, à visée informative et pédagogique. Chaque fiche renvoie vers un <strong>profil public officiel</strong> (Wikipédia, site institutionnel, ou compte vérifié). Les rôles et rattachements évoluent&nbsp;; recoupez avant de citer. Une erreur, un oubli, ou une demande de retrait&nbsp;? <a href="mailto:rsebastien@protonmail.com">Écrivez-moi</a>.</p>
   <p class="credit-note">Portraits&nbsp;: <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>, sous licence libre (domaine public ou Creative Commons). L'auteur et la licence de chaque photo s'affichent au survol&nbsp;; cliquez une photo pour accéder à sa page source. Aucune photo sous licence non libre n'est utilisée.</p>
 </main>
 
@@ -140,12 +172,13 @@ const ROLES = [
   ["influence",  "Vulgarisation & influence"]
 ];
 const RLABEL = Object.fromEntries(ROLES);
+const RSHORT = {recherche:'Recherche', entreprise:'Entreprise', regulation:'Régulation', influence:'Influence'};
 const RVAR = {recherche:'rech', entreprise:'ent', regulation:'reg', influence:'inf'};
-const COUNTRY = {FR:'France',US:'États-Unis',GB:'Royaume-Uni',CA:'Canada',CN:'Chine',DE:'Allemagne',IL:'Israël',TW:'Taïwan',IN:'Inde',JP:'Japon',NL:'Pays-Bas',CH:'Suisse',DK:'Danemark',SE:'Suède',ES:'Espagne',IT:'Italie',BE:'Belgique'};
+const COUNTRY = {FR:'France',US:'États-Unis',GB:'Royaume-Uni',CA:'Canada',CN:'Chine',DE:'Allemagne',IL:'Israël',TW:'Taïwan',IN:'Inde',JP:'Japon',NL:'Pays-Bas',CH:'Suisse',DK:'Danemark',SE:'Suède',ES:'Espagne',IT:'Italie',BE:'Belgique',AU:'Australie'};
 const X_SVG = '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.5 8.6L23 22h-6.8l-5.3-7-6.1 7H1.7l8-9.2L1 2h7l4.8 6.4L18.9 2Zm-2.4 18h1.9L7.6 4H5.6l10.9 16Z"/></svg>';
 
-let ROLESET=[], PERS=[];
-let fRole='', fPays='', allOpen=false, DEFAULT_OPEN='';
+let PERS=[];
+let fRole='', fPays='', fSort='noto', fView='grid';
 
 const catalogue=document.getElementById('catalogue');
 const noResult=document.getElementById('noResult');
@@ -154,32 +187,38 @@ const search=document.getElementById('search');
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function initials(name){return esc((name||'?').replace(/[^A-Za-zÀ-ÿ0-9 ]/g,'').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase());}
-function flagImg(code){if(!code)return'';const c=code.toLowerCase(),n=COUNTRY[code]||code;return `<img class="flag" src="https://flagcdn.com/${c}.svg" alt="${n}" title="${n}" width="20" height="14" loading="lazy">`;}
+function flagImg(code){if(!code)return'';const c=code.toLowerCase(),n=COUNTRY[code]||code;return `<img class="flag" src="https://flagcdn.com/${c}.svg" alt="${n}" title="${n}" width="18" height="12" loading="lazy">`;}
+function stars(k){k=Math.max(0,Math.min(3,k|0));return '<span class="stars" title="Notoriété '+k+'/3">'+'★'.repeat(k)+'<span class="off">'+'★'.repeat(3-k)+'</span></span>';}
 
 function cardHTML(p){
-  const prof=p.u?`<a class="plink" href="${esc(p.u)}" target="_blank" rel="noopener">Profil →</a>`:'';
+  const prof=p.u?`<a class="plink" href="${esc(p.u)}" target="_blank" rel="noopener">Profil officiel →</a>`:'';
   const x=p.x?`<a class="xlink" href="https://x.com/${esc(p.x)}" target="_blank" rel="noopener" title="@${esc(p.x)} sur X" aria-label="Profil X">${X_SVG}</a>`:'';
   const sdata=esc(((p.n||'')+' '+(p.org||'')+' '+(p.bio||'')).toLowerCase());
   const avatar = p.photo
     ? `<a class="avatar" href="${esc(p.photo_src||p.photo)}" target="_blank" rel="noopener" title="Photo : ${esc(p.photo_credit||'')} · ${esc(p.photo_license||'')} · Wikimedia Commons"><img src="${esc(p.photo)}" alt="${esc(p.n)}" loading="lazy"></a>`
-    : `<span class="mono ${esc(p.role)}">${initials(p.n)}</span>`;
-  return `<div class="card" data-search="${sdata}" data-role="${esc(p.role)}" data-pays="${esc(p.pays||'')}">
-    <div class="card-head">${avatar}<div style="flex:1"><div class="card-name">${esc(p.n)}</div><div class="card-org">${esc(p.org||'')}</div></div></div>
-    <div class="badges"><span class="rbadge ${esc(p.role)}">${esc(RLABEL[p.role]||p.role)}</span>${flagImg(p.pays)}</div>
+    : `<span class="mono">${initials(p.n)}</span>`;
+  const flag=p.pays?`${flagImg(p.pays)}<span class="mtxt">${esc(COUNTRY[p.pays]||p.pays)}</span>`:'<span class="mtxt">—</span>';
+  return `<div class="card" data-search="${sdata}" data-role="${esc(p.role)}" data-pays="${esc(p.pays||'')}" data-noto="${p.notoriete||0}" data-name="${esc(p.n||'')}" style="--rc:var(--r-${RVAR[p.role]||'rech'})">
+    <div class="card-head">${avatar}<div class="card-id"><div class="card-name">${esc(p.n)}</div><div class="card-org">${esc(p.org||'')}</div></div><span class="rbadge">${esc(RSHORT[p.role]||p.role)}</span></div>
+    <div class="metabox">
+      <div class="mrow"><svg viewBox="0 0 24 24"><path d="M12 21s-6-5.7-6-10a6 6 0 0 1 12 0c0 4.3-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>${flag}</div>
+      <div class="mrow mrow-org"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M9 8h.01M15 8h.01M9 12h.01M15 12h.01M9 16h6"/></svg><span class="mtxt">${esc(p.org||'—')}</span></div>
+      <div class="mrow"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.2 6.6.8-4.9 4.5 1.3 6.5L12 17.3 6.1 20.5l1.3-6.5L2.5 9l6.6-.8z"/></svg>Notoriété ${stars(p.notoriete||0)}</div>
+    </div>
     <div class="card-bio">${esc(p.bio||'')}</div>
     <div class="links">${prof}${x}</div>
   </div>`;
 }
 
+function sortItems(arr){
+  return arr.slice().sort((a,b)=> fSort==='az'
+    ? (a.n||'').localeCompare(b.n||'','fr')
+    : ((b.notoriete||0)-(a.notoriete||0))||(a.n||'').localeCompare(b.n||'','fr'));
+}
+
 function renderCatalogue(){
-  catalogue.innerHTML=ROLES.map(([key,label])=>{
-    const items=PERS.filter(p=>p.role===key).sort((a,b)=>(b.notoriete||0)-(a.notoriete||0)||(a.n||'').localeCompare(b.n||''));
-    if(!items.length)return '';
-    return `<details class="section" data-role="${key}"${key===DEFAULT_OPEN?' open':''}>
-      <summary class="section-title"><span class="dot" style="background:var(--r-${RVAR[key]})"></span>${esc(label)}<span class="n">${items.length}</span><span class="chev">›</span></summary>
-      <div class="grid">${items.map(cardHTML).join('')}</div>
-    </details>`;
-  }).join('');
+  catalogue.className='grid'+(fView==='list'?' list':'');
+  catalogue.innerHTML=sortItems(PERS).map(cardHTML).join('');
 }
 
 function renderRoleNav(){
@@ -187,9 +226,8 @@ function renderRoleNav(){
   const counts={}; PERS.forEach(p=>counts[p.role]=(counts[p.role]||0)+1);
   const all=`<span class="filter-lbl">Rôle</span><span class="chip on" data-role="">Tous<span class="cn">${PERS.length}</span></span>`;
   const chips=ROLES.map(([k,l])=>counts[k]?`<span class="chip" data-role="${k}"><span class="cdot" style="background:var(--r-${RVAR[k]})"></span>${l}<span class="cn">${counts[k]}</span></span>`:'').join('');
-  nav.innerHTML=all+chips+`<button class="expand-toggle" id="expandToggle" type="button"><span id="expandLbl">Tout déplier</span></button>`;
+  nav.innerHTML=all+chips;
   nav.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{nav.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');fRole=c.dataset.role;filter();}));
-  document.getElementById('expandToggle').addEventListener('click',toggleExpandAll);
 }
 
 function renderPaysNav(){
@@ -202,30 +240,29 @@ function renderPaysNav(){
   nav.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{nav.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');fPays=c.dataset.pays;filter();}));
 }
 
-function visibleSections(){return [...document.querySelectorAll('.section[data-role]')].filter(s=>s.style.display!=='none');}
-function toggleExpandAll(){allOpen=!allOpen;visibleSections().forEach(s=>s.open=allOpen);syncExpandLabel();}
-function syncExpandLabel(){const lbl=document.getElementById('expandLbl');if(!lbl)return;const secs=visibleSections();allOpen=secs.length>0&&secs.every(s=>s.open);lbl.textContent=allOpen?'Tout replier':'Tout déplier';}
-
 function filter(){
   const q=search.value.trim().toLowerCase();
   const active=!!(q||fRole||fPays);
   let visible=0;
-  document.querySelectorAll('.section[data-role]').forEach(sec=>{
-    if(fRole && sec.dataset.role!==fRole){sec.style.display='none';return;}
-    let sv=0;
-    sec.querySelectorAll('.card').forEach(card=>{
-      const m=!q||card.dataset.search.includes(q);
-      const mp=!fPays||card.dataset.pays===fPays;
-      const show=m&&mp;
-      card.style.display=show?'':'none'; if(show){sv++;visible++;}
-    });
-    sec.style.display=sv?'':'none';
-    if(sv){sec.open=active?true:(sec.dataset.role===DEFAULT_OPEN);}
+  catalogue.querySelectorAll('.card').forEach(card=>{
+    const mr=!fRole||card.dataset.role===fRole;
+    const mp=!fPays||card.dataset.pays===fPays;
+    const ms=!q||card.dataset.search.includes(q);
+    const show=mr&&mp&&ms;
+    card.style.display=show?'':'none'; if(show)visible++;
   });
   noResult.style.display=visible?'none':'block';
-  countEl.textContent=active?`${visible} personne${visible>1?'s':''}`:`${PERS.length} personnalités · ${ROLES.filter(([k])=>PERS.some(p=>p.role===k)).length} rôles`;
-  syncExpandLabel();
+  countEl.textContent=active
+    ? `${visible} personne${visible>1?'s':''}`
+    : `${PERS.length} personnalités · ${ROLES.filter(([k])=>PERS.some(p=>p.role===k)).length} rôles`;
 }
+
+document.getElementById('sortSel').addEventListener('change',e=>{fSort=e.target.value;renderCatalogue();filter();});
+document.getElementById('viewTog').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+  fView=b.dataset.v;
+  document.getElementById('viewTog').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.v===fView));
+  catalogue.classList.toggle('list',fView==='list');
+}));
 
 (async function init(){
   try{
@@ -233,14 +270,12 @@ function filter(){
     if(!r.ok) throw new Error('http '+r.status);
     const data=await r.json();
     PERS=data.persons||[];
-    DEFAULT_OPEN=(ROLES.find(([k])=>PERS.some(p=>p.role===k))||[])[0]||'';
     renderCatalogue(); renderRoleNav(); renderPaysNav();
     filter();
-    catalogue.addEventListener('toggle',syncExpandLabel,true);
     search.addEventListener('input',filter);
   }catch(e){
     countEl.textContent='';
-    catalogue.innerHTML='<p style="font-family:Nunito,sans-serif;color:var(--faint);text-align:center;padding:40px 0;">Chargement impossible pour le moment. Réessayez plus tard.</p>';
+    catalogue.innerHTML='<p style="font-family:Nunito,sans-serif;color:var(--faint);text-align:center;padding:40px 0;grid-column:1/-1;">Chargement impossible pour le moment. Réessayez plus tard.</p>';
   }
 })();
 </script>
