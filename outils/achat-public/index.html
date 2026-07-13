@@ -17,7 +17,7 @@
 <meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/site.css?v=2026071202">
+<link rel="stylesheet" href="/assets/site.css?v=2026071301">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 /* Comic-lite bleu, accent famille = ROUGE commande publique */
@@ -625,6 +625,6 @@ el('footLegal').addEventListener('click',function(e){ e.preventDefault(); docume
 Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(b){ b.addEventListener('click',function(){ document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');}); document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); el('panel-'+b.dataset.tab).classList.add('active'); window.scrollTo(0,0); }); });
 load(); renderAll();
 </script>
-<script src="/assets/site.js?v=2026071202" defer></script>
+<script src="/assets/site.js?v=2026071301" defer></script>
 </body>
 </html>

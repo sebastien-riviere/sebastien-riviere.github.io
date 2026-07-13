@@ -39,12 +39,12 @@
         +'<span class="when">'+o.when+'</span><span class="new"></span></a>';
     }).join('');
     return ''
-    +'<div class="sr-navband"><div class="sr-maxw">'
-    +'<div class="sr-navtop">'
+    +'<div class="sr-navband"><div class="sr-maxw sr-navrow">'
     +'<a class="sr-brand" href="/">'
     +'<span class="sr-logo"><img src="/logo.png" alt="Logo Sébastien Rivière" width="32" height="32"></span>'
-    +'<span><span class="sr-nm">Sébastien Rivière</span><br><span class="sr-tg">apprendre · comprendre · transmettre</span></span>'
+    +'<span class="sr-brandtxt"><span class="sr-nm">Sébastien Rivière</span><span class="sr-tg">apprendre · comprendre · transmettre</span></span>'
     +'</a>'
+    +'<nav class="sr-mainnav" aria-label="Navigation principale">'+nav+'</nav>'
     +'<div class="sr-actions">'
     +'<div class="sr-notif-wrap">'
     +'<button class="sr-ibtn sr-bell" id="srBell" title="Quoi de neuf" aria-label="Quoi de neuf">'
@@ -64,8 +64,7 @@
     +'<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>'
     +'<a class="sr-ibtn li" href="'+LINKEDIN+'" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">'
     +'<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg></a>'
-    +'</div></div>'
-    +'<nav class="sr-mainnav" aria-label="Navigation principale">'+nav+'</nav>'
+    +'</div>'
     +'</div></div>';
   }
 

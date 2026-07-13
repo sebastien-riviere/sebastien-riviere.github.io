@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <link rel="stylesheet" href="../../fonts/fonts.css">
 <link rel="stylesheet" href="../../styles/ia-kit.css">
-<link rel="stylesheet" href="/assets/site.css?v=2026071202">
+<link rel="stylesheet" href="/assets/site.css?v=2026071301">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 /* --- comic-lite bleu (base) + pastilles catégories conservées --- */
@@ -114,6 +114,23 @@ html[data-theme="dark"] .btn-p{color:#04231b;}
 
 /* densité SERRÉE : grille resserrée */
 .grid{grid-template-columns:repeat(auto-fill,minmax(142px,1fr));gap:24px 16px}
+
+/* hero dégraissé : titre court + intro courte + 3 stats (le contenu remonte au-dessus de la ligne de flottaison) */
+.hero{padding:18px 0 8px}
+.hero h1{font-size:clamp(1.7rem,3.6vw,2.6rem)}
+.hero p{font-size:.98rem;max-width:600px;margin-top:9px}
+.hero .stats{margin-top:16px}
+/* facettes secondaires (Parcours / Thème) masquées en vue étagères par défaut (moins de bruit avant le contenu) */
+body.browse-default #facetsLevel,body.browse-default #facetsTag{display:none}
+
+/* barre de filtres compacte : 2 lignes max (recherche pleine largeur, puis chips scrollables + tri + toggle) */
+.bar{padding:11px 0}
+.bar-in{gap:10px 12px}
+.bar-in .search{flex:1 1 100%}
+.bar-in .chips{flex:1 1 0;min-width:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.bar-in .chips::-webkit-scrollbar{display:none}
+.bar-in .cgroup{flex:none}
+.bar-in .sortwrap,.bar-in .toggle{flex:none}
 
 /* --- layout général --- */
 body{
@@ -319,9 +336,9 @@ body{
 
 <div class="wrap">
   <header class="hero">
-    <div class="kicker">Médiathèque · sélection</div>
-    <h1>Des idées de <em>ressources</em> — <em>livres</em>, <em>films</em>, <em>séries</em> &amp; <em>documentaires</em></h1>
-    <p>Une sélection vivante — des <strong>références</strong> (IA, data) à l'<strong>imaginaire</strong> (science-fiction), jusqu'à ce qui se passe <strong>à l'écran</strong> (films, séries, documentaires) — avec résumé, couverture et repère <strong>réflexion</strong> / <strong>divertissement</strong>. De quoi choisir sa prochaine lecture… ou séance.</p>
+    <div class="kicker">Médiathèque IA · sélection</div>
+    <h1>Lire &amp; <em>regarder</em> l'IA</h1>
+    <p>Livres, films, séries et documentaires — triés, résumés, situés entre <strong>réflexion</strong> et <strong>divertissement</strong>.</p>
     <div class="stats" id="stats"></div>
   </header>
 
@@ -419,10 +436,9 @@ const starsHTML=p=>{p=+p||0;let s="";for(let i=1;i<=3;i++)s+=i<=p?"<b>★</b>":"
 
 fetch("./data.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>{
   BOOKS=d.books.map((b,i)=>({...b,_i:i})); document.getElementById("upd").textContent=d.updated;
-  const by=d.by_cat||{};
+  const nread=BOOKS.filter(b=>b.s!=="ecran").length, nscreen=BOOKS.filter(b=>b.s==="ecran").length;
   document.getElementById("stats").innerHTML=
-    `<div class="stat"><b>${d.count}</b> titres</div>`+
-    Object.keys(CATS).filter(c=>by[c]).map(c=>`<div class="stat"><b>${by[c]}</b> ${CATS[c].l}</div>`).join("");
+    `<div class="stat"><b>${d.count}</b> titres</div><div class="stat"><b>${nread}</b> à lire</div><div class="stat"><b>${nscreen}</b> à l'écran</div>`;
   buildChips();
   buildThemeFacets();
   document.getElementById("sort").addEventListener("change",e=>{sortMode=e.target.value;render();});
@@ -587,7 +603,9 @@ function render(){
   const sp=document.getElementById("spotlight");
   if(q) sp.style.display="none"; else renderSpotlight(sp);   // pas de spotlight en recherche texte
   const shelvesEl=document.getElementById("shelves"), g=document.getElementById("grid"), cl=document.getElementById("countLine");
-  if(isBrowseDefault()){                                     // vue par défaut → étagères
+  const dflt=isBrowseDefault();
+  document.body.classList.toggle("browse-default",dflt);    // masque les facettes secondaires en vue étagères
+  if(dflt){                                                  // vue par défaut → étagères
     shelvesEl.style.display=""; g.style.display="none"; cl.style.display="none";
     renderShelves(shelvesEl);
     return;
@@ -657,6 +675,6 @@ document.getElementById("mClose").onclick=close;
 ov.onclick=e=>{if(e.target===ov)close();};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
 </script>
-<script src="/assets/site.js?v=2026071202" defer></script>
+<script src="/assets/site.js?v=2026071301" defer></script>
 </body>
 </html>

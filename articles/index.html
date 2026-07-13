@@ -16,7 +16,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/fonts/fonts.css">
-<link rel="stylesheet" href="/assets/site.css?v=2026071202">
+<link rel="stylesheet" href="/assets/site.css?v=2026071301">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 /* Page Articles — refonte 2026-07-13 : hero Globe + featured card + topics + grille serrée.
@@ -55,9 +55,12 @@ main{flex:1;padding:30px 0 20px;}
 .ah-left h1{position:relative;color:#fff;font-weight:900;font-size:clamp(26px,3.6vw,38px);line-height:1.06;letter-spacing:-.02em;margin-top:10px;}
 .ah-left p{position:relative;color:var(--panel-mut);font-size:.92rem;line-height:1.5;margin-top:12px;max-width:340px;}
 /* featured card */
-.feat{background:var(--card);border-radius:16px;padding:24px 24px 20px;display:flex;flex-direction:column;box-shadow:0 20px 50px rgba(0,0,0,.26);}
-.feat .flabel{align-self:flex-start;font-size:.68rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#04231b;background:var(--mint);padding:5px 11px;border-radius:7px;box-shadow:0 6px 16px var(--mint-glow);}
-.feat h2{color:var(--text);font-weight:800;font-size:clamp(22px,2.4vw,29px);line-height:1.14;letter-spacing:-.02em;margin-top:15px;}
+.feat{background:var(--card);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 50px rgba(0,0,0,.26);}
+.feat-media{position:relative;height:168px;flex:none;}
+.feat-media img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;background:#0f1722;}
+.feat-in{padding:20px 24px 20px;display:flex;flex-direction:column;flex:1;}
+.feat .flabel{position:absolute;top:13px;left:14px;z-index:2;font-size:.68rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#04231b;background:var(--mint);padding:5px 11px;border-radius:7px;box-shadow:0 6px 16px var(--mint-glow);}
+.feat h2{color:var(--text);font-weight:800;font-size:clamp(21px,2.3vw,28px);line-height:1.14;letter-spacing:-.02em;}
 .feat p{color:var(--muted);font-size:14.5px;font-weight:600;line-height:1.5;margin-top:11px;flex:1;}
 .feat .fm{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:18px;padding-top:15px;border-top:1px solid var(--line-soft);font-size:12px;font-weight:800;color:var(--faint);}
 .feat .fm .cat{color:var(--t-ia);text-transform:uppercase;letter-spacing:.04em;}
@@ -119,7 +122,11 @@ main{flex:1;padding:30px 0 20px;}
         <p>Analyses, décryptages et enquêtes sourcées autour de l'IA, du numérique et de la conformité — un regard indépendant, sans jargon.</p>
       </div>
       <div class="feat">
-        <span class="flabel">Article à la une</span>
+        <div class="feat-media">
+          <span class="flabel">Article à la une</span>
+          <img src="/articles/des-neurones-humains-dans-nos-ordinateurs/og-biocomputing.jpg" alt="Un organoïde de neurones humains relié à une puce d'ordinateur" loading="lazy" width="1200" height="630">
+        </div>
+        <div class="feat-in">
         <h2>Des neurones humains dans nos ordinateurs</h2>
         <p>Le biocomputing, ces « IA vivantes » qui calculent avec de vrais neurones humains : d'où viennent les cellules, à quoi ça sert, ce qui est prouvé et ce qui n'est que promis. Une enquête sourcée.</p>
         <div class="fm">
@@ -127,6 +134,7 @@ main{flex:1;padding:30px 0 20px;}
           <span class="pill-audio"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>1:24</span>
           <button type="button" class="sr-share icon" data-share data-share-url="/articles/des-neurones-humains-dans-nos-ordinateurs/" data-share-title="Des neurones humains dans nos ordinateurs" aria-label="Partager cet article" title="Partager"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></button>
           <a class="go" href="/articles/des-neurones-humains-dans-nos-ordinateurs/">Lire →</a>
+        </div>
         </div>
       </div>
     </div>
@@ -144,6 +152,20 @@ main{flex:1;padding:30px 0 20px;}
 
   <div class="grid-h">Toutes les publications <span class="rule"></span></div>
   <div class="artgrid">
+    <a class="artcard" href="/articles/des-neurones-humains-dans-nos-ordinateurs/">
+      <img class="ac-thumb" src="/articles/des-neurones-humains-dans-nos-ordinateurs/og-biocomputing.jpg" alt="Un organoïde de neurones humains relié à une puce d'ordinateur" loading="lazy" width="1200" height="630">
+      <span class="ac-cat">Enquête · IA &amp; vivant</span>
+      <button type="button" class="sr-share icon artcard-share" data-share data-share-url="/articles/des-neurones-humains-dans-nos-ordinateurs/" data-share-title="Des neurones humains dans nos ordinateurs" aria-label="Partager cet article" title="Partager"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></button>
+      <div class="ac-body">
+        <h3>Des neurones humains dans nos ordinateurs</h3>
+        <p>Le biocomputing, ces « IA vivantes » qui calculent avec de vrais neurones humains : d'où viennent les cellules, à quoi ça sert, ce qui est prouvé et ce qui n'est que promis.</p>
+        <div class="ac-meta">
+          <span>11 juil. 2026</span><span>·</span><span>16 min</span>
+          <span class="pill-audio"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>1:24</span>
+          <span class="ac-go">Lire →</span>
+        </div>
+      </div>
+    </a>
     <a class="artcard" href="/articles/quand-l-ia-chante-en-creole/">
       <img class="ac-thumb" src="/articles/quand-l-ia-chante-en-creole/og-musique-ia.jpg" alt="Un tambour roulèr et un kayamb réunionnais mêlés à des notes et des données numériques" loading="lazy" width="1200" height="630">
       <span class="ac-cat">Culture &amp; IA</span>
@@ -169,7 +191,7 @@ main{flex:1;padding:30px 0 20px;}
 
 <div id="sr-footer"></div>
 
-<script src="/assets/site.js?v=2026071202" defer></script>
+<script src="/assets/site.js?v=2026071301" defer></script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
