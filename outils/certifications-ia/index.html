@@ -16,6 +16,14 @@
 <style>
 /* --- spécifique certifications-ia (le reste vient de ia-kit.css) --- */
 
+/* accent turquoise scopé à la page (base slate inchangée) */
+:root{--ia:#12a082;--ia-ink:#0c7d60;--ia-soft:#dcf3ec;--ia-line:#b4e2d5;--mint:#1eae8c}
+@media(prefers-color-scheme:dark){:root{--ia:#2fd6ab;--ia-ink:#3ee6bb;--ia-soft:#12312a;--ia-line:#215043;--mint:#2fd6ab}}
+:root[data-theme="light"]{--ia:#12a082;--ia-ink:#0c7d60;--ia-soft:#dcf3ec;--ia-line:#b4e2d5;--mint:#1eae8c}
+:root[data-theme="dark"]{--ia:#2fd6ab;--ia-ink:#3ee6bb;--ia-soft:#12312a;--ia-line:#215043;--mint:#2fd6ab}
+
+::selection{background:var(--ia-soft)}
+
 /* encart pédagogique : les 4 statuts de gratuité (le différenciateur) */
 .legend-box{max-width:var(--wrap-app);width:100%;margin:2px auto 0;padding:0 24px;}
 .legend-inner{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;}
@@ -31,97 +39,98 @@
 .d-cond{background:#d98a24;}
 .d-cpf{background:var(--ia);}
 
-/* barre de recherche sticky */
-.toolbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 72%,transparent);padding:16px 24px 12px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
-.search-wrap{position:relative;}
+/* barre de recherche + tri sticky */
+.toolbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 74%,transparent);padding:16px 24px 10px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
+.tb-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.search-wrap{position:relative;flex:1 1 300px;}
 .search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:var(--faint);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;}
-#search{width:100%;font-family:var(--ui);font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 16px 13px 42px;outline:none;transition:border-color .15s,box-shadow .15s;}
+#search{width:100%;font-family:var(--ui);font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px 12px 42px;outline:none;transition:border-color .15s,box-shadow .15s;}
 #search:focus{border-color:var(--ia);box-shadow:0 0 0 3px var(--ia-soft);}
 #search::placeholder{color:var(--faint);}
+.sortsel{font-family:var(--ui);font-size:13px;font-weight:800;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 12px;cursor:pointer;}
+.sortsel:focus{outline:none;border-color:var(--ia);}
 .count{font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--faint);margin-top:9px;}
+.count b{color:var(--ia-ink);}
 
 main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
 
-/* pastilles de filtre (gratuité = primaire, langue = secondaire) */
-.filter-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 12px;}
-.filter-lbl{font-family:var(--ui);font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--faint);margin-right:2px;}
-.chip{font-family:var(--ui);font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:7px;
-  padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:.16s;}
-.chip:hover{border-color:var(--ia);color:var(--ia-ink);}
-.chip .cdot{width:9px;height:9px;border-radius:50%;flex:none;}
-.chip .cn{font-size:11px;font-weight:800;color:var(--faint);}
-.chip.on{background:var(--ia);border-color:var(--ia);color:#fff;}
-.chip.on .cn{color:#fff;opacity:.85;}
-/* teinte des pastilles gratuité à l'état actif → couleur sémantique */
-.chip.on[data-grat="vrai-gratuit"]{background:var(--ok);border-color:var(--ok);}
-.chip.on[data-grat="audit"]{background:var(--warn);border-color:var(--warn);}
-.chip.on[data-grat="conditionnel"]{background:#d98a24;border-color:#d98a24;}
-.chip.on[data-grat="cpf"]{background:var(--ia);border-color:var(--ia);}
-.expand-toggle{margin-left:auto;font-family:var(--ui);font-size:12.5px;font-weight:800;color:var(--ia-ink);background:none;border:none;cursor:pointer;padding:6px 2px;display:inline-flex;align-items:center;gap:5px;}
-.expand-toggle:hover{text-decoration:underline;}
-@media(max-width:600px){.expand-toggle{margin-left:0;width:100%;justify-content:flex-start;}}
+/* layout : rail de facettes + résultats */
+.split{display:grid;grid-template-columns:224px 1fr;gap:18px;align-items:start;}
+.rail{position:sticky;top:8px;background:var(--bg-2);border:1px solid var(--border-soft);border-radius:13px;padding:6px 4px;min-width:0;}
+.rail-hd{display:flex;align-items:center;gap:7px;font-family:var(--ui);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:var(--faint);padding:9px 12px 5px;}
+.rail-hd svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.rail-clear{margin-left:auto;font-family:var(--ui);font-size:11px;font-weight:800;color:var(--ia-ink);background:none;border:none;cursor:pointer;padding:2px;display:none;}
+.rail-clear.show{display:inline;}
+.facet{border-top:1px solid var(--border-soft);padding:2px 4px;}
+.facet:first-of-type{border-top:none;}
+.facet>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:9px;font-family:var(--ui);font-size:12.5px;font-weight:800;color:var(--ink);user-select:none;border-radius:8px;}
+.facet>summary::-webkit-details-marker{display:none;}
+.facet>summary .fchev{margin-left:auto;transition:transform .18s;color:var(--faint);display:flex;}
+.facet>summary .fchev svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.facet[open]>summary .fchev{transform:rotate(180deg);}
+.facet>summary:hover{background:var(--card);}
+.opts{display:flex;flex-direction:column;gap:1px;padding:2px 4px 8px;}
+.opt{display:flex;align-items:center;gap:9px;padding:6px 9px;border-radius:8px;cursor:pointer;font-family:var(--ui);font-size:12.5px;color:var(--muted);font-weight:600;}
+.opt:hover{background:var(--card);color:var(--ink);}
+.opt input{appearance:none;-webkit-appearance:none;width:15px;height:15px;border:1.5px solid var(--border-soft);border-radius:5px;flex:none;cursor:pointer;position:relative;background:var(--card);margin:0;}
+.opt input:checked{background:var(--ia);border-color:var(--ia);}
+.opt input:checked::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);}
+.opt .odot{width:8px;height:8px;border-radius:50%;flex:none;}
+.opt .oc{margin-left:auto;font-size:10.5px;font-weight:800;color:var(--faint);}
+.opt .otx{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
 
-/* sections par domaine */
-.section{margin-bottom:34px;}
-details.section > summary.section-title{display:flex;align-items:center;gap:9px;font-family:var(--ui);font-weight:800;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);padding:10px 0 11px;border-bottom:1px solid var(--border);cursor:pointer;list-style:none;user-select:none;}
-summary.section-title::-webkit-details-marker{display:none;}
-summary.section-title svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
-summary.section-title .n{font-size:11px;letter-spacing:0;color:var(--ia-ink);background:var(--ia-soft);padding:2px 9px;border-radius:20px;}
-summary.section-title .chev{margin-left:auto;font-size:14px;transition:transform .2s;opacity:.5;}
-details.section[open] .chev{transform:rotate(90deg);}
-details.section .grid{margin-top:16px;}
+.results{min-width:0;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:14px;}
+.grid>*{min-width:0;}
 
-/* grille de fiches */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:14px;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:17px 19px;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+/* card formation */
+.card{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--radius);padding:15px 16px;display:flex;flex-direction:column;gap:9px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--border-strong);}
-.card-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:9px;}
-.clogo{flex:none;width:34px;height:34px;border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;font-family:var(--ui);font-weight:900;font-size:15px;color:#fff;background:linear-gradient(135deg,var(--ia),var(--ia-ink));}
-.card-title{font-family:var(--ui);font-weight:800;font-size:15px;color:var(--ink);line-height:1.25;flex:1;}
+.cc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.gbadge{font-family:var(--ui);font-size:10px;font-weight:900;letter-spacing:.2px;padding:3px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;}
+.gbadge .gd{width:6px;height:6px;border-radius:50%;flex:none;}
+.g-vrai-gratuit{background:var(--ok-soft);color:var(--ok);} .g-vrai-gratuit .gd{background:var(--ok);}
+.g-audit{background:var(--warn-soft);color:var(--warn);} .g-audit .gd{background:var(--warn);}
+.g-conditionnel{background:#f6ecdb;color:#a5661a;} .g-conditionnel .gd{background:#d98a24;}
+.g-cpf{background:var(--ia-soft);color:var(--ia-ink);} .g-cpf .gd{background:var(--ia);}
+.verif{font-family:var(--ui);font-size:10px;color:var(--faint);font-weight:700;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;}
+.verif svg{width:12px;height:12px;fill:none;stroke:var(--ok);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.eyebrow{font-family:var(--ui);font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;}
+.card-title{font-family:var(--ui);font-weight:900;font-size:14.5px;letter-spacing:-.01em;line-height:1.25;color:var(--ink);}
 .card-title a{color:inherit;text-decoration:none;}
 .card-title a:hover{text-decoration:underline;text-underline-offset:2px;}
 .card-org{font-family:var(--ui);font-size:11.5px;font-weight:700;color:var(--faint);margin-top:2px;}
-.badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px;}
-.tag{font-family:var(--ui);font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:4px;}
-.tag .tdot{width:7px;height:7px;border-radius:50%;}
-.g-vrai-gratuit{background:var(--ok-soft);color:var(--ok);}
-.g-vrai-gratuit .tdot{background:var(--ok);}
-.g-audit{background:var(--warn-soft);color:var(--warn);}
-.g-audit .tdot{background:var(--warn);}
-.g-conditionnel{background:#f6ecdb;color:#a5661a;}
-.g-conditionnel .tdot{background:#d98a24;}
-.g-cpf{background:var(--ia-soft);color:var(--ia-ink);}
-.g-cpf .tdot{background:var(--ia);}
-.tag.niv{background:var(--bg);color:var(--muted);border:1px solid var(--border);letter-spacing:.2px;text-transform:none;font-weight:700;}
-.tag.lang{background:var(--bg);color:var(--muted);border:1px solid var(--border);text-transform:none;font-weight:700;}
-.card-desc{font-family:var(--ui);font-size:13px;color:var(--muted);line-height:1.5;flex:1;}
-.card-desc .note-lbl{font-weight:800;color:var(--ink);}
-.meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:11px;font-family:var(--ui);font-size:11.5px;color:var(--faint);}
-.meta-row span{display:inline-flex;align-items:center;gap:4px;}
-.meta-row svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.card-link{margin-top:12px;font-family:var(--ui);font-size:12px;font-weight:800;color:var(--ia-ink);text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
+.chips{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{font-family:var(--ui);font-size:10.5px;font-weight:700;color:var(--muted);background:var(--bg-2);border-radius:6px;padding:3px 8px;display:inline-flex;align-items:center;gap:4px;}
+.chip svg{width:12px;height:12px;fill:none;stroke:var(--faint);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.card-note{font-family:var(--ui);font-size:12px;color:var(--muted);line-height:1.5;}
+.card-note b{color:var(--ink);font-weight:800;}
+.reco{font-family:var(--ui);font-size:11.5px;color:var(--muted);line-height:1.45;display:flex;gap:7px;align-items:flex-start;padding-top:8px;border-top:1px dashed var(--border-soft);margin-top:2px;}
+.reco svg{width:14px;height:14px;flex:none;stroke:var(--ia-ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:1px;}
+.cc-foot{margin-top:auto;padding-top:4px;}
+.card-link{font-family:var(--ui);font-size:12px;font-weight:900;color:var(--ia-ink);text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
 .card:hover .card-link{text-decoration:underline;}
-.verif{margin-top:9px;font-family:var(--ui);font-size:10.5px;color:var(--faint);display:inline-flex;align-items:center;gap:4px;}
-.verif svg{width:12px;height:12px;fill:none;stroke:var(--ok);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
 
-.no-result{font-family:var(--ui);color:var(--faint);text-align:center;padding:40px 0;display:none;}
+.no-result{font-family:var(--ui);color:var(--faint);text-align:center;padding:40px 0;display:none;grid-column:1/-1;}
 .disclaimer{font-family:var(--ui);font-size:13px;color:var(--faint);line-height:1.6;margin-top:26px;padding-top:20px;border-top:1px solid var(--border);max-width:740px;}
 .disclaimer a{color:var(--ia-ink);}
 
+@media(max-width:720px){
+  .split{grid-template-columns:1fr;gap:12px;}
+  .rail{position:static;display:flex;flex-wrap:wrap;gap:4px;}
+  .rail-hd{flex-basis:100%;}
+  .facet{border-top:none;flex:1 1 150px;}
+  .grid{grid-template-columns:1fr;}
+}
 @media(max-width:600px){
-  .toolbar{padding:14px 20px 10px;}
+  .toolbar{padding:14px 20px 8px;}
   .legend-box{padding:0 20px;}
   main{padding:4px 20px 48px;}
-  .grid{grid-template-columns:1fr;}
-  /* hero compact + legende compacte (gardee) + filtres sur 1 ligne scrollable */
   .ia-lead{display:none;}
   .legend-inner p.sub{display:none;}
   .legend-inner{padding:13px 15px;}
   .legend-grid{grid-template-columns:1fr 1fr;gap:8px;}
   .legend-item{font-size:11.5px;}
-  .filter-row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:3px;margin:2px 0 8px;}
-  .filter-row::-webkit-scrollbar{display:none;}
-  .filter-row .expand-toggle{width:auto;flex:none;white-space:nowrap;margin-left:6px;}
 }
 </style>
 </head>
@@ -151,18 +160,28 @@ details.section .grid{margin-top:16px;}
 </div>
 
 <div class="toolbar">
-  <div class="search-wrap">
-    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-    <input id="search" type="search" placeholder="Rechercher une formation, un organisme, un sujet (ex. LLM, Python, éthique…)" autocomplete="off">
+  <div class="tb-row">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Rechercher une formation, un organisme, un sujet (ex. LLM, Python, éthique…)" autocomplete="off">
+    </div>
+    <select class="sortsel" id="sortSel" aria-label="Trier">
+      <option value="reco">Trier : recommandé</option>
+      <option value="az">Trier : A → Z</option>
+      <option value="org">Trier : organisme</option>
+    </select>
   </div>
   <div class="count" id="count">Chargement…</div>
 </div>
 
 <main>
-  <div class="filter-row" id="gratNav"></div>
-  <div class="filter-row" id="langNav"></div>
-  <div id="catalogue"></div>
-  <div class="no-result" id="noResult">Aucune formation ne correspond à votre recherche.</div>
+  <div class="split">
+    <aside class="rail" id="rail"></aside>
+    <div class="results">
+      <div class="grid" id="catalogue"></div>
+      <div class="no-result" id="noResult">Aucune formation ne correspond à votre recherche.</div>
+    </div>
+  </div>
 
   <p class="disclaimer">Sélection indicative et non exhaustive, non sponsorisée. Les offres «&nbsp;gratuites&nbsp;», paliers d'essai et tarifs de certification <strong>évoluent vite</strong>&nbsp;: chaque fiche porte sa <strong>date de vérification</strong> — recoupez toujours sur la page officielle avant de vous engager. Les crédits/équivalences annoncés (ACE, etc.) sont des <em>recommandations</em>, pas des équivalences automatiques en France. Une erreur, une formation manquante&nbsp;? <a href="mailto:rsebastien@protonmail.com">Signalez-le</a>.</p>
 </main>
@@ -171,24 +190,17 @@ details.section .grid{margin-top:16px;}
 
 <script>
 const GRAT = {
-  'vrai-gratuit': {lbl:'Vraiment gratuit', cls:'g-vrai-gratuit'},
-  'audit':        {lbl:'Cours gratuit · certif payante', cls:'g-audit'},
-  'conditionnel': {lbl:'Conditionnel', cls:'g-conditionnel'},
-  'cpf':          {lbl:'Finançable CPF', cls:'g-cpf'}
+  'vrai-gratuit': {lbl:'Vraiment gratuit', cls:'g-vrai-gratuit', dot:'var(--ok)'},
+  'audit':        {lbl:'Cours gratuit · certif payante', cls:'g-audit', dot:'var(--warn)'},
+  'conditionnel': {lbl:'Conditionnel', cls:'g-conditionnel', dot:'#d98a24'},
+  'cpf':          {lbl:'Finançable CPF', cls:'g-cpf', dot:'var(--ia)'}
 };
 const GRAT_ORDER = ['vrai-gratuit','audit','conditionnel','cpf'];
-const CAT_ICON = {
-  fondamentaux:'<path d="M12 2 2 7l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/>',
-  genai:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/>',
-  data:'<path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="4" width="3" height="14"/>',
-  dataeng:'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>',
-  ml:'<circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/>',
-  ethique:'<path d="M12 3v18M5 7h14M7 7l-3 6a3 3 0 0 0 6 0zM17 7l-3 6a3 3 0 0 0 6 0z"/>'
-};
+const CAT_COL = {fondamentaux:'#7c3aed',genai:'#0ea5e9',data:'#0891b2',dataeng:'#14b8a6',ml:'#6366f1',ethique:'#e11d48'};
+const NIV_ORDER = ['débutant','intermédiaire','avancé'];
 
-let CATS=[], CERTS=[];
-let fGrat='', fLang='', allOpen=false;
-let DEFAULT_OPEN='';
+let CATS=[], CATMAP={}, CERTS=[], fSort='reco';
+const fState = {grat:new Set(), cat:new Set(), niv:new Set(), lang:new Set()};
 
 const catalogue=document.getElementById('catalogue');
 const noResult=document.getElementById('noResult');
@@ -196,97 +208,88 @@ const countEl=document.getElementById('count');
 const search=document.getElementById('search');
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-function initials(name){return esc((name||'?').replace(/[^A-Za-zÀ-ÿ0-9 ]/g,'').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase());}
 
 function cardHTML(c){
   const g=GRAT[c.grat]||{lbl:c.grat,cls:''};
+  const col=CAT_COL[c.cat]||'#94a3b8', catLbl=CATMAP[c.cat]||c.cat;
   const title=c.u?`<a href="${esc(c.u)}" target="_blank" rel="noopener">${esc(c.n)}</a>`:esc(c.n);
-  const niv=c.niv?`<span class="tag niv">${esc(c.niv)}</span>`:'';
-  const lang=c.lang?`<span class="tag lang">${esc(c.lang)}</span>`:'';
-  const duree=c.duree?`<span title="Durée estimée"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${esc(c.duree)}</span>`:'';
-  const reco=c.reco?`<span title="Ce que vous obtenez"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></svg>${esc(c.reco)}</span>`:'';
-  const cout=(c.cout && c.cout!=='0')?`<span title="Coût réel"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>${esc(c.cout)}</span>`:'';
-  const note=c.note?`<div class="card-desc"><span class="note-lbl">À savoir&nbsp;:</span> ${esc(c.note)}</div>`:'';
+  const clock='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  const signal='<svg viewBox="0 0 24 24"><path d="M4 20v-4M10 20v-8M16 20v-12M22 20V4"/></svg>';
+  const globe='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>';
+  const chips=[c.duree?`<span class="chip">${clock}${esc(c.duree)}</span>`:'',
+               c.niv?`<span class="chip">${signal}${esc(c.niv)}</span>`:'',
+               c.lang?`<span class="chip">${globe}${esc(c.lang)}</span>`:''].join('');
+  const note=c.note?`<div class="card-note"><b>À savoir :</b> ${esc(c.note)}</div>`:'';
+  const reco=c.reco?`<div class="reco"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></svg><span>${esc(c.reco)}</span></div>`:'';
   const link=c.u?`<a class="card-link" href="${esc(c.u)}" target="_blank" rel="noopener">Voir la formation →</a>`:'';
-  const verif=c.verif?`<span class="verif"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Vérifié le ${esc(c.verif)}</span>`:'';
   const sdata=esc(((c.n||'')+' '+(c.org||'')+' '+(c.note||'')+' '+(c.reco||'')).toLowerCase());
-  return `<div class="card" data-search="${sdata}" data-grat="${esc(c.grat)}" data-lang="${esc(c.lang||'')}">
-    <div class="card-head"><span class="clogo">${initials(c.org||c.n)}</span><div style="flex:1"><div class="card-title">${title}</div><div class="card-org">${esc(c.org||'')}</div></div></div>
-    <div class="badges"><span class="tag ${g.cls}"><span class="tdot"></span>${esc(g.lbl)}</span>${niv}${lang}</div>
+  return `<div class="card" data-search="${sdata}">
+    <div class="cc-top"><span class="gbadge ${g.cls}"><span class="gd"></span>${esc(g.lbl)}</span>${c.verif?`<span class="verif"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>${esc(c.verif)}</span>`:''}</div>
+    <div><div class="eyebrow" style="color:${col}">${esc(catLbl)}</div><div class="card-title">${title}</div><div class="card-org">${esc(c.org||'')}</div></div>
+    ${chips?`<div class="chips">${chips}</div>`:''}
     ${note}
-    <div class="meta-row">${cout}${duree}${reco}</div>
-    ${link}
-    ${verif}
+    ${reco}
+    <div class="cc-foot">${link}</div>
   </div>`;
 }
 
-function renderCatalogue(){
-  catalogue.innerHTML=CATS.map(([key,label])=>{
-    const items=CERTS.filter(c=>c.cat===key);
-    if(!items.length)return '';
-    // tri : vrai-gratuit d'abord, puis par ordre de statut
-    items.sort((a,b)=>GRAT_ORDER.indexOf(a.grat)-GRAT_ORDER.indexOf(b.grat));
-    return `<details class="section" data-cat="${key}"${key===DEFAULT_OPEN?' open':''}>
-      <summary class="section-title"><svg viewBox="0 0 24 24">${CAT_ICON[key]||''}</svg>${esc(label)}<span class="n">${items.length}</span><span class="chev">›</span></summary>
-      <div class="grid">${items.map(cardHTML).join('')}</div>
-    </details>`;
-  }).join('');
+function facetHTML(id,label,opts,withDot){
+  const inner=opts.map(o=>`<label class="opt${fState[id].has(o.v)?' on':''}"><input type="checkbox" data-f="${id}" value="${esc(o.v)}"${fState[id].has(o.v)?' checked':''}>${withDot?`<span class="odot" style="background:${o.c}"></span>`:''}<span class="otx">${esc(o.l)}</span><span class="oc">${o.n}</span></label>`).join('');
+  return `<details class="facet" open><summary>${esc(label)}<span class="fchev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="opts">${inner}</div></details>`;
 }
 
-function renderGratNav(){
-  const nav=document.getElementById('gratNav');
-  const counts={}; CERTS.forEach(c=>counts[c.grat]=(counts[c.grat]||0)+1);
-  const all=`<span class="filter-lbl">Gratuité</span><span class="chip on" data-grat="">Toutes<span class="cn">${CERTS.length}</span></span>`;
-  const chips=GRAT_ORDER.map(g=>counts[g]?`<span class="chip" data-grat="${g}"><span class="cdot d-${g==='vrai-gratuit'?'vrai':g==='conditionnel'?'cond':g}"></span>${GRAT[g].lbl}<span class="cn">${counts[g]}</span></span>`:'').join('');
-  nav.innerHTML=all+chips+`<button class="expand-toggle" id="expandToggle" type="button"><span id="expandLbl">Tout déplier</span></button>`;
-  nav.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
-    nav.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
-    c.classList.add('on'); fGrat=c.dataset.grat; filter();
-  }));
-  document.getElementById('expandToggle').addEventListener('click',toggleExpandAll);
+function passFacets(c){
+  for(const f of ['grat','cat','niv','lang']){
+    if(fState[f].size && !fState[f].has(c[f])) return false;
+  }
+  return true;
 }
 
-function renderLangNav(){
-  const nav=document.getElementById('langNav');
-  const langs=[...new Set(CERTS.map(c=>c.lang).filter(Boolean))].sort();
-  if(langs.length<2){nav.style.display='none';return;}
-  nav.innerHTML='<span class="filter-lbl">Langue</span><span class="chip on" data-lang="">Toutes</span>'
-    +langs.map(l=>`<span class="chip" data-lang="${esc(l)}">${esc(l)}</span>`).join('');
-  nav.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
-    nav.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
-    c.classList.add('on'); fLang=c.dataset.lang; filter();
-  }));
-}
-
-function visibleSections(){return [...document.querySelectorAll('.section[data-cat]')].filter(s=>s.style.display!=='none');}
-function toggleExpandAll(){allOpen=!allOpen;visibleSections().forEach(s=>s.open=allOpen);syncExpandLabel();}
-function syncExpandLabel(){
-  const lbl=document.getElementById('expandLbl'); if(!lbl) return;
-  const secs=visibleSections();
-  allOpen=secs.length>0 && secs.every(s=>s.open);
-  lbl.textContent=allOpen?'Tout replier':'Tout déplier';
-}
-
-function filter(){
+function filtered(){
   const q=search.value.trim().toLowerCase();
-  const active=!!(q||fGrat||fLang);
-  let visible=0;
-  document.querySelectorAll('.section[data-cat]').forEach(sec=>{
-    let sv=0;
-    sec.querySelectorAll('.card').forEach(card=>{
-      const m=!q||card.dataset.search.includes(q);
-      const mg=!fGrat||card.dataset.grat===fGrat;
-      const ml=!fLang||card.dataset.lang===fLang;
-      const show=m&&mg&&ml;
-      card.style.display=show?'':'none'; if(show){sv++;visible++;}
-    });
-    sec.style.display=sv?'':'none';
-    if(sv){sec.open=active?true:(sec.dataset.cat===DEFAULT_OPEN);}
-  });
-  noResult.style.display=visible?'none':'block';
-  countEl.textContent=active?`${visible} formation${visible>1?'s':''}`:`${CERTS.length} formations · ${CATS.filter(([k])=>CERTS.some(c=>c.cat===k)).length} domaines`;
-  syncExpandLabel();
+  let items=CERTS.filter(c=>passFacets(c) && (!q || (((c.n||'')+' '+(c.org||'')+' '+(c.note||'')+' '+(c.reco||'')).toLowerCase().includes(q))));
+  const byName=(a,b)=>(a.n||'').localeCompare(b.n||'','fr');
+  if(fSort==='az') items.sort(byName);
+  else if(fSort==='org') items.sort((a,b)=>(a.org||'').localeCompare(b.org||'','fr')||byName(a,b));
+  else items.sort((a,b)=>(GRAT_ORDER.indexOf(a.grat)-GRAT_ORDER.indexOf(b.grat))||byName(a,b));
+  return items;
 }
+
+function count(field,val,base){return (base||CERTS).filter(c=>c[field]===val).length;}
+
+function buildRail(){
+  const gratOpts=GRAT_ORDER.filter(g=>count('grat',g)).map(g=>({v:g,l:GRAT[g].lbl,c:GRAT[g].dot,n:count('grat',g)}));
+  const catOpts=CATS.filter(([k])=>count('cat',k)).map(([k,l])=>({v:k,l,c:CAT_COL[k]||'#94a3b8',n:count('cat',k)}));
+  const nivs=[...new Set(CERTS.map(c=>c.niv).filter(Boolean))].sort((a,b)=>NIV_ORDER.indexOf(a)-NIV_ORDER.indexOf(b));
+  const nivOpts=nivs.map(v=>({v,l:v.charAt(0).toUpperCase()+v.slice(1),n:count('niv',v)}));
+  const langs=[...new Set(CERTS.map(c=>c.lang).filter(Boolean))].sort();
+  const langOpts=langs.map(v=>({v,l:v,n:count('lang',v)}));
+  const anyOn=Object.values(fState).some(s=>s.size);
+  document.getElementById('rail').innerHTML=
+    `<div class="rail-hd"><svg viewBox="0 0 24 24"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filtrer<button class="rail-clear${anyOn?' show':''}" id="railClear" type="button">Effacer</button></div>`
+    +facetHTML('grat','Gratuité',gratOpts)
+    +facetHTML('cat','Domaine',catOpts,true)
+    +(nivOpts.length>1?facetHTML('niv','Niveau',nivOpts):'')
+    +(langOpts.length>1?facetHTML('lang','Langue',langOpts):'');
+  document.getElementById('rail').querySelectorAll('input').forEach(i=>i.onchange=()=>{
+    const f=i.dataset.f; i.checked?fState[f].add(i.value):fState[f].delete(i.value); buildRail(); render();
+  });
+  const rc=document.getElementById('railClear');
+  if(rc) rc.onclick=()=>{Object.values(fState).forEach(s=>s.clear()); buildRail(); render();};
+}
+
+function render(){
+  const items=filtered();
+  catalogue.innerHTML=items.map(cardHTML).join('');
+  noResult.style.display=items.length?'none':'block';
+  const anyOn=Object.values(fState).some(s=>s.size)||search.value.trim();
+  countEl.innerHTML=anyOn
+    ? `<b>${items.length}</b> formation${items.length>1?'s':''}`
+    : `<b>${CERTS.length}</b> formations · ${CATS.filter(([k])=>CERTS.some(c=>c.cat===k)).length} domaines`;
+}
+
+document.getElementById('sortSel').addEventListener('change',e=>{fSort=e.target.value;render();});
+search.addEventListener('input',render);
 
 (async function init(){
   try{
@@ -294,14 +297,11 @@ function filter(){
     if(!r.ok) throw new Error('http '+r.status);
     const data=await r.json();
     CATS=data.cats||[]; CERTS=data.certs||[];
-    DEFAULT_OPEN=(CATS.find(([k])=>CERTS.some(c=>c.cat===k))||[])[0]||'';
-    renderCatalogue(); renderGratNav(); renderLangNav();
-    filter();
-    catalogue.addEventListener('toggle',syncExpandLabel,true);
-    search.addEventListener('input',filter);
+    CATMAP=Object.fromEntries(CATS);
+    buildRail(); render();
   }catch(e){
     countEl.textContent='';
-    catalogue.innerHTML='<p style="font-family:Nunito,sans-serif;color:var(--faint);text-align:center;padding:40px 0;">Chargement impossible pour le moment. Réessayez plus tard.</p>';
+    catalogue.innerHTML='<p style="font-family:Nunito,sans-serif;color:var(--faint);text-align:center;padding:40px 0;grid-column:1/-1;">Chargement impossible pour le moment. Réessayez plus tard.</p>';
   }
 })();
 </script>
