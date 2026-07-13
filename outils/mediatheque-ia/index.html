@@ -56,6 +56,65 @@ html[data-theme="dark"]{
   --shadow:3px 3px 0 rgba(0,0,0,.42); --shadow-lg:0 24px 60px rgba(0,0,0,.65);
 }
 
+/* === REFONTE 2026-07-13 : accent turquoise scopé + densité serrée + spotlight + étagères ===
+   Les couleurs de CATÉGORIE (--t-ia slate, --t-data teal, --t-block orange, --t-biz violet)
+   restent inchangées (elles portent du sens) ; seuls les tokens d'ACCENT passent au mint. */
+:root{
+  --mint:#12a082; --mint-2:#1aba95; --mint-ink:#0c7d60; --mint-soft:#d7f4ec; --mint-glow:rgba(30,174,140,.38);
+  --panel:#0f1a26; --panel-b:rgba(146,183,214,.16); --panel-mut:#9fb2c4;
+  --ia:#12a082; --ia-ink:#0c7d60; --ia-soft:#d7f4ec; --ia-line:#a9e6d5; --pop:#12a082; --pop-ink:#0c7d60; --pop-soft:#d7f4ec;
+}
+@media(prefers-color-scheme:dark){:root{
+  --mint:#2fd6ab; --mint-2:#3ee6bb; --mint-ink:#8ff0d6; --mint-soft:#12312a; --mint-glow:rgba(47,214,171,.4);
+  --ia:#2fd6ab; --ia-ink:#8ff0d6; --ia-soft:#12312a; --ia-line:#1c4a3f; --pop:#2fd6ab; --pop-ink:#8ff0d6; --pop-soft:#12312a;
+}}
+html[data-theme="light"]{
+  --mint:#12a082; --mint-2:#1aba95; --mint-ink:#0c7d60; --mint-soft:#d7f4ec; --mint-glow:rgba(30,174,140,.38);
+  --ia:#12a082; --ia-ink:#0c7d60; --ia-soft:#d7f4ec; --ia-line:#a9e6d5; --pop:#12a082; --pop-ink:#0c7d60; --pop-soft:#d7f4ec;
+}
+html[data-theme="dark"]{
+  --mint:#2fd6ab; --mint-2:#3ee6bb; --mint-ink:#8ff0d6; --mint-soft:#12312a; --mint-glow:rgba(47,214,171,.4);
+  --ia:#2fd6ab; --ia-ink:#8ff0d6; --ia-soft:#12312a; --ia-line:#1c4a3f; --pop:#2fd6ab; --pop-ink:#8ff0d6; --pop-soft:#12312a;
+}
+html[data-theme="dark"] .btn-p{color:#04231b;}
+@media(prefers-color-scheme:dark){.btn-p{color:#04231b;}}
+
+/* spotlight « à la une » (adaptatif + rotation) */
+.spotlight{display:grid;grid-template-columns:118px 1fr;gap:20px;align-items:center;margin:18px 0 6px;padding:16px 18px;border-radius:16px;cursor:pointer;position:relative;overflow:hidden;
+  background:radial-gradient(120% 130% at 100% 0%,color-mix(in srgb,var(--mint) 18%,transparent),transparent 46%),var(--panel);
+  border:1px solid var(--panel-b);box-shadow:var(--shadow-lg);transition:box-shadow .18s}
+.spotlight:hover{box-shadow:0 26px 60px rgba(0,0,0,.5)}
+.spotlight:hover .sp-cover{transform:translateY(-4px)}
+.sp-cover{aspect-ratio:2/3;border-radius:11px;overflow:hidden;position:relative;box-shadow:0 12px 26px rgba(0,0,0,.5);
+  background:linear-gradient(150deg,var(--tint,#41586b),color-mix(in srgb,var(--tint,#41586b) 55%,#04121a));transition:transform .2s}
+.sp-cover img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.sp-cover .ph{position:absolute;inset:0;z-index:0;display:flex;align-items:flex-end;padding:10px;color:#fff;font-weight:700;font-size:.8rem;line-height:1.2;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.sp-body{min-width:0}
+.sp-k{display:inline-flex;align-items:center;gap:6px;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mint-2)}
+.sp-body h3{color:#fff;font-family:var(--ui);font-weight:800;font-size:clamp(1.2rem,2.6vw,1.65rem);line-height:1.12;letter-spacing:-.01em;margin-top:7px}
+.sp-a{color:var(--panel-mut);font-size:.84rem;margin-top:5px}
+.sp-r{color:#c7d5e2;font-size:.9rem;line-height:1.5;margin-top:9px;max-width:580px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sp-meta{display:flex;gap:12px;align-items:center;margin-top:11px;flex-wrap:wrap;font-size:.78rem;font-weight:800;color:var(--panel-mut)}
+.sp-meta .stars{letter-spacing:1px}.sp-meta .stars b{color:#e0a72b;font-weight:400}.sp-meta .stars i{color:#3a4a58;font-style:normal}
+.sp-cta{margin-left:auto;color:var(--mint-2)}
+@media(max-width:600px){.spotlight{grid-template-columns:84px 1fr;gap:14px;padding:13px}.sp-r{display:none}}
+
+/* étagères (vue par défaut, non filtrée) */
+.shelf{margin:24px 0 4px}
+.shelf-hd{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.shelf-hd .sdot{width:9px;height:9px;border-radius:50%;flex:none}
+.shelf-hd h2{font-family:var(--ui);font-size:1.18rem;font-weight:800;color:var(--ink);margin:0;letter-spacing:-.2px}
+.shelf-hd .scnt{font-size:.76rem;font-weight:800;color:var(--faint)}
+.shelf-hd .tvoir{margin-left:auto;font-family:var(--ui);font-size:.82rem;font-weight:800;color:var(--mint-ink);background:none;border:0;cursor:pointer;padding:4px 2px}
+.shelf-hd .tvoir:hover{text-decoration:underline}
+.shelfrow{display:grid;grid-auto-flow:column;grid-auto-columns:150px;gap:22px 16px;overflow-x:auto;padding:2px 2px 14px;scrollbar-width:thin}
+.shelfrow::-webkit-scrollbar{height:7px}.shelfrow::-webkit-scrollbar-thumb{background:var(--border-soft);border-radius:6px}
+.shelfrow .book{width:150px}
+@media(max-width:600px){.shelfrow{grid-auto-columns:132px;gap:18px 12px}.shelfrow .book{width:132px}}
+
+/* densité SERRÉE : grille resserrée */
+.grid{grid-template-columns:repeat(auto-fill,minmax(142px,1fr));gap:24px 16px}
+
 /* --- layout général --- */
 body{
   background-image:radial-gradient(circle at 12% 0%,rgba(65,88,107,.06),transparent 40%),
@@ -288,8 +347,10 @@ body{
   <div class="facets" id="facets"></div>
   <div class="facets facets2" id="facetsLevel"></div>
   <div class="facets facets2" id="facetsTag"></div>
+  <div class="spotlight" id="spotlight" style="display:none"></div>
   <div class="count-line" id="countLine"></div>
 
+  <div id="shelves"></div>
   <main class="grid" id="grid"></main>
 
   <footer class="ia-footer">
@@ -349,7 +410,7 @@ function matchView(b,k){
   if(k==="ref"||k==="cult"||k==="bd") return b.s===k;
   return b.s==="ecran" && b.c===k;                 // film / serie / documentaire
 }
-let BOOKS=[], fView="", fFacet="", fLevel="", fTag="", fFr=false, q="", sortMode="sel";
+let BOOKS=[], fView="", fFacet="", fLevel="", fTag="", fSect="", fFr=false, q="", sortMode="sel";
 const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tintVars=c=>`--tint:${CATS[c].tint};--tint-soft:${CATS[c].soft}`;
 const facetOf=b=> b.s==="ecran" ? (FAM[b.fam]||b.fam||"") : (b.scat||"");   // facette secondaire : famille (écran) / sous-catégorie (livres)
@@ -365,7 +426,7 @@ fetch("./data.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>
   buildChips();
   buildThemeFacets();
   document.getElementById("sort").addEventListener("change",e=>{sortMode=e.target.value;render();});
-  document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();render();});
+  document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();if(q)fSect="";render();});
   document.getElementById("frOnly").addEventListener("change",e=>{fFr=e.target.checked;render();});
   render();
 });
@@ -388,7 +449,7 @@ function buildChips(){
   const el=document.getElementById("chips");
   el.innerHTML=html;
   el.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{
-    fView=b.dataset.c; fFacet="";
+    fView=b.dataset.c; fFacet=""; fSect="";
     el.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.c===fView));
     buildFacets();
     render();
@@ -440,8 +501,100 @@ function buildThemeFacets(){
   } else tagEl.innerHTML="";
 }
 
+function cardHTML(b){
+  const ph=`<div class="ph"><span class="brand">${esc(CATS[b.c].l)}</span><div><div class="pt">${esc(b.t)}</div><div class="pa">${esc(b.a)}</div></div></div>`;
+  const img=b.cv?`<img src="${esc(b.cv)}" alt="${esc(b.t)}" loading="lazy" onerror="this.remove()" onload="if(this.naturalWidth<=2)this.remove()">`:"";
+  const fr=b.d==="oui"?'<span class="fr">FR</span>':"";
+  const intr=b.i?`<span class="intr ${b.i==="divertissement"?"dulc":"refl"}">${b.i==="les-deux"?"Réflexion +":b.i==="reflexion"?"Réflexion":"Divertissement"}</span>`:"";
+  const pert=b.p?`<div class="pert" title="Pertinence : ${esc(PLABEL[b.p]||b.p)}"><span class="stars">${starsHTML(b.p)}</span></div>`:"";
+  return `<button class="book" data-i="${b._i}" style="${tintVars(b.c)}">
+      <div class="cover">${ph}${img}</div>
+      <div class="meta">
+        <div class="bt">${esc(b.t)}</div>
+        <div class="ba">${esc(b.a)}${b.y?" · "+esc(b.y):""}</div>
+        ${pert}
+        <div class="br"><span class="tag"><span class="dot"></span>${esc(CATS[b.c].l)}</span>${fr}${intr}</div>
+      </div></button>`;
+}
+function bindBooks(root){root.querySelectorAll(".book").forEach(el=>el.onclick=()=>openModal(BOOKS[el.dataset.i]));}
+
+// --- spotlight « à la une » : hybride (épingle coup_de_cœur) + rotation quotidienne + adaptatif au filtre ---
+const isRead=b=>b.s!=="ecran", isScreen=b=>b.s==="ecran";
+function doy(){const n=new Date();return Math.floor((n-new Date(n.getFullYear(),0,0))/864e5);}
+function spotPool(pred){
+  const ok=b=>pred(b)&&b.cv&&b.r;                       // couverture + résumé requis
+  let p=BOOKS.filter(b=>ok(b)&&(+b.p||0)>=3);
+  if(p.length<8) p=BOOKS.filter(b=>ok(b)&&(+b.p||0)>=2); // vivier trop maigre → on descend à 2★
+  if(p.length<3) p=BOOKS.filter(b=>pred(b)&&b.cv);       // ultime repli
+  return p;
+}
+function spotlightPick(){
+  const readV=["ref","cult","bd"].includes(fView)||["ref","cult","bd"].includes(fSect);
+  const screenV=["film","serie","documentaire"].includes(fView)||fSect==="ecran";
+  let pred = readV?isRead : screenV?isScreen : (doy()%2===0?isRead:isScreen);   // Tout → alterne livre/écran
+  let pins=BOOKS.filter(b=>b.cdc==="oui"&&pred(b)&&b.cv);
+  let pool = pins.length?pins:spotPool(pred);
+  if(!pool.length){pred=isScreen;pool=spotPool(pred);}
+  if(!pool.length) pool=BOOKS.filter(b=>b.cv&&(+b.p||0)>=2);
+  if(!pool.length) return null;
+  pool=pool.slice().sort((a,b)=>a._i-b._i);
+  return {b:pool[doy()%pool.length],pinned:pins.length>0};
+}
+function renderSpotlight(el){
+  const r=spotlightPick();
+  if(!r){el.style.display="none";return;}
+  const b=r.b, isScr=b.s==="ecran";
+  el.style.display="";
+  el.style.setProperty("--tint",CATS[b.c].tint);
+  const img=b.cv?`<img src="${esc(b.cv)}" alt="" loading="lazy" onerror="this.remove()">`:"";
+  el.innerHTML=`<div class="sp-cover"><div class="ph">${esc(b.t)}</div>${img}</div>
+    <div class="sp-body">
+      <span class="sp-k">${r.pinned?"★ Coup de cœur":"À la une"}</span>
+      <h3>${esc(b.t)}</h3>
+      <div class="sp-a">${esc(b.a)}${b.y?" · "+esc(b.y):""} · ${esc(CATS[b.c].l)}</div>
+      <div class="sp-r">${esc(b.r||b.pq||"")}</div>
+      <div class="sp-meta">${b.p?`<span class="stars">${starsHTML(b.p)}</span>`:""}<span class="sp-cta">${isScr?"Voir la fiche →":"Découvrir →"}</span></div>
+    </div>`;
+  el.onclick=()=>openModal(b);
+}
+
+// --- étagères par section (vue par défaut, non filtrée) ---
+const SHELVES=[["ref","Références"],["cult","Imaginaire"],["bd","BD / Manga"],["ecran","À l’écran"]];
+function isBrowseDefault(){return !fView&&!fSect&&!fFacet&&!fLevel&&!fTag&&!fFr&&!q&&sortMode==="sel";}
+function renderShelves(el){
+  let html="";
+  SHELVES.forEach(([s,label])=>{
+    const items=BOOKS.filter(b=>b.s===s);
+    if(!items.length) return;
+    const shown=items.slice().sort((a,b)=>(+b.p||0)-(+a.p||0)||a._i-b._i).slice(0,16);
+    const tint=(SECT[s]||{}).tint||"var(--mint)";
+    html+=`<section class="shelf">
+      <div class="shelf-hd"><span class="sdot" style="background:${tint}"></span><h2>${label}</h2><span class="scnt">${items.length}</span><button class="tvoir" data-s="${s}">Tout voir →</button></div>
+      <div class="shelfrow">${shown.map(cardHTML).join("")}</div>
+    </section>`;
+  });
+  el.innerHTML=html;
+  bindBooks(el);
+  el.querySelectorAll(".tvoir").forEach(btn=>btn.onclick=()=>{
+    fSect=btn.dataset.s; fView=""; fFacet="";
+    document.querySelectorAll("#chips .chip").forEach(x=>x.classList.toggle("on",x.dataset.c===""));
+    buildFacets(); render();
+    document.querySelector(".bar").scrollIntoView({behavior:"smooth",block:"start"});
+  });
+}
+
 function render(){
+  const sp=document.getElementById("spotlight");
+  if(q) sp.style.display="none"; else renderSpotlight(sp);   // pas de spotlight en recherche texte
+  const shelvesEl=document.getElementById("shelves"), g=document.getElementById("grid"), cl=document.getElementById("countLine");
+  if(isBrowseDefault()){                                     // vue par défaut → étagères
+    shelvesEl.style.display=""; g.style.display="none"; cl.style.display="none";
+    renderShelves(shelvesEl);
+    return;
+  }
+  shelvesEl.style.display="none"; shelvesEl.innerHTML=""; g.style.display=""; cl.style.display="";
   let list=BOOKS.filter(b=>{
+    if(fSect && b.s!==fSect) return false;                  // section (via « Tout voir » d'une étagère)
     if(!matchView(b,fView)) return false;
     if(fFacet && facetOf(b)!==fFacet) return false;         // filtre secondaire (famille / sous-catégorie)
     if(fLevel && b.lvl!==fLevel) return false;              // parcours éditorial
@@ -453,27 +606,10 @@ function render(){
   if(sortMode==="pert") list.sort((a,b)=>(+b.p||0)-(+a.p||0) || a._i-b._i);
   else if(sortMode==="year") list.sort((a,b)=>(parseInt(b.y)||0)-(parseInt(a.y)||0) || a._i-b._i);
   else if(sortMode==="az") list.sort((a,b)=>norm(a.t).localeCompare(norm(b.t)));
-  // "sel" = ordre naturel (sections dans data.json)
-  document.getElementById("countLine").textContent=
-    list.length+(list.length>1?" titres affichés":" titre affiché")+((fView||fFacet||fLevel||fTag||fFr||q||sortMode!=="sel")?" (filtré)":"");
-  const g=document.getElementById("grid");
+  cl.textContent=list.length+(list.length>1?" titres affichés":" titre affiché")+" (filtré)";
   if(!list.length){g.innerHTML='<div class="empty">Aucun titre ne correspond. Élargissez la recherche.</div>';return;}
-  g.innerHTML=list.map(b=>{
-    const ph=`<div class="ph"><span class="brand">${esc(CATS[b.c].l)}</span><div><div class="pt">${esc(b.t)}</div><div class="pa">${esc(b.a)}</div></div></div>`;
-    const img=b.cv?`<img src="${esc(b.cv)}" alt="${esc(b.t)}" loading="lazy" onerror="this.remove()" onload="if(this.naturalWidth<=2)this.remove()">`:"";
-    const fr=b.d==="oui"?'<span class="fr">FR</span>':"";
-    const intr=b.i?`<span class="intr ${b.i==="divertissement"?"dulc":"refl"}">${b.i==="les-deux"?"Réflexion +":b.i==="reflexion"?"Réflexion":"Divertissement"}</span>`:"";
-    const pert=b.p?`<div class="pert" title="Pertinence : ${esc(PLABEL[b.p]||b.p)}"><span class="stars">${starsHTML(b.p)}</span></div>`:"";
-    return `<button class="book" data-i="${b._i}" style="${tintVars(b.c)}">
-      <div class="cover">${ph}${img}</div>
-      <div class="meta">
-        <div class="bt">${esc(b.t)}</div>
-        <div class="ba">${esc(b.a)}${b.y?" · "+esc(b.y):""}</div>
-        ${pert}
-        <div class="br"><span class="tag"><span class="dot"></span>${esc(CATS[b.c].l)}</span>${fr}${intr}</div>
-      </div></button>`;
-  }).join("");
-  g.querySelectorAll(".book").forEach(el=>el.onclick=()=>openModal(BOOKS[el.dataset.i]));
+  g.innerHTML=list.map(cardHTML).join("");
+  bindBooks(g);
 }
 
 function openModal(b){
