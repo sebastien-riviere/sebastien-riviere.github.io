@@ -1,12 +1,46 @@
 {
-  "maj": "2026-07-12",
-  "total": 100,
+  "maj": "2026-07-13",
+  "total": 102,
   "byTheme": {
-    "data": 86,
+    "data": 88,
     "numerique": 1,
     "ia": 13
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Acquisition, géoréférencement, traitement et restitution de données patrimoniales eau-incendie-assainissement et contextuelles (formats DAO et SIG) - 6 lots",
+      "a": "GRENOBLE ALPES METROPOLE",
+      "dep": "38",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-12",
+      "dl": "2026-09-21T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-69676%22",
+      "k": "grenoble alpes metropole|acquisition georeferencement traitement et restitution de donnees patrimoniales eau incend",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Acquisition de données GNSS des véhicules circulant sur le réseau routier parisien",
+      "a": "Ville de Paris - DFA- SDA",
+      "dep": "75",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-12",
+      "dl": "2026-09-01T10:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb%3A%2226-69368%22",
+      "k": "ville de paris dfa sda|acquisition de donnees gnss des vehicules circulant sur le reseau routier parisien",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
