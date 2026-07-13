@@ -29,10 +29,13 @@ main{flex:1;padding:40px 0 24px;}
 .hero{margin-bottom:40px;}
 .hero h1{font-weight:900;font-size:clamp(28px,4.4vw,44px);line-height:1.07;letter-spacing:-.5px;max-width:840px;color:var(--text);}
 .mk{display:inline-block;background:var(--accent);color:var(--mk-fg);padding:0 10px;border:2px solid var(--line);border-radius:8px;box-shadow:var(--sh-sm);transform:rotate(-.5deg);}
-.hero .cta{display:flex;flex-wrap:wrap;gap:13px;align-items:center;margin-top:26px;}
-.btn{font-weight:800;font-size:15px;border:2px solid var(--line);border-radius:12px;padding:12px 20px;box-shadow:var(--sh);transition:transform .1s,filter .15s;}
-.btn:active{transform:translate(1px,1px);}
-.btn.p{background:var(--btn-bg);color:var(--btn-fg);}
+.hero .lead{font-size:clamp(16px,2vw,18px);font-weight:600;color:var(--muted);line-height:1.55;max-width:640px;margin-top:18px;}
+.hero .lead b{color:var(--text);font-weight:800;}
+.hero .cta{display:flex;flex-wrap:wrap;gap:13px;align-items:center;margin-top:24px;}
+.btn{font-weight:800;font-size:15px;border:2px solid var(--line);border-radius:12px;padding:12px 20px;box-shadow:var(--sh);transition:transform .12s,box-shadow .12s,filter .15s;}
+.btn:hover{transform:translateY(-2px);}
+.btn:active{transform:translate(1px,1px);box-shadow:var(--sh-sm);}
+.btn.p{background:var(--accent);color:var(--mk-fg);}
 .btn.g{background:var(--card);color:var(--text);}
 .hnote{font-family:'Caveat',cursive;font-weight:700;font-size:23px;color:var(--accent);display:flex;align-items:center;gap:7px;}
 .hnote svg{width:52px;height:26px;stroke:var(--accent);fill:none;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;}
@@ -89,6 +92,7 @@ html[data-theme="dark"] .feat-cta{color:#0f1722;}
 
   <section class="hero">
     <h1>IA, outils numériques <span class="mk">&amp; ressources pratiques</span></h1>
+    <p class="lead">Comprendre l'IA <b>sans jargon</b>, choisir les bons outils, structurer ses usages — avec des ressources <b>gratuites</b>, la plupart tournant <b>dans votre navigateur</b> (sans compte, sans envoi de vos données).</p>
     <div class="cta">
       <span class="hnote">commence ici
         <svg viewBox="0 0 62 30"><path d="M4 13 C 20 5, 40 22, 58 15"/><path d="M49 9 l10 6 -8 9"/></svg>
