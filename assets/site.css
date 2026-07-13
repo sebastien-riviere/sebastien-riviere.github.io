@@ -52,6 +52,12 @@ body{background:var(--bg);color:var(--text);font-family:'Nunito',system-ui,-appl
 .sr-maxw{max-width:1120px;width:100%;margin:0 auto;padding:0 40px;}
 
 /* NAV */
+/* le chrome partagé (header/footer/toast/menu) reste TURQUOISE même si la page redéfinit --accent pour sa famille (ex. commande publique = rouge) */
+.sr-navband,.sr-footband,.sr-toast,.sr-sharemenu{--accent:#12a082;--accent-soft:#dcf3ec;--accent-ink:#0c7d60;}
+@media(prefers-color-scheme:dark){.sr-navband,.sr-footband,.sr-toast,.sr-sharemenu{--accent:#2fd6ab;--accent-soft:#12312a;--accent-ink:#3ee6bb;}}
+html[data-theme="light"] .sr-navband,html[data-theme="light"] .sr-footband,html[data-theme="light"] .sr-toast,html[data-theme="light"] .sr-sharemenu{--accent:#12a082;--accent-soft:#dcf3ec;--accent-ink:#0c7d60;}
+html[data-theme="dark"] .sr-navband,html[data-theme="dark"] .sr-footband,html[data-theme="dark"] .sr-toast,html[data-theme="dark"] .sr-sharemenu{--accent:#2fd6ab;--accent-soft:#12312a;--accent-ink:#3ee6bb;}
+
 .sr-navband{background:var(--card);border-bottom:2px solid var(--line);box-shadow:0 3px 0 rgba(20,33,46,.05);position:sticky;top:0;z-index:40;}
 .sr-navrow{display:flex;align-items:center;gap:20px;padding:9px 0;flex-wrap:wrap;}
 .sr-brand{display:flex;align-items:center;gap:12px;min-width:0;text-decoration:none;flex:none;}
