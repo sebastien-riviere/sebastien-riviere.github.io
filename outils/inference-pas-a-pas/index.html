@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dans la tête d'une IA — l'inférence pas à pas — Sébastien Rivière</title>
+<meta name="description" content="Comprends comment un LLM génère du texte, étape par étape : tokenisation (calcul réel), embeddings, attention, puis softmax et température manipulables en direct. Outil pédagogique gratuit, 100% local.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sébastien Rivière">
+<meta property="og:title" content="Dans la tête d'une IA — l'inférence pas à pas">
+<meta property="og:description" content="Un token c'est quoi, et comment marche l'inférence ? Un parcours interactif en 6 étapes.">
+<meta property="og:url" content="https://sebastien-riviere.github.io/outils/inference-pas-a-pas/">
+<meta property="og:image" content="https://sebastien-riviere.github.io/og.png">
+<meta name="theme-color" content="#e9eef4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="../../styles/ia-kit.css">
+<link rel="stylesheet" href="/assets/site.css?v=2026071202">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+/* --- spécifique inference-pas-a-pas (chrome partagé via site.css) --- */
+.maxw{max-width:940px;width:100%;margin:0 auto;padding:0 40px;}
+main{flex:1;padding:34px 0 48px;}
+.page-head{margin-bottom:20px;}
+.page-head .kick{font-family:'Caveat',cursive;font-size:22px;color:var(--accent-ink);}
+.page-head h1{font-weight:900;font-size:clamp(26px,4vw,38px);line-height:1.08;letter-spacing:-.5px;color:var(--text);margin:2px 0 10px;}
+.page-head p{font-size:15.5px;font-weight:600;color:var(--muted);line-height:1.55;max-width:680px;}
+
+/* légende réel/illustration */
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted);}
+.legend .b{display:inline-flex;align-items:center;gap:6px;}
+.dotk{width:12px;height:12px;border-radius:4px;border:1.5px solid;}
+.k-real{background:var(--t-prod-soft);border-color:var(--t-prod);}
+.k-illu{background:var(--t-block-soft);border-color:var(--t-block);}
+
+/* stepper */
+.stepper{display:flex;gap:6px;margin:8px 0 20px;flex-wrap:wrap;}
+.sdot{flex:1;min-width:96px;display:flex;flex-direction:column;gap:5px;cursor:pointer;border:none;background:none;padding:0;text-align:left;font:inherit;}
+.sdot .bar{height:6px;border-radius:999px;background:var(--line-soft);transition:.15s;}
+.sdot.done .bar{background:var(--accent);}
+.sdot.on .bar{background:var(--accent);box-shadow:0 0 0 2px var(--accent-soft);}
+.sdot .lbl{font-size:11px;font-weight:800;letter-spacing:.02em;color:var(--faint);line-height:1.2;}
+.sdot.on .lbl{color:var(--text);}
+
+/* panel */
+.panelcard{border:2px solid var(--line);border-left:6px solid var(--tint,var(--accent));border-radius:16px;background:var(--card);box-shadow:var(--sh);padding:22px 24px;min-height:340px;display:flex;flex-direction:column;}
+.step{display:none;}
+.step.on{display:block;animation:fade .2s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+.crumb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px;}
+.stepn{flex:none;width:30px;height:30px;border-radius:9px;background:var(--tint-soft,var(--accent-soft));color:var(--tint,var(--accent-ink));border:2px solid var(--tint,var(--accent));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;}
+.badge{font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;border-radius:999px;padding:3px 9px;border:1.5px solid;}
+.badge.real{background:var(--t-prod-soft);color:var(--t-prod);border-color:var(--t-prod);}
+.badge.illu{background:var(--t-block-soft);color:var(--t-block);border-color:var(--t-block);}
+.step h2{font-size:20px;font-weight:900;letter-spacing:-.3px;color:var(--text);margin:8px 0 6px;}
+.step .say{font-size:14.5px;font-weight:600;color:var(--muted);line-height:1.55;max-width:640px;}
+.step .say b{color:var(--text);}
+.zone{margin:16px 0 4px;}
+
+/* input */
+textarea{width:100%;min-height:90px;resize:vertical;font-family:ui-monospace,Consolas,monospace;font-size:15px;line-height:1.5;color:var(--text);background:var(--card);border:2px solid var(--line);border-radius:12px;padding:13px 15px;box-shadow:var(--sh-sm);}
+textarea:focus,select:focus,input:focus{outline:none;border-color:var(--accent);}
+.examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.ex{font-size:12.5px;font-weight:700;color:var(--muted);background:var(--bg);border:1.5px solid var(--line-soft);border-radius:999px;padding:5px 12px;cursor:pointer;}
+.ex:hover{border-color:var(--accent);color:var(--text);}
+
+/* token chips */
+.toks{display:flex;flex-wrap:wrap;gap:5px;padding:14px;border:2px dashed var(--line-soft);border-radius:12px;background:var(--bg);max-height:260px;overflow:auto;}
+.tok{font-family:ui-monospace,Consolas,monospace;font-size:13px;padding:4px 7px;border-radius:7px;border:1px solid var(--line-soft);white-space:pre;line-height:1.3;}
+.tok:nth-child(3n){background:var(--accent-soft);}
+.tok:nth-child(3n+1){background:var(--t-ia-soft);}
+.tok:nth-child(3n+2){background:var(--t-prod-soft);}
+.tok .id{color:var(--faint);font-size:10.5px;margin-left:4px;}
+.sp{color:var(--faint);}
+.bigstat{font-weight:900;font-size:15px;color:var(--accent-ink);}
+
+/* embeddings */
+.vgrid{display:flex;flex-direction:column;gap:8px;}
+.vrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.vrow .name{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;min-width:80px;padding:3px 7px;border-radius:6px;background:var(--accent-soft);border:1px solid var(--line-soft);}
+.vbar{display:flex;gap:3px;align-items:flex-end;height:34px;}
+.vbar span{width:7px;border-radius:2px 2px 0 0;background:var(--t-ia);opacity:.85;}
+.vnums{font-family:ui-monospace,Consolas,monospace;font-size:11px;color:var(--faint);}
+
+/* attention heatmap */
+.heat{overflow-x:auto;}
+.htable{border-collapse:collapse;font-family:ui-monospace,Consolas,monospace;font-size:11px;}
+.htable th{font-weight:800;color:var(--muted);padding:4px 6px;white-space:nowrap;font-size:10.5px;}
+.htable th.col{writing-mode:vertical-rl;transform:rotate(180deg);text-align:left;}
+.htable td{width:26px;height:26px;text-align:center;border:1px solid var(--card);color:var(--text);font-size:10px;}
+
+/* sampling */
+.ctrls{display:flex;flex-wrap:wrap;gap:16px 22px;align-items:flex-end;margin-bottom:8px;}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field label{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);}
+.field .val{font-variant-numeric:tabular-nums;color:var(--accent-ink);font-weight:900;}
+input[type=range]{width:200px;accent-color:var(--accent);}
+select{font:inherit;font-weight:700;font-size:14px;color:var(--text);background:var(--card);border:2px solid var(--line);border-radius:10px;padding:8px 11px;box-shadow:var(--sh-sm);}
+.cands{display:flex;flex-direction:column;gap:7px;margin-top:6px;}
+.cand{display:flex;align-items:center;gap:10px;}
+.cand .ct{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-width:64px;font-weight:700;}
+.cand .track{flex:1;height:22px;background:var(--bg);border:1.5px solid var(--line-soft);border-radius:7px;overflow:hidden;position:relative;}
+.cand .fill{height:100%;background:var(--t-prod-soft);border-right:2px solid var(--t-prod);transition:width .18s;}
+.cand.out .fill{background:var(--line-soft);border-right-color:var(--faint);opacity:.5;}
+.cand.pick .track{box-shadow:0 0 0 2px var(--t-prod);}
+.cand .pct{min-width:52px;text-align:right;font-variant-numeric:tabular-nums;font-weight:800;font-size:12.5px;color:var(--muted);}
+.pickline{margin-top:12px;font-size:14px;font-weight:700;color:var(--text);}
+.pickline b{color:var(--t-prod);}
+
+/* stream */
+.stream{font-size:17px;font-weight:700;line-height:1.7;color:var(--text);min-height:60px;padding:14px 16px;border:2px dashed var(--line-soft);border-radius:12px;background:var(--bg);}
+.stream .w{opacity:0;animation:pop .25s forwards;}
+.stream .cur{border-right:2px solid var(--accent);animation:blink 1s step-end infinite;}
+@keyframes pop{to{opacity:1;}}
+@keyframes blink{50%{border-color:transparent;}}
+
+/* notes + nav */
+.note{border:2px solid var(--line);border-radius:12px;background:var(--accent-soft);padding:12px 15px;font-size:13px;font-weight:600;color:var(--muted);line-height:1.55;margin-top:16px;box-shadow:var(--sh-sm);}
+.note b{color:var(--text);}
+.note.illu{background:var(--t-block-soft);border-color:var(--t-block);}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:auto;padding-top:20px;}
+.btn{font:inherit;font-weight:800;font-size:14px;border-radius:11px;padding:11px 20px;cursor:pointer;border:2px solid var(--line);box-shadow:var(--sh-sm);transition:.12s;}
+.btn.prev{background:var(--card);color:var(--muted);}
+.btn.next{background:var(--accent);color:#fff;}
+.btn.act{background:var(--t-prod);color:#fff;border-color:var(--line);}
+:root[data-theme=dark] .btn.next,:root[data-theme=dark] .btn.act{color:#0f1722;}
+@media(prefers-color-scheme:dark){.btn.next,.btn.act{color:#0f1722;}}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+.btn.small{padding:8px 15px;font-size:13px;}
+
+@media(max-width:600px){
+  .maxw{padding:0 18px;}
+  .sdot{min-width:0;}.sdot .lbl{display:none;}
+  .panelcard{padding:18px 16px;}
+  input[type=range]{width:150px;}
+}
+</style>
+</head>
+<body>
+
+<div id="sr-header" data-active="outils"></div>
+
+<div class="maxw">
+<main>
+  <div class="page-head">
+    <div class="kick">outil pédagogique · IA · gratuit &amp; local</div>
+    <h1>Dans la tête d'une IA</h1>
+    <p>Un token, c'est quoi ? Et comment une IA <b>génère</b> réellement du texte ? Écris une phrase et suis son voyage à travers les <b>6 étapes de l'inférence</b> d'un grand modèle de langage (LLM). Tout se passe dans ton navigateur.</p>
+    <div class="legend">
+      <span class="b"><span class="dotk k-real"></span> <b>Réel</b> : calculé chez toi (vrais chiffres)</span>
+      <span class="b"><span class="dotk k-illu"></span> <b>Illustration</b> : pour comprendre (chiffres représentatifs)</span>
+    </div>
+  </div>
+
+  <div class="stepper" id="stepper"></div>
+
+  <div class="panelcard" id="panelcard">
+
+    <!-- ÉTAPE 1 -->
+    <section class="step on" data-tint="--t-art" data-real="1">
+      <div class="crumb"><span class="stepn">1</span><span class="badge real">Réel</span></div>
+      <h2>Ta phrase</h2>
+      <p class="say">Tout commence par du <b>texte brut</b>. C'est ce que tu tapes dans ChatGPT. Le modèle, lui, ne « lit » pas comme nous : il va d'abord découper ce texte. Écris ta phrase (ou garde l'exemple) :</p>
+      <div class="zone">
+        <textarea id="phrase" placeholder="Écris une phrase…">Qu'est-ce qu'un token ?</textarea>
+        <div class="examples">
+          <button class="ex" data-ex="Qu'est-ce qu'un token ?">Qu'est-ce qu'un token ?</button>
+          <button class="ex" data-ex="What is a token?">What is a token? (EN)</button>
+          <button class="ex" data-ex="L'intelligence artificielle m'impressionne.">Une phrase plus longue</button>
+        </div>
+      </div>
+      <div class="note">Astuce : essaie la même phrase en <b>français</b> puis en <b>anglais</b> à l'étape suivante — tu verras que le français « coûte » plus de tokens.</div>
+      <div class="nav"><span></span><button class="btn next">Découper en tokens →</button></div>
+    </section>
+
+    <!-- ÉTAPE 2 -->
+    <section class="step" data-tint="--t-art" data-real="1">
+      <div class="crumb"><span class="stepn">2</span><span class="badge real">Réel · calcul exact</span></div>
+      <h2>Tokenisation</h2>
+      <p class="say">Le modèle découpe ta phrase en <b>tokens</b> — des morceaux de mots — et remplace chacun par un <b>identifiant (un numéro)</b>. Il ne voit jamais des lettres : que ces numéros. Voici le découpage <b>réel</b> (tokenizer officiel de GPT-4) :</p>
+      <div class="zone">
+        <div style="margin-bottom:10px"><span class="bigstat" id="tokcount">—</span> · <label style="font-size:13px;font-weight:700;color:var(--muted);cursor:pointer"><input type="checkbox" id="showids" style="accent-color:var(--accent)"> afficher les identifiants</label></div>
+        <div class="toks" id="toks"></div>
+      </div>
+      <div class="note"><span class="sp">␣</span> = espace. Un mot courant = souvent <b>1 token</b> ; un mot rare ou accentué se coupe (ex. <code>unité</code> → <code>unit</code>+<code>é</code>). C'est pourquoi le <b>français coûte ~20-40 % de tokens de plus</b> que l'anglais.</div>
+      <div class="nav"><button class="btn prev">← Retour</button><button class="btn next">Transformer en nombres →</button></div>
+    </section>
+
+    <!-- ÉTAPE 3 -->
+    <section class="step" data-tint="--t-ia" data-real="0">
+      <div class="crumb"><span class="stepn">3</span><span class="badge illu">Illustration</span></div>
+      <h2>Embeddings : les mots deviennent des nombres</h2>
+      <p class="say">Chaque token est transformé en un <b>vecteur</b> : une longue liste de nombres (≈ <b>4096</b> pour un gros modèle) qui encode son <b>sens</b>. Deux mots proches (« roi » / « reine ») ont des vecteurs proches. Ci-dessous, un aperçu illustratif (8 valeurs sur 4096) pour chaque token de ta phrase :</p>
+      <div class="zone vgrid" id="vgrid"></div>
+      <div class="note illu"><b>Illustration</b> : les vraies valeurs viennent du modèle entraîné (plusieurs Go de poids) — impossible à calculer ici. Ce qui est vrai : <b>1 token → 1 vecteur</b>, et le sens devient de la géométrie.</div>
+      <div class="nav"><button class="btn prev">← Retour</button><button class="btn next">Passer dans le Transformer →</button></div>
+    </section>
+
+    <!-- ÉTAPE 4 -->
+    <section class="step" data-tint="--t-ia" data-real="0">
+      <div class="crumb"><span class="stepn">4</span><span class="badge illu">Illustration</span></div>
+      <h2>Attention : chaque mot regarde les autres</h2>
+      <p class="say">C'est le cœur du Transformer. Pour comprendre le contexte, chaque token « fait <b>attention</b> » aux autres et pondère leur importance. Dans « <i>elle a pris <b>son</b> vélo</i> », « son » regarde « elle ». Voici une carte d'attention illustrative (plus c'est foncé, plus le mot en ligne s'appuie sur le mot en colonne) :</p>
+      <div class="zone heat" id="heat"></div>
+      <div class="note illu"><b>Illustration.</b> Ce qui est vrai : ce calcul est répété sur <b>des dizaines de couches</b>, avec plusieurs « têtes » d'attention en parallèle. Le <b>KV Cache</b> mémorise les calculs des tokens déjà vus pour ne pas tout refaire — c'est ce qui rend la génération rapide.</div>
+      <div class="nav"><button class="btn prev">← Retour</button><button class="btn next">Prédire le prochain mot →</button></div>
+    </section>
+
+    <!-- ÉTAPE 5 -->
+    <section class="step" data-tint="--t-prod" data-real="1">
+      <div class="crumb"><span class="stepn">5</span><span class="badge real">Réel · vraie maths</span></div>
+      <h2>Logits → Softmax → le choix du mot</h2>
+      <p class="say">Le modèle attribue un <b>score brut (logit)</b> à chaque mot possible du vocabulaire. Le <b>softmax</b> transforme ces scores en <b>probabilités</b> (%). Puis on <b>choisit</b>. Joue avec la <b>température</b> et la stratégie : la maths ci-dessous est <b>réelle</b> (seuls les candidats sont illustratifs).</p>
+      <div class="zone">
+        <div class="ctrls">
+          <div class="field">
+            <label>Température · <span class="val" id="tval">0.8</span></label>
+            <input type="range" id="temp" min="0.1" max="2" step="0.1" value="0.8">
+          </div>
+          <div class="field">
+            <label>Stratégie</label>
+            <select id="strat">
+              <option value="greedy">Greedy (le + probable)</option>
+              <option value="topk">Top-K (K=3)</option>
+              <option value="topp">Top-P (nucleus, p=0.9)</option>
+            </select>
+          </div>
+          <button class="btn act small" id="gen">🎲 Générer un mot</button>
+        </div>
+        <div class="cands" id="cands"></div>
+        <div class="pickline" id="pickline"></div>
+      </div>
+      <div class="note"><b>Température basse</b> (→0) = sûr et répétitif (le modèle prend presque toujours le plus probable). <b>Température haute</b> (→2) = créatif et imprévisible (les probabilités s'aplatissent). C'est <b>le</b> réglage qui change le « caractère » d'une IA.</div>
+      <div class="nav"><button class="btn prev">← Retour</button><button class="btn next">Générer la réponse →</button></div>
+    </section>
+
+    <!-- ÉTAPE 6 -->
+    <section class="step" data-tint="--t-labo" data-real="1">
+      <div class="crumb"><span class="stepn">6</span><span class="badge real">Réel · détokenisation</span></div>
+      <h2>Génération mot à mot (streaming)</h2>
+      <p class="say">On vient de choisir <b>un</b> token. On le rajoute à la phrase… et <b>tout recommence</b> pour le mot suivant, encore et encore (c'est « autorégressif »). Les tokens sont retransformés en texte et affichés au fur et à mesure — ce que tu vois « s'écrire » dans ChatGPT. Découpage réel de la réponse :</p>
+      <div class="zone">
+        <div class="stream" id="stream"></div>
+        <div style="margin-top:12px"><button class="btn act small" id="replay">↻ Rejouer le streaming</button></div>
+      </div>
+      <div class="note">La boucle s'arrête quand le modèle génère un token spécial de <b>fin</b>. Astuce de vitesse (le <b>décodage spéculatif</b>) : un petit modèle propose plusieurs mots d'avance, le grand modèle les valide en un seul passage.</div>
+      <div class="nav"><button class="btn prev">← Retour</button><button class="btn next" id="restart">↺ Recommencer avec ma phrase</button></div>
+    </section>
+
+  </div>
+
+  <div class="note" style="margin-top:18px">
+    <b>Pourquoi cet outil ?</b> Comprendre l'inférence, c'est comprendre pourquoi une IA « invente » parfois (température), pourquoi elle a du mal à compter les lettres d'un mot (elle voit des tokens, pas des lettres), et pourquoi chaque requête a un <b>coût</b> proportionnel au nombre de tokens. Pour juste compter/chiffrer un texte, vois le <a href="/outils/compteur-tokens/" style="color:var(--accent-ink);font-weight:800">compteur de tokens</a>.
+  </div>
+</main>
+</div>
+
+<div id="sr-footer"></div>
+
+<script src="./lib/cl100k_base.js"></script>
+<script>
+(function(){
+  "use strict";
+  var enc = null;
+  var steps = [].slice.call(document.querySelectorAll('.step'));
+  var STEP_LABELS = ["Phrase","Tokens","Embeddings","Attention","Softmax","Génération"];
+  var cur = 0;
+  var tokens = []; // {id, piece}
+  var panel = document.getElementById('panelcard');
+
+  // ---------- stepper ----------
+  var stepper = document.getElementById('stepper');
+  STEP_LABELS.forEach(function(lab,i){
+    var b = document.createElement('button');
+    b.className = 'sdot'; b.innerHTML = '<span class="bar"></span><span class="lbl">'+(i+1)+'. '+lab+'</span>';
+    b.addEventListener('click', function(){ if(i<=maxReached) go(i); });
+    stepper.appendChild(b);
+  });
+  var maxReached = 0;
+
+  function paintStepper(){
+    [].slice.call(stepper.children).forEach(function(d,i){
+      d.classList.toggle('on', i===cur);
+      d.classList.toggle('done', i<cur);
+    });
+  }
+
+  function go(i){
+    cur = i; if(i>maxReached) maxReached = i;
+    steps.forEach(function(s,k){ s.classList.toggle('on', k===i); });
+    var tint = steps[i].getAttribute('data-tint');
+    panel.style.setProperty('--tint', 'var('+tint+')');
+    panel.style.setProperty('--tint-soft', 'var('+tint+'-soft)');
+    paintStepper();
+    if(i===1) renderTokens();
+    if(i===2) renderEmbeddings();
+    if(i===3) renderAttention();
+    if(i===4) renderSampling();
+    if(i===5) runStream();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  // nav buttons
+  panel.addEventListener('click', function(e){
+    if(e.target.classList.contains('next')){
+      if(e.target.id==='restart'){ go(0); return; }
+      if(cur<steps.length-1) go(cur+1);
+    }
+    if(e.target.classList.contains('prev')){ if(cur>0) go(cur-1); }
+  });
+
+  // ---------- step 1: phrase ----------
+  var phraseEl = document.getElementById('phrase');
+  document.querySelectorAll('.ex').forEach(function(b){
+    b.addEventListener('click', function(){ phraseEl.value = b.getAttribute('data-ex'); });
+  });
+
+  function esc(s){ return s.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+  function vis(s){ return esc(s).replace(/ /g,'<span class="sp">␣</span>').replace(/\n/g,'<span class="sp">⏎</span>'); }
+
+  // ---------- step 2: tokens (REAL) ----------
+  var showids = document.getElementById('showids');
+  showids.addEventListener('change', function(){ if(cur===1) paintToks(); });
+
+  function computeTokens(){
+    var text = (phraseEl.value||'').trim() || "Qu'est-ce qu'un token ?";
+    var ids = enc ? enc.encode(text) : [];
+    tokens = ids.map(function(id){ return {id:id, piece: enc.decode([id])}; });
+  }
+  function renderTokens(){ computeTokens(); paintToks(); }
+  function paintToks(){
+    document.getElementById('tokcount').textContent = tokens.length + (tokens.length>1?' tokens':' token');
+    var showId = showids.checked;
+    document.getElementById('toks').innerHTML = tokens.map(function(t){
+      return '<span class="tok">'+vis(t.piece)+(showId?'<span class="id">'+t.id+'</span>':'')+'</span>';
+    }).join('');
+  }
+
+  // deterministic pseudo-value from an id (stable, no flicker) in [-1,1]
+  function pv(id, salt){ var x = Math.sin(id*12.9898 + salt*78.233)*43758.5453; return (x-Math.floor(x))*2-1; }
+
+  // ---------- step 3: embeddings (ILLUSTRATIVE) ----------
+  function renderEmbeddings(){
+    if(!tokens.length) computeTokens();
+    var rows = tokens.slice(0,10);
+    document.getElementById('vgrid').innerHTML = rows.map(function(t){
+      var bars='', nums=[];
+      for(var d=0; d<8; d++){
+        var v = pv(t.id, d+1);
+        var h = Math.round(4 + Math.abs(v)*30);
+        bars += '<span style="height:'+h+'px;opacity:'+(0.45+Math.abs(v)*0.5)+'"></span>';
+        nums.push(v.toFixed(2));
+      }
+      return '<div class="vrow"><span class="name">'+vis(t.piece)+'</span><span class="vbar">'+bars+'</span><span class="vnums">['+nums.join(', ')+', …]</span></div>';
+    }).join('') + (tokens.length>10?'<div class="vnums" style="margin-top:4px">… +'+(tokens.length-10)+' autres tokens</div>':'');
+  }
+
+  // ---------- step 4: attention (ILLUSTRATIVE) ----------
+  function heatColor(w){ // w in [0,1] -> accent with alpha
+    return 'rgba(47,111,176,'+(0.08+w*0.85).toFixed(3)+')';
+  }
+  function renderAttention(){
+    if(!tokens.length) computeTokens();
+    var n = Math.min(tokens.length, 8);
+    var labs = tokens.slice(0,n).map(function(t){ return t.piece.replace(/\s/g,'␣'); });
+    var html = '<table class="htable"><tr><th></th>';
+    labs.forEach(function(l){ html += '<th class="col">'+esc(l)+'</th>'; });
+    html += '</tr>';
+    for(var r=0;r<n;r++){
+      html += '<tr><th>'+esc(labs[r])+'</th>';
+      // causal: a token attends to itself + previous ones; weights normalized
+      var ws=[], sum=0;
+      for(var c=0;c<n;c++){
+        var w = c>r ? 0 : (0.15 + Math.abs(pv(tokens[r].id + tokens[c].id, r+c+3)) + (c===r?0.6:0));
+        ws.push(w); sum+=w;
+      }
+      for(var c2=0;c2<n;c2++){
+        var w2 = sum? ws[c2]/sum : 0;
+        html += '<td style="background:'+heatColor(w2)+'">'+(w2>0.02?Math.round(w2*100):'')+'</td>';
+      }
+      html += '</tr>';
+    }
+    html += '</table>';
+    document.getElementById('heat').innerHTML = html;
+  }
+
+  // ---------- step 5: softmax + sampling (REAL MATH) ----------
+  var CANDS = [
+    {t:"Un",    lo:3.2},
+    {t:"C'est", lo:2.4},
+    {t:"Le",    lo:1.6},
+    {t:"Il",    lo:1.1},
+    {t:"En",    lo:0.7},
+    {t:"Alors", lo:0.3}
+  ];
+  var tempEl=document.getElementById('temp'), stratEl=document.getElementById('strat');
+  tempEl.addEventListener('input', renderSampling);
+  stratEl.addEventListener('change', renderSampling);
+  document.getElementById('gen').addEventListener('click', function(){ renderSampling(true); });
+
+  function softmax(arr,T){
+    var scaled = arr.map(function(l){return l/T;});
+    var m = Math.max.apply(null,scaled);
+    var ex = scaled.map(function(s){return Math.exp(s-m);});
+    var sum = ex.reduce(function(a,b){return a+b;},0);
+    return ex.map(function(e){return e/sum;});
+  }
+  function renderSampling(sample){
+    var T = parseFloat(tempEl.value); document.getElementById('tval').textContent = T.toFixed(1);
+    var probs = softmax(CANDS.map(function(c){return c.lo;}), T);
+    var idx = CANDS.map(function(c,i){return i;});
+    // filtering
+    var mode = stratEl.value, kept = {};
+    var order = idx.slice().sort(function(a,b){return probs[b]-probs[a];});
+    if(mode==='greedy'){ kept[order[0]]=1; }
+    else if(mode==='topk'){ order.slice(0,3).forEach(function(i){kept[i]=1;}); }
+    else { var cum=0; for(var j=0;j<order.length;j++){ kept[order[j]]=1; cum+=probs[order[j]]; if(cum>=0.9) break; } }
+    // renormalize over kept
+    var keptSum=0; idx.forEach(function(i){ if(kept[i]) keptSum+=probs[i]; });
+    var eff = idx.map(function(i){ return kept[i]? probs[i]/keptSum : 0; });
+    // pick
+    var pick;
+    if(sample && mode!=='greedy'){
+      var r=Math.random(), acc=0; pick=order[0];
+      for(var q=0;q<order.length;q++){ if(!kept[order[q]])continue; acc+=eff[order[q]]; if(r<=acc){pick=order[q];break;} }
+    } else { pick = order[0]; }
+    // paint bars (display softmax %, dim the filtered-out)
+    document.getElementById('cands').innerHTML = order.map(function(i){
+      var out = !kept[i];
+      return '<div class="cand '+(out?'out':'')+(i===pick?' pick':'')+'">'+
+        '<span class="ct">'+esc(CANDS[i].t)+'</span>'+
+        '<span class="track"><span class="fill" style="width:'+(probs[i]*100).toFixed(1)+'%"></span></span>'+
+        '<span class="pct">'+(probs[i]*100).toFixed(1)+'%</span></div>';
+    }).join('');
+    var how = mode==='greedy'?'le plus probable':(sample?'tiré au sort selon les probabilités':'candidat retenu');
+    document.getElementById('pickline').innerHTML = '→ Mot choisi ('+how+') : <b>'+esc(CANDS[pick].t)+'</b>';
+  }
+
+  // ---------- step 6: streaming (REAL detokenisation) ----------
+  var streamTimer=null;
+  function runStream(){
+    var answer = "Un token est une unité de texte.";
+    var ids = enc ? enc.encode(answer) : [];
+    var el = document.getElementById('stream'); el.innerHTML='';
+    clearTimeout(streamTimer);
+    var i=0;
+    (function tick(){
+      if(i>=ids.length){ return; }
+      var piece = enc.decode([ids[i]]);
+      var span = document.createElement('span'); span.className='w cur';
+      span.textContent = piece;
+      var prev = el.querySelector('.cur'); if(prev) prev.classList.remove('cur');
+      el.appendChild(span);
+      i++;
+      streamTimer = setTimeout(tick, 260);
+    })();
+  }
+  document.getElementById('replay').addEventListener('click', runStream);
+
+  // ---------- boot ----------
+  function boot(){
+    enc = window.GPTTokenizer_cl100k_base;
+    if(!enc){ setTimeout(boot,80); return; }
+    go(0);
+  }
+  boot();
+})();
+</script>
+<script src="/assets/site.js?v=2026071202" defer></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
