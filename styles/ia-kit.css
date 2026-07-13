@@ -122,6 +122,11 @@ hr{border:none;border-top:1px solid var(--border);margin:34px 0;}
 .ia-meta{font-weight:600;font-size:12.5px;color:var(--faint);margin-top:12px;display:flex;flex-wrap:wrap;gap:6px 14px;}
 .ia-meta span{display:inline-flex;align-items:center;gap:6px;}
 .ia-lead{font-size:.98rem;line-height:1.55;color:var(--muted);max-width:600px;margin-top:10px;}
+/* bande de stats vivantes sous le titre (pages catalogue) */
+.ia-stats{display:flex;flex-wrap:wrap;gap:8px 9px;margin-top:14px;}
+.ia-stats:empty{display:none;}
+.ia-stats .stat{display:inline-flex;align-items:baseline;gap:5px;font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--border-soft);border-radius:999px;padding:5px 12px;}
+.ia-stats .stat b{font-size:14px;font-weight:900;color:var(--ia-ink);font-variant-numeric:tabular-nums;}
 
 /* ---------- cartes ---------- */
 .ia-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);

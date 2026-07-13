@@ -143,6 +143,7 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
     <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg> Se former · IA &amp; Data</div>
     <h1 class="ia-title">Certifications &amp; formations IA / Data gratuites</h1>
     <p class="ia-lead">Une sélection de formations et certifications en <strong>intelligence artificielle et data</strong>, avec un statut de gratuité <strong>honnête</strong>&nbsp;: vraiment gratuit, cours gratuit mais certificat payant, conditionnel, ou finançable CPF. Parce que «&nbsp;gratuit&nbsp;» cache souvent un astérisque. <strong>Vérifié à la source</strong>, mis à jour régulièrement.</p>
+    <div class="ia-stats" id="heroStats"></div>
   </header>
 </div>
 
@@ -298,6 +299,10 @@ search.addEventListener('input',render);
     const data=await r.json();
     CATS=data.cats||[]; CERTS=data.certs||[];
     CATMAP=Object.fromEntries(CATS);
+    const nVrai=CERTS.filter(c=>c.grat==='vrai-gratuit').length;
+    const nDom=CATS.filter(([k])=>CERTS.some(c=>c.cat===k)).length;
+    document.getElementById('heroStats').innerHTML=
+      `<span class="stat"><b>${CERTS.length}</b> formations</span><span class="stat"><b>${nVrai}</b> vraiment gratuites</span><span class="stat"><b>${nDom}</b> domaines</span>`;
     buildRail(); render();
   }catch(e){
     countEl.textContent='';

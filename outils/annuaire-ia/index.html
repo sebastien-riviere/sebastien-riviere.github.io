@@ -160,6 +160,7 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
     <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> Annuaire · Outils IA</div>
     <h1 class="ia-title">Annuaire des outils IA</h1>
     <p class="ia-lead">Sélection d'outils d'IA <strong>classés par usage</strong>, décrits en une phrase. Pour chacun : modèle tarifaire, origine et <strong>repères chiffrés sourcés</strong> quand ils existent. Liste indicative, non exhaustive, mise à jour régulièrement.</p>
+    <div class="ia-stats" id="heroStats"></div>
   </header>
 </div>
 
@@ -350,6 +351,11 @@ search.addEventListener('input',render);
     CATS=data.cats||[]; TOOLS=data.tools||[]; VALOS=data.valos||[]; AUDIENCE=data.audience||[];
     CATMAP=Object.fromEntries(CATS);
     document.getElementById('majLbl').textContent=data.maj||'';
+    const nSouv=TOOLS.filter(t=>t.c==='souverain').length;
+    const nFree=TOOLS.filter(t=>t.p==='gratuit'||t.p==='freemium').length;
+    document.getElementById('heroStats').innerHTML=
+      `<span class="stat"><b>${TOOLS.length}</b> outils</span><span class="stat"><b>${CATS.length}</b> catégories</span>`
+      +(nSouv?`<span class="stat"><b>${nSouv}</b> souverains</span>`:`<span class="stat"><b>${nFree}</b> avec offre gratuite</span>`);
     renderInsights();
     buildRail();
     render();
