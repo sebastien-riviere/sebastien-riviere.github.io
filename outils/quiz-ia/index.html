@@ -14,57 +14,84 @@
 <link rel="stylesheet" href="/assets/site.css?v=2026071301">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
-/* --- spécifique quiz-ia (le reste vient de ia-kit.css) --- */
+/* --- spécifique quiz-ia : stepper « une question à la fois » --- */
 .ic-lg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-right:8px;vertical-align:-4px;}
 .disclaimer-lead{font-size:12.5px;font-style:italic;color:var(--faint);max-width:600px;margin-top:12px;line-height:1.5;}
 
-main{flex:1;padding:30px 24px 60px;max-width:var(--wrap-read);width:100%;margin:0 auto;}
+main{flex:1;padding:26px 24px 60px;max-width:var(--wrap-read);width:100%;margin:0 auto;}
 
-.progress{position:sticky;top:0;background:var(--bg);padding:12px 0;z-index:5;border-bottom:1px solid var(--border);margin-bottom:8px;}
+/* progression */
+.qprogress{position:sticky;top:0;background:linear-gradient(180deg,var(--bg) 78%,transparent);padding:12px 0 10px;z-index:5;}
+.qp-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:7px;}
+.qp-sec{font-size:11px;font-weight:900;letter-spacing:.7px;text-transform:uppercase;color:var(--ia-ink);}
+.qp-count{font-size:12.5px;font-weight:800;color:var(--faint);font-variant-numeric:tabular-nums;}
 .pbar{height:8px;background:var(--ia-soft);border-radius:99px;overflow:hidden;}
-.pbar>i{display:block;height:100%;width:0;background:var(--ia);transition:width .25s;}
-.pcount{font-size:12px;font-weight:700;color:var(--faint);margin-top:6px;}
+.pbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ia),var(--mint,var(--ia-ink)));border-radius:99px;transition:width .3s ease;}
 
-.section-title{display:flex;align-items:center;gap:8px;font-weight:800;font-size:12px;letter-spacing:1.1px;text-transform:uppercase;color:var(--faint);margin:30px 0 4px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+/* carte question */
+.qstage{margin-top:16px;min-height:240px;}
+.qcard{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow);}
+.qcard.enter{animation:qin .28s ease;}
+@keyframes qin{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.q-num{font-size:12px;font-weight:900;color:var(--ia-ink);letter-spacing:.3px;margin-bottom:6px;}
+.q-title{font-weight:900;font-size:19px;line-height:1.3;color:var(--ink);letter-spacing:-.01em;margin-bottom:8px;text-wrap:balance;}
+.tip{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--muted);margin-bottom:18px;line-height:1.5;}
+.tip .ic{flex:none;margin-top:2px;color:var(--ia);width:16px;height:16px;}
 
-.q{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px 10px;margin:14px 0;box-shadow:var(--shadow-sm);}
-.q-title{font-weight:800;font-size:15.5px;color:var(--ink);margin-bottom:5px;}
-.tip{display:flex;align-items:flex-start;gap:7px;font-size:13.5px;color:var(--muted);margin-bottom:13px;line-height:1.5;}
-.tip .ic{flex:none;margin-top:3px;color:var(--ia);width:15px;height:15px;}
-label{display:block;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 14px;margin:0 0 9px;cursor:pointer;transition:.15s;font-weight:600;font-size:14.5px;color:var(--ink);}
-label:hover{border-color:var(--border-strong);}
-input[type=radio]{accent-color:var(--ia);margin-right:10px;}
-label:has(input:checked){border-color:var(--ia);background:var(--ia-soft);}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:15px 16px;cursor:pointer;transition:border-color .14s,background .14s,transform .1s;font-family:var(--ui);font-weight:700;font-size:15px;color:var(--ink);}
+.opt:hover{border-color:var(--ia);background:var(--ia-soft);}
+.opt:active{transform:scale(.99);}
+.opt .okey{flex:none;width:26px;height:26px;border-radius:8px;background:var(--card);border:1.5px solid var(--border-soft);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:var(--faint);}
+.opt .olab{flex:1;}
+.opt .ochk{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--border-soft);display:flex;align-items:center;justify-content:center;color:#fff;}
+.opt .ochk svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .12s;}
+.opt.sel{border-color:var(--ia);background:var(--ia-soft);}
+.opt.sel .okey{background:var(--ia);border-color:var(--ia);color:#fff;}
+.opt.sel .ochk{background:var(--ia);border-color:var(--ia);}
+.opt.sel .ochk svg{opacity:1;}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--ia);color:#fff;border:0;border-radius:var(--radius);padding:15px;font-family:var(--ui);font-size:16px;font-weight:800;cursor:pointer;margin-top:16px;transition:background .15s,transform .1s;}
-.btn:hover{background:var(--ia-ink);}
-.btn:active{transform:scale(.99);}
-.btn .ic{width:18px;height:18px;}
-.err{font-weight:700;color:var(--bad);font-size:13.5px;margin-top:10px;display:none;}
+/* navigation */
+.qnav{display:flex;align-items:center;gap:12px;margin-top:20px;}
+.qbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:13px 20px;font-family:var(--ui);font-size:15px;font-weight:900;cursor:pointer;transition:background .15s,border-color .15s,transform .1s,opacity .15s;border:2px solid var(--border);}
+.qbtn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.qbtn.ghost{background:var(--card);color:var(--muted);}
+.qbtn.ghost:hover{color:var(--ia-ink);border-color:var(--ia);}
+.qbtn.ghost:disabled{opacity:.4;cursor:default;}
+.qbtn.prim{background:var(--ia);border-color:var(--ia);color:#fff;margin-left:auto;}
+.qbtn.prim:hover{background:var(--ia-ink);border-color:var(--ia-ink);}
+.qbtn.prim:disabled{opacity:.45;cursor:default;}
+.qbtn:active{transform:scale(.98);}
+.kbhint{margin-top:12px;font-size:11.5px;color:var(--faint);text-align:center;}
+.kbhint kbd{font-family:var(--mono);font-size:10.5px;background:var(--bg-2);border:1px solid var(--border-soft);border-radius:5px;padding:1px 6px;font-weight:700;color:var(--muted);}
 
-.result{display:none;background:var(--card);border:1px solid var(--ia);border-radius:var(--radius);padding:24px;margin-top:24px;box-shadow:var(--shadow);scroll-margin-top:80px;}
-.result h2{display:flex;align-items:center;font-weight:800;font-size:23px;color:var(--ink);margin-bottom:6px;}
-.result h2 .ic-lg{color:var(--ia);width:24px;height:24px;}
-.result h3{display:flex;align-items:center;font-weight:700;font-size:15px;color:var(--ink);margin:22px 0 8px;}
+/* résultat */
+.result{display:none;background:var(--card);border:1.5px solid var(--ia);border-radius:16px;padding:24px;margin-top:24px;box-shadow:var(--shadow);scroll-margin-top:80px;}
+.result h2{display:flex;align-items:center;font-weight:900;font-size:24px;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em;}
+.result h2 .ic-lg{color:var(--ia);width:26px;height:26px;}
+.result h3{display:flex;align-items:center;font-weight:800;font-size:15px;color:var(--ink);margin:22px 0 8px;}
 .result h3 .ic-lg{color:var(--ia);}
-.price{display:inline-block;background:var(--ia-soft);color:var(--ia-ink);border-radius:20px;padding:3px 12px;font-weight:700;font-size:12px;margin-bottom:12px;}
+.price{display:inline-block;background:var(--ia-soft);color:var(--ia-ink);border-radius:20px;padding:3px 12px;font-weight:800;font-size:12px;margin-bottom:12px;}
 .why{font-size:15px;line-height:1.65;color:var(--ink);}
-.why b{font-weight:700;}
+.why b{font-weight:800;}
 .runner{font-size:14px;color:var(--muted);border-top:1px solid var(--border);margin-top:16px;padding-top:14px;}
-.scores{margin-top:14px;font-weight:700;font-size:13px;color:var(--muted);}
+.scores{margin-top:14px;font-weight:800;font-size:13px;color:var(--muted);}
 .bar{height:8px;background:var(--ia-soft);border-radius:99px;overflow:hidden;margin:4px 0 11px;}
 .bar>i{display:block;height:100%;background:var(--ia);}
-.box{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-top:6px;font-size:14.5px;line-height:1.6;color:var(--ink);}
+.box{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-top:6px;font-size:14.5px;line-height:1.6;color:var(--ink);}
 .box ul{margin:.4em 0;padding-left:1.2em;}
 .box li{margin:.3em 0;}
-.note{background:var(--ia-soft);border:1px solid var(--ia-line);border-radius:var(--radius);padding:13px 16px;margin-top:14px;font-size:14px;color:var(--ink);display:flex;gap:9px;align-items:flex-start;}
+.note{background:var(--ia-soft);border:1px solid var(--ia-line);border-radius:12px;padding:13px 16px;margin-top:14px;font-size:14px;color:var(--ink);display:flex;gap:9px;align-items:flex-start;}
 .note .ic-lg{color:var(--ia);margin-top:1px;}
-.free{background:var(--ok-soft);border:1px solid color-mix(in srgb,var(--ok) 35%,transparent);border-radius:var(--radius);padding:13px 16px;margin:14px 0 0;font-size:14.5px;color:var(--ink);display:flex;gap:9px;align-items:flex-start;}
+.free{background:var(--ok-soft);border:1px solid color-mix(in srgb,var(--ok) 35%,transparent);border-radius:12px;padding:13px 16px;margin:14px 0 0;font-size:14.5px;color:var(--ink);display:flex;gap:9px;align-items:flex-start;}
 .free .ic-lg{color:var(--ok);margin-top:1px;}
-.rgpd{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);border-radius:var(--radius);padding:13px 16px;margin-top:14px;font-size:14px;color:var(--ink);display:flex;gap:9px;align-items:flex-start;}
+.rgpd{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);border-radius:12px;padding:13px 16px;margin-top:14px;font-size:14px;color:var(--ink);display:flex;gap:9px;align-items:flex-start;}
 .rgpd .ic-lg{flex:none;margin-top:1px;color:var(--warn);}
+.restart{margin-top:20px;display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:13.5px;color:var(--ia-ink);background:none;border:0;cursor:pointer;padding:6px 2px;}
+.restart:hover{text-decoration:underline;}
+.restart svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
-@media(max-width:600px){ main{padding:22px 20px 44px;} .result h2{font-size:20px;} }
+@media(max-width:600px){ main{padding:20px 20px 44px;} .qcard{padding:18px 17px;} .q-title{font-size:17px;} .result h2{font-size:21px;} .kbhint{display:none;} }
 </style>
 </head>
 <body>
@@ -78,17 +105,24 @@ label:has(input:checked){border-color:var(--ia);background:var(--ia-soft);}
     <div class="ia-meta">
       <span>À jour juin 2026</span><span>21 questions · ~5 min</span><span>Aucune donnée envoyée</span>
     </div>
-    <p class="ia-lead">Répondez spontanément. En chemin, vous découvrez ce qu'une IA sait faire aujourd'hui — puis l'outil vous indique l'assistant qui vous correspond le mieux, et pourquoi.</p>
+    <p class="ia-lead">Répondez spontanément, une question à la fois. En chemin, vous découvrez ce qu'une IA sait faire aujourd'hui — puis l'outil vous indique l'assistant qui vous correspond le mieux, et pourquoi.</p>
     <p class="disclaimer-lead">Outil d'introduction pour s'orienter — pas un benchmark rigoureux. Il reflète des usages courants et comporte des biais assumés ; le paysage évolue vite. Testez toujours par vous-même avant de choisir.</p>
   </header>
 </div>
 
 <main>
-  <div class="progress"><div class="pbar"><i id="pbar"></i></div><div class="pcount" id="pcount">0 / 21</div></div>
-
-  <form id="quiz"></form>
-  <button class="btn" id="go">Voir ma reco <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-  <p class="err" id="err">Il reste des questions sans réponse — je vous amène à la première.</p>
+  <div id="quizwrap">
+    <div class="qprogress">
+      <div class="qp-top"><span class="qp-sec" id="qpSec"></span><span class="qp-count" id="qpCount"></span></div>
+      <div class="pbar"><i id="pbar"></i></div>
+    </div>
+    <div class="qstage" id="qstage"></div>
+    <div class="qnav">
+      <button class="qbtn ghost" id="qback" type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Précédent</button>
+      <button class="qbtn prim" id="qnext" type="button" disabled>Suivant<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="kbhint">Astuce clavier : <kbd>1</kbd>…<kbd>9</kbd> pour choisir · <kbd>←</kbd> <kbd>→</kbd> pour naviguer</div>
+  </div>
 
   <div class="result" id="result"></div>
 </main>
@@ -103,6 +137,7 @@ const ICON_TOOL = `<svg class="ic-lg" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4
 const ICON_INFO = `<svg class="ic-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>`;
 const ICON_SHIELD = `<svg class="ic-lg" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 6.5 7 9 4-2.5 7-5 7-9V6z"/><path d="m9.5 12 1.8 1.8 3.7-3.8"/></svg>`;
 const ICON_LEAF = `<svg class="ic-lg" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>`;
+const ICON_CHECK_SM = `<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>`;
 
 const TOOLS = {
   chatgpt:{name:"ChatGPT Plus", base:"ChatGPT", price:"OpenAI · ~20 €/mois",
@@ -115,8 +150,6 @@ const TOOLS = {
     why:"L'option <b>française et européenne</b> : vos données restent hébergées en Europe (le plus solide côté <b>RGPD</b>), c'est la <b>moins chère</b>, et elle gère très bien le français. Ses assistants = les « Agents »."}
 };
 
-/* Chaque option = [libellé, points, raison?]. La raison s'affiche dans le résultat
-   quand elle a contribué à l'outil recommandé (« d'après vos réponses »). */
 const QUESTIONS = [
  {s:"Ce que vous produisez"},
  {q:"Pour vos visuels (publications, supports)…",
@@ -196,84 +229,103 @@ const QUESTIONS = [
   a:[["Oui, régulièrement",{mistral:3},"vous manipulez des données sensibles"],["Rarement",{}]]}
 ];
 
-const form = document.getElementById('quiz');
-let qIndex = 0;
-const qMeta = [];
-QUESTIONS.forEach((item)=>{
-  if(item.s){const h=document.createElement('div');h.className='section-title';h.textContent=item.s;form.appendChild(h);return;}
-  const i = qIndex++;
-  qMeta.push(item);
-  const d=document.createElement('div'); d.className='q'; d.id='q'+i;
-  const p=document.createElement('div'); p.className='q-title'; p.textContent=(i+1)+". "+item.q; d.appendChild(p);
-  const t=document.createElement('div'); t.className='tip'; t.innerHTML=ICON_BULB+'<span>'+item.tip+'</span>'; d.appendChild(t);
-  item.a.forEach((opt,j)=>{
-    const l=document.createElement('label');
-    l.innerHTML='<input type="radio" name="q'+i+'" value="'+j+'">'+opt[0];
-    d.appendChild(l);
-  });
-  form.appendChild(d);
-});
-const TOTAL = qMeta.length;
-document.getElementById('pcount').textContent = "0 / "+TOTAL;
+/* Aplatir : chaque question porte sa section */
+const QS=[]; let curSec='';
+QUESTIONS.forEach(item=>{ if(item.s){curSec=item.s;return;} QS.push({sec:curSec,q:item.q,tip:item.tip,a:item.a}); });
+const TOTAL=QS.length;
+const answers=new Array(TOTAL).fill(null);
+let cur=0;
 
-form.addEventListener('change',()=>{
-  const n = form.querySelectorAll('input[type=radio]:checked').length;
-  document.getElementById('pcount').textContent = n+" / "+TOTAL;
-  document.getElementById('pbar').style.width = Math.round(n/TOTAL*100)+"%";
+const stage=document.getElementById('qstage');
+const pbar=document.getElementById('pbar');
+const qpSec=document.getElementById('qpSec');
+const qpCount=document.getElementById('qpCount');
+const backBtn=document.getElementById('qback');
+const nextBtn=document.getElementById('qnext');
+const resultEl=document.getElementById('result');
+let advTimer=null;
+
+function answeredCount(){return answers.filter(a=>a!==null).length;}
+
+function renderQuestion(){
+  const item=QS[cur];
+  qpSec.textContent=item.sec;
+  qpCount.textContent=(cur+1)+' / '+TOTAL;
+  pbar.style.width=Math.round(answeredCount()/TOTAL*100)+'%';
+  const opts=item.a.map((opt,j)=>
+    '<button class="opt'+(answers[cur]===j?' sel':'')+'" type="button" data-j="'+j+'">'
+    +'<span class="okey">'+(j+1)+'</span><span class="olab">'+opt[0]+'</span>'
+    +'<span class="ochk">'+ICON_CHECK_SM+'</span></button>').join('');
+  stage.innerHTML='<div class="qcard enter"><div class="q-num">Question '+(cur+1)+'</div>'
+    +'<div class="q-title">'+item.q+'</div>'
+    +'<div class="tip">'+ICON_BULB+'<span>'+item.tip+'</span></div>'
+    +'<div class="opts">'+opts+'</div></div>';
+  stage.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>choose(parseInt(b.dataset.j))));
+  backBtn.disabled=(cur===0);
+  const answered=answers[cur]!==null;
+  nextBtn.disabled=!answered;
+  nextBtn.innerHTML=(cur===TOTAL-1)
+    ? 'Voir ma reco<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+    : 'Suivant<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+}
+
+function choose(j){
+  answers[cur]=j;
+  stage.querySelectorAll('.opt').forEach(b=>b.classList.toggle('sel',parseInt(b.dataset.j)===j));
+  pbar.style.width=Math.round(answeredCount()/TOTAL*100)+'%';
+  nextBtn.disabled=false;
+  clearTimeout(advTimer);
+  advTimer=setTimeout(()=>{ (cur===TOTAL-1)?computeResult():goNext(); },300);
+}
+function goNext(){ if(answers[cur]===null)return; if(cur<TOTAL-1){cur++;renderQuestion();} else computeResult(); }
+function goBack(){ if(cur>0){cur--;renderQuestion();} }
+backBtn.addEventListener('click',()=>{clearTimeout(advTimer);goBack();});
+nextBtn.addEventListener('click',()=>{clearTimeout(advTimer);goNext();});
+
+document.addEventListener('keydown',e=>{
+  if(resultEl.style.display==='block')return;
+  if(/^[1-9]$/.test(e.key)){const j=+e.key-1;if(QS[cur].a[j]){choose(j);}}
+  else if(e.key==='ArrowRight'||e.key==='Enter'){if(answers[cur]!==null){clearTimeout(advTimer);goNext();}}
+  else if(e.key==='ArrowLeft'){clearTimeout(advTimer);goBack();}
 });
 
-document.getElementById('go').addEventListener('click',()=>{
+function computeResult(){
   const scores={chatgpt:0,claude:0,gemini:0,mistral:0};
   const reasonsByTool={chatgpt:[],claude:[],gemini:[],mistral:[]};
-  let firstMissing=-1, q1Choice=null;
-  qMeta.forEach((item,i)=>{
-    const sel=form.querySelector('input[name="q'+i+'"]:checked');
-    if(!sel){ if(firstMissing<0) firstMissing=i; return; }
-    if(i===0) q1Choice=parseInt(sel.value);
-    const opt=item.a[sel.value];
-    const w=opt[1], r=opt[2];
+  let q1Choice=answers[0];
+  QS.forEach((item,i)=>{
+    const sel=answers[i]; if(sel===null)return;
+    const opt=item.a[sel]; const w=opt[1], r=opt[2];
     for(const k in w){ scores[k]+=w[k]; if(r) reasonsByTool[k].push(r); }
   });
-  if(firstMissing>=0){
-    document.getElementById('err').style.display='block';
-    document.getElementById('q'+firstMissing).scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
-  document.getElementById('err').style.display='none';
-
   const ranked=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
   let [winKey,winScore]=ranked[0];
   let [secKey,secScore]=ranked[1];
   if(winScore-secScore<=1 && [winKey,secKey].includes('chatgpt') && [winKey,secKey].includes('claude')){
-    winKey = (q1Choice===0) ? 'chatgpt' : 'claude';
-    secKey = (winKey==='chatgpt') ? 'claude' : 'chatgpt';
+    winKey=(q1Choice===0)?'chatgpt':'claude';
+    secKey=(winKey==='chatgpt')?'claude':'chatgpt';
   }
   const win=TOOLS[winKey];
   const max=Math.max(...Object.values(scores))||1;
-  const light = winScore<=4;                       // usage encore léger → le gratuit suffit souvent
+  const light=winScore<=4;
   const drivers=[...new Set(reasonsByTool[winKey])].slice(0,3);
 
-  let html = `<h2>${ICON_CHECK}${win.name}</h2><span class="price">${win.price}</span><p class="why">${win.why}</p>`;
-
+  let html=`<h2>${ICON_CHECK}${win.name}</h2><span class="price">${win.price}</span><p class="why">${win.why}</p>`;
   if(drivers.length){
-    html += `<h3>${ICON_CHECK}Pourquoi cette reco, d'après vos réponses</h3><div class="box"><ul>`
-          + drivers.map(d=>`<li>${d}</li>`).join('') + `</ul></div>`;
+    html+=`<h3>${ICON_CHECK}Pourquoi cette reco, d'après vos réponses</h3><div class="box"><ul>`+drivers.map(d=>`<li>${d}</li>`).join('')+`</ul></div>`;
   }
-
   if(light){
-    html += `<div class="free">${ICON_INFO}<span><b>Pas besoin de payer tout de suite.</b> Vu vos réponses, votre usage semble encore ponctuel : commencez par la <b>version gratuite de ${win.base}</b> — elle suffit souvent au début. Vous passerez au payant le jour où vous en sentirez vraiment les limites.</span></div>`;
+    html+=`<div class="free">${ICON_INFO}<span><b>Pas besoin de payer tout de suite.</b> Vu vos réponses, votre usage semble encore ponctuel : commencez par la <b>version gratuite de ${win.base}</b> — elle suffit souvent au début. Vous passerez au payant le jour où vous en sentirez vraiment les limites.</span></div>`;
   }
-
   if(winScore-secScore<=1){
-    html += `<div class="runner"><b>C'est serré avec ${TOOLS[secKey].name}</b> — les deux vous conviendraient. Départagez-les en testant le premier quelques jours.</div>`;
+    html+=`<div class="runner"><b>C'est serré avec ${TOOLS[secKey].name}</b> — les deux vous conviendraient. Départagez-les en testant le premier quelques jours.</div>`;
   }else{
-    html += `<div class="runner">Alternative possible : ${TOOLS[secKey].name}.</div>`;
+    html+=`<div class="runner">Alternative possible : ${TOOLS[secKey].name}.</div>`;
   }
-  html += `<div class="scores">`;
-  ranked.forEach(([k,v])=>{ html += `${TOOLS[k].name}<div class="bar"><i style="width:${Math.round(v/max*100)}%"></i></div>`; });
-  html += `</div>`;
-
-  html += `<h3>${ICON_SPARK}Ce qu'une IA assistante sait faire en 2026 (pour info)</h3><div class="box"><ul>
+  html+=`<div class="scores">`;
+  ranked.forEach(([k,v])=>{ html+=`${TOOLS[k].name}<div class="bar"><i style="width:${Math.round(v/max*100)}%"></i></div>`; });
+  html+=`</div>`;
+  html+=`<h3>${ICON_SPARK}Ce qu'une IA assistante sait faire en 2026 (pour info)</h3><div class="box"><ul>
     <li>Générer des images, ou piloter <b>Canva</b></li>
     <li>Se connecter à vos outils (mail, agenda, Drive, Canva, Notion…) via les <b>connecteurs / MCP</b></li>
     <li><b>Agir</b>, pas juste répondre (envoyer, créer, préparer)</li>
@@ -283,26 +335,34 @@ document.getElementById('go').addEventListener('click',()=>{
     <li>Vous parler à l'oral (mode vocal)</li>
     <li>Travailler en <b>mode projet</b> (un espace fermé qui garde votre contexte)</li>
   </ul></div>`;
-
-  html += `<h3>${ICON_TOOL}Le vrai levier : configurez un assistant dédié</h3><div class="box">
+  html+=`<h3>${ICON_TOOL}Le vrai levier : configurez un assistant dédié</h3><div class="box">
     Plutôt que de tout redemander à chaque fois, créez un <b>« projet » / assistant</b> où vous déposez <b>une fois</b> votre contexte (votre métier, votre style, vos documents). Chaque conversation dedans le réutilise → résultats plus justes et constants. <i>Le secret, ce n'est pas le prompt, c'est le contexte.</i>
     <ul><li><b>ChatGPT</b> : GPTs + Projects + images natives + voix</li>
     <li><b>Claude</b> : Projects + Skills + connecteurs (Google, Canva, Notion…)</li>
     <li><b>Gemini</b> : Gems + intégration native Google</li>
     <li><b>Mistral</b> : Agents + hébergement Europe</li></ul></div>`;
-
   if(!light){
-    html += `<div class="note">${ICON_INFO}<span><b>Astuce</b> : la plupart des offres proposent un <b>essai gratuit</b> de quelques jours — profitez-en pour vous faire votre propre avis avant de payer.</span></div>`;
+    html+=`<div class="note">${ICON_INFO}<span><b>Astuce</b> : la plupart des offres proposent un <b>essai gratuit</b> de quelques jours — profitez-en pour vous faire votre propre avis avant de payer.</span></div>`;
   }
+  html+=`<div class="rgpd">${ICON_SHIELD}<span><b>Réflexe RGPD</b> — quel que soit l'outil : jamais de données personnelles ou sensibles (situations d'employés, données de santé). Anonymisez, et coupez l'entraînement sur vos données dans les réglages « Confidentialité ».</span></div>`;
+  html+=`<div class="note">${ICON_LEAF}<span><b>Deux points à garder en tête</b> — au-delà du choix de l'outil : <b>①&nbsp;empreinte environnementale</b> : chaque requête consomme de l'énergie ; pour une tâche simple, un petit modèle suffit souvent — inutile de sortir l'artillerie lourde. <b>②&nbsp;biais &amp; transparence</b> : une IA reflète ses données d'entraînement et peut se tromper avec aplomb — gardez l'œil critique et vérifiez ce qui compte.</span></div>`;
+  html+=`<button class="restart" type="button" id="restart"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5"/></svg>Recommencer le quiz</button>`;
 
-  html += `<div class="rgpd">${ICON_SHIELD}<span><b>Réflexe RGPD</b> — quel que soit l'outil : jamais de données personnelles ou sensibles (situations d'employés, données de santé). Anonymisez, et coupez l'entraînement sur vos données dans les réglages « Confidentialité ».</span></div>`;
+  document.getElementById('quizwrap').style.display='none';
+  resultEl.innerHTML=html;
+  resultEl.style.display='block';
+  pbar.style.width='100%';
+  resultEl.scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('restart').addEventListener('click',()=>{
+    answers.fill(null); cur=0;
+    resultEl.style.display='none';
+    document.getElementById('quizwrap').style.display='';
+    renderQuestion();
+    document.getElementById('quizwrap').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
 
-  html += `<div class="note">${ICON_LEAF}<span><b>Deux points à garder en tête</b> — au-delà du choix de l'outil : <b>①&nbsp;empreinte environnementale</b> : chaque requête consomme de l'énergie ; pour une tâche simple, un petit modèle suffit souvent — inutile de sortir l'artillerie lourde. <b>②&nbsp;biais &amp; transparence</b> : une IA reflète ses données d'entraînement et peut se tromper avec aplomb — gardez l'œil critique et vérifiez ce qui compte.</span></div>`;
-
-  const r=document.getElementById('result');
-  r.innerHTML=html; r.style.display='block';
-  r.scrollIntoView({behavior:'smooth'});
-});
+renderQuestion();
 </script>
 <script src="/assets/site.js?v=2026071301" defer></script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
