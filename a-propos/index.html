@@ -53,9 +53,14 @@ html[data-theme="dark"] .exp .badge{color:#0f1722;}
 
 /* CONTACT */
 .contact{display:flex;flex-wrap:wrap;gap:13px;margin-top:8px;}
-.cbtn{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:14.5px;padding:12px 19px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--text);box-shadow:var(--sh-sm);transition:transform .1s;}
-.cbtn:active{transform:translate(1px,1px);}
+.cbtn{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:14.5px;padding:12px 19px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--text);box-shadow:var(--sh-sm);transition:transform .12s,box-shadow .12s;}
+.cbtn:hover{transform:translateY(-2px);box-shadow:var(--sh);}
+.cbtn:active{transform:translate(1px,1px);box-shadow:var(--sh-sm);}
 .cbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.cbtn.mail{background:var(--accent);border-color:var(--accent);color:#fff;}
+html[data-theme="dark"] .cbtn.mail{color:#0f1722;}
+.cbtn.li{background:#0a66c2;border-color:#0a66c2;color:#fff;}
+.cbtn.li svg{fill:currentColor;stroke:none;width:19px;height:19px;}
 .linkrow{display:flex;flex-wrap:wrap;gap:11px;margin-top:14px;}
 .linkchip{font-weight:800;font-size:13.5px;color:var(--accent-ink);background:var(--accent-soft);border:2px solid var(--accent);border-radius:10px;padding:8px 14px;box-shadow:var(--sh-sm);transition:transform .1s;}
 .linkchip:active{transform:translate(1px,1px);}
@@ -132,12 +137,12 @@ html[data-theme="dark"] .exp .badge{color:#0f1722;}
   <div class="block">
     <h2><span class="n">5</span>Contact &amp; liens utiles</h2>
     <div class="contact">
-      <a class="cbtn" href="mailto:rsebastien@protonmail.com">
+      <a class="cbtn mail" href="mailto:rsebastien@protonmail.com">
         <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
         rsebastien@protonmail.com
       </a>
-      <a class="cbtn" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg>
+      <a class="cbtn li" href="https://www.linkedin.com/in/s%C3%A9bastien-riviere-conseil" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9h4v12H3zM9 9h3.8v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z"/></svg>
         LinkedIn
       </a>
     </div>
