@@ -63,7 +63,7 @@
     +'<a class="sr-ibtn ml" id="srMail" href="mailto:'+MAIL+'" title="M\'écrire (clic = copie l\'adresse)" aria-label="M\'écrire par email">'
     +'<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></a>'
     +'<a class="sr-ibtn li" href="'+LINKEDIN+'" target="_blank" rel="noopener" title="LinkedIn" aria-label="Profil LinkedIn">'
-    +'<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M12 10v8M12 13a3 3 0 0 1 6 0v5"/></svg></a>'
+    +'<svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9h4v12H3zM9 9h3.8v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z"/></svg></a>'
     +'</div>'
     +'</div></div>';
   }
@@ -73,9 +73,6 @@
     +'<div class="sr-footband"><div class="sr-maxw"><footer class="sr-footer">'
     +'<span class="fn">© Sébastien Rivière · 2026</span>'
     +'<span class="fl">'
-    +'<a href="/outils/">Outils</a>'
-    +'<a href="/outils/mediatheque-ia/">Médiathèque IA</a>'
-    +'<a href="/articles/">Articles</a>'
     +'<a href="/a-propos/">À propos</a>'
     +'</span>'
     +'<a class="fbadge" href="/opt-out-ia/" title="Ce site refuse l\'entraînement des IA — comprendre et faire pareil">'
