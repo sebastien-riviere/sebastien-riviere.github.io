@@ -276,8 +276,8 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent);}
         <span class="chip" data-sr="mail">Alertes plateformes</span>
       </div>
       <div class="chips" id="statuts">
-        <span class="chip on" data-st="">Tous statuts</span>
-        <span class="chip" data-st="encours">En cours</span>
+        <span class="chip" data-st="">Tous statuts</span>
+        <span class="chip on" data-st="encours">En cours</span>
         <span class="chip" data-st="clos">Clôturés</span>
       </div>
     </div>
@@ -343,7 +343,7 @@ const ICO = {
   chart:'<svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg>'
 };
 let DATA = { items:[], maj:'', total:0 };
-let fTheme = 'ia', fSource = '', fQ = '', fStatut = '', fSort = 'recent';   // IA mis en avant par défaut
+let fTheme = 'ia', fSource = '', fQ = '', fStatut = 'encours', fSort = 'recent';   // IA mis en avant par défaut · « En cours » par défaut : un avis clôturé n'est plus actionnable (l'archive reste accessible via « Tous statuts » / « Clôturés »)
 // Un avis est « IA » si la classification sémantique le dit (ia===1), sinon repli mot-clé (theme='ia') tant que non classé.
 function themeMatch(it, f){
   if(!f) return true;
