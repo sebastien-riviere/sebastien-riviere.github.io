@@ -64,8 +64,8 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
 /* ── grille de cards ── */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:13px;}
 .grid>*{min-width:0;}
-.card{background:var(--card);border:1.5px solid var(--border-soft);border-top:3px solid var(--rc,var(--ia));border-radius:var(--radius);padding:15px;display:flex;flex-direction:column;gap:11px;min-width:0;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--border-strong);border-top-color:var(--rc,var(--ia));}
+.card{background:var(--card);border:1.5px solid var(--border-soft);border-top:3px solid var(--rc,var(--ia));border-radius:var(--radius);padding:15px;display:flex;flex-direction:column;gap:11px;min-width:0;box-shadow:var(--e-tile);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+.card:hover{transform:translateY(-3px);box-shadow:var(--e-tileh);border-color:var(--ia-line);border-top-color:var(--rc,var(--ia));}
 .card-head{display:flex;align-items:center;gap:12px;}
 .avatar{flex:none;width:52px;height:52px;border-radius:50%;overflow:hidden;display:block;box-shadow:0 0 0 1.5px var(--border-soft);background:var(--bg);}
 .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -128,10 +128,22 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
 
 <div class="ia-band">
   <header class="ia-head">
-    <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Qui est qui · IA</div>
-    <h1 class="ia-title">Les personnalités de l'IA</h1>
-    <p class="ia-lead">Un <em>who's who</em> pour s'y retrouver dans les figures de l'intelligence artificielle&nbsp;: <strong>chercheurs, dirigeants, régulateurs, vulgarisateurs</strong>. Filtre par rôle, trie, et clique un <strong>profil officiel</strong>. Sélection curée et non exhaustive.</p>
-    <div class="ia-stats" id="heroStats"></div>
+    <div class="ia-hcopy">
+      <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Qui est qui · IA</div>
+      <h1 class="ia-title">Les personnalités de l'IA</h1>
+      <p class="ia-lead">Un <em>who's who</em> pour s'y retrouver dans les figures de l'intelligence artificielle&nbsp;: <strong>chercheurs, dirigeants, régulateurs, vulgarisateurs</strong>. Filtre par rôle, trie, et clique un <strong>profil officiel</strong>. Sélection curée et non exhaustive.</p>
+      <div class="ia-stats" id="heroStats"></div>
+    </div>
+    <div class="ia-deco" aria-hidden="true">
+      <div class="dtile">
+        <div class="dt-top">
+          <span class="dt-ic"><svg viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <span class="dt-term"><b>Chercheur·e</b><em>pionnier IA</em></span>
+        </div>
+        <span class="dt-l"></span><span class="dt-l s"></span>
+        <span class="dt-badge">Profil ★★★★</span>
+      </div>
+    </div>
   </header>
 </div>
 

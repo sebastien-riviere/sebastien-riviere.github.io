@@ -84,8 +84,8 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
 .grid>*{min-width:0;}
 
 /* card formation */
-.card{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--radius);padding:15px 16px;display:flex;flex-direction:column;gap:9px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--border-strong);}
+.card{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--radius);padding:15px 16px;display:flex;flex-direction:column;gap:9px;box-shadow:var(--e-tile);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+.card:hover{transform:translateY(-3px);box-shadow:var(--e-tileh);border-color:var(--ia-line);}
 .cc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .gbadge{font-family:var(--ui);font-size:10px;font-weight:900;letter-spacing:.2px;padding:3px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;}
 .gbadge .gd{width:6px;height:6px;border-radius:50%;flex:none;}
@@ -140,10 +140,22 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
 
 <div class="ia-band">
   <header class="ia-head">
-    <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg> Se former · IA &amp; Data</div>
-    <h1 class="ia-title">Certifications &amp; formations IA / Data gratuites</h1>
-    <p class="ia-lead">Une sélection de formations et certifications en <strong>intelligence artificielle et data</strong>, avec un statut de gratuité <strong>honnête</strong>&nbsp;: vraiment gratuit, cours gratuit mais certificat payant, conditionnel, ou finançable CPF. Parce que «&nbsp;gratuit&nbsp;» cache souvent un astérisque. <strong>Vérifié à la source</strong>, mis à jour régulièrement.</p>
-    <div class="ia-stats" id="heroStats"></div>
+    <div class="ia-hcopy">
+      <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg> Se former · IA &amp; Data</div>
+      <h1 class="ia-title">Certifications &amp; formations IA / Data gratuites</h1>
+      <p class="ia-lead">Une sélection de formations et certifications en <strong>intelligence artificielle et data</strong>, avec un statut de gratuité <strong>honnête</strong>&nbsp;: vraiment gratuit, cours gratuit mais certificat payant, conditionnel, ou finançable CPF. Parce que «&nbsp;gratuit&nbsp;» cache souvent un astérisque. <strong>Vérifié à la source</strong>, mis à jour régulièrement.</p>
+      <div class="ia-stats" id="heroStats"></div>
+    </div>
+    <div class="ia-deco" aria-hidden="true">
+      <div class="dtile">
+        <div class="dt-top">
+          <span class="dt-ic"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span>
+          <span class="dt-term"><b>Deep Learning</b><em>certification</em></span>
+        </div>
+        <span class="dt-l"></span><span class="dt-l s"></span>
+        <span class="dt-badge">Gratuit</span>
+      </div>
+    </div>
   </header>
 </div>
 
