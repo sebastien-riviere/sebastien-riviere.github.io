@@ -89,6 +89,38 @@ html[data-theme="dark"] .feat-cta{color:#0f1722;}
   .art-body{padding:20px 20px;}
 }
 
+/* ===== WIDGET CALENDRIER — MARCHÉS PUBLICS IA ===== */
+.mpcal{display:flex;flex-direction:column;gap:11px;}
+.mpev{display:grid;grid-template-columns:46px 46px 1fr auto;gap:15px;align-items:center;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:13px 16px;box-shadow:var(--sh-sm);transition:transform .12s,box-shadow .12s;}
+.mpev:hover{transform:translateY(-2px);box-shadow:var(--sh);}
+.mpev.urgent{border-color:var(--tint);background:var(--tint-soft);}
+.mpd{text-align:center;line-height:1.02;}
+.mpd .m{display:block;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);}
+.mpd .d{display:block;font-size:24px;font-weight:900;color:var(--tint);}
+.mpmono{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#fff;letter-spacing:.5px;border:2px solid var(--line);}
+.mpb{min-width:0;}
+.mpb .org{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mpb h3{font-size:16px;font-weight:800;line-height:1.24;color:var(--text);margin:2px 0 8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.mpm{display:flex;flex-wrap:wrap;gap:6px;}
+.mpchip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:var(--muted);background:var(--bg);border:1px solid var(--line-soft);border-radius:999px;padding:3px 10px;}
+.mpchip svg{width:12px;height:12px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.mpchip.j{color:var(--tint);border-color:var(--tint);font-weight:900;background:var(--card);}
+.mpa{display:flex;align-items:center;gap:7px;}
+.mpbtn{font-weight:800;font-size:13px;background:var(--tint);color:var(--mk-fg);border:2px solid var(--line);border-radius:10px;padding:9px 14px;white-space:nowrap;box-shadow:var(--sh-sm);}
+.mpbtn:hover{filter:brightness(1.06);}
+.mpico{width:36px;height:36px;flex:none;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--sh-sm);font-family:inherit;}
+.mpico:hover{background:var(--tint);color:var(--mk-fg);border-color:var(--tint);}
+.mpico svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.mpstate{background:var(--card);border:2px dashed var(--line-soft);border-radius:14px;padding:20px;text-align:center;color:var(--muted);font-size:14px;font-weight:600;line-height:1.5;}
+.mpstate b{color:var(--text);font-weight:800;}
+.mpfoot{margin-top:11px;font-size:12px;color:var(--faint);font-weight:600;}
+@media(max-width:700px){
+  .mpev{grid-template-columns:44px 1fr;gap:11px;row-gap:10px;padding:12px 13px;}
+  .mpmono{display:none;}
+  .mpa{grid-column:1/-1;}
+  .mpbtn{flex:1;text-align:center;}
+}
+
 @media(max-width:600px){
   .maxw{padding:0 18px;}
 }
@@ -142,6 +174,12 @@ html[data-theme="dark"] .feat-cta{color:#0f1722;}
         </div>
       </a></div>
     </div>
+  </section>
+
+  <section class="section" style="--tint:var(--t-cp);--tint-soft:var(--t-cp-soft)">
+    <div class="shead"><h2>Marchés publics IA</h2><span class="sc">consultations en cours</span><a class="more" href="/outils/observatoire-ia/">L'observatoire →</a></div>
+    <div class="mpcal" id="mpCal"><div class="mpstate">Chargement des consultations…</div></div>
+    <p class="mpfoot" id="mpFoot"></p>
   </section>
 
   <section class="section" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
@@ -216,6 +254,116 @@ html[data-theme="dark"] .feat-cta{color:#0f1722;}
 <div id="sr-footer"></div>
 
 <script src="/assets/site.js?v=2026071301" defer></script>
+<script>
+/* Widget calendrier — marchés publics IA. Source : data.json de l'observatoire (même origine).
+   Se met à jour tout seul dès que ce data.json est rafraîchi ET commité (= la validation du lundi). */
+(function(){
+  var CAL=document.getElementById('mpCal'), FOOT=document.getElementById('mpFoot');
+  if(!CAL) return;
+  var MAX=10, MAJ='';
+  var MOIS=['JANV','FÉVR','MARS','AVR','MAI','JUIN','JUIL','AOÛT','SEPT','OCT','NOV','DÉC'];
+  var PAL=['#b23b3b','#7345a0','#b8570f','#3f7a4e','#0891b2','#c2410c'];
+  var ICO={
+    clock:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    pin:'<svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    cal:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18M12 15v4M10 17h4"/></svg>',
+    share:'<svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z" fill="currentColor" stroke="none"/></svg>'
+  };
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function initials(n){
+    var w=String(n||'').replace(/[^A-Za-zÀ-ÿ0-9 ]/g,' ').trim().split(/\s+/).filter(function(x){return x.length>1;});
+    return (((w[0]||'?')[0])+(((w[1]||'')[0])||'')).toUpperCase();
+  }
+  function colorFor(n){var h=0,s=String(n||'');for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return PAL[h%PAL.length];}
+  function lieu(dep){
+    if(!dep) return 'France';
+    var d=String(dep).split(',').map(function(s){return s.trim();}).filter(Boolean);
+    return d.length>1 ? d.length+' départements' : 'Dép. '+d[0];
+  }
+  /* Lien : profil acheteur si dispo ; sinon BOAMP UNIQUEMENT.
+     Garde-fou : ne jamais exposer une autre source de veille. */
+  function linkFor(it){
+    if(it.pa) return {url:it.pa, label:'Profil acheteur'};
+    var src=String(it.s||it.src||'').toLowerCase();
+    if(it.u && src.indexOf('boamp')===0) return {url:it.u, label:"Voir l'avis"};
+    return null;
+  }
+  function icsEsc(s){return String(s||'').replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n');}
+  function stamp(d){return d.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z';}
+  function makeICS(it){
+    var dt=new Date(it.dl), end=new Date(dt.getTime()+30*60000), L=linkFor(it);
+    var uid=String(it.dl+'-'+(it.a||'')).replace(/[^A-Za-z0-9]/g,'').slice(0,40)+'@sebastien-riviere.github.io';
+    return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Sebastien Riviere//Marches IA//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH',
+      'BEGIN:VEVENT','UID:'+uid,'DTSTAMP:'+stamp(new Date()),'DTSTART:'+stamp(dt),'DTEND:'+stamp(end),
+      'SUMMARY:'+icsEsc('Remise des offres — '+(it.a||'')),
+      'DESCRIPTION:'+icsEsc((it.o||'')+(L?'\n'+L.url:'')),
+      'LOCATION:'+icsEsc(lieu(it.dep)),
+      L?('URL:'+L.url):'',
+      'BEGIN:VALARM','TRIGGER:-P2D','ACTION:DISPLAY','DESCRIPTION:'+icsEsc('Remise des offres dans 2 jours'),'END:VALARM',
+      'END:VEVENT','END:VCALENDAR'].filter(Boolean).join('\r\n');
+  }
+  function download(it){
+    var blob=new Blob([makeICS(it)],{type:'text/calendar;charset=utf-8'});
+    var url=URL.createObjectURL(blob), a=document.createElement('a');
+    a.href=url; a.download='marche-ia-'+String(it.dl||'').slice(0,10)+'.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+  }
+  /* L'échéance fait foi en heure de PARIS — jamais dans le fuseau du visiteur
+     (sinon depuis La Réunion on lirait 14:00 pour une remise à 12:00). */
+  function parisParts(dt){
+    var p={};
+    new Intl.DateTimeFormat('fr-FR',{timeZone:'Europe/Paris',day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})
+      .formatToParts(dt).forEach(function(x){p[x.type]=x.value;});
+    return p;
+  }
+  function render(items){
+    if(!items.length){
+      CAL.innerHTML='<div class="mpstate">Aucune consultation IA à échéance ouverte en ce moment. <b>C\'est un signal en soi</b> : le volume de marchés publics purement IA reste faible en France.</div>';
+      FOOT.textContent=''; return;
+    }
+    var now=Date.now();
+    CAL.innerHTML=items.map(function(it){
+      var dt=new Date(it.dl), j=Math.ceil((dt.getTime()-now)/86400000), urgent=j<=14, L=linkFor(it);
+      var P=parisParts(dt), hh=P.hour+':'+P.minute;
+      return '<article class="mpev'+(urgent?' urgent':'')+'">'
+        +'<div class="mpd"><span class="m">'+MOIS[parseInt(P.month,10)-1]+'</span><span class="d">'+P.day+'</span></div>'
+        +'<span class="mpmono" style="background:'+colorFor(it.a)+'">'+esc(initials(it.a))+'</span>'
+        +'<div class="mpb"><div class="org">'+esc(it.a||'')+'</div><h3>'+esc(it.o||'')+'</h3><div class="mpm">'
+          +'<span class="mpchip">'+ICO.clock+'Remise avant '+hh+' (Paris)</span>'
+          +'<span class="mpchip">'+ICO.pin+esc(lieu(it.dep))+'</span>'
+          +(urgent?'<span class="mpchip j">J−'+j+'</span>':'')
+        +'</div></div>'
+        +'<div class="mpa">'
+          +(L?'<a class="mpbtn" href="'+esc(L.url)+'" target="_blank" rel="noopener">'+L.label+' →</a>':'')
+          +'<button type="button" class="mpico" data-ics title="Ajouter à mon calendrier" aria-label="Ajouter à mon calendrier">'+ICO.cal+'</button>'
+          +'<button type="button" class="sr-share icon" data-share data-share-url="'+esc(L?L.url:'/outils/observatoire-ia/')+'" data-share-title="'+esc((it.a||'')+' — '+String(it.o||'').slice(0,80))+'" title="Partager" aria-label="Partager">'+ICO.share+'</button>'
+        +'</div></article>';
+    }).join('');
+    [].slice.call(CAL.querySelectorAll('[data-ics]')).forEach(function(b,i){
+      b.addEventListener('click',function(){download(items[i]);});
+    });
+    [].slice.call(CAL.querySelectorAll('[data-share]')).forEach(function(b){
+      if(window.srBindShare){window.srBindShare(b);return;}
+      b.addEventListener('click',function(){ /* repli si site.js en cache */
+        var u=b.getAttribute('data-share-url')||''; if(u.indexOf('http')!==0)u=location.origin+u;
+        var t=b.getAttribute('data-share-title')||document.title;
+        if(navigator.share){navigator.share({title:t,url:u}).catch(function(){});}
+        else if(navigator.clipboard){navigator.clipboard.writeText(u).catch(function(){});}
+      });
+    });
+    FOOT.textContent='Consultations IA à échéance ouverte · source : observatoire (BOAMP) · mis à jour le '+(MAJ||'—');
+  }
+  fetch('/outils/observatoire-ia/data.json?v='+Date.now()).then(function(r){return r.json();}).then(function(d){
+    MAJ=d.maj||'';
+    var now=Date.now();
+    var items=(d.items||[]).filter(function(it){
+      return (it.ia===1||it.th==='ia') && it.dl && new Date(it.dl).getTime()>now;
+    }).sort(function(a,b){return new Date(a.dl)-new Date(b.dl);}).slice(0,MAX);
+    render(items);
+  })['catch'](function(){ CAL.innerHTML='<div class="mpstate">Consultations momentanément indisponibles.</div>'; });
+})();
+</script>
 <script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

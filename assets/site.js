@@ -125,7 +125,6 @@
 
   function buildShare(toast){
     var triggers=[].slice.call(document.querySelectorAll('[data-share]'));
-    if(!triggers.length)return;
     var menu=null,curBtn=null;
     var NETS=[
       ['x','X (Twitter)','<svg viewBox="0 0 24 24"><path d="M18.24 2h3.3l-7.2 8.23L22.98 22h-6.63l-5.2-6.8L5.2 22H1.9l7.7-8.8L1.02 2h6.8l4.7 6.22L18.24 2zm-1.16 18h1.83L7.01 3.88H5.05L17.08 20z"/></svg>'],
@@ -169,7 +168,8 @@
     document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
     window.addEventListener('scroll',function(){closeMenu();},true);
     window.addEventListener('resize',function(){closeMenu();});
-    triggers.forEach(function(btn){
+    function bindTrigger(btn){
+      if(btn.__srShareBound)return;btn.__srShareBound=1;
       btn.addEventListener('click',function(e){
         e.preventDefault();e.stopPropagation();
         var u=btn.getAttribute('data-share-url')||'';
@@ -180,7 +180,10 @@
         if(navigator.share){navigator.share({title:t,url:u}).catch(function(err){if(err&&err.name==='AbortError')return;openMenu(btn);});}
         else{openMenu(btn);}
       });
-    });
+    }
+    triggers.forEach(bindTrigger);
+    /* expose : permet de brancher des boutons [data-share] rendus dynamiquement (ex. widget calendrier) */
+    window.srBindShare=bindTrigger;
   }
 
   function mount(){
