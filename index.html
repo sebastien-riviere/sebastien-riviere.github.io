@@ -77,6 +77,17 @@ html[data-theme="dark"] .feat-cta{color:#0f1722;}
 .card .go{margin-top:auto;padding-top:13px;font-weight:800;font-size:14.5px;color:var(--tint);}
 .card.wide{grid-column:1/-1;}
 .card.wide h3{font-size:24px;}
+/* card article à la une avec visuel */
+.card.wide.art{overflow:hidden;}
+.card.wide.art>a{flex-direction:row;padding:0;gap:0;align-items:stretch;}
+.art-media{flex:0 0 40%;position:relative;overflow:hidden;background:var(--tint-soft);min-height:210px;}
+.art-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.art-body{flex:1;min-width:0;padding:24px 26px;display:flex;flex-direction:column;}
+@media(max-width:640px){
+  .card.wide.art>a{flex-direction:column;}
+  .art-media{flex:none;width:100%;min-height:0;height:180px;}
+  .art-body{padding:20px 20px;}
+}
 
 @media(max-width:600px){
   .maxw{padding:0 18px;}
@@ -117,15 +128,18 @@ html[data-theme="dark"] .feat-cta{color:#0f1722;}
     </div>
   </section>
 
-  <section class="section" style="--tint:var(--t-art);--tint-soft:var(--t-art-soft)">
+  <section class="section" style="--tint:var(--t-ia);--tint-soft:var(--t-ia-soft)">
     <div class="shead"><h2>Derniers articles &amp; enquêtes</h2><span class="sc">à lire</span><a class="more" href="/articles/">Toute la rubrique →</a></div>
     <div class="grid">
-      <div class="card wide"><a href="/articles/quand-l-ia-chante-en-creole/">
-        <div class="lbl">Enquête · Culture &amp; IA</div>
-        <h3>Quand l'IA chante en créole</h3>
-        <p>Séga et maloya générés par IA à La Réunion : créateurs, chiffres, droit, culture. La vraie question n'est pas « pour ou contre l'IA », mais : où est passé l'humain ?</p>
-        <div class="meta">4 juillet 2026 · lecture ~10 min</div>
-        <span class="go">Lire l'article →</span>
+      <div class="card wide art"><a href="/articles/quand-l-ia-chante-en-creole/">
+        <div class="art-media"><img src="/articles/quand-l-ia-chante-en-creole/og-musique-ia.jpg" alt="Un tambour roulèr et un kayamb réunionnais mêlés à des notes et des données numériques" loading="lazy" width="1200" height="630"></div>
+        <div class="art-body">
+          <div class="lbl">Enquête · Culture &amp; IA</div>
+          <h3>Quand l'IA chante en créole</h3>
+          <p>Séga et maloya générés par IA à La Réunion : créateurs, chiffres, droit, culture. La vraie question n'est pas « pour ou contre l'IA », mais : où est passé l'humain ?</p>
+          <div class="meta">4 juillet 2026 · lecture ~10 min</div>
+          <span class="go">Lire l'article →</span>
+        </div>
       </a></div>
     </div>
   </section>
