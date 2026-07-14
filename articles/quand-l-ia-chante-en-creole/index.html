@@ -30,38 +30,38 @@
   --bg:#e9eef4; --bg-band:#dfe7f0;
   --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
   --card:#ffffff; --border:#1b2836; --border-soft:#d5dee8;
-  --title:#1c2a37; --accent:#2f6fb0; --accent-ink:#245a91; --accent-soft:#dbe8f6;
+  --title:#1c2a37; --accent:#12a082; --accent-ink:#0c7d60; --accent-soft:#dcf3ec;
   --pop:#d64550; --pop-ink:#b23131; --pop-soft:#f6dede;
   --shadow:3px 3px 0 rgba(20,33,46,.12);
-  --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-ia:#12a082; --t-ia-soft:#dcf3ec; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
   --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
-  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#4453c4; --t-art-soft:#e4e6f8;
+  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#12a082; --t-art-soft:#e4e6f8;
 }
 @media(prefers-color-scheme:dark){
   :root{
     --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
     --card:#16212e; --border:rgba(221,233,244,.24); --border-soft:rgba(221,233,244,.10); --title:#e7eef5;
-    --accent:#5b9bd8; --accent-ink:#9cc6ec; --accent-soft:#1b2b3c;
+    --accent:#2fd6ab; --accent-ink:#3ee6bb; --accent-soft:#12312a;
     --pop:#e5686f; --pop-ink:#e08c8c; --pop-soft:#2f1a1a; --shadow:3px 3px 0 rgba(0,0,0,.42);
-    --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+    --t-ia:#2fd6ab; --t-ia-soft:#12312a; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
     --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
-    --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#9aa5ef; --t-art-soft:#1a1e33;
+    --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#2fd6ab; --t-art-soft:#1a1e33;
   }
 }
 html[data-theme="light"]{
   --ui:'Nunito',system-ui,sans-serif; --bg:#e9eef4; --bg-band:#dfe7f0; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
   --card:#ffffff; --border:#1b2836; --border-soft:#d5dee8; --title:#1c2a37;
-  --accent:#2f6fb0; --accent-ink:#245a91; --accent-soft:#dbe8f6;
+  --accent:#12a082; --accent-ink:#0c7d60; --accent-soft:#dcf3ec;
   --pop:#d64550; --pop-ink:#b23131; --pop-soft:#f6dede; --shadow:3px 3px 0 rgba(20,33,46,.12);
-  --t-art:#4453c4; --t-art-soft:#e4e6f8; --t-ia:#41586b; --t-ia-soft:#e9ecf2; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-art:#12a082; --t-art-soft:#e4e6f8; --t-ia:#12a082; --t-ia-soft:#dcf3ec; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
   --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
 }
 html[data-theme="dark"]{
   --ui:'Nunito',system-ui,sans-serif; --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
   --card:#16212e; --border:rgba(221,233,244,.24); --border-soft:rgba(221,233,244,.10); --title:#e7eef5;
-  --accent:#5b9bd8; --accent-ink:#9cc6ec; --accent-soft:#1b2b3c;
+  --accent:#2fd6ab; --accent-ink:#3ee6bb; --accent-soft:#12312a;
   --pop:#e5686f; --pop-ink:#e08c8c; --pop-soft:#2f1a1a; --shadow:3px 3px 0 rgba(0,0,0,.42);
-  --t-art:#9aa5ef; --t-art-soft:#1a1e33; --t-ia:#95abce; --t-ia-soft:#1b2636; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+  --t-art:#2fd6ab; --t-art-soft:#1a1e33; --t-ia:#2fd6ab; --t-ia-soft:#12312a; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
   --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -93,7 +93,7 @@ main{flex:1;padding:34px 40px 64px;}
 .art hr{border:0;height:1px;background:var(--border);margin:40px 0;}
 
 /* Citation */
-.art blockquote{border-left:3px solid var(--pop);background:var(--bg-band);border-radius:0 10px 10px 0;padding:14px 20px;margin:22px 0;font-size:17px;line-height:1.55;color:var(--text);}
+.art blockquote{border-left:3px solid var(--accent);background:var(--bg-band);border-radius:0 10px 10px 0;padding:14px 20px;margin:22px 0;font-size:17px;line-height:1.55;color:var(--text);}
 .art blockquote .src{display:block;margin-top:8px;font-size:13px;font-weight:600;color:var(--faint);font-style:normal;}
 
 /* Encadré */
@@ -280,11 +280,11 @@ footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
         <line x1="80" y1="90" x2="660" y2="90" stroke="#c47d23" stroke-width="1.5" stroke-dasharray="5 4"/>
         <text x="660" y="84" font-size="12" fill="#9a5f15" text-anchor="end">la moitié (50 %)</text>
         <line x1="80" y1="340" x2="660" y2="340" stroke="#c3c2b7" stroke-width="1.5"/>
-        <path d="M150 340 L150 200 L370 145 L590 120 L590 340 Z" fill="#4453c4" fill-opacity="0.12"/>
-        <polyline points="150,200 370,145 590,120" fill="none" stroke="#4453c4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-        <circle cx="150" cy="200" r="6" fill="#4453c4" stroke="#ffffff" stroke-width="2"/>
-        <circle cx="370" cy="145" r="6" fill="#4453c4" stroke="#ffffff" stroke-width="2"/>
-        <circle cx="590" cy="120" r="6" fill="#4453c4" stroke="#ffffff" stroke-width="2"/>
+        <path d="M150 340 L150 200 L370 145 L590 120 L590 340 Z" fill="#12a082" fill-opacity="0.12"/>
+        <polyline points="150,200 370,145 590,120" fill="none" stroke="#12a082" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="150" cy="200" r="6" fill="#12a082" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="370" cy="145" r="6" fill="#12a082" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="590" cy="120" r="6" fill="#12a082" stroke="#ffffff" stroke-width="2"/>
         <text x="150" y="184" font-size="17" font-weight="700" fill="#1b2733" text-anchor="middle">28 %</text>
         <text x="370" y="129" font-size="17" font-weight="700" fill="#1b2733" text-anchor="middle">39 %</text>
         <text x="590" y="104" font-size="17" font-weight="700" fill="#1b2733" text-anchor="middle">44 %</text>
