@@ -24,12 +24,18 @@
 
 ::selection{background:var(--ia-soft)}
 
-/* encart pédagogique : les 4 statuts de gratuité (le différenciateur) */
-.legend-box{max-width:var(--wrap-app);width:100%;margin:2px auto 0;padding:0 24px;}
-.legend-inner{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;}
-.legend-inner h2{font-family:var(--ui);font-weight:900;font-size:14px;color:var(--ink);margin:0 0 4px;display:flex;align-items:center;gap:8px;}
-.legend-inner h2 svg{width:17px;height:17px;fill:none;stroke:var(--ia);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.legend-inner p.sub{font-family:var(--ui);font-size:12.5px;color:var(--faint);line-height:1.5;margin:0 0 14px;max-width:660px;}
+/* encart pédagogique REPLIABLE : les 4 statuts de gratuité (le différenciateur) */
+.legend-box{max-width:var(--wrap-app);width:100%;margin:6px auto 0;padding:0 24px;}
+.legend-box>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;font-family:var(--ui);font-weight:800;font-size:13px;color:var(--ink);background:var(--card);border:1px solid var(--border-soft);border-radius:var(--radius-sm);padding:10px 14px;box-shadow:var(--e-tile);}
+.legend-box>summary::-webkit-details-marker{display:none;}
+.legend-box>summary>svg{width:16px;height:16px;fill:none;stroke:var(--ia);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+.lg-dots{display:inline-flex;gap:4px;margin-left:2px;}
+.lg-dots i{width:9px;height:9px;border-radius:50%;}
+.lg-chev{margin-left:auto;color:var(--faint);transition:transform .2s;display:flex;}
+.lg-chev svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+.legend-box[open]>summary{border-radius:var(--radius-sm) var(--radius-sm) 0 0;border-bottom:none;box-shadow:none;}
+.legend-box[open] .lg-chev{transform:rotate(180deg);}
+.legend-inner{background:var(--card);border:1px solid var(--border-soft);border-top:none;border-radius:0 0 var(--radius-sm) var(--radius-sm);padding:14px 16px;}
 .legend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;}
 .legend-item{display:flex;gap:10px;align-items:flex-start;font-family:var(--ui);font-size:12.5px;line-height:1.45;color:var(--muted);}
 .legend-item .dot{flex:none;width:12px;height:12px;border-radius:50%;margin-top:3px;}
@@ -86,6 +92,10 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
 /* card formation */
 .card{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--radius);padding:15px 16px;display:flex;flex-direction:column;gap:9px;box-shadow:var(--e-tile);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
 .card:hover{transform:translateY(-3px);box-shadow:var(--e-tileh);border-color:var(--ia-line);}
+.card-head{display:flex;gap:11px;align-items:flex-start;}
+.ccat{flex:none;width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 12px rgba(20,33,46,.14);}
+.ccat svg{width:21px;height:21px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.card-id{min-width:0;flex:1;}
 .cc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .gbadge{font-family:var(--ui);font-size:10px;font-weight:900;letter-spacing:.2px;padding:3px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;}
 .gbadge .gd{width:6px;height:6px;border-radius:50%;flex:none;}
@@ -143,7 +153,7 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
     <div class="ia-hcopy">
       <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg> Se former · IA &amp; Data</div>
       <h1 class="ia-title">Certifications &amp; formations IA / Data gratuites</h1>
-      <p class="ia-lead">Une sélection de formations et certifications en <strong>intelligence artificielle et data</strong>, avec un statut de gratuité <strong>honnête</strong>&nbsp;: vraiment gratuit, cours gratuit mais certificat payant, conditionnel, ou finançable CPF. Parce que «&nbsp;gratuit&nbsp;» cache souvent un astérisque. <strong>Vérifié à la source</strong>, mis à jour régulièrement.</p>
+      <p class="ia-lead">Formations et certifications <strong>IA &amp; data</strong> avec un statut de gratuité <strong>honnête</strong> — parce que «&nbsp;gratuit&nbsp;» cache souvent un astérisque. <strong>Vérifié à la source.</strong></p>
       <div class="ia-stats" id="heroStats"></div>
     </div>
     <div class="ia-deco" aria-hidden="true">
@@ -159,10 +169,9 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
   </header>
 </div>
 
-<div class="legend-box">
+<details class="legend-box">
+  <summary><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Comment lire la gratuité <span class="lg-dots"><i class="d-vrai"></i><i class="d-audit"></i><i class="d-cond"></i><i class="d-cpf"></i></span><span class="lg-chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></summary>
   <div class="legend-inner">
-    <h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Comment lire la gratuité</h2>
-    <p class="sub">La plupart des listes «&nbsp;X certifs IA gratuites&nbsp;» mélangent tout. Ici, chaque fiche affiche son <strong>vrai</strong> statut&nbsp;:</p>
     <div class="legend-grid">
       <div class="legend-item"><span class="dot d-vrai"></span><span><b>Vraiment gratuit</b> — cours <em>et</em> certificat/badge gratuits, ouverts à tous.</span></div>
       <div class="legend-item"><span class="dot d-audit"></span><span><b>Cours gratuit, certif payante</b> — vous apprenez sans payer, mais le certificat est facturé.</span></div>
@@ -170,7 +179,7 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
       <div class="legend-item"><span class="dot d-cpf"></span><span><b>Finançable CPF</b> — 0&nbsp;€ pour l'apprenant éligible, mais ce n'est pas «&nbsp;gratuit&nbsp;» au sens strict.</span></div>
     </div>
   </div>
-</div>
+</details>
 
 <div class="toolbar">
   <div class="tb-row">
@@ -210,6 +219,15 @@ const GRAT = {
 };
 const GRAT_ORDER = ['vrai-gratuit','audit','conditionnel','cpf'];
 const CAT_COL = {fondamentaux:'#7c3aed',genai:'#0ea5e9',data:'#0891b2',dataeng:'#14b8a6',ml:'#6366f1',ethique:'#e11d48'};
+const ICN_CAT = {
+  fondamentaux:'<svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg>',
+  genai:'<svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>',
+  data:'<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>',
+  dataeng:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg>',
+  ml:'<svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="13" cy="17" r="2"/><path d="M7.7 8.3l3.8 7M16.3 7.7l-2.6 7.6M8 7.1l8-.6"/></svg>',
+  ethique:'<svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg>',
+  _:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>'
+};
 const NIV_ORDER = ['débutant','intermédiaire','avancé'];
 
 let CATS=[], CATMAP={}, CERTS=[], fSort='reco';
@@ -238,7 +256,7 @@ function cardHTML(c){
   const sdata=esc(((c.n||'')+' '+(c.org||'')+' '+(c.note||'')+' '+(c.reco||'')).toLowerCase());
   return `<div class="card" data-search="${sdata}">
     <div class="cc-top"><span class="gbadge ${g.cls}"><span class="gd"></span>${esc(g.lbl)}</span>${c.verif?`<span class="verif"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>${esc(c.verif)}</span>`:''}</div>
-    <div><div class="eyebrow" style="color:${col}">${esc(catLbl)}</div><div class="card-title">${title}</div><div class="card-org">${esc(c.org||'')}</div></div>
+    <div class="card-head"><span class="ccat" style="background:${col}">${ICN_CAT[c.cat]||ICN_CAT._}</span><div class="card-id"><div class="eyebrow" style="color:${col}">${esc(catLbl)}</div><div class="card-title">${title}</div><div class="card-org">${esc(c.org||'')}</div></div></div>
     ${chips?`<div class="chips">${chips}</div>`:''}
     ${note}
     ${reco}
