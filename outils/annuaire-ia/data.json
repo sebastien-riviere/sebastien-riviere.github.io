@@ -1,5 +1,5 @@
 {
- "maj": "2026-07-04",
+ "maj": "2026-07-14",
  "cats": [
   [
    "assistants",
@@ -36,6 +36,10 @@
   [
    "voice",
    "Voix & audio"
+  ],
+  [
+   "metiers",
+   "Métiers & fonctions"
   ],
   [
    "souverain",
@@ -1199,6 +1203,42 @@
    "dom": "github.com",
    "u": "https://github.com/LostRuins/koboldcpp",
    "gh": "LostRuins/koboldcpp"
+  },
+  {
+   "c": "metiers",
+   "n": "Doctrine",
+   "d": "Recherche dans la jurisprudence et le droit français en langage naturel.",
+   "p": "payant",
+   "dom": "doctrine.fr",
+   "u": "https://www.doctrine.fr",
+   "pays": "FR"
+  },
+  {
+   "c": "metiers",
+   "n": "Nabla",
+   "d": "Assistant clinique : écoute la consultation et rédige le compte rendu médical.",
+   "p": "freemium",
+   "dom": "nabla.com",
+   "u": "https://www.nabla.com",
+   "pays": "FR"
+  },
+  {
+   "c": "metiers",
+   "n": "Pennylane",
+   "d": "Comptabilité et pilotage de trésorerie pour PME et experts-comptables.",
+   "p": "payant",
+   "dom": "pennylane.com",
+   "u": "https://www.pennylane.com/fr/",
+   "pays": "FR"
+  },
+  {
+   "c": "metiers",
+   "n": "iAdvize",
+   "d": "Conseil en ligne et conversations client automatisés pour l'e-commerce.",
+   "p": "payant",
+   "dom": "iadvize.com",
+   "u": "https://www.iadvize.com/fr/",
+   "pays": "FR"
   }
  ],
  "valos": [
