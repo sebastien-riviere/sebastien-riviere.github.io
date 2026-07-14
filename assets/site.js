@@ -74,6 +74,8 @@
     +'<span class="fn">© Sébastien Rivière · 2026</span>'
     +'<span class="fl">'
     +'<a href="/a-propos/">À propos</a>'
+    +'<a href="/mentions-legales/">Mentions légales</a>'
+    +'<a href="/mentions-legales/#donnees">Confidentialité</a>'
     +'</span>'
     +'<a class="fbadge" href="/opt-out-ia/" title="Ce site refuse l\'entraînement des IA — comprendre et faire pareil">'
     +'<span class="d"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Sans entraînement IA</a>'

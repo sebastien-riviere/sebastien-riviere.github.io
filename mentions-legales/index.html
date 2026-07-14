@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentions légales, confidentialité &amp; politique IA — Sébastien Rivière</title>
+<meta name="description" content="Mentions légales du site : éditeur, hébergement, propriété intellectuelle, données personnelles (RGPD), traceurs, politique IA (opt-out et contenus générés), et avertissement sur les outils.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/styles/ia-kit.css">
+<link rel="stylesheet" href="/assets/site.css?v=2026071301">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+:root{--ia:#12a082;--ia-ink:#0c7d60;--ia-soft:#dcf3ec;--ia-line:#b4e2d5}
+@media(prefers-color-scheme:dark){:root{--ia:#2fd6ab;--ia-ink:#3ee6bb;--ia-soft:#12312a;--ia-line:#215043}}
+:root[data-theme="light"]{--ia:#12a082;--ia-ink:#0c7d60;--ia-soft:#dcf3ec;--ia-line:#b4e2d5}
+:root[data-theme="dark"]{--ia:#2fd6ab;--ia-ink:#3ee6bb;--ia-soft:#12312a;--ia-line:#215043}
+::selection{background:var(--ia-soft)}
+
+/* sommaire */
+.toc{background:var(--card);border:1px solid var(--border-soft);border-radius:12px;padding:14px 16px;margin:6px 0 26px;box-shadow:var(--e-tile)}
+.toc h2{font-size:11px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;color:var(--faint);margin-bottom:9px}
+.toc ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px 8px;counter-reset:t}
+.toc a{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--ia-ink);background:var(--ia-soft);border:1px solid transparent;border-radius:999px;padding:4px 11px;text-decoration:none}
+.toc a:hover{border-color:var(--ia)}
+.toc a::before{counter-increment:t;content:counter(t);font-weight:900;opacity:.6}
+
+.sec{margin:0 0 30px;scroll-margin-top:16px}
+.sec h2{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:900;color:var(--ink);margin-bottom:11px;letter-spacing:-.2px}
+.sec h2 .n{flex:none;width:26px;height:26px;border-radius:8px;background:var(--ia-soft);color:var(--ia-ink);font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.sec h3{font-size:14px;font-weight:800;color:var(--ink);margin:16px 0 5px}
+.sec p, .sec li{font-size:14.5px;line-height:1.65;color:var(--muted)}
+.sec p{margin-bottom:10px}
+.sec b, .sec strong{color:var(--ink);font-weight:800}
+.sec ul{margin:0 0 11px;padding-left:18px;display:flex;flex-direction:column;gap:5px}
+.sec a{color:var(--ia-ink);font-weight:700}
+.sec code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;background:var(--bg-2);border:1px solid var(--border-soft);border-radius:5px;padding:1px 5px;color:var(--ink)}
+
+/* encadrés */
+.box{border:1px solid var(--ia-line);background:var(--ia-soft);border-radius:11px;padding:13px 15px;margin:12px 0}
+.box.warn{border-color:color-mix(in srgb,var(--warn) 40%,transparent);background:var(--warn-soft)}
+.box p:last-child{margin-bottom:0}
+.box .lbl{display:block;font-size:10.5px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:var(--ia-ink);margin-bottom:4px}
+.box.warn .lbl{color:var(--warn)}
+
+/* tableau des données */
+.tbl{width:100%;border-collapse:collapse;margin:10px 0 14px;font-size:13.5px}
+.tbl th,.tbl td{border:1px solid var(--border-soft);padding:8px 10px;text-align:left;vertical-align:top;color:var(--muted);line-height:1.5}
+.tbl th{background:var(--bg-2);color:var(--ink);font-weight:800;font-size:12px}
+.tbl td b{color:var(--ink)}
+.tblwrap{overflow-x:auto}
+
+.maj{font-size:12.5px;color:var(--faint);font-weight:700;border-top:1px solid var(--border-soft);padding-top:14px;margin-top:8px}
+@media(max-width:600px){.sec h2{font-size:17px}}
+</style>
+</head>
+<body>
+
+<div id="sr-header"></div>
+
+<div class="ia-band">
+  <header class="ia-head read">
+    <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg> Informations légales</div>
+    <h1 class="ia-title">Mentions légales</h1>
+    <p class="ia-lead">Qui édite ce site, ce qu'il fait de vos données (très peu), ce qui vous est permis, et ce que valent ses outils. <strong>Écrit pour être lu</strong>, pas pour se couvrir.</p>
+  </header>
+</div>
+
+<div class="ia-wrap read">
+<main>
+
+  <nav class="toc" aria-label="Sommaire">
+    <h2>Sommaire</h2>
+    <ol>
+      <li><a href="#editeur">Éditeur</a></li>
+      <li><a href="#hebergement">Hébergement</a></li>
+      <li><a href="#pi">Propriété intellectuelle</a></li>
+      <li><a href="#tiers">Contenus de tiers</a></li>
+      <li><a href="#donnees">Données personnelles</a></li>
+      <li><a href="#traceurs">Traceurs &amp; stockage</a></li>
+      <li><a href="#ia">Politique IA</a></li>
+      <li><a href="#avertissement">Avertissement</a></li>
+      <li><a href="#droit">Droit applicable</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1 -->
+  <section class="sec" id="editeur">
+    <h2><span class="n">1</span>Éditeur du site</h2>
+    <p>Ce site est édité par <b>Sébastien Rivière</b>, personne physique, résidant à La Réunion (France).</p>
+    <p><b>Contact&nbsp;:</b> <a href="mailto:rsebastien@protonmail.com">rsebastien@protonmail.com</a> — c'est aussi l'adresse à utiliser pour toute demande relative à cette page (signalement, correction, retrait, données personnelles).</p>
+    <p><b>Directeur de la publication&nbsp;:</b> Sébastien Rivière.</p>
+    <div class="box">
+      <span class="lbl">Statut</span>
+      <p>Il s'agit d'un <b>site personnel, non professionnel</b>. Aucune activité commerciale n'y est exercée&nbsp;: rien n'est vendu, aucune prestation n'y est proposée, il n'y a ni publicité ni partenariat rémunéré, et aucune sélection présentée ici n'est sponsorisée. Conformément à la <a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000801164/" target="_blank" rel="noopener">LCEN</a>, un éditeur non professionnel peut ne pas publier son adresse personnelle&nbsp;; l'identité de l'éditeur est communiquée à l'hébergeur.</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="sec" id="hebergement">
+    <h2><span class="n">2</span>Hébergement</h2>
+    <p>Le site est hébergé par <b>GitHub, Inc.</b> (GitHub Pages) — 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis — <a href="https://github.com" target="_blank" rel="noopener">github.com</a>.</p>
+    <p>Certaines fonctions (accès à des contenus réservés par code, récupération de données publiques, traitements de l'outil MD-Convert) passent par des <b>services applicatifs hébergés chez Cloudflare, Inc.</b> — 101 Townsend St, San Francisco, CA 94107, États-Unis — sur le domaine <code>*.workers.dev</code>.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="sec" id="pi">
+    <h2><span class="n">3</span>Propriété intellectuelle</h2>
+    <h3>Ce qui est protégé</h3>
+    <p>Sauf mention contraire, l'ensemble des contenus de ce site est la propriété de Sébastien Rivière&nbsp;: <b>les articles et enquêtes</b>, <b>les carrousels</b>, <b>les textes et analyses</b>, <b>les outils</b> (leur code, leur logique, leurs grilles et leurs libellés), <b>les schémas et illustrations</b>, ainsi que <b>la structure, l'arborescence, la charte graphique et l'identité visuelle</b> du site.</p>
+    <p>Les <b>idées et méthodes</b> exposées ici ne sont pas protégeables en tant que telles&nbsp;: c'est leur <b>expression</b> — la formulation, la mise en forme, l'agencement — qui l'est. Une sélection de ressources peut par ailleurs être protégée en tant que <b>base de données</b>, au titre de l'investissement qu'elle représente.</p>
+
+    <h3>Ce que vous pouvez faire</h3>
+    <p><b>© Sébastien Rivière — tous droits réservés</b>, avec les libertés suivantes, sans avoir à demander&nbsp;:</p>
+    <ul>
+      <li><b>Citer</b> un extrait court en indiquant l'auteur et <b>un lien vers la page d'origine</b>.</li>
+      <li><b>Partager le lien</b> d'une page, librement — y compris les boutons de partage prévus à cet effet.</li>
+      <li><b>Utiliser les outils</b> pour vos besoins, personnels comme professionnels.</li>
+    </ul>
+    <p>En revanche, la <b>reproduction intégrale</b> d'un article ou d'un carrousel, la <b>republication</b> sur un autre site, l'<b>usage commercial</b> et la <b>réutilisation d'une base de données</b> du site nécessitent un accord écrit préalable. Il suffit de <a href="mailto:rsebastien@protonmail.com">demander</a>&nbsp;: la réponse est souvent oui.</p>
+
+    <div class="box">
+      <span class="lbl">Entraînement des IA — c'est non</span>
+      <p>Les droits sont <b>expressément réservés</b> au sens de l'article 4 de la directive (UE) 2019/790&nbsp;: le contenu de ce site <b>ne peut pas être utilisé pour entraîner des modèles d'IA</b>. Ce refus est déclaré de façon lisible par les machines (<code>robots.txt</code> et <code>/.well-known/tdmrep.json</code>). <a href="/opt-out-ia/">Comprendre l'opt-out et le faire chez vous →</a></p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="sec" id="tiers">
+    <h2><span class="n">4</span>Contenus &amp; ressources de tiers</h2>
+    <h3>Marques, logos et noms cités</h3>
+    <p>Les <b>noms, marques et logos</b> présentés (notamment dans l'annuaire des outils IA) appartiennent à leurs titulaires respectifs. Ils sont utilisés <b>à titre de référence</b>, pour identifier les outils décrits, dans un but d'information. Cela n'implique <b>aucune affiliation, aucun partenariat ni aucune approbation</b> de leur part. Tout titulaire peut demander le retrait de son logo par simple <a href="mailto:rsebastien@protonmail.com">courriel</a>.</p>
+
+    <h3>Portraits (page « Qui est qui »)</h3>
+    <p>Les portraits proviennent de <b>Wikimedia Commons</b> et sont sous <b>licence libre</b> (Creative Commons ou domaine public). Chaque portrait indique son <b>auteur et sa licence</b> (au survol) et <b>renvoie à sa page d'origine</b>. Les portraits non libres sont écartés&nbsp;; une initiale est affichée à la place.</p>
+
+    <h3>Autres ressources</h3>
+    <ul>
+      <li><b>Polices de caractères</b> (Nunito, Inter, Caveat, Lora)&nbsp;: licence SIL Open Font License, hébergées sur ce site.</li>
+      <li><b>Drapeaux</b>&nbsp;: fichiers du domaine public, hébergés sur ce site.</li>
+      <li><b>Bibliothèques logicielles</b> (pdf.js, jsPDF, JSZip, pdf-lib, Sortable)&nbsp;: licences libres MIT / Apache 2.0, hébergées sur ce site, en-têtes de licence conservés.</li>
+      <li><b>Données publiques</b> (avis de marchés, textes officiels)&nbsp;: issues de sources publiques, citées et liées à chaque fois.</li>
+    </ul>
+  </section>
+
+  <!-- 5 -->
+  <section class="sec" id="donnees">
+    <h2><span class="n">5</span>Données personnelles</h2>
+    <p>Ce site <b>n'a pas de compte, pas d'inscription et pas de formulaire</b>. Il ne vend ni ne loue aucune donnée. Voici tout ce qui existe&nbsp;:</p>
+    <div class="tblwrap">
+    <table class="tbl">
+      <thead><tr><th>Quoi</th><th>Pourquoi</th><th>Base légale &amp; durée</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Mesure d'audience</b><br>(pages vues, référent, type d'appareil, pays)</td>
+          <td>Savoir ce qui est lu, pour l'améliorer</td>
+          <td>Intérêt légitime · <b>sans cookie</b>, sans suivi d'un site à l'autre, statistiques agrégées</td>
+        </tr>
+        <tr>
+          <td><b>Courriels</b> que vous m'envoyez</td>
+          <td>Vous répondre</td>
+          <td>Intérêt légitime · conservés le temps de l'échange</td>
+        </tr>
+        <tr>
+          <td><b>Personnes citées</b> sur le site (« Qui est qui », articles)</td>
+          <td>Information du public sur des <b>figures publiques</b>, dans leur rôle public uniquement</td>
+          <td>Intérêt légitime · <b>droit d'opposition</b> (voir ci-dessous)</td>
+        </tr>
+        <tr>
+          <td><b>Réglages des outils</b><br>(thème, code d'accès, préférences)</td>
+          <td>Que l'outil se souvienne de vos choix</td>
+          <td>Strictement nécessaire · <b>reste sur votre appareil</b>, jamais transmis</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>Vos droits</h3>
+    <p>Vous disposez d'un droit d'<b>accès</b>, de <b>rectification</b>, d'<b>effacement</b>, d'<b>opposition</b> et de <b>limitation</b>. Une seule adresse&nbsp;: <a href="mailto:rsebastien@protonmail.com">rsebastien@protonmail.com</a>. Réponse sous un mois.</p>
+    <div class="box">
+      <span class="lbl">Vous êtes cité sur ce site&nbsp;?</span>
+      <p>Si vous figurez dans une page (« Qui est qui », un article, une analyse) et que vous souhaitez une <b>correction</b> ou un <b>retrait</b>, écrivez-moi&nbsp;: c'est traité <b>sans discussion et sans délai</b>. Aucune justification ne vous sera demandée pour un retrait de portrait.</p>
+    </div>
+    <p>Vous pouvez également introduire une réclamation auprès de la <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener">CNIL</a>.</p>
+  </section>
+
+  <!-- 6 -->
+  <section class="sec" id="traceurs">
+    <h2><span class="n">6</span>Traceurs &amp; stockage local</h2>
+    <div class="box">
+      <span class="lbl">Pas de bandeau cookies — et pour une bonne raison</span>
+      <p>Ce site <b>ne dépose aucun cookie</b> et <b>ne charge aucun traceur tiers</b>. Il n'y a donc rien à vous faire accepter. Les polices, images, drapeaux et bibliothèques sont <b>hébergés ici</b> plutôt qu'appelés chez des tiers.</p>
+    </div>
+
+    <h3>Les trois exceptions, en clair</h3>
+    <ul>
+      <li><b>Mesure d'audience</b>&nbsp;: assurée par GoatCounter, <b>sans cookie</b> et sans profilage. Aucun suivi d'un site à l'autre.</li>
+      <li><b>Vidéos YouTube</b>&nbsp;: elles ne sont <b>pas chargées</b> tant que vous ne cliquez pas. Tant que vous ne cliquez pas, <b>YouTube ignore votre visite</b>. Si vous cliquez, la vidéo se charge en mode «&nbsp;sans cookie&nbsp;» et Google reçoit alors votre requête&nbsp;: c'est <b>votre clic qui décide</b>.</li>
+      <li><b>L'outil MD-Convert</b>&nbsp;: par nature, il envoie le contenu que vous lui confiez à des services de conversion et d'IA. Il vous le <b>demande explicitement</b> avant, propose un <b>mode local hors ligne</b>, et n'active l'IA que si <b>vous</b> fournissez votre propre clé — qui reste sur votre appareil. Certains traitements transitent par des services applicatifs opérés par l'éditeur (Cloudflare) sans y être conservés.</li>
+    </ul>
+
+    <h3>Ce qui est gardé sur votre appareil</h3>
+    <p>Certains réglages sont enregistrés dans le <b>stockage local</b> de votre navigateur — un espace privé qui <b>ne quitte jamais votre appareil</b> et auquel je n'ai pas accès&nbsp;: thème clair/sombre, codes d'accès aux contenus réservés, préférences et réglages des outils. Vider les données de votre navigateur les efface.</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="sec" id="ia">
+    <h2><span class="n">7</span>Politique IA</h2>
+    <p>Ce site parle beaucoup d'intelligence artificielle&nbsp;; il se doit d'être clair sur son propre usage.</p>
+
+    <h3>Ce qui entre&nbsp;: non à l'entraînement</h3>
+    <p>Le contenu de ce site <b>ne peut pas servir à entraîner des modèles d'IA</b>. Ce refus est déclaré de façon lisible par les machines (voir <a href="#pi">propriété intellectuelle</a>) et s'impose aux fournisseurs d'IA au titre de l'<a href="https://artificialintelligenceact.eu/article/53/" target="_blank" rel="noopener">article 53 de l'AI Act</a>.</p>
+
+    <h3>Ce qui sort&nbsp;: l'IA est signalée</h3>
+    <p>L'IA est utilisée ici comme un <b>outil</b>, jamais comme un auteur qui s'effacerait derrière l'anonymat&nbsp;:</p>
+    <ul>
+      <li>Les <b>textes, analyses et enquêtes</b> sont écrits, vérifiés et assumés par un humain. Les sources sont citées et datées.</li>
+      <li>Les <b>contenus générés par une IA sont indiqués comme tels</b>, à l'endroit où ils apparaissent — c'est le cas des <b>résumés audio</b> des articles, dont la mention précise l'outil utilisé.</li>
+      <li>Les <b>outils</b> de ce site qui font appel à une IA le disent, et demandent votre accord avant d'envoyer quoi que ce soit.</li>
+    </ul>
+    <div class="box">
+      <span class="lbl">Le principe</span>
+      <p>Une IA peut aider à produire&nbsp;; <b>elle ne décide pas et ne signe pas</b>. La responsabilité de ce qui est publié ici reste entière et humaine.</p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="sec" id="avertissement">
+    <h2><span class="n">8</span>Avertissement sur les contenus et les outils</h2>
+    <div class="box warn">
+      <span class="lbl">Ceci n'est pas un conseil juridique</span>
+      <p>Les outils de ce site (diagnostic IA Act, seuils et délais de la commande publique, grille de critères, glossaire, annuaire, observatoire…) sont des <b>aides à la compréhension</b>, à visée pédagogique et indicative. Ils ne constituent <b>ni un conseil juridique, ni un conseil en conformité, ni une analyse personnalisée</b>, et ne remplacent pas un professionnel qualifié — avocat, juriste, expert-comptable selon le cas.</p>
+    </div>
+    <ul>
+      <li><b>Ce qui est indicatif&nbsp;:</b> les résultats, scores, classifications et seuils affichés dépendent de ce que vous saisissez et de règles simplifiées. Un cas réel comporte des nuances qu'un outil ne voit pas.</li>
+      <li><b>Ce qui évolue&nbsp;:</b> textes, seuils, tarifs, offres «&nbsp;gratuites&nbsp;» et dates changent vite. Chaque fiche porte, quand c'est possible, <b>sa date de vérification</b>&nbsp;: <b>recoupez toujours à la source officielle</b> avant de vous engager.</li>
+      <li><b>Sélections non exhaustives&nbsp;:</b> les listes sont curées, subjectives, ni exhaustives ni sponsorisées. Une absence n'est pas un jugement.</li>
+      <li><b>Liens externes&nbsp;:</b> les sites tiers cités ne sont pas sous mon contrôle&nbsp;; leur contenu n'engage que leurs éditeurs.</li>
+      <li><b>Une erreur&nbsp;?</b> <a href="mailto:rsebastien@protonmail.com">Signalez-la</a> — elle sera corrigée.</li>
+    </ul>
+  </section>
+
+  <!-- 9 -->
+  <section class="sec" id="droit">
+    <h2><span class="n">9</span>Droit applicable</h2>
+    <p>Le présent site et ces mentions sont soumis au <b>droit français</b>. En cas de litige, et à défaut de résolution amiable, les tribunaux français sont compétents.</p>
+    <p class="maj">Dernière mise à jour&nbsp;: 14 juillet 2026.</p>
+  </section>
+
+</main>
+</div>
+
+<div id="sr-footer"></div>
+
+<script src="/assets/site.js?v=2026071301" defer></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
