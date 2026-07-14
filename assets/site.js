@@ -118,6 +118,31 @@
     });
   }
 
+  /* --- Façade vidéo (.sr-yt) : aucun appel à YouTube tant que le visiteur n'a pas cliqué.
+         Au clic, on charge l'iframe en mode sans cookie (youtube-nocookie) + lecture directe. --- */
+  function buildYT(){
+    [].slice.call(document.querySelectorAll('.sr-yt')).forEach(function(el){
+      if(el._built)return;el._built=true;
+      var id=el.getAttribute('data-yt')||'';
+      var t=el.getAttribute('data-yt-title')||'Vidéo';
+      el.setAttribute('aria-label','Charger et lire la vidéo YouTube : '+t);
+      el.innerHTML='<span class="sr-yt-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>'
+        +'<span class="sr-yt-t"></span>'
+        +'<span class="sr-yt-m"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg>Regarder sur YouTube</span>'
+        +'<span class="sr-yt-n">Rien n’est envoyé à YouTube tant que vous n’avez pas cliqué.</span>';
+      el.querySelector('.sr-yt-t').textContent=t;   /* textContent : pas d'injection possible via le titre */
+      el.addEventListener('click',function(){
+        var f=document.createElement('iframe');
+        f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?autoplay=1&rel=0';
+        f.title=t;
+        f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');
+        f.setAttribute('allowfullscreen','');
+        f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+        var p=el.parentNode;p.innerHTML='';p.appendChild(f);
+      });
+    });
+  }
+
   /* --- Carrousel (.sr-carousel) : une page à la fois sur le scroll natif.
          Le swipe au doigt est natif (gratuit) ; le JS ne sert qu'aux flèches, points et clavier. --- */
   function buildCarousels(){
@@ -230,6 +255,7 @@
 
     buildAudio();
     buildCarousels();
+    buildYT();
 
     /* toast (mail) */
     var toast=document.createElement('span');toast.className='sr-toast';toast.setAttribute('role','status');toast.setAttribute('aria-live','polite');document.body.appendChild(toast);
