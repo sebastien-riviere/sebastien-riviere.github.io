@@ -20,22 +20,22 @@
   <link rel="stylesheet" href="css/components.css">
 
   <!-- PDF.js 3.x UMD — expose window.pdfjsLib -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="/assets/lib/pdf.min.js"></script>
 
   <!-- pdf-lib -->
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="/assets/lib/pdf-lib.min.js"></script>
 
   <!-- JSZip -->
-  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="/assets/lib/jszip.min.js"></script>
 
   <!-- SortableJS -->
-  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.3/Sortable.min.js"></script>
+  <script src="/assets/lib/Sortable.min.js"></script>
 
   <script>
     // Configure le worker PDF.js
     if (window.pdfjsLib) {
       pdfjsLib.GlobalWorkerOptions.workerSrc =
-        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        '/assets/lib/pdf.worker.min.js';
     }
   </script>
 </head>

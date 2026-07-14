@@ -242,7 +242,7 @@ function fmtStars(n){return n>=1000?Math.round(n/1000)+'k':n;}
 function flagImg(code,cls){
   if(!code) return '';
   const c=code.toLowerCase(), name=COUNTRY_NAME[code]||code;
-  return `<img class="${cls||'flag'}" src="https://flagcdn.com/${c}.svg" alt="${name}" title="${name}" width="18" height="12" loading="lazy">`;
+  return `<img class="${cls||'flag'}" src="/assets/flags/${c}.svg" alt="${name}" title="${name}" width="18" height="12" loading="lazy">`;
 }
 function editKey(t){return t.off===1?'officiel':t.off===0?'communaute':'';}
 
