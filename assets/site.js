@@ -118,6 +118,42 @@
     });
   }
 
+  /* --- Carrousel (.sr-carousel) : une page à la fois sur le scroll natif.
+         Le swipe au doigt est natif (gratuit) ; le JS ne sert qu'aux flèches, points et clavier. --- */
+  function buildCarousels(){
+    [].slice.call(document.querySelectorAll('.sr-carousel')).forEach(function(el){
+      if(el._built)return;el._built=true;
+      var strip=el.querySelector('.src-strip');if(!strip)return;
+      var imgs=[].slice.call(strip.querySelectorAll('img'));var n=imgs.length;if(!n)return;
+      var count=el.querySelector('.src-count'),dots=el.querySelector('.src-dots'),
+          prev=el.querySelector('.src-nav.prev'),next=el.querySelector('.src-nav.next');
+      if(dots){dots.innerHTML=imgs.map(function(_,i){
+        return '<button type="button" class="src-dot" data-i="'+i+'" aria-label="Page '+(i+1)+' sur '+n+'"></button>';}).join('');}
+      function cur(){return strip.clientWidth?Math.round(strip.scrollLeft/strip.clientWidth):0;}
+      function sync(){
+        var i=Math.max(0,Math.min(n-1,cur()));
+        if(count)count.textContent=(i+1)+' / '+n;
+        if(dots)[].slice.call(dots.children).forEach(function(d,j){d.classList.toggle('on',j===i);});
+        if(prev)prev.disabled=(i<=0);
+        if(next)next.disabled=(i>=n-1);
+      }
+      /* On pose la position ; c'est le CSS (scroll-behavior) qui décide d'animer ou non
+         — ainsi « animations réduites » est respecté automatiquement. */
+      function go(i){i=Math.max(0,Math.min(n-1,i));strip.scrollLeft=Math.max(0,Math.min(n-1,i))*strip.clientWidth;}
+      if(prev)prev.addEventListener('click',function(){go(cur()-1);});
+      if(next)next.addEventListener('click',function(){go(cur()+1);});
+      if(dots)dots.addEventListener('click',function(e){var b=e.target.closest('[data-i]');if(b)go(parseInt(b.getAttribute('data-i'),10));});
+      strip.addEventListener('scroll',function(){clearTimeout(strip._t);strip._t=setTimeout(sync,60);});
+      el.setAttribute('tabindex','0');
+      el.addEventListener('keydown',function(e){
+        if(e.key==='ArrowLeft'){e.preventDefault();go(cur()-1);}
+        else if(e.key==='ArrowRight'){e.preventDefault();go(cur()+1);}
+      });
+      window.addEventListener('resize',function(){clearTimeout(el._r);el._r=setTimeout(sync,120);});
+      sync();
+    });
+  }
+
   /* --- Thème : appliqué au plus tôt (voir inline dans <head>) puis bouton --- */
   var root=document.documentElement;
   function current(){var a=root.getAttribute('data-theme');if(a)return a;return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
@@ -193,6 +229,7 @@
     if(f){f.outerHTML=footerHTML();}
 
     buildAudio();
+    buildCarousels();
 
     /* toast (mail) */
     var toast=document.createElement('span');toast.className='sr-toast';toast.setAttribute('role','status');toast.setAttribute('aria-live','polite');document.body.appendChild(toast);
