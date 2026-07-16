@@ -1,5 +1,5 @@
 {
-  "maj": "2026-07-15",
+  "maj": "2026-07-16",
   "total": 300,
   "byTheme": {
     "data": 251,
@@ -7,6 +7,57 @@
     "ia": 24
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Tierce Maintenance Applicative Du Systeme D'Informations Décisionnel",
+      "a": "Département du Var",
+      "dep": "83",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-15",
+      "dl": "2026-09-03T16:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-70450",
+      "k": "departement du var|tierce maintenance applicative du systeme d informations decisionnel",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Maîtrise d'oeuvre pour la réfection du réseau Voix Données Images (VDI) du lycée Louise Michel de Grenoble (38)",
+      "a": "REGION AUVERGNE RHONE ALPES",
+      "dep": "38,69",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-15",
+      "dl": "2026-09-09T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-70372",
+      "k": "region auvergne rhone alpes|maitrise d oeuvre pour la refection du reseau voix donnees images vdi du lycee louise mich",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture de prévisions et d'observations de données météorologiques pour le Département du Lot",
+      "a": "Departement Du Lot",
+      "dep": "46",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-15",
+      "dl": "2026-08-04T16:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-70199",
+      "k": "departement du lot|fourniture de previsions et d observations de donnees meteorologiques pour le departement ",
+      "ia": null
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -1892,7 +1943,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-26894",
       "k": "toulouse metropole|26m0054aoo mhd vb acquisition et maintenance d un portail de gestion de donnees publiques",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -1909,7 +1960,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-27036",
       "k": "region grand est|production et valorisation des donnees de l occupation du sol grand est 2025",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -1943,7 +1994,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-26028",
       "k": "communaute d agglomeration villefranche |designation d un delegue a la protection des donnees dpd et prestations de service pour as",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -1960,7 +2011,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-26065",
       "k": "gip sne|mission de collecte de redressement et de fiabilisation des donnees issues de l enquete su",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -1977,7 +2028,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-25962",
       "k": "centre nationale du cinema|acquisition des donnees investissements et publicitaires de 2026 a 2030",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -1994,7 +2045,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-26331",
       "k": "centre national du cinema|acquisition de donnees sur la diffusion tv internationale des programmes francais pour les",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5054,57 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-95665",
       "k": "grand port maritime guadeloupe|realisation d une base de donnees photographiques et videographiques",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Désignation d'un Délégué à la Protection des Données (DPO) pour les besoins de Creusalis, OPH de la Creuse",
-      "a": "Creusalis - Office Public de l'Habitat de la Creuse",
-      "dep": "23",
-      "fam": "Marchés <90 k€ (MAPA)",
-      "tm": "Services",
-      "proc": "Procédure Adaptée",
-      "dp": "2025-08-28",
-      "dl": "2025-09-29T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-95929",
-      "k": "creusalis office public de l habitat de |designation d un delegue a la protection des donnees dpo pour les besoins de creusalis oph",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Tierce maintenance applicative (TMA) et hébergement de l'outil Cléor - base de données\r\n- application web - API (interface de programmation d'application).",
-      "a": "C2RP Carif-Oref Hauts-de-France",
-      "dep": "59, 62",
-      "fam": "Marchés <90 k€ (MAPA)",
-      "tm": "Services",
-      "proc": "Procédure Adaptée",
-      "dp": "2025-08-28",
-      "dl": "2025-09-30T16:30:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-96010",
-      "k": "c2rp carif oref hauts de france|tierce maintenance applicative tma et hebergement de l outil cleor base de donnees applica",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Modernisation, sécurisation et infogérance du système d’information décisionnel de l’Aéroport La Réunion Roland Garros",
-      "a": "Aéroport de La Réunion Roland Garros (974)",
-      "dep": "974",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Négociée",
-      "dp": "2025-08-27",
-      "dl": null,
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-94999",
-      "k": "aeroport de la reunion roland garros 974|modernisation securisation et infogerance du systeme d information decisionnel de l aeropo",
       "ia": null
     }
   ]
