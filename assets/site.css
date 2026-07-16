@@ -156,6 +156,11 @@ html[data-theme="dark"] .sr-np-head .cnt{color:#0f1722;}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
 
+/* Confort tactile : liens-CTA récurrents (« voir tout », « Lire → »…) -> zone de frappe >=28px sur écrans tactiles, sans changer largeur ni décaler les voisins */
+@media(pointer:coarse){
+  .more,.go,.tvoir,.card-link{min-height:28px;display:inline-flex;align-items:center;}
+}
+
 /* ===== Lecteur audio « résumé » réutilisable (.sr-audio) + puce (.sr-cue) ===== */
 .sr-audio{display:flex;align-items:center;gap:13px;max-width:540px;background:var(--card,#fff);border:1px solid var(--border,var(--faint,#e2e8f0));border-left:4px solid var(--accent,#2f6fb0);border-radius:14px;padding:12px 16px;margin:22px 0;box-shadow:0 1px 3px rgba(0,0,0,.05);}
 .sra-btn{flex:none;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;background:var(--accent,#2f6fb0);display:flex;align-items:center;justify-content:center;transition:filter .12s;}
