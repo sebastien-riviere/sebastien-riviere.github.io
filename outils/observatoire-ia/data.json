@@ -1,12 +1,63 @@
 {
-  "maj": "2026-07-16",
+  "maj": "2026-07-17",
   "total": 300,
   "byTheme": {
-    "data": 251,
+    "data": 252,
     "numerique": 25,
-    "ia": 24
+    "ia": 23
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture, mise en œuvre, hébergement, maintenance, assistance, formation, reprise des données et réversibilité d'une suite logicielle métiers SaaS destinée à la COPAS et et à ses communes.",
+      "a": "CC DU PAYS D'ALESIA ET DE LA SEINE",
+      "dep": "21,89",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-16",
+      "dl": "2026-08-28T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-70729",
+      "k": "cc du pays d alesia et de la seine|fourniture mise en uvre hebergement maintenance assistance formation reprise des donnees e",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Assistance à maitrise d'ouvrage pour la mise en conformité au standard CNIG accessibilité, comprenant la structuration du graphe de cheminement, la collecte de données terrain, leur traitement SIG...",
+      "a": "Mairie de Vitry-Sur-Seine - Service des Marchés Publics - 437",
+      "dep": "94",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-16",
+      "dl": "2026-09-15T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-70942",
+      "k": "mairie de vitry sur seine service des ma|assistance a maitrise d ouvrage pour la mise en conformite au standard cnig accessibilite ",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Accès à une base de données légales et financières assorti d'un service d'alerte et de veille juridique",
+      "a": "Caisse des Dépots",
+      "dep": "75",
+      "fam": "Marchés <90 k€ (MAPA)",
+      "tm": "Services",
+      "proc": "Procédure Adaptée",
+      "dp": "2026-07-16",
+      "dl": "2026-08-14T11:30:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-71163",
+      "k": "caisse des depots|acces a une base de donnees legales et financieres assorti d un service d alerte et de vei",
+      "ia": null
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -2062,7 +2113,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-26462",
       "k": "orleans metropole|mise en oeuvre d un logiciel de gestion des donnees d un service de medecine preventive",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2079,7 +2130,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-25197",
       "k": "region des pays de la loire|accompagnement pour la collecte des donnees et la realisation du beges 2025 de la region d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2096,7 +2147,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-25033",
       "k": "ville de paris dfa sda|fourniture d equipements pour la telereleve des niveaux piezometriques de l inspection gen",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2113,7 +2164,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-24045",
       "k": "universite claude bernard lyon 1|acquisition d un outil de dematerialisation des procedures d actions sociales culturelles ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2130,7 +2181,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-23362",
       "k": "metropole europeenne de lille|centrale d achat metropolitaine prestations de service en securite des systemes d informat",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2147,7 +2198,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-23473",
       "k": "centre hospitalier de lens|affaire 2026 014 ght externalisation de la gestion des dossiers chomage et dematerialisati",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5054,57 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-96597",
       "k": "arcep|recensement des caracteristiques et conditions tarifaires des offres de communications ele",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "SYSTÈME D’ACQUISITION DYNAMIQUE ET INNOVANT DE SOLUTIONS ET PRESTATIONS INTELLECTUELLES BASÉES SUR L’INTELLIGENCE ARTIFICIELLE",
-      "a": "SICTIAM (06)",
-      "dep": "6",
-      "fam": "Marchés européens",
-      "tm": "Fournitures",
-      "proc": "Procédure NC",
-      "dp": "2025-08-31",
-      "dl": null,
-      "m": "estime",
-      "th": "ia",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-96735",
-      "k": "sictiam 06|systeme d acquisition dynamique et innovant de solutions et prestations intellectuelles ba",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "DONNEES DE MARCHE SUR L'IMMOBILIER D'INVESTISSEMENT RESIDENTIEL ET TERTIAIRE",
-      "a": "CAISSE DES DEPOTS",
-      "dep": "75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Négociée",
-      "dp": "2025-08-30",
-      "dl": null,
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-96157",
-      "k": "caisse des depots|donnees de marche sur l immobilier d investissement residentiel et tertiaire",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "REALISATION D'UNE BASE DE DONNEES PHOTOGRAPHIQUES ET VIDEOGRAPHIQUES",
-      "a": "Grand Port Maritime Guadeloupe",
-      "dep": "971",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-08-28",
-      "dl": "2025-09-09T15:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-95665",
-      "k": "grand port maritime guadeloupe|realisation d une base de donnees photographiques et videographiques",
       "ia": null
     }
   ]
