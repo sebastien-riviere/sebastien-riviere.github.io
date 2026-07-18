@@ -1,12 +1,46 @@
 {
-  "maj": "2026-07-17",
+  "maj": "2026-07-18",
   "total": 300,
   "byTheme": {
-    "data": 252,
-    "numerique": 25,
-    "ia": 23
+    "numerique": 26,
+    "ia": 23,
+    "data": 251
   },
   "items": [
+    {
+      "s": "mail",
+      "src": "PLACE",
+      "o": "Fourniture et mise en service de matériels informatiques pour le projet ACAI",
+      "a": "Etablissements et organismes de l'enseignement supérieur, de la recherche et de l'innovation",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-07-18",
+      "dl": "2026-09-01T23:59:00",
+      "m": "",
+      "th": "numerique",
+      "u": "Voir>>",
+      "k": "etablissements et organismes de l enseig|fourniture et mise en service de materiels informatiques pour le projet acai",
+      "ia": 0
+    },
+    {
+      "s": "mail",
+      "src": "PLACE",
+      "o": "Fourniture et intégration d’une plateforme LMS/LXP de gestion des parcours de compétences avec intelligence artificielle pour BSB",
+      "a": "Chambres de Commerce et d'Industrie (CCI)",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-07-18",
+      "dl": "2026-09-25T23:59:00",
+      "m": "",
+      "th": "ia",
+      "u": "Voir>>",
+      "k": "chambres de commerce et d industrie cci|fourniture et integration d une plateforme lms lxp de gestion des parcours de competences ",
+      "ia": 1
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -2215,7 +2249,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-23151",
       "k": "departement de la vendee|assistance technique et prestations d expertise et de conseil concernant l administration ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2232,7 +2266,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-21849",
       "k": "syndicat mixte gironde numerique|partenariat d innovation pour la plateforme de donnees girondine",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2249,7 +2283,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-19785",
       "k": "epa shom|dematerialisation d archives maregraphiques du shom",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2266,7 +2300,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-19895",
       "k": "inrae|acquisition de trois systemes automatiques d acquisition de donnees issues de capteurs sur",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2283,7 +2317,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-20332",
       "k": "conseil departemental des yvelines|informatisation documentaire structuration normalisation et accompagnement dans la diffusi",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2300,7 +2334,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-19209",
       "k": "dir massif central|acquisition de stations de recueil de donnees trafic srdt",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5071,40 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-98011",
       "k": "office de l eau reunion|modernisation des outils metiers pour la gestion des donnees sur l eau et les milieux aqua",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "MISE EN PLACE D'UN SYSTEME D'ASSISTANCE TELEPHONIQUE VOCALE NUMERIQUE DE TYPE CALLBOT ET MISE EN PLACE D'UN SYSTEME D'ASSISTANCE ECRITE NUMERIQUE DE TYPE CHATBOT INTEGRANT L'INTELLIGENCE ARTIFICIELLE",
-      "a": "Ville de Plaisir",
-      "dep": "78",
-      "fam": "Marchés <90 k€ (MAPA)",
-      "tm": "Services",
-      "proc": "Procédure Adaptée",
-      "dp": "2025-09-01",
-      "dl": "2025-09-29T12:00:00+00:00",
-      "m": null,
-      "th": "ia",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-97318",
-      "k": "ville de plaisir|mise en place d un systeme d assistance telephonique vocale numerique de type callbot et m",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Recensement des caractéristiques et conditions tarifaires des offres de communications électroniques (voix et données) en métropole et dans les DCOM (Offres Grand Public)",
-      "a": "Arcep",
-      "dep": "75, 92, 93, 94, 69, 59, 33, 13",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-08-31",
-      "dl": "2025-10-09T14:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-96597",
-      "k": "arcep|recensement des caracteristiques et conditions tarifaires des offres de communications ele",
       "ia": null
     }
   ]
