@@ -1,12 +1,29 @@
 {
-  "maj": "2026-07-18",
+  "maj": "2026-07-19",
   "total": 300,
   "byTheme": {
+    "data": 251,
     "numerique": 26,
-    "ia": 23,
-    "data": 251
+    "ia": 23
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Tierce maintenance applicative de logiciels nationaux de production des données hydrométriques OCTAVE et JACINTHE",
+      "a": "DGPR/SRN/Service central VIGICRUES",
+      "dep": "31",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-18",
+      "dl": "2026-09-15T15:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-71003",
+      "k": "dgpr srn service central vigicrues|tierce maintenance applicative de logiciels nationaux de production des donnees hydrometri",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "PLACE",
@@ -2351,7 +2368,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-18263",
       "k": "dsna dti|acquisition de donnees ads b pour la dsna",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2368,7 +2385,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-18262",
       "k": "union regionale des federations departem|developpement d un outil open source pour la collecte le traitement et la valorisation des",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2385,7 +2402,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-17037",
       "k": "gie es gie expertise et support cdc habi|accompagnement pour le deploiement de projets et d actions d innovation ou de recours a l ",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -2402,7 +2419,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-16575",
       "k": "universite de lorraine|prestations d acquisition de donnees geophysiques magnetotelluriques et aeromagnetiques et",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2419,7 +2436,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-17481",
       "k": "autorite de surete nucleaire et de radio|tierce maintenance applicative de l application daqsys systeme de controle de supervision ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2436,7 +2453,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-17282",
       "k": "communaute d agglomeration du cotentin|traitement des donnees des achats communautaires et accompagnement a leur cartographie",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2453,7 +2470,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-16976",
       "k": "centre nationale du cinema|acquisition de donnees sur les operateurs de services de medias lineaires et a la demande ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-97323",
       "k": "ministeres sociaux|fourniture de donnees statistique sur l evaluation la prescription le prix et le developpe",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "MODERNISATION DES OUTILS METIERS POUR LA GESTION DES DONNEES SUR L'EAU ET LES MILIEUX AQUATIQUES",
-      "a": "Office de l'eau Réunion",
-      "dep": "974",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-03",
-      "dl": "2025-09-29T16:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-98011",
-      "k": "office de l eau reunion|modernisation des outils metiers pour la gestion des donnees sur l eau et les milieux aqua",
       "ia": null
     }
   ]
