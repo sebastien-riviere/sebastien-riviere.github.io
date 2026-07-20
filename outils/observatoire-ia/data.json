@@ -1,12 +1,29 @@
 {
-  "maj": "2026-07-19",
+  "maj": "2026-07-20",
   "total": 300,
   "byTheme": {
-    "data": 251,
-    "numerique": 26,
+    "numerique": 27,
+    "data": 250,
     "ia": 23
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Développement du logiciel métier SIRS Digues V3.",
+      "a": "SYMADREM : Syndicat Mixte Interrégional d'Aménagement des Digues du Delta du Rhône et de la Mer (13)",
+      "dep": "13,30",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-19",
+      "dl": "2026-09-15T16:00:00+00:00",
+      "m": "",
+      "th": "numerique",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-71622",
+      "k": "symadrem syndicat mixte interregional d |developpement du logiciel metier sirs digues v3",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -2487,7 +2504,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-16204",
       "k": "universite de caen normandie|remplacement et adaptation d automates de regulation des installations cvc et pour la remo",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2504,7 +2521,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-16552",
       "k": "ad normandie|conception deploiement et maintenance d une plateforme d intelligence artificielle generat",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -2521,7 +2538,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-14896",
       "k": "opco sante|etudes sur l intelligence artificielle dans le secteur prive de la sante du social et du m",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -2538,7 +2555,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-14546",
       "k": "centre national du cinema et de l image |systeme de gestion informatique centralisee des donnees issues d une chaine de post produc",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2555,7 +2572,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-14811",
       "k": "caisse nationale d assurance vieillesse|realisation d enquetes quantitatives qualitatives et analyses de donnees connaissance clie",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2572,7 +2589,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-14013",
       "k": "c3c services urbains|prestations topographiques pour l acquisition le traitement et la restitution de donnees g",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2589,7 +2606,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-14792",
       "k": "saint lo agglo|catalogage des donnees du systeme d information pour saint lo agglo suite a consultation d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-98514",
       "k": "cerema|fourniture livraison et mise en service des materiels d acquisition et de traitement des d",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture de données statistique sur l'évaluation, la prescription, le prix et le développement de médicaments",
-      "a": "Ministères sociaux",
-      "dep": "75, 92, 91, 95, 94, 93, 78",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-03",
-      "dl": "2025-10-03T12:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-97323",
-      "k": "ministeres sociaux|fourniture de donnees statistique sur l evaluation la prescription le prix et le developpe",
       "ia": null
     }
   ]
