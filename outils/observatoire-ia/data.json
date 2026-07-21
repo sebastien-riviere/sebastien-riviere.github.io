@@ -1,12 +1,29 @@
 {
-  "maj": "2026-07-20",
+  "maj": "2026-07-21",
   "total": 300,
   "byTheme": {
+    "ia": 24,
     "numerique": 27,
-    "data": 250,
-    "ia": 23
+    "data": 249
   },
   "items": [
+    {
+      "s": "mail",
+      "src": "PLACE",
+      "o": "SOLUTIONS D'INTELLIGENCE ARTIFICIELLE DEDIEES AUX MARCHES PUBLICS",
+      "a": "Chambres de Commerce et d'Industrie (CCI)",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-07-21",
+      "dl": "2026-09-02T23:59:00",
+      "m": "",
+      "th": "ia",
+      "u": "",
+      "k": "chambres de commerce et d industrie cci|solutions d intelligence artificielle dediees aux marches publics",
+      "ia": 1
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -2623,7 +2640,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-13922",
       "k": "dgitm dmr pei isc|dgitm dmr pei isc 26 2024 acquisition de donnees floating car data fcd a l echelle nationa",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2640,7 +2657,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-13598",
       "k": "haute autorite de sante|souscription a des donnees ou des bases de donnees concernant les produits de sante",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2657,7 +2674,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-13113",
       "k": "metropole toulon provence mediterranee|25four11 fourniture et installation de dispositifs d intelligence artificielle pour la det",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -2674,7 +2691,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-12853",
       "k": "centre nationale du cinema|prestations de suivi des donnees d audience de la television lineaire et des applications ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2691,7 +2708,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-11169",
       "k": "caf des hauts de seine|prestations de formation dans le domaine des outils d analyse des donnees pour l irfaf rel",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2708,7 +2725,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-10943",
       "k": "bureau de recherche en geologie miniere |bassin houiller lorrain accord cadre equipement de piezometres et teletransmission des don",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99267",
       "k": "almea formations interpro|prestation d acquisition d un outil saas de dematerialisation des factures et de gestion c",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture, livraison et mise en service des matériels d'acquisition et de traitement des données",
-      "a": "CEREMA",
-      "dep": "69",
-      "fam": "Marchés <90 k€ (MAPA)",
-      "tm": null,
-      "proc": "Procédure Adaptée",
-      "dp": "2025-09-04",
-      "dl": "2025-09-26T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-98514",
-      "k": "cerema|fourniture livraison et mise en service des materiels d acquisition et de traitement des d",
       "ia": null
     }
   ]
