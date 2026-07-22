@@ -1,12 +1,29 @@
 {
-  "maj": "2026-07-21",
+  "maj": "2026-07-22",
   "total": 300,
   "byTheme": {
+    "data": 250,
     "ia": 24,
-    "numerique": 27,
-    "data": 249
+    "numerique": 26
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "COLLECTE ET FOURNITURE DE DONNEES DES DEBARQUEMENTS AU PORT POUR LE SUIVI DE LA PÊCHE THONIERE TROPICALE FRANÇAISE A LA SENNE DANS L’OCEAN INDIEN",
+      "a": "IRD-DR OCCITANIE",
+      "dep": "34",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-22",
+      "dl": "2026-08-28T16:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-72447",
+      "k": "ird dr occitanie|collecte et fourniture de donnees des debarquements au port pour le suivi de la peche thon",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "PLACE",
@@ -2742,7 +2759,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-10383",
       "k": "caisse des depots|donnees irve",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2759,7 +2776,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-9487",
       "k": "gip resah|solutions numeriques innovantes de deploiement d un entrepot de donnees de sante eds et pr",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2776,7 +2793,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-9401",
       "k": "collectivite de corse|prestations de deploiement et d exploitation des plateformes open data et closed data terr",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2793,7 +2810,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-9557",
       "k": "conseil departemental du cher|fourniture de materiels pour recueils de donnees routieres",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2810,7 +2827,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-9893",
       "k": "gip france enfance protegee|prestation externalisee de delegue a la protection des donnees personnelles dpo",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2827,7 +2844,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-9691",
       "k": "universite de perpignan via domitia|prestations de modelisation visant a la modelisation la prevention des situations de prise",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99366",
       "k": "gip maximilien|tierce maintenance corrective adaptative et evolutive de la plateforme de dematerialisatio",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Prestation d'acquisition d'un outil SaaS de dématérialisation des factures et de gestion commerciale - Cycle achat",
-      "a": "ALMEA FORMATIONS INTERPRO",
-      "dep": "51, 8, 10, 52",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-05",
-      "dl": "2025-10-17T17:00:00+00:00",
-      "m": null,
-      "th": "numerique",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99267",
-      "k": "almea formations interpro|prestation d acquisition d un outil saas de dematerialisation des factures et de gestion c",
       "ia": null
     }
   ]
