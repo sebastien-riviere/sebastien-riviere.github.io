@@ -726,6 +726,15 @@
    "pays": "NL"
   },
   {
+   "c": "design",
+   "n": "Genially",
+   "d": "Créer des présentations, infographies et supports pédagogiques interactifs (quiz, animations, modules e-learning) sans code.",
+   "p": "freemium",
+   "dom": "genially.com",
+   "u": "https://genially.com/fr/",
+   "pays": "ES"
+  },
+  {
    "c": "veille",
    "n": "Feedly",
    "d": "Agrégateur de flux RSS pour centraliser sa veille (IA intégrée).",
