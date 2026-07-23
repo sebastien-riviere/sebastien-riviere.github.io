@@ -1,5 +1,5 @@
 {
-  "maj": "2026-07-22",
+  "maj": "2026-07-23",
   "total": 300,
   "byTheme": {
     "data": 250,
@@ -37,7 +37,7 @@
       "dl": "2026-09-02T23:59:00",
       "m": "",
       "th": "ia",
-      "u": "",
+      "u": "https://www.marches-publics.gouv.fr/app.php/entreprise/consultation/3040809?orgAcronyme=l2m",
       "k": "chambres de commerce et d industrie cci|solutions d intelligence artificielle dediees aux marches publics",
       "ia": 1
     },
@@ -105,7 +105,7 @@
       "dl": "2026-09-25T23:59:00",
       "m": "",
       "th": "ia",
-      "u": "Voir>>",
+      "u": "https://www.marches-publics.gouv.fr/app.php/entreprise/consultation/3040704?orgAcronyme=l2m",
       "k": "chambres de commerce et d industrie cci|fourniture et integration d une plateforme lms lxp de gestion des parcours de competences ",
       "ia": 1
     },
@@ -2861,7 +2861,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-8558",
       "k": "cdc informatique|prestations expertise big data ia",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -2878,7 +2878,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-9418",
       "k": "communaute de communes de l ile de re|marche sig d acquisition et d exploitation de donnees d imagerie sur l ile de re dans le c",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2895,7 +2895,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-8236",
       "k": "oppic|assistance et conseil pour l integration de solutions d intelligence artificielle a l oppi",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -2912,7 +2912,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-7766",
       "k": "chu bordeaux|prestations de developpement de maintenance d adaptation de collecte et d analyse de donne",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2929,7 +2929,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-7578",
       "k": "departement de vaucluse|les prestations concernent la fourniture de previsions et l analyse de donnees meteorologi",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2946,7 +2946,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-6454",
       "k": "office francais de la biodiversite|prestations de fourniture d installation de maintenance de collecte et de traitement des d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2963,7 +2963,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-5982",
       "k": "chambre d agriculture de region pays de |fourniture de services de transmission de donnees intersites et internet pour l ensemble d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2980,7 +2980,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-6216",
       "k": "dirmed|mise en place et maintenance de stations de recueil de donnees trafics sur le reseau routi",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
