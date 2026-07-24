@@ -1,12 +1,80 @@
 {
-  "maj": "2026-07-23",
+  "maj": "2026-07-24",
   "total": 300,
   "byTheme": {
-    "data": 250,
+    "data": 251,
     "ia": 24,
-    "numerique": 26
+    "numerique": 25
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "ACQUISITIONS DE DONNÉES TOPOGRAPHIQUES/GÉOGRAPHIQUES ET CONTRÔLES",
+      "a": "Métropole Aix Marseille Provence",
+      "dep": "13",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-24",
+      "dl": "2026-09-01T10:30:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-73499",
+      "k": "metropole aix marseille provence|acquisitions de donnees topographiques geographiques et controles",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Services de télécommunications fixe, mobile, réseaux privés de données, Internet et hébergement.",
+      "a": "Communauté d'Agglomération Territoire de la Côte Ouest (974)",
+      "dep": "974",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-24",
+      "dl": "2026-08-07T08:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-73734",
+      "k": "communaute d agglomeration territoire de|services de telecommunications fixe mobile reseaux prives de donnees internet et hebergeme",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Externalisation du traitement de la paie du personnel et des données sociales pour  l'ensemble du personnel du groupement de commande porté par ALTEMED",
+      "a": "ALTEMED",
+      "dep": "34",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-24",
+      "dl": "2026-09-02T10:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-73413",
+      "k": "altemed|externalisation du traitement de la paie du personnel et des donnees sociales pour l ensem",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Refonte du système d'information Routes et Rivière (SIR) de la Direction des Infrastructures de Mobilité : Gestion des données de la route, gestion des données de la rivière, saisie sur le terrain, pr",
+      "a": "Conseil Départemental de la Mayenne",
+      "dep": "53",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-24",
+      "dl": "2026-09-17T14:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-73420",
+      "k": "conseil departemental de la mayenne|refonte du systeme d information routes et riviere sir de la direction des infrastructures",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -1111,23 +1179,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-52648",
       "k": "ca grand paris sud seine essonne senart|acquisition installation et maintenance de capteurs traitement et analyse de donnees par i",
       "ia": 1
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Refonte du système d'information Routes et Rivière (SIR) de la Direction des Infrastructures de Mobilité : Gestion des données de la route, gestion des données de la rivière, saisie sur le terrain, pr",
-      "a": "Conseil Départemental de la Mayenne",
-      "dep": "53",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-05-29",
-      "dl": "2026-07-08T10:00:00+00:00",
-      "m": "",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-52332",
-      "k": "conseil departemental de la mayenne|refonte du systeme d information routes et riviere sir de la direction des infrastructures",
-      "ia": 0
     },
     {
       "s": "boamp",
@@ -2997,7 +3048,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-6183",
       "k": "ineris|prestations de service pour la fourniture l integration le deploiement et maintenance d un",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3014,7 +3065,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-5904",
       "k": "syctom l 039 agence metropolitaine des d|developpement d un outil base sur l analyse de donnees afin d anticiper les pics de mercur",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3031,7 +3082,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-4838",
       "k": "institution de gestion sociale des armee|fourniture en location et maintenance d un systeme numerique de tracabilite et d enregistr",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3048,7 +3099,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-4324",
       "k": "inrae|2025 aoo geodata hebergement exploitation et maintenance operationnelle de l infrastructur",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3065,7 +3116,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-3751",
       "k": "chu de clermont ferrand|mise a disposition d une plateforme a distance pour le controle qualite des donnees d etud",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5054,57 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-100061",
       "k": "bureau de recherche en geologie miniere |appui a la gestion des bases de donnees",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Prévisions et données météorologiques pour le departement du cher",
-      "a": "Conseil Départemental du Cher",
-      "dep": "18",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-08",
-      "dl": "2025-10-10T10:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99461",
-      "k": "conseil departemental du cher|previsions et donnees meteorologiques pour le departement du cher",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture d’une base de données d’articles de presse et réalisation de synthèses analytiques au profit de la présidence de la République",
-      "a": "Présidence de la République",
-      "dep": "75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-07",
-      "dl": "2025-10-08T12:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99141",
-      "k": "presidence de la republique|fourniture d une base de donnees d articles de presse et realisation de syntheses analytiq",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Tierce Maintenance corrective, adaptative et évolutive de la Plateforme de dématérialisation des marchés publics franciliens (Maximilien.fr)",
-      "a": "GIP Maximilien",
-      "dep": "93",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-07",
-      "dl": "2025-10-06T10:00:00+00:00",
-      "m": "ac_max",
-      "th": "numerique",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99366",
-      "k": "gip maximilien|tierce maintenance corrective adaptative et evolutive de la plateforme de dematerialisatio",
       "ia": null
     }
   ]
