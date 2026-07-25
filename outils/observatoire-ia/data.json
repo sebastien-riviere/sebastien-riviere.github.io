@@ -1,12 +1,29 @@
 {
-  "maj": "2026-07-24",
+  "maj": "2026-07-25",
   "total": 300,
   "byTheme": {
-    "data": 251,
-    "ia": 24,
-    "numerique": 25
+    "numerique": 26,
+    "data": 250,
+    "ia": 24
   },
   "items": [
+    {
+      "s": "mail",
+      "src": "PLACE",
+      "o": "Fourniture de matériels et consommables pour les travaux pratiques de l’Ecole de Médecine de Dentaire de Marseille",
+      "a": "Etablissements et organismes de l'enseignement supérieur, de la recherche et de l'innovation",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-07-25",
+      "dl": "2026-09-16T16:00:00",
+      "m": "",
+      "th": "numerique",
+      "u": "Voir>>",
+      "k": "etablissements et organismes de l enseig|fourniture de materiels et consommables pour les travaux pratiques de l ecole de medecine ",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -3133,7 +3150,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-627",
       "k": "region grand est|acquisition de donnees relatives a la mobilite des habitants sur le territoire de la regio",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3150,7 +3167,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-142379",
       "k": "opco atlas|accompagnement du delegue a la protection des donnees personnelles dpo",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3167,7 +3184,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-142051",
       "k": "arcep|enquetes 2026 sur la qualite des services voix sms et des services de donnees en zones d h",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3184,7 +3201,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-141351",
       "k": "tisseo collectivites syndicat mixte des |accord cadre travaux de cablage cuivre voix donnees images vdi surete et prestations assoc",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3201,7 +3218,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-141860",
       "k": "sdea alsace moselle|fourniture et livraison de postes locaux de telegestion et d enregistreurs transmetteurs d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3218,7 +3235,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-141835",
       "k": "epf d occitanie|marche de prestation de services mise en place du reglement general pour la protection des",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3235,7 +3252,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-140788",
       "k": "museum national d histoire naturelle|realisation d un etat de l art des donnees existantes et d une campagne d acquisition de d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99666",
       "k": "anses|tierce maintenance applicative de bases de donnees et outils adosses de l oqali",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Appui A La Gestion Des Bases De Données",
-      "a": "Bureau de Recherche en Géologie Minière (Brgm)",
-      "dep": "45",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-09",
-      "dl": "2025-10-06T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-100061",
-      "k": "bureau de recherche en geologie miniere |appui a la gestion des bases de donnees",
       "ia": null
     }
   ]
