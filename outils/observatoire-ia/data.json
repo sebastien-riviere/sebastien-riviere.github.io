@@ -1,5 +1,5 @@
 {
-  "maj": "2026-07-25",
+  "maj": "2026-07-26",
   "total": 300,
   "byTheme": {
     "numerique": 26,
@@ -3269,7 +3269,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-140285",
       "k": "ineris|accord cadre relatif aux prestations de tierce maintenance applicative de l outil de banca",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3286,7 +3286,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-139950",
       "k": "region provence alpes cote d azur|appel a projet donnees satellitaires au service des territoires",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3303,7 +3303,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-139920",
       "k": "metropole nice cote d azur|25n0325 mise a disposition de donnees de previsions meteorologiques gestion d alertes et a",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3320,7 +3320,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-140474",
       "k": "gip france enfance protegee|fourniture mise en oeuvre maintenance et exploitation d une solution informatique d archiv",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3337,7 +3337,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-139562",
       "k": "conseil departemental des yvelines|hebergement agree des donnees de sante pour le conseil departemental des yvelines",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3354,7 +3354,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-140257",
       "k": "gipfcip toulouse|mise en place d un systeme d information decisionnel de sa maintenance et de son hebergeme",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3371,7 +3371,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-139017",
       "k": "ministere de la culture|accompagnement du delegue a la protection des donnees dpo du ministere de la culture",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3388,7 +3388,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-138906",
       "k": "region normandie|securite des systemes d information et des donnees",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
