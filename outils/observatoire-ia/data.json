@@ -1,12 +1,29 @@
 {
-  "maj": "2026-07-26",
+  "maj": "2026-07-27",
   "total": 300,
   "byTheme": {
-    "numerique": 26,
     "data": 250,
+    "numerique": 26,
     "ia": 24
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture de données pour analyses ESG - Suivi de la politique d'exclusion",
+      "a": "Caisse des dépôts et consignations",
+      "dep": "75",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Négociée",
+      "dp": "2026-07-26",
+      "dl": "",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-74470",
+      "k": "caisse des depots et consignations|fourniture de donnees pour analyses esg suivi de la politique d exclusion",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "PLACE",
@@ -3405,7 +3422,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-138918",
       "k": "grenoble alpes metropole|conception developpement et maintenance d un entrepot de donnees et d un referentiel de do",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3422,7 +3439,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-138380",
       "k": "conseil constitutionnel|accord cadre de realisation de syntheses analytiques et de fourniture d une base de donnee",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3439,7 +3456,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-137654",
       "k": "conseil departemental haute vienne|exploitation et maintenance de la base de donnees departementale de signalisation directio",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3456,7 +3473,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-137775",
       "k": "cdg59|hebergement maintenance et prestations associees relatifs a des logiciels libres de demate",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3473,7 +3490,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-138054",
       "k": "departement de la savoie|maintenances acquisitions evolutions et prestations associees au logiciel de manipulation ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3490,7 +3507,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-137384",
       "k": "communaute d agglomeration du cotentin|realisation d un pcrs raster de donnees socle de jumeau numerique de calcul de potentiel s",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3507,7 +3524,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-135501",
       "k": "ministere de la culture|exploitation statisque des donnees d activite des bibliotheques de lecture publique",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99800",
       "k": "campus france|designation d un delegue a la protection des donnees",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Tierce maintenance applicative de bases de données et outils adossés de l’Oqali",
-      "a": "ANSES",
-      "dep": "94",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-09",
-      "dl": "2025-10-08T17:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99666",
-      "k": "anses|tierce maintenance applicative de bases de donnees et outils adosses de l oqali",
       "ia": null
     }
   ]
