@@ -1,5 +1,5 @@
 {
-  "maj": "2026-07-27",
+  "maj": "2026-07-28",
   "total": 300,
   "byTheme": {
     "data": 250,
@@ -7,6 +7,23 @@
     "ia": 24
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture de fichiers de données comptables, économiques, sociales et financières sur des entreprises préalablement sélectionnées",
+      "a": "DGFIP-DRS",
+      "dep": "93",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-28",
+      "dl": "2026-09-15T17:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-74716",
+      "k": "dgfip drs|fourniture de fichiers de donnees comptables economiques sociales et financieres sur des e",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -3541,7 +3558,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-134888",
       "k": "nantes metropole|contrat de service d integration d applications informatiques et de gestion de bases de do",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3558,7 +3575,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-134797",
       "k": "opco 2i direction appui aux branches et |mise a jour de la base de donnees formations metiers des industries de sante implementatio",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3575,7 +3592,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-134788",
       "k": "uniha gcs|prestation d accompagnement a la realisation de la paie et a la gestion des donnees social",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3592,7 +3609,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-134228",
       "k": "eurometropole de strasbourg|conception de tableaux de gestion des documents et donnees d activite des services de la v",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3609,7 +3626,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-134600",
       "k": "franceagrimer|fourniture des donnees relatives aux achats en france et en belgique et aux ventes en fran",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3626,7 +3643,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-133052",
       "k": "ville de dammarie les lys|fourniture de services de telecommunications voix et donnees",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99987",
       "k": "dgaln|marche relatif a la realisation d une etude de valorisation des donnees acquises lors des ",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Désignation d'un Délégué à la protection des données",
-      "a": "Campus France",
-      "dep": "75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-10",
-      "dl": "2025-10-10T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99800",
-      "k": "campus france|designation d un delegue a la protection des donnees",
       "ia": null
     }
   ]
