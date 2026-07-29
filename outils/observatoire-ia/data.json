@@ -1,12 +1,148 @@
 {
-  "maj": "2026-07-22",
+  "maj": "2026-07-29",
   "total": 300,
   "byTheme": {
     "data": 250,
-    "ia": 24,
-    "numerique": 26
+    "numerique": 26,
+    "ia": 24
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "La surveillance de masses d'eau plans d'eau ; l'acquisition de données qualité sur les masses d'eau du bassin Loire-Bretagne dans le cadre de la mise en oeuvre du programme de surveillance.",
+      "a": "Agence de l'eau Loire-Bretagne",
+      "dep": "45",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-29",
+      "dl": "2026-09-28T13:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-74976",
+      "k": "agence de l eau loire bretagne|la surveillance de masses d eau plans d eau l acquisition de donnees qualite sur les masse",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture de fichiers de données comptables, économiques, sociales et financières sur des entreprises préalablement sélectionnées",
+      "a": "DGFIP-DRS",
+      "dep": "93",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-28",
+      "dl": "2026-09-15T17:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-74716",
+      "k": "dgfip drs|fourniture de fichiers de donnees comptables economiques sociales et financieres sur des e",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture de données pour analyses ESG - Suivi de la politique d'exclusion",
+      "a": "Caisse des dépôts et consignations",
+      "dep": "75",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Négociée",
+      "dp": "2026-07-26",
+      "dl": "",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-74470",
+      "k": "caisse des depots et consignations|fourniture de donnees pour analyses esg suivi de la politique d exclusion",
+      "ia": 0
+    },
+    {
+      "s": "mail",
+      "src": "PLACE",
+      "o": "Fourniture de matériels et consommables pour les travaux pratiques de l’Ecole de Médecine de Dentaire de Marseille",
+      "a": "Etablissements et organismes de l'enseignement supérieur, de la recherche et de l'innovation",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-07-25",
+      "dl": "2026-09-16T16:00:00",
+      "m": "",
+      "th": "numerique",
+      "u": "Voir>>",
+      "k": "etablissements et organismes de l enseig|fourniture de materiels et consommables pour les travaux pratiques de l ecole de medecine ",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "ACQUISITIONS DE DONNÉES TOPOGRAPHIQUES/GÉOGRAPHIQUES ET CONTRÔLES",
+      "a": "Métropole Aix Marseille Provence",
+      "dep": "13",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-24",
+      "dl": "2026-09-01T10:30:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-73499",
+      "k": "metropole aix marseille provence|acquisitions de donnees topographiques geographiques et controles",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Services de télécommunications fixe, mobile, réseaux privés de données, Internet et hébergement.",
+      "a": "Communauté d'Agglomération Territoire de la Côte Ouest (974)",
+      "dep": "974",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-24",
+      "dl": "2026-08-07T08:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-73734",
+      "k": "communaute d agglomeration territoire de|services de telecommunications fixe mobile reseaux prives de donnees internet et hebergeme",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Externalisation du traitement de la paie du personnel et des données sociales pour  l'ensemble du personnel du groupement de commande porté par ALTEMED",
+      "a": "ALTEMED",
+      "dep": "34",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-24",
+      "dl": "2026-09-02T10:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-73413",
+      "k": "altemed|externalisation du traitement de la paie du personnel et des donnees sociales pour l ensem",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Refonte du système d'information Routes et Rivière (SIR) de la Direction des Infrastructures de Mobilité : Gestion des données de la route, gestion des données de la rivière, saisie sur le terrain, pr",
+      "a": "Conseil Départemental de la Mayenne",
+      "dep": "53",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-24",
+      "dl": "2026-09-17T14:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-73420",
+      "k": "conseil departemental de la mayenne|refonte du systeme d information routes et riviere sir de la direction des infrastructures",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -37,7 +173,7 @@
       "dl": "2026-09-02T23:59:00",
       "m": "",
       "th": "ia",
-      "u": "",
+      "u": "https://www.marches-publics.gouv.fr/app.php/entreprise/consultation/3040809?orgAcronyme=l2m",
       "k": "chambres de commerce et d industrie cci|solutions d intelligence artificielle dediees aux marches publics",
       "ia": 1
     },
@@ -105,7 +241,7 @@
       "dl": "2026-09-25T23:59:00",
       "m": "",
       "th": "ia",
-      "u": "Voir>>",
+      "u": "https://www.marches-publics.gouv.fr/app.php/entreprise/consultation/3040704?orgAcronyme=l2m",
       "k": "chambres de commerce et d industrie cci|fourniture et integration d une plateforme lms lxp de gestion des parcours de competences ",
       "ia": 1
     },
@@ -1111,23 +1247,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-52648",
       "k": "ca grand paris sud seine essonne senart|acquisition installation et maintenance de capteurs traitement et analyse de donnees par i",
       "ia": 1
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Refonte du système d'information Routes et Rivière (SIR) de la Direction des Infrastructures de Mobilité : Gestion des données de la route, gestion des données de la rivière, saisie sur le terrain, pr",
-      "a": "Conseil Départemental de la Mayenne",
-      "dep": "53",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-05-29",
-      "dl": "2026-07-08T10:00:00+00:00",
-      "m": "",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-52332",
-      "k": "conseil departemental de la mayenne|refonte du systeme d information routes et riviere sir de la direction des infrastructures",
-      "ia": 0
     },
     {
       "s": "boamp",
@@ -2861,7 +2980,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-8558",
       "k": "cdc informatique|prestations expertise big data ia",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -2878,7 +2997,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-9418",
       "k": "communaute de communes de l ile de re|marche sig d acquisition et d exploitation de donnees d imagerie sur l ile de re dans le c",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2895,7 +3014,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-8236",
       "k": "oppic|assistance et conseil pour l integration de solutions d intelligence artificielle a l oppi",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -2912,7 +3031,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-7766",
       "k": "chu bordeaux|prestations de developpement de maintenance d adaptation de collecte et d analyse de donne",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2929,7 +3048,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-7578",
       "k": "departement de vaucluse|les prestations concernent la fourniture de previsions et l analyse de donnees meteorologi",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2946,7 +3065,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-6454",
       "k": "office francais de la biodiversite|prestations de fourniture d installation de maintenance de collecte et de traitement des d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2963,7 +3082,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-5982",
       "k": "chambre d agriculture de region pays de |fourniture de services de transmission de donnees intersites et internet pour l ensemble d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2980,7 +3099,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-6216",
       "k": "dirmed|mise en place et maintenance de stations de recueil de donnees trafics sur le reseau routi",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -2997,7 +3116,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-6183",
       "k": "ineris|prestations de service pour la fourniture l integration le deploiement et maintenance d un",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3014,7 +3133,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-5904",
       "k": "syctom l 039 agence metropolitaine des d|developpement d un outil base sur l analyse de donnees afin d anticiper les pics de mercur",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3031,7 +3150,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-4838",
       "k": "institution de gestion sociale des armee|fourniture en location et maintenance d un systeme numerique de tracabilite et d enregistr",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3048,7 +3167,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-4324",
       "k": "inrae|2025 aoo geodata hebergement exploitation et maintenance operationnelle de l infrastructur",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3065,7 +3184,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-3751",
       "k": "chu de clermont ferrand|mise a disposition d une plateforme a distance pour le controle qualite des donnees d etud",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3082,7 +3201,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-627",
       "k": "region grand est|acquisition de donnees relatives a la mobilite des habitants sur le territoire de la regio",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3099,7 +3218,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-142379",
       "k": "opco atlas|accompagnement du delegue a la protection des donnees personnelles dpo",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3116,7 +3235,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-142051",
       "k": "arcep|enquetes 2026 sur la qualite des services voix sms et des services de donnees en zones d h",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3133,7 +3252,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-141351",
       "k": "tisseo collectivites syndicat mixte des |accord cadre travaux de cablage cuivre voix donnees images vdi surete et prestations assoc",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3150,7 +3269,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-141860",
       "k": "sdea alsace moselle|fourniture et livraison de postes locaux de telegestion et d enregistreurs transmetteurs d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3167,7 +3286,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-141835",
       "k": "epf d occitanie|marche de prestation de services mise en place du reglement general pour la protection des",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3184,7 +3303,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-140788",
       "k": "museum national d histoire naturelle|realisation d un etat de l art des donnees existantes et d une campagne d acquisition de d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3201,7 +3320,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-140285",
       "k": "ineris|accord cadre relatif aux prestations de tierce maintenance applicative de l outil de banca",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3218,7 +3337,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-139950",
       "k": "region provence alpes cote d azur|appel a projet donnees satellitaires au service des territoires",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3235,7 +3354,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-139920",
       "k": "metropole nice cote d azur|25n0325 mise a disposition de donnees de previsions meteorologiques gestion d alertes et a",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3252,7 +3371,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-140474",
       "k": "gip france enfance protegee|fourniture mise en oeuvre maintenance et exploitation d une solution informatique d archiv",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3269,7 +3388,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-139562",
       "k": "conseil departemental des yvelines|hebergement agree des donnees de sante pour le conseil departemental des yvelines",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3286,7 +3405,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-140257",
       "k": "gipfcip toulouse|mise en place d un systeme d information decisionnel de sa maintenance et de son hebergeme",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3303,7 +3422,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-139017",
       "k": "ministere de la culture|accompagnement du delegue a la protection des donnees dpo du ministere de la culture",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3320,7 +3439,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-138906",
       "k": "region normandie|securite des systemes d information et des donnees",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3337,7 +3456,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-138918",
       "k": "grenoble alpes metropole|conception developpement et maintenance d un entrepot de donnees et d un referentiel de do",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3354,7 +3473,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-138380",
       "k": "conseil constitutionnel|accord cadre de realisation de syntheses analytiques et de fourniture d une base de donnee",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3371,7 +3490,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-137654",
       "k": "conseil departemental haute vienne|exploitation et maintenance de la base de donnees departementale de signalisation directio",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3388,7 +3507,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-137775",
       "k": "cdg59|hebergement maintenance et prestations associees relatifs a des logiciels libres de demate",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3405,7 +3524,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-138054",
       "k": "departement de la savoie|maintenances acquisitions evolutions et prestations associees au logiciel de manipulation ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3422,7 +3541,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-137384",
       "k": "communaute d agglomeration du cotentin|realisation d un pcrs raster de donnees socle de jumeau numerique de calcul de potentiel s",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3439,7 +3558,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-135501",
       "k": "ministere de la culture|exploitation statisque des donnees d activite des bibliotheques de lecture publique",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3456,7 +3575,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-134888",
       "k": "nantes metropole|contrat de service d integration d applications informatiques et de gestion de bases de do",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3473,7 +3592,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-134797",
       "k": "opco 2i direction appui aux branches et |mise a jour de la base de donnees formations metiers des industries de sante implementatio",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3490,7 +3609,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-134788",
       "k": "uniha gcs|prestation d accompagnement a la realisation de la paie et a la gestion des donnees social",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3507,7 +3626,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-134228",
       "k": "eurometropole de strasbourg|conception de tableaux de gestion des documents et donnees d activite des services de la v",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3524,7 +3643,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-134600",
       "k": "franceagrimer|fourniture des donnees relatives aux achats en france et en belgique et aux ventes en fran",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3541,7 +3660,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-133052",
       "k": "ville de dammarie les lys|fourniture de services de telecommunications voix et donnees",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3558,7 +3677,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-132330",
       "k": "departement de la sarthe|fournitures d acces a une base de donnees bibliographiques et a un web service pour sarthe",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3575,7 +3694,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-130301",
       "k": "ville de la seyne sur mer|maintenance et installation d alarmes anti intrusion avec transmission de donnees d alarme",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3592,7 +3711,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-130772",
       "k": "rtm regie des transports metropolitains|prestations de tierce maintenance applicative tma du systeme d information decisionnel sid",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3609,7 +3728,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-129969",
       "k": "collectivite territoriale martinique|fourniture et pose de systemes voix donnees images v d i et controle d acces sur le patrim",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3626,7 +3745,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-129985",
       "k": "agence regionale du numerique et de l 03|tierce de maintenance applicative des solutions libres de dematerialisation des flux",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3643,7 +3762,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-129908",
       "k": "ministere de l interieur|dematerialisation des coupons repas utilises par les sgcd dans le cadre de conventionnemen",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3660,7 +3779,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-130417",
       "k": "mairie de gonesse|mission d assistance de conseil et d accompagnement pour le recueil des donnees necessaire",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4986,125 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-100068",
       "k": "eure et loir numerique|assistance a maitrise d ouvrage gestion administration et exploitation des donnees des res",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Marché relatif à la réalisation d’une étude de valorisation des données acquises lors des levés géophysiques en 2022 à 2025 pour les ressources minérales",
-      "a": "DGALN",
-      "dep": "92, 75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-10",
-      "dl": "2025-10-15T11:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99987",
-      "k": "dgaln|marche relatif a la realisation d une etude de valorisation des donnees acquises lors des ",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Désignation d'un Délégué à la protection des données",
-      "a": "Campus France",
-      "dep": "75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-10",
-      "dl": "2025-10-10T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99800",
-      "k": "campus france|designation d un delegue a la protection des donnees",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Tierce maintenance applicative de bases de données et outils adossés de l’Oqali",
-      "a": "ANSES",
-      "dep": "94",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-09",
-      "dl": "2025-10-08T17:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99666",
-      "k": "anses|tierce maintenance applicative de bases de donnees et outils adosses de l oqali",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Appui A La Gestion Des Bases De Données",
-      "a": "Bureau de Recherche en Géologie Minière (Brgm)",
-      "dep": "45",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-09",
-      "dl": "2025-10-06T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-100061",
-      "k": "bureau de recherche en geologie miniere |appui a la gestion des bases de donnees",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Prévisions et données météorologiques pour le departement du cher",
-      "a": "Conseil Départemental du Cher",
-      "dep": "18",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-08",
-      "dl": "2025-10-10T10:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99461",
-      "k": "conseil departemental du cher|previsions et donnees meteorologiques pour le departement du cher",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture d’une base de données d’articles de presse et réalisation de synthèses analytiques au profit de la présidence de la République",
-      "a": "Présidence de la République",
-      "dep": "75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-07",
-      "dl": "2025-10-08T12:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99141",
-      "k": "presidence de la republique|fourniture d une base de donnees d articles de presse et realisation de syntheses analytiq",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Tierce Maintenance corrective, adaptative et évolutive de la Plateforme de dématérialisation des marchés publics franciliens (Maximilien.fr)",
-      "a": "GIP Maximilien",
-      "dep": "93",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-07",
-      "dl": "2025-10-06T10:00:00+00:00",
-      "m": "ac_max",
-      "th": "numerique",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99366",
-      "k": "gip maximilien|tierce maintenance corrective adaptative et evolutive de la plateforme de dematerialisatio",
       "ia": null
     }
   ]
