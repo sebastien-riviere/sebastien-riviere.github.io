@@ -1,5 +1,5 @@
 {
-  "maj": "2026-07-28",
+  "maj": "2026-07-29",
   "total": 300,
   "byTheme": {
     "data": 250,
@@ -7,6 +7,23 @@
     "ia": 24
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "La surveillance de masses d'eau plans d'eau ; l'acquisition de données qualité sur les masses d'eau du bassin Loire-Bretagne dans le cadre de la mise en oeuvre du programme de surveillance.",
+      "a": "Agence de l'eau Loire-Bretagne",
+      "dep": "45",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-29",
+      "dl": "2026-09-28T13:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-74976",
+      "k": "agence de l eau loire bretagne|la surveillance de masses d eau plans d eau l acquisition de donnees qualite sur les masse",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -3660,7 +3677,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-132330",
       "k": "departement de la sarthe|fournitures d acces a une base de donnees bibliographiques et a un web service pour sarthe",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3677,7 +3694,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-130301",
       "k": "ville de la seyne sur mer|maintenance et installation d alarmes anti intrusion avec transmission de donnees d alarme",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3694,7 +3711,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-130772",
       "k": "rtm regie des transports metropolitains|prestations de tierce maintenance applicative tma du systeme d information decisionnel sid",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3711,7 +3728,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-129969",
       "k": "collectivite territoriale martinique|fourniture et pose de systemes voix donnees images v d i et controle d acces sur le patrim",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3728,7 +3745,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-129985",
       "k": "agence regionale du numerique et de l 03|tierce de maintenance applicative des solutions libres de dematerialisation des flux",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3745,7 +3762,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-129908",
       "k": "ministere de l interieur|dematerialisation des coupons repas utilises par les sgcd dans le cadre de conventionnemen",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3762,7 +3779,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-130417",
       "k": "mairie de gonesse|mission d assistance de conseil et d accompagnement pour le recueil des donnees necessaire",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-100068",
       "k": "eure et loir numerique|assistance a maitrise d ouvrage gestion administration et exploitation des donnees des res",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Marché relatif à la réalisation d’une étude de valorisation des données acquises lors des levés géophysiques en 2022 à 2025 pour les ressources minérales",
-      "a": "DGALN",
-      "dep": "92, 75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-10",
-      "dl": "2025-10-15T11:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-99987",
-      "k": "dgaln|marche relatif a la realisation d une etude de valorisation des donnees acquises lors des ",
       "ia": null
     }
   ]
