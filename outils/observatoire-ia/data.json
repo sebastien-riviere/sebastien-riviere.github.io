@@ -1,5 +1,5 @@
 {
-  "maj": "2026-07-29",
+  "maj": "2026-07-30",
   "total": 300,
   "byTheme": {
     "data": 250,
@@ -3796,7 +3796,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-129041",
       "k": "caisse des depots|accord cadre pour la mise a disposition de solutions d intelligence artificielle pour le g",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -3813,7 +3813,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-129028",
       "k": "departement de vaucluse|fourniture mise en maintenance de materiel de mesure et de traitement de donnees de trafic",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3830,7 +3830,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-127783",
       "k": "chambre d agriculture de la moselle|prestation collecte et affranchissement de courriers et colis et prestation d externalisat",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3847,7 +3847,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-128550",
       "k": "assistance publique hopitaux de paris|mise a disposition d une solution de base de donnees et de recherche juridique en ligne mu",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3864,7 +3864,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-127876",
       "k": "epa shom|realisation d un modele geoacoustique 3d par fusion de donnees multi capteurs",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3881,7 +3881,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-128195",
       "k": "office francais de la biodiversite|collecte de donnees biometriques et biologiques sur tous les stades de l anguille civelles",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3898,7 +3898,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-127342",
       "k": "certif pro|prestations d externalisation de la fonction de delegue a la protection des donnees person",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
