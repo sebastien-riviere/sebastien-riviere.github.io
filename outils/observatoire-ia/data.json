@@ -1,12 +1,46 @@
 {
-  "maj": "2026-07-30",
+  "maj": "2026-07-31",
   "total": 300,
   "byTheme": {
-    "data": 250,
-    "numerique": 26,
-    "ia": 24
+    "ia": 25,
+    "data": 249,
+    "numerique": 26
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Réalisation d'une étude sur l'intelligence artificielle dans la branche des entreprises de courtage en assurances et/ou réassurance",
+      "a": "OPCO ATLAS",
+      "dep": "75",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-31",
+      "dl": "2026-09-11T10:00:00+00:00",
+      "m": "",
+      "th": "ia",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-76364",
+      "k": "opco atlas|realisation d une etude sur l intelligence artificielle dans la branche des entreprises de",
+      "ia": 1
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Le marché a pour objet la collecte et la mise en valeur des données territoriales, la conception graphique de cartographies communicantes et le cas échéant, la production de documents de communication",
+      "a": "GRANDLYON Métropole",
+      "dep": "69",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-31",
+      "dl": "2026-09-24T10:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-76120",
+      "k": "grandlyon metropole|le marche a pour objet la collecte et la mise en valeur des donnees territoriales la conce",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -3915,7 +3949,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-127879",
       "k": "museum national d histoire naturelle|accompagnement dans la mise en conformite du museum national d histoire naturelle au regle",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3932,7 +3966,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-127839",
       "k": "departement des landes|fourniture de previsions et d observations de donnees meteorologiques",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3949,7 +3983,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-127103",
       "k": "ville de paris dfa sda|etablissement de la synthese des plans de voirie de sous sol de la ville de paris et integ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3966,7 +4000,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-125312",
       "k": "communaute urbaine du grand reims|plateforme d analyse de donnees et de promotion de l activite cyclable sur le territoire d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -3983,7 +4017,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-126090",
       "k": "commune de bayonne|prestations de mise en conformite au rgpd et de delegue a la protection des donnees pour l",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4000,7 +4034,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-125464",
       "k": "mairie de cannes|externalisation des fonctions de delegue a la protection des donnees personnelles dpo",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5071,40 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-100736",
       "k": "departement de la sarthe|fourniture et la maintenance des composants logiciels du systeme d information decisionnel",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "PRESTATIONS D'ASSISTANCE ET DE MAINTENANCE POUR LE SYSTEME DECISIONNEL DEPARTEMENTAL",
-      "a": "DEPARTEMENT DE LA VIENNE",
-      "dep": "16, 17, 33, 44, 79, 86",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-10",
-      "dl": "2025-10-17T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-100663",
-      "k": "departement de la vienne|prestations d assistance et de maintenance pour le systeme decisionnel departemental",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Assistance à maîtrise d'ouvrage Gestion, administration et exploitation des données des réseaux 2025",
-      "a": "Eure-et-Loir Numérique",
-      "dep": "28",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Restreinte",
-      "dp": "2025-09-10",
-      "dl": "2025-09-19T10:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-100068",
-      "k": "eure et loir numerique|assistance a maitrise d ouvrage gestion administration et exploitation des donnees des res",
       "ia": null
     }
   ]
