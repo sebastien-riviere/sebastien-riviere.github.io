@@ -1,12 +1,46 @@
 {
-  "maj": "2026-08-01",
+  "maj": "2026-08-02",
   "total": 300,
   "byTheme": {
-    "ia": 25,
     "data": 249,
+    "ia": 25,
     "numerique": 26
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "L’objet du marché est de sauvegarder (scanner, de numériser et documenter) plusieurs ensembles de données pluviométriques et hydrométriques actuellement conservées sous forme papier",
+      "a": "DREAL OCCITANIE",
+      "dep": "9,11,12,31,32,46,47,81,82",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-01",
+      "dl": "2026-09-30T11:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-76438",
+      "k": "dreal occitanie|l objet du marche est de sauvegarder scanner de numeriser et documenter plusieurs ensemble",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Mise à disposition d’une plateforme SaaS pour l’import, la centralisation et la restitution de données ESG",
+      "a": "Caisse des dépôts et consignations",
+      "dep": "75",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-01",
+      "dl": "2026-09-04T11:30:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-76497",
+      "k": "caisse des depots et consignations|mise a disposition d une plateforme saas pour l import la centralisation et la restitution",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -4051,7 +4085,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-125120",
       "k": "centre hospitalier annecy genevois|prestations d expertises sur la base de donnees oracle et prestations complementaires",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4068,7 +4102,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-123777",
       "k": "universite cote d azur|services d abonnements aux bases de donnees et ressources electroniques de documentation h",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4085,7 +4119,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-123685",
       "k": "gip atlanpole 44|prestations intellectuelles pour la realisation de preuves d experimentation basees sur l ",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -4102,7 +4136,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-123217",
       "k": "ville de rennes|prestations de realisation d analyses d impact relatives a la protection des donnees aipd ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4119,7 +4153,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-123885",
       "k": "universite de guyane|accord cadre a bons de commande pour la fourniture de services de telecommunications voix ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4136,7 +4170,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-123856",
       "k": "ccir auvergne rhone alpes|solution saas d enquetes et d analyses des donnees d enquetes",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5071,40 +5105,6 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-101229",
       "k": "institut superieur de l aeronautique et |prestations de developpement d expertise et de support du logiciel planning analytics pour",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Création de tableaux de bord et suivi de données et création et mise en place d'un Data Lake et prestations associées au bénéfice de l'OFDT",
-      "a": "OBS FR DROGUES ET TENDANCES ADDICTIVES",
-      "dep": "75, 92, 93, 94, 95, 91, 77, 78",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-13",
-      "dl": "2025-09-19T12:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-101356",
-      "k": "obs fr drogues et tendances addictives|creation de tableaux de bord et suivi de donnees et creation et mise en place d un data la",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture et la maintenance des composants logiciels du système d'information décisionnel (BO, 360 et TALEND) pour les besoins du Département de la Sarthe",
-      "a": "Département de la Sarthe",
-      "dep": "72",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-12",
-      "dl": "2025-10-13T09:30:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-100736",
-      "k": "departement de la sarthe|fourniture et la maintenance des composants logiciels du systeme d information decisionnel",
       "ia": null
     }
   ]
