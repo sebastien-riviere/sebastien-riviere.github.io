@@ -1,5 +1,5 @@
 {
-  "maj": "2026-08-02",
+  "maj": "2026-08-03",
   "total": 300,
   "byTheme": {
     "data": 249,
@@ -4187,7 +4187,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-123160",
       "k": "bureau de recherche en geologie miniere |acquisition de donnees microsismiques avec historisation fourniture installation maintenan",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4204,7 +4204,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-123052",
       "k": "conseil departemental du var|creation base de donnees res eau",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4221,7 +4221,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-122531",
       "k": "ass regionale du travail social|developpement d un outil d intelligence artificielle a visee pedagogique pour la valorisat",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -4238,7 +4238,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-120962",
       "k": "meteo france|maintenance corrective et evolutive de bdclimats base de donnees climatologiques spatialis",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4255,7 +4255,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-120743",
       "k": "ville de longwy|etude d opportunites en intelligence artificielle",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -4272,7 +4272,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-119800",
       "k": "syndicat intercommunal des technologies |maintenance support hebergement mise en oeuvre et prestations associees des solutions de d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4289,7 +4289,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-120047",
       "k": "centre de gestion et de formation de pol|service d ingenierie de l information diagnostic initial cadrage du projet de gouvernance ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4306,7 +4306,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-118633",
       "k": "agence technique de l information sur l |prestation d ingenierie en matiere de traitements de donnees d analyses et etudes statisti",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
