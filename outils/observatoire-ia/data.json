@@ -1,12 +1,46 @@
 {
-  "maj": "2026-08-04",
+  "maj": "2026-08-05",
   "total": 300,
   "byTheme": {
-    "ia": 26,
-    "data": 249,
+    "ia": 27,
+    "data": 248,
     "numerique": 25
   },
   "items": [
+    {
+      "s": "mail",
+      "src": "PLACE",
+      "o": "Fourniture de prestations d’évaluation pour expérimenter une démarche d’évaluation de produits ou systèmes intégrant un modèle d’intelligence artificielle",
+      "a": "Services du Premier ministre",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-08-05",
+      "dl": "2026-09-15T12:00:00",
+      "m": "",
+      "th": "ia",
+      "u": "",
+      "k": "services du premier ministre|fourniture de prestations d evaluation pour experimenter une demarche d evaluation de prod",
+      "ia": 1
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "2025-04 - MISE A DISPOSITION DE BASES DE DONNEES EN MODE SAAS",
+      "a": "Choose Paris Region",
+      "dep": "93,75,77,78,91,92,94,95",
+      "fam": "Marchés européens",
+      "tm": "Fournitures",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-05",
+      "dl": "2026-09-28T11:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-77506",
+      "k": "choose paris region|2025 04 mise a disposition de bases de donnees en mode saas",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -4459,7 +4493,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-116676",
       "k": "coallia|mise a disposition d un accompagnement exterieur permettant la mise en en conformite avec ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4476,7 +4510,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-117449",
       "k": "sertrid|maintenance assistance et sauvegarde des donnees informatiques du sertrid",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4493,7 +4527,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-116638",
       "k": "commune de saint dizier|refonte complete des arretes municipaux de police de circulation et de stationnement et mi",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4510,7 +4544,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-116596",
       "k": "cci seine et marne|accord cadre de prestations de formation dans le domaine de l intelligence artificielle po",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -5071,40 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-103564",
       "k": "saint quentin en yvelines communaute d a|mise a disposition et maintenance de l open data de saint quentin en yvelines",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture, reprise de données, hébergement et maintenance d'un logiciel de gestion des contenants et de facturation de la redevance spéciale pour la Direction des déchets de Concarneau Cornouaille Ag",
-      "a": "Concarneau Cornouaille Agglomération.",
-      "dep": "29, 56",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-15",
-      "dl": "2025-10-10T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-102501",
-      "k": "concarneau cornouaille agglomeration|fourniture reprise de donnees hebergement et maintenance d un logiciel de gestion des cont",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Conception, réalisation, hébergement et maintenance d'un entrepôt de données et d'un portail numérique des collections du Musée Guimet - musée national des arts asiatiques.",
-      "a": "Musée National Arts Asiatiques Guimet",
-      "dep": "75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-14",
-      "dl": "2025-10-20T10:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-101864",
-      "k": "musee national arts asiatiques guimet|conception realisation hebergement et maintenance d un entrepot de donnees et d un portail",
       "ia": null
     }
   ]
