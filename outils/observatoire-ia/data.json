@@ -1,12 +1,46 @@
 {
-  "maj": "2026-08-05",
+  "maj": "2026-08-06",
   "total": 300,
   "byTheme": {
-    "ia": 27,
     "data": 248,
+    "ia": 27,
     "numerique": 25
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture et diffusion de données relatives aux achats des ménages en France",
+      "a": "FRANCEAGRIMER",
+      "dep": "93,94,75,92,91,77,78,95",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-06",
+      "dl": "2026-09-15T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-77970",
+      "k": "franceagrimer|fourniture et diffusion de donnees relatives aux achats des menages en france",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Travaux d'installation de dispositifs de comptage énergétiques et leurs accessoires pour la remontée des données",
+      "a": "Département du Doubs",
+      "dep": "25",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Travaux",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-05",
+      "dl": "2026-09-09T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-78224",
+      "k": "departement du doubs|travaux d installation de dispositifs de comptage energetiques et leurs accessoires pour l",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "PLACE",
@@ -4561,7 +4595,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114891",
       "k": "syndicat mixte de l isere et de l arc en|acquisition de donnees geotechniques et geophysiques en combe de savoie annees 2025 2029",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4578,7 +4612,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-116373",
       "k": "assistance publique hopitaux de paris|audit et certification du systeme de management du systeme de l information smsi selon le ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4595,7 +4629,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-115066",
       "k": "conseil departemental d eure et loir|realisation d une boucle locale reseau mise a disposition et maintenance de liaisons afin ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4612,7 +4646,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114445",
       "k": "semivim|services de telecommunications voix et donnees lot 2 services et terminaux de mobilite",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4629,7 +4663,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-115297",
       "k": "universite gustave eiffel|accord cadre d appui a la collecte des donnees dans le cadre de tests par correspondance",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4646,7 +4680,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114897",
       "k": "centre hospitalier universitaire de nice|developpement d un logiciel pour l assistance chirurgicale en peroperatoire pour traumatis",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -5071,40 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-104118",
       "k": "ccas de montpellier|prestation de service de mise a disposition d un serveur hds pour l hebergement des donnee",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Services de transmission de données et de Voix fixe et mobile pour la  Mairie de Montargis",
-      "a": "Ville de Montargis",
-      "dep": "45",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-17",
-      "dl": "2025-10-24T10:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-102769",
-      "k": "ville de montargis|services de transmission de donnees et de voix fixe et mobile pour la mairie de montargis",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Mise à disposition et maintenance de l'Open Data de Saint-Quentin-en-Yvelines",
-      "a": "Saint-Quentin-en-Yvelines - Communauté d'agglomération",
-      "dep": "78",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-17",
-      "dl": "2025-10-13T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-103564",
-      "k": "saint quentin en yvelines communaute d a|mise a disposition et maintenance de l open data de saint quentin en yvelines",
       "ia": null
     }
   ]
