@@ -1,12 +1,29 @@
 {
-  "maj": "2026-08-06",
+  "maj": "2026-08-07",
   "total": 300,
   "byTheme": {
-    "data": 248,
-    "ia": 27,
-    "numerique": 25
+    "numerique": 26,
+    "data": 247,
+    "ia": 27
   },
   "items": [
+    {
+      "s": "mail",
+      "src": "PLACE",
+      "o": "FORMATIONS, PRESTATIONS D’EXPERTISE ET D’ACCOMPAGNEMENT AUTOUR DES TECHNOLOGIES MICROSOFT, DES ENVIRONNEMENTS M365, AZURE, DATA, IA ET SERVICES ASSOCIÉS",
+      "a": "Etablissements de Santé et Médico-sociaux",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-08-07",
+      "dl": "2026-09-30T23:59:00",
+      "m": "",
+      "th": "numerique",
+      "u": "",
+      "k": "etablissements de sante et medico sociau|formations prestations d expertise et d accompagnement autour des technologies microsoft d",
+      "ia": 1
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -639,6 +656,23 @@
     {
       "s": "boamp",
       "src": "BOAMP",
+      "o": "Marché d’accompagnement à la mise en œuvre du Plan de Transformation Numérique",
+      "a": "DEPARTEMENT DE LA REUNION",
+      "dep": "974",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-07",
+      "dl": "2026-07-23T11:00:00+00:00",
+      "m": "",
+      "th": "numerique",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-66731",
+      "k": "departement de la reunion|marche d accompagnement a la mise en uvre du plan de transformation numerique",
+      "ia": null
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
       "o": "LA PRESTATION DE SERVICE DE MISE A DISPOSTION DE CONTENU OU DE DONNEES (CDN : CONTENT DELIVERY NETWORK)",
       "a": "CDC Informatique",
       "dep": "92",
@@ -1060,23 +1094,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-60399",
       "k": "departement de la sarthe|mise a disposition de previsions et d observations de donnees meteorologiques pour le depa",
       "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Marché d’accompagnement à la mise en œuvre du Plan de Transformation Numérique",
-      "a": "DEPARTEMENT DE LA REUNION",
-      "dep": "974",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-06-17",
-      "dl": "2026-07-16T11:00:00+00:00",
-      "m": "",
-      "th": "numerique",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-59233",
-      "k": "departement de la reunion|marche d accompagnement a la mise en uvre du plan de transformation numerique",
-      "ia": null
     },
     {
       "s": "boamp",
@@ -4697,7 +4714,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114561",
       "k": "saint lo agglo|catalogage des donnees du systeme d information pour saint lo agglo",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4714,7 +4731,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114823",
       "k": "ca du pays nord martinique|prestation de mise en conformite reglement general de protection des donnees rgpd de l epc",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4731,7 +4748,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-113440",
       "k": "onisep|la tierce maintenance applicative de l application de gestion et de valorisation de donnee",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4748,7 +4765,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-113312",
       "k": "caisse nationale d assurance vieillesse|gestion editoriale maintenance et hebergement des donnees des sites pourbienvieillir fr et",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4765,7 +4782,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-113076",
       "k": "ville d annecy|fourniture installation maintenance de panneaux a messages variables de solution de gestio",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-103904",
       "k": "institut national de l information geogr|acquisition par voie aerienne de donnees lidar haute densite sur la martinique et traiteme",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Prestation de service de mise à disposition d'un serveur Hds pour l'hébergement des données de santé des résidents des Ehpad et du Ssiad",
-      "a": "Ccas de Montpellier",
-      "dep": "34",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-18",
-      "dl": "2025-10-13T16:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-104118",
-      "k": "ccas de montpellier|prestation de service de mise a disposition d un serveur hds pour l hebergement des donnee",
       "ia": null
     }
   ]
