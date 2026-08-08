@@ -1,12 +1,29 @@
 {
-  "maj": "2026-08-07",
+  "maj": "2026-08-08",
   "total": 300,
   "byTheme": {
-    "numerique": 26,
     "data": 247,
+    "numerique": 26,
     "ia": 27
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Service de traiteur pour la Plateforme des données de santé (Pds)",
+      "a": "Plateforme Des Donnees De Sante",
+      "dep": "75",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-07",
+      "dl": "2026-09-24T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-79212",
+      "k": "plateforme des donnees de sante|service de traiteur pour la plateforme des donnees de sante pds",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "PLACE",
@@ -4799,7 +4816,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-113012",
       "k": "regie publique de l eau potable de coeur|exploitation des donnees de telegestion des compteurs d achat d eau en gros",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4816,7 +4833,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-113306",
       "k": "aphp sorbonne universite|marche a bons de commande travaux de cablage voix donnees images vdi du groupe hospitalo u",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4833,7 +4850,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-112994",
       "k": "centre de gestion de l isere|mise en place d une solution de sauvegarde des donnees du cdg38",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4850,7 +4867,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-111147",
       "k": "ctre nal oeuvres universitaires scolai|prestation de transfert entre systemes d informations de donnees structurees directement e",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4867,7 +4884,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-110495",
       "k": "filieris|mise a disposition d un service de reseau de donnees de telephonie d appel malade et d heb",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4884,7 +4901,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108750",
       "k": "smavd|accord cadre a bons de commande de topographies et acquisitions de donnees aeroportees pou",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4901,7 +4918,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-109599",
       "k": "territoire d energie isere 38|exploitation maintenance et supervision d une plateforme d exploitation de donnees liees a",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-104199",
       "k": "departement de l ain|fourniture et livraison de papier pour le service dematerialisation reprographie pao du de",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Acquisition par voie aérienne de données LIDAR haute densité sur la Martinique et traitement de ces données",
-      "a": "Institut national de l'information géographique et forestière (IGN)",
-      "dep": "94",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-19",
-      "dl": "2025-10-22T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-103904",
-      "k": "institut national de l information geogr|acquisition par voie aerienne de donnees lidar haute densite sur la martinique et traiteme",
       "ia": null
     }
   ]
