@@ -1,5 +1,5 @@
 {
-  "maj": "2026-08-08",
+  "maj": "2026-08-09",
   "total": 300,
   "byTheme": {
     "data": 247,
@@ -4935,7 +4935,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108793",
       "k": "universite de lille|refonte d une plateforme migration de donnees valorisation et maintenance d une bibliotheq",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4952,7 +4952,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108104",
       "k": "meteo france|fourniture de coffrets electriques permettant l alimentation l acquisition des donnees des",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4969,7 +4969,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-107725",
       "k": "semivim|services de telecommunications voix et donnees",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -4986,7 +4986,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108098",
       "k": "rectrice de region academique aura|mise en uvre d un agent conversationnel ou chatbot pour informer les associations sur les ",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -5003,7 +5003,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-107743",
       "k": "collectivite europeenne d alsace|reprise assistance maintenance hebergement et infogerance d une infrastructure de donnees ",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5020,7 +5020,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-107032",
       "k": "departement de la reunion|accord cadre a bons de commande relatif aux services de telecommunications voix et donnees",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5037,7 +5037,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-106297",
       "k": "ecpad|acquisition de serveurs de transcodage d espaces de stockage de serveurs sql de gestion de",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5054,7 +5054,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-106109",
       "k": "departement de la manche|suivi de l evolution du littoral de la manche et acquisition de donnees morpho sedimentair",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
