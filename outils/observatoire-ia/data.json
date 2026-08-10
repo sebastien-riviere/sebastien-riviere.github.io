@@ -1,5 +1,5 @@
 {
-  "maj": "2026-08-09",
+  "maj": "2026-08-10",
   "total": 300,
   "byTheme": {
     "data": 247,
@@ -5071,7 +5071,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-105778",
       "k": "centre hospitalier de saint quentin|prestation de codage et d optimisation des donnees d information medicale du tracage au ce",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,7 +5088,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-105782",
       "k": "syndicat mixte entente oise aisne|mise en place d un outil de supervision de donnees hydrometriques",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5105,7 +5105,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-104199",
       "k": "departement de l ain|fourniture et livraison de papier pour le service dematerialisation reprographie pao du de",
-      "ia": null
+      "ia": 0
     }
   ]
 }
