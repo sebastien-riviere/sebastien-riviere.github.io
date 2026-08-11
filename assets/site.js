@@ -11,7 +11,7 @@
 
   /* --- Données « Quoi de neuf » (source unique) --- */
   var NOTIFS=[
-    {id:"mediatheque-blockchain-2026-08", tint:"--t-block", lab:"Médiathèque", ttl:"117 livres crypto &amp; blockchain", when:"11 août", href:"/outils/mediatheque-blockchain/"},
+    {id:"mediatheque-blockchain-2026-08", tint:"--t-block", lab:"Médiathèque", ttl:"Livres, films &amp; docs sur la blockchain", when:"11 août", href:"/outils/mediatheque-blockchain/"},
     {id:"biocomputing-2026-07-11", tint:"--t-art", lab:"Enquête", ttl:"Des neurones humains dans nos ordinateurs", when:"11 juil.", href:"/articles/des-neurones-humains-dans-nos-ordinateurs/"},
     {id:"creole-2026-07-04", tint:"--t-art",  lab:"Article",     ttl:"Quand l'IA chante en créole",            when:"4 juil.",   href:"/articles/quand-l-ia-chante-en-creole/"},
     {id:"mediatheque-2026-07",tint:"--t-labo",lab:"Médiathèque", ttl:"Films &amp; séries sur l'IA ajoutés",     when:"juillet",   href:"/outils/mediatheque-ia/"},
