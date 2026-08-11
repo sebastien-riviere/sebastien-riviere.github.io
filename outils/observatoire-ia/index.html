@@ -352,6 +352,16 @@ function themeMatch(it, f){
 }
 
 function esc(s){ return String(s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+// Normalise un titre saisi TOUT EN MAJUSCULES (fréquent au BOAMP) en casse de phrase, acronymes préservés.
+function fixCase(s){
+  s = String(s||'');
+  const letters = s.replace(/[^A-Za-zÀ-ÿ]/g,'');
+  if(!letters || letters !== letters.toUpperCase()) return s;   // pas entièrement en capitales → inchangé
+  s = s.toLowerCase();
+  s = s.charAt(0).toUpperCase() + s.slice(1);
+  const AC = {ia:'IA',rgpd:'RGPD',api:'API',saas:'SaaS',pme:'PME',eti:'ETI',iot:'IoT',crm:'CRM',erp:'ERP',gpu:'GPU',sig:'SIG',rh:'RH'};
+  return s.replace(/\b(ia|rgpd|api|saas|pme|eti|iot|crm|erp|gpu|sig|rh)\b/g, w => AC[w] || w);
+}
 
 function deadlineHtml(dl){
   if(!dl) return '';
@@ -411,11 +421,11 @@ function render(){
         + '<span class="src">'+ICO.doc+src+'</span>'
         + deadlineHtml(it.dl)
       + '</div>'
-      + '<div class="card-obj">'+esc(it.o)+'</div>'
+      + '<div class="card-obj">'+esc(fixCase(it.o))+'</div>'
       + (clair ? '<div class="card-clair">'+esc(clair)+'</div>' : '')
       + (it.a ? '<div class="card-buyer">'+ICO.building+esc(it.a)+'</div>' : '')
       + (meta.length ? '<div class="card-meta">'+meta.join('')+'</div>' : '')
-      + (it.u ? '<a class="card-link" href="'+esc(it.u)+'" target="_blank" rel="noopener">Voir l\'avis '+ICO.ext+'</a>' : '')
+      + (it.u && /^https?:\/\//.test(it.u) ? '<a class="card-link" href="'+esc(it.u)+'" target="_blank" rel="noopener">Voir l\'avis '+ICO.ext+'</a>' : '')
       + '</div>';
   }).join('');
 }
