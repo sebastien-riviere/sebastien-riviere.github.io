@@ -194,6 +194,12 @@ body{background-image:radial-gradient(circle at 12% 0%,var(--acc-glow),transpare
 .m-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:var(--radius-sm,10px);font-weight:800;font-family:var(--ui);font-size:.88rem;text-decoration:none;transition:.16s}
 .btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc-ink)}
+.btn-free{background:#0a9d5a;color:#fff}.btn-free:hover{background:#0c7d46}
+.m-free{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin:15px 0 2px;padding:13px 15px;border-radius:var(--radius-sm,10px);background:color-mix(in srgb,#0a9d5a 10%,var(--card));border:1px solid color-mix(in srgb,#0a9d5a 42%,transparent)}
+.m-free .lbl{display:flex;flex-direction:column;gap:1px;line-height:1.25}
+.m-free .lbl b{font-size:.86rem;color:var(--ink);font-weight:800}
+.m-free .lbl small{font-size:.72rem;color:var(--muted);font-weight:600}
+.free-pill{font-size:.6rem;font-weight:800;padding:2px 7px;border-radius:5px;background:#0a9d5a;color:#fff;letter-spacing:.02em}
 .m-close{position:sticky;top:14px;float:right;margin:14px 14px 0 0;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;z-index:3}
 .m-close:hover{color:var(--acc-ink);border-color:var(--acc)}
 .m-cf{margin-top:12px;font-size:.72rem;color:var(--faint);font-style:italic}
@@ -347,7 +353,7 @@ function cardHTML(b){
         <div class="bt">${esc(b.t)}</div>
         <div class="ba">${sub}</div>
         ${rateHTML(b)}
-        <div class="br"><span class="tag"><span class="dot"></span>${esc(m.l)}</span>${fr}${badge}</div>
+        <div class="br"><span class="tag"><span class="dot"></span>${esc(m.l)}</span>${fr}${badge}${b.al?'<span class="free-pill">Gratuit</span>':""}</div>
       </div></button>`;
 }
 function bindBooks(root){root.querySelectorAll(".book").forEach(el=>el.onclick=()=>openModal(BOOKS[el.dataset.i]));}
@@ -459,7 +465,8 @@ function openModal(b){
     if(b.scat)rows.push(["Sous-catégorie",b.scat]);
   }
   const metaTable=rows.length?`<div class="m-meta">${rows.map(r=>`<div><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("")}</div>`:"";
-  const links=b.u?`<a class="btn btn-p" href="${esc(b.u)}" target="_blank" rel="noopener">${isScr?"Voir sur IMDb ↗":"Voir le livre ↗"}</a>`:"";
+  const freeBlock=b.al?`<div class="m-free"><a class="btn btn-free" href="${esc(b.al)}" target="_blank" rel="noopener">${isScr?"▶ Regarder gratuitement":"↓ Lire gratuitement"} ↗</a><span class="lbl"><b>Accès libre &amp; légal</b>${b.alt?`<small>${esc(b.alt)}</small>`:""}</span></div>`:"";
+  const links=(b.u&&b.u!==b.al)?`<a class="btn btn-p" href="${esc(b.u)}" target="_blank" rel="noopener">${isScr?"Voir sur IMDb ↗":"Voir le livre ↗"}</a>`:"";
   const authLine=isScr?(b.a?`<div class="m-auth">Réalisé par ${esc(b.a)}</div>`:""):`<div class="m-auth">${esc(b.a)}</div>`;
   const c=document.getElementById("mContent");
   c.innerHTML=`<div class="m-grid" style="${tintVars(b.c)}">
@@ -470,6 +477,7 @@ function openModal(b){
       ${authLine}
       <div class="m-tags">${tags}</div>
       ${rateBlock}
+      ${freeBlock}
       <div class="m-res">${esc(b.r)||"<em>Résumé à venir.</em>"}</div>
       ${avis}
       ${style}

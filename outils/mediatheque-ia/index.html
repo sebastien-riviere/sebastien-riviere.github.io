@@ -273,6 +273,12 @@ body{
 .m-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:var(--radius-sm);font-weight:800;font-family:var(--ui);font-size:.88rem;text-decoration:none;transition:.16s}
 .btn-p{background:var(--ia);color:#fff}.btn-p:hover{background:var(--ia-ink)}
+.btn-free{background:#0a9d5a;color:#fff}.btn-free:hover{background:#0c7d46}
+.m-free{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin:15px 0 2px;padding:13px 15px;border-radius:var(--radius-sm,10px);background:color-mix(in srgb,#0a9d5a 10%,var(--card));border:1px solid color-mix(in srgb,#0a9d5a 42%,transparent)}
+.m-free .lbl{display:flex;flex-direction:column;gap:1px;line-height:1.25}
+.m-free .lbl b{font-size:.86rem;color:var(--ink);font-weight:800}
+.m-free .lbl small{font-size:.72rem;color:var(--muted);font-weight:600}
+.free-pill{font-size:.6rem;font-weight:800;padding:2px 7px;border-radius:5px;background:#0a9d5a;color:#fff;letter-spacing:.02em}
 .btn-s{background:var(--card);color:var(--ink);border:1px solid var(--border)}.btn-s:hover{border-color:var(--ia)}
 .m-close{position:sticky;top:14px;float:right;margin:14px 14px 0 0;width:34px;height:34px;border-radius:50%;
   border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;z-index:3}
@@ -333,6 +339,24 @@ body{
   .hub-nav{margin-top:14px}
   .hub-nav a{font-size:14px;padding:10px 12px}
 }
+/* couche avis lecteurs / spectateurs (ajoutée 2026-08-11, parité médiathèque blockchain) */
+.rate{display:inline-flex;align-items:center;gap:6px;margin-top:7px}
+.rate .st5{letter-spacing:.5px;font-size:.8rem;line-height:1}
+.rate .st5 b{color:#e0a72b;font-weight:400}.rate .st5 i{color:var(--border-strong);font-style:normal;opacity:.45}
+.rate .rv{font-size:.76rem;font-weight:800;color:var(--ink)}
+.rate .rn{font-size:.68rem;font-weight:700;color:var(--faint)}
+.m-rate{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:10px 0 4px;padding:11px 14px;border-radius:10px;background:var(--bg-2);border:1px solid var(--border-soft)}
+.m-rate .one{display:flex;flex-direction:column;gap:2px}
+.m-rate .src{font-size:.6rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.m-rate .val{font-size:.92rem;font-weight:800;color:var(--ink)}
+.m-rate .val b{color:#e0a72b;font-weight:400;letter-spacing:.5px}.m-rate .val i{color:var(--border-strong);font-style:normal;opacity:.45}
+.avblock{margin-top:14px;padding:13px 15px;border-radius:10px}
+.avblock span{display:block;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.avblock p{font-size:.92rem;line-height:1.56;color:var(--ink)}
+.b-avis{background:var(--ia-soft);border:1px solid var(--ia-line)}
+.b-avis span{color:var(--ia-ink)}
+.b-style{background:var(--t-biz-soft);border:1px solid color-mix(in srgb,var(--t-biz) 30%,transparent)}
+.b-style span{color:var(--t-biz)}
 </style>
 </head>
 <body>
@@ -438,6 +462,20 @@ const tintVars=c=>`--tint:${CATS[c].tint};--tint-soft:${CATS[c].soft}`;
 const facetOf=b=> b.s==="ecran" ? (FAM[b.fam]||b.fam||"") : (b.scat||"");   // facette secondaire : famille (écran) / sous-catégorie (livres)
 const norm=t=>{t=(t||"").toLowerCase();for(const p of["the ","la ","le ","les ","l'","l’","un ","une "])if(t.startsWith(p))t=t.slice(p.length);return t;};
 const starsHTML=p=>{p=+p||0;let s="";for(let i=1;i<=3;i++)s+=i<=p?"<b>★</b>":"<i>★</i>";return s;};
+// --- couche avis lecteurs/spectateurs (parité blockchain) ---
+const rateVal=b=>{if(b.im){const i=parseFloat((b.im||"").replace(",","."));return isNaN(i)?0:i/2;}const g=parseFloat((b.gr||"").replace(",","."));if(!isNaN(g))return g;const a=parseFloat((b.am||"").replace(",","."));return isNaN(a)?0:a;};
+function stars5(v){v=+v||0;let s="";for(let i=1;i<=5;i++)s+=(v>=i-0.25?"<b>★</b>":v>=i-0.75?"<b>◐</b>":"<i>★</i>");return s;}
+const nfmt=n=>n>=1000?(n/1000).toFixed(n>=10000?0:1).replace(".0","")+"k":""+n;
+function rateHTML(b){
+  if(b.s==="ecran"){
+    const iv=parseFloat((b.im||"").replace(",","."));
+    if(isNaN(iv))return b.nl?`<div class="rate"><span class="rv">${esc(b.nl)}</span></div>`:"";
+    return `<div class="rate"><span class="st5">${stars5(iv/2)}</span><span class="rv">${esc(b.im)}</span><span class="rn">IMDb${b.imn?" · "+nfmt(b.imn):""}</span></div>`;
+  }
+  const v=rateVal(b); if(!v)return "";
+  const n=(b.grn||0)+(b.amn||0);
+  return `<div class="rate"><span class="st5">${stars5(v)}</span><span class="rv">${v.toFixed(2).replace(/0$/,"")}</span>${n?`<span class="rn">${nfmt(n)} avis</span>`:""}</div>`;
+}
 
 fetch("./data.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>{
   BOOKS=d.books.map((b,i)=>({...b,_i:i})); document.getElementById("upd").textContent=d.updated;
@@ -534,7 +572,8 @@ function cardHTML(b){
         <div class="bt">${esc(b.t)}</div>
         <div class="ba">${esc(b.a)}${b.y?" · "+esc(b.y):""}</div>
         ${pert}
-        <div class="br"><span class="tag"><span class="dot"></span>${esc(CATS[b.c].l)}</span>${fr}${intr}</div>
+        ${rateHTML(b)}
+        <div class="br"><span class="tag"><span class="dot"></span>${esc(CATS[b.c].l)}</span>${fr}${intr}${b.al?'<span class="free-pill">Gratuit</span>':""}</div>
       </div></button>`;
 }
 function bindBooks(root){root.querySelectorAll(".book").forEach(el=>el.onclick=()=>openModal(BOOKS[el.dataset.i]));}
@@ -655,8 +694,22 @@ function openModal(b){
   const metaTable=rows.length?`<div class="m-meta">${rows.map(r=>`<div><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("")}</div>`:"";
   const why=b.pq?`<div class="m-why"><span>Pourquoi ce ${isScreen?"titre":"livre"}</span><p>${esc(b.pq)}</p></div>`:"";
   const rem=b.rem?`<p class="m-rem">${esc(b.rem)}</p>`:"";
+  const freeBlock=b.al?`<div class="m-free"><a class="btn btn-free" href="${esc(b.al)}" target="_blank" rel="noopener">${isScreen?"▶ Regarder gratuitement":"↓ Lire gratuitement"} ↗</a><span class="lbl"><b>Accès libre &amp; légal</b>${b.alt?`<small>${esc(b.alt)}</small>`:""}</span></div>`:"";
   const links=[];
-  if(b.u) links.push(`<a class="btn btn-p" href="${esc(b.u)}" target="_blank" rel="noopener">${isScreen?"Voir la fiche ↗":"Voir le livre ↗"}</a>`);
+  if(b.u&&b.u!==b.al) links.push(`<a class="btn btn-p" href="${esc(b.u)}" target="_blank" rel="noopener">${isScreen?"Voir la fiche ↗":"Voir le livre ↗"}</a>`);
+  const rp=[];
+  if(isScreen){
+    const iv=parseFloat((b.im||"").replace(",","."));
+    if(!isNaN(iv))rp.push(`<div class="one"><span class="src">IMDb</span><span class="val"><b>${stars5(iv/2)}</b> ${esc(b.im)}/10${b.imn?" · "+nfmt(b.imn):""}</span></div>`);
+    if(b.nl)rp.push(`<div class="one"><span class="src">Autres</span><span class="val">${esc(b.nl)}</span></div>`);
+  }else{
+    if(b.gr)rp.push(`<div class="one"><span class="src">Goodreads</span><span class="val"><b>${stars5(parseFloat(b.gr.replace(",",".")))}</b> ${esc(b.gr)}/5${b.grn?" · "+nfmt(b.grn):""}</span></div>`);
+    if(b.am)rp.push(`<div class="one"><span class="src">Amazon</span><span class="val"><b>${stars5(parseFloat(b.am.replace(",",".")))}</b> ${esc(b.am)}/5${b.amn?" · "+nfmt(b.amn):""}</span></div>`);
+    if(b.nl)rp.push(`<div class="one"><span class="src">Autres</span><span class="val">${esc(b.nl)}</span></div>`);
+  }
+  const rateBlock=rp.length?`<div class="m-rate">${rp.join("")}</div>`:"";
+  const avis=b.av?`<div class="avblock b-avis"><span>${isScreen?"Ce qui plaît aux spectateurs":"Ce qui plaît aux lecteurs"}</span><p>${esc(b.av)}</p></div>`:"";
+  const styl=b.st?`<div class="avblock b-style"><span>Style &amp; originalité</span><p>${esc(b.st)}</p></div>`:"";
   const c=document.getElementById("mContent");
   c.innerHTML=`<div class="m-grid" style="${tintVars(b.c)}">
     <div class="m-cover">${ph}${img}</div>
@@ -667,6 +720,10 @@ function openModal(b){
       ${pertRow}
       <div class="m-tags">${tags}</div>
       <div class="m-res">${esc(b.r)||"<em>Résumé à venir.</em>"}</div>
+      ${rateBlock}
+      ${freeBlock}
+      ${avis}
+      ${styl}
       ${metaTable}
       ${why}
       ${rem}
