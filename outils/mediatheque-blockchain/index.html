@@ -200,6 +200,7 @@ body{background-image:radial-gradient(circle at 12% 0%,var(--acc-glow),transpare
 .m-free .lbl b{font-size:.86rem;color:var(--ink);font-weight:800}
 .m-free .lbl small{font-size:.72rem;color:var(--muted);font-weight:600}
 .free-pill{font-size:.6rem;font-weight:800;padding:2px 7px;border-radius:5px;background:#0a9d5a;color:#fff;letter-spacing:.02em}
+.chip-free{--tint:#0a9d5a;--tint-soft:color-mix(in srgb,#0a9d5a 15%,var(--card))}.chip-free .dot{background:#0a9d5a}
 .m-close{position:sticky;top:14px;float:right;margin:14px 14px 0 0;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;z-index:3}
 .m-close:hover{color:var(--acc-ink);border-color:var(--acc)}
 .m-cf{margin-top:12px;font-size:.72rem;color:var(--faint);font-style:italic}
@@ -277,7 +278,7 @@ const CAT_ORDER=["fond","web3","invest","monnaie","tech","recit","droit","fictio
 const NAT={livre:"Livre",guide:"Guide",papier:"Papier de recherche",bd:"Bande dessinée / album",essai:"Essai",film:"Film",serie:"Série",documentaire:"Documentaire","court-metrage":"Court-métrage","docu-serie":"Docu-série"};
 const PLABEL={3:"Incontournable",2:"Recommandé",1:"Notable"};
 
-let BOOKS=[], fCat="", fLevel="", fFr=false, q="", sortMode="sel";
+let BOOKS=[], fCat="", fLevel="", fFr=false, fFree=false, q="", sortMode="sel";
 const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const meta=c=>CATS[c]||{l:c,tint:"var(--acc)",soft:"var(--acc-soft)"};
 const tintVars=c=>`--tint:${meta(c).tint};--tint-soft:${meta(c).soft}`;
@@ -304,16 +305,19 @@ fetch("./data.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>
 
 const count=c=>BOOKS.filter(b=>b.c===c).length;
 function buildChips(){
-  let html=`<button class="chip${fCat===""?" on":""}" data-c="">Tout</button>`;
+  let html=`<button class="chip${(!fFree&&fCat==="")?" on":""}" data-c="">Tout</button>`;
+  const nFree=BOOKS.filter(b=>b.al).length;
+  if(nFree) html+=`<button class="chip chip-free${fFree?" on":""}" data-free="1"><span class="dot"></span>Gratuit<span class="cn">${nFree}</span></button>`;
   CAT_ORDER.filter(c=>count(c)>0).forEach(c=>{
     const m=meta(c);
-    html+=`<button class="chip${c===fCat?" on":""}" data-c="${c}" style="--tint:${m.tint};--tint-soft:${m.soft}"><span class="dot"></span>${m.l}<span class="cn">${count(c)}</span></button>`;
+    html+=`<button class="chip${(!fFree&&c===fCat)?" on":""}" data-c="${c}" style="--tint:${m.tint};--tint-soft:${m.soft}"><span class="dot"></span>${m.l}<span class="cn">${count(c)}</span></button>`;
   });
   const el=document.getElementById("chips");
   el.innerHTML=html;
   el.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{
-    fCat=b.dataset.c;
-    el.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.c===fCat));
+    if(b.dataset.free){ fFree=true; fCat=""; }
+    else { fFree=false; fCat=b.dataset.c; }
+    el.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on", x.dataset.free? fFree : (!fFree && x.dataset.c===fCat)));
     render();
   });
 }
@@ -379,7 +383,7 @@ function renderSpotlight(el){
   el.onclick=()=>openModal(b);
 }
 
-function isBrowseDefault(){return !fCat&&!fLevel&&!fFr&&!q&&sortMode==="sel";}
+function isBrowseDefault(){return !fCat&&!fFree&&!fLevel&&!fFr&&!q&&sortMode==="sel";}
 function renderShelves(el){
   let html="";
   CAT_ORDER.forEach(c=>{
@@ -401,7 +405,7 @@ function renderShelves(el){
 
 function render(){
   const sp=document.getElementById("spotlight");
-  if(q)sp.style.display="none"; else renderSpotlight(sp);
+  if(q||fFree)sp.style.display="none"; else renderSpotlight(sp);
   const shelvesEl=document.getElementById("shelves"), g=document.getElementById("grid"), cl=document.getElementById("countLine");
   if(isBrowseDefault()){
     shelvesEl.style.display=""; g.style.display="none"; cl.style.display="none";
@@ -409,6 +413,7 @@ function render(){
   }
   shelvesEl.style.display="none"; shelvesEl.innerHTML=""; g.style.display=""; cl.style.display="";
   let list=BOOKS.filter(b=>{
+    if(fFree&&!b.al)return false;
     if(fCat&&b.c!==fCat)return false;
     if(fLevel&&b.lvl!==fLevel)return false;
     if(fFr&&b.d!=="oui")return false;
