@@ -1,12 +1,29 @@
 {
-  "maj": "2026-08-12",
+  "maj": "2026-08-13",
   "total": 300,
   "byTheme": {
-    "data": 247,
-    "numerique": 26,
+    "data": 248,
+    "numerique": 25,
     "ia": 27
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture de données et prévisions météorologiques nécessaires à l'exploitation de l'eau",
+      "a": "Régie de l'Eau Bordeaux Métropole",
+      "dep": "33",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-13",
+      "dl": "2026-09-16T10:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-80027",
+      "k": "regie de l eau bordeaux metropole|fourniture de donnees et previsions meteorologiques necessaires a l exploitation de l eau",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-105782",
       "k": "syndicat mixte entente oise aisne|mise en place d un outil de supervision de donnees hydrometriques",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture et livraison de papier pour le service dématérialisation, reprographie, Pao du Département de l'Ain",
-      "a": "Département de l'Ain",
-      "dep": "1",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Fournitures",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-19",
-      "dl": "2025-10-14T12:00:00+00:00",
-      "m": null,
-      "th": "numerique",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-104199",
-      "k": "departement de l ain|fourniture et livraison de papier pour le service dematerialisation reprographie pao du de",
       "ia": 0
     }
   ]
