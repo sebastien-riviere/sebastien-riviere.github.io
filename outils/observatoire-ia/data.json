@@ -1,5 +1,5 @@
 {
-  "maj": "2026-08-14",
+  "maj": "2026-08-15",
   "total": 300,
   "byTheme": {
     "data": 248,
@@ -7,6 +7,23 @@
     "ia": 27
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "26059 - Abonnement à une base de données et outil de recherche bibliographique pour le réseau des médiathèques Paris-Vallée de la Marne",
+      "a": "Communauté d&#039;Agglomération Paris-Vallée de la Marne",
+      "dep": "77",
+      "fam": "Marchés <90 k€ (MAPA)",
+      "tm": "Services",
+      "proc": "Procédure Adaptée",
+      "dp": "2026-08-14",
+      "dl": "2026-09-21T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-80720",
+      "k": "communaute d 039 agglomeration paris val|26059 abonnement a une base de donnees et outil de recherche bibliographique pour le resea",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-107032",
       "k": "departement de la reunion|accord cadre a bons de commande relatif aux services de telecommunications voix et donnees",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Acquisition de serveurs de transcodage, d’espaces de stockage, de serveurs SQL de gestion de base de données dédiées, et la maintenance des systèmes de post production audiovisuelle de l’ECPAD",
-      "a": "ECPAD",
-      "dep": "94",
-      "fam": "Marchés européens",
-      "tm": "Fournitures",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-26",
-      "dl": "2025-10-27T14:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-106297",
-      "k": "ecpad|acquisition de serveurs de transcodage d espaces de stockage de serveurs sql de gestion de",
       "ia": 0
     }
   ]
