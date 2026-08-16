@@ -1,12 +1,46 @@
 {
-  "maj": "2026-08-15",
+  "maj": "2026-08-16",
   "total": 300,
   "byTheme": {
-    "data": 248,
-    "numerique": 25,
+    "data": 247,
+    "numerique": 26,
     "ia": 27
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Prestations de suivi de l’offre et des données d’audience de la télévision linéaire, des services de BVoD et des applications et sites internet pour les années 2027 à 2030.",
+      "a": "Centre nationale du cinéma",
+      "dep": "75,78",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-15",
+      "dl": "2026-09-14T18:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-80471",
+      "k": "centre nationale du cinema|prestations de suivi de l offre et des donnees d audience de la television lineaire des se",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Service d’échanges de formulaires réglementaires de Demandes de Travaux (DT) et Déclarations d’Intention de Commencement de Travaux (DICT) via une plateforme de dématérialisation",
+      "a": "Communauté d'Agglomération de Béthune-Bruay, Artois Lys Romane",
+      "dep": "62,59",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-15",
+      "dl": "2026-09-21T10:00:00+00:00",
+      "m": "ac_max",
+      "th": "numerique",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-80459",
+      "k": "communaute d agglomeration de bethune br|service d echanges de formulaires reglementaires de demandes de travaux dt et declarations",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5072,40 +5106,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108098",
       "k": "rectrice de region academique aura|mise en uvre d un agent conversationnel ou chatbot pour informer les associations sur les ",
       "ia": 1
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Reprise, assistance, maintenance, hébergement et infogérance d’une infrastructure de données spatiales dans le cadre de GEORHENA",
-      "a": "Collectivité européenne d'Alsace",
-      "dep": "67, 68",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-29",
-      "dl": "2025-11-03T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-107743",
-      "k": "collectivite europeenne d alsace|reprise assistance maintenance hebergement et infogerance d une infrastructure de donnees ",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Accord-cadre à bons de commande relatif aux Services de Télécommunications Voix et Données",
-      "a": "Département de la Réunion",
-      "dep": "974",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-28",
-      "dl": "2025-10-16T11:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-107032",
-      "k": "departement de la reunion|accord cadre a bons de commande relatif aux services de telecommunications voix et donnees",
-      "ia": 0
     }
   ]
 }
