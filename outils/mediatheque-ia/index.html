@@ -366,7 +366,26 @@ body{
 
 <div class="wrap">
   <header class="hero">
-    <div class="kicker">Médiathèque IA · sélection</div>
+    <style>
+    .med-switch{--sw-ia:#12a082;--sw-bk:#b8570f;display:inline-flex;border:1.5px solid var(--border);border-radius:999px;overflow:hidden;margin:0 0 12px;box-shadow:var(--shadow);font-family:var(--ui)}
+    html[data-theme="dark"] .med-switch{--sw-ia:#2fd6ab;--sw-bk:#e09254}
+    @media(prefers-color-scheme:dark){html:not([data-theme="light"]) .med-switch{--sw-ia:#2fd6ab;--sw-bk:#e09254}}
+    .med-switch a{font-weight:800;font-size:.82rem;padding:7px 15px;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:background .15s,color .15s}
+    .med-switch a+a{border-left:1.5px solid var(--border)}
+    .med-switch a:hover{background:var(--bg-2)}
+    .med-switch .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+    .med-switch a.ia:not(.ms-on){color:var(--sw-ia)}
+    .med-switch a.bk:not(.ms-on){color:var(--sw-bk)}
+    .med-switch a.ms-on{color:#fff}
+    .med-switch a.ms-on.ia{background:var(--sw-ia)}
+    .med-switch a.ms-on.bk{background:var(--sw-bk)}
+    html[data-theme="dark"] .med-switch a.ms-on{color:#06231b}
+    @media(prefers-color-scheme:dark){html:not([data-theme="light"]) .med-switch a.ms-on{color:#06231b}}
+    </style>
+    <nav class="med-switch" aria-label="Choisir la médiathèque">
+      <a href="/outils/mediatheque-ia/" class="ms-on ia" aria-current="page"><span class="dot"></span>IA</a>
+      <a href="/outils/mediatheque-blockchain/" class="bk"><span class="dot"></span>Blockchain</a>
+    </nav>
     <h1>Lire &amp; <em>regarder</em> l'IA</h1>
     <p>Livres, films, séries et documentaires — triés, résumés, situés entre <strong>réflexion</strong> et <strong>divertissement</strong>.</p>
     <div class="stats" id="stats"></div>

@@ -216,7 +216,26 @@ body{background-image:radial-gradient(circle at 12% 0%,var(--acc-glow),transpare
 
 <div class="wrap">
   <header class="hero">
-    <div class="kicker">Médiathèque Blockchain · sélection</div>
+    <style>
+    .med-switch{--sw-ia:#12a082;--sw-bk:#b8570f;display:inline-flex;border:1.5px solid var(--border);border-radius:999px;overflow:hidden;margin:0 0 12px;box-shadow:var(--shadow);font-family:var(--ui)}
+    html[data-theme="dark"] .med-switch{--sw-ia:#2fd6ab;--sw-bk:#e09254}
+    @media(prefers-color-scheme:dark){html:not([data-theme="light"]) .med-switch{--sw-ia:#2fd6ab;--sw-bk:#e09254}}
+    .med-switch a{font-weight:800;font-size:.82rem;padding:7px 15px;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:background .15s,color .15s}
+    .med-switch a+a{border-left:1.5px solid var(--border)}
+    .med-switch a:hover{background:var(--bg-2)}
+    .med-switch .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+    .med-switch a.ia:not(.ms-on){color:var(--sw-ia)}
+    .med-switch a.bk:not(.ms-on){color:var(--sw-bk)}
+    .med-switch a.ms-on{color:#fff}
+    .med-switch a.ms-on.ia{background:var(--sw-ia)}
+    .med-switch a.ms-on.bk{background:var(--sw-bk)}
+    html[data-theme="dark"] .med-switch a.ms-on{color:#06231b}
+    @media(prefers-color-scheme:dark){html:not([data-theme="light"]) .med-switch a.ms-on{color:#06231b}}
+    </style>
+    <nav class="med-switch" aria-label="Choisir la médiathèque">
+      <a href="/outils/mediatheque-ia/" class="ia"><span class="dot"></span>IA</a>
+      <a href="/outils/mediatheque-blockchain/" class="ms-on bk" aria-current="page"><span class="dot"></span>Blockchain</a>
+    </nav>
     <h1>Lire &amp; voir la <em>blockchain</em></h1>
     <p>Livres, films, séries et documentaires sur le Bitcoin, Ethereum et le Web3 — des fondamentaux à la technique, de la monnaie aux récits, jusqu'à l'écran — avec la <strong>note des lecteurs et des spectateurs</strong>, ce qui plaît, et le <strong>style</strong> de chaque œuvre.</p>
     <div class="stats" id="stats"></div>
@@ -251,9 +270,7 @@ body{background-image:radial-gradient(circle at 12% 0%,var(--acc-glow),transpare
   <footer class="bk-footer">
     <div style="max-width:var(--wrap-app,1120px);margin:0 auto;padding:24px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;color:var(--faint);border-top:1px solid var(--border);">
       <span>Sélection personnelle de Sébastien Rivière · notes © Goodreads / Amazon / Babelio / IMDb · couvertures &amp; affiches © leurs ayants droit · données mises à jour le <span id="upd"></span>.</span>
-      <a href="/outils/" style="color:var(--faint);">← Voir tous les outils</a>
-      <a href="/outils/mediatheque-ia/" style="color:var(--faint);margin-left:auto;">Médiathèque IA →</a>
-    </div>
+      <a href="/outils/" style="color:var(--faint);">← Voir tous les outils</a>    </div>
   </footer>
 </div>
 
