@@ -1,12 +1,46 @@
 {
-  "maj": "2026-08-18",
+  "maj": "2026-08-19",
   "total": 300,
   "byTheme": {
-    "data": 247,
+    "data": 248,
     "numerique": 26,
-    "ia": 27
+    "ia": 26
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Acquisition d'une plateforme web de dépôt, d'échange, de contrôle et de suivi des données géographiques",
+      "a": "Saint-Nazaire Agglomération -  la CARENE",
+      "dep": "44",
+      "fam": "Marchés <90 k€ (MAPA)",
+      "tm": "Fournitures",
+      "proc": "Procédure Adaptée",
+      "dp": "2026-08-18",
+      "dl": "2026-09-22T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-81238",
+      "k": "saint nazaire agglomeration la carene|acquisition d une plateforme web de depot d echange de controle et de suivi des donnees ge",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Désignation d'un délégué à la protection des données (Data Protection Officer - D.P.O.) pour l'Isae-Supaero",
+      "a": "Institut Supérieur de l'Aéronautique et de l'Espace",
+      "dep": "31",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Restreinte",
+      "dp": "2026-08-18",
+      "dl": "2026-09-15T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-81431",
+      "k": "institut superieur de l aeronautique et |designation d un delegue a la protection des donnees data protection officer d p o pour l ",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5072,40 +5106,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108104",
       "k": "meteo france|fourniture de coffrets electriques permettant l alimentation l acquisition des donnees des",
       "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Services de télécommunications voix et données",
-      "a": "SEMIVIM",
-      "dep": "13",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-30",
-      "dl": "2025-11-06T11:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-107725",
-      "k": "semivim|services de telecommunications voix et donnees",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Mise en œuvre d’un agent conversationnel ou chatbot pour informer les associations sur les aides au Sport",
-      "a": "Rectrice de région académique AURA",
-      "dep": "3, 15, 38, 63, 69, 73, 74, 75, 92",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-09-30",
-      "dl": "2025-10-31T18:00:00+00:00",
-      "m": null,
-      "th": "ia",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108098",
-      "k": "rectrice de region academique aura|mise en uvre d un agent conversationnel ou chatbot pour informer les associations sur les ",
-      "ia": 1
     }
   ]
 }
