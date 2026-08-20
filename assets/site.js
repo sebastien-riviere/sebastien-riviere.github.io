@@ -20,7 +20,10 @@
   ];
   var NAV=[
     {key:"home",        label:"Accueil",              href:"/"},
-    {key:"mediatheque", label:"Médiathèque IA",       href:"/outils/mediatheque-ia/"},
+    // Libellé PARAPLUIE : la rubrique couvre les deux médiathèques (IA et
+    // Blockchain), reliées par le sélecteur en tête de page. Ne pas remettre
+    // « IA » ici — le lien mène à l'une des deux, pas à la seule IA.
+    {key:"mediatheque", label:"Médiathèque",          href:"/outils/mediatheque-ia/"},
     {key:"articles",    label:"Articles &amp; enquêtes",href:"/articles/"},
     {key:"outils",      label:"Outils",               href:"/outils/"}
   ];
