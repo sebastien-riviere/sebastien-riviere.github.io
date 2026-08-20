@@ -910,13 +910,25 @@ function renderComp(){
     return;
   }
 
-  const notes=[], incomplets=[];
+  const notes=[], incomplets=[], locaux=[];
   MODELS.forEach(m=>{
     const manque=actifs.filter(c=>normCrit(c,m)==null);
     // Un modele auquel il manque une donnee que VOUS avez ponderee ne peut pas
     // etre classe honnetement : lui donner zero le punirait d'une absence de
     // mesure, l'ignorer en douce le ferait disparaitre sans explication.
-    if(manque.length){ incomplets.push({m,manque}); return; }
+    if(manque.length){
+      // MAIS il faut distinguer « je ne sais pas » de « la question ne se pose
+      // pas ». Un modele qui tourne sur votre machine n'a pas de tarif au jeton :
+      // ce n'est pas une donnee manquante, c'est une autre economie. Le ranger
+      // parmi les non-mesures serait un contresens.
+      // On ne le classe « local » que si le tarif est son SEUL empechement :
+      // sinon le conseil « baissez le curseur Économie » serait un mauvais
+      // conseil, puisqu'il ne suffirait pas a le faire entrer.
+      const reel=manque.filter(c=>!(c.id==='prix'&&m.prix_absent));
+      if(!reel.length) locaux.push(m);
+      else incomplets.push({m,manque:reel});
+      return;
+    }
     const s=actifs.reduce((acc,c)=>acc+poids[c.id]*normCrit(c,m),0)/total;
     notes.push({m,s});
   });
@@ -932,9 +944,19 @@ function renderComp(){
   bindOuvre(res);
 
   let txt='<b>'+notes.length+'</b> modèle'+(notes.length>1?'s':'')+' classé'+(notes.length>1?'s':'')+' sur '
-    +MODELS.length+(incomplets.length?', <b>'+incomplets.length+'</b> écarté'+(incomplets.length>1?'s':'')+' faute de donnée.':'.');
+    +MODELS.length
+    +(locaux.length?', <b>'+locaux.length+'</b> sans tarif au jeton (ils tournent chez vous)':'')
+    +(incomplets.length?', <b>'+incomplets.length+'</b> écarté'+(incomplets.length>1?'s':'')+' faute de donnée.':'.');
   let det='La note sur 100 n\'a aucun sens dans l\'absolu : elle ne sert qu\'à ordonner selon <em>vos</em> curseurs. '
     +'Changez-les, le classement change — c\'est exactement le but.';
+  if(locaux.length){
+    det+='<br><br><b>Les modèles qui tournent sur votre machine sont à part.</b> '+locaux.length+' modèle'
+      +(locaux.length>1?'s n\'ont':' n\'a')+' pas de tarif au million de jetons : '
+      +(locaux.length>1?'ils s\'installent':'il s\'installe')+' chez vous, sans facture à l\'usage. '
+      +'Ce n\'est pas une donnée qui manque, c\'est une autre économie — la comparer à un prix par jeton n\'aurait pas de sens. '
+      +'Mettez le curseur « Économie » sur « ignoré » pour les faire entrer au classement, '
+      +'ou regardez le classement <em>Le meilleur sur ma machine</em> qui est fait pour eux.';
+  }
   if(incomplets.length){
     const par={};
     incomplets.forEach(x=>x.manque.forEach(c=>{ (par[c.lbl]=par[c.lbl]||[]).push(x.m.nom); }));
