@@ -334,7 +334,7 @@
    ],
    "ouvert": true,
    "params_b": 2446.2,
-   "ctx_k": 262,
+   "ctx_k": 256,
    "modal": [
     "texte"
    ],
@@ -391,6 +391,12 @@
     "variante": "qwen3.8-max",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B/blob/main/config.json",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "max_position_embeddings = 262144, soit la meme fenetre que Qwen3.8 27B deja note 256"
    }
   },
   {
@@ -468,6 +474,12 @@
     "variante": "claude-fable-5",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://platform.claude.com/docs/en/about-claude/models/overview",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "« 1M tokens » au tableau comparatif"
    }
   },
   {
@@ -586,6 +598,12 @@
     "src": "https://platform.claude.com/docs/en/about-claude/models/overview",
     "le": "2026-08-20",
     "conf": "officiel"
+   },
+   "ctx_src": {
+    "src": "https://platform.claude.com/docs/en/about-claude/models/overview",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "hors tableau : la page indique que Mythos 5 partage les specifications de Fable 5"
    }
   },
   {
@@ -659,6 +677,12 @@
     "variante": "claude-opus-5-high",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://platform.claude.com/docs/en/about-claude/models/overview",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "« 1M tokens » au tableau comparatif"
    }
   },
   {
@@ -732,6 +756,12 @@
     "variante": "claude-sonnet-5-high",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://platform.claude.com/docs/en/about-claude/models/overview",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "« 1M tokens » au tableau comparatif"
    }
   },
   {
@@ -748,7 +778,7 @@
    ],
    "ouvert": true,
    "params_b": 290.9,
-   "ctx_k": 1000,
+   "ctx_k": 1024,
    "modal": [
     "texte"
    ],
@@ -817,6 +847,12 @@
     "variante": "deepseek-v4-flash",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/config.json",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "max_position_embeddings = 1048576 ; la doc API DeepSeek affiche « CONTEXT LENGTH: 1M »"
    }
   },
   {
@@ -833,7 +869,7 @@
    ],
    "ouvert": true,
    "params_b": 1598.8,
-   "ctx_k": 1000,
+   "ctx_k": 1024,
    "modal": [
     "texte"
    ],
@@ -903,6 +939,12 @@
     "variante": "deepseek-v4-pro",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/config.json",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "max_position_embeddings = 1048576 ; la doc API DeepSeek affiche « CONTEXT LENGTH: 1M »"
    }
   },
   {
@@ -1952,6 +1994,12 @@
     "variante": "mistral-large-3",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://docs.mistral.ai/models/mistral-large-3-25-12",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "« 256k »"
    }
   },
   {
@@ -2071,7 +2119,13 @@
    "scores": {},
    "cout_1000_mots": null,
    "arena_absent": "l'Arena ne connaît que des Mistral Small ANTÉRIEURS (2506, 3.1, 24b) : ce serait un autre modèle",
-   "params_absent": "dépôt Hugging Face sous autorisation (lecture anonyme refusée)"
+   "params_absent": "dépôt Hugging Face sous autorisation (lecture anonyme refusée)",
+   "ctx_src": {
+    "src": "https://docs.mistral.ai/models/mistral-small-4-0-26-03",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "« 256k »"
+   }
   },
   {
    "id": "kimi-k3",
@@ -2087,7 +2141,7 @@
    ],
    "ouvert": true,
    "params_b": 2779.9,
-   "ctx_k": 1000,
+   "ctx_k": 1024,
    "modal": [
     "texte"
    ],
@@ -2142,6 +2196,12 @@
     "variante": "kimi-k3-max",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://huggingface.co/moonshotai/Kimi-K3/blob/main/config.json",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "max_position_embeddings = 1048576 ; platform.kimi.ai annonce « a 1M-token context window »"
    }
   },
   {
@@ -2239,7 +2299,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": 272,
+   "ctx_k": 1050,
    "modal": [
     "texte",
     "image"
@@ -2301,6 +2361,12 @@
     "variante": "gpt-5.5",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://developers.openai.com/api/docs/models/gpt-5.5.md",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "« 1,050,000 context window »"
    }
   },
   {
@@ -2315,7 +2381,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": 272,
+   "ctx_k": 1050,
    "modal": [
     "texte",
     "image"
@@ -2342,7 +2408,13 @@
     "methode": "tiktoken/o200k_base",
     "conf": "mesure"
    },
-   "arena_absent": "absent de l'Arena"
+   "arena_absent": "absent de l'Arena",
+   "ctx_src": {
+    "src": "https://developers.openai.com/api/docs/models/gpt-5.5-pro.md",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "« 1,050,000 context window »"
+   }
   },
   {
    "id": "gpt-5-6-luna",
@@ -2709,6 +2781,12 @@
     "variante": "grok-4.3",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://docs.x.ai/developers/models/grok-4.3",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "« 1,000,000 tokens »"
    }
   },
   {
@@ -2768,6 +2846,12 @@
     "variante": "grok-4.6-high",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://docs.x.ai/developers/models/grok-4.6",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "« 500,000 tokens »"
    }
   },
   {
@@ -2804,7 +2888,13 @@
    },
    "scores": {},
    "cout_1000_mots": null,
-   "arena_absent": "absent de l'Arena"
+   "arena_absent": "absent de l'Arena",
+   "ctx_src": {
+    "src": "https://docs.x.ai/developers/models/grok-build-0.1",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "« 256,000 tokens »"
+   }
   },
   {
    "id": "glm-5-2",
