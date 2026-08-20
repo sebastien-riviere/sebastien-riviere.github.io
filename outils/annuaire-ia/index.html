@@ -224,7 +224,10 @@ const STAR = '<svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 16.5 14
 const CAT_COL = {assistants:'#12a082',auto:'#7c3aed',meeting:'#0891b2',veille:'#2f6fb0',design:'#d946ef',build:'#d97706',image:'#e11d48',video:'#c0392b',voice:'#0ea5e9',souverain:'#1f9d6b',advanced:'#6366f1'};
 const SHORT={assistants:'Assistants',auto:'Automatisation',meeting:'Réunions',veille:'Veille',design:'Présentations',build:'Sites & apps',image:'Images',video:'Vidéos',voice:'Voix & audio',souverain:'Souveraine',advanced:'Avancé'};
 const PRIX={freemium:'Freemium',gratuit:'Gratuit',payant:'Payant'};
-const COUNTRY_NAME = {US:'États-Unis',FR:'France',CN:'Chine',DE:'Allemagne',SE:'Suède',CA:'Canada',CZ:'Tchéquie',AT:'Autriche',AU:'Australie',GB:'Royaume-Uni',NL:'Pays-Bas',BE:'Belgique',BG:'Bulgarie'};
+const COUNTRY_NAME = {US:'États-Unis',FR:'France',CN:'Chine',DE:'Allemagne',SE:'Suède',CA:'Canada',CZ:'Tchéquie',AT:'Autriche',AU:'Australie',GB:'Royaume-Uni',NL:'Pays-Bas',BE:'Belgique',BG:'Bulgarie',ES:'Espagne',IT:'Italie',CH:'Suisse',DK:'Danemark',IL:'Israël',SG:'Singapour',EU:'Union européenne'};
+/* Codes non normalisés vus dans les données : on les ramène au code ISO plutôt
+   que de laisser une image 404. « UK » n'existe pas en ISO 3166-1, c'est « GB ». */
+const COUNTRY_ALIAS = {UK:'GB',EL:'GR',SU:'RU'};
 
 let CATS=[], CATMAP={}, TOOLS=[], VALOS=[], AUDIENCE=[], fSort='reco';
 const fState = {c:new Set(), p:new Set(), pays:new Set(), edit:new Set()};
@@ -241,6 +244,7 @@ function logoFile(dom){return 'logos/'+dom.replace(/\//g,'_')+'.png';}
 function fmtStars(n){return n>=1000?Math.round(n/1000)+'k':n;}
 function flagImg(code,cls){
   if(!code) return '';
+  code=COUNTRY_ALIAS[code]||code;
   const c=code.toLowerCase(), name=COUNTRY_NAME[code]||code;
   return `<img class="${cls||'flag'}" src="/assets/flags/${c}.svg" alt="${name}" title="${name}" width="18" height="12" loading="lazy">`;
 }
