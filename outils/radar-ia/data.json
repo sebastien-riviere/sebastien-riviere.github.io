@@ -1,0 +1,1405 @@
+{
+ "maj": "2026-08-20",
+ "version": 1,
+ "providers": [
+  {
+   "id": "anthropic",
+   "nom": "Anthropic",
+   "pays": "US"
+  },
+  {
+   "id": "openai",
+   "nom": "OpenAI",
+   "pays": "US"
+  },
+  {
+   "id": "google",
+   "nom": "Google",
+   "pays": "US"
+  },
+  {
+   "id": "deepseek",
+   "nom": "DeepSeek",
+   "pays": "CN"
+  },
+  {
+   "id": "xai",
+   "nom": "xAI",
+   "pays": "US"
+  },
+  {
+   "id": "mistral",
+   "nom": "Mistral AI",
+   "pays": "FR"
+  },
+  {
+   "id": "moonshot",
+   "nom": "Moonshot AI",
+   "pays": "CN"
+  },
+  {
+   "id": "zhipu",
+   "nom": "Zhipu / Z.ai",
+   "pays": "CN"
+  },
+  {
+   "id": "alibaba",
+   "nom": "Alibaba",
+   "pays": "CN"
+  },
+  {
+   "id": "meta",
+   "nom": "Meta",
+   "pays": "US"
+  }
+ ],
+ "tags": [
+  {
+   "id": "frontiere",
+   "nom": "Modèle frontière"
+  },
+  {
+   "id": "ouvert",
+   "nom": "Open-weight"
+  },
+  {
+   "id": "souverain",
+   "nom": "Souverain / UE"
+  },
+  {
+   "id": "local",
+   "nom": "Exécutable en local"
+  },
+  {
+   "id": "raisonnement",
+   "nom": "Raisonnement"
+  },
+  {
+   "id": "code",
+   "nom": "Code"
+  },
+  {
+   "id": "agentique",
+   "nom": "Agentique"
+  },
+  {
+   "id": "multimodal",
+   "nom": "Multimodal"
+  },
+  {
+   "id": "economique",
+   "nom": "Économique"
+  },
+  {
+   "id": "volume",
+   "nom": "Gros volume"
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "arena-elo",
+   "nom": "Elo Arena",
+   "axe": "preference_humaine",
+   "rang": true,
+   "titre_top": "Le plus fort, tout court",
+   "sous_titre": "vote humain en aveugle",
+   "src": "https://arena.ai/leaderboard",
+   "src_data": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+   "source_verifiee": true,
+   "frequence": "hebdo",
+   "sens": "haut",
+   "note": "SEUL benchmark externe retenu pour un rang : il mesure bien des modèles, et son historique complet est exporté en jeu de données public."
+  },
+  {
+   "id": "contexte",
+   "nom": "Fenêtre de contexte",
+   "axe": "contexte",
+   "rang": true,
+   "titre_top": "Le plus grand contexte",
+   "sous_titre": "combien il lit d'un seul coup",
+   "src": "interne",
+   "src_data": "champ ctx_k, releve en source primaire",
+   "source_verifiee": true,
+   "frequence": "a_la_publication",
+   "sens": "haut",
+   "note": "Donnée factuelle publiée par le fournisseur : vérifiable et stable. De nombreux modèles annoncent la même fenêtre (1 M de jetons) : les ex æquo sont affichés comme tels, sans ordre inventé entre eux.",
+   "ex_aequo": true
+  },
+  {
+   "id": "vram-locale",
+   "nom": "Empreinte mémoire",
+   "axe": "local",
+   "rang": true,
+   "titre_top": "Le meilleur sur ma machine",
+   "sous_titre": "le plus gros qui tient dans votre carte graphique",
+   "src": "interne",
+   "src_data": "derive de params_b",
+   "source_verifiee": true,
+   "frequence": "a_la_publication",
+   "sens": "haut",
+   "note": "Le curseur filtre les modèles qui tiennent dans la mémoire vidéo choisie (estimation en quantification 4 bits), puis les classe du plus gros au plus petit. ⚠️ La taille est un indicateur de capacité, pas une preuve : un modèle récent de 14 milliards de paramètres peut dépasser un modèle plus ancien de 30 milliards. À défaut de score comparable sur ces modèles, c'est le meilleur repère disponible — et il est annoncé comme tel."
+  },
+  {
+   "id": "prix-affiche",
+   "nom": "Tarif affiché par le fournisseur",
+   "axe": "cout",
+   "rang": true,
+   "titre_top": "Le moins cher, au tarif affiché",
+   "sous_titre": "prix constructeur, biais expliqué",
+   "src": "interne",
+   "src_data": "champ prix (28/31 en source primaire)",
+   "source_verifiee": true,
+   "frequence": "hebdo",
+   "sens": "bas",
+   "note": "Rang établi sur le tarif BRUT, avec avertissement affiché : un jeton ne représente pas la même quantité de texte selon le modèle (écart mesuré jusqu'à 21 %). Le coût normalisé reste en fiche pour les 5 familles dont le découpage a pu être mesuré."
+  },
+  {
+   "id": "nouveautes",
+   "nom": "Date de publication",
+   "axe": "fraicheur",
+   "rang": true,
+   "titre_top": "Les derniers arrivés",
+   "sous_titre": "ce qui vient de sortir",
+   "src": "interne",
+   "src_data": "champ sortie",
+   "source_verifiee": true,
+   "frequence": "hebdo",
+   "sens": "haut",
+   "note": "Alimente aussi la section Nouveautés de la page."
+  },
+  {
+   "id": "swebench-verified",
+   "nom": "SWE-bench Verified",
+   "axe": "code",
+   "rang": false,
+   "src": "https://www.swebench.com/",
+   "source_verifiee": false,
+   "frequence": null,
+   "sens": "haut",
+   "note": "ÉCARTÉ DES RANGS : leaderboard non extractible, et très probablement la même structure agent + modèle que Terminal-Bench. Reste affichable en fiche, à condition de mentionner le harnais utilisé."
+  },
+  {
+   "id": "terminal-bench",
+   "nom": "Terminal-Bench 2.1",
+   "axe": "agentique",
+   "rang": false,
+   "src": "https://www.tbench.ai/leaderboard/terminal-bench/2.1",
+   "source_verifiee": true,
+   "frequence": null,
+   "sens": "haut",
+   "note": "ÉCARTÉ DES RANGS : il classe des COUPLES agent + modèle, pas des modèles. Fable 5 obtient 83,8 % avec Claude Code et 80,4 % avec Terminus 2 — l'écart entre harnais dépasse l'écart entre modèles. Dernière mise à jour vue le 11/07/2026 (donc pas hebdomadaire). Aucun export de données."
+  },
+  {
+   "id": "gpqa-diamond",
+   "nom": "GPQA Diamond",
+   "axe": "raisonnement",
+   "rang": false,
+   "src": null,
+   "source_verifiee": false,
+   "frequence": null,
+   "sens": "haut",
+   "note": "ÉCARTÉ : benchmark saturé. La tête du classement est à 94-95 % sur 198 questions — un point d'écart, c'est deux questions, soit du bruit statistique. Et trois leaderboards donnent trois vainqueurs différents (Gemini 3.1 Pro, Sakana Fugu-Ultra, Grok 4.6), faute de conditions de test communes."
+  }
+ ],
+ "models": [
+  {
+   "id": "claude-fable-5",
+   "nom": "Claude Fable 5",
+   "prov": "anthropic",
+   "famille": "claude",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": 1000,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "frontiere",
+    "raisonnement",
+    "agentique"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 10.0,
+    "out": 50.0,
+    "cache": 1.0,
+    "src": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "claude-opus-5",
+   "nom": "Claude Opus 5",
+   "prov": "anthropic",
+   "famille": "claude",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": 1000,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "frontiere",
+    "raisonnement",
+    "code",
+    "agentique"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 5.0,
+    "out": 25.0,
+    "cache": 0.5,
+    "src": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "claude-sonnet-5",
+   "nom": "Claude Sonnet 5",
+   "prov": "anthropic",
+   "famille": "claude",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": 1000,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "frontiere",
+    "code",
+    "agentique"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 2.0,
+    "out": 10.0,
+    "cache": 0.2,
+    "note": "Prix de lancement devenu le tarif standard : la hausse prévue au 01/09/2026 n'aura pas lieu.",
+    "src": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "claude-haiku-4-5",
+   "nom": "Claude Haiku 4.5",
+   "prov": "anthropic",
+   "famille": "claude",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "economique",
+    "agentique"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 1.0,
+    "out": 5.0,
+    "cache": 0.1,
+    "src": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "claude-mythos-5",
+   "nom": "Claude Mythos 5",
+   "prov": "anthropic",
+   "famille": "claude",
+   "sortie": null,
+   "statut": "acces_restreint",
+   "acces": [
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": 1000,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "frontiere",
+    "raisonnement"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 10.0,
+    "out": 50.0,
+    "cache": 1.0,
+    "note": "Disponibilité limitée.",
+    "src": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "gpt-5-6-sol",
+   "nom": "GPT-5.6 Sol",
+   "prov": "openai",
+   "famille": "gpt",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "frontiere",
+    "raisonnement",
+    "agentique"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 5.0,
+    "out": 30.0,
+    "cache": 0.5,
+    "src": "https://developers.openai.com/api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": {
+    "eur_usd": 0.01939,
+    "ratio_tokens_par_mot": 1.385,
+    "melange": "1 000 mots en entrée et 300 mots en sortie",
+    "methode": "tiktoken/o200k_base",
+    "conf": "mesure"
+   }
+  },
+  {
+   "id": "gpt-5-6-terra",
+   "nom": "GPT-5.6 Terra",
+   "prov": "openai",
+   "famille": "gpt",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "frontiere",
+    "code"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 2.0,
+    "out": 12.0,
+    "cache": 0.2,
+    "src": "https://developers.openai.com/api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": {
+    "eur_usd": 0.00776,
+    "ratio_tokens_par_mot": 1.385,
+    "melange": "1 000 mots en entrée et 300 mots en sortie",
+    "methode": "tiktoken/o200k_base",
+    "conf": "mesure"
+   }
+  },
+  {
+   "id": "gpt-5-6-luna",
+   "nom": "GPT-5.6 Luna",
+   "prov": "openai",
+   "famille": "gpt",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "economique",
+    "volume"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 0.2,
+    "out": 1.2,
+    "cache": 0.02,
+    "src": "https://developers.openai.com/api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": {
+    "eur_usd": 0.00078,
+    "ratio_tokens_par_mot": 1.385,
+    "melange": "1 000 mots en entrée et 300 mots en sortie",
+    "methode": "tiktoken/o200k_base",
+    "conf": "mesure"
+   }
+  },
+  {
+   "id": "gpt-5-5",
+   "nom": "GPT-5.5",
+   "prov": "openai",
+   "famille": "gpt",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": 272,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "frontiere",
+    "raisonnement"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 5.0,
+    "out": 30.0,
+    "cache": 0.5,
+    "src": "https://developers.openai.com/api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": {
+    "eur_usd": 0.01939,
+    "ratio_tokens_par_mot": 1.385,
+    "melange": "1 000 mots en entrée et 300 mots en sortie",
+    "methode": "tiktoken/o200k_base",
+    "conf": "mesure"
+   }
+  },
+  {
+   "id": "gpt-5-5-pro",
+   "nom": "GPT-5.5 Pro",
+   "prov": "openai",
+   "famille": "gpt",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": 272,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "frontiere",
+    "raisonnement"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 30.0,
+    "out": 180.0,
+    "src": "https://developers.openai.com/api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": {
+    "eur_usd": 0.11634,
+    "ratio_tokens_par_mot": 1.385,
+    "melange": "1 000 mots en entrée et 300 mots en sortie",
+    "methode": "tiktoken/o200k_base",
+    "conf": "mesure"
+   }
+  },
+  {
+   "id": "gpt-5-4-mini",
+   "nom": "GPT-5.4 mini",
+   "prov": "openai",
+   "famille": "gpt",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "economique"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 0.75,
+    "out": 4.5,
+    "cache": 0.075,
+    "src": "https://developers.openai.com/api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": {
+    "eur_usd": 0.00291,
+    "ratio_tokens_par_mot": 1.385,
+    "melange": "1 000 mots en entrée et 300 mots en sortie",
+    "methode": "tiktoken/o200k_base",
+    "conf": "mesure"
+   }
+  },
+  {
+   "id": "gemini-3-7-flash",
+   "nom": "Gemini 3.7 Flash",
+   "prov": "google",
+   "famille": "gemini",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "frontiere",
+    "economique",
+    "agentique"
+   ],
+   "heberg": [
+    "us",
+    "ue"
+   ],
+   "prix": {
+    "in": 0.75,
+    "out": 3.75,
+    "cache": 0.075,
+    "jusqu_au": "2026-12-31",
+    "apres": {
+     "in": 1.5,
+     "out": 7.5,
+     "cache": 0.15
+    },
+    "src": "https://ai.google.dev/gemini-api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "gemini-3-6-flash",
+   "nom": "Gemini 3.6 Flash",
+   "prov": "google",
+   "famille": "gemini",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "economique",
+    "agentique"
+   ],
+   "heberg": [
+    "us",
+    "ue"
+   ],
+   "prix": {
+    "in": 0.75,
+    "out": 3.75,
+    "cache": 0.075,
+    "jusqu_au": "2026-12-31",
+    "apres": {
+     "in": 1.5,
+     "out": 7.5,
+     "cache": 0.15
+    },
+    "src": "https://ai.google.dev/gemini-api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "gemini-3-5-flash",
+   "nom": "Gemini 3.5 Flash",
+   "prov": "google",
+   "famille": "gemini",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "agentique"
+   ],
+   "heberg": [
+    "us",
+    "ue"
+   ],
+   "prix": {
+    "in": 1.5,
+    "out": 9.0,
+    "cache": 0.15,
+    "src": "https://ai.google.dev/gemini-api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "gemini-3-5-flash-lite",
+   "nom": "Gemini 3.5 Flash-Lite",
+   "prov": "google",
+   "famille": "gemini",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "economique",
+    "volume"
+   ],
+   "heberg": [
+    "us",
+    "ue"
+   ],
+   "prix": {
+    "in": 0.3,
+    "out": 2.5,
+    "src": "https://ai.google.dev/gemini-api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "gemini-2-5-pro",
+   "nom": "Gemini 2.5 Pro",
+   "prov": "google",
+   "famille": "gemini",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": 200,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "raisonnement"
+   ],
+   "heberg": [
+    "us",
+    "ue"
+   ],
+   "prix": {
+    "in": 1.25,
+    "out": 10.0,
+    "note": "Au-delà de 200 k jetons de contexte, le tarif double : 2,50 $ en entrée et 15,00 $ en sortie.",
+    "src": "https://ai.google.dev/gemini-api/docs/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "deepseek-v4-pro",
+   "nom": "DeepSeek V4 Pro",
+   "prov": "deepseek",
+   "famille": "deepseek",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": null,
+   "ctx_k": 1000,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "ouvert",
+    "raisonnement",
+    "code",
+    "economique"
+   ],
+   "heberg": [
+    "cn"
+   ],
+   "prix": {
+    "in": 0.66,
+    "out": 1.98,
+    "cache": 0.022,
+    "note": "Tarif heures creuses. En heures pleines : 1,32 $ en entrée, 3,96 $ en sortie, 0,044 $ pour le contexte en cache.",
+    "src": "https://api-docs.deepseek.com/quick_start/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": {
+    "eur_usd": 0.002,
+    "ratio_tokens_par_mot": 1.597,
+    "melange": "1 000 mots en entrée et 300 mots en sortie",
+    "methode": "HF deepseek-ai/DeepSeek-V4-Pro",
+    "conf": "mesure"
+   }
+  },
+  {
+   "id": "deepseek-v4-flash",
+   "nom": "DeepSeek V4 Flash",
+   "prov": "deepseek",
+   "famille": "deepseek",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": null,
+   "ctx_k": 1000,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "ouvert",
+    "economique",
+    "volume"
+   ],
+   "heberg": [
+    "cn"
+   ],
+   "prix": {
+    "in": 0.22,
+    "out": 0.66,
+    "cache": 0.007,
+    "note": "Tarif heures creuses. En heures pleines : 0,44 $ en entrée, 1,32 $ en sortie, 0,014 $ pour le contexte en cache.",
+    "src": "https://api-docs.deepseek.com/quick_start/pricing",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": {
+    "eur_usd": 0.00067,
+    "ratio_tokens_par_mot": 1.597,
+    "melange": "1 000 mots en entrée et 300 mots en sortie",
+    "methode": "HF deepseek-ai/DeepSeek-V4-Pro",
+    "conf": "mesure"
+   }
+  },
+  {
+   "id": "grok-4-6",
+   "nom": "Grok 4.6",
+   "prov": "xai",
+   "famille": "grok",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": 500,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "frontiere",
+    "raisonnement"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 2.0,
+    "out": 6.0,
+    "note": "Au-delà de 200 k jetons de contexte, le tarif double : 4,00 $ en entrée et 12,00 $ en sortie.",
+    "src": "https://docs.x.ai/docs/models",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "grok-4-3",
+   "nom": "Grok 4.3",
+   "prov": "xai",
+   "famille": "grok",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": 1000,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "economique"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 1.25,
+    "out": 2.5,
+    "note": "Au-delà de 200 k jetons de contexte, le tarif double : 2,50 $ en entrée et 5,00 $ en sortie.",
+    "src": "https://docs.x.ai/docs/models",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "grok-build-0-1",
+   "nom": "Grok Build 0.1",
+   "prov": "xai",
+   "famille": "grok",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "api"
+   ],
+   "ouvert": false,
+   "params_b": null,
+   "ctx_k": 256,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "code",
+    "agentique"
+   ],
+   "heberg": [
+    "us"
+   ],
+   "prix": {
+    "in": 1.0,
+    "out": 2.0,
+    "note": "Au-delà de 200 k jetons de contexte, le tarif double : 2,00 $ en entrée et 4,00 $ en sortie.",
+    "src": "https://docs.x.ai/docs/models",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "mistral-large-3",
+   "nom": "Mistral Large 3",
+   "prov": "mistral",
+   "famille": "mistral",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": null,
+   "ctx_k": 256,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "ouvert",
+    "souverain",
+    "frontiere"
+   ],
+   "heberg": [
+    "ue"
+   ],
+   "prix": {
+    "in": 0.5,
+    "out": 1.5,
+    "src": "https://mistral.ai/pricing/api",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "mistral-medium-3-5",
+   "nom": "Mistral Medium 3.5",
+   "prov": "mistral",
+   "famille": "mistral",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "ouvert",
+    "souverain",
+    "frontiere",
+    "multimodal"
+   ],
+   "heberg": [
+    "ue"
+   ],
+   "prix": {
+    "in": 1.5,
+    "out": 7.5,
+    "src": "https://mistral.ai/pricing/api",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "mistral-small-4",
+   "nom": "Mistral Small 4",
+   "prov": "mistral",
+   "famille": "mistral",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": null,
+   "ctx_k": 256,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "ouvert",
+    "souverain",
+    "economique",
+    "local"
+   ],
+   "heberg": [
+    "ue"
+   ],
+   "prix": {
+    "in": 0.15,
+    "out": 0.6,
+    "src": "https://mistral.ai/pricing/api",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "ministral-3-14b",
+   "nom": "Ministral 3 14B",
+   "prov": "mistral",
+   "famille": "ministral",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": 14,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "ouvert",
+    "souverain",
+    "local",
+    "multimodal"
+   ],
+   "heberg": [
+    "ue"
+   ],
+   "prix": {
+    "in": 0.2,
+    "out": 0.2,
+    "src": "https://mistral.ai/pricing/api",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "ministral-3-8b",
+   "nom": "Ministral 3 8B",
+   "prov": "mistral",
+   "famille": "ministral",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": 8,
+   "ctx_k": null,
+   "modal": [
+    "texte",
+    "image"
+   ],
+   "tags": [
+    "ouvert",
+    "souverain",
+    "local"
+   ],
+   "heberg": [
+    "ue"
+   ],
+   "prix": {
+    "in": 0.15,
+    "out": 0.15,
+    "src": "https://mistral.ai/pricing/api",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "ministral-3-3b",
+   "nom": "Ministral 3 3B",
+   "prov": "mistral",
+   "famille": "ministral",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": 3,
+   "ctx_k": null,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "ouvert",
+    "souverain",
+    "local",
+    "economique"
+   ],
+   "heberg": [
+    "ue"
+   ],
+   "prix": {
+    "in": 0.1,
+    "out": 0.1,
+    "src": "https://mistral.ai/pricing/api",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": null
+  },
+  {
+   "id": "kimi-k3",
+   "nom": "Kimi K3",
+   "prov": "moonshot",
+   "famille": "kimi",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "chat",
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": null,
+   "ctx_k": 1000,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "ouvert",
+    "code",
+    "agentique"
+   ],
+   "heberg": [],
+   "prix": null,
+   "scores": {},
+   "note": "Modèle phare de Moonshot, fenêtre de 1 M de jetons. Aucun tarif publié sur la page consultée.",
+   "src": "https://platform.kimi.ai/docs/pricing",
+   "le": "2026-08-20"
+  },
+  {
+   "id": "glm-5-2",
+   "nom": "GLM-5.2",
+   "prov": "zhipu",
+   "famille": "glm",
+   "sortie": null,
+   "statut": "actif",
+   "acces": [
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "ouvert",
+    "code"
+   ],
+   "heberg": [],
+   "prix": {
+    "in": 1.4,
+    "out": 4.4,
+    "note": "Tarif relevé chez Mistral, qui distribue ce modèle. Le tarif pratiqué par Z.ai lui-même n'a pas été vérifié.",
+    "src": "https://mistral.ai/pricing/api",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "scores": {},
+   "cout_1000_mots": {
+    "eur_usd": 0.00422,
+    "ratio_tokens_par_mot": 1.551,
+    "melange": "1 000 mots en entrée et 300 mots en sortie",
+    "methode": "HF zai-org/GLM-5.2",
+    "conf": "mesure"
+   }
+  },
+  {
+   "id": "qwen-3-8",
+   "nom": "Qwen3.8-2.4T-A95B",
+   "prov": "alibaba",
+   "famille": "qwen",
+   "sortie": "2026-08",
+   "statut": "actif",
+   "acces": [
+    "api",
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": 2400,
+   "ctx_k": 262,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "ouvert",
+    "raisonnement"
+   ],
+   "heberg": [
+    "cn"
+   ],
+   "prix": null,
+   "scores": {},
+   "licence": "qwen3.8-max",
+   "note": "2,4 T parametres dont 95 B actifs ; contexte natif 262 144 tokens, extensible a 1 010 000. Licence proprietaire qwen3.8-max, PAS Apache 2.0 (contrairement aux Qwen 3.5 et anterieurs).",
+   "src": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "le": "2026-08-20"
+  },
+  {
+   "id": "llama-4",
+   "nom": "Llama 4",
+   "prov": "meta",
+   "famille": "llama",
+   "sortie": null,
+   "statut": "a_verifier",
+   "acces": [
+    "telechargement"
+   ],
+   "ouvert": true,
+   "params_b": null,
+   "ctx_k": null,
+   "modal": [
+    "texte"
+   ],
+   "tags": [
+    "ouvert",
+    "local"
+   ],
+   "heberg": [],
+   "prix": null,
+   "scores": {},
+   "note": "Dépôt Hugging Face sous autorisation : aucune caractéristique n'a pu être vérifiée à la source le 20/08/2026."
+  }
+ ],
+ "tokenizers_mesures": {
+  "texte_reference": "texte-reference-fr.txt (345 mots de français professionnel)",
+  "le": "2026-08-20",
+  "familles": {
+   "gpt": {
+    "tokens_par_mot": 1.385,
+    "methode": "tiktoken/o200k_base"
+   },
+   "llama": {
+    "tokens_par_mot": 1.409,
+    "methode": "tokenizer HF, miroir unsloth/llama-4-scout-17b-16e"
+   },
+   "qwen": {
+    "tokens_par_mot": 1.435,
+    "methode": "tokenizer HF Qwen/Qwen3.8-2.4T-A95B"
+   },
+   "glm": {
+    "tokens_par_mot": 1.551,
+    "methode": "tokenizer HF zai-org/GLM-5.2"
+   },
+   "deepseek": {
+    "tokens_par_mot": 1.597,
+    "methode": "tokenizer HF deepseek-ai/DeepSeek-V4-Pro"
+   }
+  },
+  "non_mesurees": {
+   "claude": "comptage réservé aux clients de l'API",
+   "gemini": "comptage réservé aux clients de l'API",
+   "mistral": "dépôt Hugging Face sous autorisation",
+   "grok": "découpeur non publié par xAI",
+   "kimi": "dépôt Hugging Face non identifié"
+  },
+  "constat": "Écart mesuré de 21 % entre deux découpeurs d'un MÊME fournisseur (o200k 1,385 contre cl100k 1,673). Le prix au million de jetons n'est donc pas une unité comparable d'une famille à l'autre."
+ }
+}

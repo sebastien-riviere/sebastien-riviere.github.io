@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar IA — les modèles, mesure par mesure — Sébastien Rivière</title>
+<meta name="description" content="Les modèles d'IA comparés sur des mesures nommées, sourcées et datées. Aucun score maison, aucune agrégation : un classement = une mesure, avec sa source et sa date.">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../styles/ia-kit.css">
+<link rel="stylesheet" href="/assets/site.css?v=2026071301">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+/* --- spécifique radar-ia (le reste vient de ia-kit.css) --- */
+:root{--ia:#12a082;--ia-ink:#0c7d60;--ia-soft:#dcf3ec;--ia-line:#b4e2d5;--pf:#6d5bd0;--pf-soft:#ece9fa}
+@media(prefers-color-scheme:dark){:root{--ia:#2fd6ab;--ia-ink:#3ee6bb;--ia-soft:#12312a;--ia-line:#215043;--pf:#a98ee6;--pf-soft:#241b3a}}
+:root[data-theme="light"]{--ia:#12a082;--ia-ink:#0c7d60;--ia-soft:#dcf3ec;--ia-line:#b4e2d5;--pf:#6d5bd0;--pf-soft:#ece9fa}
+:root[data-theme="dark"]{--ia:#2fd6ab;--ia-ink:#3ee6bb;--ia-soft:#12312a;--ia-line:#215043;--pf:#a98ee6;--pf-soft:#241b3a}
+::selection{background:var(--ia-soft)}
+
+main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
+.sec{margin-top:34px;}
+.sec-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+.sec-hd h2{font-family:var(--ui);font-weight:900;font-size:19px;color:var(--ink);}
+.sec-hd .sub{font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--faint);}
+.sec-note{font-family:var(--ui);font-size:13px;color:var(--muted);line-height:1.55;max-width:760px;margin-bottom:16px;}
+
+/* --- la règle du jeu (encart méthode) --- */
+.methode{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-top:14px;}
+.methode h2{font-family:var(--ui);font-weight:900;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+.methode h2 svg{width:17px;height:17px;fill:none;stroke:var(--ia);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+.methode ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:9px 20px;}
+.methode li{font-family:var(--ui);font-size:13px;color:var(--muted);line-height:1.5;padding-left:19px;position:relative;}
+.methode li::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:50%;background:var(--ia);}
+.methode li b{color:var(--ink);}
+
+/* --- grille des Tops --- */
+.tops{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;}
+.top{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--radius);padding:17px 18px 15px;display:flex;flex-direction:column;box-shadow:var(--e-tile);}
+.top-hd{display:flex;align-items:flex-start;gap:10px;margin-bottom:3px;}
+.top-ic{flex:none;width:32px;height:32px;border-radius:9px;background:var(--ia-soft);display:flex;align-items:center;justify-content:center;}
+.top-ic svg{width:17px;height:17px;fill:none;stroke:var(--ia-ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.top-t{min-width:0;flex:1;}
+.top-t h3{font-family:var(--ui);font-weight:900;font-size:14.5px;color:var(--ink);line-height:1.25;}
+.top-t .st{font-family:var(--ui);font-size:11.5px;font-weight:700;color:var(--faint);margin-top:1px;}
+.mesure{font-family:var(--ui);font-size:11px;font-weight:800;color:var(--pop-ink);background:var(--pop-soft);border-radius:5px;padding:3px 8px;display:inline-flex;align-items:center;gap:5px;margin:9px 0 12px;align-self:flex-start;}
+.top-body{flex:1;}
+.top-ft{margin-top:12px;padding-top:9px;border-top:1px dashed var(--border-soft);font-family:var(--ui);font-size:11px;color:var(--faint);line-height:1.5;}
+.top-ft a{color:var(--faint);text-decoration:underline;}
+.top-ft a:hover{color:var(--ia-ink);}
+.top-warn{font-family:var(--ui);font-size:11.5px;line-height:1.5;color:var(--ink);background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 32%,transparent);border-radius:var(--radius-xs);padding:8px 11px;margin-bottom:12px;}
+.top-warn b{color:var(--warn);}
+
+/* barres de classement (reprend le vocabulaire visuel de l'annuaire) */
+.row{margin-bottom:11px;cursor:pointer;border-radius:7px;padding:2px 4px;margin-left:-4px;margin-right:-4px;transition:background .14s;}
+.row:hover{background:var(--bg-2);}
+.row-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-family:var(--ui);margin-bottom:4px;}
+.row-name{font-weight:700;font-size:13px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;display:flex;align-items:center;gap:6px;}
+.row-rank{font-weight:900;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums;flex:none;width:15px;}
+.row-name .flag{height:11px;width:auto;border-radius:2px;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.1);}
+.row-val{font-weight:900;font-size:13px;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums;flex:none;}
+.row-track{height:7px;background:var(--ia-soft);border-radius:6px;overflow:hidden;}
+.row-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--ia),var(--ia-ink));}
+.row.is-1 .row-fill{background:linear-gradient(90deg,#e0a92a,#c89020);}
+.row.is-1 .row-rank{color:#c89020;}
+.exaequo{font-family:var(--ui);font-size:11px;font-weight:700;color:var(--faint);background:var(--bg-2);border-radius:5px;padding:4px 9px;display:block;margin-bottom:10px;line-height:1.45;}
+
+/* état « pas encore de données » — honnête, jamais vide */
+.vide{font-family:var(--ui);font-size:12.5px;color:var(--muted);line-height:1.55;background:var(--bg-2);border:1px dashed var(--border-soft);border-radius:var(--radius-sm);padding:13px 15px;}
+.vide b{color:var(--ink);display:block;margin-bottom:3px;}
+
+/* curseur VRAM */
+.vram-ctl{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:12px;}
+.vram-ctl .lbl{font-family:var(--ui);font-size:11.5px;font-weight:800;color:var(--faint);}
+.vchip{font-family:var(--ui);font-size:11.5px;font-weight:800;padding:5px 11px;border-radius:999px;border:1px solid var(--border-soft);background:var(--card);color:var(--muted);cursor:pointer;transition:.15s;}
+.vchip:hover{border-color:var(--ia);color:var(--ia-ink);}
+.vchip.on{background:var(--ia-soft);border-color:var(--ia);color:var(--ia-ink);}
+
+/* --- barre d'outils du catalogue --- */
+.toolbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 74%,transparent);padding:14px 0 10px;}
+.tb-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.search-wrap{position:relative;flex:1 1 280px;}
+.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:var(--faint);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;}
+#search{width:100%;font-family:var(--ui);font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px 12px 42px;outline:none;transition:border-color .15s,box-shadow .15s;}
+#search:focus{border-color:var(--ia);box-shadow:0 0 0 3px var(--ia-soft);}
+#search::placeholder{color:var(--faint);}
+.sortsel{font-family:var(--ui);font-size:13px;font-weight:800;color:var(--ink);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 12px;cursor:pointer;}
+.sortsel:focus{outline:none;border-color:var(--ia);}
+.count{font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--faint);margin-top:9px;}
+.count b{color:var(--ia-ink);}
+
+.split{display:grid;grid-template-columns:224px 1fr;gap:18px;align-items:start;}
+.rail{position:sticky;top:74px;background:var(--bg-2);border:1px solid var(--border-soft);border-radius:13px;padding:6px 4px;min-width:0;}
+.rail-hd{display:flex;align-items:center;gap:7px;font-family:var(--ui);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:var(--faint);padding:9px 12px 5px;}
+.rail-hd svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.rail-clear{margin-left:auto;font-family:var(--ui);font-size:11px;font-weight:800;color:var(--ia-ink);background:none;border:none;cursor:pointer;padding:2px;display:none;}
+.rail-clear.show{display:inline;}
+.facet{border-top:1px solid var(--border-soft);padding:2px 4px;}
+.facet:first-of-type{border-top:none;}
+.facet>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:9px;font-family:var(--ui);font-size:12.5px;font-weight:800;color:var(--ink);user-select:none;border-radius:8px;}
+.facet>summary::-webkit-details-marker{display:none;}
+.facet>summary .fchev{margin-left:auto;transition:transform .18s;color:var(--faint);display:flex;}
+.facet>summary .fchev svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.facet[open]>summary .fchev{transform:rotate(180deg);}
+.facet>summary:hover{background:var(--card);}
+.opts{display:flex;flex-direction:column;gap:1px;padding:2px 4px 8px;max-height:250px;overflow-y:auto;scrollbar-width:thin;}
+.opt{display:flex;align-items:center;gap:9px;padding:6px 9px;border-radius:8px;cursor:pointer;font-family:var(--ui);font-size:12.5px;color:var(--muted);font-weight:600;}
+.opt:hover{background:var(--card);color:var(--ink);}
+.opt input{appearance:none;-webkit-appearance:none;width:15px;height:15px;border:1.5px solid var(--border-soft);border-radius:5px;flex:none;cursor:pointer;position:relative;background:var(--card);margin:0;}
+.opt input:checked{background:var(--ia);border-color:var(--ia);}
+.opt input:checked::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);}
+.opt .oflag{height:11px;width:auto;border-radius:2px;flex:none;}
+.opt .oc{margin-left:auto;font-size:10.5px;font-weight:800;color:var(--faint);}
+.opt .otx{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+
+.results{min-width:0;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:13px;}
+.grid>*{min-width:0;}
+
+/* --- carte modèle --- */
+.mcard{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--radius);padding:14px 15px;display:flex;flex-direction:column;gap:9px;box-shadow:var(--e-tile);cursor:pointer;text-align:left;font-family:var(--ui);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+.mcard:hover,.mcard:focus-visible{transform:translateY(-3px);box-shadow:var(--e-tileh);border-color:var(--ia-line);outline:none;}
+.mc-top{display:flex;align-items:flex-start;gap:9px;}
+.mc-id{min-width:0;flex:1;}
+.mc-name{font-weight:900;font-size:14.5px;letter-spacing:-.01em;color:var(--ink);line-height:1.2;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.mc-name .flag{height:12px;width:auto;border-radius:2px;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.1);}
+.mc-prov{font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.4px;color:var(--ia-ink);margin-top:2px;}
+.obadge{font-size:9.5px;font-weight:900;text-transform:uppercase;letter-spacing:.3px;padding:3px 8px;border-radius:6px;flex:none;}
+.o-ouvert{background:var(--ok-soft);color:var(--ok);}
+.o-ferme{background:var(--pf-soft);color:var(--pf);}
+.mc-specs{display:flex;flex-wrap:wrap;gap:5px;}
+.spec{font-size:10.5px;font-weight:800;color:var(--muted);background:var(--bg-2);border:1px solid var(--border-soft);border-radius:5px;padding:2.5px 7px;}
+.spec b{color:var(--ink);font-weight:900;}
+.mc-prix{margin-top:auto;padding-top:8px;border-top:1px dashed var(--border-soft);display:flex;align-items:baseline;justify-content:space-between;gap:8px;}
+.mc-prix .pv{font-size:13px;font-weight:900;color:var(--ink);font-variant-numeric:tabular-nums;}
+.mc-prix .pu{font-size:10.5px;font-weight:700;color:var(--faint);}
+.mc-prix .pn{font-size:11px;font-weight:700;color:var(--faint);font-style:italic;}
+.mc-tags{display:flex;flex-wrap:wrap;gap:4px;}
+.mtag{font-size:9.5px;font-weight:800;letter-spacing:.2px;padding:2px 7px;border-radius:5px;background:var(--ia-soft);color:var(--ia-ink);}
+
+/* pastilles de confiance / fraîcheur */
+.conf{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:5px;}
+.conf::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none;}
+.conf-officiel{background:var(--ok-soft);color:var(--ok);}
+.conf-tiers{background:var(--pop-soft);color:var(--pop-ink);}
+.conf-annonce{background:var(--warn-soft);color:var(--warn);}
+.conf-estime{background:var(--bg-2);color:var(--faint);}
+.age{font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:5px;}
+.age-frais{background:var(--ok-soft);color:var(--ok);}
+.age-tiede{background:var(--warn-soft);color:var(--warn);}
+.age-vieux{background:var(--bad-soft);color:var(--bad);}
+
+.no-result{font-family:var(--ui);color:var(--faint);text-align:center;padding:40px 0;display:none;grid-column:1/-1;}
+.disclaimer{font-family:var(--ui);font-size:13px;color:var(--faint);line-height:1.6;margin-top:30px;padding-top:20px;border-top:1px solid var(--border);max-width:760px;}
+.disclaimer a{color:var(--ia-ink);}
+
+/* --- fiche modèle (panneau) --- */
+.sheet-bg{position:fixed;inset:0;background:rgba(12,20,28,.55);backdrop-filter:blur(3px);z-index:90;display:none;padding:20px;overflow-y:auto;}
+.sheet-bg.on{display:flex;align-items:flex-start;justify-content:center;}
+.sheet{background:var(--card);border:1.5px solid var(--border);border-radius:16px;box-shadow:var(--shadow-lg);max-width:640px;width:100%;margin:auto;padding:22px 24px 24px;position:relative;}
+.sheet-x{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:9px;border:1px solid var(--border-soft);background:var(--bg-2);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:19px;line-height:1;font-family:var(--ui);}
+.sheet-x:hover{background:var(--ia-soft);color:var(--ia-ink);border-color:var(--ia-line);}
+.sheet h3{font-family:var(--ui);font-weight:900;font-size:21px;color:var(--ink);line-height:1.2;padding-right:40px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.sheet h3 .flag{height:15px;width:auto;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.1);}
+.sheet .s-prov{font-family:var(--ui);font-size:12.5px;font-weight:800;color:var(--ia-ink);text-transform:uppercase;letter-spacing:.4px;margin-top:3px;}
+.s-blk{margin-top:18px;}
+.s-blk>h4{font-family:var(--ui);font-weight:900;font-size:11.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--faint);margin-bottom:8px;}
+.s-tbl{width:100%;border-collapse:collapse;font-family:var(--ui);font-size:13px;}
+.s-tbl td{padding:6px 0;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--muted);line-height:1.5;}
+.s-tbl tr:last-child td{border-bottom:none;}
+.s-tbl td:first-child{width:38%;font-weight:700;color:var(--faint);padding-right:12px;}
+.s-tbl td b{color:var(--ink);font-weight:800;}
+.s-src{font-family:var(--ui);font-size:11.5px;color:var(--faint);line-height:1.55;margin-top:9px;display:flex;flex-wrap:wrap;gap:6px 9px;align-items:center;}
+.s-src a{color:var(--ia-ink);text-decoration:underline;word-break:break-all;}
+.s-cout{background:var(--ia-soft);border:1px solid var(--ia-line);border-radius:var(--radius-sm);padding:12px 14px;font-family:var(--ui);font-size:12.5px;color:var(--ink);line-height:1.55;}
+.s-cout .big{font-size:20px;font-weight:900;color:var(--ia-ink);font-variant-numeric:tabular-nums;display:block;margin-bottom:2px;}
+.s-cout .why{color:var(--muted);font-size:11.5px;margin-top:6px;}
+.s-none{font-family:var(--ui);font-size:12.5px;color:var(--faint);line-height:1.55;background:var(--bg-2);border:1px dashed var(--border-soft);border-radius:var(--radius-sm);padding:11px 13px;}
+
+@media(max-width:760px){
+  .split{grid-template-columns:1fr;gap:12px;}
+  .rail{position:static;display:flex;flex-wrap:wrap;gap:4px;}
+  .rail-hd{flex-basis:100%;}
+  .facet{border-top:none;flex:1 1 150px;}
+  .grid{grid-template-columns:1fr;}
+  .tops{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  main{padding:4px 20px 48px;}
+  .ia-lead{display:none;}
+  .sheet-bg{padding:12px;}
+  .sheet{padding:20px 18px 22px;}
+  .s-tbl td:first-child{width:44%;}
+  /* Cibles tactiles : au doigt, 44 px de haut minimum. Sans ça, cocher un
+     filtre ou changer de carte graphique demande de viser. */
+  .opt{min-height:44px;padding:8px 10px;}
+  .vchip{min-height:44px;display:inline-flex;align-items:center;}
+  .row{min-height:44px;padding:7px 4px;}
+  .facet>summary{min-height:44px;}
+  .sheet-x{width:40px;height:40px;}
+}
+</style>
+</head>
+<body>
+
+<div id="sr-header" data-active="outils"></div>
+
+<div class="ia-band">
+  <header class="ia-head">
+    <div class="ia-hcopy">
+      <div class="ia-kicker"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg> Radar · Modèles IA</div>
+      <h1 class="ia-title">Radar <em>IA</em></h1>
+      <p class="ia-lead">Les modèles d'IA comparés sur des <strong>mesures nommées, sourcées et datées</strong>. Pas de note globale, pas de palmarès maison : un classement = une mesure, et vous voyez toujours d'où vient le chiffre et quand il a été relevé.</p>
+      <div class="ia-stats" id="heroStats"></div>
+    </div>
+    <div class="ia-deco" aria-hidden="true">
+      <div class="dtile">
+        <div class="dt-top">
+          <span class="dt-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></span>
+          <span class="dt-term"><b>31 modèles</b><em>10 fournisseurs</em></span>
+        </div>
+        <span class="dt-l"></span><span class="dt-l s"></span>
+        <span class="dt-badge">Sourcé &amp; daté</span>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main>
+
+  <section class="methode">
+    <h2><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>La règle du jeu</h2>
+    <ul>
+      <li><b>Un classement = une mesure.</b> Jamais de score composite : additionner des choses qui ne se mesurent pas pareil produit un chiffre qui ne veut rien dire.</li>
+      <li><b>Chaque chiffre porte sa source et sa date.</b> Un prix relevé il y a deux mois n'est plus un prix, c'est un souvenir.</li>
+      <li><b>Ce qui n'est pas vérifié n'est pas classé.</b> Un modèle sans donnée fiable reste dans le catalogue, mais sort des classements.</li>
+      <li><b>Les chiffres viennent des fournisseurs eux-mêmes</b>, pas d'agrégateurs tiers. Ce qui est affiché ici est relevé à la source.</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <div class="sec-hd">
+      <h2>Les classements</h2>
+      <span class="sub" id="topsMaj">—</span>
+    </div>
+    <p class="sec-note">Chacun répond à <strong>une</strong> question précise. Cliquez un modèle pour ouvrir sa fiche complète.</p>
+    <div class="tops" id="tops"></div>
+  </section>
+
+  <section class="sec" id="catalogue-sec">
+    <div class="sec-hd">
+      <h2>Le catalogue</h2>
+      <span class="sub">Tous les modèles suivis, avec leur fiche</span>
+    </div>
+
+    <div class="toolbar">
+      <div class="tb-row">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="search" type="search" placeholder="Rechercher un modèle ou un fournisseur (ex. Claude, ouvert, code…)" autocomplete="off">
+        </div>
+        <select class="sortsel" id="sortSel" aria-label="Trier les modèles">
+          <option value="prov">Trier : par fournisseur</option>
+          <option value="az">Trier : A → Z</option>
+          <option value="prix">Trier : du moins cher au plus cher</option>
+          <option value="ctx">Trier : plus grand contexte d'abord</option>
+        </select>
+      </div>
+      <div class="count" id="count">Chargement…</div>
+    </div>
+
+    <div class="split">
+      <aside class="rail" id="rail"></aside>
+      <div class="results">
+        <div class="grid" id="catalogue"></div>
+        <div class="no-result" id="noResult">Aucun modèle ne correspond à votre recherche.</div>
+      </div>
+    </div>
+  </section>
+
+  <p class="disclaimer">Sélection indicative et non exhaustive : le Radar suit les <strong>modèles actuels</strong> des fournisseurs, pas leurs archives. Les tarifs affichés sont ceux publiés par les fournisseurs sur leurs pages officielles, en dollars par million de jetons, hors remises et hors offres négociées — ils changent vite et sans préavis. <strong>Un jeton ne représente pas la même quantité de texte selon le modèle</strong> : à texte égal, l'écart de facturation peut atteindre 21 % (écart mesuré entre deux générations d'un même fournisseur). Ce site n'est ni sponsorisé ni affilié. Une erreur, un modèle manquant ? <a href="mailto:rsebastien@protonmail.com">Signalez-le</a>.</p>
+</main>
+
+<div class="sheet-bg" id="sheetBg" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<div id="sr-footer"></div>
+
+<script>
+/* ============================================================
+   Radar IA — moteur de page
+   Les classements sont pilotes par data.json (benchmarks[].rang).
+   Ajouter un classement = ajouter une entree dans data.json,
+   pas une ligne ici.
+   ============================================================ */
+
+const COUNTRY_NAME={US:'États-Unis',FR:'France',CN:'Chine',DE:'Allemagne',GB:'Royaume-Uni',CA:'Canada',IL:'Israël'};
+const ZONE_NAME={us:'États-Unis',ue:'Union européenne',cn:'Chine',fr:'France'};
+const MODAL_NAME={texte:'Texte',image:'Image',audio:'Audio',video:'Vidéo'};
+const ACCES_NAME={chat:'Interface de discussion',api:'API',telechargement:'Téléchargeable'};
+const STATUT_NAME={actif:'Actif',deprecie:'Déprécié',retire:'Retiré',acces_restreint:'Accès restreint',a_verifier:'À vérifier'};
+const CONF_NAME={officiel:'Source officielle',tiers:'Mesure indépendante',annonce:'Annoncé par le fournisseur',estime:'Estimation'};
+
+/* Icones par axe de classement */
+const AXE_IC={
+  preference_humaine:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8z"/>',
+  contexte:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+  local:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
+  cout:'<path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+  fraicheur:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'
+};
+
+let DATA=null, MODELS=[], PROVIDERS={}, TAGS={}, BENCH=[], TOK=null, fSort='prov', vramCap=24;
+const fState={prov:new Set(),tag:new Set(),heberg:new Set(),ouvert:new Set(),acces:new Set()};
+
+const $=id=>document.getElementById(id);
+const catalogue=$('catalogue'), noResult=$('noResult'), countEl=$('count'), search=$('search');
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function flagImg(code,cls){
+  if(!code) return '';
+  const c=code.toLowerCase(), name=COUNTRY_NAME[code]||code;
+  return '<img class="'+(cls||'flag')+'" src="/assets/flags/'+c+'.svg" alt="'+name+'" title="'+name+'" width="18" height="12" loading="lazy">';
+}
+function num(v,d){
+  if(v==null) return '—';
+  return v.toLocaleString('fr-FR',{minimumFractionDigits:d==null?0:d,maximumFractionDigits:d==null?2:d});
+}
+function fmtCtx(k){ return k==null?'—' : (k>=1000 ? num(k/1000,k%1000?1:0)+' M' : num(k)+' k'); }
+function provNom(id){ return (PROVIDERS[id]&&PROVIDERS[id].nom)||id; }
+function provPays(id){ return PROVIDERS[id]&&PROVIDERS[id].pays; }
+
+/* --- fraicheur : regle d'age du cadrage (14 j / 45 j) --- */
+function ageJours(iso){
+  if(!iso) return null;
+  const d=new Date(iso+'T00:00:00');
+  if(isNaN(d)) return null;
+  return Math.floor((Date.now()-d.getTime())/86400000);
+}
+function ageBadge(iso){
+  const j=ageJours(iso);
+  if(j==null) return '';
+  if(j<=14) return '<span class="age age-frais">relevé il y a '+(j<=1?'moins d\'un jour':j+' jours')+'</span>';
+  if(j<=45) return '<span class="age age-tiede">à reconfirmer · '+j+' jours</span>';
+  return '<span class="age age-vieux">daté · '+j+' jours</span>';
+}
+function estClassable(bloc){
+  if(!bloc) return false;
+  if(bloc.conf!=='officiel' && bloc.conf!=='tiers') return false;   // annonce/estime ne classent pas
+  const j=ageJours(bloc.le);
+  return j==null || j<=45;                                          // >45 j sort des classements
+}
+
+/* --- VRAM estimee a partir du nombre de parametres ---
+   Quantification 4 bits (Q4_K_M) : ~0,6 Go par milliard de parametres,
+   plus ~1 Go pour le contexte et le systeme. Estimation, pas mesure. */
+function vramGo(pb){ return Math.round((pb*0.6+1)*10)/10; }
+
+/* ============================================================
+   LES CLASSEMENTS
+   ============================================================ */
+
+/* Chaque axe declare comment lire la mesure sur un modele.
+   Retourne {v:<valeur numerique>, txt:<affichage>, bloc:<source/date/conf>} ou null. */
+const LECTEURS={
+  preference_humaine:m=>{
+    const s=m.scores&&m.scores['arena-elo'];
+    return s&&s.v!=null&&estClassable(s) ? {v:s.v, txt:num(s.v), bloc:s} : null;
+  },
+  contexte:m=> m.ctx_k!=null ? {v:m.ctx_k, txt:fmtCtx(m.ctx_k)+' jetons', bloc:null} : null,
+  local:m=>{
+    if(!m.params_b) return null;
+    const g=vramGo(m.params_b);
+    return g<=vramCap ? {v:g, txt:num(g,1)+' Go · '+num(m.params_b)+' Md param.', bloc:null} : null;
+  },
+  cout:m=> (m.prix&&m.prix.in!=null&&estClassable(m.prix))
+    ? {v:m.prix.in, txt:num(m.prix.in,2)+' $', bloc:m.prix} : null,
+  fraicheur:m=>{
+    if(!m.sortie) return null;
+    const t=Date.parse(m.sortie.length===7?m.sortie+'-01':m.sortie);
+    if(isNaN(t)) return null;
+    const d=new Date(t);
+    return {v:t, txt:d.toLocaleDateString('fr-FR',{month:'long',year:'numeric'}), bloc:null};
+  }
+};
+
+/* Classe les modeles sur un axe, en gerant les EX AEQUO : deux modeles qui
+   affichent la meme valeur portent le meme rang. Inventer un ordre entre eux
+   serait une information fausse — beaucoup de modeles annoncent exactement la
+   meme fenetre de contexte. */
+function classement(b){
+  const lire=LECTEURS[b.axe];
+  if(!lire) return [];
+  const out=[];
+  MODELS.forEach(m=>{ const r=lire(m); if(r) out.push({m,r}); });
+  out.sort((a,x)=> (b.sens==='bas' ? a.r.v-x.r.v : x.r.v-a.r.v)
+                   || (a.m.nom||'').localeCompare(x.m.nom||'','fr'));
+  let rang=0, prec=null;
+  out.forEach((e,i)=>{ if(e.r.v!==prec){ rang=i+1; prec=e.r.v; } e.rang=rang; });
+  return out;
+}
+
+function rowHTML(e,max,sens){
+  const pct = sens==='bas'
+    ? Math.max(8,(1-(e.r.v/max))*88+12)      // moins c'est mieux : barre inversee, jamais nulle
+    : Math.max(8,(e.r.v/max)*100);
+  return '<div class="row'+(e.rang===1?' is-1':'')+'" data-m="'+esc(e.m.id)+'" role="button" tabindex="0">'
+    +'<div class="row-top"><span class="row-name"><span class="row-rank">'+e.rang+'</span>'
+    +esc(e.m.nom)+flagImg(provPays(e.m.prov))+'</span>'
+    +'<span class="row-val">'+esc(e.r.txt)+'</span></div>'
+    +'<div class="row-track"><div class="row-fill" style="width:'+pct.toFixed(1)+'%"></div></div></div>';
+}
+
+function videHTML(b,n){
+  // Cas particulier : ici ce n'est pas la donnee qui manque, c'est le curseur
+  // du lecteur qui vient d'exclure presque tout. Le dire autrement serait faux.
+  if(b.axe==='local' && MODELS.filter(m=>m.params_b).length>=3){
+    return '<div class="vide"><b>Trop peu de modèles à cette taille</b>Seulement '+n+' modèle'+(n>1?'s tiennent':' tient')
+      +' dans '+vramCap+' Go de mémoire vidéo — pas de quoi faire un classement. Essayez une carte plus grande, '
+      +'ou parcourez directement les modèles à poids ouverts dans le catalogue ci-dessous.</div>';
+  }
+  const quoi={
+    preference_humaine:'les scores Elo de l\'Arena n\'ont pas encore été importés',
+    contexte:'la taille de fenêtre n\'est renseignée que pour une partie des modèles',
+    local:'le nombre de paramètres n\'est publié que par une partie des fournisseurs',
+    cout:'les tarifs ne sont pas encore relevés en source officielle',
+    fraicheur:'les dates de publication ne sont pas encore relevées'
+  }[b.axe]||'la donnée n\'est pas encore collectée';
+  return '<div class="vide"><b>Collecte en cours</b>Ce classement attend sa donnée : '+quoi+
+    (n?' ('+n+' modèle'+(n>1?'s':'')+' seulement, pas assez pour classer)':'')+
+    '. Il apparaîtra dès qu\'elle sera relevée à la source — plutôt que d\'afficher un palmarès bancal.</div>';
+}
+
+function topHTML(b){
+  const items=classement(b);
+  const ic=AXE_IC[b.axe]||AXE_IC.contexte;
+  let body, foot='';
+
+  if(items.length<3){
+    body=videHTML(b,items.length);
+  }else{
+    // Prevenir le lecteur quand la tete du classement est une egalite :
+    // sinon il lit un podium la ou il n'y a qu'un plafond partage.
+    // Et ne jamais couper un groupe d'ex aequo en deux : afficher 7 des
+    // 8 premiers a egalite reviendrait a en exclure un sans raison.
+    const nPremiers=items.filter(e=>e.rang===1).length;
+    const top=items.slice(0,Math.min(Math.max(7,nPremiers),10));
+    const max = b.sens==='bas' ? top[top.length-1].r.v : top[0].r.v;
+    const alerte = nPremiers>1
+      ? '<span class="exaequo">'+nPremiers+' modèles sont à égalité en tête ('+esc(top[0].r.txt)
+        +'). Ils partagent la première place : aucun ordre n\'est inventé entre eux.</span>'
+      : '';
+    body=alerte+top.map(e=>rowHTML(e,max||1,b.sens)).join('');
+    const total=items.length;
+    foot=total>top.length ? '<div class="top-ft">'+top.length+' premiers sur '+total+' modèles mesurés. '+srcLine(b)+'</div>'
+                          : '<div class="top-ft">'+total+' modèle'+(total>1?'s':'')+' mesuré'+(total>1?'s':'')+'. '+srcLine(b)+'</div>';
+  }
+
+  let ctl='';
+  if(b.axe==='local'){
+    ctl='<div class="vram-ctl"><span class="lbl">Ma carte graphique :</span>'
+      +[8,12,24,48].map(g=>'<button class="vchip'+(g===vramCap?' on':'')+'" data-vram="'+g+'" type="button">'+g+' Go</button>').join('')
+      +'</div>';
+  }
+  let warn='';
+  if(b.axe==='cout'){
+    warn='<div class="top-warn"><b>À lire avant de conclure.</b> Ce classement compare les <em>tarifs affichés</em>, pas le coût réel. '
+      +'Un jeton ne représente pas la même quantité de texte selon le modèle : sur un même texte français, l\'écart de facturation '
+      +'peut atteindre 21 %. Le coût ramené à 1 000 mots figure dans la fiche des modèles dont le découpage a pu être mesuré.</div>';
+  }
+
+  return '<article class="top">'
+    +'<div class="top-hd"><span class="top-ic"><svg viewBox="0 0 24 24">'+ic+'</svg></span>'
+    +'<span class="top-t"><h3>'+esc(b.titre_top||b.nom)+'</h3>'
+    +(b.sous_titre?'<span class="st">'+esc(b.sous_titre)+'</span>':'')+'</span></div>'
+    +'<span class="mesure">Mesure : '+esc(b.nom)+'</span>'
+    +ctl+warn
+    +'<div class="top-body">'+body+'</div>'
+    +foot+'</article>';
+}
+
+function srcLine(b){
+  if(b.src&&/^https?:/.test(b.src)) return 'Source : <a href="'+esc(b.src)+'" target="_blank" rel="noopener">'+esc(new URL(b.src).hostname.replace(/^www\./,''))+'</a>.';
+  if(b.src==='interne') return 'Relevé à la source chez chaque fournisseur, modèle par modèle.';
+  return '';
+}
+
+function renderTops(){
+  const rangs=BENCH.filter(b=>b.rang);
+  $('tops').innerHTML=rangs.map(topHTML).join('');
+  $('tops').querySelectorAll('.vchip').forEach(c=>{
+    c.onclick=()=>{ vramCap=+c.dataset.vram; renderTops(); };
+  });
+  bindOuvre($('tops'));
+}
+
+/* ============================================================
+   LE CATALOGUE
+   ============================================================ */
+
+function cardHTML(m){
+  const specs=[];
+  if(m.ctx_k!=null) specs.push('<span class="spec">Contexte <b>'+fmtCtx(m.ctx_k)+'</b></span>');
+  if(m.params_b) specs.push('<span class="spec"><b>'+num(m.params_b)+' Md</b> param.</span>');
+  if(m.modal&&m.modal.length>1) specs.push('<span class="spec">Multimodal</span>');
+  const tags=(m.tags||[]).slice(0,3).map(t=>'<span class="mtag">'+esc((TAGS[t]||t))+'</span>').join('');
+  let prix='<span class="pn">Tarif non relevé</span>';
+  if(m.prix&&m.prix.in!=null){
+    prix='<span><span class="pv">'+num(m.prix.in,2)+' $</span> <span class="pu">/ M jetons en entrée</span></span>';
+  }
+  return '<button class="mcard" type="button" data-m="'+esc(m.id)+'">'
+    +'<div class="mc-top"><span class="mc-id"><span class="mc-name">'+esc(m.nom)+flagImg(provPays(m.prov))+'</span>'
+    +'<span class="mc-prov">'+esc(provNom(m.prov))+'</span></span>'
+    +'<span class="obadge '+(m.ouvert?'o-ouvert':'o-ferme')+'">'+(m.ouvert?'Ouvert':'Fermé')+'</span></div>'
+    +(specs.length?'<div class="mc-specs">'+specs.join('')+'</div>':'')
+    +(tags?'<div class="mc-tags">'+tags+'</div>':'')
+    +'<div class="mc-prix">'+prix+'</div></button>';
+}
+
+function passFacets(m){
+  if(fState.prov.size && !fState.prov.has(m.prov)) return false;
+  if(fState.tag.size && !(m.tags||[]).some(t=>fState.tag.has(t))) return false;
+  if(fState.heberg.size && !(m.heberg||[]).some(h=>fState.heberg.has(h))) return false;
+  if(fState.ouvert.size && !fState.ouvert.has(m.ouvert?'oui':'non')) return false;
+  if(fState.acces.size && !(m.acces||[]).some(a=>fState.acces.has(a))) return false;
+  return true;
+}
+
+function filtered(){
+  const q=search.value.trim().toLowerCase();
+  const items=MODELS.filter(m=>passFacets(m) && (!q ||
+    (m.nom+' '+provNom(m.prov)+' '+(m.tags||[]).join(' ')+' '+(m.famille||'')).toLowerCase().includes(q)));
+  const az=(a,b)=>(a.nom||'').localeCompare(b.nom||'','fr');
+  if(fSort==='az') items.sort(az);
+  else if(fSort==='prix') items.sort((a,b)=>{
+    const x=a.prix&&a.prix.in!=null?a.prix.in:Infinity, y=b.prix&&b.prix.in!=null?b.prix.in:Infinity;
+    return x-y||az(a,b);
+  });
+  else if(fSort==='ctx') items.sort((a,b)=>(b.ctx_k||-1)-(a.ctx_k||-1)||az(a,b));
+  else items.sort((a,b)=>provNom(a.prov).localeCompare(provNom(b.prov),'fr')||az(a,b));
+  return items;
+}
+
+function cnt(fn){ return MODELS.filter(fn).length; }
+
+function facetHTML(id,label,opts,kind){
+  const inner=opts.map(o=>{
+    const deco = kind==='flag' ? flagImg(o.f,'oflag') : '';
+    return '<label class="opt"><input type="checkbox" data-f="'+id+'" value="'+esc(o.v)+'"'
+      +(fState[id].has(o.v)?' checked':'')+'>'+deco
+      +'<span class="otx">'+esc(o.l)+'</span><span class="oc">'+o.n+'</span></label>';
+  }).join('');
+  return '<details class="facet" open><summary>'+esc(label)
+    +'<span class="fchev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></summary>'
+    +'<div class="opts">'+inner+'</div></details>';
+}
+
+function buildRail(){
+  const provOpts=Object.keys(PROVIDERS)
+    .map(p=>({v:p,l:provNom(p),f:provPays(p),n:cnt(m=>m.prov===p)}))
+    .filter(o=>o.n).sort((a,b)=>b.n-a.n||a.l.localeCompare(b.l,'fr'));
+  const tagOpts=Object.keys(TAGS)
+    .map(t=>({v:t,l:TAGS[t],n:cnt(m=>(m.tags||[]).includes(t))}))
+    .filter(o=>o.n).sort((a,b)=>b.n-a.n);
+  const hbOpts=[...new Set(MODELS.flatMap(m=>m.heberg||[]))]
+    .map(h=>({v:h,l:ZONE_NAME[h]||h,n:cnt(m=>(m.heberg||[]).includes(h))}))
+    .sort((a,b)=>b.n-a.n);
+  const ouvOpts=[{v:'oui',l:'Poids ouverts',n:cnt(m=>m.ouvert)},{v:'non',l:'Fermé (API seule)',n:cnt(m=>!m.ouvert)}].filter(o=>o.n);
+  const accOpts=[...new Set(MODELS.flatMap(m=>m.acces||[]))]
+    .map(a=>({v:a,l:ACCES_NAME[a]||a,n:cnt(m=>(m.acces||[]).includes(a))}))
+    .sort((a,b)=>b.n-a.n);
+
+  const anyOn=Object.values(fState).some(s=>s.size);
+  const rail=$('rail');
+  rail.innerHTML='<div class="rail-hd"><svg viewBox="0 0 24 24"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filtrer'
+    +'<button class="rail-clear'+(anyOn?' show':'')+'" id="railClear" type="button">Effacer</button></div>'
+    +facetHTML('prov','Fournisseur',provOpts,'flag')
+    +facetHTML('ouvert','Licence',ouvOpts)
+    +facetHTML('tag','Usage',tagOpts)
+    +(hbOpts.length>1?facetHTML('heberg','Hébergement',hbOpts):'')
+    +(accOpts.length>1?facetHTML('acces','Accès',accOpts):'');
+  rail.querySelectorAll('input').forEach(i=>i.onchange=()=>{
+    const f=i.dataset.f;
+    i.checked?fState[f].add(i.value):fState[f].delete(i.value);
+    buildRail(); render();
+  });
+  const rc=$('railClear');
+  if(rc) rc.onclick=()=>{ Object.values(fState).forEach(s=>s.clear()); buildRail(); render(); };
+}
+
+function render(){
+  const items=filtered();
+  catalogue.innerHTML=items.map(cardHTML).join('');
+  noResult.style.display=items.length?'none':'block';
+  const anyOn=Object.values(fState).some(s=>s.size)||search.value.trim();
+  countEl.innerHTML=anyOn
+    ? '<b>'+items.length+'</b> modèle'+(items.length>1?'s':'')
+    : '<b>'+MODELS.length+'</b> modèles · '+Object.keys(PROVIDERS).length+' fournisseurs';
+  bindOuvre(catalogue);
+}
+
+/* ============================================================
+   LA FICHE MODELE
+   ============================================================ */
+
+function ligne(k,v){ return v==null||v===''?'':'<tr><td>'+k+'</td><td>'+v+'</td></tr>'; }
+
+function blocSource(bloc,quoi){
+  if(!bloc) return '';
+  const conf=bloc.conf?'<span class="conf conf-'+esc(bloc.conf)+'">'+esc(CONF_NAME[bloc.conf]||bloc.conf)+'</span>':'';
+  const src=bloc.src&&/^https?:/.test(bloc.src)
+    ? '<a href="'+esc(bloc.src)+'" target="_blank" rel="noopener">'+esc(new URL(bloc.src).hostname.replace(/^www\./,''))+' ↗</a>' : '';
+  return '<div class="s-src">'+conf+ageBadge(bloc.le)+(src?'<span>'+quoi+' relevé sur '+src+'</span>':'')+'</div>';
+}
+
+function sheetHTML(m){
+  const p=m.prix;
+  let prixTbl='<div class="s-none">Le tarif de ce modèle n\'a pas encore été relevé sur une page officielle du fournisseur. Il n\'apparaît donc dans aucun classement de prix.</div>';
+  if(p&&p.in!=null){
+    let rows=ligne('Entrée','<b>'+num(p.in,2)+' $</b> / million de jetons')
+      +ligne('Sortie', p.out!=null?'<b>'+num(p.out,2)+' $</b> / million de jetons':'')
+      +ligne('Contexte mis en cache', p.cache!=null?'<b>'+num(p.cache,3)+' $</b> / million de jetons':'');
+    if(p.jusqu_au&&p.apres){
+      rows+=ligne('⚠️ Tarif promotionnel','Ces prix courent jusqu\'au <b>'+esc(p.jusqu_au)
+        +'</b>, puis passent à <b>'+num(p.apres.in,2)+' $</b> en entrée et <b>'+num(p.apres.out,2)+' $</b> en sortie.');
+    }
+    if(p.note) rows+=ligne('À noter',esc(p.note));
+    prixTbl='<table class="s-tbl">'+rows+'</table>'+blocSource(p,'Tarif');
+  }
+
+  let cout='';
+  const c=m.cout_1000_mots;
+  if(c&&c.eur_usd!=null){
+    cout='<div class="s-blk"><h4>Ce que ça coûte vraiment</h4><div class="s-cout">'
+      +'<span class="big">'+num(c.eur_usd,4)+' $</span>'
+      +'pour <b>'+esc(c.melange||'1 000 mots')+'</b> de français.'
+      +'<div class="why">Calculé en mesurant combien de jetons ce modèle consomme réellement sur un texte français de référence '
+      +'(<b>'+num(c.ratio_tokens_par_mot,3)+'</b> jeton par mot), puis en appliquant son tarif. '
+      +'C\'est la seule façon de comparer deux fournisseurs à texte égal — le prix au jeton, lui, ne l\'est pas.</div></div></div>';
+  }else if(p&&p.in!=null&&TOK&&TOK.non_mesurees&&TOK.non_mesurees[m.famille]){
+    cout='<div class="s-blk"><h4>Ce que ça coûte vraiment</h4><div class="s-none">'
+      +'Impossible à calculer honnêtement pour ce modèle : son découpage en jetons n\'est pas mesurable publiquement ('
+      +esc(TOK.non_mesurees[m.famille])+'). Plutôt qu\'une estimation, rien.</div></div>';
+  }
+
+  let scores='';
+  const sk=Object.keys(m.scores||{});
+  if(sk.length){
+    scores='<div class="s-blk"><h4>Résultats de tests</h4><table class="s-tbl">'
+      +sk.map(k=>{
+        const b=BENCH.find(x=>x.id===k)||{nom:k}, s=m.scores[k];
+        return ligne(esc(b.nom), '<b>'+esc(num(s.v,1))+'</b>'+(b.rang?'':' <span class="conf conf-annonce">hors classement</span>'));
+      }).join('')+'</table></div>';
+  }
+
+  const specs='<table class="s-tbl">'
+    +ligne('Fournisseur','<b>'+esc(provNom(m.prov))+'</b>')
+    +ligne('Statut',esc(STATUT_NAME[m.statut]||m.statut))
+    +ligne('Licence', m.ouvert?'<b>Poids ouverts</b> — téléchargeable et exécutable sur votre matériel':'<b>Fermé</b> — accessible uniquement via le fournisseur')
+    +ligne('Taille du contexte', m.ctx_k!=null?'<b>'+fmtCtx(m.ctx_k)+'</b> jetons — environ '+num(Math.round(m.ctx_k*1000/1.4/1000))+' k mots lus d\'un coup':'')
+    +ligne('Paramètres', m.params_b?'<b>'+num(m.params_b)+' milliards</b> — environ '+num(vramGo(m.params_b),1)+' Go de mémoire vidéo en quantification 4 bits':'')
+    +ligne('Ce qu\'il traite',(m.modal||[]).map(x=>MODAL_NAME[x]||x).join(', '))
+    +ligne('Comment y accéder',(m.acces||[]).map(x=>ACCES_NAME[x]||x).join(' · '))
+    +ligne('Hébergement',(m.heberg||[]).map(x=>ZONE_NAME[x]||x).join(', '))
+    +ligne('Date de publication', m.sortie?esc(m.sortie):'')
+    +'</table>';
+
+  return '<button class="sheet-x" id="sheetX" type="button" aria-label="Fermer la fiche">×</button>'
+    +'<h3 id="sheetTitle">'+esc(m.nom)+flagImg(provPays(m.prov))+'</h3>'
+    +'<div class="s-prov">'+esc(provNom(m.prov))+'</div>'
+    +'<div class="s-blk"><h4>Carte d\'identité</h4>'+specs+'</div>'
+    +'<div class="s-blk"><h4>Tarif public</h4>'+prixTbl+'</div>'
+    +cout+scores;
+}
+
+let lastFocus=null;
+function ouvre(id){
+  const m=MODELS.find(x=>x.id===id);
+  if(!m) return;
+  lastFocus=document.activeElement;
+  $('sheet').innerHTML=sheetHTML(m);
+  $('sheetBg').classList.add('on');
+  document.body.style.overflow='hidden';
+  const x=$('sheetX');
+  x.onclick=ferme;
+  x.focus();
+}
+function ferme(){
+  $('sheetBg').classList.remove('on');
+  document.body.style.overflow='';
+  if(lastFocus&&lastFocus.focus) lastFocus.focus();
+}
+function bindOuvre(root){
+  root.querySelectorAll('[data-m]').forEach(el=>{
+    el.onclick=()=>ouvre(el.dataset.m);
+    if(el.tagName!=='BUTTON') el.onkeydown=e=>{
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); ouvre(el.dataset.m); }
+    };
+  });
+}
+$('sheetBg').addEventListener('click',e=>{ if(e.target===$('sheetBg')) ferme(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&$('sheetBg').classList.contains('on')) ferme(); });
+
+/* ============================================================
+   DEMARRAGE
+   ============================================================ */
+
+$('sortSel').addEventListener('change',e=>{ fSort=e.target.value; render(); });
+search.addEventListener('input',render);
+
+(async function init(){
+  try{
+    const r=await fetch('data.json?v='+Date.now(),{cache:'no-cache'});
+    if(!r.ok) throw new Error('http '+r.status);
+    DATA=await r.json();
+    MODELS=DATA.models||[];
+    BENCH=DATA.benchmarks||[];
+    TOK=DATA.tokenizers_mesures||null;
+    PROVIDERS=Object.fromEntries((DATA.providers||[]).map(p=>[p.id,p]));
+    TAGS=Object.fromEntries((DATA.tags||[]).map(t=>[t.id,t.nom]));
+
+    const nOuv=MODELS.filter(m=>m.ouvert).length;
+    const nPrix=MODELS.filter(m=>m.prix&&m.prix.in!=null).length;
+    $('heroStats').innerHTML=
+      '<span class="stat"><b>'+MODELS.length+'</b> modèles suivis</span>'
+      +'<span class="stat"><b>'+Object.keys(PROVIDERS).length+'</b> fournisseurs</span>'
+      +'<span class="stat"><b>'+nOuv+'</b> à poids ouverts</span>'
+      +'<span class="stat"><b>'+nPrix+'</b> tarifs relevés à la source</span>';
+    $('topsMaj').textContent='Relevé le '+(DATA.maj||'—');
+
+    renderTops();
+    buildRail();
+    render();
+  }catch(e){
+    countEl.textContent='';
+    $('tops').innerHTML='';
+    catalogue.innerHTML='<p style="font-family:Nunito,sans-serif;color:var(--faint);text-align:center;padding:40px 0;grid-column:1/-1;">Chargement du Radar impossible pour le moment. Réessayez plus tard.</p>';
+  }
+})();
+</script>
+<script src="/assets/site.js?v=2026071301" defer></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
