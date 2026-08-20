@@ -151,7 +151,12 @@ details.warn .body{font-family:var(--ui);font-size:11.5px;line-height:1.55;color
 .picker select{width:100%;font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--ink);background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--radius-sm);padding:9px 10px;cursor:pointer;min-height:40px;}
 .picker select:focus{outline:none;border-color:var(--ia);}
 
-.toile-wrap{position:relative;width:100%;}
+.toile-wrap{position:relative;width:100%;min-width:0;}
+/* Sans largeur declaree, le SVG prend la taille de son viewBox (400 px) et
+   refuse de retrecir : sur telephone, le panneau debordait de 54 px et
+   emportait toute la page en glissement lateral. */
+.toile{display:block;width:100%;height:auto;}
+.duo>.panel{min-width:0;}
 svg.toile{width:100%;height:auto;display:block;overflow:visible;}
 svg.toile .ring{fill:none;stroke:var(--border-soft);stroke-width:1;}
 svg.toile .spoke{stroke:var(--border-soft);stroke-width:1;}
@@ -175,6 +180,28 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
 .crit input[type=range]{flex:0 0 118px;accent-color:var(--ia);cursor:pointer;height:22px;}
 .crit .cv{font-family:var(--ui);font-size:11px;font-weight:900;color:var(--ia-ink);flex:none;width:64px;text-align:right;}
 .cbtns{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0 4px;}
+/* --- le diagnostic : quatre questions qui placent les curseurs --- */
+.diag{border:1.5px solid var(--ia-line);background:var(--bg-2);border-radius:12px;padding:11px 13px;margin-bottom:13px;}
+.diag>summary{list-style:none;cursor:pointer;font-family:var(--ui);font-size:12.5px;font-weight:900;color:var(--ia-ink);display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;}
+.diag>summary::-webkit-details-marker{display:none;}
+.diag>summary .ch{display:inline-block;transition:transform .18s;}
+.diag[open]>summary .ch{transform:rotate(90deg);}
+.diag>summary em{font-style:normal;font-weight:600;color:var(--faint);font-size:11.5px;}
+.dq{margin-top:11px;}
+.dq>span{display:block;font-family:var(--ui);font-size:11.5px;font-weight:800;color:var(--ink);margin-bottom:5px;}
+.dopts{display:flex;gap:6px;flex-wrap:wrap;}
+.dopt{font-family:var(--ui);font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:999px;border:1.4px solid var(--border-soft);background:var(--card);color:var(--muted);cursor:pointer;line-height:1.3;transition:.15s;}
+.dopt:hover{border-color:var(--ia);color:var(--ink);}
+.dopt.on{background:var(--ia-soft);border-color:var(--ia);color:var(--ia-ink);box-shadow:inset 0 0 0 1px var(--ia);}
+.diag-why{font-family:var(--ui);font-size:11.5px;color:var(--muted);line-height:1.55;margin-top:12px;padding-top:10px;border-top:1px dashed var(--ia-line);}
+.diag-why b{color:var(--ink);}
+.diag-why .warn{color:var(--warn);}
+.dpes{display:flex;gap:5px;flex-wrap:wrap;margin:7px 0 2px;}
+.dpes i{font-style:normal;font-family:var(--ui);font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--ia-soft);color:var(--ia-ink);border:1px solid var(--ia-line);}
+.dfoot{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:10px;}
+.cfilt{display:flex;align-items:flex-start;gap:8px;font-family:var(--ui);font-size:11.5px;color:var(--ink);font-weight:700;margin-bottom:11px;cursor:pointer;line-height:1.4;}
+.cfilt input{accent-color:var(--ia);margin-top:1px;flex:none;width:15px;height:15px;cursor:pointer;}
+.cfilt em{font-style:normal;font-weight:600;color:var(--faint);}
 .res{margin-top:6px;}
 .res .rr{display:flex;align-items:center;gap:9px;padding:8px 4px;border-bottom:1px solid var(--border-soft);cursor:pointer;border-radius:6px;}
 .res .rr:hover{background:var(--bg-2);}
@@ -298,6 +325,10 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
   .facet{border-top:none;flex:1 1 150px;}
   .grid{grid-template-columns:1fr;}
   .tops{grid-template-columns:1fr;}
+  /* Une case de grille refuse par defaut de devenir plus etroite que son
+     contenu : sans ca, les cartes de classement debordaient de 18 px a
+     375 px de large et toute la page glissait lateralement. */
+  .tops>.top,.top-body,.row,.row-top{min-width:0;}
 }
 @media(max-width:600px){
   main{padding:4px 20px 48px;}
@@ -309,6 +340,9 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
      filtre ou changer de carte graphique demande de viser. */
   .opt{min-height:44px;padding:8px 10px;}
   .vchip{min-height:44px;display:inline-flex;align-items:center;}
+  .dopt{min-height:44px;display:inline-flex;align-items:center;}
+  .cfilt{min-height:44px;align-items:center;}
+  .cfilt input{width:20px;height:20px;margin-top:0;}
   .row{min-height:44px;padding:7px 4px;}
   .facet>summary{min-height:44px;}
   .sheet-x{width:40px;height:40px;}
@@ -340,7 +374,7 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
       <div class="dtile">
         <div class="dt-top">
           <span class="dt-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></span>
-          <span class="dt-term"><b>31 modèles</b><em>10 fournisseurs</em></span>
+          <span class="dt-term"><b id="dtM">Le référentiel</b><em id="dtP">relevé à la source</em></span>
         </div>
         <span class="dt-l"></span><span class="dt-l s"></span>
         <span class="dt-badge">Sourcé &amp; daté</span>
@@ -353,7 +387,7 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
   <div class="nav-in">
     <a href="#classements" class="here"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Classements</a>
     <a href="#perso"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Comparer</a>
-    <a href="#catalogue-sec"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Les 31 modèles</a>
+    <a href="#catalogue-sec"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span id="navCat">Le catalogue</span></a>
     <a href="#methode"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>Méthode</a>
   </div>
 </nav>
@@ -377,6 +411,10 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
       <button class="besoin" type="button" data-go="perso">
         <span class="bi"><svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span>
         <b>C'est moi qui décide</b><span>Réglez vos critères, obtenez votre classement</span>
+      </button>
+      <button class="besoin" type="button" data-go="perso" data-diag="1">
+        <span class="bi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.2a2.9 2.9 0 0 1 5.6 1c0 1.9-2.8 2.3-2.8 4"/><path d="M12 18h.01"/></svg></span>
+        <b>Je ne sais pas par o&ugrave; commencer</b><span>Quatre questions, et j'ai votre classement</span>
       </button>
     </div>
   </section>
@@ -410,6 +448,16 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
       <section class="panel" id="compPanel">
         <h3><svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>Votre classement à vous</h3>
         <p class="pn">Réglez l'importance de chaque critère. Le classement se recalcule en direct — c'est <strong>votre</strong> pondération, pas la nôtre.</p>
+        <details class="diag" id="diag">
+          <summary><span class="ch">&rsaquo;</span>Vous ne savez pas quoi r&eacute;gler ?<em>Quatre questions, et je place les curseurs &agrave; votre place.</em></summary>
+          <div id="diagQ"></div>
+          <div class="dfoot"><button class="ia-pill" type="button" id="diagReset">Effacer mes r&eacute;ponses</button></div>
+          <div class="diag-why" id="diagWhy"></div>
+        </details>
+        <label class="cfilt"><input type="checkbox" id="cfiltLocal">
+          <span>Seulement ce qui tourne sur ma machine <em>(dans <span id="cfiltGo">24</span>&nbsp;Go de m&eacute;moire vid&eacute;o)</em></span></label>
+        <label class="cfilt"><input type="checkbox" id="cfiltUE">
+          <span>Seulement ce qui est h&eacute;berg&eacute; dans l'Union europ&eacute;enne <em>(chez le fournisseur lui-m&ecirc;me)</em></span></label>
         <div id="crits"></div>
         <div class="cbtns">
           <button class="ia-pill" type="button" data-preset="equilibre">Équilibré</button>
@@ -715,7 +763,14 @@ function renderTops(){
   const rangs=BENCH.filter(b=>b.rang);
   $('tops').innerHTML=rangs.map(topHTML).join('');
   $('tops').querySelectorAll('.vchip').forEach(c=>{
-    c.onclick=()=>{ vramCap=+c.dataset.vram; renderTops(); };
+    c.onclick=()=>{
+      vramCap=+c.dataset.vram;
+      renderTops();
+      // La taille de carte est un reglage de PAGE : le filtre du comparateur
+      // et l'avertissement du diagnostic en dependent tous les deux.
+      syncFiltre();
+      if(Object.keys(rep_).some(k=>rep_[k])) appliquerDiag(); else if(filtreLocal) renderComp();
+    };
   });
   $('tops').querySelectorAll('[data-plus]').forEach(btn=>{
     btn.onclick=()=>{
@@ -876,7 +931,7 @@ const CRITS=AXES.concat([
 const PRESETS={
   equilibre:{elo:3,elofr:0,ctx:2,prix:3,neuf:0,ue:0,ouvert:0},
   budget:   {elo:2,elofr:0,ctx:1,prix:5,neuf:0,ue:0,ouvert:2},
-  souverain:{elo:1,elofr:0,ctx:0,prix:2,neuf:0,ue:5,ouvert:3},
+  souverain:{elo:1,elofr:0,ctx:0,prix:2,neuf:0,ue:0,ouvert:3},
   francais: {elo:1,elofr:5,ctx:0,prix:2,neuf:0,ue:2,ouvert:0},
 };
 let poids=Object.assign({},PRESETS.equilibre);
@@ -895,6 +950,7 @@ function renderCrits(){
   $('crits').querySelectorAll('input').forEach(i=>i.oninput=()=>{
     poids[i.dataset.c]=+i.value;
     $('cv-'+i.dataset.c).textContent=MOTS[+i.value];
+    diagTouche=true; majDiagWhy();
     renderComp();
   });
 }
@@ -910,8 +966,22 @@ function renderComp(){
     return;
   }
 
+  // Le filtre est le seul ajout au moteur : ponderer ne suffit pas quand le
+  // visiteur pose une CONDITION (rien ne sort de ma machine). Un critere
+  // decisif fait perdre des points a un modele ferme, il ne l'ecarte pas — et
+  // presenter un modele heberge en tete a quelqu'un qui vient de dire
+  // l'inverse serait un mensonge poli.
+  let base=MODELS;
+  if(filtreLocal) base=base.filter(estLocal);
+  if(filtreUE)    base=base.filter(estUE);
+  if(!base.length){
+    res.innerHTML='';
+    note.innerHTML='<b>Aucun modèle ne passe vos filtres.</b> Décochez-en un, ou choisissez '
+      +'une carte graphique plus grande, pour revenir à tout le référentiel.';
+    return;
+  }
   const notes=[], incomplets=[], locaux=[];
-  MODELS.forEach(m=>{
+  base.forEach(m=>{
     const manque=actifs.filter(c=>normCrit(c,m)==null);
     // Un modele auquel il manque une donnee que VOUS avez ponderee ne peut pas
     // etre classe honnetement : lui donner zero le punirait d'une absence de
@@ -943,8 +1013,13 @@ function renderComp(){
     +'<span class="rs">'+Math.round(e.s*100)+'</span></div>').join('');
   bindOuvre(res);
 
-  let txt='<b>'+notes.length+'</b> modèle'+(notes.length>1?'s':'')+' classé'+(notes.length>1?'s':'')+' sur '
-    +MODELS.length
+  const filtres=[];
+  if(filtreLocal) filtres.push('ce qui tient dans '+vramCap+' Go chez vous');
+  if(filtreUE)    filtres.push('ce qui est hébergé dans l\'Union européenne');
+  let txt=(filtres.length?'<b>Filtre'+(filtres.length>1?'s actifs':' actif')+'</b> — seulement '
+      +filtres.join(' et ')+'. ':'')
+    +'<b>'+notes.length+'</b> modèle'+(notes.length>1?'s':'')+' classé'+(notes.length>1?'s':'')+' sur '
+    +base.length
     +(locaux.length?', <b>'+locaux.length+'</b> sans tarif au jeton (ils tournent chez vous)':'')
     +(incomplets.length?', <b>'+incomplets.length+'</b> écarté'+(incomplets.length>1?'s':'')+' faute de donnée.':'.');
   let det='La note sur 100 n\'a aucun sens dans l\'absolu : elle ne sert qu\'à ordonner selon <em>vos</em> curseurs. '
@@ -969,6 +1044,127 @@ function renderComp(){
     +'<div class="body">'+det+'</div></details>';
 }
 
+
+/* ============================================================
+   LE DIAGNOSTIC — ce n'est PAS un quatrieme objet
+   ------------------------------------------------------------
+   C'est le comparateur, avec les curseurs places a votre place. Un seul
+   moteur, deux surfaces : ils ne peuvent pas diverger. Et les curseurs
+   obtenus restent AFFICHES et modifiables — sinon ce serait une boite
+   noire, exactement ce que ce Radar refuse.
+   ============================================================ */
+const DIAG=[
+ {id:'usage', q:'À quoi ça va vous servir, surtout ?', opts:[
+   {id:'courant', lbl:'Rédiger, résumer, répondre',        p:{elo:3}},
+   {id:'docs',    lbl:'Travailler sur de longs documents', p:{ctx:5,elo:2}},
+   {id:'code',    lbl:'Écrire du code',                    p:{elo:4,ctx:2}},
+   {id:'explorer',lbl:'Discuter, apprendre, explorer',     p:{elo:3,prix:2}},
+ ]},
+ {id:'langue', q:'Dans quelle langue, principalement ?', opts:[
+   {id:'fr',  lbl:'En français',                p:{elofr:5,elo:1}},
+   {id:'peu', lbl:'En anglais, ou peu importe', p:{}},
+ ]},
+ {id:'donnees', q:'Où vos données ont-elles le droit d\'aller ?', opts:[
+   {id:'public',  lbl:'Peu importe, rien de sensible',    p:{}},
+   {id:'europe',  lbl:'Elles doivent rester en Europe',   p:{ouvert:2}, ue:true},
+   {id:'machine', lbl:'Elles ne sortent pas de chez moi', p:{ouvert:5}, local:true},
+ ]},
+ {id:'volume', q:'Vous allez vous en servir à quelle intensité ?', opts:[
+   {id:'petit',     lbl:'Quelques questions par jour',  p:{prix:1}},
+   {id:'quotidien', lbl:'Tous les jours, sérieusement', p:{prix:3}},
+   {id:'gros',      lbl:'Gros volume, en automatique',  p:{prix:5}},
+ ]},
+];
+let rep_={}, filtreLocal=false, filtreUE=false, diagTouche=false, diagAlerte='';
+
+function estLocal(m){ return !!(m.ouvert && m.params_b && vramGo(m.params_b)<=vramCap); }
+function estUE(m){ return (m.heberg||[]).includes('ue'); }
+
+function renderDiag(){
+  $('diagQ').innerHTML=DIAG.map(q=>
+    '<div class="dq"><span>'+esc(q.q)+'</span><div class="dopts">'
+    +q.opts.map(o=>'<button class="dopt'+(rep_[q.id]===o.id?' on':'')+'" type="button" '
+      +'data-q="'+q.id+'" data-o="'+o.id+'">'+esc(o.lbl)+'</button>').join('')
+    +'</div></div>').join('');
+  $('diagQ').querySelectorAll('.dopt').forEach(b=>b.onclick=()=>{
+    // recliquer la meme reponse la retire : on ne piege pas le visiteur
+    rep_[b.dataset.q] = (rep_[b.dataset.q]===b.dataset.o) ? null : b.dataset.o;
+    diagTouche=false;
+    appliquerDiag(); renderDiag();
+  });
+}
+
+function appliquerDiag(){
+  const choisies=DIAG.map(q=>{ const o=q.opts.find(o=>o.id===rep_[q.id]); return o?{q,o}:null; }).filter(Boolean);
+  diagAlerte='';
+  if(!choisies.length){ filtreLocal=false; filtreUE=false; syncFiltre(); majDiagWhy(); renderCrits(); renderComp(); return; }
+
+  const p={elo:0,elofr:0,ctx:0,prix:0,neuf:0,ue:0,ouvert:0};
+  // On prend le MAXIMUM, pas la somme : deux reponses qui reclament la meme
+  // chose ne doivent pas la rendre deux fois plus importante que le reste.
+  choisies.forEach(c=>{ for(const k in c.o.p) p[k]=Math.max(p[k],c.o.p[k]); });
+  filtreLocal=choisies.some(c=>c.o.local);
+  filtreUE=choisies.some(c=>c.o.ue);
+
+  if(filtreUE){
+    // Le critere « Europe » ne departage plus personne une fois le filtre pose,
+    // et il resterait affiche comme s'il pesait : on l'eteint.
+    p.ue=0;
+    const n=MODELS.filter(estUE).length;
+    diagAlerte='Vous avez posé une <b>condition</b>, pas une préférence : les '+(MODELS.length-n)
+      +' modèles que leur fournisseur n\'héberge pas dans l\'Union sont <b>écartés</b>, pas seulement '
+      +'pénalisés. Un modèle à poids ouverts hébergé hors d\'Europe pourrait être réinstallé chez vous '
+      +'ou chez un hébergeur européen — mais ce serait votre travail, pas une offre du fournisseur, '
+      +'alors il ne figure pas ici.';
+  }
+
+  if(filtreLocal){
+    p.prix=0;      // il tourne chez vous : aucune facture au jeton a comparer
+    p.ouvert=0;    // tout ce qui reste est ouvert : ce critere ne departage plus personne
+    // Controle CALCULE, pas suppose : la mesure de qualite existe-t-elle seulement
+    // sur ces modeles-la ? Si elle manque a la majorite, la faire peser
+    // n'ecarterait pas les faibles, elle ecarterait les NON MESURES.
+    const loc=MODELS.filter(estLocal), avec=loc.filter(m=>(m.scores||{})['arena-elo']).length;
+    if(loc.length && avec*2<loc.length && (p.elo||p.elofr)){
+      p.elo=0; p.elofr=0;
+      p.ctx=Math.max(p.ctx,3);
+      const q=loc.length-avec;
+      diagAlerte='Sur les <b>'+loc.length+'</b> modèles qui tiennent dans '+vramCap+' Go, <b>'+avec
+        +(avec>1?' seulement</b> ont été jugés':' seul</b> a été jugé')+' en aveugle par des humains. '
+        +'Faire peser la qualité — celle en français comprise — en écarterait '+q+' pour <em>absence de mesure</em>, '
+        +'pas pour faiblesse : je ne la fais donc pas peser ici. '
+        +'Ce qui les départage ici, c\'est ce qui est vraiment mesuré chez eux : la fenêtre de contexte.';
+    }
+  }
+  poids=p;
+  document.querySelectorAll('[data-preset]').forEach(x=>x.classList.remove('on'));
+  syncFiltre(); renderCrits(); renderComp(); majDiagWhy();
+}
+
+function syncFiltre(){
+  const c=$('cfiltLocal'); if(c) c.checked=filtreLocal;
+  const u=$('cfiltUE');    if(u) u.checked=filtreUE;
+  const g=$('cfiltGo');    if(g) g.textContent=vramCap;
+}
+
+function majDiagWhy(){
+  const el=$('diagWhy'); if(!el) return;
+  const dites=DIAG.map(q=>{ const o=q.opts.find(o=>o.id===rep_[q.id]); return o?o.lbl:null; }).filter(Boolean);
+  if(!dites.length){ el.innerHTML=''; return; }
+  const pesent=CRITS.filter(c=>poids[c.id]>0)
+    .sort((a,b)=>poids[b.id]-poids[a.id])
+    .map(c=>'<i>'+esc(c.court||c.lbl)+' · '+MOTS[poids[c.id]]+'</i>').join('');
+  el.innerHTML='<b>Vous avez dit :</b> '+dites.map(esc).join(' · ')+'.'
+    +'<div class="dpes">'+(pesent||'<i>aucun critère retenu</i>')+'</div>'
+    +(diagAlerte?'<div class="warn" style="margin-top:6px">⚠️ '+diagAlerte+'</div>':'')
+    +'<div style="margin-top:7px">Ces curseurs sont ceux d\'en dessous : rien n\'est caché, '
+    +'et vous pouvez les corriger — le classement suivra.'
+    +(diagTouche?' <b>Vous les avez ajustés depuis.</b>':'')+'</div>'
+    +(filtreLocal?'<div class="dfoot"><button class="ia-pill" type="button" id="diagVersTop">'
+      +'Voir le classement fait pour ces modèles</button></div>':'');
+  const b=$('diagVersTop'); if(b) b.onclick=()=>amener('classements','vram-locale');
+}
+
 function initPerso(){
   calculerBornes();
   // Deux modeles par defaut : un frontiere et un economique, pour que la
@@ -984,10 +1180,21 @@ function initPerso(){
   });
   document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{
     poids=Object.assign({},PRESETS[b.dataset.preset]);
+    const condUE=b.dataset.preset==='souverain';
+    // Un prereglage et un diagnostic remplissent les MEMES curseurs : laisser
+    // les reponses affichees alors qu'elles ne pilotent plus rien ferait
+    // mentir la recapitulation.
+    rep_={}; filtreLocal=false; filtreUE=false; diagTouche=false; diagAlerte='';
     document.querySelectorAll('[data-preset]').forEach(x=>x.classList.toggle('on',x===b));
-    renderCrits(); renderComp();
+    filtreUE=condUE;
+    syncFiltre(); renderDiag(); majDiagWhy(); renderCrits(); renderComp();
   });
   document.querySelector('[data-preset="equilibre"]').classList.add('on');
+
+  $('cfiltLocal').onchange=e=>{ filtreLocal=e.target.checked; majDiagWhy(); renderComp(); };
+  $('cfiltUE').onchange   =e=>{ filtreUE   =e.target.checked; majDiagWhy(); renderComp(); };
+  $('diagReset').onclick=()=>{ rep_={}; diagTouche=false; appliquerDiag(); renderDiag(); };
+  syncFiltre(); renderDiag();
   renderToile(); renderCrits(); renderComp();
 }
 
@@ -1269,7 +1476,10 @@ function amener(sec,bid){
   setTimeout(()=>cible.classList.remove('vise'),1300);
 }
 document.querySelectorAll('.besoin').forEach(b=>{
-  b.onclick=()=>amener(b.dataset.go,b.dataset.top);
+  b.onclick=()=>{
+    if(b.dataset.diag){ const d=$('diag'); if(d) d.open=true; }
+    amener(b.dataset.go,b.dataset.top);
+  };
 });
 
 /* --- navigation : signaler la section ou l'on se trouve --- */
@@ -1305,6 +1515,12 @@ document.querySelectorAll('.besoin').forEach(b=>{
       +'<span class="stat"><b>'+nOuv+'</b> à poids ouverts</span>'
       +'<span class="stat"><b>'+nPrix+'</b> tarifs relevés à la source</span>';
     $('topsMaj').textContent='Relevé le '+(DATA.maj||'—');
+    // Ces deux comptages etaient ecrits en dur et annoncaient « 31 modeles »
+    // alors que le referentiel en compte 42 : un chiffre montre au visiteur ne
+    // doit jamais etre recopie a la main quelque part.
+    $('dtM').textContent=MODELS.length+' modèles';
+    $('dtP').textContent=Object.keys(PROVIDERS).length+' fournisseurs';
+    $('navCat').textContent='Les '+MODELS.length+' modèles';
 
     renderTops();
     initPerso();

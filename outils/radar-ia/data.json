@@ -918,7 +918,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": 200,
+   "ctx_k": 1024,
    "modal": [
     "texte",
     "image"
@@ -974,6 +974,12 @@
     "variante": "gemini-2.5-pro",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://ai.google.dev/gemini-api/docs/models/gemini-2.5-pro",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "1 048 576 jetons en entrée"
    }
   },
   {
@@ -989,7 +995,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": null,
+   "ctx_k": 1024,
    "modal": [
     "texte",
     "image"
@@ -1046,6 +1052,12 @@
     "variante": "gemini-3.5-flash-high",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "1 048 576 jetons en entrée"
    }
   },
   {
@@ -1060,7 +1072,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": null,
+   "ctx_k": 1024,
    "modal": [
     "texte",
     "image"
@@ -1117,6 +1129,12 @@
     "variante": "gemini-3.5-flash-lite",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "1 048 576 jetons en entrée"
    }
   },
   {
@@ -1132,7 +1150,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": null,
+   "ctx_k": 1024,
    "modal": [
     "texte",
     "image"
@@ -1196,6 +1214,12 @@
     "variante": "gemini-3.6-flash-high",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://ai.google.dev/gemini-api/docs/models/gemini-3.6-flash",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "1 048 576 jetons en entrée"
    }
   },
   {
@@ -1211,7 +1235,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": null,
+   "ctx_k": 1024,
    "modal": [
     "texte",
     "image"
@@ -1276,6 +1300,12 @@
     "variante": "gemini-3.7-flash-high",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "1 048 576 jetons en entrée"
    }
   },
   {
@@ -1735,7 +1765,7 @@
    ],
    "ouvert": true,
    "params_b": 14,
-   "ctx_k": null,
+   "ctx_k": 256,
    "modal": [
     "texte",
     "image"
@@ -1759,7 +1789,12 @@
    "scores": {},
    "cout_1000_mots": null,
    "arena_absent": "absent de l'Arena (seul ministral-8b-2410 y figure, et c'est la génération précédente)",
-   "ctx_absent": "fiche modèle Mistral introuvable (erreur 404) le 20/08/2026"
+   "ctx_absent": "fiche modèle Mistral introuvable (erreur 404) le 20/08/2026",
+   "ctx_src": {
+    "src": "https://docs.mistral.ai/models/ministral-3-14b-25-12",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   }
   },
   {
    "id": "ministral-3-3b",
@@ -1774,7 +1809,7 @@
    ],
    "ouvert": true,
    "params_b": 3,
-   "ctx_k": null,
+   "ctx_k": 256,
    "modal": [
     "texte"
    ],
@@ -1797,7 +1832,12 @@
    "scores": {},
    "cout_1000_mots": null,
    "arena_absent": "absent de l'Arena",
-   "ctx_absent": "fiche modèle Mistral introuvable (erreur 404) le 20/08/2026"
+   "ctx_absent": "fiche modèle Mistral introuvable (erreur 404) le 20/08/2026",
+   "ctx_src": {
+    "src": "https://docs.mistral.ai/models/ministral-3-3b-25-12",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   }
   },
   {
    "id": "ministral-3-8b",
@@ -1812,7 +1852,7 @@
    ],
    "ouvert": true,
    "params_b": 8,
-   "ctx_k": null,
+   "ctx_k": 256,
    "modal": [
     "texte",
     "image"
@@ -1835,7 +1875,12 @@
    "scores": {},
    "cout_1000_mots": null,
    "arena_absent": "absent de l'Arena (ministral-8b-2410 y figure, mais c'est la génération précédente)",
-   "ctx_absent": "fiche modèle Mistral introuvable (erreur 404) le 20/08/2026"
+   "ctx_absent": "fiche modèle Mistral introuvable (erreur 404) le 20/08/2026",
+   "ctx_src": {
+    "src": "https://docs.mistral.ai/models/ministral-3-8b-25-12",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   }
   },
   {
    "id": "mistral-large-3",
@@ -1923,7 +1968,7 @@
    ],
    "ouvert": true,
    "params_b": null,
-   "ctx_k": null,
+   "ctx_k": 256,
    "modal": [
     "texte",
     "image"
@@ -1982,6 +2027,11 @@
     "variante": "mistral-medium-3.5",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://docs.mistral.ai/models/mistral-medium-3-5-26-04",
+    "le": "2026-08-20",
+    "conf": "officiel"
    }
   },
   {
@@ -2106,7 +2156,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": null,
+   "ctx_k": 272,
    "modal": [
     "texte",
     "image"
@@ -2168,6 +2218,12 @@
     "variante": "gpt-5.4-mini-high",
     "licence": "CC-BY-4.0",
     "attribution": "LMArena"
+   },
+   "ctx_src": {
+    "src": "https://developers.openai.com/api/docs/models/gpt-5.4-mini.md",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "272 000 jetons en entrée (fenêtre totale de 400 000, sortie comprise)"
    }
   },
   {
