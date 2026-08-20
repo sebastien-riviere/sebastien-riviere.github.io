@@ -63,13 +63,24 @@ details.pq .body{font-family:var(--ui);font-size:11.5px;color:var(--muted);line-
 details.pq .body b{color:var(--ink);}
 details.pq .body a{color:var(--ia-ink);text-decoration:underline;}
 
-/* avertissement compact : une pastille, le détail au clic */
-.flag{display:inline-flex;align-items:center;gap:6px;font-family:var(--ui);font-size:11px;font-weight:800;
+/* avertissement compact : une pastille, le détail au clic.
+   ⚠️ NE PAS renommer en `.flag` : cette classe est celle des DRAPEAUX
+   (<img class="flag">). La collision a existé — les drapeaux héritaient du
+   fond ambré, du cadre et du min-height:32px de la pastille, et s'affichaient
+   en boîtes de 50x32 px au lieu de vignettes de 18x12. */
+.avert{display:inline-flex;align-items:center;gap:6px;font-family:var(--ui);font-size:11px;font-weight:800;
   background:var(--warn-soft);color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);
   border-radius:6px;padding:5px 9px;cursor:pointer;margin-bottom:11px;min-height:32px;}
-.flag:hover{background:color-mix(in srgb,var(--warn) 22%,transparent);}
-.flag .ch{transition:transform .18s;font-size:12px;}
-details[open]>.flag .ch{transform:rotate(90deg);}
+.avert:hover{background:color-mix(in srgb,var(--warn) 22%,transparent);}
+.avert .ch{transition:transform .18s;font-size:12px;}
+details[open]>.avert .ch{transform:rotate(90deg);}
+
+/* Les DRAPEAUX. Socle explicite : sans lui, un drapeau posé dans un contexte
+   non prévu s'afficherait à sa taille intrinsèque (900x600). Les règles
+   contextuelles plus bas (.row-name .flag, .sheet h3 .flag…) ajustent la
+   hauteur ; elles sont plus spécifiques, elles gagnent. */
+img.flag,img.oflag{height:11px;width:auto;border-radius:2px;flex:none;vertical-align:middle;
+  background:none;border:0;padding:0;margin:0;min-height:0;}
 details.warn{margin-bottom:2px;}
 details.warn>summary{list-style:none;}
 details.warn>summary::-webkit-details-marker{display:none;}
@@ -354,7 +365,7 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
   .crit input[type=range]{height:44px;flex-basis:104px;}
   .crit .cv{width:58px;}
   .plus{min-height:44px;}
-  details.pq>summary,.flag{min-height:44px;}
+  details.pq>summary,.avert{min-height:44px;}
   .toolbar{top:57px;}
   .rail{top:auto;}
 }
@@ -736,7 +747,7 @@ function topHTML(b){
   // Les avertissements restent, mais repliés : une pastille se voit sans écraser
   // le classement qu'elle nuance. Le texte complet est à un clic.
   function repli(titre,corps){
-    return '<details class="warn"><summary><span class="flag"><span class="ch">›</span>'+titre+'</span></summary>'
+    return '<details class="warn"><summary><span class="avert"><span class="ch">›</span>'+titre+'</span></summary>'
       +'<div class="body">'+corps+'</div></details>';
   }
   let warn='';
