@@ -249,9 +249,9 @@
     "us"
    ],
    "prix": {
-    "in": 10.0,
-    "out": 50.0,
-    "cache": 1.0,
+    "in": 10,
+    "out": 50,
+    "cache": 1,
     "src": "https://platform.claude.com/docs/en/about-claude/pricing",
     "le": "2026-08-20",
     "conf": "officiel"
@@ -327,8 +327,8 @@
     "us"
    ],
    "prix": {
-    "in": 5.0,
-    "out": 25.0,
+    "in": 5,
+    "out": 25,
     "cache": 0.5,
     "src": "https://platform.claude.com/docs/en/about-claude/pricing",
     "le": "2026-08-20",
@@ -350,7 +350,7 @@
     "arena-elo-fr": {
      "v": 1516.6,
      "rang_arena": 2,
-     "ic": 22.0,
+     "ic": 22,
      "votes": 840,
      "variante": "claude-opus-5-high",
      "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
@@ -399,8 +399,8 @@
     "us"
    ],
    "prix": {
-    "in": 2.0,
-    "out": 10.0,
+    "in": 2,
+    "out": 10,
     "cache": 0.2,
     "note": "Prix de lancement devenu le tarif standard : la hausse prévue au 01/09/2026 n'aura pas lieu.",
     "src": "https://platform.claude.com/docs/en/about-claude/pricing",
@@ -409,9 +409,9 @@
    },
    "scores": {
     "arena-elo": {
-     "v": 1442.0,
+     "v": 1442,
      "rang_arena": 58,
-     "ic": 5.0,
+     "ic": 5,
      "votes": 26291,
      "variante": "claude-sonnet-5-high",
      "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
@@ -421,9 +421,9 @@
      "attribution": "LMArena"
     },
     "arena-elo-fr": {
-     "v": 1454.0,
+     "v": 1454,
      "rang_arena": 61,
-     "ic": 21.0,
+     "ic": 21,
      "votes": 929,
      "variante": "claude-sonnet-5-high",
      "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
@@ -471,8 +471,8 @@
     "us"
    ],
    "prix": {
-    "in": 1.0,
-    "out": 5.0,
+    "in": 1,
+    "out": 5,
     "cache": 0.1,
     "src": "https://platform.claude.com/docs/en/about-claude/pricing",
     "le": "2026-08-20",
@@ -546,9 +546,9 @@
     "us"
    ],
    "prix": {
-    "in": 10.0,
-    "out": 50.0,
-    "cache": 1.0,
+    "in": 10,
+    "out": 50,
+    "cache": 1,
     "note": "Disponibilité limitée.",
     "src": "https://platform.claude.com/docs/en/about-claude/pricing",
     "le": "2026-08-20",
@@ -590,8 +590,8 @@
     "us"
    ],
    "prix": {
-    "in": 5.0,
-    "out": 30.0,
+    "in": 5,
+    "out": 30,
     "cache": 0.5,
     "src": "https://developers.openai.com/api/docs/pricing",
     "le": "2026-08-20",
@@ -672,8 +672,8 @@
     "us"
    ],
    "prix": {
-    "in": 2.0,
-    "out": 12.0,
+    "in": 2,
+    "out": 12,
     "cache": 0.2,
     "src": "https://developers.openai.com/api/docs/pricing",
     "le": "2026-08-20",
@@ -763,7 +763,7 @@
    },
    "scores": {
     "arena-elo": {
-     "v": 1429.0,
+     "v": 1429,
      "rang_arena": 81,
      "ic": 5.3,
      "votes": 19631,
@@ -836,8 +836,8 @@
     "us"
    ],
    "prix": {
-    "in": 5.0,
-    "out": 30.0,
+    "in": 5,
+    "out": 30,
     "cache": 0.5,
     "src": "https://developers.openai.com/api/docs/pricing",
     "le": "2026-08-20",
@@ -859,7 +859,7 @@
     "arena-elo-fr": {
      "v": 1487.7,
      "rang_arena": 18,
-     "ic": 15.0,
+     "ic": 15,
      "votes": 2205,
      "variante": "gpt-5.5",
      "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
@@ -912,8 +912,8 @@
     "us"
    ],
    "prix": {
-    "in": 30.0,
-    "out": 180.0,
+    "in": 30,
+    "out": 180,
     "src": "https://developers.openai.com/api/docs/pricing",
     "le": "2026-08-20",
     "conf": "officiel"
@@ -1059,7 +1059,7 @@
      "attribution": "LMArena"
     },
     "arena-elo-fr": {
-     "v": 1501.0,
+     "v": 1501,
      "rang_arena": 9,
      "ic": 42.8,
      "votes": 212,
@@ -1138,7 +1138,7 @@
      "attribution": "LMArena"
     },
     "arena-elo-fr": {
-     "v": 1496.0,
+     "v": 1496,
      "rang_arena": 12,
      "ic": 24.9,
      "votes": 617,
@@ -1190,7 +1190,7 @@
    ],
    "prix": {
     "in": 1.5,
-    "out": 9.0,
+    "out": 9,
     "cache": 0.15,
     "src": "https://ai.google.dev/gemini-api/docs/pricing",
     "le": "2026-08-20",
@@ -1333,7 +1333,7 @@
    ],
    "prix": {
     "in": 1.25,
-    "out": 10.0,
+    "out": 10,
     "note": "Au-delà de 200 k jetons de contexte, le tarif double : 2,50 $ en entrée et 15,00 $ en sortie.",
     "src": "https://ai.google.dev/gemini-api/docs/pricing",
     "le": "2026-08-20",
@@ -1417,7 +1417,7 @@
     "arena-elo": {
      "v": 1450.9,
      "rang_arena": 39,
-     "ic": 4.0,
+     "ic": 4,
      "votes": 54307,
      "variante": "deepseek-v4-pro",
      "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
@@ -1573,12 +1573,13 @@
     "us"
    ],
    "prix": {
-    "in": 2.0,
-    "out": 6.0,
+    "in": 2,
+    "out": 6,
     "note": "Au-delà de 200 k jetons de contexte, le tarif double : 4,00 $ en entrée et 12,00 $ en sortie.",
     "src": "https://docs.x.ai/docs/models",
     "le": "2026-08-20",
-    "conf": "officiel"
+    "conf": "officiel",
+    "cache": 0.5
    },
    "scores": {
     "arena-elo": {
@@ -1635,7 +1636,8 @@
     "note": "Au-delà de 200 k jetons de contexte, le tarif double : 2,50 $ en entrée et 5,00 $ en sortie.",
     "src": "https://docs.x.ai/docs/models",
     "le": "2026-08-20",
-    "conf": "officiel"
+    "conf": "officiel",
+    "cache": 0.2
    },
    "scores": {
     "arena-elo": {
@@ -1699,12 +1701,13 @@
     "us"
    ],
    "prix": {
-    "in": 1.0,
-    "out": 2.0,
+    "in": 1,
+    "out": 2,
     "note": "Au-delà de 200 k jetons de contexte, le tarif double : 2,00 $ en entrée et 4,00 $ en sortie.",
     "src": "https://docs.x.ai/docs/models",
     "le": "2026-08-20",
-    "conf": "officiel"
+    "conf": "officiel",
+    "cache": 0.2
    },
    "scores": {},
    "cout_1000_mots": null,
@@ -1757,7 +1760,7 @@
      "attribution": "LMArena"
     },
     "arena-elo-fr": {
-     "v": 1461.0,
+     "v": 1461,
      "rang_arena": 48,
      "ic": 16.1,
      "votes": 1643,
@@ -2194,7 +2197,7 @@
    "prix": null,
    "scores": {
     "arena-elo": {
-     "v": 1483.0,
+     "v": 1483,
      "rang_arena": 10,
      "ic": 6.9,
      "votes": 9271,
