@@ -79,6 +79,58 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
 .vchip:hover{border-color:var(--ia);color:var(--ia-ink);}
 .vchip.on{background:var(--ia-soft);border-color:var(--ia);color:var(--ia-ink);}
 
+/* --- la toile d'araignée (profil d'un modèle) --- */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;}
+.panel{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--radius);padding:17px 18px 16px;box-shadow:var(--e-tile);}
+.panel>h3{font-family:var(--ui);font-weight:900;font-size:14.5px;color:var(--ink);display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.panel>h3 svg{width:17px;height:17px;fill:none;stroke:var(--ia);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+.panel>.pn{font-family:var(--ui);font-size:12px;color:var(--faint);line-height:1.5;margin-bottom:13px;}
+
+.pickers{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.picker{position:relative;flex:1 1 150px;min-width:0;}
+.picker label{display:block;font-family:var(--ui);font-size:10.5px;font-weight:900;letter-spacing:.4px;text-transform:uppercase;margin-bottom:4px;}
+.picker select{width:100%;font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--ink);background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--radius-sm);padding:9px 10px;cursor:pointer;min-height:40px;}
+.picker select:focus{outline:none;border-color:var(--ia);}
+
+.toile-wrap{position:relative;width:100%;}
+svg.toile{width:100%;height:auto;display:block;overflow:visible;}
+svg.toile .ring{fill:none;stroke:var(--border-soft);stroke-width:1;}
+svg.toile .spoke{stroke:var(--border-soft);stroke-width:1;}
+svg.toile .spoke.off{stroke-dasharray:3 4;}
+svg.toile .axlbl{font-family:var(--ui);font-size:10.5px;font-weight:800;fill:var(--muted);}
+svg.toile .axlbl.off{fill:var(--faint);}
+svg.toile .poly{fill-opacity:.16;stroke-width:2.2;stroke-linejoin:round;}
+svg.toile .pt{stroke:var(--card);stroke-width:1.6;}
+svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(--faint);}
+
+.legende{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:11px;}
+.leg{display:inline-flex;align-items:center;gap:6px;font-family:var(--ui);font-size:12px;font-weight:800;color:var(--ink);}
+.leg i{width:11px;height:11px;border-radius:3px;flex:none;}
+.exclus{font-family:var(--ui);font-size:11.5px;color:var(--muted);line-height:1.55;margin-top:11px;padding-top:10px;border-top:1px dashed var(--border-soft);}
+.exclus b{color:var(--warn);}
+
+/* --- le comparateur --- */
+.crit{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.crit .cl{font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--ink);flex:1 1 auto;min-width:0;line-height:1.3;}
+.crit .cl em{display:block;font-style:normal;font-size:10.5px;font-weight:600;color:var(--faint);}
+.crit input[type=range]{flex:0 0 118px;accent-color:var(--ia);cursor:pointer;height:22px;}
+.crit .cv{font-family:var(--ui);font-size:11px;font-weight:900;color:var(--ia-ink);flex:none;width:64px;text-align:right;}
+.cbtns{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0 4px;}
+.res{margin-top:6px;}
+.res .rr{display:flex;align-items:center;gap:9px;padding:8px 4px;border-bottom:1px solid var(--border-soft);cursor:pointer;border-radius:6px;}
+.res .rr:hover{background:var(--bg-2);}
+.res .rr:last-child{border-bottom:none;}
+.res .rn{font-family:var(--ui);font-weight:900;font-size:12px;color:var(--faint);width:16px;flex:none;font-variant-numeric:tabular-nums;}
+.res .rr.top1 .rn{color:#c89020;}
+.res .rm{font-family:var(--ui);font-weight:800;font-size:13px;color:var(--ink);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px;}
+.res .rm .flag{height:11px;width:auto;border-radius:2px;flex:none;}
+.res .rb{flex:0 0 96px;height:7px;background:var(--ia-soft);border-radius:5px;overflow:hidden;}
+.res .rb i{display:block;height:100%;background:linear-gradient(90deg,var(--ia),var(--ia-ink));border-radius:5px;}
+.res .rr.top1 .rb i{background:linear-gradient(90deg,#e0a92a,#c89020);}
+.res .rs{font-family:var(--ui);font-weight:900;font-size:12.5px;color:var(--ink);flex:none;width:38px;text-align:right;font-variant-numeric:tabular-nums;}
+
+@media(max-width:900px){ .duo{grid-template-columns:1fr;} }
+
 /* --- barre d'outils du catalogue --- */
 .toolbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 74%,transparent);padding:14px 0 10px;}
 .tb-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
@@ -201,6 +253,11 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
   .row{min-height:44px;padding:7px 4px;}
   .facet>summary{min-height:44px;}
   .sheet-x{width:40px;height:40px;}
+  .res .rr{min-height:44px;}
+  .ia-pill{min-height:44px;}
+  .picker select{min-height:44px;}
+  .crit input[type=range]{height:44px;flex-basis:104px;}
+  .crit .cv{width:58px;}
 }
 </style>
 </head>
@@ -248,6 +305,39 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
     </div>
     <p class="sec-note">Chacun répond à <strong>une</strong> question précise. Cliquez un modèle pour ouvrir sa fiche complète.</p>
     <div class="tops" id="tops"></div>
+  </section>
+
+  <section class="sec" id="perso">
+    <div class="sec-hd">
+      <h2>À vous de jouer</h2>
+      <span class="sub">Les classements ci-dessus n'ont pas d'avis. Ici, c'est le vôtre qui décide.</span>
+    </div>
+    <p class="sec-note">Deux outils complémentaires : à gauche, <strong>le profil</strong> d'un modèle — ses forces et ses creux, sans classement. À droite, <strong>votre classement à vous</strong> : vous dites ce qui compte pour votre usage, le calcul suit.</p>
+
+    <div class="duo">
+      <section class="panel" id="toilePanel">
+        <h3><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 3v18M3 12h18"/></svg>Le profil d'un modèle</h3>
+        <p class="pn">Superposez jusqu'à trois modèles pour voir où chacun est fort et où il est creux. <strong>Aucun rang ici</strong> : une forme plus grande ne veut pas dire « meilleur », elle veut dire « différent ».</p>
+        <div class="pickers" id="pickers"></div>
+        <div class="toile-wrap"><svg class="toile" id="toile" viewBox="0 0 400 340" role="img" aria-labelledby="toileDesc"><desc id="toileDesc">Graphique en toile d'araignée comparant les modèles sélectionnés sur cinq axes.</desc></svg></div>
+        <div class="legende" id="toileLeg"></div>
+        <div class="exclus" id="toileNote"></div>
+      </section>
+
+      <section class="panel" id="compPanel">
+        <h3><svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>Votre classement à vous</h3>
+        <p class="pn">Réglez l'importance de chaque critère. Le classement se recalcule en direct — c'est <strong>votre</strong> pondération, pas la nôtre.</p>
+        <div id="crits"></div>
+        <div class="cbtns">
+          <button class="ia-pill" type="button" data-preset="equilibre">Équilibré</button>
+          <button class="ia-pill" type="button" data-preset="budget">Petit budget</button>
+          <button class="ia-pill" type="button" data-preset="souverain">Données en Europe</button>
+          <button class="ia-pill" type="button" data-preset="francais">Travail en français</button>
+        </div>
+        <div class="res" id="compRes"></div>
+        <div class="exclus" id="compNote"></div>
+      </section>
+    </div>
   </section>
 
   <section class="sec" id="catalogue-sec">
@@ -524,6 +614,236 @@ function renderTops(){
 }
 
 /* ============================================================
+   LE PROFIL (toile d'araignée) ET LE COMPARATEUR
+   Deux surfaces, un seul moteur de normalisation.
+   ============================================================ */
+
+/* Les axes comparables. Chaque axe dit comment lire sa valeur brute, sur quelle
+   échelle la ramener, et si « moins » vaut « mieux ». */
+const AXES=[
+  {id:'elo',   lbl:'Qualité',      court:'Qualité',        sub:'jugée par des humains, en aveugle',
+   get:m=>(m.scores&&m.scores['arena-elo']||{}).v, ech:'lin'},
+  {id:'elofr', lbl:'En français',  court:'En français',    sub:'même jugement, conversations en français',
+   get:m=>(m.scores&&m.scores['arena-elo-fr']||{}).v, ech:'lin'},
+  {id:'ctx',   lbl:'Contexte',     court:'Contexte',       sub:'ce qu\'il lit d\'un seul coup',
+   get:m=>m.ctx_k, ech:'log'},
+  {id:'prix',  lbl:'Économie',     court:'Économie',       sub:'tarif affiché en entrée, moins c\'est mieux',
+   get:m=>(m.prix||{}).in, ech:'log', inv:true},
+  {id:'neuf',  lbl:'Fraîcheur',    court:'Fraîcheur',      sub:'depuis quand on peut le tester',
+   get:m=>{const s=m.sortie_arena; if(!s||!s.v) return null; const t=Date.parse(s.v); return isNaN(t)?null:t;}, ech:'lin'},
+];
+
+/* Bornes calculées sur TOUT le référentiel, pas sur la sélection. Sinon la forme
+   d'un modèle changerait selon les modèles qu'on lui compare — le défaut
+   classique de ce type de graphique. */
+const BORNES={};
+function calculerBornes(){
+  AXES.forEach(a=>{
+    const vs=MODELS.map(a.get).filter(v=>v!=null&&!isNaN(v));
+    BORNES[a.id]=vs.length?{min:Math.min(...vs),max:Math.max(...vs)}:null;
+  });
+}
+function norm(a,v){
+  const b=BORNES[a.id];
+  if(b==null||v==null||isNaN(v)||b.max===b.min) return null;
+  const f=a.ech==='log'?Math.log:(x=>x);
+  let t=(f(v)-f(b.min))/(f(b.max)-f(b.min));
+  t=Math.max(0,Math.min(1,t));
+  return a.inv?1-t:t;
+}
+
+/* ---------- la toile ---------- */
+const COUL=['var(--ia)','var(--pop)','var(--pf)'];
+let choix=[null,null,null];
+
+function pickersHTML(){
+  const opts=m=>MODELS.slice().sort((a,b)=>a.nom.localeCompare(b.nom,'fr'))
+    .map(x=>'<option value="'+esc(x.id)+'">'+esc(x.nom)+'</option>').join('');
+  return choix.map((c,i)=>
+    '<span class="picker"><label style="color:'+COUL[i]+'">Modèle '+(i+1)+(i?' (facultatif)':'')+'</label>'
+    +'<select data-i="'+i+'"><option value="">— aucun —</option>'+opts()+'</select></span>').join('');
+}
+
+function toileGeo(n,i,r){
+  const ang=-Math.PI/2+i*2*Math.PI/n;
+  return [200+Math.cos(ang)*r, 160+Math.sin(ang)*r];
+}
+
+function renderToile(){
+  const sel=choix.map(id=>id?MODELS.find(m=>m.id===id):null);
+  const actifs=sel.filter(Boolean);
+  const svg=$('toile'), leg=$('toileLeg'), note=$('toileNote');
+
+  if(!actifs.length){
+    svg.innerHTML='<text x="200" y="165" text-anchor="middle" class="axlbl">Choisissez un modèle pour afficher son profil.</text>';
+    leg.innerHTML=''; note.innerHTML=''; return;
+  }
+
+  // Un axe n'est trace que si TOUS les modeles choisis ont la donnee. Tracer un
+  // sommet a zero pour une donnee manquante ferait lire « nul » la ou il n'y a
+  // rien : c'est le mensonge le plus facile a commettre sur ce graphique.
+  const ok=[], ko=[];
+  AXES.forEach(a=>{
+    const absents=actifs.filter(m=>norm(a,a.get(m))==null);
+    (absents.length?ko:ok).push({a,absents});
+  });
+
+  if(ok.length<3){
+    svg.innerHTML='<text x="200" y="155" text-anchor="middle" class="axlbl">Trop peu d\'axes communs</text>'
+      +'<text x="200" y="175" text-anchor="middle" class="axlbl">pour dessiner un profil comparable.</text>';
+    leg.innerHTML=sel.map((m,i)=>m?'<span class="leg"><i style="background:'+COUL[i]+'"></i>'+esc(m.nom)+'</span>':'').join('');
+    note.innerHTML='<b>Profil impossible à dessiner.</b> Ces modèles n\'ont que '+ok.length+' mesure'+(ok.length>1?'s':'')
+      +' en commun — trop peu pour une forme qui veuille dire quelque chose.<br><br>'
+      +'Ce qui manque : '+ko.map(o=>esc(o.a.lbl)+' chez '+o.absents.map(m=>esc(m.nom)).join(' et ')).join(' · ')+'.<br><br>'
+      +'Ce n\'est pas une limite de l\'outil : ces chiffres ne sont tout simplement pas publiés par leurs fournisseurs. '
+      +'Un modèle très documenté et un modèle opaque ne se superposent pas.';
+    return;
+  }
+
+  const n=ok.length, R=108;
+  let g='';
+  [0.25,0.5,0.75,1].forEach(f=>{
+    const pts=ok.map((_,i)=>toileGeo(n,i,R*f).join(',')).join(' ');
+    g+='<polygon class="ring" points="'+pts+'"/>';
+  });
+  ok.forEach((o,i)=>{
+    const [x,y]=toileGeo(n,i,R);
+    g+='<line class="spoke" x1="200" y1="160" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'"/>';
+    const [lx,ly]=toileGeo(n,i,R+24);
+    const anc=Math.abs(lx-200)<12?'middle':(lx>200?'start':'end');
+    g+='<text class="axlbl" x="'+lx.toFixed(1)+'" y="'+(ly+4).toFixed(1)+'" text-anchor="'+anc+'">'+esc(o.a.court)+'</text>';
+  });
+
+  sel.forEach((m,idx)=>{
+    if(!m) return;
+    const pts=ok.map((o,i)=>{
+      const t=norm(o.a,o.a.get(m));
+      return toileGeo(n,i,10+R*0.9*t);
+    });
+    g+='<polygon class="poly" points="'+pts.map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ')
+      +'" style="fill:'+COUL[idx]+';stroke:'+COUL[idx]+'"/>';
+    pts.forEach(p=>{ g+='<circle class="pt" cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="3.4" style="fill:'+COUL[idx]+'"/>'; });
+  });
+  svg.innerHTML=g;
+
+  leg.innerHTML=sel.map((m,i)=>m?'<span class="leg"><i style="background:'+COUL[i]+'"></i>'+esc(m.nom)+'</span>':'').join('');
+
+  let txt='<b>Comment lire.</b> Chaque axe est ramené à une échelle commune, calculée sur l\'ensemble des '
+    +MODELS.length+' modèles suivis — pas seulement sur ceux que vous comparez. Le point le plus éloigné du centre '
+    +'correspond au meilleur du référentiel sur cet axe. Une grande forme signale un modèle polyvalent, pas un modèle supérieur.';
+  if(ko.length){
+    txt+='<br><br><b>'+ko.length+' axe'+(ko.length>1?'s'+' écartés':' écarté')+'.</b> '
+      +ko.map(o=>esc(o.a.lbl)+' — donnée absente chez '+o.absents.map(m=>esc(m.nom)).join(', ')).join(' · ')
+      +'. Ces axes ne sont pas dessinés : mettre un point au centre laisserait croire à une mauvaise note, alors qu\'il n\'y a pas de mesure.';
+  }
+  note.innerHTML=txt;
+}
+
+/* ---------- le comparateur ---------- */
+const CRITS=AXES.concat([
+  {id:'ue',     lbl:'Hébergement en Europe', court:'Europe', sub:'les données restent dans l\'Union',
+   get:m=>(m.heberg||[]).includes('ue')?1:0, ech:'lin', bin:true},
+  {id:'ouvert', lbl:'Poids ouverts',         court:'Ouvert', sub:'installable ailleurs : vous n\'êtes pas captif',
+   get:m=>m.ouvert?1:0, ech:'lin', bin:true},
+]);
+/* Les prereglages ne pondèrent que des critères BIEN couverts, sauf quand c'est
+   le sujet meme du preglage (le francais). Pondérer un critère rare exclurait
+   la moitie du referentiel des le chargement, pour rien. */
+const PRESETS={
+  equilibre:{elo:3,elofr:0,ctx:2,prix:3,neuf:0,ue:0,ouvert:0},
+  budget:   {elo:2,elofr:0,ctx:1,prix:5,neuf:0,ue:0,ouvert:2},
+  souverain:{elo:1,elofr:0,ctx:0,prix:2,neuf:0,ue:5,ouvert:3},
+  francais: {elo:1,elofr:5,ctx:0,prix:2,neuf:0,ue:2,ouvert:0},
+};
+let poids=Object.assign({},PRESETS.equilibre);
+const MOTS=['ignoré','un peu','moyen','important','très important','décisif'];
+
+function normCrit(c,m){
+  if(c.bin) return c.get(m);
+  return norm(c,c.get(m));
+}
+
+function renderCrits(){
+  $('crits').innerHTML=CRITS.map(c=>
+    '<div class="crit"><span class="cl">'+esc(c.lbl)+'<em>'+esc(c.sub)+'</em></span>'
+    +'<input type="range" min="0" max="5" step="1" value="'+poids[c.id]+'" data-c="'+c.id+'" aria-label="'+esc(c.lbl)+'">'
+    +'<span class="cv" id="cv-'+c.id+'">'+MOTS[poids[c.id]]+'</span></div>').join('');
+  $('crits').querySelectorAll('input').forEach(i=>i.oninput=()=>{
+    poids[i.dataset.c]=+i.value;
+    $('cv-'+i.dataset.c).textContent=MOTS[+i.value];
+    renderComp();
+  });
+}
+
+function renderComp(){
+  const actifs=CRITS.filter(c=>poids[c.id]>0);
+  const res=$('compRes'), note=$('compNote');
+  const total=actifs.reduce((s,c)=>s+poids[c.id],0);
+
+  if(!total){
+    res.innerHTML='';
+    note.innerHTML='<b>Aucun critère retenu.</b> Montez au moins un curseur : sans critère, il n\'y a rien à classer.';
+    return;
+  }
+
+  const notes=[], incomplets=[];
+  MODELS.forEach(m=>{
+    const manque=actifs.filter(c=>normCrit(c,m)==null);
+    // Un modele auquel il manque une donnee que VOUS avez ponderee ne peut pas
+    // etre classe honnetement : lui donner zero le punirait d'une absence de
+    // mesure, l'ignorer en douce le ferait disparaitre sans explication.
+    if(manque.length){ incomplets.push({m,manque}); return; }
+    const s=actifs.reduce((acc,c)=>acc+poids[c.id]*normCrit(c,m),0)/total;
+    notes.push({m,s});
+  });
+
+  notes.sort((a,b)=>b.s-a.s||a.m.nom.localeCompare(b.m.nom,'fr'));
+  const top=notes.slice(0,8);
+  res.innerHTML=top.map((e,i)=>
+    '<div class="rr'+(i?'':' top1')+'" data-m="'+esc(e.m.id)+'" role="button" tabindex="0">'
+    +'<span class="rn">'+(i+1)+'</span>'
+    +'<span class="rm">'+esc(e.m.nom)+flagImg(provPays(e.m.prov))+'</span>'
+    +'<span class="rb"><i style="width:'+(e.s*100).toFixed(1)+'%"></i></span>'
+    +'<span class="rs">'+Math.round(e.s*100)+'</span></div>').join('');
+  bindOuvre(res);
+
+  let txt='<b>'+notes.length+' modèle'+(notes.length>1?'s':'')+' classé'+(notes.length>1?'s':'')+'</b> sur '
+    +MODELS.length+'. La note sur 100 n\'a pas de sens dans l\'absolu : elle ne sert qu\'à ordonner selon '
+    +'<em>vos</em> curseurs. Changez-les, le classement change — c\'est le but.';
+  if(incomplets.length){
+    const par={};
+    incomplets.forEach(x=>x.manque.forEach(c=>{ (par[c.lbl]=par[c.lbl]||[]).push(x.m.nom); }));
+    txt+='<br><br><b>'+incomplets.length+' modèle'+(incomplets.length>1?'s écartés':' écarté')+'</b>, faute de donnée '
+      +'sur un critère que vous avez retenu : '
+      +Object.keys(par).map(k=>esc(k)+' (manque à '+par[k].length+')').join(', ')
+      +'. Ils ne sont pas mauvais — ils sont non mesurés. Baissez le curseur concerné à « ignoré » pour les faire revenir.';
+  }
+  note.innerHTML=txt;
+}
+
+function initPerso(){
+  calculerBornes();
+  // Deux modeles par defaut : un frontiere et un economique, pour que la
+  // superposition montre tout de suite a quoi sert le graphique.
+  const parElo=MODELS.filter(m=>(m.scores||{})['arena-elo']).sort((a,b)=>b.scores['arena-elo'].v-a.scores['arena-elo'].v);
+  const parPrix=MODELS.filter(m=>m.prix&&m.prix.in!=null&&(m.scores||{})['arena-elo']).sort((a,b)=>a.prix.in-b.prix.in);
+  choix=[parElo.length?parElo[0].id:null, parPrix.length?parPrix[0].id:null, null];
+
+  $('pickers').innerHTML=pickersHTML();
+  $('pickers').querySelectorAll('select').forEach((s,i)=>{
+    s.value=choix[i]||'';
+    s.onchange=()=>{ choix[+s.dataset.i]=s.value||null; renderToile(); };
+  });
+  document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{
+    poids=Object.assign({},PRESETS[b.dataset.preset]);
+    document.querySelectorAll('[data-preset]').forEach(x=>x.classList.toggle('on',x===b));
+    renderCrits(); renderComp();
+  });
+  document.querySelector('[data-preset="equilibre"]').classList.add('on');
+  renderToile(); renderCrits(); renderComp();
+}
+
+/* ============================================================
    LE CATALOGUE
    ============================================================ */
 
@@ -790,6 +1110,7 @@ search.addEventListener('input',render);
     $('topsMaj').textContent='Relevé le '+(DATA.maj||'—');
 
     renderTops();
+    initPerso();
     buildRail();
     render();
   }catch(e){
