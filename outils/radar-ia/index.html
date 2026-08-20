@@ -281,7 +281,8 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
     </div>
   </section>
 
-  <p class="disclaimer">Sélection indicative et non exhaustive : le Radar suit les <strong>modèles actuels</strong> des fournisseurs, pas leurs archives. Les tarifs affichés sont ceux publiés par les fournisseurs sur leurs pages officielles, en dollars par million de jetons, hors remises et hors offres négociées — ils changent vite et sans préavis. <strong>Un jeton ne représente pas la même quantité de texte selon le modèle</strong> : à texte égal, l'écart de facturation peut atteindre 21 % (écart mesuré entre deux générations d'un même fournisseur). Ce site n'est ni sponsorisé ni affilié. Une erreur, un modèle manquant ? <a href="mailto:rsebastien@protonmail.com">Signalez-le</a>.</p>
+  <p class="disclaimer">Sélection indicative et non exhaustive : le Radar suit les <strong>modèles actuels</strong> des fournisseurs, pas leurs archives. Les tarifs affichés sont ceux publiés par les fournisseurs sur leurs pages officielles, en dollars par million de jetons, hors remises et hors offres négociées — ils changent vite et sans préavis. <strong>Un jeton ne représente pas la même quantité de texte selon le modèle</strong> : à texte égal, l'écart de facturation peut atteindre 21 % (écart mesuré entre deux générations d'un même fournisseur). Ce site n'est ni sponsorisé ni affilié. Une erreur, un modèle manquant ? <a href="mailto:rsebastien@protonmail.com">Signalez-le</a><br><br>
+  <strong>Sources des classements de préférence humaine</strong> : données <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">LMArena</a>, publiées sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a> et reprises ici avec attribution. Les autres chiffres (tarifs, fenêtres de contexte, nombres de paramètres) sont relevés directement sur les pages officielles des fournisseurs ou dans leurs dépôts de poids publics.</p>
 </main>
 
 <div class="sheet-bg" id="sheetBg" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
@@ -308,6 +309,7 @@ const CONF_NAME={officiel:'Source officielle',tiers:'Mesure indépendante',annon
 /* Icones par axe de classement */
 const AXE_IC={
   preference_humaine:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8z"/>',
+  preference_humaine_fr:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>',
   contexte:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
   local:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
   cout:'<path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
@@ -366,11 +368,18 @@ function vramGo(pb){ return Math.round((pb*0.6+1)*10)/10; }
 
 /* Chaque axe declare comment lire la mesure sur un modele.
    Retourne {v:<valeur numerique>, txt:<affichage>, bloc:<source/date/conf>} ou null. */
+/* L'Elo s'affiche TOUJOURS avec sa marge d'erreur : « 1505 ± 5 » se lit
+   autrement que « 1505 ». Quand deux modèles ont des marges qui se recouvrent,
+   l'ordre entre eux ne veut rien dire, et le lecteur doit pouvoir le voir. */
+function lireElo(m,cle){
+  const s=m.scores&&m.scores[cle];
+  if(!(s&&s.v!=null&&estClassable(s))) return null;
+  return {v:s.v, txt:num(s.v,0)+(s.ic?' ± '+num(s.ic,0):''), bloc:s};
+}
+
 const LECTEURS={
-  preference_humaine:m=>{
-    const s=m.scores&&m.scores['arena-elo'];
-    return s&&s.v!=null&&estClassable(s) ? {v:s.v, txt:num(s.v), bloc:s} : null;
-  },
+  preference_humaine:m=>lireElo(m,'arena-elo'),
+  preference_humaine_fr:m=>lireElo(m,'arena-elo-fr'),
   contexte:m=> m.ctx_k!=null ? {v:m.ctx_k, txt:fmtCtx(m.ctx_k)+' jetons', bloc:null} : null,
   local:m=>{
     if(!m.params_b) return null;
@@ -380,11 +389,11 @@ const LECTEURS={
   cout:m=> (m.prix&&m.prix.in!=null&&estClassable(m.prix))
     ? {v:m.prix.in, txt:num(m.prix.in,2)+' $', bloc:m.prix} : null,
   fraicheur:m=>{
-    if(!m.sortie) return null;
-    const t=Date.parse(m.sortie.length===7?m.sortie+'-01':m.sortie);
+    const s=m.sortie_arena;
+    if(!s||!s.v) return null;
+    const t=Date.parse(s.v);
     if(isNaN(t)) return null;
-    const d=new Date(t);
-    return {v:t, txt:d.toLocaleDateString('fr-FR',{month:'long',year:'numeric'}), bloc:null};
+    return {v:t, txt:new Date(t).toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'}), bloc:s};
   }
 };
 
@@ -425,10 +434,11 @@ function videHTML(b,n){
   }
   const quoi={
     preference_humaine:'les scores Elo de l\'Arena n\'ont pas encore été importés',
+    preference_humaine_fr:'le classement restreint au français n\'a pas encore été importé',
     contexte:'la taille de fenêtre n\'est renseignée que pour une partie des modèles',
     local:'le nombre de paramètres n\'est publié que par une partie des fournisseurs',
     cout:'les tarifs ne sont pas encore relevés en source officielle',
-    fraicheur:'les dates de publication ne sont pas encore relevées'
+    fraicheur:'la date de première apparition au classement public n\'est pas encore relevée'
   }[b.axe]||'la donnée n\'est pas encore collectée';
   return '<div class="vide"><b>Collecte en cours</b>Ce classement attend sa donnée : '+quoi+
     (n?' ('+n+' modèle'+(n>1?'s':'')+' seulement, pas assez pour classer)':'')+
@@ -467,6 +477,18 @@ function topHTML(b){
       +'</div>';
   }
   let warn='';
+  // Piege GPQA : quand les marges d'erreur se recouvrent, l'ordre affiche est du
+  // bruit. On le detecte au lieu de l'ecrire en dur, pour que ca reste vrai
+  // quand les chiffres bougeront.
+  if(items.length>=2 && items[0].r.bloc && items[0].r.bloc.ic){
+    const a=items[0].r, borne=a.v-(a.bloc.ic||0);
+    const flous=items.filter(e=>e.r.bloc&&e.r.bloc.ic&&(e.r.v+e.r.bloc.ic)>=borne).length;
+    if(flous>1){
+      warn='<div class="top-warn"><b>Les '+flous+' premiers sont à départager.</b> Leurs marges d\'erreur se '
+        +'recouvrent : l\'écart qui les sépare est plus petit que l\'incertitude de la mesure. '
+        +'L\'ordre entre eux ne veut rien dire — c\'est le groupe de tête qui est l\'information, pas le numéro 1.</div>';
+    }
+  }
   if(b.axe==='cout'){
     warn='<div class="top-warn"><b>À lire avant de conclure.</b> Ce classement compare les <em>tarifs affichés</em>, pas le coût réel. '
       +'Un jeton ne représente pas la même quantité de texte selon le modèle : sur un même texte français, l\'écart de facturation '
@@ -484,9 +506,12 @@ function topHTML(b){
 }
 
 function srcLine(b){
-  if(b.src&&/^https?:/.test(b.src)) return 'Source : <a href="'+esc(b.src)+'" target="_blank" rel="noopener">'+esc(new URL(b.src).hostname.replace(/^www\./,''))+'</a>.';
+  // L'attribution n'est pas une politesse : la licence CC-BY-4.0 de LMArena
+  // l'exige partout ou le chiffre est republie.
+  const attr=b.attribution?' Données <b>'+esc(b.attribution)+'</b>, licence '+esc(b.licence||'CC-BY')+'.':'';
+  if(b.src&&/^https?:/.test(b.src)) return 'Source : <a href="'+esc(b.src)+'" target="_blank" rel="noopener">'+esc(new URL(b.src).hostname.replace(/^www\./,''))+'</a>.'+attr;
   if(b.src==='interne') return 'Relevé à la source chez chaque fournisseur, modèle par modèle.';
-  return '';
+  return attr;
 }
 
 function renderTops(){
@@ -650,19 +675,50 @@ function sheetHTML(m){
   let scores='';
   const sk=Object.keys(m.scores||{});
   if(sk.length){
-    scores='<div class="s-blk"><h4>Résultats de tests</h4><table class="s-tbl">'
+    const s0=m.scores[sk[0]];
+    scores='<div class="s-blk"><h4>Ce que valent ses réponses, selon des humains</h4><table class="s-tbl">'
       +sk.map(k=>{
         const b=BENCH.find(x=>x.id===k)||{nom:k}, s=m.scores[k];
-        return ligne(esc(b.nom), '<b>'+esc(num(s.v,1))+'</b>'+(b.rang?'':' <span class="conf conf-annonce">hors classement</span>'));
-      }).join('')+'</table></div>';
+        const val='<b>'+esc(num(s.v,0))+'</b>'+(s.ic?' <span style="color:var(--faint)">± '+num(s.ic,0)+'</span>':'')
+          +(s.rang_arena?' · '+esc(num(s.rang_arena))+(s.rang_arena===1?'<sup>er</sup>':'<sup>e</sup>')+' sur le classement':'')
+          +(s.votes?'<br><span style="font-size:11.5px;color:var(--faint)">'+num(s.votes)+' duels joués</span>':'');
+        return ligne(esc(b.nom), val);
+      }).join('')+'</table>'
+      // La variante testee EST l'information : sans elle, le score ne veut rien dire.
+      +(s0&&s0.variante?'<div class="s-src"><span class="conf conf-tiers">Variante testée : '+esc(s0.variante)+'</span></div>':'')
+      +'<div class="s-src">'+ageBadge(s0&&s0.le)
+      +(s0&&s0.src?'<span>Relevé sur <a href="'+esc(s0.src)+'" target="_blank" rel="noopener">LMArena ↗</a>, licence '+esc(s0.licence||'CC-BY-4.0')+'</span>':'')
+      +'</div>'
+      +'<p style="font-family:var(--ui);font-size:11.5px;color:var(--muted);line-height:1.55;margin-top:9px;">'
+      +'Score obtenu par vote humain en aveugle : deux modèles répondent, la personne choisit sans savoir lequel est lequel. '
+      +'La marge (±) indique l\'incertitude — quand deux marges se recouvrent, l\'écart entre les deux modèles n\'est pas significatif.</p>'
+      +'</div>';
+  }else if(m.arena_absent){
+    scores='<div class="s-blk"><h4>Ce que valent ses réponses, selon des humains</h4><div class="s-none">'
+      +'Pas de score : '+esc(m.arena_absent)+'. Aucun rapprochement approximatif n\'a été fait.</div></div>';
+  }
+
+  let arrivee='';
+  if(m.sortie_arena&&m.sortie_arena.v){
+    const dt=new Date(m.sortie_arena.v);
+    arrivee='<div class="s-blk"><h4>Depuis quand on peut le tester</h4><table class="s-tbl">'
+      +ligne('Première apparition au classement public','<b>'+dt.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})+'</b>')
+      +'</table><p style="font-family:var(--ui);font-size:11.5px;color:var(--muted);line-height:1.55;margin-top:7px;">'
+      +'Ce n\'est pas la date d\'annonce du fournisseur, que personne ne publie de façon exploitable — c\'est la date '
+      +'à partir de laquelle n\'importe qui a pu le tester et le comparer. Le modèle peut avoir été annoncé plus tôt.</p></div>';
   }
 
   const specs='<table class="s-tbl">'
     +ligne('Fournisseur','<b>'+esc(provNom(m.prov))+'</b>')
     +ligne('Statut',esc(STATUT_NAME[m.statut]||m.statut))
     +ligne('Licence', m.ouvert?'<b>Poids ouverts</b> — téléchargeable et exécutable sur votre matériel':'<b>Fermé</b> — accessible uniquement via le fournisseur')
-    +ligne('Taille du contexte', m.ctx_k!=null?'<b>'+fmtCtx(m.ctx_k)+'</b> jetons — environ '+num(Math.round(m.ctx_k*1000/1.4/1000))+' k mots lus d\'un coup':'')
-    +ligne('Paramètres', m.params_b?'<b>'+num(m.params_b)+' milliards</b> — environ '+num(vramGo(m.params_b),1)+' Go de mémoire vidéo en quantification 4 bits':'')
+    +ligne('Taille du contexte', m.ctx_k!=null
+       ? '<b>'+fmtCtx(m.ctx_k)+'</b> jetons — environ '+num(Math.round(m.ctx_k*1000/1.4/1000))+' k mots lus d\'un coup'
+       : (m.ctx_absent?'<span style="color:var(--faint)">non publiée — '+esc(m.ctx_absent)+'</span>':''))
+    +ligne('Paramètres', m.params_b
+       ? '<b>'+num(m.params_b)+' milliards</b> — environ '+num(vramGo(m.params_b),1)+' Go de mémoire vidéo en quantification 4 bits'
+         +(vramGo(m.params_b)>48?'<br><span style="font-size:11.5px;color:var(--warn)">Poids ouverts, mais hors de portée d\'une machine personnelle.</span>':'')
+       : (m.params_absent?'<span style="color:var(--faint)">non publiés — '+esc(m.params_absent)+'</span>':''))
     +ligne('Ce qu\'il traite',(m.modal||[]).map(x=>MODAL_NAME[x]||x).join(', '))
     +ligne('Comment y accéder',(m.acces||[]).map(x=>ACCES_NAME[x]||x).join(' · '))
     +ligne('Hébergement',(m.heberg||[]).map(x=>ZONE_NAME[x]||x).join(', '))
@@ -673,8 +729,9 @@ function sheetHTML(m){
     +'<h3 id="sheetTitle">'+esc(m.nom)+flagImg(provPays(m.prov))+'</h3>'
     +'<div class="s-prov">'+esc(provNom(m.prov))+'</div>'
     +'<div class="s-blk"><h4>Carte d\'identité</h4>'+specs+'</div>'
+    +scores+arrivee
     +'<div class="s-blk"><h4>Tarif public</h4>'+prixTbl+'</div>'
-    +cout+scores;
+    +cout;
 }
 
 let lastFocus=null;

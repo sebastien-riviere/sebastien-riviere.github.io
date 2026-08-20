@@ -108,7 +108,25 @@
    "source_verifiee": true,
    "frequence": "hebdo",
    "sens": "haut",
-   "note": "SEUL benchmark externe retenu pour un rang : il mesure bien des modèles, et son historique complet est exporté en jeu de données public."
+   "note": "Seul benchmark externe retenu pour un rang : il mesure bien des modèles (préférence humaine en aveugle), son historique est public et sa licence CC-BY-4.0 autorise la republication. ⚠️ L'Arena classe en réalité des couples modèle + niveau d'effort : gpt-5.5-high vaut 1470 et gpt-5.5-instant 1419, soit 51 points d'écart à l'intérieur d'un même modèle. La variante retenue est donc affichée à côté de chaque score.",
+   "licence": "CC-BY-4.0",
+   "attribution": "LMArena"
+  },
+  {
+   "id": "arena-elo-fr",
+   "nom": "Elo Arena — en français",
+   "axe": "preference_humaine_fr",
+   "rang": true,
+   "titre_top": "Le plus fort en français",
+   "sous_titre": "vote humain, conversations en français uniquement",
+   "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+   "src_data": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+   "source_verifiee": true,
+   "frequence": "hebdo",
+   "sens": "haut",
+   "licence": "CC-BY-4.0",
+   "attribution": "LMArena",
+   "note": "Même méthode que le classement général, mais restreint aux conversations en français. ⚠️ Bien moins de votes (quelques centaines contre des dizaines de milliers) : les intervalles de confiance sont larges et les premières places souvent indistinctes. L'intervalle est affiché pour que le lecteur en juge."
   },
   {
    "id": "contexte",
@@ -155,17 +173,19 @@
   },
   {
    "id": "nouveautes",
-   "nom": "Date de publication",
+   "nom": "Première apparition au classement public",
    "axe": "fraicheur",
    "rang": true,
    "titre_top": "Les derniers arrivés",
-   "sous_titre": "ce qui vient de sortir",
-   "src": "interne",
-   "src_data": "champ sortie",
+   "sous_titre": "depuis quand on peut le tester et le comparer",
+   "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+   "src_data": "champ sortie_arena, dérivé de l'historique LMArena",
    "source_verifiee": true,
    "frequence": "hebdo",
    "sens": "haut",
-   "note": "Alimente aussi la section Nouveautés de la page."
+   "note": "⚠️ Ce n'est PAS la date d'annonce du fournisseur, que personne ne publie sous une forme relevable. C'est la date à laquelle le modèle est apparu au classement public — donc à laquelle il est devenu testable et comparable par tout le monde. Un modèle peut avoir été annoncé plusieurs semaines plus tôt. La mesure est nommée pour ce qu'elle est.",
+   "licence": "CC-BY-4.0",
+   "attribution": "LMArena"
   },
   {
    "id": "swebench-verified",
@@ -207,7 +227,7 @@
    "nom": "Claude Fable 5",
    "prov": "anthropic",
    "famille": "claude",
-   "sortie": null,
+   "sortie": "2026-06-09",
    "statut": "actif",
    "acces": [
     "chat",
@@ -236,8 +256,48 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1494.3,
+     "rang_arena": 5,
+     "ic": 5.2,
+     "votes": 23626,
+     "variante": "claude-fable-5",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1511.1,
+     "rang_arena": 3,
+     "ic": 21.7,
+     "votes": 890,
+     "variante": "claude-fable-5",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "sortie_src": {
+    "src": "https://platform.claude.com/docs/en/about-claude/models/overview",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "sortie_arena": {
+    "v": "2026-06-10",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "claude-fable-5",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "claude-opus-5",
@@ -274,8 +334,43 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1505.1,
+     "rang_arena": 1,
+     "ic": 4.9,
+     "votes": 25628,
+     "variante": "claude-opus-5-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1516.6,
+     "rang_arena": 2,
+     "ic": 22.0,
+     "votes": 840,
+     "variante": "claude-opus-5-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "sortie_arena": {
+    "v": "2026-07-26",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "claude-opus-5-high",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "claude-sonnet-5",
@@ -312,8 +407,43 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1442.0,
+     "rang_arena": 58,
+     "ic": 5.0,
+     "votes": 26291,
+     "variante": "claude-sonnet-5-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1454.0,
+     "rang_arena": 61,
+     "ic": 21.0,
+     "votes": 929,
+     "variante": "claude-sonnet-5-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "sortie_arena": {
+    "v": "2026-07-10",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "claude-sonnet-5-high",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "claude-haiku-4-5",
@@ -328,7 +458,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": null,
+   "ctx_k": 200,
    "modal": [
     "texte",
     "image"
@@ -348,15 +478,55 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1394.9,
+     "rang_arena": 142,
+     "ic": 2.6,
+     "votes": 121458,
+     "variante": "claude-haiku-4-5-20251001",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1407.9,
+     "rang_arena": 126,
+     "ic": 12.6,
+     "votes": 3281,
+     "variante": "claude-haiku-4-5-20251001",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "ctx_src": {
+    "src": "https://platform.claude.com/docs/en/about-claude/models/overview",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "sortie_arena": {
+    "v": "2025-10-16",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "claude-haiku-4-5-20251001",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "claude-mythos-5",
    "nom": "Claude Mythos 5",
    "prov": "anthropic",
    "famille": "claude",
-   "sortie": null,
+   "sortie": "2026-06-09",
    "statut": "acces_restreint",
    "acces": [
     "api"
@@ -385,7 +555,13 @@
     "conf": "officiel"
    },
    "scores": {},
-   "cout_1000_mots": null
+   "cout_1000_mots": null,
+   "arena_absent": "absent de l'Arena (accès restreint)",
+   "sortie_src": {
+    "src": "https://platform.claude.com/docs/en/about-claude/models/overview",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   }
   },
   {
    "id": "gpt-5-6-sol",
@@ -400,7 +576,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": null,
+   "ctx_k": 1050,
    "modal": [
     "texte",
     "image"
@@ -421,13 +597,53 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
+   "scores": {
+    "arena-elo": {
+     "v": 1453.6,
+     "rang_arena": 35,
+     "ic": 5.5,
+     "votes": 18535,
+     "variante": "gpt-5.6-sol-xhigh",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1481.7,
+     "rang_arena": 25,
+     "ic": 24.8,
+     "votes": 647,
+     "variante": "gpt-5.6-sol-xhigh",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
    "cout_1000_mots": {
     "eur_usd": 0.01939,
     "ratio_tokens_par_mot": 1.385,
     "melange": "1 000 mots en entrée et 300 mots en sortie",
     "methode": "tiktoken/o200k_base",
     "conf": "mesure"
+   },
+   "ctx_src": {
+    "src": "https://developers.openai.com/api/docs/models",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "sortie_arena": {
+    "v": "2026-07-10",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "gpt-5.6-sol-xhigh",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
    }
   },
   {
@@ -443,7 +659,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": null,
+   "ctx_k": 1050,
    "modal": [
     "texte",
     "image"
@@ -463,13 +679,53 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
+   "scores": {
+    "arena-elo": {
+     "v": 1445.3,
+     "rang_arena": 48,
+     "ic": 5.4,
+     "votes": 19110,
+     "variante": "gpt-5.6-terra-xhigh",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1486.2,
+     "rang_arena": 20,
+     "ic": 25.7,
+     "votes": 608,
+     "variante": "gpt-5.6-terra-xhigh",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
    "cout_1000_mots": {
     "eur_usd": 0.00776,
     "ratio_tokens_par_mot": 1.385,
     "melange": "1 000 mots en entrée et 300 mots en sortie",
     "methode": "tiktoken/o200k_base",
     "conf": "mesure"
+   },
+   "ctx_src": {
+    "src": "https://developers.openai.com/api/docs/models",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "sortie_arena": {
+    "v": "2026-07-30",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "gpt-5.6-terra-xhigh",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
    }
   },
   {
@@ -485,7 +741,7 @@
    ],
    "ouvert": false,
    "params_b": null,
-   "ctx_k": null,
+   "ctx_k": 1050,
    "modal": [
     "texte",
     "image"
@@ -505,13 +761,53 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
+   "scores": {
+    "arena-elo": {
+     "v": 1429.0,
+     "rang_arena": 81,
+     "ic": 5.3,
+     "votes": 19631,
+     "variante": "gpt-5.6-luna-xhigh",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1439.8,
+     "rang_arena": 85,
+     "ic": 24.3,
+     "votes": 678,
+     "variante": "gpt-5.6-luna-xhigh",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
    "cout_1000_mots": {
     "eur_usd": 0.00078,
     "ratio_tokens_par_mot": 1.385,
     "melange": "1 000 mots en entrée et 300 mots en sortie",
     "methode": "tiktoken/o200k_base",
     "conf": "mesure"
+   },
+   "ctx_src": {
+    "src": "https://developers.openai.com/api/docs/models",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "sortie_arena": {
+    "v": "2026-07-30",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "gpt-5.6-luna-xhigh",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
    }
   },
   {
@@ -547,13 +843,48 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
+   "scores": {
+    "arena-elo": {
+     "v": 1465.6,
+     "rang_arena": 26,
+     "ic": 3.9,
+     "votes": 59847,
+     "variante": "gpt-5.5",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1487.7,
+     "rang_arena": 18,
+     "ic": 15.0,
+     "votes": 2205,
+     "variante": "gpt-5.5",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
    "cout_1000_mots": {
     "eur_usd": 0.01939,
     "ratio_tokens_par_mot": 1.385,
     "melange": "1 000 mots en entrée et 300 mots en sortie",
     "methode": "tiktoken/o200k_base",
     "conf": "mesure"
+   },
+   "sortie_arena": {
+    "v": "2026-04-27",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "gpt-5.5",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
    }
   },
   {
@@ -594,7 +925,8 @@
     "melange": "1 000 mots en entrée et 300 mots en sortie",
     "methode": "tiktoken/o200k_base",
     "conf": "mesure"
-   }
+   },
+   "arena_absent": "absent de l'Arena"
   },
   {
    "id": "gpt-5-4-mini",
@@ -627,13 +959,49 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
+   "scores": {
+    "arena-elo": {
+     "v": 1412.2,
+     "rang_arena": 119,
+     "ic": 3.8,
+     "votes": 59547,
+     "variante": "gpt-5.4-mini-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1437.4,
+     "rang_arena": 87,
+     "ic": 15.2,
+     "votes": 2121,
+     "variante": "gpt-5.4-mini-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
    "cout_1000_mots": {
     "eur_usd": 0.00291,
     "ratio_tokens_par_mot": 1.385,
     "melange": "1 000 mots en entrée et 300 mots en sortie",
     "methode": "tiktoken/o200k_base",
     "conf": "mesure"
+   },
+   "ctx_absent": "absent de la page Models d'OpenAI, qui ne liste que la génération courante",
+   "sortie_arena": {
+    "v": "2026-03-18",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "gpt-5.4-mini-high",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
    }
   },
   {
@@ -677,8 +1045,44 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1490.6,
+     "rang_arena": 6,
+     "ic": 8.1,
+     "votes": 5723,
+     "variante": "gemini-3.7-flash-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1501.0,
+     "rang_arena": 9,
+     "ic": 42.8,
+     "votes": 212,
+     "variante": "gemini-3.7-flash-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "ctx_absent": "Google ne publie la fenêtre de ses modèles Flash ni sur sa page tarifs, ni sur sa page modèles",
+   "sortie_arena": {
+    "v": "2026-08-19",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "gemini-3.7-flash-high",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "gemini-3-6-flash",
@@ -720,8 +1124,44 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1476.6,
+     "rang_arena": 16,
+     "ic": 5.6,
+     "votes": 16883,
+     "variante": "gemini-3.6-flash-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1496.0,
+     "rang_arena": 12,
+     "ic": 24.9,
+     "votes": 617,
+     "variante": "gemini-3.6-flash-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "ctx_absent": "non publiée par Google, comme pour Gemini 3.7 Flash",
+   "sortie_arena": {
+    "v": "2026-08-12",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "gemini-3.6-flash-high",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "gemini-3-5-flash",
@@ -756,8 +1196,44 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1483.2,
+     "rang_arena": 9,
+     "ic": 4.5,
+     "votes": 28931,
+     "variante": "gemini-3.5-flash-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1479.5,
+     "rang_arena": 27,
+     "ic": 20.6,
+     "votes": 968,
+     "variante": "gemini-3.5-flash-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "ctx_absent": "non publiée par Google, comme pour Gemini 3.7 Flash",
+   "sortie_arena": {
+    "v": "2026-07-10",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "gemini-3.5-flash-high",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "gemini-3-5-flash-lite",
@@ -791,8 +1267,44 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1436.5,
+     "rang_arena": 72,
+     "ic": 5.6,
+     "votes": 16859,
+     "variante": "gemini-3.5-flash-lite",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1455.7,
+     "rang_arena": 58,
+     "ic": 25.9,
+     "votes": 571,
+     "variante": "gemini-3.5-flash-lite",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "ctx_absent": "non publiée par Google, comme pour Gemini 3.7 Flash",
+   "sortie_arena": {
+    "v": "2026-07-21",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "gemini-3.5-flash-lite",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "gemini-2-5-pro",
@@ -827,8 +1339,43 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1457.3,
+     "rang_arena": 32,
+     "ic": 2.5,
+     "votes": 124829,
+     "variante": "gemini-2.5-pro",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1470.6,
+     "rang_arena": 37,
+     "ic": 14.1,
+     "votes": 2208,
+     "variante": "gemini-2.5-pro",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "sortie_arena": {
+    "v": "2025-06-24",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "gemini-2.5-pro",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "deepseek-v4-pro",
@@ -843,7 +1390,7 @@
     "telechargement"
    ],
    "ouvert": true,
-   "params_b": null,
+   "params_b": 1598.8,
    "ctx_k": 1000,
    "modal": [
     "texte"
@@ -866,13 +1413,54 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
+   "scores": {
+    "arena-elo": {
+     "v": 1450.9,
+     "rang_arena": 39,
+     "ic": 4.0,
+     "votes": 54307,
+     "variante": "deepseek-v4-pro",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1470.8,
+     "rang_arena": 36,
+     "ic": 15.2,
+     "votes": 2112,
+     "variante": "deepseek-v4-pro",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
    "cout_1000_mots": {
     "eur_usd": 0.002,
     "ratio_tokens_par_mot": 1.597,
     "melange": "1 000 mots en entrée et 300 mots en sortie",
     "methode": "HF deepseek-ai/DeepSeek-V4-Pro",
     "conf": "mesure"
+   },
+   "params_src": {
+    "src": "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4-Pro",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "compté dans les fichiers de poids (safetensors.total), total et non actif"
+   },
+   "sortie_arena": {
+    "v": "2026-04-23",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "deepseek-v4-pro",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
    }
   },
   {
@@ -888,7 +1476,7 @@
     "telechargement"
    ],
    "ouvert": true,
-   "params_b": null,
+   "params_b": 290.9,
    "ctx_k": 1000,
    "modal": [
     "texte"
@@ -910,13 +1498,54 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
+   "scores": {
+    "arena-elo": {
+     "v": 1431.7,
+     "rang_arena": 78,
+     "ic": 4.1,
+     "votes": 49015,
+     "variante": "deepseek-v4-flash",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1434.3,
+     "rang_arena": 94,
+     "ic": 15.7,
+     "votes": 1907,
+     "variante": "deepseek-v4-flash",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
    "cout_1000_mots": {
     "eur_usd": 0.00067,
     "ratio_tokens_par_mot": 1.597,
     "melange": "1 000 mots en entrée et 300 mots en sortie",
     "methode": "HF deepseek-ai/DeepSeek-V4-Pro",
     "conf": "mesure"
+   },
+   "params_src": {
+    "src": "https://huggingface.co/api/models/deepseek-ai/DeepSeek-V4-Flash",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "compté dans les fichiers de poids (safetensors.total), total et non actif"
+   },
+   "sortie_arena": {
+    "v": "2026-04-23",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "deepseek-v4-flash",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
    }
   },
   {
@@ -951,8 +1580,31 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1444.4,
+     "rang_arena": 54,
+     "ic": 10.1,
+     "votes": 3478,
+     "variante": "grok-4.6-high",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "sortie_arena": {
+    "v": "2026-08-12",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "grok-4.6-high",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "grok-4-3",
@@ -985,8 +1637,43 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1397.3,
+     "rang_arena": 140,
+     "ic": 3.9,
+     "votes": 59827,
+     "variante": "grok-4.3",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1413.4,
+     "rang_arena": 119,
+     "ic": 14.9,
+     "votes": 2250,
+     "variante": "grok-4.3",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "sortie_arena": {
+    "v": "2026-05-01",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "grok-4.3",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "grok-build-0-1",
@@ -1020,7 +1707,8 @@
     "conf": "officiel"
    },
    "scores": {},
-   "cout_1000_mots": null
+   "cout_1000_mots": null,
+   "arena_absent": "absent de l'Arena"
   },
   {
    "id": "mistral-large-3",
@@ -1055,8 +1743,44 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1428.2,
+     "rang_arena": 83,
+     "ic": 3.1,
+     "votes": 61772,
+     "variante": "mistral-large-3",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1461.0,
+     "rang_arena": 48,
+     "ic": 16.1,
+     "votes": 1643,
+     "variante": "mistral-large-3",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "params_absent": "dépôt Hugging Face sous autorisation (lecture anonyme refusée)",
+   "sortie_arena": {
+    "v": "2025-12-01",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "mistral-large-3",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "mistral-medium-3-5",
@@ -1093,8 +1817,45 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
-   "cout_1000_mots": null
+   "scores": {
+    "arena-elo": {
+     "v": 1420.9,
+     "rang_arena": 96,
+     "ic": 6.5,
+     "votes": 11016,
+     "variante": "mistral-medium-3.5",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1449.3,
+     "rang_arena": 72,
+     "ic": 30.5,
+     "votes": 439,
+     "variante": "mistral-medium-3.5",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "cout_1000_mots": null,
+   "params_absent": "dépôt Hugging Face sous autorisation (lecture anonyme refusée)",
+   "ctx_absent": "fiche modèle Mistral introuvable (erreur 404) le 20/08/2026",
+   "sortie_arena": {
+    "v": "2026-06-03",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "mistral-medium-3.5",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "mistral-small-4",
@@ -1131,7 +1892,9 @@
     "conf": "officiel"
    },
    "scores": {},
-   "cout_1000_mots": null
+   "cout_1000_mots": null,
+   "arena_absent": "l'Arena ne connaît que des Mistral Small ANTÉRIEURS (2506, 3.1, 24b) : ce serait un autre modèle",
+   "params_absent": "dépôt Hugging Face sous autorisation (lecture anonyme refusée)"
   },
   {
    "id": "ministral-3-14b",
@@ -1168,7 +1931,9 @@
     "conf": "officiel"
    },
    "scores": {},
-   "cout_1000_mots": null
+   "cout_1000_mots": null,
+   "arena_absent": "absent de l'Arena (seul ministral-8b-2410 y figure, et c'est la génération précédente)",
+   "ctx_absent": "fiche modèle Mistral introuvable (erreur 404) le 20/08/2026"
   },
   {
    "id": "ministral-3-8b",
@@ -1204,7 +1969,9 @@
     "conf": "officiel"
    },
    "scores": {},
-   "cout_1000_mots": null
+   "cout_1000_mots": null,
+   "arena_absent": "absent de l'Arena (ministral-8b-2410 y figure, mais c'est la génération précédente)",
+   "ctx_absent": "fiche modèle Mistral introuvable (erreur 404) le 20/08/2026"
   },
   {
    "id": "ministral-3-3b",
@@ -1240,7 +2007,9 @@
     "conf": "officiel"
    },
    "scores": {},
-   "cout_1000_mots": null
+   "cout_1000_mots": null,
+   "arena_absent": "absent de l'Arena",
+   "ctx_absent": "fiche modèle Mistral introuvable (erreur 404) le 20/08/2026"
   },
   {
    "id": "kimi-k3",
@@ -1255,7 +2024,7 @@
     "telechargement"
    ],
    "ouvert": true,
-   "params_b": null,
+   "params_b": 2779.9,
    "ctx_k": 1000,
    "modal": [
     "texte"
@@ -1267,10 +2036,51 @@
    ],
    "heberg": [],
    "prix": null,
-   "scores": {},
+   "scores": {
+    "arena-elo": {
+     "v": 1476.9,
+     "rang_arena": 15,
+     "ic": 5.9,
+     "votes": 14241,
+     "variante": "kimi-k3-max",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1494.5,
+     "rang_arena": 14,
+     "ic": 27.1,
+     "votes": 533,
+     "variante": "kimi-k3-max",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
    "note": "Modèle phare de Moonshot, fenêtre de 1 M de jetons. Aucun tarif publié sur la page consultée.",
    "src": "https://platform.kimi.ai/docs/pricing",
-   "le": "2026-08-20"
+   "le": "2026-08-20",
+   "params_src": {
+    "src": "https://huggingface.co/api/models/moonshotai/Kimi-K3",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "compté dans les fichiers de poids (safetensors.total), total et non actif"
+   },
+   "sortie_arena": {
+    "v": "2026-07-26",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "kimi-k3-max",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "glm-5-2",
@@ -1284,8 +2094,8 @@
     "telechargement"
    ],
    "ouvert": true,
-   "params_b": null,
-   "ctx_k": null,
+   "params_b": 753.3,
+   "ctx_k": 1024,
    "modal": [
     "texte"
    ],
@@ -1302,13 +2112,59 @@
     "le": "2026-08-20",
     "conf": "officiel"
    },
-   "scores": {},
+   "scores": {
+    "arena-elo": {
+     "v": 1465.3,
+     "rang_arena": 27,
+     "ic": 4.9,
+     "votes": 29677,
+     "variante": "glm-5.2-max",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1475.7,
+     "rang_arena": 32,
+     "ic": 19.6,
+     "votes": 1057,
+     "variante": "glm-5.2-max",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
    "cout_1000_mots": {
     "eur_usd": 0.00422,
     "ratio_tokens_par_mot": 1.551,
     "melange": "1 000 mots en entrée et 300 mots en sortie",
     "methode": "HF zai-org/GLM-5.2",
     "conf": "mesure"
+   },
+   "params_src": {
+    "src": "https://huggingface.co/api/models/zai-org/GLM-5.2",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "compté dans les fichiers de poids (safetensors.total), total et non actif"
+   },
+   "ctx_src": {
+    "src": "https://huggingface.co/zai-org/GLM-5.2/blob/main/config.json",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "sortie_arena": {
+    "v": "2026-07-26",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "glm-5.2-max",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
    }
   },
   {
@@ -1323,7 +2179,7 @@
     "telechargement"
    ],
    "ouvert": true,
-   "params_b": 2400,
+   "params_b": 2446.2,
    "ctx_k": 262,
    "modal": [
     "texte"
@@ -1336,11 +2192,52 @@
     "cn"
    ],
    "prix": null,
-   "scores": {},
+   "scores": {
+    "arena-elo": {
+     "v": 1483.0,
+     "rang_arena": 10,
+     "ic": 6.9,
+     "votes": 9271,
+     "variante": "qwen3.8-max",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1501.8,
+     "rang_arena": 7,
+     "ic": 32.2,
+     "votes": 340,
+     "variante": "qwen3.8-max",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
    "licence": "qwen3.8-max",
    "note": "2,4 T parametres dont 95 B actifs ; contexte natif 262 144 tokens, extensible a 1 010 000. Licence proprietaire qwen3.8-max, PAS Apache 2.0 (contrairement aux Qwen 3.5 et anterieurs).",
    "src": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
-   "le": "2026-08-20"
+   "le": "2026-08-20",
+   "params_src": {
+    "src": "https://huggingface.co/api/models/Qwen/Qwen3.8-2.4T-A95B",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "compté dans les fichiers de poids (safetensors.total), total et non actif"
+   },
+   "sortie_arena": {
+    "v": "2026-08-02",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "qwen3.8-max",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   },
   {
    "id": "llama-4",
@@ -1353,8 +2250,8 @@
     "telechargement"
    ],
    "ouvert": true,
-   "params_b": null,
-   "ctx_k": null,
+   "params_b": 401.6,
+   "ctx_k": 1024,
    "modal": [
     "texte"
    ],
@@ -1364,8 +2261,54 @@
    ],
    "heberg": [],
    "prix": null,
-   "scores": {},
-   "note": "Dépôt Hugging Face sous autorisation : aucune caractéristique n'a pu être vérifiée à la source le 20/08/2026."
+   "scores": {
+    "arena-elo": {
+     "v": 1287.6,
+     "rang_arena": 238,
+     "ic": 4.2,
+     "votes": 40050,
+     "variante": "llama-4-maverick-17b-128e-instruct",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    },
+    "arena-elo-fr": {
+     "v": 1255.8,
+     "rang_arena": 216,
+     "ic": 26.1,
+     "votes": 565,
+     "variante": "llama-4-maverick-17b-128e-instruct",
+     "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+     "le": "2026-08-19",
+     "conf": "officiel",
+     "licence": "CC-BY-4.0",
+     "attribution": "LMArena"
+    }
+   },
+   "note": "Dépôt Hugging Face sous autorisation : aucune caractéristique n'a pu être vérifiée à la source le 20/08/2026.",
+   "params_src": {
+    "src": "https://huggingface.co/api/models/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "compté dans les fichiers de poids (safetensors.total), total et non actif"
+   },
+   "ctx_src": {
+    "src": "https://huggingface.co/unsloth/Llama-4-Maverick-17B-128E-Instruct/blob/main/config.json",
+    "le": "2026-08-20",
+    "conf": "officiel"
+   },
+   "sortie_arena": {
+    "v": "2025-04-09",
+    "src": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+    "le": "2026-08-20",
+    "conf": "officiel",
+    "note": "première apparition au classement public, et non date d'annonce du fournisseur",
+    "variante": "llama-4-maverick-17b-128e-instruct",
+    "licence": "CC-BY-4.0",
+    "attribution": "LMArena"
+   }
   }
  ],
  "tokenizers_mesures": {
