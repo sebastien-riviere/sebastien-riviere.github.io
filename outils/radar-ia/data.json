@@ -396,7 +396,7 @@
     "src": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B/blob/main/config.json",
     "le": "2026-08-20",
     "conf": "officiel",
-    "note": "max_position_embeddings = 262144, soit la meme fenetre que Qwen3.8 27B deja note 256"
+    "note": "max_position_embeddings = 262144, soit la même fenêtre que Qwen3.8 27B, déjà noté 256"
    }
   },
   {
@@ -603,7 +603,7 @@
     "src": "https://platform.claude.com/docs/en/about-claude/models/overview",
     "le": "2026-08-20",
     "conf": "officiel",
-    "note": "hors tableau : la page indique que Mythos 5 partage les specifications de Fable 5"
+    "note": "hors tableau : la page indique que Mythos 5 partage les spécifications de Fable 5"
    }
   },
   {

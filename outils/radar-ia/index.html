@@ -313,6 +313,8 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
 .s-tbl td b{color:var(--ink);font-weight:800;}
 .s-src{font-family:var(--ui);font-size:11.5px;color:var(--faint);line-height:1.55;margin-top:9px;display:flex;flex-wrap:wrap;gap:6px 9px;align-items:center;}
 .s-src a{color:var(--ia-ink);text-decoration:underline;word-break:break-all;}
+/* Ce que dit exactement la page du fournisseur : le lecteur peut recouper mot a mot. */
+.s-cite{font-family:var(--ui);font-size:11.5px;color:var(--muted);line-height:1.55;margin-top:5px;padding-left:9px;border-left:2px solid var(--border-soft);}
 .s-cout{background:var(--ia-soft);border:1px solid var(--ia-line);border-radius:var(--radius-sm);padding:12px 14px;font-family:var(--ui);font-size:12.5px;color:var(--ink);line-height:1.55;}
 .s-cout .big{font-size:20px;font-weight:900;color:var(--ia-ink);font-variant-numeric:tabular-nums;display:block;margin-bottom:2px;}
 .s-cout .why{color:var(--muted);font-size:11.5px;margin-top:6px;}
@@ -572,25 +574,37 @@ function fmtCtx(k){ return k==null?'—' : (k>=1000 ? num(k/1000,k%1000?1:0)+' M
 function provNom(id){ return (PROVIDERS[id]&&PROVIDERS[id].nom)||id; }
 function provPays(id){ return PROVIDERS[id]&&PROVIDERS[id].pays; }
 
-/* --- fraicheur : regle d'age du cadrage (14 j / 45 j) --- */
+/* --- fraicheur : regle d'age, DECLINEE PAR CLASSE DE VOLATILITE ---
+   Une seule vitesse pour tout mentirait dans les deux sens : un tarif change
+   toutes les semaines, une fenetre de contexte ne bouge qu'au changement de
+   generation. Les seuils ne sont donc PAS choisis, ils se DEDUISENT de la
+   cadence de reverification du cadrage (3.1) :
+     - dans la cadence      -> a jour par construction  ("frais")
+     - un cycle manque      -> "a reconfirmer"
+     - deux cycles manques  -> "date", et le chiffre sort des classements
+   Changer la cadence changera les seuils, pas le code qui les lit. */
+const AGE={
+  volatil:{frais:14, tiede:45},    // prix, scores        — cadence hebdomadaire
+  lent:   {frais:90, tiede:180}    // contexte, licence, hebergement — cadence trimestrielle
+};
 function ageJours(iso){
   if(!iso) return null;
   const d=new Date(iso+'T00:00:00');
   if(isNaN(d)) return null;
   return Math.floor((Date.now()-d.getTime())/86400000);
 }
-function ageBadge(iso){
-  const j=ageJours(iso);
+function ageBadge(iso,classe){
+  const j=ageJours(iso), s=AGE[classe]||AGE.volatil;
   if(j==null) return '';
-  if(j<=14) return '<span class="age age-frais">relevé il y a '+(j<=1?'moins d\'un jour':j+' jours')+'</span>';
-  if(j<=45) return '<span class="age age-tiede">à reconfirmer · '+j+' jours</span>';
+  if(j<=s.frais) return '<span class="age age-frais">relevé il y a '+(j<=1?'moins d\'un jour':j+' jours')+'</span>';
+  if(j<=s.tiede) return '<span class="age age-tiede">à reconfirmer · '+j+' jours</span>';
   return '<span class="age age-vieux">daté · '+j+' jours</span>';
 }
-function estClassable(bloc){
+function estClassable(bloc,classe){
   if(!bloc) return false;
   if(bloc.conf!=='officiel' && bloc.conf!=='tiers') return false;   // annonce/estime ne classent pas
   const j=ageJours(bloc.le);
-  return j==null || j<=45;                                          // >45 j sort des classements
+  return j==null || j<=(AGE[classe]||AGE.volatil).tiede;            // au-dela : sort des classements
 }
 
 /* --- VRAM estimee a partir du nombre de parametres ---
@@ -616,7 +630,12 @@ function lireElo(m,cle){
 const LECTEURS={
   preference_humaine:m=>lireElo(m,'arena-elo'),
   preference_humaine_fr:m=>lireElo(m,'arena-elo-fr'),
-  contexte:m=> m.ctx_k!=null ? {v:m.ctx_k, txt:fmtCtx(m.ctx_k)+' jetons', bloc:null} : null,
+  /* La fenetre de contexte suit desormais la MEME regle que le prix et l'Elo :
+     un chiffre sans provenance officielle, ou trop vieux pour sa classe, ne
+     classe pas. Avoir deux poids deux mesures selon le classement serait la
+     seule vraie incoherence. Classe LENT : 180 j, pas 45. */
+  contexte:m=> (m.ctx_k!=null && estClassable(m.ctx_src,'lent'))
+    ? {v:m.ctx_k, txt:fmtCtx(m.ctx_k)+' jetons', bloc:m.ctx_src} : null,
   local:m=>{
     if(!m.params_b) return null;
     const g=vramGo(m.params_b);
@@ -1328,12 +1347,13 @@ function render(){
 
 function ligne(k,v){ return v==null||v===''?'':'<tr><td>'+k+'</td><td>'+v+'</td></tr>'; }
 
-function blocSource(bloc,quoi){
+function blocSource(bloc,quoi,classe){
   if(!bloc) return '';
   const conf=bloc.conf?'<span class="conf conf-'+esc(bloc.conf)+'">'+esc(CONF_NAME[bloc.conf]||bloc.conf)+'</span>':'';
   const src=bloc.src&&/^https?:/.test(bloc.src)
     ? '<a href="'+esc(bloc.src)+'" target="_blank" rel="noopener">'+esc(new URL(bloc.src).hostname.replace(/^www\./,''))+' ↗</a>' : '';
-  return '<div class="s-src">'+conf+ageBadge(bloc.le)+(src?'<span>'+quoi+' relevé sur '+src+'</span>':'')+'</div>';
+  // Pas de `bloc.note` ici : le prix affiche deja la sienne dans son tableau.
+  return '<div class="s-src">'+conf+ageBadge(bloc.le,classe)+(src?'<span>'+quoi+' relevé sur '+src+'</span>':'')+'</div>';
 }
 
 function sheetHTML(m){
@@ -1417,7 +1437,13 @@ function sheetHTML(m){
     +ligne('Comment y accéder',(m.acces||[]).map(x=>ACCES_NAME[x]||x).join(' · '))
     +ligne('Hébergement',(m.heberg||[]).map(x=>ZONE_NAME[x]||x).join(', '))
     +ligne('Date de publication', m.sortie?esc(m.sortie):'')
-    +'</table>';
+    +'</table>'
+    // La fenetre de contexte est le seul chiffre de cette carte qui soit une
+    // MESURE relevee a une date : elle porte donc sa provenance, comme le
+    // tarif et l'Elo. La note rapporte ce qui est ecrit sur la page du
+    // fournisseur — c'est ce qui rend la verification faisable en dix secondes.
+    +(m.ctx_src?blocSource(m.ctx_src,'Contexte','lent')
+      +(m.ctx_src.note?'<p class="s-cite">'+esc(m.ctx_src.note)+'</p>':''):'');
 
   return '<button class="sheet-x" id="sheetX" type="button" aria-label="Fermer la fiche">×</button>'
     +'<h3 id="sheetTitle">'+esc(m.nom)+flagImg(provPays(m.prov))+'</h3>'
