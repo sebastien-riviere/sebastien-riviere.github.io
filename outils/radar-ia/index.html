@@ -22,6 +22,65 @@
 ::selection{background:var(--ia-soft)}
 
 main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 auto;}
+
+/* --- navigation interne collante : la page est longue, on ne se perd pas --- */
+.nav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--border-soft);margin-bottom:4px;}
+.nav-in{max-width:var(--wrap-app);margin:0 auto;padding:8px 24px;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;}
+.nav-in::-webkit-scrollbar{display:none;}
+.nav a{font-family:var(--ui);font-size:12.5px;font-weight:800;color:var(--muted);padding:8px 13px;
+  border-radius:999px;white-space:nowrap;transition:.15s;min-height:40px;display:inline-flex;align-items:center;gap:6px;}
+.nav a:hover{background:var(--ia-soft);color:var(--ia-ink);text-decoration:none;}
+.nav a.here{background:var(--ia-soft);color:var(--ia-ink);}
+.nav a svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+.sec{scroll-margin-top:66px;}
+
+/* --- entrée guidée : « qu'est-ce que vous cherchez ? » --- */
+.besoins{display:grid;grid-template-columns:repeat(auto-fit,minmax(184px,1fr));gap:11px;margin:16px 0 6px;}
+.besoin{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--radius);padding:14px 15px;
+  text-align:left;font-family:var(--ui);cursor:pointer;box-shadow:var(--e-tile);display:flex;flex-direction:column;gap:5px;
+  transition:transform .16s,box-shadow .16s,border-color .16s;}
+.besoin:hover,.besoin:focus-visible{transform:translateY(-3px);box-shadow:var(--e-tileh);border-color:var(--ia);outline:none;}
+.besoin .bi{width:30px;height:30px;border-radius:9px;background:var(--ia-soft);display:flex;align-items:center;justify-content:center;margin-bottom:2px;}
+.besoin .bi svg{width:16px;height:16px;fill:none;stroke:var(--ia-ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.besoin b{font-size:13.5px;font-weight:900;color:var(--ink);line-height:1.25;}
+.besoin span{font-size:11.5px;color:var(--muted);line-height:1.45;}
+
+/* la cible d'un raccourci clignote une fois : on voit où on a atterri */
+@keyframes vise{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ia) 55%,transparent);}100%{box-shadow:0 0 0 14px transparent;}}
+.vise{animation:vise 1.1s ease-out 1;border-color:var(--ia)!important;}
+
+/* --- explications repliables : le détail reste, il ne bloque plus --- */
+details.pq{margin-top:9px;}
+details.pq>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--ui);font-size:11.5px;font-weight:800;color:var(--ia-ink);padding:5px 9px;border-radius:6px;
+  background:var(--ia-soft);user-select:none;min-height:32px;}
+details.pq>summary::-webkit-details-marker{display:none;}
+details.pq>summary:hover{background:var(--ia-line);}
+details.pq>summary .ch{transition:transform .18s;font-size:13px;line-height:1;}
+details.pq[open]>summary .ch{transform:rotate(90deg);}
+details.pq .body{font-family:var(--ui);font-size:11.5px;color:var(--muted);line-height:1.6;padding:9px 2px 0;}
+details.pq .body b{color:var(--ink);}
+details.pq .body a{color:var(--ia-ink);text-decoration:underline;}
+
+/* avertissement compact : une pastille, le détail au clic */
+.flag{display:inline-flex;align-items:center;gap:6px;font-family:var(--ui);font-size:11px;font-weight:800;
+  background:var(--warn-soft);color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);
+  border-radius:6px;padding:5px 9px;cursor:pointer;margin-bottom:11px;min-height:32px;}
+.flag:hover{background:color-mix(in srgb,var(--warn) 22%,transparent);}
+.flag .ch{transition:transform .18s;font-size:12px;}
+details[open]>.flag .ch{transform:rotate(90deg);}
+details.warn{margin-bottom:2px;}
+details.warn>summary{list-style:none;}
+details.warn>summary::-webkit-details-marker{display:none;}
+details.warn .body{font-family:var(--ui);font-size:11.5px;line-height:1.55;color:var(--ink);
+  background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);
+  border-radius:var(--radius-xs);padding:9px 11px;margin-bottom:11px;}
+
+/* « voir les N suivants » sous un classement */
+.plus{font-family:var(--ui);font-size:11.5px;font-weight:800;color:var(--ia-ink);background:none;border:none;
+  cursor:pointer;padding:7px 2px;min-height:34px;display:inline-flex;align-items:center;gap:5px;}
+.plus:hover{text-decoration:underline;}
 .sec{margin-top:34px;}
 .sec-hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
 .sec-hd h2{font-family:var(--ui);font-weight:900;font-size:19px;color:var(--ink);}
@@ -132,7 +191,7 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
 @media(max-width:900px){ .duo{grid-template-columns:1fr;} }
 
 /* --- barre d'outils du catalogue --- */
-.toolbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 74%,transparent);padding:14px 0 10px;}
+.toolbar{position:sticky;top:57px;z-index:20;background:linear-gradient(180deg,var(--bg) 74%,transparent);padding:14px 0 10px;}
 .tb-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
 .search-wrap{position:relative;flex:1 1 280px;}
 .search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:var(--faint);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;}
@@ -145,7 +204,7 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
 .count b{color:var(--ia-ink);}
 
 .split{display:grid;grid-template-columns:224px 1fr;gap:18px;align-items:start;}
-.rail{position:sticky;top:74px;background:var(--bg-2);border:1px solid var(--border-soft);border-radius:13px;padding:6px 4px;min-width:0;}
+.rail{position:sticky;top:131px;background:var(--bg-2);border:1px solid var(--border-soft);border-radius:13px;padding:6px 4px;min-width:0;}
 .rail-hd{display:flex;align-items:center;gap:7px;font-family:var(--ui);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:var(--faint);padding:9px 12px 5px;}
 .rail-hd svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .rail-clear{margin-left:auto;font-family:var(--ui);font-size:11px;font-weight:800;color:var(--ia-ink);background:none;border:none;cursor:pointer;padding:2px;display:none;}
@@ -254,10 +313,14 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
   .facet>summary{min-height:44px;}
   .sheet-x{width:40px;height:40px;}
   .res .rr{min-height:44px;}
-  .ia-pill{min-height:44px;}
+  .ia-pill,.ia-btn{min-height:44px;}
   .picker select{min-height:44px;}
   .crit input[type=range]{height:44px;flex-basis:104px;}
   .crit .cv{width:58px;}
+  .plus{min-height:44px;}
+  details.pq>summary,.flag{min-height:44px;}
+  .toolbar{top:57px;}
+  .rail{top:auto;}
 }
 </style>
 </head>
@@ -286,24 +349,44 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
   </header>
 </div>
 
+<nav class="nav" id="nav" aria-label="Sections de la page">
+  <div class="nav-in">
+    <a href="#classements" class="here"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Classements</a>
+    <a href="#perso"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Comparer</a>
+    <a href="#catalogue-sec"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Les 31 modèles</a>
+    <a href="#methode"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>Méthode</a>
+  </div>
+</nav>
+
 <main>
 
-  <section class="methode">
-    <h2><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>La règle du jeu</h2>
-    <ul>
-      <li><b>Un classement = une mesure.</b> Jamais de score composite : additionner des choses qui ne se mesurent pas pareil produit un chiffre qui ne veut rien dire.</li>
-      <li><b>Chaque chiffre porte sa source et sa date.</b> Un prix relevé il y a deux mois n'est plus un prix, c'est un souvenir.</li>
-      <li><b>Ce qui n'est pas vérifié n'est pas classé.</b> Un modèle sans donnée fiable reste dans le catalogue, mais sort des classements.</li>
-      <li><b>Les chiffres viennent des fournisseurs eux-mêmes</b>, pas d'agrégateurs tiers. Ce qui est affiché ici est relevé à la source.</li>
-    </ul>
+  <section id="besoins-sec">
+    <div class="besoins" id="besoins">
+      <button class="besoin" type="button" data-go="classements" data-top="arena-elo">
+        <span class="bi"><svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 16.5 14 18.5 21 12 17 5.5 21 7.5 14 2 9.3 9 9"/></svg></span>
+        <b>Le meilleur, tout simplement</b><span>Celui que les gens préfèrent, à l'aveugle</span>
+      </button>
+      <button class="besoin" type="button" data-go="classements" data-top="prix-affiche">
+        <span class="bi"><svg viewBox="0 0 24 24"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+        <b>Le moins cher</b><span>Pour un gros volume, à budget serré</span>
+      </button>
+      <button class="besoin" type="button" data-go="classements" data-top="vram-locale">
+        <span class="bi"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <b>Qui tourne chez moi</b><span>Sans rien envoyer sur internet</span>
+      </button>
+      <button class="besoin" type="button" data-go="perso">
+        <span class="bi"><svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span>
+        <b>C'est moi qui décide</b><span>Réglez vos critères, obtenez votre classement</span>
+      </button>
+    </div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="classements">
     <div class="sec-hd">
       <h2>Les classements</h2>
       <span class="sub" id="topsMaj">—</span>
     </div>
-    <p class="sec-note">Chacun répond à <strong>une</strong> question précise. Cliquez un modèle pour ouvrir sa fiche complète.</p>
+    <p class="sec-note">Chacun répond à <strong>une seule</strong> question, avec une mesure nommée et datée — jamais une note globale. Cliquez un modèle pour ouvrir sa fiche.</p>
     <div class="tops" id="tops"></div>
   </section>
 
@@ -353,10 +436,11 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
           <input id="search" type="search" placeholder="Rechercher un modèle ou un fournisseur (ex. Claude, ouvert, code…)" autocomplete="off">
         </div>
         <select class="sortsel" id="sortSel" aria-label="Trier les modèles">
-          <option value="prov">Trier : par fournisseur</option>
-          <option value="az">Trier : A → Z</option>
+          <option value="elo">Trier : les mieux notés d'abord</option>
           <option value="prix">Trier : du moins cher au plus cher</option>
           <option value="ctx">Trier : plus grand contexte d'abord</option>
+          <option value="prov">Trier : par fournisseur</option>
+          <option value="az">Trier : A → Z</option>
         </select>
       </div>
       <div class="count" id="count">Chargement…</div>
@@ -367,7 +451,21 @@ svg.toile .tick{font-family:var(--ui);font-size:8.5px;font-weight:700;fill:var(-
       <div class="results">
         <div class="grid" id="catalogue"></div>
         <div class="no-result" id="noResult">Aucun modèle ne correspond à votre recherche.</div>
+        <div id="plusCartes" style="margin-top:16px;text-align:center;"></div>
       </div>
+    </div>
+  </section>
+
+  <section class="sec" id="methode">
+    <div class="sec-hd"><h2>La méthode</h2><span class="sub">Pourquoi vous pouvez faire confiance aux chiffres ci-dessus</span></div>
+    <div class="methode">
+      <h2><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Quatre règles, tenues sans exception</h2>
+      <ul>
+        <li><b>Un classement = une mesure.</b> Jamais de score composite : additionner des choses qui ne se mesurent pas pareil produit un chiffre qui ne veut rien dire.</li>
+        <li><b>Chaque chiffre porte sa source et sa date.</b> Un prix relevé il y a deux mois n'est plus un prix, c'est un souvenir.</li>
+        <li><b>Ce qui n'est pas vérifié n'est pas classé.</b> Un modèle sans donnée fiable reste au catalogue, mais sort des classements — et on dit pourquoi.</li>
+        <li><b>Les chiffres viennent des fournisseurs eux-mêmes</b>, pas d'agrégateurs. Ce qui est affiché ici est relevé à la source.</li>
+      </ul>
     </div>
   </section>
 
@@ -406,7 +504,7 @@ const AXE_IC={
   fraicheur:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'
 };
 
-let DATA=null, MODELS=[], PROVIDERS={}, TAGS={}, BENCH=[], TOK=null, fSort='prov', vramCap=24;
+let DATA=null, MODELS=[], PROVIDERS={}, TAGS={}, BENCH=[], TOK=null, fSort='elo', vramCap=24;
 const fState={prov:new Set(),tag:new Set(),heberg:new Set(),ouvert:new Set(),acces:new Set()};
 
 const $=id=>document.getElementById(id);
@@ -545,19 +643,21 @@ function topHTML(b){
   }else{
     // Prevenir le lecteur quand la tete du classement est une egalite :
     // sinon il lit un podium la ou il n'y a qu'un plafond partage.
-    // Et ne jamais couper un groupe d'ex aequo en deux : afficher 7 des
+    // Et ne jamais couper un groupe d'ex aequo en deux : afficher 5 des
     // 8 premiers a egalite reviendrait a en exclure un sans raison.
     const nPremiers=items.filter(e=>e.rang===1).length;
-    const top=items.slice(0,Math.min(Math.max(7,nPremiers),10));
-    const max = b.sens==='bas' ? top[top.length-1].r.v : top[0].r.v;
+    const nVus=Math.min(Math.max(5,nPremiers),10);
+    const top=items.slice(0,nVus), reste=items.slice(nVus,10);
+    const max = b.sens==='bas' ? items[Math.min(9,items.length-1)].r.v : items[0].r.v;
     const alerte = nPremiers>1
       ? '<span class="exaequo">'+nPremiers+' modèles sont à égalité en tête ('+esc(top[0].r.txt)
         +'). Ils partagent la première place : aucun ordre n\'est inventé entre eux.</span>'
       : '';
-    body=alerte+top.map(e=>rowHTML(e,max||1,b.sens)).join('');
+    body=alerte+top.map(e=>rowHTML(e,max||1,b.sens)).join('')
+      +(reste.length?'<div class="suite" hidden>'+reste.map(e=>rowHTML(e,max||1,b.sens)).join('')+'</div>'
+        +'<button class="plus" type="button" data-plus>+ voir '+reste.length+' de plus</button>':'');
     const total=items.length;
-    foot=total>top.length ? '<div class="top-ft">'+top.length+' premiers sur '+total+' modèles mesurés. '+srcLine(b)+'</div>'
-                          : '<div class="top-ft">'+total+' modèle'+(total>1?'s':'')+' mesuré'+(total>1?'s':'')+'. '+srcLine(b)+'</div>';
+    foot='<div class="top-ft">'+total+' modèle'+(total>1?'s':'')+' mesuré'+(total>1?'s':'')+'. '+srcLine(b)+'</div>';
   }
 
   let ctl='';
@@ -565,6 +665,12 @@ function topHTML(b){
     ctl='<div class="vram-ctl"><span class="lbl">Ma carte graphique :</span>'
       +[8,12,24,48].map(g=>'<button class="vchip'+(g===vramCap?' on':'')+'" data-vram="'+g+'" type="button">'+g+' Go</button>').join('')
       +'</div>';
+  }
+  // Les avertissements restent, mais repliés : une pastille se voit sans écraser
+  // le classement qu'elle nuance. Le texte complet est à un clic.
+  function repli(titre,corps){
+    return '<details class="warn"><summary><span class="flag"><span class="ch">›</span>'+titre+'</span></summary>'
+      +'<div class="body">'+corps+'</div></details>';
   }
   let warn='';
   // Piege GPQA : quand les marges d'erreur se recouvrent, l'ordre affiche est du
@@ -574,18 +680,19 @@ function topHTML(b){
     const a=items[0].r, borne=a.v-(a.bloc.ic||0);
     const flous=items.filter(e=>e.r.bloc&&e.r.bloc.ic&&(e.r.v+e.r.bloc.ic)>=borne).length;
     if(flous>1){
-      warn='<div class="top-warn"><b>Les '+flous+' premiers sont à départager.</b> Leurs marges d\'erreur se '
-        +'recouvrent : l\'écart qui les sépare est plus petit que l\'incertitude de la mesure. '
-        +'L\'ordre entre eux ne veut rien dire — c\'est le groupe de tête qui est l\'information, pas le numéro 1.</div>';
+      warn=repli('Les '+flous+' premiers sont à égalité, en réalité',
+        'Leurs marges d\'erreur se recouvrent : l\'écart qui les sépare est plus petit que l\'incertitude de la mesure. '
+        +'L\'ordre entre eux ne veut rien dire — <b>c\'est le groupe de tête qui est l\'information</b>, pas le numéro 1.');
     }
   }
   if(b.axe==='cout'){
-    warn='<div class="top-warn"><b>À lire avant de conclure.</b> Ce classement compare les <em>tarifs affichés</em>, pas le coût réel. '
-      +'Un jeton ne représente pas la même quantité de texte selon le modèle : sur un même texte français, l\'écart de facturation '
-      +'peut atteindre 21 %. Le coût ramené à 1 000 mots figure dans la fiche des modèles dont le découpage a pu être mesuré.</div>';
+    warn=repli('Attention : prix affiché ≠ coût réel',
+      'Ce classement compare les <b>tarifs affichés</b>. Or un jeton ne représente pas la même quantité de texte selon le modèle : '
+      +'sur un même texte français, l\'écart de facturation peut atteindre <b>21 %</b>. Le coût ramené à 1 000 mots figure dans la '
+      +'fiche des modèles dont le découpage a pu être mesuré.');
   }
 
-  return '<article class="top">'
+  return '<article class="top" data-bid="'+esc(b.id)+'">'
     +'<div class="top-hd"><span class="top-ic"><svg viewBox="0 0 24 24">'+ic+'</svg></span>'
     +'<span class="top-t"><h3>'+esc(b.titre_top||b.nom)+'</h3>'
     +(b.sous_titre?'<span class="st">'+esc(b.sous_titre)+'</span>':'')+'</span></div>'
@@ -609,6 +716,15 @@ function renderTops(){
   $('tops').innerHTML=rangs.map(topHTML).join('');
   $('tops').querySelectorAll('.vchip').forEach(c=>{
     c.onclick=()=>{ vramCap=+c.dataset.vram; renderTops(); };
+  });
+  $('tops').querySelectorAll('[data-plus]').forEach(btn=>{
+    btn.onclick=()=>{
+      const s=btn.previousElementSibling;
+      const ouvert=!s.hidden;
+      s.hidden=ouvert;
+      btn.textContent=ouvert?('+ voir '+s.children.length+' de plus'):'− réduire';
+      bindOuvre(s);
+    };
   });
   bindOuvre($('tops'));
 }
@@ -728,15 +844,23 @@ function renderToile(){
 
   leg.innerHTML=sel.map((m,i)=>m?'<span class="leg"><i style="background:'+COUL[i]+'"></i>'+esc(m.nom)+'</span>':'').join('');
 
-  let txt='<b>Comment lire.</b> Chaque axe est ramené à une échelle commune, calculée sur l\'ensemble des '
-    +MODELS.length+' modèles suivis — pas seulement sur ceux que vous comparez. Le point le plus éloigné du centre '
-    +'correspond au meilleur du référentiel sur cet axe. Une grande forme signale un modèle polyvalent, pas un modèle supérieur.';
+  // Une phrase suffit pour lire le graphique ; le raisonnement derriere est
+  // disponible, mais replie. Le detail ne doit pas peser autant que le dessin.
+  let txt='Plus un point est loin du centre, mieux le modèle se place sur cet axe <em>par rapport aux '
+    +MODELS.length+' modèles suivis</em>. Une grande forme = polyvalent, pas supérieur.';
   if(ko.length){
-    txt+='<br><br><b>'+ko.length+' axe'+(ko.length>1?'s'+' écartés':' écarté')+'.</b> '
-      +ko.map(o=>esc(o.a.lbl)+' — donnée absente chez '+o.absents.map(m=>esc(m.nom)).join(', ')).join(' · ')
-      +'. Ces axes ne sont pas dessinés : mettre un point au centre laisserait croire à une mauvaise note, alors qu\'il n\'y a pas de mesure.';
+    txt+=' <b>'+ko.length+' axe'+(ko.length>1?'s non dessinés':' non dessiné')+'</b>, faute de donnée.';
   }
-  note.innerHTML=txt;
+  let det='<b>Pourquoi une échelle commune ?</b> Si les bornes étaient calculées sur votre seule sélection, '
+    +'la forme d\'un modèle changerait selon ceux qu\'on lui compare. Elles portent donc sur tout le référentiel.';
+  if(ko.length){
+    det+='<br><br><b>Axes écartés :</b> '
+      +ko.map(o=>esc(o.a.lbl)+' — absent chez '+o.absents.map(m=>esc(m.nom)).join(', ')).join(' · ')
+      +'.<br>Un point au centre laisserait croire à une mauvaise note alors qu\'il n\'y a <em>pas de mesure</em>. '
+      +'Mieux vaut un axe en moins qu\'un axe faux.';
+  }
+  note.innerHTML=txt+'<details class="pq"><summary><span class="ch">›</span>Comment c\'est calculé</summary>'
+    +'<div class="body">'+det+'</div></details>';
 }
 
 /* ---------- le comparateur ---------- */
@@ -807,18 +931,20 @@ function renderComp(){
     +'<span class="rs">'+Math.round(e.s*100)+'</span></div>').join('');
   bindOuvre(res);
 
-  let txt='<b>'+notes.length+' modèle'+(notes.length>1?'s':'')+' classé'+(notes.length>1?'s':'')+'</b> sur '
-    +MODELS.length+'. La note sur 100 n\'a pas de sens dans l\'absolu : elle ne sert qu\'à ordonner selon '
-    +'<em>vos</em> curseurs. Changez-les, le classement change — c\'est le but.';
+  let txt='<b>'+notes.length+'</b> modèle'+(notes.length>1?'s':'')+' classé'+(notes.length>1?'s':'')+' sur '
+    +MODELS.length+(incomplets.length?', <b>'+incomplets.length+'</b> écarté'+(incomplets.length>1?'s':'')+' faute de donnée.':'.');
+  let det='La note sur 100 n\'a aucun sens dans l\'absolu : elle ne sert qu\'à ordonner selon <em>vos</em> curseurs. '
+    +'Changez-les, le classement change — c\'est exactement le but.';
   if(incomplets.length){
     const par={};
     incomplets.forEach(x=>x.manque.forEach(c=>{ (par[c.lbl]=par[c.lbl]||[]).push(x.m.nom); }));
-    txt+='<br><br><b>'+incomplets.length+' modèle'+(incomplets.length>1?'s écartés':' écarté')+'</b>, faute de donnée '
-      +'sur un critère que vous avez retenu : '
+    det+='<br><br><b>Pourquoi des modèles sont écartés :</b> il leur manque la donnée d\'un critère que vous avez retenu — '
       +Object.keys(par).map(k=>esc(k)+' (manque à '+par[k].length+')').join(', ')
-      +'. Ils ne sont pas mauvais — ils sont non mesurés. Baissez le curseur concerné à « ignoré » pour les faire revenir.';
+      +'. <b>Ils ne sont pas mauvais, ils sont non mesurés.</b> Leur mettre zéro les punirait d\'une absence de mesure. '
+      +'Baissez le curseur concerné sur « ignoré » et ils reviennent.';
   }
-  note.innerHTML=txt;
+  note.innerHTML=txt+'<details class="pq"><summary><span class="ch">›</span>Comment lire cette note</summary>'
+    +'<div class="body">'+det+'</div></details>';
 }
 
 function initPerso(){
@@ -849,6 +975,10 @@ function initPerso(){
 
 function cardHTML(m){
   const specs=[];
+  // Le score est l'information la plus attendue : elle passe en tete de carte.
+  const e=(m.scores||{})['arena-elo'];
+  if(e&&e.v!=null) specs.push('<span class="spec" title="Score de préférence humaine, '+num(e.votes)+' duels">'
+    +'Score <b>'+num(e.v,0)+'</b> · '+num(e.rang_arena)+'<sup>'+(e.rang_arena===1?'er':'e')+'</sup></span>');
   if(m.ctx_k!=null) specs.push('<span class="spec">Contexte <b>'+fmtCtx(m.ctx_k)+'</b></span>');
   if(m.params_b) specs.push('<span class="spec"><b>'+num(m.params_b)+' Md</b> param.</span>');
   if(m.modal&&m.modal.length>1) specs.push('<span class="spec">Multimodal</span>');
@@ -880,13 +1010,15 @@ function filtered(){
   const items=MODELS.filter(m=>passFacets(m) && (!q ||
     (m.nom+' '+provNom(m.prov)+' '+(m.tags||[]).join(' ')+' '+(m.famille||'')).toLowerCase().includes(q)));
   const az=(a,b)=>(a.nom||'').localeCompare(b.nom||'','fr');
+  const elo=m=>{const s=(m.scores||{})['arena-elo']; return s&&s.v!=null?s.v:-1;};
   if(fSort==='az') items.sort(az);
   else if(fSort==='prix') items.sort((a,b)=>{
     const x=a.prix&&a.prix.in!=null?a.prix.in:Infinity, y=b.prix&&b.prix.in!=null?b.prix.in:Infinity;
     return x-y||az(a,b);
   });
   else if(fSort==='ctx') items.sort((a,b)=>(b.ctx_k||-1)-(a.ctx_k||-1)||az(a,b));
-  else items.sort((a,b)=>provNom(a.prov).localeCompare(provNom(b.prov),'fr')||az(a,b));
+  else if(fSort==='prov') items.sort((a,b)=>provNom(a.prov).localeCompare(provNom(b.prov),'fr')||az(a,b));
+  else items.sort((a,b)=>elo(b)-elo(a)||az(a,b));   // « les mieux notés » par defaut
   return items;
 }
 
@@ -937,15 +1069,28 @@ function buildRail(){
   if(rc) rc.onclick=()=>{ Object.values(fState).forEach(s=>s.clear()); buildRail(); render(); };
 }
 
+let vus=12;   // combien de cartes on montre avant de demander « et la suite ? »
+
 function render(){
   const items=filtered();
-  catalogue.innerHTML=items.map(cardHTML).join('');
-  noResult.style.display=items.length?'none':'block';
   const anyOn=Object.values(fState).some(s=>s.size)||search.value.trim();
+  // Quand une recherche ou un filtre est actif, le visiteur a deja reduit la
+  // liste lui-meme : on ne la tronque pas une seconde fois dans son dos.
+  const montres=anyOn?items:items.slice(0,vus);
+  catalogue.innerHTML=montres.map(cardHTML).join('');
+  noResult.style.display=items.length?'none':'block';
   countEl.innerHTML=anyOn
     ? '<b>'+items.length+'</b> modèle'+(items.length>1?'s':'')
     : '<b>'+MODELS.length+'</b> modèles · '+Object.keys(PROVIDERS).length+' fournisseurs';
   bindOuvre(catalogue);
+
+  const zone=$('plusCartes'), reste=items.length-montres.length;
+  zone.innerHTML = reste>0
+    ? '<button class="ia-btn ghost" type="button" id="btnPlus">Voir les '+reste+' autres modèles</button>'
+    : (!anyOn && vus>12 ? '<button class="ia-btn ghost" type="button" id="btnMoins">Réduire la liste</button>' : '');
+  const bp=$('btnPlus'), bm=$('btnMoins');
+  if(bp) bp.onclick=()=>{ vus=MODELS.length; render(); };
+  if(bm) bm.onclick=()=>{ vus=12; render(); $('catalogue-sec').scrollIntoView({behavior:'smooth',block:'start'}); };
 }
 
 /* ============================================================
@@ -1088,6 +1233,36 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&$('sheetBg').class
 
 $('sortSel').addEventListener('change',e=>{ fSort=e.target.value; render(); });
 search.addEventListener('input',render);
+
+/* --- entree guidee : amener le visiteur PILE sur ce qu'il cherche --- */
+function amener(sec,bid){
+  const cible = bid ? document.querySelector('.top[data-bid="'+bid+'"]') : $(sec);
+  if(!cible) return;
+  cible.scrollIntoView({behavior:'smooth',block:bid?'center':'start'});
+  // Sur une page dense, arriver quelque part ne suffit pas : il faut VOIR
+  // ou on a atterri, sinon le raccourci donne l'impression de n'avoir rien fait.
+  cible.classList.remove('vise');
+  void cible.offsetWidth;
+  cible.classList.add('vise');
+  setTimeout(()=>cible.classList.remove('vise'),1300);
+}
+document.querySelectorAll('.besoin').forEach(b=>{
+  b.onclick=()=>amener(b.dataset.go,b.dataset.top);
+});
+
+/* --- navigation : signaler la section ou l'on se trouve --- */
+(function(){
+  const liens=[...document.querySelectorAll('.nav a')];
+  const cibles=liens.map(a=>$(a.getAttribute('href').slice(1))).filter(Boolean);
+  if(!('IntersectionObserver' in window)||!cibles.length) return;
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      liens.forEach(a=>a.classList.toggle('here',a.getAttribute('href')==='#'+e.target.id));
+    });
+  },{rootMargin:'-66px 0px -70% 0px'});
+  cibles.forEach(c=>obs.observe(c));
+})();
 
 (async function init(){
   try{
