@@ -1,12 +1,29 @@
 {
-  "maj": "2026-08-20",
+  "maj": "2026-08-21",
   "total": 300,
   "byTheme": {
-    "data": 248,
-    "numerique": 26,
-    "ia": 26
+    "ia": 27,
+    "data": 247,
+    "numerique": 26
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Déploiement d'un système permanent de vidéodétection et de localisation par intelligence artificielle des feux de forêts et incendie",
+      "a": "Conseil Départemental de Côte d'Or (21)",
+      "dep": "21",
+      "fam": "Marchés européens",
+      "tm": "Fournitures",
+      "proc": "Procédure Négociée",
+      "dp": "2026-08-21",
+      "dl": "",
+      "m": "estime",
+      "th": "ia",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-82008",
+      "k": "conseil departemental de cote d or 21|deploiement d un systeme permanent de videodetection et de localisation par intelligence a",
+      "ia": 1
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108793",
       "k": "universite de lille|refonte d une plateforme migration de donnees valorisation et maintenance d une bibliotheq",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture de coffrets electriques permettant l’alimentation, l’acquisition des donnees des capteurs et l’integration de systemes d’acquisitions destines a l’observation de surface de Meteo-France.",
-      "a": "METEO-FRANCE",
-      "dep": "31",
-      "fam": "Marchés européens",
-      "tm": "Fournitures",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-01",
-      "dl": "2025-11-04T11:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108104",
-      "k": "meteo france|fourniture de coffrets electriques permettant l alimentation l acquisition des donnees des",
       "ia": 0
     }
   ]
