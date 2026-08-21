@@ -225,8 +225,13 @@ const CAT_COL = {assistants:'#12a082',auto:'#7c3aed',meeting:'#0891b2',veille:'#
 const SHORT={assistants:'Assistants',auto:'Automatisation',meeting:'Réunions',veille:'Veille',design:'Présentations',build:'Sites & apps',image:'Images',video:'Vidéos',voice:'Voix & audio',souverain:'Souveraine',advanced:'Avancé'};
 const PRIX={freemium:'Freemium',gratuit:'Gratuit',payant:'Payant'};
 const COUNTRY_NAME = {US:'États-Unis',FR:'France',CN:'Chine',DE:'Allemagne',SE:'Suède',CA:'Canada',CZ:'Tchéquie',AT:'Autriche',AU:'Australie',GB:'Royaume-Uni',NL:'Pays-Bas',BE:'Belgique',BG:'Bulgarie',ES:'Espagne',IT:'Italie',CH:'Suisse',DK:'Danemark',IL:'Israël',SG:'Singapour',EU:'Union européenne'};
-/* Codes non normalisés vus dans les données : on les ramène au code ISO plutôt
-   que de laisser une image 404. « UK » n'existe pas en ISO 3166-1, c'est « GB ». */
+/* `pays` = D'OÙ VIENT l'outil (équipe fondatrice / projet d'origine), PAS où il
+   est immatriculé — Hugging Face est noté FR bien que HF Inc. soit américaine.
+   Rien de public ne l'établit ? champ VIDE, jamais une supposition.
+   Règle complète : BRAIN-OS/CONFIG/capture-schemas.md, section « pays ».
+   Ci-dessous, les codes non normalisés ramenés à l'ISO pour éviter une image
+   404 — « UK » n'existe pas en ISO 3166-1, c'est « GB ». Filet, pas norme :
+   corriger la donnée quand on en croise un. */
 const COUNTRY_ALIAS = {UK:'GB',EL:'GR',SU:'RU'};
 
 let CATS=[], CATMAP={}, TOOLS=[], VALOS=[], AUDIENCE=[], fSort='reco';
