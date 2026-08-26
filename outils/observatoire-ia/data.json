@@ -1,12 +1,29 @@
 {
-  "maj": "2026-08-25",
+  "maj": "2026-08-26",
   "total": 300,
   "byTheme": {
-    "ia": 27,
     "data": 247,
+    "ia": 27,
     "numerique": 26
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "ACQUISITION ET TRAITEMENTS DE DONNÉES PAR LIDAR AÉROPORTÉ ET ORTHOPHOTOGRAPHIE EN FORÊT GUYANAISE",
+      "a": "Office National des Forets - Direction Territoriale de Guyane",
+      "dep": "973",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-26",
+      "dl": "2026-09-28T22:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-83015",
+      "k": "office national des forets direction ter|acquisition et traitements de donnees par lidar aeroporte et orthophotographie en foret gu",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-109599",
       "k": "territoire d energie isere 38|exploitation maintenance et supervision d une plateforme d exploitation de donnees liees a",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Refonte d’une plateforme, migration de données, valorisation et maintenance d’une bibliothèque d’accès à des thèses et mémoires.",
-      "a": "Université de Lille",
-      "dep": "59",
-      "fam": "Marchés <90 k€ (MAPA)",
-      "tm": null,
-      "proc": "Procédure Adaptée",
-      "dp": "2025-10-01",
-      "dl": "2025-10-31T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108793",
-      "k": "universite de lille|refonte d une plateforme migration de donnees valorisation et maintenance d une bibliotheq",
       "ia": 0
     }
   ]
