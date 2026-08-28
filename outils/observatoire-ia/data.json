@@ -1,5 +1,5 @@
 {
-  "maj": "2026-08-27",
+  "maj": "2026-08-28",
   "total": 300,
   "byTheme": {
     "data": 247,
@@ -7,6 +7,23 @@
     "numerique": 26
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Acquisition d'un logiciel d'archivage et de transmission de données de dosimétrie patient (DACS) maintenance et prestations associées pour le GHT de Charente",
+      "a": "Centre Hospitalier Angoulème",
+      "dep": "16",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-08-27",
+      "dl": "2026-09-30T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-83928",
+      "k": "centre hospitalier angouleme|acquisition d un logiciel d archivage et de transmission de donnees de dosimetrie patient ",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108750",
       "k": "smavd|accord cadre a bons de commande de topographies et acquisitions de donnees aeroportees pou",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "EXPLOITATION, MAINTENANCE ET SUPERVISION D’UNE PLATEFORME D’EXPLOITATION DE DONNEES LIEES A L’INTERNET DES OBJETS, \r\nFOURNITURE ET INSTALLATIONS D'OBJETS CONNECTES ET PRESTATIONS ASSOCIEES",
-      "a": "Territoire d'Energie Isère (38)",
-      "dep": "38",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-02",
-      "dl": "2025-11-04T10:30:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-109599",
-      "k": "territoire d energie isere 38|exploitation maintenance et supervision d une plateforme d exploitation de donnees liees a",
       "ia": 0
     }
   ]
