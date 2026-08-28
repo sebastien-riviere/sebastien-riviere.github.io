@@ -1,5 +1,5 @@
 {
- "maj": "9 juillet 2026",
+ "maj": "2026-08-28",
  "persons": [
   {
    "n": "Yann LeCun",
@@ -10,7 +10,7 @@
    "u": "https://fr.wikipedia.org/wiki/Yann_Le_Cun",
    "x": "ylecun",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/yann-lecun.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Yann_LeCun_-_2025_%28cropped%29.jpg/330px-Yann_LeCun_-_2025_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Ecole polytechnique from Paris",
    "photo_license": "CC BY-SA 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Yann_LeCun_-_2025_(cropped).jpg"
@@ -24,7 +24,7 @@
    "u": "https://fr.wikipedia.org/wiki/Geoffrey_Hinton",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/geoffrey-hinton.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Geoffrey_Hinton_in_2026.jpg/330px-Geoffrey_Hinton_in_2026.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Cmichel67",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_in_2026.jpg"
@@ -38,7 +38,7 @@
    "u": "https://fr.wikipedia.org/wiki/Yoshua_Bengio",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/yoshua-bengio.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Yoshua_Bengio_2019_cropped.jpg/330px-Yoshua_Bengio_2019_cropped.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Maryse Boyce",
    "photo_license": "CC BY 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Yoshua_Bengio_2019_cropped.jpg"
@@ -52,7 +52,7 @@
    "u": "https://fr.wikipedia.org/wiki/Fei-Fei_Li",
    "x": "drfeifei",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/fei-fei-li.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Fei-Fei_Li_at_AI_for_Good_2017.jpg/330px-Fei-Fei_Li_at_AI_for_Good_2017.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "ITU Pictures",
    "photo_license": "CC BY 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Fei-Fei_Li_at_AI_for_Good_2017.jpg"
@@ -66,7 +66,7 @@
    "u": "https://fr.wikipedia.org/wiki/Ilya_Sutskever",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/ilya-sutskever.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Ilya_Sutskever_and_Sam_Altman_in_TAU.jpg/330px-Ilya_Sutskever_and_Sam_Altman_in_TAU.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Eladkarmel",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Ilya_Sutskever_and_Sam_Altman_in_TAU.jpg"
@@ -80,7 +80,7 @@
    "u": "https://fr.wikipedia.org/wiki/Andrew_Ng",
    "x": "AndrewYNg",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/andrew-ng.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg/330px-Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "TechCrunch",
    "photo_license": "CC BY 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg"
@@ -94,7 +94,7 @@
    "u": "https://fr.wikipedia.org/wiki/Stuart_Russell",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/stuart-russell.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Stuart_Russell_01.jpg/330px-Stuart_Russell_01.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Bengt Oberger",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Stuart_Russell_01.jpg"
@@ -108,7 +108,7 @@
    "u": "https://fr.wikipedia.org/wiki/Alan_Turing",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/alan-turing.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Alan_Turing_%281912-1954%29_in_1936_at_Princeton_University.jpg/330px-Alan_Turing_%281912-1954%29_in_1936_at_Princeton_University.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Photographe inconnu",
    "photo_license": "Public domain",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Alan_Turing_(1912-1954)_in_1936_at_Princeton_University.jpg"
@@ -122,7 +122,7 @@
    "u": "https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/john-mccarthy.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/John_McCarthy_Stanford.jpg/330px-John_McCarthy_Stanford.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "\"null0\"",
    "photo_license": "CC BY-SA 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:John_McCarthy_Stanford.jpg"
@@ -136,10 +136,10 @@
    "u": "https://fr.wikipedia.org/wiki/Marvin_Minsky",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/marvin-minsky.webp",
-   "photo_credit": "Sethwoodworth sur Wikipédia anglais, taken by Bcjordan",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Marvin_Minsky_at_OLPCb_%283x4_cropped%29.jpg/330px-Marvin_Minsky_at_OLPCb_%283x4_cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "photo_credit": "Original téléversé par Sethwoodworth sur Wikipédia anglais.",
    "photo_license": "CC BY 3.0",
-   "photo_src": "https://commons.wikimedia.org/wiki/File:Marvin_Minsky_at_OLPC.jpg"
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Marvin_Minsky_at_OLPCb_(3x4_cropped).jpg"
   },
   {
    "n": "Luc Julia",
@@ -150,7 +150,7 @@
    "u": "https://fr.wikipedia.org/wiki/Luc_Julia",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/luc-julia.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Luc_Julia_-_2019_%28cropped%29.jpg/330px-Luc_Julia_-_2019_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Conseil économique social et environnemental",
    "photo_license": "CC BY 3.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Luc_Julia_-_2019_(cropped).jpg"
@@ -164,7 +164,7 @@
    "u": "https://fr.wikipedia.org/wiki/Aur%C3%A9lie_Jean",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/aurelie-jean.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Aur%C3%A9lie_Jean_2018.png/330px-Aur%C3%A9lie_Jean_2018.png?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Bitcoin fr",
    "photo_license": "CC BY 3.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Aur%C3%A9lie_Jean_2018.png"
@@ -178,7 +178,7 @@
    "u": "https://fr.wikipedia.org/wiki/Jean-Gabriel_Ganascia",
    "x": "",
    "notoriete": 1,
-   "photo": "/outils/personnalites-ia/photos/jean-gabriel-ganascia.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/JGGanascia.jpg/330px-JGGanascia.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "MoricetteMartin",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:JGGanascia.jpg"
@@ -192,7 +192,7 @@
    "u": "https://fr.wikipedia.org/wiki/Sam_Altman",
    "x": "sama",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/sam-altman.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Sam_Altman_speaking_at_TED_%28cropped%29.jpg/330px-Sam_Altman_speaking_at_TED_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Steve Jurvetson",
    "photo_license": "CC BY 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Sam_Altman_speaking_at_TED_(cropped).jpg"
@@ -206,7 +206,7 @@
    "u": "https://fr.wikipedia.org/wiki/Dario_Amodei",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/dario-amodei.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Dario_Amodei_in_2023.jpg/330px-Dario_Amodei_in_2023.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "UK Prime Minister",
    "photo_license": "CC BY 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Dario_Amodei_in_2023.jpg"
@@ -220,7 +220,7 @@
    "u": "https://fr.wikipedia.org/wiki/Demis_Hassabis",
    "x": "demishassabis",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/demis-hassabis.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Demis_Hassabis%2C_2024_Nobel_Prize_Laureate_in_Chemistry_7_%28cropped%29.jpg/330px-Demis_Hassabis%2C_2024_Nobel_Prize_Laureate_in_Chemistry_7_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "John Sears",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Demis_Hassabis,_2024_Nobel_Prize_Laureate_in_Chemistry_7_(cropped).jpg"
@@ -234,7 +234,7 @@
    "u": "https://fr.wikipedia.org/wiki/Jensen_Huang",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/jensen-huang.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Jen-Hsun_Huang_2025.jpg/330px-Jen-Hsun_Huang_2025.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "The White House",
    "photo_license": "Public domain",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Jen-Hsun_Huang_2025.jpg"
@@ -248,7 +248,7 @@
    "u": "https://fr.wikipedia.org/wiki/Elon_Musk",
    "x": "elonmusk",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/elon-musk.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/The_White_House_-_54409525537_%28cropped%29_%28cropped%29.jpg/330px-The_White_House_-_54409525537_%28cropped%29_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "The White House",
    "photo_license": "Public domain",
    "photo_src": "https://commons.wikimedia.org/wiki/File:The_White_House_-_54409525537_(cropped)_(cropped).jpg"
@@ -262,7 +262,7 @@
    "u": "https://fr.wikipedia.org/wiki/Mark_Zuckerberg",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/mark-zuckerberg.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/F20250904AH-2915_%2854778607243%29_%28cropped%29.jpg/330px-F20250904AH-2915_%2854778607243%29_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "The White House",
    "photo_license": "Public domain",
    "photo_src": "https://commons.wikimedia.org/wiki/File:F20250904AH-2915_(54778607243)_(cropped).jpg"
@@ -276,7 +276,7 @@
    "u": "https://fr.wikipedia.org/wiki/Sundar_Pichai",
    "x": "sundarpichai",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/sundar-pichai.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Sundar_Pichai_-_2023_%28cropped%29.jpg/330px-Sundar_Pichai_-_2023_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Photographer: Lukasz Kobus (European Commission)",
    "photo_license": "CC BY 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Sundar_Pichai_-_2023_(cropped).jpg"
@@ -290,7 +290,7 @@
    "u": "https://fr.wikipedia.org/wiki/Satya_Nadella",
    "x": "satyanadella",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/satya-nadella.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/MS-Exec-Nadella-Satya-2017-08-31-22_%28cropped%29.jpg/330px-MS-Exec-Nadella-Satya-2017-08-31-22_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Brian Smale and Microsoft",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:MS-Exec-Nadella-Satya-2017-08-31-22_(cropped).jpg"
@@ -304,7 +304,7 @@
    "u": "https://fr.wikipedia.org/wiki/Mira_Murati",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/mira-murati.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Guests_at_the_2026_Met_Gala_274_%28Mira_Murati%29.jpg/330px-Guests_at_the_2026_Met_Gala_274_%28Mira_Murati%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "SWinxy",
    "photo_license": "CC BY 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Guests_at_the_2026_Met_Gala_274_(Mira_Murati).jpg"
@@ -318,7 +318,7 @@
    "u": "https://fr.wikipedia.org/wiki/Arthur_Mensch",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/arthur-mensch.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Arthur_Mensch.png/330px-Arthur_Mensch.png?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Jan2342342423",
    "photo_license": "CC0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Arthur_Mensch.png"
@@ -362,7 +362,7 @@
    "u": "https://fr.wikipedia.org/wiki/Anne_Bouverot",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/anne-bouverot.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Anne_Bouverot_GSR13_cropped.jpg/330px-Anne_Bouverot_GSR13_cropped.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "ITU c/o: Rowan Farrell",
    "photo_license": "CC BY-SA 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Anne_Bouverot_GSR13_cropped.jpg"
@@ -376,7 +376,7 @@
    "u": "https://fr.wikipedia.org/wiki/Gilles_Babinet",
    "x": "",
    "notoriete": 1,
-   "photo": "/outils/personnalites-ia/photos/gilles-babinet.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Conf%C3%A9rencier-Gilles-Babinet.jpg/330px-Conf%C3%A9rencier-Gilles-Babinet.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "AlixDebussche",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Conf%C3%A9rencier-Gilles-Babinet.jpg"
@@ -390,10 +390,10 @@
    "u": "https://fr.wikipedia.org/wiki/Thierry_Breton",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/thierry-breton.webp",
-   "photo_credit": "Christophe Licoppe - European Commission",
-   "photo_license": "CC BY 4.0",
-   "photo_src": "https://commons.wikimedia.org/wiki/File:Breton_EC_Portrait_2019_(cropped).jpg"
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Hearing_of_Commissioner-designate_Thierry_Breton_%2849068069128%29_%28cropped%29.jpg/330px-Hearing_of_Commissioner-designate_Thierry_Breton_%2849068069128%29_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "photo_credit": "European Parliament from EU",
+   "photo_license": "CC BY 2.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Hearing_of_Commissioner-designate_Thierry_Breton_(49068069128)_(cropped).jpg"
   },
   {
    "n": "Margrethe Vestager",
@@ -404,7 +404,7 @@
    "u": "https://fr.wikipedia.org/wiki/Margrethe_Vestager",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/margrethe-vestager.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/P059772-352564_%28cropped%29.jpg/330px-P059772-352564_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Aurore Martignoni - European Commission",
    "photo_license": "CC BY 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:P059772-352564_(cropped).jpg"
@@ -418,7 +418,7 @@
    "u": "https://fr.wikipedia.org/wiki/Max_Tegmark",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/max-tegmark.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Max_Tegmark_2024_%28cropped%29.jpg/330px-Max_Tegmark_2024_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Web Summit",
    "photo_license": "CC BY 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Max_Tegmark_2024_(cropped).jpg"
@@ -432,7 +432,7 @@
    "u": "https://fr.wikipedia.org/wiki/Timnit_Gebru",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/timnit-gebru.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Timnit_Gebru_crop.jpg/330px-Timnit_Gebru_crop.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "TechCrunch",
    "photo_license": "CC BY 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Timnit_Gebru_crop.jpg"
@@ -446,7 +446,7 @@
    "u": "https://fr.wikipedia.org/wiki/C%C3%A9dric_O",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/cedric-o.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/20190401_Cedric_O_Portraits_PhotoG%C3%A9zelinGr%C3%A9e_02.jpg/330px-20190401_Cedric_O_Portraits_PhotoG%C3%A9zelinGr%C3%A9e_02.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Tamaya20",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:20190401_Cedric_O_Portraits_PhotoG%C3%A9zelinGr%C3%A9e_02.jpg"
@@ -460,7 +460,7 @@
    "u": "https://fr.wikipedia.org/wiki/Audrey_Tang",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/audrey-tang.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Audrey_Tang_at_SXSW_2025_02_%28cropped%29.jpg/330px-Audrey_Tang_at_SXSW_2025_02_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Rosiestep",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Audrey_Tang_at_SXSW_2025_02_(cropped).jpg"
@@ -474,7 +474,7 @@
    "u": "https://fr.wikipedia.org/wiki/C%C3%A9dric_Villani",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/cedric-villani.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Cedric_Villani_at_his_office_2015_n3.jpg/330px-Cedric_Villani_at_his_office_2015_n3.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Marie-Lan Nguyen",
    "photo_license": "CC BY 3.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Cedric_Villani_at_his_office_2015_n3.jpg"
@@ -488,7 +488,7 @@
    "u": "https://fr.wikipedia.org/wiki/Andrej_Karpathy",
    "x": "karpathy",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/andrej-karpathy.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Andrej_Karpathy%2C_OpenAI.png/330px-Andrej_Karpathy%2C_OpenAI.png?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Gladwin Analytics",
    "photo_license": "CC BY 3.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Andrej_Karpathy,_OpenAI.png"
@@ -502,7 +502,7 @@
    "u": "https://fr.wikipedia.org/wiki/Lex_Fridman",
    "x": "lexfridman",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/lex-fridman.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Lex_Fridman_teaching_at_MIT_in_2018.png/330px-Lex_Fridman_teaching_at_MIT_in_2018.png?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "lexfridman",
    "photo_license": "CC0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Lex_Fridman_teaching_at_MIT_in_2018.png"
@@ -516,7 +516,7 @@
    "u": "https://fr.wikipedia.org/wiki/Micode",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/micode.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Micode_en_2026_dans_Zack_en_Roue_Libre.png/330px-Micode_en_2026_dans_Zack_en_Roue_Libre.png?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Zack Nani",
    "photo_license": "CC BY 3.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Micode_en_2026_dans_Zack_en_Roue_Libre.png"
@@ -530,7 +530,7 @@
    "u": "https://fr.wikipedia.org/wiki/L%C3%AA_Nguy%C3%AAn_Hoang",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/le-nguyen-hoang.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/L%C3%AA_Nguy%C3%AAn_Hoang_-_2018_%28cropped%29.jpg/330px-L%C3%AA_Nguy%C3%AAn_Hoang_-_2018_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Jérémy Barande",
    "photo_license": "CC BY-SA 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:L%C3%AA_Nguy%C3%AAn_Hoang_-_2018_(cropped).jpg"
@@ -544,7 +544,7 @@
    "u": "https://en.wikipedia.org/wiki/Gary_Marcus",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/gary-marcus.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Gary_Marcus_at_Web_Summit_2022.jpeg/330px-Gary_Marcus_at_Web_Summit_2022.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Web Summit",
    "photo_license": "CC BY 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Gary_Marcus_at_Web_Summit_2022.jpeg"
@@ -588,7 +588,7 @@
    "u": "https://fr.wikipedia.org/wiki/Ga%C3%ABl_Varoquaux",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/gael-varoquaux.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Gael_varoquaux.jpg/330px-Gael_varoquaux.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Gael Varoquaux",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Gael_varoquaux.jpg"
@@ -602,7 +602,7 @@
    "u": "https://fr.wikipedia.org/wiki/L%C3%A9on_Bottou",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/leon-bottou.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/SD_2025_-_L%C3%A9on_Bottou_02.jpg/330px-SD_2025_-_L%C3%A9on_Bottou_02.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Xuthoria",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:SD_2025_-_L%C3%A9on_Bottou_02.jpg"
@@ -616,7 +616,7 @@
    "u": "https://fr.wikipedia.org/wiki/Isabelle_Guyon",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/isabelle-guyon.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/SD_2025_-_Isabelle_Guyon_02_%28cropped%29.jpg/330px-SD_2025_-_Isabelle_Guyon_02_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Xuthoria",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:SD_2025_-_Isabelle_Guyon_02_(cropped).jpg"
@@ -640,7 +640,7 @@
    "u": "https://fr.wikipedia.org/wiki/St%C3%A9phane_Mallat",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/stephane-mallat.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/St%C3%A9phane_Mallat_-_2019_%28cropped%29.jpg/330px-St%C3%A9phane_Mallat_-_2019_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Jérémy Barande",
    "photo_license": "CC BY-SA 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:St%C3%A9phane_Mallat_-_2019_(cropped).jpg"
@@ -664,7 +664,7 @@
    "u": "https://fr.wikipedia.org/wiki/Ian_Goodfellow",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/ian-goodfellow.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Ian_Goodfellow.jpg/330px-Ian_Goodfellow.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Ian Goodfellow",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Ian_Goodfellow.jpg"
@@ -678,7 +678,7 @@
    "u": "https://en.wikipedia.org/wiki/J%C3%BCrgen_Schmidhuber",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/jurgen-schmidhuber.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/J%C3%BCrgen_Schmidhuber%2C_2017_%28cropped%29.jpg/330px-J%C3%BCrgen_Schmidhuber%2C_2017_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "ITU/R.Farrell",
    "photo_license": "CC BY 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:J%C3%BCrgen_Schmidhuber,_2017_(cropped).jpg"
@@ -692,7 +692,7 @@
    "u": "https://en.wikipedia.org/wiki/Richard_S._Sutton",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/richard-sutton.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/SD_2025_-_Richard_Sutton_01_%28cropped%29.jpg/330px-SD_2025_-_Richard_Sutton_01_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Xuthoria",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:SD_2025_-_Richard_Sutton_01_(cropped).jpg"
@@ -706,7 +706,7 @@
    "u": "https://en.wikipedia.org/wiki/Peter_Norvig",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/peter-norvig.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Peter_Norvig_in_2019_%28cropped%29.jpg/330px-Peter_Norvig_in_2019_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Christopher Michel",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Peter_Norvig_in_2019_(cropped).jpg"
@@ -720,7 +720,7 @@
    "u": "https://en.wikipedia.org/wiki/Sebastian_Thrun",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/sebastian-thrun.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Sebastian_Thrun_by_Christopher_Michel_-_6.jpg/330px-Sebastian_Thrun_by_Christopher_Michel_-_6.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Christopher Michel",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Sebastian_Thrun_by_Christopher_Michel_-_6.jpg"
@@ -744,7 +744,7 @@
    "u": "https://en.wikipedia.org/wiki/Mustafa_Suleyman",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/mustafa-suleyman.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Mustafa_Suleyman_photo_%28cropped%29.jpg/330px-Mustafa_Suleyman_photo_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Christopher Wilson",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Mustafa_Suleyman_photo_(cropped).jpg"
@@ -758,7 +758,7 @@
    "u": "https://en.wikipedia.org/wiki/Alexandr_Wang",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/alexandr-wang.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Alexandr_Wang%2C_Chief_A.I._Officer%2C_Meta.jpg/330px-Alexandr_Wang%2C_Chief_A.I._Officer%2C_Meta.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Meta Platforms, Inc.",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Alexandr_Wang,_Chief_A.I._Officer,_Meta.jpg"
@@ -772,7 +772,7 @@
    "u": "https://en.wikipedia.org/wiki/Greg_Brockman",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/greg-brockman.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Disrupt_SF_TechCrunch_Disrupt_San_Francisco_2019_-_Day_2_%2848838200316%29_%28cropped%29.jpg/330px-Disrupt_SF_TechCrunch_Disrupt_San_Francisco_2019_-_Day_2_%2848838200316%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "TechCrunch",
    "photo_license": "CC BY 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Disrupt_SF_TechCrunch_Disrupt_San_Francisco_2019_-_Day_2_(48838200316)_(cropped).jpg"
@@ -796,7 +796,7 @@
    "u": "https://fr.wikipedia.org/wiki/Rand_Hindi",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/rand-hindi.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Rand_Hindi_%2822058742304%29_%28cropped%29.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "photo_credit": "TEDx Paris",
    "photo_license": "CC BY 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Rand_Hindi_(22058742304)_(cropped).jpg"
@@ -810,7 +810,7 @@
    "u": "https://en.wikipedia.org/wiki/Dan_Hendrycks",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/dan-hendrycks.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Dan_Hendrycks_2025_%28cropped%29.jpg/330px-Dan_Hendrycks_2025_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "TechCrunch",
    "photo_license": "CC BY 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Dan_Hendrycks_2025_(cropped).jpg"
@@ -834,7 +834,7 @@
    "u": "https://en.wikipedia.org/wiki/Nick_Bostrom",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/nick-bostrom.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Prof_Nick_Bostrom_324-1.jpg/330px-Prof_Nick_Bostrom_324-1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Future of Humanity Institute",
    "photo_license": "CC BY 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Prof_Nick_Bostrom_324-1.jpg"
@@ -848,7 +848,7 @@
    "u": "https://en.wikipedia.org/wiki/Eliezer_Yudkowsky",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/eliezer-yudkowsky.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Eliezer_Yudkowsky%2C_Stanford_2006_%28square_crop%29.jpg/330px-Eliezer_Yudkowsky%2C_Stanford_2006_%28square_crop%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "\"null0\"",
    "photo_license": "CC BY-SA 2.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Eliezer_Yudkowsky,_Stanford_2006_(square_crop).jpg"
@@ -882,7 +882,7 @@
    "u": "https://en.wikipedia.org/wiki/Kate_Crawford",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/kate-crawford.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Kate_Crawford_in_2025_05.jpg/330px-Kate_Crawford_in_2025_05.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Cmichel67",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Kate_Crawford_in_2025_05.jpg"
@@ -896,7 +896,7 @@
    "u": "https://fr.wikipedia.org/wiki/Laurence_Devillers",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/laurence-devillers.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Laurence_Devillers_Portrait.jpg/330px-Laurence_Devillers_Portrait.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Olivier Ezratty",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Laurence_Devillers_Portrait.jpg"
@@ -920,7 +920,7 @@
    "u": "https://fr.wikipedia.org/wiki/David_Louapre",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/david-louapre.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/David_Louapre_2018.jpg/330px-David_Louapre_2018.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "David Louapre, Fondation La main à la pâte",
    "photo_license": "CC BY 3.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:David_Louapre_2018.jpg"
@@ -934,7 +934,7 @@
    "u": "https://en.wikipedia.org/wiki/Joy_Buolamwini",
    "x": "",
    "notoriete": 3,
-   "photo": "/outils/personnalites-ia/photos/joy-buolamwini.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Joy_Buolamwini_-_Wikimania_2018_01.jpg/330px-Joy_Buolamwini_-_Wikimania_2018_01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "Niccolò Caranti",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Joy_Buolamwini_-_Wikimania_2018_01.jpg"
@@ -947,7 +947,11 @@
    "bio": "Présidente de Signal, cofondatrice de l'AI Now Institute, voix critique sur le pouvoir des géants de l'IA.",
    "u": "https://en.wikipedia.org/wiki/Meredith_Whittaker",
    "x": "",
-   "notoriete": 2
+   "notoriete": 2,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/MKr30771_Meredith_Whittaker_%28Republica_23%29.jpg/330px-MKr30771_Meredith_Whittaker_%28Republica_23%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "photo_credit": "Martin Kraft",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:MKr30771_Meredith_Whittaker_(Republica_23).jpg"
   },
   {
    "n": "Emily M. Bender",
@@ -958,10 +962,128 @@
    "u": "https://en.wikipedia.org/wiki/Emily_M._Bender",
    "x": "",
    "notoriete": 2,
-   "photo": "/outils/personnalites-ia/photos/emily-m-bender.webp",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Emily_M_Bender_CHM_Mountain_View_March_2025.jpg/330px-Emily_M_Bender_CHM_Mountain_View_March_2025.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "photo_credit": "King of Hearts",
    "photo_license": "CC BY-SA 4.0",
    "photo_src": "https://commons.wikimedia.org/wiki/File:Emily_M_Bender_CHM_Mountain_View_March_2025.jpg"
+  },
+  {
+   "n": "Marietje Schaake",
+   "role": "regulation",
+   "org": "Stanford Cyber Policy Center (ex-Parlement européen)",
+   "pays": "NL",
+   "bio": "Ex-eurodéputée, chercheuse en politique tech (Stanford), autrice de 'The Tech Coup'. Présidente du Groupe de travail 4 du Code of Practice GPAI (surveillance interne, gouvernance).",
+   "u": "https://digital-strategy.ec.europa.eu/en/news/meet-chairs-leading-development-first-general-purpose-ai-code-practice",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "Nuria Oliver",
+   "role": "recherche",
+   "org": "ELLIS Alicante",
+   "pays": "ES",
+   "bio": "Chercheuse IA (data science, IA pour le bien social), co-fondatrice d'ELLIS. Présidente du GT1 (Transparence) du Code of Practice GPAI.",
+   "u": "https://digital-strategy.ec.europa.eu/en/news/meet-chairs-leading-development-first-general-purpose-ai-code-practice",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "Rishi Bommasani",
+   "role": "recherche",
+   "org": "Stanford HAI",
+   "pays": "US",
+   "bio": "Society Lead au Stanford Center for Research on Foundation Models ; a coordonné le rapport 'Opportunities and Risks of Foundation Models'. Vice-président du GT1 (Transparence) du Code of Practice GPAI.",
+   "u": "https://digital-strategy.ec.europa.eu/en/news/meet-chairs-leading-development-first-general-purpose-ai-code-practice",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Markus Anderljung",
+   "role": "regulation",
+   "org": "Centre for the Governance of AI (GovAI)",
+   "pays": "GB",
+   "bio": "Directeur des politiques à GovAI, spécialiste de la gouvernance des modèles de pointe. Vice-président du GT4 du Code of Practice GPAI.",
+   "u": "https://digital-strategy.ec.europa.eu/en/news/meet-chairs-leading-development-first-general-purpose-ai-code-practice",
+   "x": "",
+   "notoriete": 2
+  },
+  {
+   "n": "Matthias Samwald",
+   "role": "recherche",
+   "org": "Medical University of Vienna",
+   "pays": "AT",
+   "bio": "Chercheur (IA, informatique médicale). Président du GT2 du Code of Practice GPAI (droit d'auteur / mesures liées aux données).",
+   "u": "https://digital-strategy.ec.europa.eu/en/news/meet-chairs-leading-development-first-general-purpose-ai-code-practice",
+   "x": "",
+   "notoriete": 1
+  },
+  {
+   "n": "Marta Ziosi",
+   "role": "recherche",
+   "org": "Oxford Martin AI Governance Initiative",
+   "pays": "GB",
+   "bio": "Chercheuse postdoctorale en gouvernance de l'IA (Oxford). Vice-présidente d'un groupe de travail du Code of Practice GPAI.",
+   "u": "https://digital-strategy.ec.europa.eu/en/news/meet-chairs-leading-development-first-general-purpose-ai-code-practice",
+   "x": "",
+   "notoriete": 1
+  },
+  {
+   "n": "Fred Jordan",
+   "role": "entreprise",
+   "org": "FinalSpark / AlpVision",
+   "pays": "CH",
+   "bio": "Serial entrepreneur suisse (PhD signal processing EPFL). Co-CEO d'AlpVision (anti-contrefaçon numérique, 2001) et de FinalSpark (biocomputing / organoïdes cérébraux, 2014). Porte la thèse des « IA vivantes » (calcul par neurones humains, 1M× plus économe en énergie).",
+   "u": "https://finalspark.com/",
+   "x": "DrFredJordan",
+   "notoriete": 2
+  },
+  {
+   "n": "Henry Markram",
+   "role": "recherche",
+   "org": "EPFL / Blue Brain Project",
+   "pays": "CH",
+   "bio": "Neuroscientifique, fondateur du Blue Brain Project et du Human Brain Project (EPFL) — simulation du cerveau. Son labo est à l'origine (indirecte) de FinalSpark : c'est là qu'un futur associé a découvert les neurones biologiques.",
+   "u": "https://fr.wikipedia.org/wiki/Henry_Markram",
+   "x": "",
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Portrait_of_Henry_Markram.jpg/330px-Portrait_of_Henry_Markram.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "photo_credit": "EPFL-MEDIACOM",
+   "photo_license": "CC BY 4.0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Portrait_of_Henry_Markram.jpg"
+  },
+  {
+   "n": "David Silver",
+   "role": "recherche",
+   "org": "Google DeepMind",
+   "pays": "GB",
+   "bio": "Architecte d'AlphaGo (projet lancé vers 2014), puis d'AlphaGo Zero et AlphaZero ; figure centrale de l'apprentissage par renforcement",
+   "u": "https://en.wikipedia.org/wiki/David_Silver_(computer_scientist)",
+   "x": "",
+   "notoriete": 3
+  },
+  {
+   "n": "Jeremy Howard",
+   "role": "recherche",
+   "org": "fast.ai / Answer.AI",
+   "pays": "AU",
+   "bio": "Co-fondateur de fast.ai, pionnier de l'apprentissage par transfert et de la démocratisation du deep learning ; auteur du cours de référence Practical Deep Learning for Coders.",
+   "u": "https://en.wikipedia.org/wiki/Jeremy_Howard_(entrepreneur)",
+   "x": "",
+   "notoriete": 3,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Jeremy_Howard.jpg/330px-Jeremy_Howard.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "photo_credit": "Hr0207",
+   "photo_license": "CC0",
+   "photo_src": "https://commons.wikimedia.org/wiki/File:Jeremy_Howard.jpg"
+  },
+  {
+   "n": "Mathilde Cerioli",
+   "role": "recherche",
+   "org": "Everyone.AI",
+   "pays": "FR",
+   "bio": "Docteure en neurosciences cognitives et psychologie du développement de l'enfant ; Chief Scientist d'Everyone.AI (ONG sur l'impact de l'IA sur les 0-25 ans). Co-initiatrice de la Beneficial AI for Children Coalition (Forum de Paris pour la Paix, UNICEF, UNESCO).",
+   "u": "https://www.linkedin.com/in/mathilde-neugnot-cerioli/",
+   "x": "",
+   "notoriete": 2
   }
  ]
 }
