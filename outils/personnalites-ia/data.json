@@ -1,5 +1,5 @@
 {
- "maj": "2026-08-28",
+ "maj": "2026-08-31",
  "persons": [
   {
    "n": "Yann LeCun",
@@ -1084,6 +1084,16 @@
    "u": "https://www.linkedin.com/in/mathilde-neugnot-cerioli/",
    "x": "",
    "notoriete": 2
+  },
+  {
+   "n": "Bill Gates",
+   "role": "influence",
+   "org": "Gates Foundation (chairman) / Breakthrough Energy — cofondateur de Microsoft",
+   "pays": "US",
+   "bio": "Cofondateur de Microsoft, philanthrope à plein temps depuis 2008. Producteur de thèses sur l'IA depuis son essai du 26/08/2026 (« The turbulent AI era is here ») : emploi, gouvernance mondiale, Human Reserved, taxe tokens/robots. Déclare lui-même ses liens financiers avec le secteur tech.",
+   "u": "https://www.gatesnotes.com/",
+   "x": "BillGates",
+   "notoriete": 3
   }
  ]
 }
