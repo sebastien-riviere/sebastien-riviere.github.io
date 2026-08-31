@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un CV mal trié coûte un poste. Une cible mal triée, une vie. — Sébastien Rivière</title>
+<meta name="description" content="En Europe, un logiciel qui trie des candidatures est classé à haut risque. Un logiciel qui trie des cibles humaines est hors du champ du même règlement. Deux épisodes datés — Gaza 2024, Iran 2026 — et les textes qui les encadrent.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Sébastien Rivière">
+<meta property="og:title" content="Un CV mal trié coûte un poste. Une cible mal triée, une vie.">
+<meta property="og:description" content="Gaza 2024, Iran 2026 : le ciblage assisté par IA, ce qui est documenté, ce qui est démenti, et ce que le règlement européen laisse hors de son champ.">
+<meta property="og:url" content="https://sebastien-riviere.github.io/articles/trier-des-cv-trier-des-cibles/">
+<meta property="og:image" content="https://sebastien-riviere.github.io/articles/trier-des-cv-trier-des-cibles/og-lavender.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Une ville vue du ciel, en bleu nuit. À gauche, un cercle fermé de douze étoiles ambrées entoure trois systèmes encadrés en turquoise. À droite, hors du cercle, un réticule blanc verrouille une cible d'un point rouge.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sebastien-riviere.github.io/articles/trier-des-cv-trier-des-cibles/og-lavender.jpg">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1722" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/site.css?v=2026082001">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+/* Palette comic-lite bleu (base remappée ; familles inchangées) */
+:root{
+  --ui:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --bg:#e9eef4; --bg-band:#dfe7f0;
+  --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --card:#ffffff; --border:#1b2836; --border-soft:#d5dee8;
+  --title:#1c2a37; --accent:#12a082; --accent-ink:#0c7d60; --accent-soft:#dcf3ec;
+  --pop:#d64550; --pop-ink:#b23131; --pop-soft:#f6dede;
+  --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --t-ia:#12a082; --t-ia-soft:#dcf3ec; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+  --t-labo:#7345a0; --t-labo-soft:#ece2f6; --t-art:#12a082; --t-art-soft:#e4e6f8;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+    --card:#16212e; --border:rgba(221,233,244,.24); --border-soft:rgba(221,233,244,.10); --title:#e7eef5;
+    --accent:#2fd6ab; --accent-ink:#3ee6bb; --accent-soft:#12312a;
+    --pop:#e5686f; --pop-ink:#e08c8c; --pop-soft:#2f1a1a; --shadow:3px 3px 0 rgba(0,0,0,.42);
+    --t-ia:#2fd6ab; --t-ia-soft:#12312a; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+    --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+    --t-labo:#c2a3e3; --t-labo-soft:#251a33; --t-art:#2fd6ab; --t-art-soft:#1a1e33;
+  }
+}
+html[data-theme="light"]{
+  --ui:'Nunito',system-ui,sans-serif; --bg:#e9eef4; --bg-band:#dfe7f0; --text:#1c2a37; --muted:#57697a; --faint:#8496a5;
+  --card:#ffffff; --border:#1b2836; --border-soft:#d5dee8; --title:#1c2a37;
+  --accent:#12a082; --accent-ink:#0c7d60; --accent-soft:#dcf3ec;
+  --pop:#d64550; --pop-ink:#b23131; --pop-soft:#f6dede; --shadow:3px 3px 0 rgba(20,33,46,.12);
+  --t-art:#12a082; --t-art-soft:#e4e6f8; --t-ia:#12a082; --t-ia-soft:#dcf3ec; --t-cp:#b23b3b; --t-cp-soft:#f6dede;
+  --t-prod:#3f7a4e; --t-prod-soft:#e3efe1; --t-block:#b8570f; --t-block-soft:#fae0cc;
+}
+html[data-theme="dark"]{
+  --ui:'Nunito',system-ui,sans-serif; --bg:#0f1722; --bg-band:#16212e; --text:#e7eef5; --muted:#a3b3c2; --faint:#728398;
+  --card:#16212e; --border:rgba(221,233,244,.24); --border-soft:rgba(221,233,244,.10); --title:#e7eef5;
+  --accent:#2fd6ab; --accent-ink:#3ee6bb; --accent-soft:#12312a;
+  --pop:#e5686f; --pop-ink:#e08c8c; --pop-soft:#2f1a1a; --shadow:3px 3px 0 rgba(0,0,0,.42);
+  --t-art:#2fd6ab; --t-art-soft:#1a1e33; --t-ia:#2fd6ab; --t-ia-soft:#12312a; --t-cp:#e08c8c; --t-cp-soft:#2f1a1a;
+  --t-prod:#8fc09a; --t-prod-soft:#1a2a20; --t-block:#f07838; --t-block-soft:#28180a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);background-image:radial-gradient(var(--border-soft) 1.2px,transparent 1.3px);background-size:34px 34px;color:var(--text);font-family:var(--ui);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:inherit;text-decoration:none;}
+.maxw{max-width:1120px;width:100%;margin:0 auto;}
+main{flex:1;padding:34px 40px 64px;}
+
+/* ===== ARTICLE ===== */
+.art{max-width:720px;margin:0 auto;}
+.art .breadcrumb{font-size:13px;font-weight:600;color:var(--faint);margin-bottom:20px;}
+.art .breadcrumb a:hover{color:var(--accent-ink);}
+.art-kick{font-weight:800;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--t-labo);}
+.art h1{font-weight:800;font-size:clamp(28px,5vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--title);margin:10px 0 16px;}
+.art-meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13.5px;font-weight:600;color:var(--muted);padding-bottom:22px;border-bottom:1px solid var(--border);margin-bottom:8px;}
+.art-meta .dot{color:var(--faint);}
+.lede{font-size:clamp(18px,2.4vw,21px);line-height:1.55;color:var(--text);font-weight:500;margin:26px 0;text-align:justify;-webkit-hyphens:auto;hyphens:auto;}
+.lede strong{color:var(--title);font-weight:700;}
+
+.art h2{font-weight:800;font-size:clamp(22px,3.2vw,28px);line-height:1.2;letter-spacing:-.01em;color:var(--title);margin:44px 0 14px;padding-top:8px;}
+.art h2 .num{color:var(--t-labo);margin-right:6px;}
+.art h3{font-weight:800;font-size:18px;color:var(--title);margin:26px 0 8px;}
+.art p{margin:0 0 16px;text-align:justify;-webkit-hyphens:auto;hyphens:auto;}
+.art p strong{color:var(--title);font-weight:700;}
+.art em{font-style:italic;}
+.art a.inline{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);}
+.art a.inline:hover{color:var(--pop-ink);}
+.art hr{border:0;height:1px;background:var(--border);margin:40px 0;}
+
+/* Citation */
+.art blockquote{border-left:3px solid var(--accent);background:var(--bg-band);border-radius:0 10px 10px 0;padding:14px 20px;margin:22px 0;font-size:17px;line-height:1.55;color:var(--text);}
+.art blockquote .src{display:block;margin-top:8px;font-size:13px;font-weight:600;color:var(--faint);font-style:normal;}
+
+/* Encadré */
+.box{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--bc,var(--t-ia));border-radius:12px;padding:18px 22px;margin:26px 0;box-shadow:var(--shadow);}
+.box h4{font-size:15px;font-weight:800;color:var(--title);margin:0 0 8px;display:flex;align-items:center;gap:8px;}
+.box p{font-size:14.5px;line-height:1.6;margin:0 0 8px;color:var(--text);text-align:justify;-webkit-hyphens:auto;hyphens:auto;}
+.box p:last-child{margin-bottom:0;}
+.box .note{font-size:12.5px;color:var(--muted);}
+.box.ia{--bc:var(--t-ia);} .box.block{--bc:var(--t-block);} .box.prod{--bc:var(--t-prod);}
+.box.muted{--bc:var(--faint);background:var(--bg-band);box-shadow:none;}
+
+/* Deux pièges — colonnes */
+.pieges{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0;}
+.piege{border:1px solid var(--border);border-radius:12px;padding:16px 18px;background:var(--card);box-shadow:var(--shadow);}
+.piege .lbl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;border-radius:20px;padding:3px 10px;margin-bottom:8px;}
+.piege.a .lbl{color:var(--t-cp);background:var(--t-cp-soft);}
+.piege.b .lbl{color:var(--t-ia);background:var(--t-ia-soft);}
+.piege p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;}
+.piege b{color:var(--title);}
+
+/* Figure / graphique — surface claire constante (data-viz) */
+.figure{margin:28px 0;}
+.figure .surface{background:#ffffff;border:1px solid #e3e8ef;border-radius:14px;padding:18px 20px;overflow-x:auto;}
+.figure svg{display:block;max-width:100%;height:auto;margin:0 auto;}
+.figure figcaption{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:10px;padding:0 2px;}
+.figure figcaption a{color:var(--accent-ink);text-decoration:underline;}
+
+/* Tableaux */
+.tbl-wrap{overflow-x:auto;margin:26px 0;border:1px solid var(--border);border-radius:12px;background:var(--card);box-shadow:var(--shadow);}
+table.data{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+table.data caption{text-align:left;font-weight:800;font-size:16px;color:var(--title);padding:16px 16px 2px;}
+table.data .capsub{font-weight:500;font-size:12.5px;color:var(--muted);}
+table.data th{text-align:left;font-weight:700;color:var(--muted);border-bottom:1px solid var(--border);padding:10px 14px;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;}
+table.data td{border-bottom:1px solid var(--border-soft);padding:11px 14px;vertical-align:top;}
+table.data tr:last-child td{border-bottom:0;}
+table.data .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+table.data a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;white-space:nowrap;}
+.badge.yes{color:var(--t-prod);background:var(--t-prod-soft);}
+.badge.no{color:var(--muted);background:var(--bg-band);}
+.tbl-src{font-size:12px;color:var(--muted);padding:10px 16px 14px;line-height:1.5;}
+
+/* Stat strip */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:26px 0;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;box-shadow:var(--shadow);}
+.stat .big{font-weight:800;font-size:26px;color:var(--title);letter-spacing:-.02em;}
+.stat .lab{font-size:12px;color:var(--muted);line-height:1.4;margin-top:4px;}
+
+/* Embed vidéo */
+.embed{margin:26px 0;}
+.embed .frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--border);}
+.embed .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.embed figcaption{font-size:13px;color:var(--muted);line-height:1.5;margin-top:9px;}
+.embed figcaption b{color:var(--title);}
+
+/* Carte-lien / repli */
+.callout{border:1px solid var(--border);border-left:4px solid var(--t-cp);border-radius:12px;background:var(--bg-band);padding:16px 20px;margin:26px 0;}
+.callout p{font-size:14px;line-height:1.6;color:var(--text);margin:0;}
+.callout b{color:var(--title);}
+.callout a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;}
+
+/* Sources + signature */
+.sources{margin:44px 0 0;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);}
+.sources h2{font-size:20px;margin:0 0 6px;padding:0;}
+.sources .intro{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:16px;}
+.sources h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--t-labo);margin:18px 0 8px;}
+.sources ul{margin:0;padding-left:18px;}
+.sources li{font-size:13.5px;line-height:1.6;margin-bottom:6px;color:var(--muted);}
+.sources a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;}
+.legal{font-size:13px;color:var(--muted);line-height:1.6;margin:24px 0 0;padding:14px 18px;border:1px dashed var(--border);border-radius:10px;background:var(--bg-band);}
+.signature{font-size:13px;font-style:italic;color:var(--faint);text-align:center;margin:26px 0 0;line-height:1.6;}
+
+footer{padding:22px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;font-weight:600;color:var(--faint);border-top:1px solid var(--border);}
+footer a{color:var(--faint);}footer a:hover{color:var(--accent-ink);}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px;}
+@media(max-width:600px){
+  header{padding:20px 18px 0;}main{padding:26px 18px 44px;}footer{padding:18px;}
+  .name{font-size:22px;}.mainnav{margin-top:16px;}.mainnav a{font-size:14px;padding:10px 12px;}
+  .pieges{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+
+/* Vidéo verticale 4:5 — le montage est au format Facebook, pas au format 16/9 */
+.embed.portrait .frame{aspect-ratio:4/5;max-width:min(100%,430px);margin:0 auto;}
+.embed.portrait .frame video{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:contain;background:#0d1b2a;border:0;display:block;}
+.embed.portrait figcaption{max-width:min(100%,430px);margin-left:auto;margin-right:auto;}
+/* Le lecteur est un bloc sombre pose sur un fond clair : sans ombre il flotte,
+   alors que tous les autres blocs de la page (encadres, chiffres) en ont une. */
+.embed.portrait .frame{box-shadow:var(--shadow);}
+/* Les sources sous les citations sont devenues cliquables : sans cette regle
+   elles heritent de a{color:inherit} et rien ne signale qu'on peut les ouvrir. */
+.art blockquote .src a{text-decoration:underline;text-underline-offset:2px;
+  text-decoration-color:color-mix(in srgb,var(--accent) 55%,transparent);}
+.art blockquote .src a:hover{color:var(--accent-ink);}
+.box a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px;
+  text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);}
+</style>
+</head>
+<body>
+
+<div id="sr-header" data-active="articles"></div>
+
+<main class="maxw">
+<article class="art">
+
+  <div class="breadcrumb"><a href="/articles/" class="inline">← Articles &amp; enquêtes</a></div>
+  <div class="art-kick">Enquête · IA &amp; défense</div>
+  <h1>Un CV mal trié coûte un poste. Une cible mal triée, une vie.</h1>
+  <div class="art-meta">
+    <span>Par Sébastien Rivière</span><span class="dot">·</span>
+    <span>31 août 2026</span><span class="dot">·</span>
+    <span>Lecture ~12 min</span><span class="dot">·</span>
+    <span>La Réunion</span><span class="dot">·</span>
+    <button type="button" class="sr-share inline" data-share data-share-title="Un CV mal trié coûte un poste. Une cible mal triée, une vie." aria-label="Partager cet article" title="Partager"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></button>
+  </div>
+
+  <!-- CHAPÔ : le montage -->
+  <figure class="embed portrait">
+    <div class="frame">
+      <video controls preload="none" playsinline poster="poster-lavender.jpg">
+        <source src="lavender-ciblage-ia.mp4" type="video/mp4">
+        Votre navigateur ne peut pas lire cette vidéo. <a href="lavender-ciblage-ia.mp4">La télécharger</a>.
+      </video>
+    </div>
+    <figcaption><b>Ciblage assisté par IA — Gaza 2024, Iran 2026</b> · 7 min 22. Sept sources, aucun commentaire ajouté : les intervenants parlent, les bandeaux disent qui et quand. Sous-titres français incrustés.</figcaption>
+  </figure>
+
+  <p class="lede">En Europe, un logiciel qui trie des candidatures à l'embauche est un système <strong>à haut risque</strong> : documentation, journalisation, contrôle humain, information des personnes concernées. Un logiciel qui trie des cibles humaines <strong>sort du champ du même règlement</strong>. C'est écrit à l'article 2 du <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" class="inline">règlement (UE) 2024/1689</a>.</p>
+
+  <p>Ce texte est le plus complet au monde sur l'intelligence artificielle. Il encadre le recrutement, le crédit, l'éducation, la police, les frontières. Et il s'arrête net devant la seule application où une erreur de classement tue dans l'instant. Cette frontière n'est pas un oubli de rédaction : elle a été posée, et elle a une raison. Reste à regarder ce qu'il y a de l'autre côté.</p>
+
+  <hr>
+
+  <!-- ===== 1 ===== -->
+  <h2><span class="num">1.</span> L'exclusion est écrite, et elle a une raison</h2>
+
+  <p>Le règlement européen — l'<em>AI Act</em> — fonctionne par niveaux de risque. En haut, les usages interdits. Juste en dessous, les systèmes « à haut risque », soumis à un régime lourd. Le reste est libre, ou presque.</p>
+
+  <p>L'annexe III liste les systèmes à haut risque. Son point 4, alinéa a), vise ceux destinés à <em>« recruter ou sélectionner des personnes physiques, notamment pour publier des offres d'emploi ciblées, analyser et filtrer les candidatures et évaluer les candidats »</em>. Un outil qui trie des CV tombe dedans. Son fournisseur doit tenir une documentation technique, journaliser le fonctionnement, gérer la qualité des données, informer les personnes concernées et permettre un <strong>contrôle humain effectif</strong> — l'article 14.</p>
+
+  <p>Vient ensuite l'article 2, paragraphe 3 :</p>
+
+  <blockquote>
+    « Le présent règlement ne s'applique pas aux systèmes d'IA lorsque et dans la mesure où ils sont mis sur le marché, mis en service ou utilisés, avec ou sans modification, <strong>exclusivement à des fins militaires, de défense ou de sécurité nationale</strong>, quel que soit le type d'entité exerçant ces activités. »
+    <span class="src"><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">Règlement (UE) 2024/1689, article 2, paragraphe 3</a></span>
+  </blockquote>
+
+  <div class="box ia">
+    <h4>Deux tris, deux régimes</h4>
+    <p>Un système qui classe des candidats à un poste : <strong>haut risque</strong>. Contrôle humain obligatoire, documentation opposable, droit à l'information de la personne classée.</p>
+    <p>Un système qui classe des personnes comme cibles : <strong>hors champ</strong>, dès lors que son usage est exclusivement militaire, de défense ou de sécurité nationale.</p>
+    <p class="note">Même règlement : l'exclusion à l'article 2, la liste des systèmes à haut risque en annexe III.</p>
+  </div>
+
+  <p>L'exclusion n'est pas une bévue. L'Union n'a pas compétence sur la défense nationale : l'<a href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:12016M004" class="inline">article 4, paragraphe 2 du traité sur l'Union européenne</a> réserve la sécurité nationale à « la seule responsabilité de chaque État membre ». Bruxelles ne pouvait pas légiférer sur les armes sans sortir de ses attributions. Le raisonnement juridique tient.</p>
+
+  <p>Son résultat est plus rude : le domaine où l'erreur est irréversible est le seul que le texte ne regarde pas. Et rien n'a pris le relais. Les discussions onusiennes sur les systèmes d'armes létales autonomes durent depuis 2014 sans avoir produit d'instrument contraignant. L'espace n'est pas mal encadré ; il est vide de ce texte-là.</p>
+
+  <div class="box muted">
+    <h4>Ce que cet article compare, et ce qu'il ne compare pas</h4>
+    <p>Les deux épisodes qui suivent se déroulent hors d'Europe. Ni l'armée israélienne ni l'armée américaine ne sont soumises à l'AI Act : ce ne sont pas des manquements au règlement, et ils ne peuvent pas l'être.</p>
+    <p>Ils documentent autre chose — ce que produit un système de tri appliqué à des personnes quand aucune obligation de documentation, de journalisation ou de temps de contrôle ne pèse sur lui. Soit exactement ce que l'Europe impose à un logiciel de recrutement, et que personne n'impose ici.</p>
+    <p>Le sujet revient en Europe à la partie 5 : la France construit aujourd'hui la même catégorie d'outils, et l'exclusion qu'elle a votée s'y applique.</p>
+  </div>
+
+  <hr>
+
+  <!-- ===== 2 ===== -->
+  <h2><span class="num">2.</span> Gaza, 2024 : ce que six officiers ont raconté</h2>
+
+  <p>Le 3 avril 2024, le journaliste israélien <strong>Yuval Abraham</strong> publie dans <em>+972 Magazine</em> et <em>Local Call</em> <a href="https://www.972mag.com/lavender-ai-israeli-army-gaza/" class="inline">une enquête</a> fondée sur le témoignage de six officiers du renseignement israélien ayant servi pendant la guerre à Gaza. Elle décrit un système de traitement de données appelé <strong>Lavender</strong>.</p>
+
+  <p>Le mécanisme décrit tient en trois temps. Le système analyse les données de surveillance portant sur une très large part de la population de Gaza. Il attribue à chaque personne <strong>une note de 1 à 100</strong> : la probabilité, estimée à partir d'une liste de caractéristiques, qu'elle appartienne aux branches armées du Hamas ou du Jihad islamique. Au-dessus d'un seuil, la personne bascule dans une liste de cibles.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="big">37 000</div><div class="lab">personnes marquées comme cibles potentielles, selon l'enquête</div></div>
+    <div class="stat"><div class="big">20 s</div><div class="lab">temps passé par un officier sur une cible avant d'autoriser la frappe</div></div>
+    <div class="stat"><div class="big">15 à 20</div><div class="lab">civils dont la mort était admise d'avance pour une cible subalterne</div></div>
+    <div class="stat"><div class="big">~10 %</div><div class="lab">taux d'erreur du système, reconnu en interne selon les sources</div></div>
+  </div>
+
+  <p>Le détail le plus commenté porte sur la vérification humaine. Selon les sources citées, le seul contrôle systématique effectué avant de bombarder le domicile d'un militant présumé de rang subalterne consistait à <strong>s'assurer que la cible désignée par le système était un homme et non une femme</strong> — au motif qu'il n'y a pas de femmes dans les rangs des branches armées. Un officier dit avoir eu le sentiment d'être <em>« un tampon apposé sur les décisions de la machine »</em>. Un second système, surnommé <em>« Where's Daddy? »</em>, signalait le moment où la cible rentrait chez elle : la frappe visait alors le logement familial plutôt que la personne isolée.</p>
+
+  <div class="box block">
+    <h4>La réponse de l'armée israélienne</h4>
+    <p>Interrogée par <a href="https://www.theguardian.com/world/2024/apr/03/israel-gaza-ai-database-hamas-airstrikes"><em>The Guardian</em></a>, l'armée israélienne a <strong>rejeté catégoriquement</strong> avoir eu la moindre politique consistant à tuer des dizaines de milliers de personnes à leur domicile. Elle affirme que des <strong>analystes humains mènent des examens indépendants</strong> vérifiant la conformité au droit international avant qu'une cible soit retenue, et décrit Lavender non comme un système de décision, mais comme une base de données servant à recouper des sources de renseignement.</p>
+    <p class="note">Ces allégations n'ont pas été établies par une juridiction. Elles reposent sur des témoignages anonymes rapportés par la presse, et sont contestées. Elles sont présentées ici comme telles.</p>
+  </div>
+
+  <p>On pourrait s'arrêter là : un épisode isolé, dans un conflit particulier, une version contre une autre. La lecture est défendable. Sauf qu'un mécanisme très proche réapparaît deux ans plus tard, ailleurs — et que cette fois, le fournisseur du modèle répond publiquement.</p>
+
+  <hr>
+
+  <!-- ===== 3 ===== -->
+  <h2><span class="num">3.</span> Iran, 2026 : la question posée en face au fournisseur</h2>
+
+  <p>Le 10 juin 2026, dans <a href="https://www.youtube.com/watch?v=v1wZwxY3CMg" class="inline">l'émission <em>The Circuit</em> de Bloomberg</a>, la journaliste <strong>Emily Chang</strong> pose à <strong>Dario Amodei</strong>, PDG d'Anthropic, une question sans détour. Bloomberg a rapporté que Claude est utilisé par l'armée américaine dans la guerre en Iran pour du <strong>ciblage assisté par IA</strong>, via une plateforme de Palantir, le <em>Maven Smart System</em>. En février, un missile américain a frappé une école de filles en Iran, tuant plus de 150 personnes, en majorité des enfants. Claude a-t-il joué un rôle dans cette frappe ? Elle ajoute que l'école avait un site internet, trouvable par une simple recherche.</p>
+
+  <p>La réponse mérite d'être lue en entier plutôt que résumée :</p>
+
+  <blockquote>
+    « Nous ne savons pas exactement comment ces modèles ont été utilisés. […] Nous étions prêts à risquer l'avenir de notre entreprise pour limiter l'usage qui est fait de ces modèles. Et ce dont vous parlez est un cas d'usage qui ne viole même pas nos lignes rouges. Nous craignons qu'il y en ait cent fois plus, avec des cas qui, eux, violent nos lignes rouges. […] Je pense que dans l'ensemble, l'usage de ces modèles est approprié, que le bilan est positif. Mais les décideurs militaires commettent des erreurs terribles, même au meilleur des moments — et je ne sais pas si nous y sommes. Ce qu'on voit ici : Claude assiste, mais un humain prend la décision finale. »
+    <span class="src"><a href="https://www.youtube.com/watch?v=v1wZwxY3CMg">Dario Amodei, Bloomberg · The Circuit, 10 juin 2026</a></span>
+  </blockquote>
+
+  <p>Puis, sur le principe lui-même :</p>
+
+  <blockquote>
+    « Le principe qui a été respecté ici, c'est qu'un humain prend la décision finale. J'ignore quel rôle Claude ou une autre IA a joué, mais si ça n'illustre pas pourquoi ce principe est si important, alors je ne sais plus. »
+    <span class="src"><a href="https://www.youtube.com/watch?v=v1wZwxY3CMg">Dario Amodei, même entretien</a></span>
+  </blockquote>
+
+  <p>Rien dans cet échange ne dit qu'une IA a choisi la cible. Le fournisseur lui-même dit ignorer quel rôle son modèle a joué. Ce qui est établi est plus banal, et plus gênant : le modèle est dans la chaîne de ciblage, l'entreprise qui le vend ne sait pas dire où, et l'usage décrit <strong>ne franchit aucune des lignes rouges qu'elle s'est elle-même fixées</strong>.</p>
+
+  <div class="box prod">
+    <h4>Ce qui lie Anthropic à la défense américaine</h4>
+    <p>Depuis novembre 2024, un accord entre Anthropic, <strong>Palantir</strong> et AWS rend les modèles Claude accessibles dans un environnement classifié du renseignement et de la défense américains — niveau d'accréditation IL6. Le modèle n'est pas déployé « chez le ministère » au sens où on l'imaginerait : il est disponible dans une plateforme de traitement de données qui, elle, sert notamment à la désignation d'objectifs.</p>
+    <p>Début 2026, un bras de fer oppose l'entreprise au Pentagone. Anthropic refuse de lever deux interdits : la <strong>surveillance domestique de masse</strong> et les <strong>armes létales autonomes</strong>. Le ministère menace de la désigner comme « menace sur la chaîne d'approvisionnement », une qualification aux effets commerciaux lourds. Un juge fédéral bloque la mesure.</p>
+    <p class="note">Aucun de ces deux interdits ne couvre l'assistance au ciblage. C'est ce qu'Amodei répond à Emily Chang : le cas dont elle parle « ne viole même pas » ses lignes rouges.</p>
+  </div>
+
+  <hr>
+
+  <!-- ===== 4 ===== -->
+  <h2><span class="num">4.</span> Ce qui change entre les deux : le temps disponible</h2>
+
+  <p>D'un épisode à l'autre, la différence n'est pas la technologie. C'est la cadence. <strong>Elke Schwarz</strong>, professeure de théorie politique à Queen Mary University of London et spécialiste de l'éthique des armes autonomes, la décrit <a href="https://www.youtube.com/watch?v=L9qwpSVKoNE" class="inline">sur Times Radio</a> en mars 2026 :</p>
+
+  <blockquote>
+    « Il y a toujours une confiance obligée dans la décision prise par l'IA. Et dans cette chaîne d'action accélérée, pas assez de temps pour intervenir. Cela mène à un <strong>biais d'automatisation</strong> et un biais d'action : l'action a lieu avant qu'un humain intervienne. Mais n'oublions pas que ce sont aussi des humains qui décident d'utiliser ces systèmes, et ils devraient savoir que ces systèmes comportent des risques. »
+    <span class="src"><a href="https://www.youtube.com/watch?v=L9qwpSVKoNE">Elke Schwarz, Times Radio, 7 mars 2026</a></span>
+  </blockquote>
+
+  <p>Deux termes, en langage courant. Le <em>biais d'automatisation</em> désigne la tendance, très documentée, d'un opérateur à valider ce que la machine propose — surtout sous pression, et surtout quand elle a raison la plupart du temps. Ce n'est pas de la paresse, c'est un réflexe cognitif ordinaire. Le <em>biais d'action</em> désigne la préférence pour faire quelque chose plutôt que rien, quand le temps manque.</p>
+
+  <p>Schwarz rappelle ensuite l'obligation qui pèse sur toute partie à un conflit : vérifier le statut de chaque cible, s'assurer qu'elle constitue bien un objectif légitime, éviter ou limiter les dommages causés aux civils. Sa conclusion : à cette cadence, cette vérification est « très fortement entravée ».</p>
+
+  <p>C'est là que la boucle se referme avec l'article 14. Le contrôle humain n'y est pas une case à cocher : c'est un <strong>temps disponible et une capacité réelle de contredire la machine</strong>. Vingt secondes par cible, ce n'est pas un contrôle humain défaillant — c'est un contrôle humain qui n'a matériellement pas lieu. Cette exigence-là, l'Europe l'impose au logiciel qui trie des CV.</p>
+
+  <p><a href="https://www.youtube.com/watch?v=xGqYbXL3kZc" class="inline">La vidéo de Vox</a> prend le même problème par l'autre bout :</p>
+
+  <blockquote>
+    « Les systèmes d'IA ne produisent pas des faits. Ils ne produisent que des prédictions, comme une météo ou la Bourse. L'intelligence qui s'y trouve dépend entièrement de la qualité, de la validité, de la compréhension des humains qui ont créé le système. »
+    <span class="src"><a href="https://www.youtube.com/watch?v=xGqYbXL3kZc">Vox, 7 mai 2024</a></span>
+  </blockquote>
+
+  <hr>
+
+  <!-- ===== 5 ===== -->
+  <h2><span class="num">5.</span> Et en France ?</h2>
+
+  <p>Le 24 juin 2025, devant <a href="https://www.youtube.com/watch?v=rJC5H7otjyg" class="inline">la commission de la défense de l'Assemblée nationale</a>, un membre de la commission rappelle à la ministre l'objectif affiché par le ministère des armées : <strong>« devenir la première puissance militaire de l'IA en Europe, et dans le top 3 mondial »</strong>.</p>
+
+  <p>Les moyens suivent. L'<strong>Agence ministérielle pour l'IA de défense (AMIAD)</strong> a été créée le 1<sup>er</sup> mai 2024. Elle est dotée d'environ <strong>300 millions d'euros par an</strong>, dans une enveloppe d'environ <strong>2 milliards d'euros</strong> sur la loi de programmation militaire 2024-2030. Côté outils, le gouvernement a renouvelé le contrat de la DGSI — le renseignement intérieur — avec <strong>Palantir</strong>, l'entreprise dont le PDG ouvre le montage en expliquant que viser « plus précisément, plus vite » a changé la façon de faire la guerre.</p>
+
+  <p>Rien d'illégal, rien de caché : les montants sont publics, les auditions sont diffusées. Le constat est ailleurs. La France investit lourdement dans exactement la catégorie de systèmes que le règlement européen qu'elle a voté laisse hors de son champ.</p>
+
+  <hr>
+
+  <!-- ===== 6 ===== -->
+  <h2><span class="num">6.</span> Ce qui tient debout</h2>
+
+  <p>Trois constats se tiennent sans avoir besoin d'être interprétés.</p>
+
+  <p>L'asymétrie réglementaire est écrite, et juridiquement fondée : l'Union n'a pas compétence sur la défense des États. Elle laisse pourtant sans cadre européen le seul usage où une erreur de classement est définitive, et aucun instrument international n'a pris le relais depuis 2014.</p>
+
+  <p>Dans les deux épisodes, la question n'a jamais été de savoir si la machine décidait seule. Elle a porté sur ce qui reste au décideur humain quand la machine propose plus vite qu'il ne peut vérifier. C'est une affaire de cadence et d'organisation, pas de science-fiction.</p>
+
+  <p>Sur le versant civil du règlement — celui qui, lui, s'applique — les obligations « haut risque » ont été repoussées au <strong>2 décembre 2027</strong> par le paquet <em>Digital Omnibus</em>. Le volet contraignant arrive plus tard que prévu ; l'autre reste dehors.</p>
+
+  <p>Le montage en tête d'article ne dit rien de plus que ce que ces gens disent eux-mêmes. Sept sources, deux ans d'écart : un vendeur, un journaliste, une chercheuse, un fournisseur, une commission parlementaire. Aucun commentaire ajouté.</p>
+
+  <p><strong>À chacun d'en tirer ses conclusions.</strong></p>
+
+  <!-- SOURCES -->
+  <section class="sources">
+    <h2>Sources</h2>
+    <p class="intro">Les citations du montage ont été transcrites depuis les vidéos elles-mêmes, puis vérifiées mot à mot sur les fichiers montés. Les identités ont été contrôlées à l'image : aucun nom n'est incrusté quand la source n'en affiche pas. Chiffres et références juridiques vérifiés à leur source première (août 2026).</p>
+
+    <h4>Les extraits du montage, dans l'ordre</h4>
+    <ul>
+      <li>CNBC — <a href="https://www.youtube.com/watch?v=duqQhb7iJt8">« How The Palantir CEO Says Its Impacting Modern Warfare »</a>, 13 mars 2026 (Alex Karp, PDG de Palantir).</li>
+      <li>Vox — <a href="https://www.youtube.com/watch?v=xGqYbXL3kZc">« How AI tells Israel who to bomb »</a>, 7 mai 2024.</li>
+      <li>Thinkerview — <a href="https://www.youtube.com/watch?v=PjnzI69A3X0">« I.A. : Le choc de l'intime ? »</a>, 28 mai 2026 (Laurent Alexandre et Alexandre Tsicopoulos ; l'émission n'incruste aucun nom à l'écran).</li>
+      <li>Democracy Now! — <a href="https://www.youtube.com/watch?v=4RmNJH4UN3s">« Lavender &amp; Where's Daddy: How Israel Used AI to Form Kill Lists &amp; Bomb Palestinians in Their Homes »</a>, 5 avril 2024 (Amy Goodman, Yuval Abraham).</li>
+      <li>Times Radio — <a href="https://www.youtube.com/watch?v=L9qwpSVKoNE">« Using AI In Warfare Could Increase Civilian Casualties »</a>, 7 mars 2026 (professeure Elke Schwarz).</li>
+      <li>Bloomberg Originals — <a href="https://www.youtube.com/watch?v=v1wZwxY3CMg">« Inside Anthropic, the $965 Billion AI Juggernaut | The Circuit »</a>, 10 juin 2026 (Emily Chang, Dario Amodei).</li>
+      <li>Commission de la défense, Assemblée nationale — <a href="https://www.youtube.com/watch?v=rJC5H7otjyg">audition de M<sup>me</sup> Clara Chappaz, ministre déléguée chargée de l'intelligence artificielle et du numérique</a>, 24 juin 2025 (captation mise en ligne par une députée de la commission). L'extrait retenu est l'intervention d'un membre de la commission s'adressant à la ministre : la vidéo n'incruste aucun nom, aucun n'est affiché dans le montage.</li>
+    </ul>
+
+    <h4>L'enquête d'origine et sa contestation</h4>
+    <ul>
+      <li>Yuval Abraham — <a href="https://www.972mag.com/lavender-ai-israeli-army-gaza/">« 'Lavender': The AI machine directing Israel's bombing spree in Gaza »</a>, <em>+972 Magazine</em> et <em>Local Call</em>, 3 avril 2024 (six officiers du renseignement israélien).</li>
+      <li><em>The Guardian</em> — <a href="https://www.theguardian.com/world/2024/apr/03/israel-gaza-ai-database-hamas-airstrikes">reprise de l'enquête et réponse de l'armée israélienne</a>, 3 avril 2024. L'armée rejette toute politique de tuer des dizaines de milliers de personnes à leur domicile et affirme l'existence d'examens humains indépendants.</li>
+    </ul>
+
+    <h4>Les textes</h4>
+    <ul>
+      <li>Union européenne — <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">règlement (UE) 2024/1689</a> établissant des règles harmonisées concernant l'intelligence artificielle : article 2 § 3 (exclusion militaire, défense, sécurité nationale) ; annexe III, point 4 a) (emploi et recrutement, haut risque) ; article 14 (contrôle humain).</li>
+      <li><a href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:12016M004">Traité sur l'Union européenne, article 4 § 2</a> : la sécurité nationale relève de la seule responsabilité de chaque État membre.</li>
+      <li>Report des obligations « haut risque » au 2 décembre 2027 — paquet <em>Digital Omnibus</em> (Commission européenne, 2026).</li>
+      <li>Nations unies — travaux du groupe d'experts gouvernementaux sur les systèmes d'armes létales autonomes (CCAC), engagés depuis 2014, sans instrument contraignant à ce jour.</li>
+    </ul>
+
+    <h4>Anthropic, Palantir et la défense américaine</h4>
+    <ul>
+      <li>Accord Anthropic / Palantir / AWS mettant Claude à disposition dans un environnement classifié (niveau IL6), annoncé le 7 novembre 2024.</li>
+      <li>Bras de fer Anthropic / Département de la Défense, début 2026 : refus de lever les interdits sur la surveillance domestique de masse et les armes létales autonomes, menace de désignation comme « menace sur la chaîne d'approvisionnement », mesure bloquée par un juge fédéral (Lawfare, TechCrunch, CNBC).</li>
+      <li>Palantir — <em>Maven Smart System</em>, plateforme de fusion de données et d'aide à la désignation d'objectifs, issue du <em>Project Maven</em> du Département de la Défense.</li>
+    </ul>
+
+    <h4>La France</h4>
+    <ul>
+      <li>Agence ministérielle pour l'intelligence artificielle de défense (AMIAD), créée le 1<sup>er</sup> mai 2024 : environ 300 M€ par an, environ 2 Md€ sur la loi de programmation militaire 2024-2030.</li>
+      <li>Renouvellement du contrat entre la DGSI et Palantir (rapporté par la presse française et évoqué dans l'entretien Thinkerview du 28 mai 2026).</li>
+    </ul>
+
+    <p class="legal"><b>Précision et droit de réponse.</b> Cet article rapporte des <em>allégations de presse</em> fondées sur des témoignages anonymes, ainsi que le <em>démenti</em> de la partie mise en cause, présentés l'un et l'autre. Il ne porte aucune accusation, n'établit aucun fait contesté et ne constitue pas un avis juridique. Une personne ou une organisation citée souhaite une précision ou un rectificatif ? <a href="/a-propos/">Écrire à l'auteur</a> — la correction sera publiée.</p>
+
+    <p class="signature">Article rédigé par un humain et augmenté par une IA (recherche documentaire, transcription et alignement des extraits, création des visuels, montage, mise en forme et code de l'article).</p>
+  </section>
+
+
+</article>
+</main>
+
+<div id="sr-footer"></div>
+
+<script src="/assets/site.js?v=2026082001" defer></script>
+<script data-goatcounter="https://sebastienriviere.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
