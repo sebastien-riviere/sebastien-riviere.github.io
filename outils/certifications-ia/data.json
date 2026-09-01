@@ -1,5 +1,5 @@
 {
- "maj": "2026-08-28",
+ "maj": "2026-09-01",
  "cats": [
   [
    "fondamentaux",
@@ -728,6 +728,22 @@
    "u": "https://openclassrooms.com/fr/courses/5919236-decouvrez-la-science-des-donnees-pour-les-objets-connectes",
    "note": "Licence CC BY-SA 4.0. Libre accès vérifié le 29/07/2026. Data science appliquée à l'IoT (capteurs, séries temporelles). Utilité SECONDAIRE pour SR — à mobiliser si une mission touche capteurs/industrie/traçabilité (croise blockchain-web3 traçabilité). Dossier local : Documents/01_PROJETS/Formation OpenClassrooms IA (PDF + liens vidéo, 29/07/2026).",
    "verif": "2026-07-29"
+  },
+  {
+   "n": "AI Agents for Beginners",
+   "org": "Microsoft",
+   "cat": "genai",
+   "grat": "oui",
+   "cout": "0",
+   "duree": "18 leçons (autoformation)",
+   "format": "Curriculum GitHub (licence MIT) : leçons + notebooks + quiz",
+   "reco": "Aucun certificat",
+   "elig": "Tous (open source)",
+   "lang": "FR+EN",
+   "niv": "intermédiaire",
+   "u": "https://github.com/microsoft/ai-agents-for-beginners",
+   "note": "Distinct des « Generative AI » et « AI for Beginners » Microsoft (mêmes auteurs, même format) : centré sur la conception d'agents IA (frameworks, function calling, RAG multi-agents, MCP). Open source MIT, gratuit, sans certificat. Traduction FR auto. Ajouté à l'audit-site du 01/09/2026.",
+   "verif": "2026-09-01"
   }
  ]
 }
