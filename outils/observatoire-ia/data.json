@@ -1,5 +1,5 @@
 {
-  "maj": "2026-09-01",
+  "maj": "2026-09-02",
   "total": 300,
   "byTheme": {
     "data": 247,
@@ -945,6 +945,23 @@
     {
       "s": "boamp",
       "src": "BOAMP",
+      "o": "Maintenance et évolution des outils logiciels et matériels informatiques pour l'exploitation des équipements et des données du réseau d'assainissement du Val-de-Marne",
+      "a": "Département du Val-de-Marne",
+      "dep": "94",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-07-05",
+      "dl": "2026-09-21T14:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-66424",
+      "k": "departement du val de marne|maintenance et evolution des outils logiciels et materiels informatiques pour l exploitati",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
       "o": "Création d'une base de données et gestion de la taxe locale sur les publicités extérieures (Tlpe) avec assistance administrative, technique et juridique",
       "a": "Ville Liévin",
       "dep": "62",
@@ -991,23 +1008,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-65363",
       "k": "centre d acces securise aux donnees casd|service de location d espace hautement securise et haute disponibilite d hebergement physi",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Maintenance et évolution des outils logiciels et matériels informatiques pour l'exploitation des équipements et des données du réseau d'assainissement du Val-de-Marne",
-      "a": "Département du Val-de-Marne",
-      "dep": "94",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-07-03",
-      "dl": "2026-08-17T14:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-65387",
-      "k": "departement du val de marne|maintenance et evolution des outils logiciels et materiels informatiques pour l exploitati",
       "ia": 0
     },
     {
