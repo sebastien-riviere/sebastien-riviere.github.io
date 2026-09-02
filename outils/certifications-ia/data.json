@@ -1,5 +1,5 @@
 {
- "maj": "2026-09-01",
+ "maj": "2026-09-02",
  "cats": [
   [
    "fondamentaux",
@@ -743,6 +743,54 @@
    "niv": "intermédiaire",
    "u": "https://github.com/microsoft/ai-agents-for-beginners",
    "note": "Distinct des « Generative AI » et « AI for Beginners » Microsoft (mêmes auteurs, même format) : centré sur la conception d'agents IA (frameworks, function calling, RAG multi-agents, MCP). Open source MIT, gratuit, sans certificat. Traduction FR auto. Ajouté à l'audit-site du 01/09/2026.",
+   "verif": "2026-09-01"
+  },
+  {
+   "n": "Generative AI Explained",
+   "org": "NVIDIA (Deep Learning Institute)",
+   "cat": "fondamentaux",
+   "grat": "oui",
+   "cout": "0",
+   "duree": "2h",
+   "format": "en ligne (autoformation, no-code)",
+   "reco": "Pas de certificat (confirmé sur le forum NVIDIA Developer)",
+   "elig": "Grand public",
+   "lang": "EN",
+   "niv": "débutant",
+   "u": "https://courses.nvidia.com/courses/course-v1:DLI+S-FX-07+V1/",
+   "note": "Vérifié 01/09/2026 (recoupement WebSearch + résolution du lien lnkd.in de l'email). Cours gratuit, sans code, 2h, SANS certificat (contrairement à ce que suggère parfois le marketing DLI) — cf. forums.developer.nvidia.com/t/regarding-a-self-paced-course-generative-ai-explained/300149.",
+   "verif": "2026-09-01"
+  },
+  {
+   "n": "AI Infrastructure and Operations Fundamentals",
+   "org": "NVIDIA (Deep Learning Institute)",
+   "cat": "fondamentaux",
+   "grat": "audit-seulement",
+   "cout": "Audit gratuit ; certificat payant (achat de l'expérience certifiante Coursera, essai gratuit/aide financière possibles)",
+   "duree": "environ 1 semaine à 10h/semaine",
+   "format": "Coursera (hébergé hors plateforme DLI)",
+   "reco": "Certificat partageable LinkedIn — PAYANT (accès aux devoirs et au certificat conditionné à l'achat)",
+   "elig": "Grand public",
+   "lang": "EN",
+   "niv": "débutant",
+   "u": "https://www.coursera.org/learn/introduction-ai-data-center",
+   "note": "CORRECTION IMPORTANTE 01/09/2026 : ce cours n'est PAS vrai-gratuit contrairement au cadrage de l'email NVIDIA. Résolution du lien lnkd.in/gKTS6uMS -> héberge sur Coursera (coursera.org/learn/introduction-ai-data-center), modèle audit gratuit / certificat payant confirmé par citation exacte de la page : « To access course materials, assignments, and earn a Certificate, you'll need to purchase the Certificate experience ». Reclassé gratuit=oui -> audit-seulement.",
+   "verif": "2026-09-01"
+  },
+  {
+   "n": "NVIDIA Tools for Generative AI in Digital Health",
+   "org": "NVIDIA (Deep Learning Institute)",
+   "cat": "fondamentaux",
+   "grat": "oui",
+   "cout": "0",
+   "duree": "2h",
+   "format": "en ligne (autoformation, no-code)",
+   "reco": "",
+   "elig": "Grand public",
+   "lang": "EN",
+   "niv": "débutant",
+   "u": "https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+S-HX-03+V1",
+   "note": "Correction 01/09/2026 : code cours réel = S-HX-03 (trouvé par résolution du lien lnkd.in/gaMUhSVR), pas S-FX-12 comme le suggérait une première recherche libre (cours visiblement différent/ancien). Gratuit/2h/débutant confirmés par sources convergentes (Threads, Daidu.ai).",
    "verif": "2026-09-01"
   }
  ]
