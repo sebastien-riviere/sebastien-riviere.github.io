@@ -1,5 +1,5 @@
 {
-  "maj": "2026-09-03",
+  "maj": "2026-09-04",
   "total": 300,
   "byTheme": {
     "data": 247,
@@ -7,6 +7,23 @@
     "numerique": 26
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Le présent marché a pour objet la fourniture, la gestion, le renouvellement et le suivi d'abonnements : \nÀ des périodiques imprimés,\nÀ des périodiques électroniques \nÀ des bases de données juridiqu...",
+      "a": "CARSAT BOURGOGNE - FRANCHE-COMTE",
+      "dep": "21",
+      "fam": "Marchés <90 k€ (MAPA)",
+      "tm": "Services",
+      "proc": "Procédure Adaptée",
+      "dp": "2026-09-03",
+      "dl": "2026-09-28T11:30:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-85546",
+      "k": "carsat bourgogne franche comte|le present marche a pour objet la fourniture la gestion le renouvellement et le suivi d ab",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-110495",
       "k": "filieris|mise a disposition d un service de reseau de donnees de telephonie d appel malade et d heb",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "ACCORD-CADRE A BONS DE COMMANDE DE TOPOGRAPHIES ET ACQUISITIONS DE DONNEES AEROPORTEES POUR LE SMAVD",
-      "a": "SMAVD",
-      "dep": "13, 84, 4, 5, 83",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-02",
-      "dl": "2025-11-07T15:00:00+00:00",
-      "m": "ac_max",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-108750",
-      "k": "smavd|accord cadre a bons de commande de topographies et acquisitions de donnees aeroportees pou",
       "ia": 0
     }
   ]
