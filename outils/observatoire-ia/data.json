@@ -1,12 +1,29 @@
 {
-  "maj": "2026-09-07",
+  "maj": "2026-09-09",
   "total": 300,
   "byTheme": {
-    "data": 246,
-    "numerique": 27,
+    "numerique": 28,
+    "data": 245,
     "ia": 27
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Mission de maîtrise d'oeuvre relative à l’opération ETAPE INP : Évolution et Transformation des espaces pour les Apprentissages, la Pédagogie et l’Education numérique",
+      "a": "TOULOUSE INP",
+      "dep": "31",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Restreinte",
+      "dp": "2026-09-08",
+      "dl": "",
+      "m": "",
+      "th": "numerique",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-86464",
+      "k": "toulouse inp|mission de maitrise d oeuvre relative a l operation etape inp evolution et transformation ",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-113076",
       "k": "ville d annecy|fourniture installation maintenance de panneaux a messages variables de solution de gestio",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Exploitation Des Donnees De Telegestion Des Compteurs D'Achat D'Eau En Gros",
-      "a": "Régie Publique de l'Eau Potable de Coeur d'Essonne Agglomération",
-      "dep": "91",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-10",
-      "dl": "2025-11-04T11:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-113012",
-      "k": "regie publique de l eau potable de coeur|exploitation des donnees de telegestion des compteurs d achat d eau en gros",
       "ia": 0
     }
   ]
