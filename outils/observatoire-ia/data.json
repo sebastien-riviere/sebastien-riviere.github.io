@@ -1,12 +1,46 @@
 {
-  "maj": "2026-09-10",
+  "maj": "2026-09-11",
   "total": 300,
   "byTheme": {
-    "data": 245,
-    "numerique": 28,
+    "data": 244,
+    "numerique": 29,
     "ia": 27
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "REFONTE D’ARCHITECTURE AVEC MIGRATION DE DONNEES DES OUTILS DE GESTION ET DE SUIVI DES AIDES DE L’ONACVG",
+      "a": "ONACVG",
+      "dep": "75",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-09-11",
+      "dl": "2026-09-28T12:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-87482",
+      "k": "onacvg|refonte d architecture avec migration de donnees des outils de gestion et de suivi des aid",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "fourniture, gestion et dématérialisation des titres restaurant",
+      "a": "COMMUNAUTE DE COMMUNES DE DESVRES SAMER",
+      "dep": "62",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Fournitures",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-09-10",
+      "dl": "2026-10-16T17:00:00+00:00",
+      "m": "",
+      "th": "numerique",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-87998",
+      "k": "communaute de communes de desvres samer|fourniture gestion et dematerialisation des titres restaurant",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5072,40 +5106,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114897",
       "k": "centre hospitalier universitaire de nice|developpement d un logiciel pour l assistance chirurgicale en peroperatoire pour traumatis",
       "ia": 1
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Catalogage des données du système d'information pour Saint-Lô Agglo",
-      "a": "Saint-Lô Agglo",
-      "dep": "50",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-15",
-      "dl": "2025-11-19T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114561",
-      "k": "saint lo agglo|catalogage des donnees du systeme d information pour saint lo agglo",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Prestation de mise en conformité règlement général de protection des données (RGPD) de l'EPCI et de ses communes membres",
-      "a": "CA DU PAYS NORD MARTINIQUE",
-      "dep": "972",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-15",
-      "dl": "2025-11-14T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114823",
-      "k": "ca du pays nord martinique|prestation de mise en conformite reglement general de protection des donnees rgpd de l epc",
-      "ia": 0
     }
   ]
 }
