@@ -1,12 +1,29 @@
 {
-  "maj": "2026-09-13",
+  "maj": "2026-09-14",
   "total": 300,
   "byTheme": {
-    "data": 244,
-    "numerique": 29,
+    "data": 245,
+    "numerique": 28,
     "ia": 27
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Collecte et fourniture de données \"observateurs\" et \"auto-échantillonnage pour le suivi de la pêche palangrière pélagique à La Réunion (Océan Indien)",
+      "a": "IRD - DR OCCITANIE",
+      "dep": "34,974,22,35,29,56,13",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-09-13",
+      "dl": "2026-10-16T16:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-88103",
+      "k": "ird dr occitanie|collecte et fourniture de donnees observateurs et auto echantillonnage pour le suivi de la",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5089,23 +5106,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-115297",
       "k": "universite gustave eiffel|accord cadre d appui a la collecte des donnees dans le cadre de tests par correspondance",
       "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Développement d'un logiciel pour l'assistance chirurgicale en peropératoire pour traumatisme osseux via Réalité Augmentée avec équipement Magic Leap 2 dans le cadre d'un projet innovant",
-      "a": "Centre Hospitalier Universitaire de Nice - Hôpital de Cimiez - Etablissement support du GHT06",
-      "dep": "6",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-15",
-      "dl": "2025-11-05T16:00:00+00:00",
-      "m": null,
-      "th": "numerique",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114897",
-      "k": "centre hospitalier universitaire de nice|developpement d un logiciel pour l assistance chirurgicale en peroperatoire pour traumatis",
-      "ia": 1
     }
   ]
 }
