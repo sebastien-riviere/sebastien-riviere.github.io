@@ -1,5 +1,5 @@
 {
-  "maj": "2026-09-14",
+  "maj": "2026-09-15",
   "total": 300,
   "byTheme": {
     "data": 245,
@@ -7,6 +7,23 @@
     "ia": 27
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "MISSION D'ASSISTANCE, DE CONSEIL ET D'ACCOMPAGNEMENT POUR LE RECUEIL DES DONNEES ET LE RECOUVREMENT DE LA TAXE SUR LA PUBLICITE EXTERIEURE (TPE)",
+      "a": "Ville de Loos",
+      "dep": "59",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-09-14",
+      "dl": "2026-10-02T11:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-88796",
+      "k": "ville de loos|mission d assistance de conseil et d accompagnement pour le recueil des donnees et le reco",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114445",
       "k": "semivim|services de telecommunications voix et donnees lot 2 services et terminaux de mobilite",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Accord-cadre d’appui à la collecte des données dans le cadre de tests par correspondance",
-      "a": "Université Gustave Eiffel",
-      "dep": "77",
-      "fam": "Marchés <90 k€ (MAPA)",
-      "tm": "Services",
-      "proc": "Procédure Adaptée",
-      "dp": "2025-10-16",
-      "dl": "2025-11-12T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-115297",
-      "k": "universite gustave eiffel|accord cadre d appui a la collecte des donnees dans le cadre de tests par correspondance",
       "ia": 0
     }
   ]
