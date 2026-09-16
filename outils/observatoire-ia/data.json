@@ -1,12 +1,29 @@
 {
-  "maj": "2026-09-15",
+  "maj": "2026-09-16",
   "total": 300,
   "byTheme": {
-    "data": 245,
-    "numerique": 28,
-    "ia": 27
+    "ia": 28,
+    "data": 244,
+    "numerique": 28
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Evaluation de conformité de la protection des données personnelles (RGPD) et du règlement sur l'intelligence artificielle (RIA) à la Ville de Lyon et au CCAS",
+      "a": "Ville de Lyon",
+      "dep": "69",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-09-16",
+      "dl": "2026-10-21T14:00:00+00:00",
+      "m": "estime",
+      "th": "ia",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-89106",
+      "k": "ville de lyon|evaluation de conformite de la protection des donnees personnelles rgpd et du reglement su",
+      "ia": 1
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-115066",
       "k": "conseil departemental d eure et loir|realisation d une boucle locale reseau mise a disposition et maintenance de liaisons afin ",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Services de Télécommunications voix et données - Lot 2 : Services et Terminaux de mobilité",
-      "a": "SEMIVIM",
-      "dep": "13",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-16",
-      "dl": "2025-11-20T11:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-114445",
-      "k": "semivim|services de telecommunications voix et donnees lot 2 services et terminaux de mobilite",
       "ia": 0
     }
   ]
