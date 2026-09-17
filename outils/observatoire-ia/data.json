@@ -1,12 +1,29 @@
 {
-  "maj": "2026-09-16",
+  "maj": "2026-09-17",
   "total": 300,
   "byTheme": {
-    "ia": 28,
     "data": 244,
+    "ia": 28,
     "numerique": 28
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Services d'abonnement à une base de données d'articles de presse dématérialisés pour la Communauté d'agglomération Grand Paris Sud",
+      "a": "CA GRAND PARIS SUD SEINE ESSONNE SENART",
+      "dep": "91,77",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-09-17",
+      "dl": "2026-10-19T10:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-89405",
+      "k": "ca grand paris sud seine essonne senart|services d abonnement a une base de donnees d articles de presse dematerialises pour la co",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-116373",
       "k": "assistance publique hopitaux de paris|audit et certification du systeme de management du systeme de l information smsi selon le ",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Réalisation d'une boucle locale réseau, mise à disposition et maintenance de liaisons afin de permettre la transmission de voix et de données",
-      "a": "Conseil départemental d'Eure-et-Loir",
-      "dep": "28",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-17",
-      "dl": "2025-11-21T11:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-115066",
-      "k": "conseil departemental d eure et loir|realisation d une boucle locale reseau mise a disposition et maintenance de liaisons afin ",
       "ia": 0
     }
   ]
