@@ -1,5 +1,5 @@
 {
-  "maj": "2026-09-19",
+  "maj": "2026-09-20",
   "total": 300,
   "byTheme": {
     "data": 244,
@@ -7,6 +7,23 @@
     "numerique": 28
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture des données relatives aux ventes de vin tranquille en France - relance-lot5",
+      "a": "FRANCEAGRIMER",
+      "dep": "93,75,94,92,91,77",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-09-19",
+      "dl": "2026-10-19T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-90215",
+      "k": "franceagrimer|fourniture des donnees relatives aux ventes de vin tranquille en france relance lot5",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-117449",
       "k": "sertrid|maintenance assistance et sauvegarde des donnees informatiques du sertrid",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Refonte complète des arrêtés municipaux de police de circulation et de stationnement et mise à jour de la base de données-.",
-      "a": "Commune de Saint-Dizier",
-      "dep": "52",
-      "fam": "Marchés <90 k€ (MAPA)",
-      "tm": "Services",
-      "proc": "Procédure Adaptée",
-      "dp": "2025-10-20",
-      "dl": "2025-11-25T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-116638",
-      "k": "commune de saint dizier|refonte complete des arretes municipaux de police de circulation et de stationnement et mi",
       "ia": 0
     }
   ]
