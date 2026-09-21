@@ -1,5 +1,5 @@
 {
-  "maj": "2026-09-20",
+  "maj": "2026-09-21",
   "total": 300,
   "byTheme": {
     "data": 244,
@@ -7,6 +7,40 @@
     "numerique": 28
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "FOURNITURE ET LIVRAISON D’INSTRUMENTS ETD’OUTILS DE TELETRANSMISSION DE DONNEES",
+      "a": "CEREMA",
+      "dep": "69",
+      "fam": "Marchés européens",
+      "tm": "Fournitures",
+      "proc": "Procédure NC",
+      "dp": "2026-09-20",
+      "dl": "2026-10-19T12:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-90654",
+      "k": "cerema|fourniture et livraison d instruments etd outils de teletransmission de donnees",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Acquisition, géoréférencement, traitement et restitution de données patrimoniales eau-incendie-assainissement et contextuelles (formats DAO et SIG) - 6 lots",
+      "a": "GRENOBLE ALPES METROPOLE",
+      "dep": "38",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-09-20",
+      "dl": "2026-10-12T12:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-90638",
+      "k": "grenoble alpes metropole|acquisition georeferencement traitement et restitution de donnees patrimoniales eau incend",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -328,6 +362,23 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-85546",
       "k": "carsat bourgogne franche comte|le present marche a pour objet la fourniture la gestion le renouvellement et le suivi d ab",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Fourniture de données pour analyses ESG - Suivi de la politique d'exclusion",
+      "a": "Caisse des dépôts et consignations",
+      "dep": "75",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Négociée",
+      "dp": "2026-09-02",
+      "dl": "",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-84905",
+      "k": "caisse des depots et consignations|fourniture de donnees pour analyses esg suivi de la politique d exclusion",
       "ia": 0
     },
     {
@@ -790,23 +841,6 @@
       "ia": 0
     },
     {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture de données pour analyses ESG - Suivi de la politique d'exclusion",
-      "a": "Caisse des dépôts et consignations",
-      "dep": "75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Négociée",
-      "dp": "2026-07-26",
-      "dl": "",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-74470",
-      "k": "caisse des depots et consignations|fourniture de donnees pour analyses esg suivi de la politique d exclusion",
-      "ia": 0
-    },
-    {
       "s": "mail",
       "src": "PLACE",
       "o": "Fourniture de matériels et consommables pour les travaux pratiques de l’Ecole de Médecine de Dentaire de Marseille",
@@ -1111,23 +1145,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-69294",
       "k": "opco2i|continuite performance et evolutivite du systeme decisionnel d opco 2i",
       "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Acquisition, géoréférencement, traitement et restitution de données patrimoniales eau-incendie-assainissement et contextuelles (formats DAO et SIG) - 6 lots",
-      "a": "GRENOBLE ALPES METROPOLE",
-      "dep": "38",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-07-12",
-      "dl": "2026-09-21T12:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-69676",
-      "k": "grenoble alpes metropole|acquisition georeferencement traitement et restitution de donnees patrimoniales eau incend",
-      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-116676",
       "k": "coallia|mise a disposition d un accompagnement exterieur permettant la mise en en conformite avec ",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Maintenance, assistance et sauvegarde des données informatiques du SERTRID",
-      "a": "SERTRID",
-      "dep": "90",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-21",
-      "dl": "2025-11-21T12:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-117449",
-      "k": "sertrid|maintenance assistance et sauvegarde des donnees informatiques du sertrid",
       "ia": 0
     }
   ]
