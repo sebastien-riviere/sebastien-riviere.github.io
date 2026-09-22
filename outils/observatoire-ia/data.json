@@ -1,5 +1,5 @@
 {
-  "maj": "2026-09-21",
+  "maj": "2026-09-22",
   "total": 300,
   "byTheme": {
     "data": 244,
@@ -7,6 +7,23 @@
     "numerique": 28
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Accompagnement des collectivités de Corse au déploiement du logiciel SINOE V3, saisie des données \"collecte et traitement\" et production des bilans territoriaux.",
+      "a": "Office de l'Environnement de la Corse",
+      "dep": "20B",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-09-21",
+      "dl": "2026-10-14T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-91164",
+      "k": "office de l environnement de la corse|accompagnement des collectivites de corse au deploiement du logiciel sinoe v3 saisie des d",
+      "ia": 0
+    },
     {
       "s": "boamp",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-117093",
       "k": "paris saclay cancer cluster|accompagnement a la structuration et la transformation des donnees dans le cadre du projet",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Mise à disposition d'un accompagnement extérieur permettant la mise en en conformité avec les lois imposées par le règlement général sur la protection des données personnelles (RGPD).",
-      "a": "Coallia",
-      "dep": "75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-21",
-      "dl": "2025-11-24T11:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-116676",
-      "k": "coallia|mise a disposition d un accompagnement exterieur permettant la mise en en conformite avec ",
       "ia": 0
     }
   ]
