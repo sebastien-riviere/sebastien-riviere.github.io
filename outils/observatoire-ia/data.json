@@ -1,12 +1,29 @@
 {
-  "maj": "2026-09-26",
+  "maj": "2026-09-27",
   "total": 300,
   "byTheme": {
-    "numerique": 31,
+    "numerique": 32,
     "data": 241,
-    "ia": 28
+    "ia": 27
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "prestations d’agrégateur d’agence de voyages, d’intégrateur type SBT/OBT et de carte logée, en lien avec l’outil de dématérialisation du process voyage",
+      "a": "Amue.",
+      "dep": "75,34",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Négociée",
+      "dp": "2026-09-26",
+      "dl": "",
+      "m": "",
+      "th": "numerique",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-92486",
+      "k": "amue|prestations d agregateur d agence de voyages d integrateur type sbt obt et de carte logee ",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "BOAMP",
@@ -5089,23 +5106,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-120962",
       "k": "meteo france|maintenance corrective et evolutive de bdclimats base de donnees climatologiques spatialis",
       "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Etude d'opportunités en Intelligence Artificielle",
-      "a": "Ville de Longwy",
-      "dep": "54",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-10-29",
-      "dl": "2025-11-21T16:00:00+00:00",
-      "m": null,
-      "th": "ia",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-120743",
-      "k": "ville de longwy|etude d opportunites en intelligence artificielle",
-      "ia": 1
     }
   ]
 }
