@@ -1,5 +1,5 @@
 {
-  "maj": "2026-10-03",
+  "maj": "2026-10-04",
   "total": 300,
   "byTheme": {
     "data": 215,
@@ -294,7 +294,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-94120",
       "k": "grand port maritime de la reunion|fourniture de titres restaurant pour les agents du gpmdlr 2026 2030",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "mail",
@@ -311,7 +311,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-94133",
       "k": "france travail la reunion|marche de la region reunion de services de formation professionnelle au benefice des perso",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -328,7 +328,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-94580",
       "k": "pfra bfc|regie des donnees scientifiques de l archeologie dsa et de suivi technique",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "mail",
