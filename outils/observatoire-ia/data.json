@@ -1,12 +1,29 @@
 {
-  "maj": "2026-10-05",
+  "maj": "2026-10-06",
   "total": 300,
   "byTheme": {
-    "numerique": 68,
-    "data": 208,
+    "numerique": 69,
+    "data": 207,
     "ia": 24
   },
   "items": [
+    {
+      "s": "mail",
+      "src": "BOAMP",
+      "o": "CONSTRUCTION D'UN GYMNASE MULTISPORT l'ETANG-SALE-LES-BAINS",
+      "a": "Mairie de L'ETANG-SALE",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-10-06",
+      "dl": "2026-11-09T23:59:00",
+      "m": "",
+      "th": "numerique",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-95920",
+      "k": "mairie de l etang sale|construction d un gymnase multisport l etang sale les bains",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "BOAMP",
@@ -158,7 +175,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-95284",
       "k": "pre bocage intercom|pbi 2027 001 marche de fourniture de materiel informatique prestation de fourniture de log",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-140474",
       "k": "gip france enfance protegee|fourniture mise en oeuvre maintenance et exploitation d une solution informatique d archiv",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Hébergement agréé des données de santé pour le Conseil départemental des Yvelines",
-      "a": "Conseil Départemental des Yvelines",
-      "dep": "78",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2025-12-19",
-      "dl": "2026-01-28T15:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:25-139562",
-      "k": "conseil departemental des yvelines|hebergement agree des donnees de sante pour le conseil departemental des yvelines",
       "ia": 0
     }
   ]
