@@ -1,5 +1,5 @@
 {
-  "maj": "2026-10-09",
+  "maj": "2026-10-10",
   "total": 300,
   "byTheme": {
     "ia": 25,
@@ -158,7 +158,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-97237",
       "k": "opco sante|numerique et intelligence artificielle",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -175,7 +175,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-97607",
       "k": "centre de gestion de l isere cdg 38|mise en place d une solution de sauvegarde des donnees du cdg38",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "mail",
@@ -328,7 +328,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-96392",
       "k": "commune de saint joseph|locations de vehicules et d engins pour divers services communaux annee 2026 marche n 26ao",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "mail",
@@ -345,7 +345,7 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-96076",
       "k": "spm dsaf|service reseau dans les territoires d outre mer francais au profit du rie",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -362,7 +362,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-96952",
       "k": "insee|acquisition des donnees issues des questionnaires collectes dans le cadre du recensement d",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "mail",
