@@ -1,12 +1,29 @@
 {
-  "maj": "2026-10-10",
+  "maj": "2026-10-11",
   "total": 300,
   "byTheme": {
+    "data": 184,
     "ia": 25,
-    "numerique": 91,
-    "data": 184
+    "numerique": 91
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Mise en place d'une solution SaaS permettant la collecte, l'agrégation, la visualisation et l'ana-lyse statistique des données d'exploitation des véhicules de transport urbain en Île-de-France, inc...",
+      "a": "Ile de France Mobilités",
+      "dep": "75,91,92,93",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-10-10",
+      "dl": "2026-11-12T15:00:00+00:00",
+      "m": "ac_max",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-97660",
+      "k": "ile de france mobilites|mise en place d une solution saas permettant la collecte l agregation la visualisation et ",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "PLACE",
@@ -5088,23 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-9487",
       "k": "gip resah|solutions numeriques innovantes de deploiement d un entrepot de donnees de sante eds et pr",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Prestations de déploiement et d'exploitation des plateformes Open Data et Closed Data Territoriale de la Corse",
-      "a": "Collectivité de Corse",
-      "dep": "20A",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-01-29",
-      "dl": "2026-03-02T11:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-9401",
-      "k": "collectivite de corse|prestations de deploiement et d exploitation des plateformes open data et closed data terr",
       "ia": 0
     }
   ]
