@@ -1,12 +1,46 @@
 {
-  "maj": "2026-10-16",
+  "maj": "2026-10-17",
   "total": 300,
   "byTheme": {
-    "numerique": 117,
-    "ia": 23,
-    "data": 160
+    "ia": 24,
+    "data": 159,
+    "numerique": 117
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "La réalisation des prestations pour le déploiement d'une plateforme d'aide au conseil agricole assistée par\nintelligence artificielle, et services associés.",
+      "a": "Chambre d'agriculture de l'Aisne",
+      "dep": "2,51,60,77",
+      "fam": "Marchés <90 k€ (MAPA)",
+      "tm": "Services",
+      "proc": "Procédure Adaptée",
+      "dp": "2026-10-16",
+      "dl": "2026-11-26T12:00:00+00:00",
+      "m": "",
+      "th": "ia",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-101064",
+      "k": "chambre d agriculture de l aisne|la realisation des prestations pour le deploiement d une plateforme d aide au conseil agri",
+      "ia": 1
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Marché de service pour la collecte de données d'une étude longitudinale",
+      "a": "Université de Reims Champagne Ardenne",
+      "dep": "51",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-10-16",
+      "dl": "2026-10-29T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-100905",
+      "k": "universite de reims champagne ardenne|marche de service pour la collecte de donnees d une etude longitudinale",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "BOAMP",
@@ -141,7 +175,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-99975",
       "k": "office francais de la biodiversite|administration de plumh plateforme unifiee de donnees sur les milieux humides",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "mail",
@@ -5071,40 +5105,6 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-27608",
       "k": "metropole de lyon|mise a disposition d une plateforme de dematerialisation des marches publics pour les beso",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "REALISATION DE BASES DE DONNEES D'OCCUPATION DU SOL A GRANDE ECHELLE DANS 3 PARC NATURELS REGIONAUX",
-      "a": "Parc Naturel du Verdon",
-      "dep": "4, 5, 6, 83, 13, 84",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-03-18",
-      "dl": "2026-04-20T18:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-28350",
-      "k": "parc naturel du verdon|realisation de bases de donnees d occupation du sol a grande echelle dans 3 parc naturels ",
-      "ia": null
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "26M0054AOO_MHD_VB_ACQUISITION ET MAINTENANCE D'UN PORTAIL DE GESTION DE DONNEES PUBLIQUES",
-      "a": "Toulouse Métropole",
-      "dep": "31",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-03-17",
-      "dl": "2026-04-23T10:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-26894",
-      "k": "toulouse metropole|26m0054aoo mhd vb acquisition et maintenance d un portail de gestion de donnees publiques",
       "ia": 0
     }
   ]
