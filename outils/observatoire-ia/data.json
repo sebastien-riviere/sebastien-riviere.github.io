@@ -1,12 +1,80 @@
 {
-  "maj": "2026-10-19",
+  "maj": "2026-10-20",
   "total": 300,
   "byTheme": {
+    "data": 152,
     "numerique": 123,
-    "ia": 25,
-    "data": 152
+    "ia": 25
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Prestation d’ingénierie en matière de traitements et d'analyse de données, d'études statistiques et de restitutions de données",
+      "a": "ATIH.",
+      "dep": "69",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-10-20",
+      "dl": "2026-11-20T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-101315",
+      "k": "atih|prestation d ingenierie en matiere de traitements et d analyse de donnees d etudes statist",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Exploitation et valorisation des données issues du système de comptages automatiques des voyageurs embarqué dans les TER du réseau BreizhGo",
+      "a": "Région Bretagne",
+      "dep": "35",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-10-20",
+      "dl": "2026-11-30T10:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-101190",
+      "k": "region bretagne|exploitation et valorisation des donnees issues du systeme de comptages automatiques des v",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Prestations de mise à jour des informations des bases de données de l'administration (service-public.gouv.fr)",
+      "a": "DSAF",
+      "dep": "75,92,93,94,95",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-10-20",
+      "dl": "2026-11-26T12:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-101240",
+      "k": "dsaf|prestations de mise a jour des informations des bases de donnees de l administration servi",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Suivi des données de vente des produits de prévention en santé sexuelle disponibles en France",
+      "a": "Santé publique France",
+      "dep": "75",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-10-19",
+      "dl": "2026-11-23T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-101203",
+      "k": "sante publique france|suivi des donnees de vente des produits de prevention en sante sexuelle disponibles en fra",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "BOAMP",
@@ -158,7 +226,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-100942",
       "k": "altemed|definition mise en oeuvre et deploiement operationnel de la strategie d intelligence artif",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "boamp",
@@ -175,7 +243,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-100890",
       "k": "metropole europeenne de lille|prestations de developpement numerique d information et d accompagnement aux usages sur da",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -5038,74 +5106,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-34759",
       "k": "carif oref de normandie|deploiement d un systeme d intelligence artificielle sia d acces aux donnees emploi format",
       "ia": 1
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Appel à candidatures en vue de la délivrance d'un agrément pour la gestion, le recueil, la collecte et le traitement des données de l'identification et des mouvements des porcins",
-      "a": "Ministère de l'agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
-      "dep": "75",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-04-02",
-      "dl": "2026-05-05T16:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-33165",
-      "k": "ministere de l agriculture de l agro ali|appel a candidatures en vue de la delivrance d un agrement pour la gestion le recueil la c",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Réalisation d'Analyses d'Impact relatives à la Protection des Données (Aipd) conformes au Règlement Général sur la Protection des Données (Rgpd)",
-      "a": "Ville du Havre",
-      "dep": "76",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-04-01",
-      "dl": "2026-04-29T16:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-33356",
-      "k": "ville du havre|realisation d analyses d impact relatives a la protection des donnees aipd conformes au re",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Réalisation d'Analyses d'Impact relatives à la Protection des Données (Aipd) conformes au Règlement Général sur la Protection des Données (Rgpd)",
-      "a": "Le Havre Seine Metropole",
-      "dep": "76",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-04-01",
-      "dl": "2026-04-29T16:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-33357",
-      "k": "le havre seine metropole|realisation d analyses d impact relatives a la protection des donnees aipd conformes au re",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture Et Pose De Stations Meteorologiques Routieres, Reconditionnement De Stations Meteorologiques Routieres, Recueil De Donnees Pour Les Besoins Du Departement D'Ille-Et-Vila",
-      "a": "Conseil Départemental d'Ille et Vilaine",
-      "dep": "35",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Fournitures",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-03-27",
-      "dl": "2026-05-04T16:00:00+00:00",
-      "m": null,
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-32168",
-      "k": "conseil departemental d ille et vilaine|fourniture et pose de stations meteorologiques routieres reconditionnement de stations met",
-      "ia": 0
     }
   ]
 }
