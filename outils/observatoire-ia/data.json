@@ -1,12 +1,29 @@
 {
-  "maj": "2026-10-23",
+  "maj": "2026-10-24",
   "total": 300,
   "byTheme": {
+    "data": 143,
     "numerique": 135,
-    "data": 142,
-    "ia": 23
+    "ia": 22
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Prestations d’ingénierie et de formations aux outils décisionnels du Système d’Information Décisionnel de la Région Nouvelle-Aquitaine",
+      "a": "Région Nouvelle-Aquitaine",
+      "dep": "33",
+      "fam": "Marchés entre 90 k€ et seuils européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-10-23",
+      "dl": "2026-11-18T12:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-103261",
+      "k": "region nouvelle aquitaine|prestations d ingenierie et de formations aux outils decisionnels du systeme d information",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "BOAMP",
@@ -5089,23 +5106,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-42777",
       "k": "departement des cotes d armor|mise a disposition de previsions et observations de donnees meteorologiques",
       "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Fourniture d'un serveur de calcul dédié aux modèles d'intelligence artificielle",
-      "a": "Entente pour la Forêt Méditerranéenne",
-      "dep": "13",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Fournitures",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-04-27",
-      "dl": "2026-05-19T12:00:00+00:00",
-      "m": null,
-      "th": "ia",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-42344",
-      "k": "entente pour la foret mediterraneenne|fourniture d un serveur de calcul dedie aux modeles d intelligence artificielle",
-      "ia": 1
     }
   ]
 }
