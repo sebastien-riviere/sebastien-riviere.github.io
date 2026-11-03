@@ -1,12 +1,46 @@
 {
-  "maj": "2026-11-02",
+  "maj": "2026-11-03",
   "total": 300,
   "byTheme": {
-    "numerique": 167,
-    "data": 114,
+    "numerique": 168,
+    "data": 113,
     "ia": 19
   },
   "items": [
+    {
+      "s": "mail",
+      "src": "BOAMP",
+      "o": "REUNION (974) – Secteur Nord de La Réunion - Accord-cadre à bons de commande pour des dépannages multi-corps d’état de type « SOS DEPANNAGES »",
+      "a": "DID SDS",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-11-03",
+      "dl": "2026-12-18T23:59:00",
+      "m": "",
+      "th": "numerique",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-106040",
+      "k": "did sds|reunion 974 secteur nord de la reunion accord cadre a bons de commande pour des depannages",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Tierce Maintenance du système d’information Décisionnel mutualisé (TMD)",
+      "a": "Agence de l'eau Seine Normandie",
+      "dep": "92,31,45,57,59,69",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-11-03",
+      "dl": "2027-01-14T12:00:00+00:00",
+      "m": "ac_max",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-106077",
+      "k": "agence de l eau seine normandie|tierce maintenance du systeme d information decisionnel mutualise tmd",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "BOAMP",
@@ -141,7 +175,7 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-105786",
       "k": "centre nationale du cinema|systeme de gestion informatique centralisee des donnees issues d une chaine de post produc",
-      "ia": null
+      "ia": 0
     },
     {
       "s": "boamp",
@@ -158,7 +192,7 @@
       "th": "ia",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-105860",
       "k": "toulouse metropole|26mc0213aoo abonnement a une base de donnees juridiques et a une solution d intelligence a",
-      "ia": null
+      "ia": 1
     },
     {
       "s": "mail",
@@ -1844,6 +1878,23 @@
       "ia": 0
     },
     {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "FOURNITURE ET LIVRAISON D’INSTRUMENTS ETD’OUTILS DE TELETRANSMISSION DE DONNEES",
+      "a": "CEREMA",
+      "dep": "69",
+      "fam": "Marchés européens",
+      "tm": "Fournitures",
+      "proc": "Procédure NC",
+      "dp": "2026-10-14",
+      "dl": "2026-10-19T12:00:00+00:00",
+      "m": "estime",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-98798",
+      "k": "cerema|fourniture et livraison d instruments etd outils de teletransmission de donnees",
+      "ia": 0
+    },
+    {
       "s": "mail",
       "src": "BOAMP",
       "o": "Mise à disposition de personnels intérimaires dans le cadre du montage d'un pont modulaire BERD pour le SMPRR",
@@ -3461,23 +3512,6 @@
     {
       "s": "boamp",
       "src": "BOAMP",
-      "o": "FOURNITURE ET LIVRAISON D’INSTRUMENTS ETD’OUTILS DE TELETRANSMISSION DE DONNEES",
-      "a": "CEREMA",
-      "dep": "69",
-      "fam": "Marchés européens",
-      "tm": "Fournitures",
-      "proc": "Procédure NC",
-      "dp": "2026-09-20",
-      "dl": "2026-10-19T12:00:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-90654",
-      "k": "cerema|fourniture et livraison d instruments etd outils de teletransmission de donnees",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
       "o": "Acquisition, géoréférencement, traitement et restitution de données patrimoniales eau-incendie-assainissement et contextuelles (formats DAO et SIG) - 6 lots",
       "a": "GRENOBLE ALPES METROPOLE",
       "dep": "38",
@@ -5071,40 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-59725",
       "k": "centre nationale du cinema|acquisition des donnees de frequentation des salles de cinema pour les annees 2027 a 2030",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Mise A Disposition De Previsions Et D'Observations De Donnees Meteorologiques Pour Le Departement De La Sarthe",
-      "a": "Département de la Sarthe",
-      "dep": "72",
-      "fam": "Marchés entre 90 k€ et seuils européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-06-18",
-      "dl": "2026-07-15T11:30:00+00:00",
-      "m": "",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-60399",
-      "k": "departement de la sarthe|mise a disposition de previsions et d observations de donnees meteorologiques pour le depa",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Mise à disposition d’une plateforme d’exploitation des données issues de la télérelève des compteurs d’eau de la Régie des eaux de Montpellier Méditerranée Métropole",
-      "a": "Régie des eaux de Montpellier Méditerranée Métropole",
-      "dep": "34",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-06-17",
-      "dl": "2026-08-31T10:00:00+00:00",
-      "m": "",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-59326",
-      "k": "regie des eaux de montpellier mediterran|mise a disposition d une plateforme d exploitation des donnees issues de la telereleve des",
       "ia": 0
     }
   ]
