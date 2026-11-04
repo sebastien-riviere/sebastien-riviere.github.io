@@ -1,5 +1,5 @@
 {
- "maj": "2026-09-02",
+ "maj": "2026-11-04",
  "cats": [
   [
    "fondamentaux",
@@ -56,8 +56,8 @@
    "lang": "EN",
    "niv": "intermédiaire",
    "u": "https://www.pearsonvue.com/us/en/anthropic.html",
-   "note": "Pas librement accessible au grand public aujourd'hui. Gratuit via le Claude Partner Network (5000 premières tentatives). Timing conseillé : après la certif Alyra.",
-   "verif": "2026-07-09"
+   "note": "Pas librement accessible au grand public aujourd'hui. Gratuit via le Claude Partner Network (5000 premières tentatives). Timing conseillé : après la certif Alyra. | MAJ 11/09/2026 : programme à 4 examens (CCAO-F, CCDV-F, CCAR-F, CCAR-P) selon Pearson VUE (page à jour 24/08/2026) ; code officiel de l'Architect = CCAR-F (pas CCA-F) ; accès toujours réservé au Claude Partner Network ; prix 99-175 $ vus seulement sur sites tiers, à recouper.",
+   "verif": "2026-09-11"
   },
   {
    "n": "Elements of AI — Introduction à l'IA",
@@ -504,8 +504,8 @@
    "lang": "EN",
    "niv": "débutant",
    "u": "https://anthropic.skilljar.com/",
-   "note": "100 % gratuit (email suffit), certificat de complétion gratuit par cours. Catalogue : Claude 101, AI Fluency, MCP, Claude Code, subagents, API… Contenu en anglais uniquement. À distinguer de la certif payante Claude Certified Architect.",
-   "verif": "2026-07-09"
+   "note": "100 % gratuit (email suffit), certificat de complétion gratuit par cours. Catalogue : Claude 101, AI Fluency, MCP, Claude Code, subagents, API… Contenu en anglais uniquement. À distinguer de la certif payante Claude Certified Architect. | MAJ 11/09/2026 (garde, post A. Zeitoun) : catalogue vérifié à 22 cours, dont Introduction to Claude Cowork, Claude Code 101, AI Fluency for Small Businesses ; gratuité non reconfirmée sur la page catalogue ce jour.",
+   "verif": "2026-09-11"
   },
   {
    "n": "Generative AI for Beginners",
@@ -792,6 +792,146 @@
    "u": "https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+S-HX-03+V1",
    "note": "Correction 01/09/2026 : code cours réel = S-HX-03 (trouvé par résolution du lien lnkd.in/gaMUhSVR), pas S-FX-12 comme le suggérait une première recherche libre (cours visiblement différent/ancien). Gratuit/2h/débutant confirmés par sources convergentes (Threads, Daidu.ai).",
    "verif": "2026-09-01"
+  },
+  {
+   "n": "Introduction to Generative AI",
+   "org": "Google Cloud (Google Cloud Skills Boost)",
+   "cat": "fondamentaux",
+   "grat": "oui",
+   "cout": "0",
+   "duree": "",
+   "format": "cours en ligne",
+   "reco": "badge/certificat de complétion Google",
+   "elig": "Ouvert à tous",
+   "lang": "EN",
+   "niv": "débutant",
+   "u": "https://www.cloudskillsboost.google/course_templates/536",
+   "note": "Lien réel résolu le 02/09/2026 en ouvrant le post LinkedIn de Loïc Youmba (item 3, « Magie de l'IA Google » / lnkd.in/eBQXfBe9) : titre FR sur la plateforme = « Présentation de l'IA générative ». Correspond bien au cours déjà en base sous son titre EN."
+  },
+  {
+   "n": "What Is Generative AI?",
+   "org": "LinkedIn Learning",
+   "cat": "fondamentaux",
+   "grat": "oui",
+   "cout": "0",
+   "duree": "1h03",
+   "format": "vidéos",
+   "reco": "certificat de complétion LinkedIn Learning",
+   "elig": "Ouvert à tous",
+   "lang": "FR (à confirmer)",
+   "niv": "débutant",
+   "u": "https://www.linkedin.com/learning/what-is-generative-ai",
+   "note": "Lien réel résolu le 02/09/2026 (post Loïc Youmba, item 5 « Bases de l'IA Microsoft » / lnkd.in/eYNWzXUX) : titre réel = « What Is Generative AI? » par Pinar Seyhan Demirdag, fait partie d'un Professional Certificate Microsoft sur LinkedIn Learning. Accès gaté : connexion + abonnement LinkedIn Learning (ou essai gratuit) requis pour voir le cours et le certificat."
+  },
+  {
+   "n": "ChatGPT Prompt Engineering for Developers",
+   "org": "DeepLearning.AI & OpenAI",
+   "cat": "fondamentaux",
+   "grat": "oui",
+   "cout": "0",
+   "duree": "",
+   "format": "vidéos + notebooks",
+   "reco": "certificat de complétion DeepLearning.AI",
+   "elig": "Développeurs / niveau intermédiaire",
+   "lang": "EN",
+   "niv": "intermédiaire",
+   "u": "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/",
+   "note": "Lien réel résolu le 02/09/2026 (post Loïc Youmba, item 1 « Maîtrise de ChatGPT » / lnkd.in/eiRtk-6q) : titre exact = « ChatGPT Prompt Engineering for Developers » (DeepLearning.AI x OpenAI, Isa Fulford/Andrew Ng). Doute levé : ce n'est PAS un doublon générique de la ligne « DeepLearning.AI — Short Courses », c'est bien ce cours précis."
+  },
+  {
+   "n": "Foundations of Prompt Engineering",
+   "org": "AWS (AWS Skill Builder)",
+   "cat": "fondamentaux",
+   "grat": "oui",
+   "cout": "0",
+   "duree": "",
+   "format": "cours en ligne AWS Skill Builder",
+   "reco": "badge digital AWS",
+   "elig": "Ouvert à tous",
+   "lang": "EN",
+   "niv": "débutant",
+   "u": "https://explore.skillbuilder.aws/learn/course/external/view/elearning/17763/foundations-of-prompt-engineering",
+   "note": "Lien réel résolu le 02/09/2026 (post Loïc Youmba, item 2 « Principes fondamentaux de l'ingénierie de l'incitation » / lnkd.in/dyEt4DGt)."
+  },
+  {
+   "n": "Introduction to Responsible AI",
+   "org": "Google (Cloud Skills Boost)",
+   "cat": "ethique",
+   "grat": "oui",
+   "cout": "0",
+   "duree": "~15 min",
+   "format": "vidéos + quiz",
+   "reco": "Badge de complétion Google (gratuit)",
+   "elig": "Ouvert à tous (compte Google Cloud Skills Boost)",
+   "lang": "EN",
+   "niv": "débutant",
+   "u": "https://www.cloudskillsboost.google/course_templates/554",
+   "note": "Vérifié 02/09/2026 : correspondance réelle identifiée pour « Google's Ethical AI », l'un des 5 titres non recoupés du post LinkedIn Loïc Youmba « top 10 cours IA gratuits 2026 » (relayé par SR le 02/09/2026). Présente les 7 principes IA de Google, gratuit, badge inclus.",
+   "verif": "2026-09-02"
+  },
+  {
+   "n": "LangChain for LLM Application Development",
+   "org": "DeepLearning.AI x LangChain",
+   "cat": "genai",
+   "grat": "oui",
+   "cout": "0",
+   "duree": "~1h",
+   "format": "vidéos courtes + notebooks Jupyter",
+   "reco": "Certificat de complétion gratuit (DeepLearning.AI)",
+   "elig": "Ouvert à tous",
+   "lang": "EN",
+   "niv": "débutant",
+   "u": "https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/",
+   "note": "CORRECTION 02/09/2026 : la première insertion pointait par erreur vers le cours « Quickstart: LangChain Essentials » de LangChain Academy (aussi gratuit, non retiré de la base par ailleurs mais mal attribué) — en ouvrant réellement le lien du post Loïc Youmba (item 9, « Modèles de langage par LangChain » / lnkd.in/evZVJbNy), la cible exacte est ce cours DeepLearning.AI x LangChain (Harrison Chase). Corrigé pour refléter le lien réel.",
+   "verif": "2026-09-02"
+  },
+  {
+   "n": "Learn Prompting",
+   "org": "Learn Prompting (indépendant)",
+   "cat": "fondamentaux",
+   "grat": "oui",
+   "cout": "0",
+   "duree": "variable (12-34 leçons selon le parcours)",
+   "format": "leçons interactives + guide en ligne, communauté Discord",
+   "reco": "Pas de certificat gratuit confirmé (offre « Get Certified » distincte, tarif non vérifié)",
+   "elig": "Ouvert à tous",
+   "lang": "EN",
+   "niv": "débutant",
+   "u": "https://learnprompting.org",
+   "note": "Lien réel résolu le 02/09/2026 (post Loïc Youmba, item 6 « Cours d'ingénierie Avancé » / lnkd.in/eNi_YNSe). Ressource indépendante réputée (3M+ apprenants revendiqués, citée par des chercheurs IA sur X depuis 2022) — pas Coursera/edX. Couvre débutant (« Introduction to Prompt Engineering ») à avancé (« Advanced Prompt Engineering », chain-of-thought…).",
+   "verif": "2026-09-02"
+  },
+  {
+   "n": "Data Science: Building Machine Learning Models",
+   "org": "Harvard University (HarvardX)",
+   "cat": "ml",
+   "grat": "audit-seulement",
+   "cout": "0 (audit) ; Professional Certificate payant via edX",
+   "duree": "non précisée sur la page",
+   "format": "vidéos + labs R",
+   "reco": "Aucune en accès libre ; Professional Certificate in Data Science (edX, payant) si le parcours complet est suivi",
+   "elig": "Ouvert à tous",
+   "lang": "EN",
+   "niv": "intermédiaire",
+   "u": "https://pll.harvard.edu/course/data-science-building-machine-learning-models",
+   "note": "Lien réel résolu le 02/09/2026 (post Loïc Youmba, item 8 « Apprentissage automatique par Harvard » / lnkd.in/eX28syMJ). Fait partie du Professional Certificate in Data Science (HarvardX/edX, Rafael Irizarry) — distinct de CS50's Introduction to AI with Python déjà en base (celui-ci = un module du parcours Data Science, construction d'un système de recommandation).",
+   "verif": "2026-09-02"
+  },
+  {
+   "n": "Claude Code: A Highly Agentic Coding Assistant",
+   "org": "DeepLearning.AI x Anthropic (Elie Schoppik)",
+   "cat": "genai",
+   "grat": "conditionnel",
+   "cout": "0 pendant la beta de la plateforme DeepLearning.AI ; devoir note + attestation reserves au plan PRO",
+   "duree": "2 h (10 lecons video + lecture + quiz)",
+   "format": "videos + 3 projets pratiques (parcourir une codebase RAG, transformer un notebook e-commerce en dashboard, generer une web app depuis un fichier de design)",
+   "reco": "Aucune en acces libre ; « accomplishment » / certificat uniquement avec le plan PRO",
+   "elig": "Ouvert a tous",
+   "lang": "EN",
+   "niv": "intermédiaire",
+   "u": "https://www.deeplearning.ai/short-courses/claude-code-a-highly-agentic-coding-assistant/",
+   "note": "Provenance : capture SR du 08/10/2026 (newsletter DeepLearning.AI, « Learn to work effectively with coding agents in five short courses »). ⚠️ La page qui regroupe les CINQ cours n'a pas été retrouvée le 09/10 — les cours sont donc saisis individuellement, pas comme un parcours. Verifie sur la page le 09/10/2026 : inscription gratuite « for a limited time during the platform beta » — donc gratuit CONDITIONNEL, a revoir quand la beta se termine. Pertinence directe pour SR : il pilote Claude Code au quotidien (BRAIN-OS), et la methode enseignee (donner le bon contexte, diriger, relire ce que l'agent produit) est exactement le savoir-faire qu'il vend en conseil IA.",
+   "verif": "2026-10-09"
   }
  ]
 }
