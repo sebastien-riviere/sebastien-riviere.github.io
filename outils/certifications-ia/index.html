@@ -24,7 +24,7 @@
 
 ::selection{background:var(--ia-soft)}
 
-/* encart pédagogique REPLIABLE : les 4 statuts de gratuité (le différenciateur) */
+/* encart pédagogique REPLIABLE : les 5 statuts de gratuité (le différenciateur) */
 .legend-box{max-width:var(--wrap-app);width:100%;margin:6px auto 0;padding:0 24px;}
 .legend-box>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;font-family:var(--ui);font-weight:800;font-size:13px;color:var(--ink);background:var(--card);border:1px solid var(--border-soft);border-radius:var(--radius-sm);padding:10px 14px;box-shadow:var(--e-tile);}
 .legend-box>summary::-webkit-details-marker{display:none;}
@@ -41,6 +41,7 @@
 .legend-item .dot{flex:none;width:12px;height:12px;border-radius:50%;margin-top:3px;}
 .legend-item b{color:var(--ink);font-weight:800;}
 .d-vrai{background:var(--ok);}
+.d-sans{background:#14b8a6;}
 .d-audit{background:var(--warn);}
 .d-cond{background:#d98a24;}
 .d-cpf{background:var(--ia);}
@@ -100,6 +101,7 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
 .gbadge{font-family:var(--ui);font-size:10px;font-weight:900;letter-spacing:.2px;padding:3px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;}
 .gbadge .gd{width:6px;height:6px;border-radius:50%;flex:none;}
 .g-vrai-gratuit{background:var(--ok-soft);color:var(--ok);} .g-vrai-gratuit .gd{background:var(--ok);}
+.g-sans-certif{background:#dff3f0;color:#0f766e;} .g-sans-certif .gd{background:#14b8a6;}
 .g-audit{background:var(--warn-soft);color:var(--warn);} .g-audit .gd{background:var(--warn);}
 .g-conditionnel{background:#f6ecdb;color:#a5661a;} .g-conditionnel .gd{background:#d98a24;}
 .g-cpf{background:var(--ia-soft);color:var(--ia-ink);} .g-cpf .gd{background:var(--ia);}
@@ -170,10 +172,11 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
 </div>
 
 <details class="legend-box">
-  <summary><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Comment lire la gratuité <span class="lg-dots"><i class="d-vrai"></i><i class="d-audit"></i><i class="d-cond"></i><i class="d-cpf"></i></span><span class="lg-chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+  <summary><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Comment lire la gratuité <span class="lg-dots"><i class="d-vrai"></i><i class="d-sans"></i><i class="d-audit"></i><i class="d-cond"></i><i class="d-cpf"></i></span><span class="lg-chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></summary>
   <div class="legend-inner">
     <div class="legend-grid">
       <div class="legend-item"><span class="dot d-vrai"></span><span><b>Vraiment gratuit</b> — cours <em>et</em> certificat/badge gratuits, ouverts à tous.</span></div>
+      <div class="legend-item"><span class="dot d-sans"></span><span><b>Gratuit, sans certificat</b> — tout le cours est libre, mais aucun certificat ni badge n'est délivré.</span></div>
       <div class="legend-item"><span class="dot d-audit"></span><span><b>Cours gratuit, certif payante</b> — vous apprenez sans payer, mais le certificat est facturé.</span></div>
       <div class="legend-item"><span class="dot d-cond"></span><span><b>Conditionnel</b> — gratuit sous condition&nbsp;: étudiant vérifié, partenaire, essai limité.</span></div>
       <div class="legend-item"><span class="dot d-cpf"></span><span><b>Finançable CPF</b> — 0&nbsp;€ pour l'apprenant éligible, mais ce n'est pas «&nbsp;gratuit&nbsp;» au sens strict.</span></div>
@@ -213,11 +216,12 @@ main{flex:1;padding:6px 24px 64px;max-width:var(--wrap-app);width:100%;margin:0 
 <script>
 const GRAT = {
   'vrai-gratuit': {lbl:'Vraiment gratuit', cls:'g-vrai-gratuit', dot:'var(--ok)'},
+  'sans-certif':  {lbl:'Gratuit · sans certificat', cls:'g-sans-certif', dot:'#14b8a6'},
   'audit':        {lbl:'Cours gratuit · certif payante', cls:'g-audit', dot:'var(--warn)'},
   'conditionnel': {lbl:'Conditionnel', cls:'g-conditionnel', dot:'#d98a24'},
   'cpf':          {lbl:'Finançable CPF', cls:'g-cpf', dot:'var(--ia)'}
 };
-const GRAT_ORDER = ['vrai-gratuit','audit','conditionnel','cpf'];
+const GRAT_ORDER = ['vrai-gratuit','sans-certif','audit','conditionnel','cpf'];
 const CAT_COL = {fondamentaux:'#7c3aed',genai:'#0ea5e9',data:'#0891b2',dataeng:'#14b8a6',ml:'#6366f1',ethique:'#e11d48'};
 const ICN_CAT = {
   fondamentaux:'<svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg>',
