@@ -1,5 +1,5 @@
 {
-  "maj": "2026-11-06",
+  "maj": "2026-11-07",
   "total": 300,
   "byTheme": {
     "numerique": 186,
@@ -108,23 +108,6 @@
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-107172",
       "k": "gip cyclotron reunion ocean indien|installation d un centre cyclotron et d un service de medecine nucleaire",
       "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Relance lot n°2 \"Mise en œuvre de démarches UX\" - Marché d'accompagnement à la mise en œuvre du Plan de Transformation Numérique",
-      "a": "DEPARTEMENT DE LA REUNION",
-      "dep": "",
-      "fam": "",
-      "tm": "",
-      "proc": "",
-      "dp": "2026-11-06",
-      "dl": "2026-12-08T23:59:00",
-      "m": "",
-      "th": "numerique",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-106997",
-      "k": "departement de la reunion|relance lot n 2 mise en uvre de demarches ux marche d accompagnement a la mise en uvre du ",
-      "ia": null
     },
     {
       "s": "mail",
@@ -260,6 +243,23 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-107146",
       "k": "canut|fourniture de services de protection du patrimoine informationnel lies a la conformite reg",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Relance lot n°2 \"Mise en œuvre de démarches UX\" - Marché d'accompagnement à la mise en œuvre du Plan de Transformation Numérique",
+      "a": "DEPARTEMENT DE LA REUNION",
+      "dep": "974",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-11-05",
+      "dl": "2026-12-08T11:00:00+00:00",
+      "m": "estime",
+      "th": "numerique",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-106997",
+      "k": "departement de la reunion|relance lot n 2 mise en uvre de demarches ux marche d accompagnement a la mise en uvre du ",
       "ia": 0
     },
     {
