@@ -1,5 +1,5 @@
 {
-  "maj": "2026-11-09",
+  "maj": "2026-11-10",
   "total": 300,
   "byTheme": {
     "numerique": 188,
@@ -7,6 +7,23 @@
     "ia": 17
   },
   "items": [
+    {
+      "s": "mail",
+      "src": "BOAMP",
+      "o": "RESTRUCTURATION DU PARKING BUS ET DES ABORDS DES LYCEES DE PLATEAU CAILLOU",
+      "a": "Région Réunion",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-11-10",
+      "dl": "",
+      "m": "",
+      "th": "numerique",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-108614",
+      "k": "region reunion|restructuration du parking bus et des abords des lycees de plateau caillou",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "BOAMP",
@@ -804,23 +821,6 @@
       "th": "numerique",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-105172",
       "k": "universite de la reunion|remise en etat du gymnase du moufia relance lot 1 et lot 2",
-      "ia": 0
-    },
-    {
-      "s": "mail",
-      "src": "BOAMP",
-      "o": "RESTRUCTURATION DU PARKING BUS ET DES ABORDS DES LYCEES DE PLATEAU CAILLOU",
-      "a": "Région Réunion",
-      "dep": "",
-      "fam": "",
-      "tm": "",
-      "proc": "",
-      "dp": "2026-10-30",
-      "dl": "2026-11-25T23:59:00",
-      "m": "",
-      "th": "numerique",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-105222",
-      "k": "region reunion|restructuration du parking bus et des abords des lycees de plateau caillou",
       "ia": 0
     },
     {
