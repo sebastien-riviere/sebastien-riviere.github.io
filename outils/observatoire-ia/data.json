@@ -1,12 +1,29 @@
 {
-  "maj": "2026-11-13",
+  "maj": "2026-11-14",
   "total": 300,
   "byTheme": {
-    "numerique": 204,
-    "data": 81,
+    "numerique": 205,
+    "data": 80,
     "ia": 15
   },
   "items": [
+    {
+      "s": "mail",
+      "src": "PLACE",
+      "o": "2026-0173-00-00-MPF - Prestations d’audits et d’expertises techniques DEVSECOPS & IA pour les besoins de Numih France",
+      "a": "Etablissements de Santé et Médico-sociaux",
+      "dep": "",
+      "fam": "",
+      "tm": "",
+      "proc": "",
+      "dp": "2026-11-14",
+      "dl": "2026-12-21T10:00:00",
+      "m": "",
+      "th": "numerique",
+      "u": "",
+      "k": "etablissements de sante et medico sociau|2026 0173 00 00 mpf prestations d audits et d expertises techniques devsecops ia pour les ",
+      "ia": 1
+    },
     {
       "s": "mail",
       "src": "BOAMP",
@@ -5088,23 +5105,6 @@
       "th": "numerique",
       "u": "Voir>>",
       "k": "etablissements et organismes de l enseig|fourniture de materiels et consommables pour les travaux pratiques de l ecole de medecine ",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "ACQUISITIONS DE DONNÉES TOPOGRAPHIQUES/GÉOGRAPHIQUES ET CONTRÔLES",
-      "a": "Métropole Aix Marseille Provence",
-      "dep": "13",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Ouverte",
-      "dp": "2026-07-24",
-      "dl": "2026-09-01T10:30:00+00:00",
-      "m": "estime",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-73499",
-      "k": "metropole aix marseille provence|acquisitions de donnees topographiques geographiques et controles",
       "ia": 0
     }
   ]
