@@ -1,12 +1,46 @@
 {
-  "maj": "2026-11-20",
+  "maj": "2026-11-21",
   "total": 300,
   "byTheme": {
-    "numerique": 227,
-    "ia": 12,
-    "data": 61
+    "data": 62,
+    "numerique": 226,
+    "ia": 12
   },
   "items": [
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Acquisitions aériennes pour le renouvellement d’un PCRS - Plan de Corps de Rue Simplifié – Image et actualisation du référentiel de données 3D du jumeau numérique sur le département de la Vendée",
+      "a": "Géo Vendée (85)",
+      "dep": "85",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Ouverte",
+      "dp": "2026-11-20",
+      "dl": "2027-01-04T07:00:00+00:00",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-112299",
+      "k": "geo vendee 85|acquisitions aeriennes pour le renouvellement d un pcrs plan de corps de rue simplifie ima",
+      "ia": 0
+    },
+    {
+      "s": "boamp",
+      "src": "BOAMP",
+      "o": "Mise à disposition en mode SAAS d’une solution numérique de veille et de détection d’éventuels détournements d’usage des données du système d'information de l'ANTENJ et prestations associées",
+      "a": "ANTENJ",
+      "dep": "75,77,78,91,92,93,94,95",
+      "fam": "Marchés européens",
+      "tm": "Services",
+      "proc": "Procédure Restreinte",
+      "dp": "2026-11-20",
+      "dl": "",
+      "m": "",
+      "th": "data",
+      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-111854",
+      "k": "antenj|mise a disposition en mode saas d une solution numerique de veille et de detection d event",
+      "ia": 0
+    },
     {
       "s": "mail",
       "src": "BOAMP",
@@ -5071,40 +5105,6 @@
       "th": "data",
       "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-87300",
       "k": "epml|prestation de delegue a la protection des donnees",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Mission de maîtrise d'oeuvre relative à l’opération ETAPE INP : Évolution et Transformation des espaces pour les Apprentissages, la Pédagogie et l’Education numérique",
-      "a": "TOULOUSE INP",
-      "dep": "31",
-      "fam": "Marchés européens",
-      "tm": "Services",
-      "proc": "Procédure Restreinte",
-      "dp": "2026-09-08",
-      "dl": "",
-      "m": "",
-      "th": "numerique",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-86464",
-      "k": "toulouse inp|mission de maitrise d oeuvre relative a l operation etape inp evolution et transformation ",
-      "ia": 0
-    },
-    {
-      "s": "boamp",
-      "src": "BOAMP",
-      "o": "Mission d'assistance à la maîtrise d'ouvrage pour la mise en oeuvre d'une supervision des données eau potable et assainissement du secteur en régie",
-      "a": "Saint-Lô Agglo",
-      "dep": "50",
-      "fam": "Marchés <90 k€ (MAPA)",
-      "tm": "Services",
-      "proc": "Procédure Adaptée",
-      "dp": "2026-09-04",
-      "dl": "2026-09-30T12:00:00+00:00",
-      "m": "",
-      "th": "data",
-      "u": "https://www.boamp.fr/pages/avis/?q=idweb:26-86222",
-      "k": "saint lo agglo|mission d assistance a la maitrise d ouvrage pour la mise en oeuvre d une supervision des ",
       "ia": 0
     }
   ]
